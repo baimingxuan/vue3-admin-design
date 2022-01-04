@@ -3,4 +3,10 @@ node_modules
 dist
 dist-ssr
 *.local
+
+package-lock.json
+yarn.lock
+
+# Editor directories and files
+.idea
 .vscode
