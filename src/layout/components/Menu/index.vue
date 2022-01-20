@@ -6,15 +6,17 @@
 
 <script lang="ts">
   import { ElMenu as Menu } from 'element-plus'
-  import { defineComponent, ref } from 'vue'
+  import type { MenuState } from './types'
+  import { defineComponent, toRefs, reactive } from 'vue'
   export default defineComponent({
     components: { Menu },
     setup() {
-      const menuMode = ref('vertical')
-      const menuCollapse = ref(false)
+      const menuState = reactive<MenuState>({
+        menuMode: 'vertical',
+        menuCollapse: false
+      })
       return {
-        menuMode,
-        menuCollapse
+        ...toRefs(menuState)
       }
     }
   })

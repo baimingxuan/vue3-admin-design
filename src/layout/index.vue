@@ -1,7 +1,9 @@
 <template>
   <div class="common-layout">
     <ElContainer>
-      <ElAside width="200px">Aside</ElAside>
+      <ElAside width="200px">
+        <Menu />
+      </ElAside>
       <ElContainer>
         <ElHeader>Header</ElHeader>
         <ElMain>Main</ElMain>
@@ -13,6 +15,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import Menu from './components/Menu/index.vue'
 import { ElAside, ElContainer, ElHeader, ElMain, ElFooter } from 'element-plus'
 
 export default defineComponent({
@@ -22,7 +25,8 @@ export default defineComponent({
     ElContainer,
     ElHeader,
     ElMain,
-    ElFooter
+    ElFooter,
+    Menu
   }
 })
 </script>
