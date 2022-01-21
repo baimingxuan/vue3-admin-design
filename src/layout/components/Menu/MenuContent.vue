@@ -1,6 +1,8 @@
 <template>
   <div v-if="!menuItem.hidden">
-    <template></template>
+    <template>
+      <LinkItem toPath=""></LinkItem>
+    </template>
   </div>
 </template>
 
@@ -9,7 +11,7 @@
   import { defineComponent, toRefs, reactive } from 'vue'
   import { Menu } from '@/router/types'
   import { ElMenuItem as MenuItem, ElSubMenu as SubMenu, ElMenuItemGroup as MenuItemGroup } from'element-plus'
-  import { LinkItem } from './LinkItem.vue'
+  import LinkItem from './LinkItem.vue'
 
   export default defineComponent({
     name: 'MenuContent',
