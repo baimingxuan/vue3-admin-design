@@ -19,6 +19,7 @@
       }
 
       return () => {
+        console.log(slots)
         return (
             <>
               {isExternal(props.toPath) ? (
@@ -27,7 +28,7 @@
                   </a>
               ) : (
                   <router-link to={props.toPath}>
-                    {slots.default}
+                    {slots.default()}
                   </router-link>
               )}
             </>
