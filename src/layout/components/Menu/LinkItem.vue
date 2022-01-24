@@ -9,7 +9,7 @@
         required: true
       }
     },
-    setup(props) {
+    setup(props, { slots }) {
       /**
        * determining external link or route
        * @param path
@@ -22,9 +22,13 @@
         return (
             <>
               {isExternal(props.toPath) ? (
-                <a href={props.toPath} target='_blank' rel='noopener' />
+                  <a href={props.toPath} target='_blank' rel='noopener'>
+                    {slots.default}
+                  </a>
               ) : (
-                <router-link to={props.toPath} />
+                  <router-link to={props.toPath}>
+                    {slots.default}
+                  </router-link>
               )}
             </>
         )

@@ -6,7 +6,10 @@ export const HomeRoute: AppRouteRecordRaw = {
     name: 'Home',
     component: Layout,
     redirect: '/home',
-    meta: {},
+    meta: {
+        title: '首页',
+        icon: 'vue-dsn-icon-index',
+    },
     children: [{
         path: 'home',
         name: 'Home',

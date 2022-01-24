@@ -18,7 +18,7 @@
         return (
             <>
               {props.icon ? (<i class={'icon ' + props.icon} />) : ''}
-              {props.title ? (<span slot='title'>{props.title}</span>) : ''}
+              {props.title ? (<span>{props.title}</span>) : ''}
             </>
         )
       }

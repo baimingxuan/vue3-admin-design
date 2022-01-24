@@ -1,10 +1,18 @@
 <template>
-  <Menu :mode="menuMode"
-        :collapse="menuCollapse"
-        :unique-opened="true"
-        :background-color="menuBgColor"
-        :text-color="menuTextColor"
-        :active-text-color="menuActiveTextColor">
+  <Menu
+      :mode="menuMode"
+      :collapse="menuCollapse"
+      :unique-opened="true"
+      :background-color="menuBgColor"
+      :text-color="menuTextColor"
+      :active-text-color="menuActiveTextColor"
+  >
+    <MenuContent
+        v-for="route in $router.options.routes"
+        :key="route.name"
+        :menuItem="route"
+        :basePath="route.path"
+    />
   </Menu>
 </template>
 
@@ -17,7 +25,13 @@
 
   export default defineComponent({
     name: 'LayoutMenu',
-    components: { Menu, MenuContent },
+    components: {
+      Menu,
+      MenuContent
+    },
+    mounted() {
+      console.log('routes', this.$router.options.routes)
+    },
     setup() {
       const menuState = reactive<MenuState>({
         menuMode: MenuModeEnum.VERTICAL,
