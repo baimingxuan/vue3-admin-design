@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 // need install plugin @types/node -> yarn add @types/node -D
 import { resolve } from 'path'
 
@@ -13,7 +14,7 @@ export default defineConfig({
     host: true,
     port: 8888
   },
-  plugins: [vue()],
+  plugins: [vue(), vueJsx()],
   resolve: {
     alias: [
       {
