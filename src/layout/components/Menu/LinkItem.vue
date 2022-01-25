@@ -19,7 +19,6 @@
       }
 
       return () => {
-        console.log(slots)
         return (
             <>
               {isExternal(props.toPath) ? (
