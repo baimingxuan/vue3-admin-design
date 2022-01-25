@@ -1,18 +1,18 @@
 <template>
-  <div v-if="!menuItem.hidden">
-    <template v-if="!menuHasChildren(menuItem)">
+  <div>
+    <template v-if="!menuHasChildren(menuItem) && getShowMenu">
       <LinkItem toPath="">
-        <div class="xxxx">
+        <MenuItem>
           <MenuItemContent
               :icon="menuItem.meta?.icon"
               :title="menuItem.meta?.title"
           />
-        </div>
+        </MenuItem>
       </LinkItem>
     </template>
 
     <SubMenu
-        v-if="menuHasChildren(menuItem)"
+        v-if="menuHasChildren(menuItem) && getShowMenu"
         ref="subMenu"
         :index="resolvePath(menuItem.path)"
         popper-append-to-body
@@ -36,7 +36,7 @@
 <script lang="ts">
   import type { PropType } from 'vue'
   import type { Menu as MenuType } from '@/router/types'
-  import { defineComponent, toRefs, reactive } from 'vue'
+  import { defineComponent, computed } from 'vue'
   import { Menu } from '@/router/types'
   import { ElMenuItem as MenuItem, ElSubMenu as SubMenu } from'element-plus'
   import LinkItem from './LinkItem.vue'
@@ -66,6 +66,7 @@
       console.log('menuItem', this.menuItem)
     },
     setup(props) {
+      const getShowMenu = computed(() => !props.menuItem.meta?.hideMenu)
       /**
        * determining external link or route
        * @param path
@@ -93,6 +94,7 @@
       }
 
       return {
+        getShowMenu,
         resolvePath,
         menuHasChildren
       }

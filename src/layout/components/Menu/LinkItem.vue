@@ -23,11 +23,11 @@
             <>
               {isExternal(props.toPath) ? (
                   <a href={props.toPath} target='_blank' rel='noopener'>
-                    {slots.default!()}
+                    {slots.default?.()}
                   </a>
               ) : (
                   <router-link to={props.toPath}>
-                    {slots.default!()}
+                    {slots.default?.()}
                   </router-link>
               )}
             </>

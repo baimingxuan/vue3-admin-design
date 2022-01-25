@@ -9,6 +9,7 @@ export const HomeRoute: AppRouteRecordRaw = {
     meta: {
         title: '首页',
         icon: 'vue-dsn-icon-index',
+        hideChildrenInMenu: true
     },
     children: [{
         path: 'home',
@@ -17,7 +18,8 @@ export const HomeRoute: AppRouteRecordRaw = {
         meta: {
             title: '首页',
             icon: 'vue-dsn-icon-index',
-            fixed: true
+            fixed: true,
+            hideMenu: true
         }
     }]
 }
