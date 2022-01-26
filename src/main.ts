@@ -1,5 +1,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+// CSS resets
+import 'normalize.css/normalize.css'
+// element-plus CSS
 import 'element-plus/theme-chalk/index.css'
 import { setupRouter } from './router'
 import { setupStore } from '@/store'
