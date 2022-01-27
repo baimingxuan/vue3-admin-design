@@ -1,75 +1,38 @@
 <template>
-  <div class="common-layout">
-    <ElContainer>
-      <ElAside width="200px">
-        <Menu />
-      </ElAside>
-      <ElContainer>
-        <ElHeader>Header</ElHeader>
-        <ElMain>Main</ElMain>
-        <ElFooter>Footer</ElFooter>
-      </ElContainer>
-    </ElContainer>
+  <div class="layout-wrapper">
+    <aside>
+      <Logo />
+      <Menu />
+    </aside>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import Menu from './components/Menu/index.vue'
-import { ElAside, ElContainer, ElHeader, ElMain, ElFooter } from 'element-plus'
+import Logo from './components/Logo/index.vue'
 
 export default defineComponent({
   name: 'Layout',
   components: {
-    ElAside,
-    ElContainer,
-    ElHeader,
-    ElMain,
-    ElFooter,
-    Menu
+    Menu,
+    Logo
   }
 })
 </script>
 
 <style lang="less">
-.common-layout {
-  .el-header,
-  .el-footer {
-    background-color: #b3c0d1;
-    color: var(--el-text-color-primary);
-    text-align: center;
-    line-height: 60px;
-  }
-
-  .el-footer {
-    line-height: 60px;
-  }
-
-  .el-aside {
-    background-color: #d3dce6;
-    color: var(--el-text-color-primary);
-    text-align: center;
-    line-height: 200px;
-  }
-
-  .el-main {
-    background-color: #e9eef3;
-    color: var(--el-text-color-primary);
-    text-align: center;
-    line-height: 160px;
-  }
-
-  body > .el-container {
-    margin-bottom: 40px;
-  }
-
-  .el-container:nth-child(5) .el-aside,
-  .el-container:nth-child(6) .el-aside {
-    line-height: 260px;
-  }
-
-  .el-container:nth-child(7) .el-aside {
-    line-height: 320px;
+.layout-wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  aside {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 260px;
+    background-color: #263238;
   }
 }
 </style>
