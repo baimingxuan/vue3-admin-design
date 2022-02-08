@@ -38,7 +38,7 @@
   import type { Menu as MenuType } from '@/router/types'
   import { defineComponent, computed } from 'vue'
   import { Menu } from '@/router/types'
-  import { ElMenuItem as MenuItem, ElSubMenu as SubMenu } from'element-plus'
+  import { ElMenuItem as MenuItem, ElSubMenu as SubMenu } from 'element-plus'
   import LinkItem from './LinkItem.vue'
   import MenuItemContent from './MenuItemContent.vue'
   import { resolve } from 'path-browserify'
