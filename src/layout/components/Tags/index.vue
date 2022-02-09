@@ -1,6 +1,6 @@
 <template>
-
+  <div class="tags-wrapper"></div>
 </template>
 
-<script>
+<script lang="ts">
 </script>
