@@ -6,7 +6,7 @@ interface tagsState {
     cachedViews: Menu[]
 }
 
-export const tagsStore = defineStore({
+export const useTagsStore = defineStore({
     id: 'app-tags',
     state: (): tagsState => ({
         visitedViews: [],
