@@ -5,19 +5,14 @@
   </Tag>
 </template>
 
-<script lang="ts">
-  import { defineComponent } from 'vue'
+<script lang="ts" setup>
   import { ElTag as Tag } from 'element-plus'
 
-  export default defineComponent({
-    name: 'TagItem',
-    props: {
-      fixed: {
-        type: Boolean,
-        default: false
-      }
-    },
-    components: { Tag }
+  const props = defineProps({
+    fixed: {
+      type: Boolean,
+      default: false
+    }
   })
 </script>
 
