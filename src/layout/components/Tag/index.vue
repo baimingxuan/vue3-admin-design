@@ -33,6 +33,7 @@
 
 <script lang="ts">
   import { defineComponent, ref } from 'vue'
+  import { useRoute } from 'vue-router'
   import { resolve } from 'path-browserify'
   import { useTagsStore } from '@/store/modules/tags'
   import TagItem from './TagItem.vue'
@@ -48,10 +49,13 @@
       DropdownMenu
     },
     setup(props) {
+      const route = useRoute()
       const tagsContLeft = ref(0)
       const store = useTagsStore()
 
-      function isActive() {}
+      function isActive(tag) {
+        return tag.path === route.path
+      }
 
       function handlescroll() {}
 
