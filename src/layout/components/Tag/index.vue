@@ -16,7 +16,7 @@
       <i class="icon el-icon-arrow-right" />
     </Button>
     <div class="btn-con btn-close">
-      <Dropdown>
+      <Dropdown @command="handleCloseCtrl">
         <span class="el-dropdown-link">
           <i class="icon el-icon-circle-close" />
         </span>
@@ -61,12 +61,15 @@
 
       function handleSelectedClose() {}
 
+      function handleCloseCtrl(type) {}
+
       return {
         tagsContLeft,
         visitedViews: store.visitedViews,
         isActive,
         handlescroll,
-        handleSelectedClose
+        handleSelectedClose,
+        handleCloseCtrl
       }
     }
   })
