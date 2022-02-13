@@ -3,7 +3,7 @@
     <Button type="text" class="btn-con">
       <i class="icon el-icon-arrow-left" />
     </Button>
-    <div ref="tagsViews" class="tags-views" @DOMMouseScroll="handlescroll" @mousewheel="handlescroll">
+    <div ref="tagsViews" class="tags-views" @DOMMouseScroll="handleScroll" @mousewheel="handleScroll">
       <div ref="tagsCont" class="tags-cont" :style="{left: tagsContLeft + 'px'}">
         <transition-group>
           <router-link v-for="item in visitedViews" ref="tagsItem" :key="item.name" :to="{ path: item.path }">
@@ -16,7 +16,7 @@
       <i class="icon el-icon-arrow-right" />
     </Button>
     <div class="btn-con btn-close">
-      <Dropdown @command="handleCloseCtrl">
+      <Dropdown @command="handleClose">
         <span class="el-dropdown-link">
           <i class="icon el-icon-circle-close" />
         </span>
@@ -57,19 +57,19 @@
         return tag.path === route.path
       }
 
-      function handlescroll() {}
+      function handleScroll() {}
 
       function handleSelectedClose() {}
 
-      function handleCloseCtrl(type) {}
+      function handleClose(type) {}
 
       return {
         tagsContLeft,
         visitedViews: store.visitedViews,
         isActive,
-        handlescroll,
+        handleScroll,
         handleSelectedClose,
-        handleCloseCtrl
+        handleClose
       }
     }
   })
