@@ -61,7 +61,13 @@
 
       function handleSelectedClose() {}
 
-      function handleClose(type) {}
+      function handleClose(type: string) {
+        if (type === 'all') {
+        }
+        if (type === 'other') {
+        }
+        tagsContLeft.value = 0
+      }
 
       return {
         tagsContLeft,
