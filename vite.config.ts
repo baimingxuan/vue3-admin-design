@@ -1,7 +1,5 @@
 import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
-import WindiCSS from 'vite-plugin-windicss'
+import { createVitePlugins } from './build/vite/plugin'
 // need install plugin @types/node -> yarn add @types/node -D
 import { resolve } from 'path'
 
@@ -15,7 +13,8 @@ export default defineConfig({
     host: true,
     port: 8888
   },
-  plugins: [vue(), vueJsx(), WindiCSS()],
+  // The project uses lots of vite plugins, so they are extracted and managed separately
+  plugins: createVitePlugins(false),
   resolve: {
     alias: [
       {
