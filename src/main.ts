@@ -8,7 +8,7 @@ import App from './App.vue'
 // element-plus CSS
 import 'element-plus/theme-chalk/index.css'
 import { setupRouter } from './router'
-import { setupStore } from '@/store'
+import { setupStore } from '@/stores'
 
 function launchApp() {
     const app = createApp(App)
