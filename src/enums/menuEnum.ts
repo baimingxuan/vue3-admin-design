@@ -1,5 +1,28 @@
+// menu types
+export enum MenuTypeEnum {
+    // side menu
+    SIDE_MENU = 'side-menu',
+    // top menu
+    TOP_MENU = 'top-menu',
+    // mix menu
+    MIX_MENU = 'mix-menu'
+}
+
 // menu modes
 export enum MenuModeEnum {
     VERTICAL = 'vertical',
-    HORIZONTAL = 'horizontal'
+
+    HORIZONTAL = 'horizontal',
+    
+    INLINE = 'inline'
+}
+
+// menu folding button location
+export enum MenuFoldEnum {
+    // don't show
+    NONE = 'none',
+
+    HEADER = 'header',
+
+    FOOTER = 'footer'
 }
