@@ -1,7 +1,7 @@
 import { MenuModeEnum, MenuTypeEnum, MenuFoldEnum } from '../enums/menuEnum'
 import { ThemeEnum } from '../enums/appEnum'
 
-export interface appConfig {
+export interface AppConfig {
   // theme color
   themeColor: string
   // menu setting
