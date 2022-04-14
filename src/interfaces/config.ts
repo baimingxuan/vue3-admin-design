@@ -29,9 +29,9 @@ export interface HeaderSetting {
 }
 
 export interface MenuSetting {
-  type: MenuTypeEnum
-  mode: MenuModeEnum
-  theme: ThemeEnum
+  menuType: MenuTypeEnum
+  menuMode: MenuModeEnum
+  menuTheme: ThemeEnum
   menuFold: MenuFoldEnum
   collapsed: boolean
   collapsedShowTitle: boolean

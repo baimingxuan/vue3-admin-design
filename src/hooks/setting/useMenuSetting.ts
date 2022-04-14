@@ -4,11 +4,11 @@ import { useAppStore } from '@/stores/modules/app';
 export function useMenuSetting() {
   const appStore = useAppStore()
 
-  const getMenuType = computed(() => appStore.getMenuSetting.type)
+  const getMenuType = computed(() => appStore.getMenuSetting.menuType)
 
-  const getMenuMode = computed(() => appStore.getMenuSetting.mode)
+  const getMenuMode = computed(() => appStore.getMenuSetting.menuMode)
 
-  const getMenuTheme = computed(() => appStore.getMenuSetting.theme)
+  const getMenuTheme = computed(() => appStore.getMenuSetting.menuTheme)
 
   const getMenuFold = computed(() => appStore.getMenuSetting.menuFold)
 
