@@ -1,5 +1,5 @@
 import { MenuModeEnum, MenuTypeEnum, MenuFoldEnum } from '../enums/menuEnum'
-import { ThemeEnum } from '../enums/appEnum'
+import { PageTransitionEnum, ThemeEnum } from '../enums/appEnum'
 import { LocaleType } from '@/types'
 
 export interface AppConfig {
@@ -43,4 +43,13 @@ export interface LocaleSetting {
   showLocalePicker: boolean
   // current locale
   currentLocale: LocaleType
+}
+
+export interface TransitionSetting {
+  // whether to open the top progress bar
+  openNProgress: boolean
+  // whether to open page switching loading
+  openPageLoading: boolean
+  // page basic switching animation
+  basicTransition: PageTransitionEnum
 }
