@@ -18,6 +18,7 @@
   import { defineComponent, computed } from 'vue'
   import { Menu as AntdMenu } from 'ant-design-vue'
   import type { Menu as MenuType } from '@/router/types'
+  import type { PropType } from 'vue'
   import MenuItem from './MenuItem.vue'
   import MenuItemContent from './MenuItemContent.vue'
   
@@ -30,8 +31,8 @@
     },
     props: {
       item: {
-        type: Object,
-        default: {}
+        type: Object as PropType<MenuType>,
+        default: () => {}
       }
     },
     setup(props) {
