@@ -1,5 +1,5 @@
-import { computed } from 'vue';
-import { useAppStore } from '@/stores/modules/app';
+import { computed } from 'vue'
+import { useAppStore } from '@/stores/modules/app'
 
 export function useMenuSetting() {
   const appStore = useAppStore()
