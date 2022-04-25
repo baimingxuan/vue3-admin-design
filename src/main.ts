@@ -7,6 +7,7 @@ import App from './App.vue'
 
 // element-plus CSS
 import 'element-plus/theme-chalk/index.css'
+import 'ant-design-vue/dist/antd.css'
 import { setupRouter } from './router'
 import { setupStore } from '@/stores'
 
