@@ -23,7 +23,7 @@
   import { Drawer as AntdDrawer, Divider as AntdDivider } from 'ant-design-vue'
   import { SettingOutlined as AntdSettingOutlined } from '@ant-design/icons-vue'
 
-  import AppModeSwitch from './components/AppModeSwitch.vue'
+  import { AppModeSwitch } from './components'
 
   export default defineComponent({
     name: 'LayoutSetting',

@@ -1,5 +1,8 @@
-import { ImportAsyncComponent } from '../../../utils/factory/ImportAsyncComponent'
+import { withInstall } from '@/utils'
+import { ImportAsyncComponent } from '@/utils/factory/ImportAsyncComponent'
+import appModeSwitch from './AppModeSwitch.vue'
 
+export const AppModeSwitch = withInstall(appModeSwitch)
 export const SwitchItem = ImportAsyncComponent(() => import('./SwitchItem.vue'))
 export const SelectItem = ImportAsyncComponent(() => import('./SelectItem.vue'))
 export const InputNumItem = ImportAsyncComponent(() => import('./InputNumItem.vue'))
