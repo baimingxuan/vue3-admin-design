@@ -1,5 +1,5 @@
 import type { AppRouteRecordRaw } from '../types'
-import Layout from '../../layout/index.vue'
+import Layout from '../../layouts/index.vue'
 
 export const HomeRoute: AppRouteRecordRaw = {
     path: '/',

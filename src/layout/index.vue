@@ -1,7 +1,7 @@
 <template>
   <div class="layout-wrapper">
     <aside>
-      <Logo />
+      <!-- <Logo /> -->
       <Menu />
     </aside>
   </div>
