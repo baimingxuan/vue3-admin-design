@@ -12,19 +12,22 @@
     placement="right"
     @close="toggleDrawer"
   >
-    <p>Some contents...</p>
+    <AntdDivider>主题风格</AntdDivider>
+    <AppModeSwitch />
   </AntdDrawer>
 </template>
 
 <script lang="ts">
   import { defineComponent, ref, unref } from 'vue'
   
-  import { Drawer as AntdDrawer } from 'ant-design-vue'
+  import { Drawer as AntdDrawer, Divider as AntdDivider } from 'ant-design-vue'
   import { SettingOutlined as AntdSettingOutlined } from '@ant-design/icons-vue'
+
+  import AppModeSwitch from './components/AppModeSwitch.vue'
 
   export default defineComponent({
     name: 'LayoutSetting',
-    components: { AntdDrawer, AntdSettingOutlined },
+    components: { AntdDrawer, AntdDivider, AntdSettingOutlined, AppModeSwitch },
     setup() {
       const drawerVisible = ref<boolean>(false)
 
