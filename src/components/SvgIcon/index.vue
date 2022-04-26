@@ -1,6 +1,6 @@
 <template>
   <svg class="svg-icon" :style="iconStyle" aria-hidden="true">
-    <use :xlink:href="iconName" />
+    <use :xlink:href="symbolId" />
   </svg>
 </template>
 
@@ -25,7 +25,7 @@
       }
     },
     setup(props) {
-      const iconName = computed(() => `#${props.prefix}-${props.name}`)
+      const symbolId = computed(() => `#${props.prefix}-${props.name}`)
       const iconStyle = computed((): CSSProperties => {
         let size = `${props.size}`
         size = `${size.replace('px', '')}px`
@@ -36,7 +36,7 @@
       })
 
       return {
-        iconName,
+        symbolId,
         iconStyle
       }
     }

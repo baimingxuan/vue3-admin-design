@@ -2,6 +2,9 @@ import 'virtual:windi-base.css'
 import 'virtual:windi-components.css'
 import 'virtual:windi-utilities.css'
 
+// register svg icon
+import 'virtual:svg-icons-register'
+
 import { createApp } from 'vue'
 import App from './App.vue'
 
