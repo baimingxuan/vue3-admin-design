@@ -14,6 +14,8 @@
   >
     <AntdDivider>主题风格</AntdDivider>
     <AppModeSwitch class="mx-auto" />
+    <AntdDivider>菜单模式</AntdDivider>
+    <MenuTypePicker />
   </AntdDrawer>
 </template>
 
@@ -23,11 +25,11 @@
   import { Drawer as AntdDrawer, Divider as AntdDivider } from 'ant-design-vue'
   import { SettingOutlined as AntdSettingOutlined } from '@ant-design/icons-vue'
 
-  import { AppModeSwitch } from './components'
+  import { AppModeSwitch, MenuTypePicker } from './components'
 
   export default defineComponent({
     name: 'LayoutSetting',
-    components: { AntdDrawer, AntdDivider, AntdSettingOutlined, AppModeSwitch },
+    components: { AntdDrawer, AntdDivider, AntdSettingOutlined, AppModeSwitch, MenuTypePicker },
     setup() {
       const drawerVisible = ref<boolean>(false)
 

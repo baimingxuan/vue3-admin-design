@@ -1,6 +1,6 @@
 <template>
   <div class="compo_menu-type-picker">
-    <template v-for="item in menuTypeList || []" :key="item.title">
+    <template v-for="item in typeList || []" :key="item.title">
       <Tooltip :title="item.title" placement="top">
         <div
           :class="[
@@ -31,6 +31,29 @@
         type: String,
         default: '',
       }
+    },
+    setup() {
+      const typeList = [
+        {
+          title: '左侧菜单',
+          mode: 'inline',
+          type: 'side-menu'
+        },
+        {
+          title: '顶部菜单',
+          mode: 'horizontal',
+          type: 'top-menu'
+        },
+        {
+          title: '混合菜单',
+          mode: 'inline',
+          type: 'mix-menu'
+        }
+      ]
+
+      return {
+        typeList
+      }
     }
   })
 </script>
@@ -56,7 +79,7 @@
         content: '';
       }
 
-      &--sidebar{
+      &--side-menu{
         &::before {
           top: 0;
           left: 0;
@@ -76,7 +99,7 @@
         }
       }
 
-      &--mix {
+      &--mix-menu {
         &::before {
           top: 0;
           left: 0;
@@ -110,38 +133,11 @@
         background-color: #273352;
       }
 
-      &--mix-sidebar {
-        &::before {
-          top: 0;
-          left: 0;
-          z-index: 1;
-          width: 25%;
-          height: 100%;
-          background-color: #273352;
-          border-radius: 4px 0 0 4px;
-        }
-
-        &::after {
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 25%;
-          background-color: #fff;
-        }
-
-        .mix-sidebar {
-          position: absolute;
-          left: 25%;
-          width: 15%;
-          height: 100%;
-          background-color: #fff;
-        }
-      }
 
       &:hover,
       &--active {
         padding: 12px;
-        border: 2px solid @primary-color;
+        border: 2px solid #1890ff;
 
         &::before,
         &::after {
