@@ -13,7 +13,7 @@
     @close="toggleDrawer"
   >
     <AntdDivider>主题风格</AntdDivider>
-    <AppModeSwitch />
+    <AppModeSwitch class="mx-auto" />
   </AntdDrawer>
 </template>
 
