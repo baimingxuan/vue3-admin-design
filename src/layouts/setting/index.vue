@@ -7,7 +7,7 @@
   </div>
   <AntdDrawer
     :visible="drawerVisible"
-    title="项目配置"
+    :closable="false"
     width="320"
     placement="right"
     @close="toggleDrawer"
@@ -15,7 +15,7 @@
     <AntdDivider>主题风格</AntdDivider>
     <AppModeSwitch class="mx-auto" />
     <AntdDivider>菜单模式</AntdDivider>
-    <MenuTypePicker />
+    <MenuTypePicker :menuTypeList="menuTypeList" />
   </AntdDrawer>
 </template>
 
@@ -26,6 +26,7 @@
   import { SettingOutlined as AntdSettingOutlined } from '@ant-design/icons-vue'
 
   import { AppModeSwitch, MenuTypePicker } from './components'
+  import { menuTypeList } from './enum'
 
   export default defineComponent({
     name: 'LayoutSetting',
@@ -39,7 +40,8 @@
 
       return {
         drawerVisible,
-        toggleDrawer
+        toggleDrawer,
+        menuTypeList
       }
     }
   })

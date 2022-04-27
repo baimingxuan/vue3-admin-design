@@ -1,6 +1,6 @@
 <template>
   <div class="compo_menu-type-picker">
-    <template v-for="item in typeList || []" :key="item.title">
+    <template v-for="item in menuTypeList || []" :key="item.title">
       <AntdTooltip :title="item.title" placement="top">
         <div
           :class="[
@@ -21,40 +21,19 @@
   import type { PropType } from 'vue'
 
   import { Tooltip as AntdTooltip } from 'ant-design-vue'
+  import { menuTypeList } from '../enum'
+
   export default defineComponent({
     name: 'MenuTypePicker',
     components: { AntdTooltip },
     props: {
       menuTypeList: {
-        type: Array as PropType<any>,
+        type: Array as PropType<typeof menuTypeList>,
         default: () => []
       },
       def: {
         type: String,
         default: '',
-      }
-    },
-    setup() {
-      const typeList = [
-        {
-          title: '左侧菜单',
-          mode: 'inline',
-          type: 'side-menu'
-        },
-        {
-          title: '顶部菜单',
-          mode: 'horizontal',
-          type: 'top-menu'
-        },
-        {
-          title: '混合菜单',
-          mode: 'inline',
-          type: 'mix-menu'
-        }
-      ]
-
-      return {
-        typeList
       }
     }
   })
