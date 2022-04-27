@@ -20,17 +20,19 @@
   import { Tooltip as AntdTooltip } from 'ant-design-vue'
   import { CheckOutlined as AntdCheckOutlined } from '@ant-design/icons-vue'
 
+  import { ColorItem } from '../enum' 
+
   export default defineComponent({
     name: 'ThemeColorPicker',
     components: { AntdTooltip, AntdCheckOutlined },
     props: {
       colorList: {
-        type: Array as PropType<any>,
+        type: Array as PropType<ColorItem[]>,
         default: []
       },
       def: {
         type: String,
-        default: ''
+        default: '#1765AE'
       }
     }
   })
@@ -50,8 +52,19 @@
       border: 1px solid #ddd;
       border-radius: 2px;
 
+      svg {
+        display: none;
+      }
+
       &--active {
-        border: 1px solid lighten(@primary-color, 10%);
+        border: 1px solid lighten(#1890ff, 10%);
+
+        svg {
+          display: inline-block;
+          margin: 0 0 3px 3px;
+          font-size: 12px;
+          fill: #fff !important;
+        }
       }
     }
   }

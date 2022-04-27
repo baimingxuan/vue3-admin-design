@@ -16,6 +16,8 @@
     <AppModeSwitch class="mx-auto" />
     <AntdDivider>菜单模式</AntdDivider>
     <MenuTypePicker :menuTypeList="menuTypeList" />
+    <AntdDivider>主题颜色</AntdDivider>
+    <ThemeColorPicker :colorList="appThemeColorList" />
   </AntdDrawer>
 </template>
 
@@ -25,12 +27,12 @@
   import { Drawer as AntdDrawer, Divider as AntdDivider } from 'ant-design-vue'
   import { SettingOutlined as AntdSettingOutlined } from '@ant-design/icons-vue'
 
-  import { AppModeSwitch, MenuTypePicker } from './components'
-  import { menuTypeList } from './enum'
+  import { AppModeSwitch, MenuTypePicker, ThemeColorPicker } from './components'
+  import { menuTypeList, appThemeColorList } from './enum'
 
   export default defineComponent({
     name: 'LayoutSetting',
-    components: { AntdDrawer, AntdDivider, AntdSettingOutlined, AppModeSwitch, MenuTypePicker },
+    components: { AntdDrawer, AntdDivider, AntdSettingOutlined, AppModeSwitch, MenuTypePicker, ThemeColorPicker },
     setup() {
       const drawerVisible = ref<boolean>(false)
 
@@ -41,7 +43,8 @@
       return {
         drawerVisible,
         toggleDrawer,
-        menuTypeList
+        menuTypeList,
+        appThemeColorList
       }
     }
   })
