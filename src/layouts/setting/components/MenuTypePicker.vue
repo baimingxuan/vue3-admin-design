@@ -1,7 +1,7 @@
 <template>
   <div class="compo_menu-type-picker">
     <template v-for="item in typeList || []" :key="item.title">
-      <Tooltip :title="item.title" placement="top">
+      <AntdTooltip :title="item.title" placement="top">
         <div
           :class="[
             'menu-type-picker__item',
@@ -11,7 +11,7 @@
             }
           ]"
         ></div>
-      </Tooltip>
+      </AntdTooltip>
     </template>
   </div>
 </template>
@@ -20,8 +20,10 @@
   import { defineComponent } from 'vue'
   import type { PropType } from 'vue'
 
+  import { Tooltip as AntdTooltip } from 'ant-design-vue'
   export default defineComponent({
     name: 'MenuTypePicker',
+    components: { AntdTooltip },
     props: {
       menuTypeList: {
         type: Array as PropType<any>,
