@@ -28,35 +28,35 @@ export const menuTypeList = [
 export const appThemeColorList: ColorItem[] = [
   {
       name: '拂晓蓝',
-      color: '#1765AE'
+      color: '#1890ff'
   },
   {
       name: '薄暮',
-      color: '#A71A1F'
+      color: '#f5222d'
   },
   {
       name: '火山',
-      color: '#AE3E17'
+      color: '#fa541c'
   },
   {
       name: '日暮',
-      color: '#B8831B'
+      color: '#faad14'
   },
   {
       name: '明青',
-      color: '#269491'
+      color: '#13c2c2'
   },
   {
       name: '极光绿',
-      color: '#509827'
+      color: '#52c41a'
   },
   {
       name: '极客蓝',
-      color: '#20389A'
+      color: '#2f54eb'
   },
   {
       name: '酱紫',
-      color: '#60339A'
+      color: '#722ed1'
   }
 ]
 
