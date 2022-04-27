@@ -32,13 +32,13 @@
       },
       def: {
         type: String,
-        default: '#1765AE'
+        default: '#1890ff'
       }
     }
   })
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
   .compo_theme-color-picker {
     display: flex;
     flex-wrap: nowrap;
@@ -49,7 +49,6 @@
       width: 20px;
       height: 20px;
       cursor: pointer;
-      border: 1px solid #ddd;
       border-radius: 2px;
 
       svg {
@@ -57,11 +56,11 @@
       }
 
       &--active {
-        border: 1px solid lighten(#1890ff, 10%);
 
         svg {
           display: inline-block;
-          margin: 0 0 3px 3px;
+          margin-bottom: 6px;
+          margin-left: 4px;
           font-size: 12px;
           fill: #fff !important;
         }
