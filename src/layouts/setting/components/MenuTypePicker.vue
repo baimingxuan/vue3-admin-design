@@ -10,7 +10,9 @@
               ['menu-type-picker__item--active'] : def === item.type
             }
           ]"
-        ></div>
+        >
+          <AntdCheckOutlined />
+        </div>
       </AntdTooltip>
     </template>
   </div>
@@ -20,12 +22,13 @@
   import { defineComponent } from 'vue'
   import type { PropType } from 'vue'
 
+  import { CheckOutlined as AntdCheckOutlined } from '@ant-design/icons-vue'
   import { Tooltip as AntdTooltip } from 'ant-design-vue'
   import { menuTypeList } from '../enum'
 
   export default defineComponent({
     name: 'MenuTypePicker',
-    components: { AntdTooltip },
+    components: { AntdTooltip, AntdCheckOutlined },
     props: {
       menuTypeList: {
         type: Array as PropType<typeof menuTypeList>,
@@ -39,7 +42,7 @@
   })
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .compo_menu-type-picker {
   display: flex;
 
@@ -53,6 +56,14 @@
       background-color: #f0f2f5;
       border-radius: 4px;
       box-shadow: 0 1px 2.5px 0 rgb(0 0 0 / 18%);
+
+      svg {
+        display: none;
+        z-index: 9;
+        position: absolute;
+        top: 20px;
+        left: 22px;
+      }
 
       &::before,
       &::after {
@@ -117,8 +128,9 @@
 
       &:hover,
       &--active {
-        padding: 12px;
-        border: 2px solid #1890ff;
+        svg {
+          display: block;
+        }
 
         &::before,
         &::after {
