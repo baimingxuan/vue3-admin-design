@@ -42,7 +42,7 @@
   })
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .compo_menu-type-picker {
   display: flex;
 
@@ -57,7 +57,7 @@
       border-radius: 4px;
       box-shadow: 0 1px 2.5px 0 rgb(0 0 0 / 18%);
 
-      svg {
+      &:deep(svg) {
         display: none;
         z-index: 9;
         position: absolute;
@@ -128,7 +128,7 @@
 
       &:hover,
       &--active {
-        svg {
+        &:deep(svg) {
           display: block;
         }
 

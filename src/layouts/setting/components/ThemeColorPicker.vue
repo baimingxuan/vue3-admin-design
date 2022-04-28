@@ -38,7 +38,7 @@
   })
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
   .compo_theme-color-picker {
     display: flex;
     flex-wrap: nowrap;
@@ -51,13 +51,13 @@
       cursor: pointer;
       border-radius: 2px;
 
-      svg {
+      &:deep(svg) {
         display: none;
       }
 
       &--active {
 
-        svg {
+        &:deep(svg) {
           display: inline-block;
           margin-bottom: 6px;
           margin-left: 4px;
