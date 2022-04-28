@@ -1,6 +1,6 @@
 /**
- * @description reference to element-ui
- * @link see more: https://github.com/ElemeFE/element/blob/dev/src/utils/dom.js
+ * @description referenced from element-ui utils
+ * @link see: https://github.com/ElemeFE/element/blob/dev/src/utils/dom.js
  */
 
 /* istanbul ignore next */
