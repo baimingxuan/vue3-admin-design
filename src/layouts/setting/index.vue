@@ -12,12 +12,15 @@
     placement="right"
     @close="toggleDrawer"
   >
-    <AntdDivider>主题风格</AntdDivider>
-    <AppModeSwitch class="mx-auto" />
-    <AntdDivider>菜单模式</AntdDivider>
-    <MenuTypePicker :menuTypeList="menuTypeList" />
-    <AntdDivider>主题颜色</AntdDivider>
-    <ThemeColorPicker :colorList="appThemeColorList" />
+    <Scrollbar>
+      <AntdDivider>主题风格</AntdDivider>
+      <AppModeSwitch class="mx-auto" />
+      <AntdDivider>菜单模式</AntdDivider>
+      <MenuTypePicker :menuTypeList="menuTypeList" />
+      <AntdDivider>主题颜色</AntdDivider>
+      <ThemeColorPicker :colorList="appThemeColorList" />
+      <div style="height: 1000px;"></div>
+    </Scrollbar>
   </AntdDrawer>
 </template>
 
@@ -29,10 +32,11 @@
 
   import { AppModeSwitch, MenuTypePicker, ThemeColorPicker } from './components'
   import { menuTypeList, appThemeColorList } from './enum'
+  import Scrollbar from '@/components/Scrollbar'
 
   export default defineComponent({
     name: 'LayoutSetting',
-    components: { AntdDrawer, AntdDivider, AntdSettingOutlined, AppModeSwitch, MenuTypePicker, ThemeColorPicker },
+    components: { AntdDrawer, AntdDivider, AntdSettingOutlined, AppModeSwitch, MenuTypePicker, ThemeColorPicker, Scrollbar },
     setup() {
       const drawerVisible = ref<boolean>(false)
 
