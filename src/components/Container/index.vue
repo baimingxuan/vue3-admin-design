@@ -7,13 +7,14 @@
 <script lang="ts">
   import { defineComponent, ref, unref, nextTick } from 'vue'
   import Scrollbar from '../Scrollbar'
-  import { useScrollTo } from '/@/hooks/event/useScrollTo'
+  import { useScrollTo } from '@/hooks/event/useScrollTo'
 
   export default defineComponent({
     name: 'ScrollContainer',
     components: { Scrollbar },
     setup() {
-      const scrollbarRef = ref(null)
+      
+      const scrollbarRef = ref<Nullable<{wrap: ElRef}>>(null)
 
       /**
        * Scroll to the specified position
