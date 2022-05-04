@@ -22,20 +22,20 @@
       function scrollTo(to: number, duration = 500) {
         const scrollbar = unref(scrollbarRef);
         if (!scrollbar) {
-          return;
+          return
         }
         nextTick(() => {
           const wrap = unref(scrollbar.wrap);
           if (!wrap) {
-            return;
+            return
           }
           const { start } = useScrollTo({
             el: wrap,
             to,
             duration,
-          });
-          start();
-        });
+          })
+          start()
+        })
       }
 
       function getScrollWrap() {
@@ -50,22 +50,22 @@
        * Scroll to the bottom
        */
       function scrollBottom() {
-        const scrollbar = unref(scrollbarRef);
+        const scrollbar = unref(scrollbarRef)
         if (!scrollbar) {
-          return;
+          return
         }
         nextTick(() => {
           const wrap = unref(scrollbar.wrap) as any;
           if (!wrap) {
-            return;
+            return
           }
           const scrollHeight = wrap.scrollHeight as number;
           const { start } = useScrollTo({
             el: wrap,
             to: scrollHeight,
           });
-          start();
-        });
+          start()
+        })
       }
 
       return {
@@ -73,9 +73,9 @@
         scrollTo,
         scrollBottom,
         getScrollWrap,
-      };
-    },
-  });
+      }
+    }
+  })
 </script>
 <style lang="less">
   .scroll-container {
