@@ -4,7 +4,7 @@
   </AntdFooter>
 </template>
 
-<script>
+<script lang="ts">
   import { defineComponent } from 'vue'
   import { Layout } from 'ant-design-vue'
 
@@ -14,6 +14,3 @@
   })
 </script>
 
-<style lang="less" scoped>
-
-</style>
