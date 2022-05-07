@@ -21,7 +21,7 @@
   import type { PropType } from 'vue'
   import MenuItem from './MenuItem.vue'
   import MenuItemContent from './MenuItemContent.vue'
-  
+
   export default defineComponent({
     name: 'SubMenuItem',
     components: {

@@ -21,7 +21,8 @@ export const HomeRoute: AppRouteRecordRaw = {
                 title: '首页',
                 icon: 'vue-dsn-icon-index',
                 fixed: true,
-                hideMenu: false
+                hideMenu: false,
+                hideChildrenInMenu: false
             }
         }
     ]
