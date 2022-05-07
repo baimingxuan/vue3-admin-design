@@ -1,5 +1,6 @@
 import type { AppRouteRecordRaw } from '../types'
-import Layout from '../../layouts/index.vue'
+import Layout from '../../layout/index.vue'
+import { asyncRoutes } from './routeList'
 
 export const HomeRoute: AppRouteRecordRaw = {
     path: '/',
@@ -9,21 +10,24 @@ export const HomeRoute: AppRouteRecordRaw = {
     meta: {
         title: '首页',
         icon: 'vue-dsn-icon-index',
-        hideChildrenInMenu: true
+        hideChildrenInMenu: false
     },
-    children: [{
-        path: 'home',
-        name: 'Home',
-        component: () => import('../../views/home.vue'),
-        meta: {
-            title: '首页',
-            icon: 'vue-dsn-icon-index',
-            fixed: true,
-            hideMenu: true
+    children: [
+        {
+            path: 'home',
+            name: 'Home',
+            component: () => import('../../views/home.vue'),
+            meta: {
+                title: '首页',
+                icon: 'vue-dsn-icon-index',
+                fixed: true,
+                hideMenu: false
+            }
         }
-    }]
+    ]
 }
 
 export const basicRoutes = [
-    HomeRoute
+    HomeRoute,
+    ...asyncRoutes
 ]
