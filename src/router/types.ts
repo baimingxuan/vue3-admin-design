@@ -7,18 +7,18 @@ export type Component<T = any> =
     | (() => Promise<T>)
 
 // RouteRecordRaw detail, see: https://router.vuejs.org/api/#routerecordraw
-export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'children'> {
+export interface AppRoute extends Omit<RouteRecordRaw, 'children'> {
     component?: Component | string
-    children?: AppRouteRecordRaw[]
+    children?: AppRoute[]
     fullPath?: string
 }
 
-export interface Menu {
+export interface AppMenu {
     name: string
     path: string
     icon?: string
     disabled?: boolean
-    children?: Menu[]
+    children?: AppMenu[]
     orderNo?: number
     meta?: Partial<RouteMeta>
     hideMenu?: boolean

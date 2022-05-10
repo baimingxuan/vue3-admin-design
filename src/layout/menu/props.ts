@@ -1,12 +1,12 @@
 import type { PropType } from 'vue'
-import type { Menu } from '@/router/types'
+import type { AppMenu } from '@/router/types'
 import type { MenuMode, MenuTheme } from 'ant-design-vue'
 import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum'
 import { ThemeEnum } from '@/enums/appEnum'
 
 export const basicProps = {
   items: {
-    type: Array as PropType<Menu[]>,
+    type: Array as PropType<AppMenu[]>,
     default: () => []
   },
   type: {
@@ -27,7 +27,7 @@ export const basicProps = {
 
 export const itemProps = {
   item: {
-    type: Object as PropType<Menu>,
+    type: Object as PropType<AppMenu>,
     default: () => {}
   }
 }

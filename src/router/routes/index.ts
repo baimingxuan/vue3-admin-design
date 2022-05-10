@@ -1,8 +1,8 @@
-import type { AppRouteRecordRaw } from '../types'
+import type { AppRoute } from '../types'
 import Layout from '../../layout/index.vue'
 import { asyncRoutes } from './routeList'
 
-export const HomeRoute: AppRouteRecordRaw = {
+export const HomeRoute: AppRoute = {
     path: '/',
     name: 'Home',
     component: Layout,

@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
-import type { Menu } from '@/router/types'
+import type { AppMenu } from '@/router/types'
 
 interface tagsState {
-    visitedViews: Menu[]
-    cachedViews: Menu[]
+    visitedViews: AppMenu[]
+    cachedViews: AppMenu[]
 }
 
 export const useTagsStore = defineStore({
@@ -13,34 +13,34 @@ export const useTagsStore = defineStore({
         cachedViews: []
     }),
     getters: {
-        getVisitedViews(): Menu[] {
+        getVisitedViews(): AppMenu[] {
             return this.visitedViews
         },
-        getCachedViews(): Menu[] {
+        getCachedViews(): AppMenu[] {
             return this.cachedViews
         }
     },
     actions: {
-        setVisitedView(view: Menu) {
+        setVisitedView(view: AppMenu) {
             if (this.visitedViews.some((item) => item.path === view.path)) return
             this.visitedViews.push(
                 Object.assign({}, view, {
-                    title: view.meta.title || 'no-title'
+                    title: view?.meta?.title || 'no-title'
                 })
             )
         },
-        delVisitedView(view: Menu) {
+        delVisitedView(view: AppMenu) {
             const index = this.visitedViews.findIndex(item => {
                 return item.path === view.path
             })
             this.visitedViews.splice(index, 1)
         },
         delAllVisitedView() {
-            this.visitedViews = this.visitedViews.filter(item => item.meta.fixed)
+            this.visitedViews = this.visitedViews.filter(item => item?.meta?.fixed)
         },
-        delOthersVisitedView(view: Menu) {
+        delOthersVisitedView(view: AppMenu) {
             this.visitedViews = this.visitedViews.filter(item => {
-                return item.meta.fixed || item.path === view.path
+                return item?.meta?.fixed || item.path === view.path
             })
         }
     }
