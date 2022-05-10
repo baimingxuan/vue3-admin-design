@@ -6,24 +6,20 @@ export type Component<T = any> =
     | (() => Promise<typeof import('*.vue')>)
     | (() => Promise<T>)
 
+// RouteRecordRaw detail, see: https://router.vuejs.org/api/#routerecordraw
 export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'children'> {
-    path: string
-    name: string
     component?: Component | string
     children?: AppRouteRecordRaw[]
-    meta: RouteMeta
     fullPath?: string
-    redirect?: string
-    hidden?: boolean
 }
 
 export interface Menu {
-    path: string
     name: string
-    component?: Component | string
-    children?: AppRouteRecordRaw[]
-    meta: RouteMeta
-    fullPath?: string
-    redirect?: string
-    hidden?: boolean
+    path: string
+    icon?: string
+    disabled?: boolean
+    children?: Menu[]
+    orderNo?: number
+    meta?: Partial<RouteMeta>
+    hideMenu?: boolean
 }
