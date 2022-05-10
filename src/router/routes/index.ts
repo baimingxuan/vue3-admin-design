@@ -9,15 +9,22 @@ import { asyncRoutes } from './routeList'
     affix: false                if set true, the tag will affix in the tags-view (default is false)     
     hideMenu: false             if set true, menu item will hide in the menu (default is false)
     hideChildrenInMenu: false   if set true, menu children will hide in the menu (default is false)
+    hideBreadcrumb: false       if set true, breadcrumb will hide in the item (default is false)
     orderNo: 0                  menu item display sequence
   }
  * */
 
+// home page
 export const HomeRoute: AppRoute = {
     path: '/',
     name: 'Home',
     component: Layout,
     redirect: '/home',
+    meta: {
+        title: '首页',
+        icon: 'vue-dsn-icon-index',
+        affix: true
+    },
     children: [
         {
             path: 'home',
@@ -27,6 +34,53 @@ export const HomeRoute: AppRoute = {
                 title: '首页',
                 icon: 'vue-dsn-icon-index',
                 affix: true
+            }
+        }
+    ]
+}
+
+// 404 on a page
+export const PageNotFoundRoute: AppRoute = {
+    path: '/:path(.*)*',
+    name: 'PageNotFound',
+    component: Layout,
+    meta: {
+        title: '错误页面',
+        hideBreadcrumb: true,
+        hideMenu: true,
+    },
+    children: [
+        {
+            path: '/:path(.*)*',
+            name: 'PageNotFound',
+            meta: {
+                title: '错误页面',
+                hideBreadcrumb: true,
+                hideMenu: true,
+            }
+        }
+    ]
+}
+
+// redirect page
+export const RedirectRoute: AppRoute = {
+    path: '/redirect',
+    name: 'RedirectTo',
+    component: Layout,
+    meta: {
+        title: '重定向页面',
+        hideBreadcrumb: true,
+        hideMenu: true
+    },
+    children: [
+        {
+            path: '/redirect/:path(.*)',
+            name: 'RedirectTo',
+            component: () => import('@/views/redirect.vue'),
+            meta: {
+                title: '重定向页面',
+                hideBreadcrumb: true,
+                hideMenu: true
             }
         }
     ]
