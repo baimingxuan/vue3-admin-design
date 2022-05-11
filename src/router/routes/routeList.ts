@@ -121,59 +121,6 @@ export const asyncRoutes = [
         ]
     },
     {
-        path: '/excel',
-        name: 'Excel',
-        component: Layout,
-        redirect: '/excel/export-excel',
-        meta: {
-            title: 'Excel',
-            icon: 'vue-dsn-icon-excel'
-        },
-        children: [
-            {
-                path: 'export-excel',
-                name: 'ExportExcel',
-                component: () => import('../../views/home.vue'),
-                meta: {
-                    title: '导出Excel'
-                }
-            },
-            {
-                path: 'import-excel',
-                name: 'ImportExcel',
-                component: () => import('../../views/home.vue'),
-                meta: {
-                    title: '导入Excel'
-                }
-            }
-        ]
-    },
-    {
-        path: '/error-page',
-        name: 'ErrorPage',
-        component: Layout,
-        redirect: '/error-page/page-401',
-        meta: {
-            title: '错误页面',
-            icon: 'vue-dsn-icon-bug'
-        },
-        children: [
-            {
-                path: 'page-401',
-                name: 'Page401',
-                component: () => import('../../views/home.vue'),
-                meta: {
-                    title: '401页面'
-                }
-            },
-            {
-                path: 'page-404',
-                name: 'Page404',
-                component: () => import('../../views/home.vue'),
-                meta: {
-                    title: '404页面'
-                }
-            }
-        ]
+        
     }
 ]
