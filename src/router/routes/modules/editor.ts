@@ -1,7 +1,7 @@
 import type { AppRoute } from '../../types'
 import Layout from '@/layout/index.vue'
 
-export const ImageRoute: AppRoute = {
+export const EditorRoute: AppRoute = {
     path: '/editor',
     name: 'Editor',
     component: Layout,
