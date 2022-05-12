@@ -1,6 +1,5 @@
 import type { AppRoute } from '../types'
 import Layout from '../../layout/index.vue'
-import { asyncRoutes } from './routeList'
 
 /**
  * meta: {
@@ -87,6 +86,5 @@ export const RedirectRoute: AppRoute = {
 }
 
 export const basicRoutes = [
-    HomeRoute,
-    ...asyncRoutes
+    HomeRoute
 ]
