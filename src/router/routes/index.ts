@@ -90,13 +90,12 @@ const routeModules = import.meta.globEager('./modules/*.ts')
 const routeModulesList: AppRoute[] = []
 
 Object.keys(routeModules).forEach(key => {
-    const module = routeModules[key] || {}
-    console.log('module?:', routeModules[key])
+    const module = routeModules[key].default || {}
     const moduleList = Array.isArray(module) ? [...module] : [module]
     routeModulesList.push(...moduleList)
 })
-// console.log('routeModulesList?:', routeModulesList)
 
 export const basicRoutes = [
-    HomeRoute
+    HomeRoute,
+    ...routeModulesList
 ]
