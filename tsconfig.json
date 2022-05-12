@@ -13,7 +13,10 @@
     "lib": ["esnext", "dom"],
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "types": [
+      "vite/client"
+    ]
   },
   "include": [
     "src/**/*.ts",
