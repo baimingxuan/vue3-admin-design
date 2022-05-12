@@ -1,7 +1,8 @@
 import type { AppRoute } from '../../types'
 import Layout from '@/layout/index.vue'
 
-export const TreeRoute: AppRoute = {
+// tree module page
+const TreeRoute: AppRoute = {
     path: '/tree',
     name: 'Tree',
     component: Layout,
@@ -29,3 +30,5 @@ export const TreeRoute: AppRoute = {
         }
     ]
 }
+
+export default TreeRoute

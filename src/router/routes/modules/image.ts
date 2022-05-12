@@ -1,7 +1,8 @@
 import type { AppRoute } from '../../types'
 import Layout from '@/layout/index.vue'
 
-export const ImageRoute: AppRoute = {
+// image module page
+const ImageRoute: AppRoute = {
     path: '/image',
     name: 'Image',
     component: Layout,
@@ -37,3 +38,5 @@ export const ImageRoute: AppRoute = {
         }
     ]
 }
+
+export default ImageRoute

@@ -1,7 +1,8 @@
 import type { AppRoute } from '../../types'
 import Layout from '@/layout/index.vue'
 
-export const CompoRoute: AppRoute = {
+// component module page
+const CompoRoute: AppRoute = {
     path: '/compo',
     name: 'Compo',
     component: Layout,
@@ -64,3 +65,5 @@ export const CompoRoute: AppRoute = {
         }
     ]
 }
+
+export default CompoRoute

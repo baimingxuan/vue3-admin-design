@@ -1,7 +1,8 @@
 import type { AppRoute } from '../../types'
 import Layout from '@/layout/index.vue'
 
-export const TextEditorRoute: AppRoute = {
+// text-editor module page
+const TextEditorRoute: AppRoute = {
     path: '/editor',
     name: 'Editor',
     component: Layout,
@@ -29,3 +30,5 @@ export const TextEditorRoute: AppRoute = {
         }
     ]
 }
+
+export default TextEditorRoute

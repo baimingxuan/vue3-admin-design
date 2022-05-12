@@ -1,7 +1,8 @@
 import type { AppRoute } from '../../types'
 import Layout from '@/layout/index.vue'
 
-export const TableRoute: AppRoute = {
+// table module page
+const TableRoute: AppRoute = {
     path: '/table',
     name: 'Table',
     component: Layout,
@@ -29,3 +30,5 @@ export const TableRoute: AppRoute = {
         }
     ]
 }
+
+export default TableRoute

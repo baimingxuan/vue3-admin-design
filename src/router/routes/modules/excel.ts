@@ -1,7 +1,8 @@
 import type { AppRoute } from '../../types'
 import Layout from '@/layout/index.vue'
 
-export const ExcelRoute: AppRoute = {
+// excel module page
+const ExcelRoute: AppRoute = {
     path: '/excel',
     name: 'Excel',
     component: Layout,
@@ -29,3 +30,5 @@ export const ExcelRoute: AppRoute = {
         }
     ]
 }
+
+export default ExcelRoute

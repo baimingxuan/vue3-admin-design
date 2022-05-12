@@ -1,7 +1,8 @@
 import type { AppRoute } from '../../types'
 import Layout from '@/layout/index.vue'
 
-export const GraphEditorRoute: AppRoute = {
+// graph-editor module page
+const GraphEditorRoute: AppRoute = {
     path: '/graph-editor',
     name: 'GraphEditor',
     component: Layout,
@@ -29,3 +30,5 @@ export const GraphEditorRoute: AppRoute = {
         }
     ]
 }
+
+export default GraphEditorRoute

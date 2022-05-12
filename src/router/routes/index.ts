@@ -86,7 +86,16 @@ export const RedirectRoute: AppRoute = {
 }
 
 const routeModules = import.meta.globEager('./modules/*.ts')
-console.log('routeModules?:', routeModules)
+
+const routeModulesList: AppRoute[] = []
+
+Object.keys(routeModules).forEach(key => {
+    const module = routeModules[key] || {}
+    console.log('module?:', routeModules[key])
+    const moduleList = Array.isArray(module) ? [...module] : [module]
+    routeModulesList.push(...moduleList)
+})
+// console.log('routeModulesList?:', routeModulesList)
 
 export const basicRoutes = [
     HomeRoute

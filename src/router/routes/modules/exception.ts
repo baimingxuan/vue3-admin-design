@@ -1,7 +1,8 @@
 import type { AppRoute } from '../../types'
 import Layout from '@/layout/index.vue'
 
-export const ExceptionRoute: AppRoute = {
+// exception module page
+const ExceptionRoute: AppRoute = {
     path: '/exception',
     name: 'Exception',
     component: Layout,
@@ -29,3 +30,5 @@ export const ExceptionRoute: AppRoute = {
         }
     ]
 }
+
+export default ExceptionRoute

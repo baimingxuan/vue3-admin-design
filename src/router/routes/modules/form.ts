@@ -1,8 +1,8 @@
 import type { AppRoute } from '../../types'
 import Layout from '@/layout/index.vue'
 
-// form page
-export const FormRoute: AppRoute = {
+// form module page
+const FormRoute: AppRoute = {
     path: '/form',
     name: 'From',
     component: Layout,
@@ -30,3 +30,5 @@ export const FormRoute: AppRoute = {
         }
     ]
 }
+
+export default FormRoute

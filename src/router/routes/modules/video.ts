@@ -1,7 +1,8 @@
 import type { AppRoute } from '../../types'
 import Layout from '@/layout/index.vue'
 
-export const VideoRoute: AppRoute = {
+// video module page
+const VideoRoute: AppRoute = {
     path: '/video',
     name: 'Video',
     component: Layout,
@@ -29,3 +30,5 @@ export const VideoRoute: AppRoute = {
         }
     ]
 }
+
+export default VideoRoute
