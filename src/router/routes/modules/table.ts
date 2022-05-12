@@ -14,7 +14,7 @@ export const TableRoute: AppRoute = {
         {
             path: 'table-classic',
             name: 'TableClassic',
-            component: () => import('../../views/home.vue'),
+            component: () => import('@/views/home.vue'),
             meta: {
                 title: '综合表格'
             }
@@ -22,7 +22,7 @@ export const TableRoute: AppRoute = {
         {
             path: 'table-inline-edit',
             name: 'TableInlineEdit',
-            component: () => import('../../views/home.vue'),
+            component: () => import('@/views/home.vue'),
             meta: {
                 title: '行内编辑表格'
             }

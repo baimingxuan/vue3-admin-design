@@ -14,7 +14,7 @@ export const ImageRoute: AppRoute = {
         {
             path: 'image-cropper',
             name: 'ImageCropper',
-            component: () => import('../../views/home.vue'),
+            component: () => import('@/views/home.vue'),
             meta: {
                 title: '图片裁剪'
             }
@@ -22,7 +22,7 @@ export const ImageRoute: AppRoute = {
         {
             path: 'image-compress',
             name: 'ImageCompress',
-            component: () => import('../../views/home.vue'),
+            component: () => import('@/views/home.vue'),
             meta: {
                 title: '图片压缩'
             }
@@ -30,7 +30,7 @@ export const ImageRoute: AppRoute = {
         {
             path: 'image-synthesizer',
             name: 'ImageSynthesizer',
-            component: () => import('../../views/home.vue'),
+            component: () => import('@/views/home.vue'),
             meta: {
                 title: '图片合成'
             }

@@ -14,7 +14,7 @@ export const ExceptionRoute: AppRoute = {
         {
             path: 'page-401',
             name: 'Page401',
-            component: () => import('../../views/home.vue'),
+            component: () => import('@/views/home.vue'),
             meta: {
                 title: '401页面'
             }
@@ -22,7 +22,7 @@ export const ExceptionRoute: AppRoute = {
         {
             path: 'page-404',
             name: 'Page404',
-            component: () => import('../../views/home.vue'),
+            component: () => import('@/views/home.vue'),
             meta: {
                 title: '404页面'
             }

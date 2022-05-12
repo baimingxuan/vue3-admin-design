@@ -15,7 +15,7 @@ export const FormRoute: AppRoute = {
         {
             path: 'form-list',
             name: 'FormList',
-            component: () => import('../../views/home.vue'),
+            component: () => import('@/views/home.vue'),
             meta: {
                 title: '表单列表'
             }
@@ -23,7 +23,7 @@ export const FormRoute: AppRoute = {
         {
             path: 'form-marking',
             name: 'FormMarking',
-            component: () => import('../../views/home.vue'),
+            component: () => import('@/views/home.vue'),
             meta: {
                 title: '表单生成器'
             }

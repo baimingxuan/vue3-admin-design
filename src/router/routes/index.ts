@@ -85,6 +85,9 @@ export const RedirectRoute: AppRoute = {
     ]
 }
 
+const routeModules = import.meta.globEager('./modules/*.ts')
+console.log('routeModules?:', routeModules)
+
 export const basicRoutes = [
     HomeRoute
 ]

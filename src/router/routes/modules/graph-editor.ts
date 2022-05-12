@@ -14,7 +14,7 @@ export const GraphEditorRoute: AppRoute = {
         {
             path: 'flow',
             name: 'Flow',
-            component: () => import('../../views/home.vue'),
+            component: () => import('@/views/home.vue'),
             meta: {
                 title: '流程图'
             }
@@ -22,7 +22,7 @@ export const GraphEditorRoute: AppRoute = {
         {
             path: 'mind',
             name: 'Mind',
-            component: () => import('../../views/home.vue'),
+            component: () => import('@/views/home.vue'),
             meta: {
                 title: '思维导图'
             }

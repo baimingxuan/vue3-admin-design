@@ -14,7 +14,7 @@ export const VideoRoute: AppRoute = {
         {
             path: 'video-player',
             name: 'VideoPlayer',
-            component: () => import('../../views/home.vue'),
+            component: () => import('@/views/home.vue'),
             meta: {
                 title: '视频播放器'
             }
@@ -22,7 +22,7 @@ export const VideoRoute: AppRoute = {
         {
             path: 'video-mark',
             name: 'VideoMark',
-            component: () => import('../../views/home.vue'),
+            component: () => import('@/views/home.vue'),
             meta: {
                 title: '视频水印'
             }

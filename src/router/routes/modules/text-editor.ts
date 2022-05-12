@@ -14,7 +14,7 @@ export const TextEditorRoute: AppRoute = {
         {
             path: 'markdown',
             name: 'Markdown',
-            component: () => import('../../views/home.vue'),
+            component: () => import('@/views/home.vue'),
             meta: {
                 title: 'Markdown编辑器'
             }
@@ -22,7 +22,7 @@ export const TextEditorRoute: AppRoute = {
         {
             path: 'rich-text',
             name: 'ImageRichText',
-            component: () => import('../../views/home.vue'),
+            component: () => import('@/views/home.vue'),
             meta: {
                 title: '富文本编辑器'
             }

@@ -14,7 +14,7 @@ export const TreeRoute: AppRoute = {
         {
             path: 'org-tree',
             name: 'OrgTree',
-            component: () => import('../../views/home.vue'),
+            component: () => import('@/views/home.vue'),
             meta: {
                 title: '组织树'
             }
@@ -22,7 +22,7 @@ export const TreeRoute: AppRoute = {
         {
             path: 'ele-tree',
             name: 'EleTree',
-            component: () => import('../../views/home.vue'),
+            component: () => import('@/views/home.vue'),
             meta: {
                 title: '控件树'
             }

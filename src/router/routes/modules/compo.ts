@@ -14,7 +14,7 @@ export const CompoRoute: AppRoute = {
         {
             path: 'image-upload',
             name: 'ImageUpload',
-            component: () => import('../../views/home.vue'),
+            component: () => import('@/views/home.vue'),
             meta: {
                 title: '图片上传'
             }
@@ -22,7 +22,7 @@ export const CompoRoute: AppRoute = {
         {
             path: 'drag',
             name: 'Drag',
-            component: () => import('../../views/home.vue'),
+            component: () => import('@/views/home.vue'),
             redirect: '/tools/drag/drag-list',
             meta: {
                 title: '拖拽'
@@ -31,7 +31,7 @@ export const CompoRoute: AppRoute = {
                 {
                     path: 'drag-list',
                     name: 'DragList',
-                    component: () => import('../../views/home.vue'),
+                    component: () => import('@/views/home.vue'),
                     meta: {
                         title: '列表拖拽'
                     }
@@ -39,7 +39,7 @@ export const CompoRoute: AppRoute = {
                 {
                     path: 'vue-drr',
                     name: 'VueDrr',
-                    component: () => import('../../views/home.vue'),
+                    component: () => import('@/views/home.vue'),
                     meta: {
                         title: '组件拖拽'
                     }
@@ -49,7 +49,7 @@ export const CompoRoute: AppRoute = {
         {
             path: 'transfer',
             name: 'Transfer',
-            component: () => import('../../views/home.vue'),
+            component: () => import('@/views/home.vue'),
             meta: {
                 title: '穿梭框'
             }
@@ -57,7 +57,7 @@ export const CompoRoute: AppRoute = {
         {
             path: 'count-to',
             name: 'CountTo',
-            component: () => import('../../views/home.vue'),
+            component: () => import('@/views/home.vue'),
             meta: {
                 title: '数字滚动'
             }
