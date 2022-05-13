@@ -95,7 +95,7 @@ Object.keys(routeModules).forEach(key => {
     routeModulesList.push(...moduleList)
 })
 
-export const basicRoutes = [
+export const asyncRoutes = [
     HomeRoute,
     ...routeModulesList
 ]
