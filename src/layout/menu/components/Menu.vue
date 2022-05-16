@@ -11,7 +11,7 @@
 <script lang="ts">
   import { defineComponent } from 'vue'
   import { Menu as AntdMenu } from 'ant-design-vue'
-  import type { Menu } from '@/router/types'
+  import type { AppMenu } from '@/router/types'
   import type { PropType } from 'vue'
   import SubMenuItem from './SubMenuItem.vue'
 
@@ -23,7 +23,7 @@
     },
     props: {
       items: {
-        type: Array as PropType<Menu[]>,
+        type: Array as PropType<AppMenu[]>,
         default: () => []
       }
     }
