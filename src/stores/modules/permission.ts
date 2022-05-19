@@ -2,6 +2,9 @@ import { defineStore } from 'pinia'
 
 import type { AppRoute, AppMenu } from '@/router/types'
 
+import { filter } from '@/utils/helper/treeHelper'
+import { asyncRoutes } from '@/router/routes'
+
 export const usePermissionStore = defineStore('permission', {
   state: () => ({
     menuList: []
@@ -14,6 +17,7 @@ export const usePermissionStore = defineStore('permission', {
   actions: {
     buildRoutes(): Promise<AppRoute[]> {
       let routes: AppRoute[] = []
+      routes = filter(asyncRoutes, () => true)
       return Promise.resolve(routes)
     }
   }
