@@ -14,6 +14,7 @@
   import { Menu as AntdMenu } from 'ant-design-vue'
   import type { AppMenu } from '@/router/types'
   import type { PropType } from 'vue'
+  import { ref, reactive } from 'vue'
   import SubMenuItem from './SubMenuItem.vue'
   import { isFunction } from '@/utils/is'
 
@@ -33,6 +34,13 @@
       }
     },
     setup(props, { emit }) {
+      const isClickGo = ref(false)
+      const menuState = reactive({
+        defaultSelectedKeys: [],
+        openKeys: [],
+        selectedKeys: [],
+        collapsedOpenKeys: [],
+      })
 
       async function handleMenuClick({ key }: { key: string; keyPath: string[] }) {
         const { beforeClickFn } = props
@@ -41,6 +49,9 @@
           if (!flag) return
         }
         emit('menuClick', key)
+
+        isClickGo.value = true
+        menuState.selectedKeys = []
       }
 
       return {
