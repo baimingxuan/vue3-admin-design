@@ -1,6 +1,10 @@
 <template>
   <AntdMenu
+    :mode="mode"
+    :theme="theme"
     :subMenuOpenDelay="0.2"
+    :openKeys="openKeys"
+    :selectedKeys="selectedKeys"
     @click="handleMenuClick"
   >
     <template v-for="item in items" :key="item.path">
@@ -10,39 +14,34 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from 'vue'
+  import type { MenuState } from '../types'
+
+  import { defineComponent, ref, toRefs, reactive } from 'vue'
   import { Menu as AntdMenu } from 'ant-design-vue'
-  import type { AppMenu } from '@/router/types'
-  import type { PropType } from 'vue'
-  import { ref, reactive } from 'vue'
+  
   import SubMenuItem from './SubMenuItem.vue'
   import { isFunction } from '@/utils/is'
+  import { menuProps } from '../props'
 
   export default defineComponent({
-    name: 'BasicMenu',
+    name: 'Menu',
     components: {
       AntdMenu,
       SubMenuItem
     },
-    props: {
-      items: {
-        type: Array as PropType<AppMenu[]>,
-        default: () => []
-      },
-      beforeClickFn: {
-        type: Function as PropType<(key: string) => Promise<boolean>>
-      }
-    },
+    props: menuProps,
+    emits: ['menuClick'],
     setup(props, { emit }) {
       const isClickGo = ref(false)
-      const menuState = reactive({
+
+      const menuState = reactive<MenuState>({
         defaultSelectedKeys: [],
         openKeys: [],
-        selectedKeys: [],
-        collapsedOpenKeys: [],
+        selectedKeys: []
       })
 
-      async function handleMenuClick({ key }: { key: string; keyPath: string[] }) {
+      async function handleMenuClick(e: object) {
+        const { key } = e as { key: string }
         const { beforeClickFn } = props
         if (beforeClickFn && isFunction(beforeClickFn)) {
           const flag = await beforeClickFn(key)
@@ -51,11 +50,12 @@
         emit('menuClick', key)
 
         isClickGo.value = true
-        menuState.selectedKeys = []
+        menuState.selectedKeys = [key]
       }
 
       return {
-        handleMenuClick
+        handleMenuClick,
+        ...toRefs(menuState)
       }
     }
   })
