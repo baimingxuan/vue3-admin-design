@@ -9,7 +9,7 @@
   "dependencies": {
     "@ant-design/icons-vue": "^6.1.0",
     "@vueuse/core": "^8.4.2",
-    "ant-design-vue": "^3.2.1",
+    "ant-design-vue": "^3.2.4",
     "axios": "^0.26.1",
     "pinia": "^2.0.13",
     "resize-observer-polyfill": "^1.5.1",

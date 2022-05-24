@@ -692,10 +692,10 @@ ansi-styles@^3.2.1:
   dependencies:
     color-convert "^1.9.0"
 
-ant-design-vue@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/ant-design-vue/-/ant-design-vue-3.2.1.tgz#026afa0d41504ff843904b6646447523a04e4434"
-  integrity sha512-zqtfKF4pnHf4AJc8nY81/ZkfpPMtI/uJAwrMOt8coA96tOoSKy2fqWPI/Sklbgfx4IS/PuRtpb8Cqgw/KxD9iA==
+ant-design-vue@^3.2.4:
+  version "3.2.4"
+  resolved "https://registry.yarnpkg.com/ant-design-vue/-/ant-design-vue-3.2.4.tgz#537801219c39351d0b490405e8802cb975fea159"
+  integrity sha512-aA30m1cDBn+dIOFGQvHn0AMpFiubtKgCAhN1jOX8NoyVyZ705Bf/5MI/RftQbsWY9CvVsl3QztAJZwA/Z6Bb1g==
   dependencies:
     "@ant-design/colors" "^6.0.0"
     "@ant-design/icons-vue" "^6.1.0"
