@@ -4,16 +4,14 @@ import type { MenuMode, MenuTheme } from 'ant-design-vue'
 import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum'
 import { ThemeEnum } from '@/enums/appEnum'
 
-export const basicProps = {
+export const menuProps = {
   items: {
     type: Array as PropType<AppMenu[]>,
     default: () => []
   },
   type: {
-    type: {
-      type: String as PropType<MenuTypeEnum>,
-      default: MenuTypeEnum.SIDE_MENU
-    }
+    type: String as PropType<MenuTypeEnum>,
+    default: MenuTypeEnum.SIDE_MENU
   },
   mode: {
     type: String as PropType<MenuMode>,
@@ -22,6 +20,9 @@ export const basicProps = {
   theme: {
     type: String as PropType<MenuTheme>,
     default: ThemeEnum.LIGHT
+  },
+  beforeClickFn: {
+    type: Function as PropType<(key: string) => Promise<boolean>>
   }
 }
 
