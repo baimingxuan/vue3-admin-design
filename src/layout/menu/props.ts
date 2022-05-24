@@ -26,7 +26,14 @@ export const menuProps = {
   }
 }
 
-export const itemProps = {
+export const menuItemProps = {
+  item: {
+    type: Object as PropType<AppMenu>,
+    default: () => {}
+  }
+}
+
+export const menuItemContentProps = {
   item: {
     type: Object as PropType<AppMenu>,
     default: () => {}

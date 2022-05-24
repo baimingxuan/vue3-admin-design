@@ -7,6 +7,8 @@
 <script lang="ts">
   import { defineComponent } from 'vue'
   import { Menu as AntdMenu } from 'ant-design-vue'
+
+  import { menuItemProps } from '../props'
   import MenuItemContent from './MenuItemContent.vue'
 
   export default defineComponent({
@@ -15,11 +17,6 @@
       AntdMenuItem: AntdMenu.Item,
       MenuItemContent
     },
-    props: {
-      item: {
-        type: Object,
-        default: {}
-      }
-    }
+    props: menuItemProps
   })
 </script>
