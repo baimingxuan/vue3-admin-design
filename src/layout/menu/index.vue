@@ -1,8 +1,9 @@
 <script lang="tsx">
-  import { defineComponent } from 'vue'
+  import { defineComponent, computed, unref } from 'vue'
   import { propTypes } from '@/utils/propTypes'
   import { Menu } from './src/index'
   import { useGo } from '@/hooks/web/usePage'
+  import { useSplitMenu } from './useLayoutMenu'
 
   export default defineComponent({
     name: 'LayoutMenu',
@@ -19,12 +20,35 @@
     setup(props) {
       const go = useGo()
 
+      const { menusRef } = useSplitMenu()
+      console.log('menus', menusRef)
+
+      const getCommonProps = computed(() => {
+        const menus = unref(menusRef);
+        return {
+          menus,
+          items: menus,
+          onMenuClick: handleMenuClick
+        }
+      })
+
       function handleMenuClick(path: string) {
         go(path)
       }
 
+      function renderMenu() {
+        const { menus, ...menuProps } = unref(getCommonProps)
+
+        return (
+          <Menu
+            { ...(menuProps as any) }
+            items={menus}
+          />
+        )
+      }
+
       return () => (
-        <></>
+        <>{renderMenu()}</>
       )
     }
   })

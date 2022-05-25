@@ -1,7 +1,7 @@
 import type { AppMenu, AppMenuModule } from '../types'
 import { transformMenuModule } from '../helper/menuHelper'
 
-const routeModules = import.meta.globEager('./modules/*.ts')
+const routeModules = import.meta.globEager('./routes/modules/*.ts')
 
 const menuModules: AppMenuModule[] = []
 
