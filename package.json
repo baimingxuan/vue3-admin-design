@@ -11,6 +11,7 @@
     "@vueuse/core": "^8.4.2",
     "ant-design-vue": "^3.2.4",
     "axios": "^0.26.1",
+    "lodash-es": "^4.17.21",
     "pinia": "^2.0.13",
     "resize-observer-polyfill": "^1.5.1",
     "vite-plugin-svg-icons": "^2.0.1",
