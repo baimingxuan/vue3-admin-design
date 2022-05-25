@@ -23,3 +23,8 @@ export interface AppMenu {
     meta?: Partial<RouteMeta>
     hideMenu?: boolean
 }
+
+export interface AppMenuModule {
+    orderNo?: number
+    menu: AppMenu
+}
