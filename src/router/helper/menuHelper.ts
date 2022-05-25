@@ -1,5 +1,6 @@
-import type { AppMenu, AppMenuModule } from '../types'
+import type { AppMenu, AppMenuModule, AppRoute } from '../types'
 import { isUrl } from '@/utils/is'
+import { cloneDeep } from 'lodash-es'
 
 function joinParentPath(menus: AppMenu[], parentPath = '') {
     for (let index = 0; index < menus.length; index++) {
