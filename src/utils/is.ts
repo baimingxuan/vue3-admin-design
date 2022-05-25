@@ -29,3 +29,9 @@ export function isDef<T = unknown>(val?: T): val is T {
 export function isUnDef<T = unknown>(val?: T): val is T {
     return !isDef(val)
 }
+
+export function isUrl(path: string): boolean {
+    const reg =
+      /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)$/;
+    return reg.test(path)
+}
