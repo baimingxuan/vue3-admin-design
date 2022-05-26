@@ -1,6 +1,7 @@
 import type { AppMenu, AppMenuModule, AppRoute } from '../types'
 import { isUrl } from '@/utils/is'
 import { cloneDeep } from 'lodash-es'
+import { treeMap } from '@/utils/helper/treeHelper'
 
 function joinParentPath(menus: AppMenu[], parentPath = '') {
     for (let index = 0; index < menus.length; index++) {
@@ -26,4 +27,35 @@ export function transformMenuModule(menuModule: AppMenuModule): AppMenu {
   
     joinParentPath(menuList)
     return menuList[0]
+}
+
+export function transformRouteToMenu(routeModList: AppRoute[]) {
+    const cloneRouteModList = cloneDeep(routeModList)
+    const routeList: AppRoute[] = []
+
+    cloneRouteModList.forEach(item => {
+        if (item.meta.hideChildrenInMenu && typeof item.redirect === 'string') {
+            item.path = item.redirect
+        } else {
+            routeList.push(item)
+        }
+    })
+
+    const list = treeMap(routeList, {
+        conversion: (node: AppRoute) => {
+            const { meta: { title, hideMenu = false } = {} } = node
+
+            return {
+                ...(node.meta || {}),
+                meta: node.meta,
+                name: title,
+                hideMenu,
+                path: node.path,
+                ...(node.redirect ? { redirect: node.redirect } : {})
+            }
+        }
+    })
+
+    joinParentPath(list)
+    return cloneDeep(list)
 }
