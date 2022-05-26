@@ -1,5 +1,6 @@
 import type { AppMenu, AppMenuModule } from '../types'
 import { transformMenuModule } from '../helper/menuHelper'
+import { usePermissionStore } from '@/stores/modules/permission'
 
 const routeModules = import.meta.globEager('./routes/modules/*.ts')
 
@@ -15,17 +16,19 @@ Object.keys(routeModules).forEach(key => {
 export const getMenus = async (): Promise<AppMenu[]> => {
 
     async function generateMenus() {
-        const staticMenus: AppMenu[] = []
+        const permissionStore = usePermissionStore()
+        // const staticMenus: AppMenu[] = []
 
-        menuModules.sort((a, b) => {
-            return (a.orderNo || 0) - (b.orderNo || 0)
-        })
+        // menuModules.sort((a, b) => {
+        //     return (a.orderNo || 0) - (b.orderNo || 0)
+        // })
 
-        for (const menu of menuModules) {
-            staticMenus.push(transformMenuModule(menu))
-        }
+        // for (const menu of menuModules) {
+        //     staticMenus.push(transformMenuModule(menu))
+        // }
 
-        return staticMenus
+        // return staticMenus
+        return permissionStore.getMenuList.filter(item => !item.hideMenu)
     }
     
     const menus = await generateMenus()
