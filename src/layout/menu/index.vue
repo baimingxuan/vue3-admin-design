@@ -21,7 +21,6 @@
       const go = useGo()
 
       const { menusRef } = useSplitMenu()
-      console.log('menus', menusRef)
 
       const getCommonProps = computed(() => {
         const menus = unref(menusRef);
