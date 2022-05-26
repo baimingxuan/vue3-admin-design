@@ -8,7 +8,7 @@
     @click="handleMenuClick"
   >
     <template v-for="item in items" :key="item.path">
-      <SubMenuItem />
+      <SubMenuItem :item="item" />
     </template>
   </AntdMenu>
 </template>

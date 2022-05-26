@@ -1,5 +1,5 @@
 <template>
-  <MenuItem v-if="!menuHasChildren(item) && getShowMenu" />
+  <MenuItem v-if="!menuHasChildren(item) && getShowMenu" :item="item" />
   <AntdSubMenu
     v-if="menuHasChildren(item) && getShowMenu"
     :key="`submenu-${item.path}`"
