@@ -8,6 +8,8 @@ export type Component<T = any> =
 
 // RouteRecordRaw detail, see: https://router.vuejs.org/api/#routerecordraw
 export interface AppRoute extends Omit<RouteRecordRaw, 'children'> {
+    name: string
+    meta: RouteMeta
     component?: Component | string
     children?: AppRoute[]
     fullPath?: string
