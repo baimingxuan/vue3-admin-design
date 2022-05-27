@@ -19,7 +19,7 @@ export const menuProps = {
   },
   theme: {
     type: String as PropType<MenuTheme>,
-    default: ThemeEnum.LIGHT
+    default: ThemeEnum.DARK
   },
   beforeClickFn: {
     type: Function as PropType<(key: string) => Promise<boolean>>
