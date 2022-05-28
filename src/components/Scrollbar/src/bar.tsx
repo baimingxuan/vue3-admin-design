@@ -79,7 +79,7 @@ export default defineComponent({
         class={ ['scrollbar__bar', 'is-' + bar.value.key] }
         onMousedown={ clickTrackHandler } >
         <div
-          ref="thumb"
+          ref={thumb}
           class="scrollbar__thumb"
           onMousedown={ clickThumbHandler }
           style={ renderThumbStyle({
