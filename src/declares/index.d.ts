@@ -3,5 +3,9 @@ declare interface Fn<T = any, R = T> {
 }
 
 declare interface PromiseFn<T = any, R = T> {
-  (...arg: T[]): Promise<R>;
+  (...arg: T[]): Promise<R>
+}
+
+declare type DeepPartial<T> = {
+  [P in keyof T]?: DeepPartial<T[P]>
 }
