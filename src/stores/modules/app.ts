@@ -33,7 +33,7 @@ export const useAppStore = defineStore('app', {
     },
     setAppConfig(config: DeepPartial<AppConfig>): void {
       this.appConfig = deepMerge(this.appConfig || {}, config)
-      localStorage.setItem('app_cfg_', this.appConfig)
+      localStorage.setItem('app_cfg_', JSON.stringify(this.appConfig))
     }
   }
 })
