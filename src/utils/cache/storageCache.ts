@@ -40,5 +40,33 @@ export const createStorage = ({
         expire: !isNullOrUnDef(expire) ? new Date().getTime() + expire * 1000 : null,
       })
     }
+
+    /**
+     * Read cache
+     * @param {string} key
+     * @param {*} def
+     * @memberof Cache
+     */
+     get(key: string, def: any = null): any {
+      const val = this.storage.getItem(this.getKey(key))
+      if (!val) return def
+     }
+
+     /**
+     * Delete cache based on key
+     * @param {string} key
+     * @memberof Cache
+     */
+    remove(key: string) {
+      this.storage.removeItem(this.getKey(key));
+    }
+
+    /**
+     * Delete all caches of this instance
+     */
+    clear(): void {
+      this.storage.clear();
+    }
   }
+  return new WebStorage()
 }
