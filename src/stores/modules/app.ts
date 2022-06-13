@@ -4,7 +4,7 @@ import type { AppConfig, MenuSetting } from '@/interfaces/config'
 
 import { ThemeMode } from '@/types'
 import { ThemeEnum } from '@/enums/appEnum'
-import { deepMerge } from '@antfu/utils'
+import { deepMerge } from '@/utils'
 import { Persistent } from '@/utils/cache/persistent'
 
 interface AppState {
@@ -23,8 +23,11 @@ export const useAppStore = defineStore('app', {
     getThemeMode(): ThemeMode | string {
       return this.themeMode || ''
     },
+    getAppConfig(): AppConfig {
+      return this.appConfig || ({} as AppConfig)
+    },
     getMenuSetting(): MenuSetting {
-      return this.appConfig.menuSetting
+      return this.getAppConfig.menuSetting
     }
   },
 
