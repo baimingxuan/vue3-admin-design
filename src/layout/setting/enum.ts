@@ -60,7 +60,7 @@ export const appThemeColorList: ColorItem[] = [
   }
 ]
 
-export enum HandleEnum {
+export enum HandlerEnum {
   CHANGE_LAYOUT,
   CHANGE_THEME_COLOR,
   CHANGE_THEME,
