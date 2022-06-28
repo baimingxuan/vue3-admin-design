@@ -1,8 +1,13 @@
 import { isNullOrUnDef } from '../is'
+import type { EncryptParams } from '../cipher'
+import { AesEncrypt } from '../cipher'
 
 export const createStorage = ({
   prefixKey = '',
   storage = sessionStorage,
+  hasEncrypt = true,
+  key = '_11111000001111@',
+  iv = '@11111000001111_',
   timeout = null
 }) => {
 
