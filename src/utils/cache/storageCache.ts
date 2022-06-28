@@ -2,6 +2,13 @@ import { isNullOrUnDef } from '../is'
 import type { EncryptParams } from '../cipher'
 import { AesEncrypt } from '../cipher'
 
+export interface CreateStorageParams extends EncryptParams {
+  prefixKey: string
+  storage: Storage
+  hasEncrypt: boolean
+  timeout?: Nullable<number>
+}
+
 export const createStorage = ({
   prefixKey = '',
   storage = sessionStorage,
@@ -9,8 +16,12 @@ export const createStorage = ({
   key = '_11111000001111@',
   iv = '@11111000001111_',
   timeout = null
-}) => {
+}: Partial<CreateStorageParams> = {}) => {
+  if (hasEncrypt && [key.length, iv.length].some(item => item !== 16)) {
+    throw new Error('When hasEncrypt is true, the key or iv must be 16 bits!')
+  }
 
+  const encrypt = new AesEncrypt({ key, iv })
 
   /**
    * Cache class
@@ -21,10 +32,14 @@ export const createStorage = ({
   const WebStorage = class WebStorage {
     private storage: Storage
     private prefixKey?: string
+    private encrypt: AesEncrypt
+    private hasEncrypt: boolean
 
     constructor() {
       this.storage = storage
       this.prefixKey = prefixKey
+      this.encrypt = encrypt
+      this.hasEncrypt = hasEncrypt
     }
 
     private getKey(key: string) {
@@ -42,8 +57,12 @@ export const createStorage = ({
       const stringData = JSON.stringify({
         value,
         time: Date.now(),
-        expire: !isNullOrUnDef(expire) ? new Date().getTime() + expire * 1000 : null,
+        expire: !isNullOrUnDef(expire) ? new Date().getTime() + expire * 1000 : null
       })
+      const stringifyValue = this.hasEncrypt
+        ? this.encrypt.encryptByAES(stringData)
+        : stringData
+      this.storage.setItem(this.getKey(key), stringifyValue)
     }
 
     /**
@@ -55,7 +74,19 @@ export const createStorage = ({
      get(key: string, def: any = null): any {
       const val = this.storage.getItem(this.getKey(key))
       if (!val) return def
-     }
+
+      try {
+        const decVal = this.hasEncrypt ? this.encrypt.decryptByAES(val) : val
+        const data = JSON.parse(decVal)
+        const { value, expire } = data
+        if (isNullOrUnDef(expire) || expire >= new Date().getTime()) {
+          return value
+        }
+        this.remove(key)
+      } catch (e) {
+        return def
+      }
+    }
 
      /**
      * Delete cache based on key
@@ -63,15 +94,16 @@ export const createStorage = ({
      * @memberof Cache
      */
     remove(key: string) {
-      this.storage.removeItem(this.getKey(key));
+      this.storage.removeItem(this.getKey(key))
     }
 
     /**
      * Delete all caches of this instance
      */
     clear(): void {
-      this.storage.clear();
+      this.storage.clear()
     }
   }
+  
   return new WebStorage()
 }
