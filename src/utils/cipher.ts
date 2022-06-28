@@ -5,11 +5,11 @@ import PKCS7 from 'crypto-js/pad-pkcs7'
 import ECB from 'crypto-js/mode-ecb'
 
 export interface EncryptParams {
-    key: string
-    iv: string
+  key: string
+  iv: string
 }
 
-export class AesEncryption {
+export class AesEncrypt {
     private key
     private iv
   
@@ -17,6 +17,8 @@ export class AesEncryption {
       const { key, iv } = opt
       if (key) {
         this.key = parse(key)
+      } else {
+        this.key = ''
       }
       if (iv) {
         this.iv = parse(iv)
