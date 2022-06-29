@@ -3,3 +3,7 @@ export const TOKEN_KEY = 'TOKEN_KEY'
 export const LOCALE_KEY = 'LOCALE_KEY'
 
 export const APP_CONFIG_KEY = 'APP_CONFIG_KEY'
+
+export const APP_LOCAL_CACHE_KEY = 'APP_LOCAL_CACHE_KEY'
+
+export const APP_SESSION_CACHE_KEY = 'APP_SESSION_CACHE_KEY'
