@@ -17,8 +17,6 @@ export class AesEncrypt {
       const { key, iv } = opt
       if (key) {
         this.key = parse(key)
-      } else {
-        this.key = ''
       }
       if (iv) {
         this.iv = parse(iv)
