@@ -25,7 +25,7 @@ export const createStorage = ({
 
   /**
    * Cache class
-   * Construction parameters can be passed into sessionStorage, localStorage,
+   * Construction parameters can be passed into sessionStorage, localStorage
    * @class Cache
    * @example
    */
