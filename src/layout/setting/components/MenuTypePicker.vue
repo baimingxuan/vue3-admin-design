@@ -10,6 +10,7 @@
               ['menu-type-picker__item--active'] : def === item.type
             }
           ]"
+          @click="handler(item)"
         >
           <AntdCheckOutlined />
         </div>
@@ -33,6 +34,10 @@
       menuTypeList: {
         type: Array as PropType<typeof menuTypeList>,
         default: () => []
+      },
+      handler: {
+        type: Function as PropType<Fn>,
+        default: () => ({}),
       },
       def: {
         type: String,
