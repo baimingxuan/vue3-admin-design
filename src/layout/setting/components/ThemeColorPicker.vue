@@ -5,6 +5,7 @@
         <span
           :class="['theme-color-picker__item', { 'theme-color-picker__item--active': def === item.color }]"
           :style="{ background: item.color }"
+          @click="handleClick(item.color)"
         >
           <AntdCheckOutlined />
         </span>
@@ -20,7 +21,9 @@
   import { Tooltip as AntdTooltip } from 'ant-design-vue'
   import { CheckOutlined as AntdCheckOutlined } from '@ant-design/icons-vue'
 
-  import { ColorItem } from '../enum' 
+  import { ColorItem } from '../enum'
+  import { HandlerEnum } from '../enum'
+  import { baseHandler } from '../handler'
 
   export default defineComponent({
     name: 'ThemeColorPicker',
@@ -30,9 +33,21 @@
         type: Array as PropType<ColorItem[]>,
         default: []
       },
+      event: {
+        type: Number as PropType<HandlerEnum>,
+      },
       def: {
         type: String,
         default: '#1890ff'
+      }
+    },
+    setup(props) {
+      function handleClick(color: string) {
+        props.event && baseHandler(props.event, color)
+      }
+
+      return {
+        handleClick
       }
     }
   })
