@@ -1,7 +1,7 @@
 import { HandlerEnum } from './enum'
 import { AppConfig } from '@/interfaces/config'
 
-// import { useAppStore } from '@/stores/modules/app'
+import { useAppStore } from '@/stores/modules/app'
 
 export function handler(event: HandlerEnum, value: any): DeepPartial<AppConfig> {
     // const appStore = useAppStore()
@@ -25,3 +25,11 @@ export function handler(event: HandlerEnum, value: any): DeepPartial<AppConfig> 
     }
 }
 
+export function baseHandler(event: HandlerEnum, value: any) {
+    const appStore = useAppStore()
+    const config = handler(event, value)
+    appStore.setAppConfig(config)
+    if (event === HandlerEnum.CHANGE_THEME) {
+      
+    }
+  }
