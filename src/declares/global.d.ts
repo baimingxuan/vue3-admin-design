@@ -6,6 +6,10 @@ declare type DeepPartial<T> = {
     [P in keyof T]?: DeepPartial<T[P]>
 }
 
+declare interface ChangeEvent extends Event {
+    target: HTMLInputElement;
+}
+
 declare interface ViteEnv {
     VITE_PORT: number;
     VITE_PUBLIC_PATH: string;
