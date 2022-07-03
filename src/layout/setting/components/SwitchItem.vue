@@ -2,41 +2,51 @@
   <div class="switch-item">
     <span>{{ title }}</span>
     <AntdSwitch
-      v-bind="getChecked"
+      v-bind="getBindValue"
       :disabled="disabled"
+      @change="handleChange"
     />
   </div>
 </template>
 
 <script lang="ts">
   import { defineComponent, computed } from 'vue'
+  import type { PropType } from 'vue'
 
   import { Switch as AntdSwitch } from 'ant-design-vue'
+
+  import { HandlerEnum } from '../enum'
+  import { baseHandler } from '../handler'
 
   export default defineComponent({
     name: 'SwitchItem',
     components: { AntdSwitch },
     props: {
       title: {
-        type: String,
-        default: ''
+        type: String
       },
       disabled: {
-        type: Boolean,
-        default: false
+        type: Boolean
       },
-      checked: {
-        type: Boolean,
-        default: false
+      def: {
+        type: Boolean
+      },
+      event: {
+        type: Number as PropType<HandlerEnum>
       }
     },
     setup(props) {
-      const getChecked = computed(() => {
-        return props.checked ? { checked: props.checked } : {}
+      const getBindValue = computed(() => {
+        return props.def ? { checked: props.def } : {}
       })
 
+      function handleChange(e: ChangeEvent) {
+        props.event && baseHandler(props.event, e)
+      }
+
       return {
-        getChecked
+        getBindValue,
+        handleChange
       }
     }
   })
