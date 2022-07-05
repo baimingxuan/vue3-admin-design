@@ -29,12 +29,19 @@ export interface HeaderSetting {
 }
 
 export interface MenuSetting {
+  // menu type
   menuType: MenuTypeEnum
+  // menu mode
   menuMode: MenuModeEnum
+  // menu theme
   menuTheme: ThemeEnum
+   // menu collapse type
   menuFold: MenuFoldEnum
+  // menu collapse
   collapsed: boolean
+  // whether to display the menu name when folding the menu
   collapsedShowTitle: boolean
+  // menu width
   menuWidth: number
 }
 

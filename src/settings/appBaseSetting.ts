@@ -3,6 +3,7 @@ import { MenuTypeEnum, MenuModeEnum, MenuFoldEnum } from '@/enums/menuEnum'
 import { ThemeEnum } from '@/enums/appEnum'
 
 const appSetting: AppConfig = {
+  // theme color
   themeColor: '#fff',
   headerSetting: {
     // show breadCrumb
@@ -25,13 +26,19 @@ const appSetting: AppConfig = {
   },
   // Menu configuration
   menuSetting: {
-    // Menu type
+    // menu type
     menuType: MenuTypeEnum.SIDE_MENU,
+    // menu mode
     menuMode: MenuModeEnum.VERTICAL,
+    // menu theme
     menuTheme: ThemeEnum.DARK,
+    // menu collapse type
     menuFold: MenuFoldEnum.NONE,
+    // menu collapse
     collapsed: false,
+    // whether to display the menu name when folding the menu
     collapsedShowTitle: false,
+    // menu width
     menuWidth: 210
   },
   // whether to show the global footer
