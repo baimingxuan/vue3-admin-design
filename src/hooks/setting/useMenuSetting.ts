@@ -17,4 +17,14 @@ export function useMenuSetting() {
   const getCollapsedShowTitle = computed(() => appStore.getMenuSetting.collapsedShowTitle)
 
   const getMenuWidth = computed(() => appStore.getMenuSetting.menuWidth)
+
+  return {
+    getMenuType,
+    getMenuMode,
+    getMenuTheme,
+    getMenuFold,
+    getCollapsed,
+    getCollapsedShowTitle,
+    getMenuWidth
+  }
 }
