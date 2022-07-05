@@ -16,7 +16,7 @@
       <AntdDivider>主题风格</AntdDivider>
       <AppModeSwitch class="mx-auto" />
       <AntdDivider>菜单模式</AntdDivider>
-      <MenuTypePicker :menuTypeList="menuTypeList" />
+      <MenuTypePicker :menuTypeList="menuTypeList" :def="unref(getMenuType)" />
       <AntdDivider>主题颜色</AntdDivider>
       <ThemeColorPicker :colorList="appThemeColorList" />
       <div style="height: 1000px;"></div>
@@ -34,6 +34,7 @@
   import { menuTypeList, appThemeColorList } from './enum'
   import Scrollbar from '@/components/Scrollbar'
   import Container from '@/components/Container/index.vue'
+  import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 
   export default defineComponent({
     name: 'LayoutSetting',
@@ -45,7 +46,11 @@
         drawerVisible.value = !unref(drawerVisible)
       }
 
+      const { getMenuType } = useMenuSetting()
+
       return {
+        unref,
+        getMenuType,
         drawerVisible,
         toggleDrawer,
         menuTypeList,
