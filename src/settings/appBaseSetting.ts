@@ -2,7 +2,7 @@ import type { AppConfig } from '@/interfaces/config'
 import { MenuTypeEnum, MenuModeEnum, MenuFoldEnum } from '@/enums/menuEnum'
 import { ThemeEnum } from '@/enums/appEnum'
 
-const appSetting: AppConfig = {
+export const appSetting: AppConfig = {
   // theme color
   themeColor: '#fff',
   headerSetting: {
