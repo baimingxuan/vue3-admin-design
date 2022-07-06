@@ -1,7 +1,8 @@
-import { useAppStore } from '@/stores/modules/app'
-import { AppConfig } from '@/interfaces/config'
-import { Persistent } from '@/utils/cache/persistent'
+import type { AppConfig } from '@/interfaces/config'
 import { APP_CONFIG_KEY } from '@/enums/cacheEnum'
+
+import { useAppStore } from '@/stores/modules/app'
+import { Persistent } from '@/utils/cache/persistent'
 import { deepMerge } from '@/utils'
 import { appSetting } from '@/settings/appBaseSetting'
 
