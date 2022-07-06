@@ -7,6 +7,8 @@ import 'virtual:windi-utilities.css'
 import 'virtual:svg-icons-register'
 
 import { createApp } from 'vue'
+import { initAppConfigStore } from '@/logics/initAppConfig'
+
 import App from './App.vue'
 
 import 'ant-design-vue/dist/antd.css'
@@ -24,6 +26,9 @@ function launchApp() {
 
     // Configure store
     setupStore(app)
+
+    // Initialize internal system configuration
+    initAppConfigStore()
 
     app.mount('#app')
 }
