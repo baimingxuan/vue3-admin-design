@@ -16,7 +16,11 @@
       <AntdDivider>主题风格</AntdDivider>
       <AppModeSwitch class="mx-auto" />
       <AntdDivider>菜单模式</AntdDivider>
-      <MenuTypePicker :menuTypeList="menuTypeList" :def="unref(getMenuType)" />
+      <MenuTypePicker
+        :menuTypeList="menuTypeList"
+        :def="unref(getMenuType)"
+        :handler="baseHandler"
+        />
       <AntdDivider>主题颜色</AntdDivider>
       <ThemeColorPicker :colorList="appThemeColorList" />
       <div style="height: 1000px;"></div>
@@ -36,6 +40,8 @@
   import Container from '@/components/Container/index.vue'
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 
+  import { baseHandler } from './handler'
+
   export default defineComponent({
     name: 'LayoutSetting',
     components: { AntdDrawer, AntdDivider, AntdSettingOutlined, AppModeSwitch, MenuTypePicker, ThemeColorPicker, Scrollbar, Container },
@@ -54,7 +60,8 @@
         drawerVisible,
         toggleDrawer,
         menuTypeList,
-        appThemeColorList
+        appThemeColorList,
+        baseHandler
       }
     }
   })
