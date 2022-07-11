@@ -57,7 +57,7 @@
   .compo_theme-color-picker {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 16px 0;
 
     .theme-color-picker__item {

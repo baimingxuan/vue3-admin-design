@@ -83,6 +83,7 @@
     height: 100%;
 
     .scrollbar__wrap {
+      padding: 16px !important;
       margin-bottom: 18px !important;
       overflow-x: hidden;
     }
