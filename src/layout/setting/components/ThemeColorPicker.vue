@@ -38,7 +38,7 @@
       },
       def: {
         type: String,
-        default: '#1890ff'
+        default: ''
       }
     },
     setup(props) {

@@ -8,6 +8,8 @@ export function useMenuSetting() {
 
   const getMenuMode = computed(() => appStore.getMenuSetting.menuMode)
 
+  const getThemeColor = computed(() => appStore.getAppConfig.themeColor)
+
   const getMenuTheme = computed(() => appStore.getMenuSetting.menuTheme)
 
   const getMenuFold = computed(() => appStore.getMenuSetting.menuFold)
@@ -21,6 +23,7 @@ export function useMenuSetting() {
   return {
     getMenuType,
     getMenuMode,
+    getThemeColor,
     getMenuTheme,
     getMenuFold,
     getCollapsed,

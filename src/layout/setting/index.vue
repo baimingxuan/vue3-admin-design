@@ -27,7 +27,11 @@
         }"
         />
       <AntdDivider>主题颜色</AntdDivider>
-      <ThemeColorPicker :colorList="appThemeColorList" />
+      <ThemeColorPicker
+        :colorList="appThemeColorList"
+        :def="unref(getThemeColor)"
+        :event="HandlerEnum.CHANGE_THEME_COLOR"
+      />
       <div style="height: 1000px;"></div>
     </Container>
   </AntdDrawer>
@@ -58,11 +62,12 @@
         drawerVisible.value = !unref(drawerVisible)
       }
 
-      const { getMenuType } = useMenuSetting()
+      const { getMenuType, getThemeColor } = useMenuSetting()
 
       return {
         unref,
         getMenuType,
+        getThemeColor,
         drawerVisible,
         toggleDrawer,
         menuTypeList,
