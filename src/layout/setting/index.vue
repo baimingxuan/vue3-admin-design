@@ -19,7 +19,12 @@
       <MenuTypePicker
         :menuTypeList="menuTypeList"
         :def="unref(getMenuType)"
-        :handler="baseHandler"
+        :handler="(item: typeof menuTypeList[0]) => {
+          baseHandler(HandlerEnum.CHANGE_LAYOUT, {
+            menuMode: item.mode,
+            menuType: item.type
+          })
+        }"
         />
       <AntdDivider>主题颜色</AntdDivider>
       <ThemeColorPicker :colorList="appThemeColorList" />
@@ -41,6 +46,7 @@
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 
   import { baseHandler } from './handler'
+  import { HandlerEnum } from './enum'
 
   export default defineComponent({
     name: 'LayoutSetting',
@@ -61,7 +67,8 @@
         toggleDrawer,
         menuTypeList,
         appThemeColorList,
-        baseHandler
+        baseHandler,
+        HandlerEnum
       }
     }
   })

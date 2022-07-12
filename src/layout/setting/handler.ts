@@ -8,15 +8,15 @@ export function handler(event: HandlerEnum, value: any): DeepPartial<AppConfig> 
 
     switch (event) {
         case HandlerEnum.CHANGE_LAYOUT:
-            const { menuType, menuMode, split } = value
-            const splitOpt = split === undefined ? { split } : {}
+            const { menuType, menuMode } = value
+            // const splitOpt = split === undefined ? { split } : {}
 
             return {
                 menuSetting: {
                     menuType,
                     menuMode,
                     collapsed: false,
-                    ...splitOpt
+                    // ...splitOpt
                 }
             }
 
@@ -28,8 +28,6 @@ export function handler(event: HandlerEnum, value: any): DeepPartial<AppConfig> 
 export function baseHandler(event: HandlerEnum, value: any) {
     const appStore = useAppStore()
     const config = handler(event, value)
+    console.log(value)
     appStore.setAppConfig(config)
-    if (event === HandlerEnum.CHANGE_THEME) {
-      
-    }
   }

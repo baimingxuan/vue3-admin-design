@@ -63,7 +63,6 @@ export const appThemeColorList: ColorItem[] = [
 export enum HandlerEnum {
   CHANGE_LAYOUT,
   CHANGE_THEME_COLOR,
-  CHANGE_THEME,
   // menu
   MENU_TRIGGER,
   MENU_TOP_ALIGN,
