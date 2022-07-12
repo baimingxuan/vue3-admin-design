@@ -4,7 +4,7 @@ import { ThemeEnum } from '@/enums/appEnum'
 
 export const appSetting: AppConfig = {
   // theme color
-  themeColor: '#fff',
+  themeColor: '#1890ff',
   headerSetting: {
     // show breadCrumb
   showBreadCrumb: true,
