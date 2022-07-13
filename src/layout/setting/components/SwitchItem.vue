@@ -40,8 +40,8 @@
         return props.def ? { checked: props.def } : {}
       })
 
-      function handleChange(e: ChangeEvent) {
-        props.event && baseHandler(props.event, e)
+      function handleChange(checked: CheckedType) {
+        props.event && baseHandler(props.event, checked)
       }
 
       return {

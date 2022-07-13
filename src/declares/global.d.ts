@@ -6,6 +6,8 @@ declare type DeepPartial<T> = {
     [P in keyof T]?: DeepPartial<T[P]>
 }
 
+declare type CheckedType = boolean | string | number
+
 declare interface ChangeEvent extends Event {
     target: HTMLInputElement;
 }
