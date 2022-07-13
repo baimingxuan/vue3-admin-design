@@ -32,6 +32,12 @@
         :def="unref(getThemeColor)"
         :event="HandlerEnum.CHANGE_THEME_COLOR"
       />
+      <AntdDivider>界面功能 </AntdDivider>
+      <SwitchItem
+        title="菜单分割"
+        :def="unref(getMenuSplit)"
+        :event="HandlerEnum.MENU_SPLIT"
+      />
       <div style="height: 1000px;"></div>
     </Container>
   </AntdDrawer>
@@ -43,7 +49,7 @@
   import { Drawer as AntdDrawer, Divider as AntdDivider } from 'ant-design-vue'
   import { SettingOutlined as AntdSettingOutlined } from '@ant-design/icons-vue'
 
-  import { AppModeSwitch, MenuTypePicker, ThemeColorPicker } from './components'
+  import { AppModeSwitch, MenuTypePicker, ThemeColorPicker, SwitchItem } from './components'
   import { menuTypeList, appThemeColorList } from './enum'
   import Scrollbar from '@/components/Scrollbar'
   import Container from '@/components/Container/index.vue'
@@ -54,7 +60,7 @@
 
   export default defineComponent({
     name: 'LayoutSetting',
-    components: { AntdDrawer, AntdDivider, AntdSettingOutlined, AppModeSwitch, MenuTypePicker, ThemeColorPicker, Scrollbar, Container },
+    components: { AntdDrawer, AntdDivider, AntdSettingOutlined, AppModeSwitch, MenuTypePicker, ThemeColorPicker, Scrollbar, Container, SwitchItem },
     setup() {
       const drawerVisible = ref<boolean>(false)
 
@@ -62,12 +68,13 @@
         drawerVisible.value = !unref(drawerVisible)
       }
 
-      const { getMenuType, getThemeColor } = useMenuSetting()
+      const { getMenuType, getThemeColor, getMenuSplit } = useMenuSetting()
 
       return {
         unref,
         getMenuType,
         getThemeColor,
+        getMenuSplit,
         drawerVisible,
         toggleDrawer,
         menuTypeList,

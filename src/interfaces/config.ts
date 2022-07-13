@@ -35,6 +35,8 @@ export interface MenuSetting {
   menuMode: MenuModeEnum
   // menu theme
   menuTheme: ThemeEnum
+  // menu split
+  menuSplit: boolean
    // menu collapse type
   menuFoldBtn: MenuFoldEnum
   // menu collapse

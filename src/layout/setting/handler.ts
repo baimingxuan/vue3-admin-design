@@ -17,8 +17,7 @@ export function handler(event: HandlerEnum, value: any): DeepPartial<AppConfig> 
             return {
                 menuSetting: {
                     menuType,
-                    menuMode,
-                    collapsed: false,
+                    menuMode
                     // ...splitOpt
                 }
             }
@@ -28,6 +27,9 @@ export function handler(event: HandlerEnum, value: any): DeepPartial<AppConfig> 
             
             return { themeColor: value }
 
+        case HandlerEnum.MENU_SPLIT:
+            return { menuSetting: { menuSplit: value } }
+            
         default:
             return {}
     }
