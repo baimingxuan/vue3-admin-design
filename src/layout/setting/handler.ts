@@ -29,7 +29,10 @@ export function handler(event: HandlerEnum, value: any): DeepPartial<AppConfig> 
 
         case HandlerEnum.MENU_SPLIT:
             return { menuSetting: { menuSplit: value } }
-            
+
+        case HandlerEnum.MENU_FOLD:
+            return { menuSetting: { menuFold: value } }
+
         default:
             return {}
     }

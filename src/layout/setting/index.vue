@@ -38,6 +38,11 @@
         :def="unref(getMenuSplit)"
         :event="HandlerEnum.MENU_SPLIT"
       />
+      <SwitchItem
+        title="菜单折叠"
+        :def="unref(getMenuFold)"
+        :event="HandlerEnum.MENU_FOLD"
+      />
       <div style="height: 1000px;"></div>
     </Container>
   </AntdDrawer>
@@ -68,13 +73,14 @@
         drawerVisible.value = !unref(drawerVisible)
       }
 
-      const { getMenuType, getThemeColor, getMenuSplit } = useMenuSetting()
+      const { getMenuType, getThemeColor, getMenuSplit, getMenuFold } = useMenuSetting()
 
       return {
         unref,
         getMenuType,
         getThemeColor,
         getMenuSplit,
+        getMenuFold,
         drawerVisible,
         toggleDrawer,
         menuTypeList,
