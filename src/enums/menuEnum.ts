@@ -18,7 +18,7 @@ export enum MenuModeEnum {
 }
 
 // menu folding button location
-export enum MenuFoldEnum {
+export enum MenuFoldBtnEnum {
     // don't show
     NONE = 'none',
 

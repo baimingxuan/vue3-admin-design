@@ -1,4 +1,4 @@
-import { MenuModeEnum, MenuTypeEnum, MenuFoldEnum } from '../enums/menuEnum'
+import { MenuModeEnum, MenuTypeEnum, MenuFoldBtnEnum } from '../enums/menuEnum'
 import { PageTransitionEnum, ThemeEnum } from '../enums/appEnum'
 import { LocaleType } from '@/types'
 
@@ -40,7 +40,7 @@ export interface MenuSetting {
   // menu collapse
   menuFold: boolean
    // menu collapse type
-  menuFoldBtn: MenuFoldEnum
+  menuFoldBtn: MenuFoldBtnEnum
   // whether to display the menu name when folding the menu
   menuFoldShowTitle: boolean
   // menu width

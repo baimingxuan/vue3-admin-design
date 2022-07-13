@@ -48,6 +48,12 @@
         :def="unref(getMenuFoldShowTitle)"
         :event="HandlerEnum.MENU_FOLD_SHOW_TITLE"
       />
+      <SelectItem
+        title="菜单折叠按钮"
+        :def="unref(getMenuFoldBtn)"
+        :event="HandlerEnum.MENU_FOLD_BTN"
+        :options="getMenuFoldBtnOptions()"
+      />
       <div style="height: 1000px;"></div>
     </Container>
   </AntdDrawer>
@@ -59,18 +65,21 @@
   import { Drawer as AntdDrawer, Divider as AntdDivider } from 'ant-design-vue'
   import { SettingOutlined as AntdSettingOutlined } from '@ant-design/icons-vue'
 
-  import { AppModeSwitch, MenuTypePicker, ThemeColorPicker, SwitchItem } from './components'
+  import { AppModeSwitch, MenuTypePicker, ThemeColorPicker, SwitchItem, SelectItem } from './components'
   import { menuTypeList, appThemeColorList } from './enum'
   import Scrollbar from '@/components/Scrollbar'
   import Container from '@/components/Container/index.vue'
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 
   import { baseHandler } from './handler'
-  import { HandlerEnum } from './enum'
+  import { HandlerEnum, getMenuFoldBtnOptions } from './enum'
 
   export default defineComponent({
     name: 'LayoutSetting',
-    components: { AntdDrawer, AntdDivider, AntdSettingOutlined, AppModeSwitch, MenuTypePicker, ThemeColorPicker, Scrollbar, Container, SwitchItem },
+    components: {
+      AntdDrawer, AntdDivider, AntdSettingOutlined, AppModeSwitch, MenuTypePicker, ThemeColorPicker,
+      Scrollbar, Container, SwitchItem, SelectItem
+    },
     setup() {
       const drawerVisible = ref<boolean>(false)
 
@@ -78,7 +87,7 @@
         drawerVisible.value = !unref(drawerVisible)
       }
 
-      const { getMenuType, getThemeColor, getMenuSplit, getMenuFold, getMenuFoldShowTitle } = useMenuSetting()
+      const { getMenuType, getThemeColor, getMenuSplit, getMenuFold, getMenuFoldShowTitle, getMenuFoldBtn } = useMenuSetting()
 
       return {
         unref,
@@ -87,6 +96,8 @@
         getMenuSplit,
         getMenuFold,
         getMenuFoldShowTitle,
+        getMenuFoldBtn,
+        getMenuFoldBtnOptions,
         drawerVisible,
         toggleDrawer,
         menuTypeList,

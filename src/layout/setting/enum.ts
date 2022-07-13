@@ -1,4 +1,4 @@
-import { MenuTypeEnum, MenuModeEnum } from '@/enums/menuEnum'
+import { MenuTypeEnum, MenuModeEnum, MenuFoldBtnEnum } from '@/enums/menuEnum'
 
 export interface ColorItem {
   name: string
@@ -86,3 +86,19 @@ export enum HandlerEnum {
   ROUTER_TRANSITION_TYPE
 }
 
+export const getMenuFoldBtnOptions = () => {
+  return [
+    {
+      value: MenuFoldBtnEnum.NONE,
+      label: '隐藏'
+    },
+    {
+      value: MenuFoldBtnEnum.HEADER,
+      label: '顶部'
+    },
+    {
+      value: MenuFoldBtnEnum.FOOTER,
+      label: '底部'
+    }
+  ]
+}

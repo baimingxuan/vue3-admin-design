@@ -49,8 +49,8 @@
         return props.def ? { value: props.def, defaultValue: props.def } : {}
       })
 
-      function handleChange(e: ChangeEvent) {
-        props.event && baseHandler(props.event, e)
+      function handleChange(value: any) {
+        props.event && baseHandler(props.event, value)
       }
 
       return {

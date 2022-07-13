@@ -36,6 +36,9 @@ export function handler(event: HandlerEnum, value: any): DeepPartial<AppConfig> 
         case HandlerEnum.MENU_FOLD_SHOW_TITLE:
             return { menuSetting: { menuFoldShowTitle: value } }
 
+        case HandlerEnum.MENU_FOLD_BTN:
+            return { menuSetting: { menuFoldBtn: value } }
+
         default:
             return {}
     }

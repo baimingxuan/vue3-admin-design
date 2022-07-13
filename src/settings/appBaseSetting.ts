@@ -1,5 +1,5 @@
 import type { AppConfig } from '@/interfaces/config'
-import { MenuTypeEnum, MenuModeEnum, MenuFoldEnum } from '@/enums/menuEnum'
+import { MenuTypeEnum, MenuModeEnum, MenuFoldBtnEnum } from '@/enums/menuEnum'
 import { ThemeEnum } from '@/enums/appEnum'
 
 export const appSetting: AppConfig = {
@@ -37,7 +37,7 @@ export const appSetting: AppConfig = {
      // menu collapse
     menuFold: false,
     // menu collapse type
-    menuFoldBtn: MenuFoldEnum.NONE,
+    menuFoldBtn: MenuFoldBtnEnum.NONE,
     // whether to display the menu name when folding the menu
     menuFoldShowTitle: false,
     // menu width
