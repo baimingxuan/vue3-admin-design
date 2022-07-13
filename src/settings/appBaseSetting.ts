@@ -33,11 +33,11 @@ export const appSetting: AppConfig = {
     // menu theme
     menuTheme: ThemeEnum.DARK,
     // menu collapse type
-    menuFold: MenuFoldEnum.NONE,
+    menuFoldBtn: MenuFoldEnum.NONE,
     // menu collapse
-    collapsed: false,
+    menuFold: false,
     // whether to display the menu name when folding the menu
-    collapsedShowTitle: false,
+    menuFoldShowTitle: false,
     // menu width
     menuWidth: 210
   },
