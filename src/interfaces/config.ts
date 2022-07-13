@@ -36,11 +36,11 @@ export interface MenuSetting {
   // menu theme
   menuTheme: ThemeEnum
    // menu collapse type
-  menuFold: MenuFoldEnum
+  menuFoldBtn: MenuFoldEnum
   // menu collapse
-  collapsed: boolean
+  menuFold: boolean
   // whether to display the menu name when folding the menu
-  collapsedShowTitle: boolean
+  menuFoldShowTitle: boolean
   // menu width
   menuWidth: number
 }
