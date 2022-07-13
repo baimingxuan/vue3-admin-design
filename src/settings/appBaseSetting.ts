@@ -32,6 +32,8 @@ export const appSetting: AppConfig = {
     menuMode: MenuModeEnum.VERTICAL,
     // menu theme
     menuTheme: ThemeEnum.DARK,
+    // menu split
+    menuSplit: false,
     // menu collapse type
     menuFoldBtn: MenuFoldEnum.NONE,
     // menu collapse

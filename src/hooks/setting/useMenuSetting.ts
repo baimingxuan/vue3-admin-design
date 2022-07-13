@@ -12,11 +12,13 @@ export function useMenuSetting() {
 
   const getMenuTheme = computed(() => appStore.getMenuSetting.menuTheme)
 
+  const getMenuSplit = computed(() => appStore.getMenuSetting.menuSplit)
+
   const getMenuFold = computed(() => appStore.getMenuSetting.menuFold)
 
-  const getCollapsed = computed(() => appStore.getMenuSetting.collapsed)
+  const getMenuFoldBtn = computed(() => appStore.getMenuSetting.menuFoldBtn)
 
-  const getCollapsedShowTitle = computed(() => appStore.getMenuSetting.collapsedShowTitle)
+  const getMenuFoldShowTitle = computed(() => appStore.getMenuSetting.menuFoldShowTitle)
 
   const getMenuWidth = computed(() => appStore.getMenuSetting.menuWidth)
 
@@ -25,9 +27,10 @@ export function useMenuSetting() {
     getMenuMode,
     getThemeColor,
     getMenuTheme,
+    getMenuSplit,
     getMenuFold,
-    getCollapsed,
-    getCollapsedShowTitle,
+    getMenuFoldBtn,
+    getMenuFoldShowTitle,
     getMenuWidth
   }
 }
