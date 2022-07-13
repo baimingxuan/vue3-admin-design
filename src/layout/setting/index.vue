@@ -54,6 +54,15 @@
         :event="HandlerEnum.MENU_FOLD_BTN"
         :options="menuFoldBtnOptions"
       />
+      <InputNumItem
+        title="菜单展开宽度"
+        :min="160"
+        :max="320"
+        :step="10"
+        :event="HandlerEnum.MENU_WIDTH"
+        :defaultValue="unref(getMenuWidth)"
+        :formatter="(value: string) => `${parseInt(value)}px`"
+      />
       <div style="height: 1000px;"></div>
     </Container>
   </AntdDrawer>
@@ -65,7 +74,7 @@
   import { Drawer as AntdDrawer, Divider as AntdDivider } from 'ant-design-vue'
   import { SettingOutlined as AntdSettingOutlined } from '@ant-design/icons-vue'
 
-  import { AppModeSwitch, MenuTypePicker, ThemeColorPicker, SwitchItem, SelectItem } from './components'
+  import { AppModeSwitch, MenuTypePicker, ThemeColorPicker, SwitchItem, SelectItem, InputNumItem } from './components'
   import { menuTypeList, appThemeColorList } from './enum'
   import Scrollbar from '@/components/Scrollbar'
   import Container from '@/components/Container/index.vue'
@@ -78,7 +87,7 @@
     name: 'LayoutSetting',
     components: {
       AntdDrawer, AntdDivider, AntdSettingOutlined, AppModeSwitch, MenuTypePicker, ThemeColorPicker,
-      Scrollbar, Container, SwitchItem, SelectItem
+      Scrollbar, Container, SwitchItem, SelectItem, InputNumItem
     },
     setup() {
       const drawerVisible = ref<boolean>(false)
@@ -87,7 +96,7 @@
         drawerVisible.value = !unref(drawerVisible)
       }
 
-      const { getMenuType, getThemeColor, getMenuSplit, getMenuFold, getMenuFoldShowTitle, getMenuFoldBtn } = useMenuSetting()
+      const { getMenuType, getThemeColor, getMenuSplit, getMenuFold, getMenuFoldShowTitle, getMenuFoldBtn, getMenuWidth } = useMenuSetting()
 
       return {
         unref,
@@ -97,6 +106,7 @@
         getMenuFold,
         getMenuFoldShowTitle,
         getMenuFoldBtn,
+        getMenuWidth,
         menuFoldBtnOptions,
         drawerVisible,
         toggleDrawer,
