@@ -2,6 +2,7 @@
   <div class="select-item">
     <span> {{ title }}</span>
     <AntdSelect
+      class="select-item-select"
       size="small"
       v-bind="getBindValue"
       :options="options"

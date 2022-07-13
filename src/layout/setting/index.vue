@@ -52,7 +52,7 @@
         title="菜单折叠按钮"
         :def="unref(getMenuFoldBtn)"
         :event="HandlerEnum.MENU_FOLD_BTN"
-        :options="getMenuFoldBtnOptions()"
+        :options="menuFoldBtnOptions"
       />
       <div style="height: 1000px;"></div>
     </Container>
@@ -72,7 +72,7 @@
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 
   import { baseHandler } from './handler'
-  import { HandlerEnum, getMenuFoldBtnOptions } from './enum'
+  import { HandlerEnum, menuFoldBtnOptions } from './enum'
 
   export default defineComponent({
     name: 'LayoutSetting',
@@ -97,7 +97,7 @@
         getMenuFold,
         getMenuFoldShowTitle,
         getMenuFoldBtn,
-        getMenuFoldBtnOptions,
+        menuFoldBtnOptions,
         drawerVisible,
         toggleDrawer,
         menuTypeList,

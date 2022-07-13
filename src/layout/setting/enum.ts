@@ -86,19 +86,18 @@ export enum HandlerEnum {
   ROUTER_TRANSITION_TYPE
 }
 
-export const getMenuFoldBtnOptions = () => {
-  return [
-    {
-      value: MenuFoldBtnEnum.NONE,
-      label: '隐藏'
-    },
-    {
-      value: MenuFoldBtnEnum.HEADER,
-      label: '顶部'
-    },
-    {
-      value: MenuFoldBtnEnum.FOOTER,
-      label: '底部'
-    }
-  ]
-}
+// menuFoldBtn options
+export const menuFoldBtnOptions = [
+  {
+    value: MenuFoldBtnEnum.NONE,
+    label: '隐藏'
+  },
+  {
+    value: MenuFoldBtnEnum.HEADER,
+    label: '顶部'
+  },
+  {
+    value: MenuFoldBtnEnum.FOOTER,
+    label: '底部'
+  }
+]
