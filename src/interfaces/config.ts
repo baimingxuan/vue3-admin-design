@@ -37,10 +37,10 @@ export interface MenuSetting {
   menuTheme: ThemeEnum
   // menu split
   menuSplit: boolean
-   // menu collapse type
-  menuFoldBtn: MenuFoldEnum
   // menu collapse
   menuFold: boolean
+   // menu collapse type
+  menuFoldBtn: MenuFoldEnum
   // whether to display the menu name when folding the menu
   menuFoldShowTitle: boolean
   // menu width

@@ -34,10 +34,10 @@ export const appSetting: AppConfig = {
     menuTheme: ThemeEnum.DARK,
     // menu split
     menuSplit: false,
+     // menu collapse
+    menuFold: false,
     // menu collapse type
     menuFoldBtn: MenuFoldEnum.NONE,
-    // menu collapse
-    menuFold: false,
     // whether to display the menu name when folding the menu
     menuFoldShowTitle: false,
     // menu width
