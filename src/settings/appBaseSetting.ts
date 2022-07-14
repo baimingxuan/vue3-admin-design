@@ -7,17 +7,17 @@ export const appSetting: AppConfig = {
   themeColor: '#1890ff',
   headerSetting: {
     // show breadCrumb
-  showBreadCrumb: true,
-  // show page tags
-  showPageTags: true,
-  // turn on full screen
-  showFullScreen: true,
-  // show document button
-  showDoc: true,
-  // show github button
-  showGithub: true,
-  // locale setting
-  localeSetting: {
+    showBreadCrumb: true,
+    // show page tags
+    showPageTags: true,
+    // turn on full screen
+    showFullScreen: true,
+    // show document button
+    showDoc: true,
+    // show github button
+    showGithub: true,
+    // locale setting
+    localeSetting: {
       // show locale picker
       showLocalePicker: true,
       // current locale

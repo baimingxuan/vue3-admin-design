@@ -45,6 +45,9 @@ export function handler(event: HandlerEnum, value: any): DeepPartial<AppConfig> 
         case HandlerEnum.LOCK_SCREEN_TIME:
             return { lockScreenTime: value }
 
+        case HandlerEnum.SHOW_BREADCRUMB:
+            return { headerSetting: { showBreadCrumb: value } }
+
         default:
             return {}
     }

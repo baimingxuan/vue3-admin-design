@@ -32,7 +32,7 @@
         :def="unref(getThemeColor)"
         :event="HandlerEnum.CHANGE_THEME_COLOR"
       />
-      <AntdDivider>界面功能 </AntdDivider>
+      <AntdDivider>界面功能</AntdDivider>
       <SwitchItem
         title="菜单分割"
         :def="unref(getMenuSplit)"
@@ -74,7 +74,12 @@
             : `${value}分钟`
         }"
       />
-      <div style="height: 1000px;"></div>
+      <AntdDivider>界面显示</AntdDivider>
+      <SwitchItem
+        title="面包屑"
+        :def="unref(getShowBreadCrumb)"
+        :event="HandlerEnum.SHOW_BREADCRUMB"
+      />
     </Container>
   </AntdDrawer>
 </template>
@@ -91,6 +96,7 @@
   import Container from '@/components/Container/index.vue'
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
   import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
+  import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
 
   import { baseHandler } from './handler'
   import { HandlerEnum, menuFoldBtnOptions } from './enum'
@@ -110,6 +116,7 @@
 
       const { getMenuType, getThemeColor, getMenuSplit, getMenuFold, getMenuFoldShowTitle, getMenuFoldBtn, getMenuWidth } = useMenuSetting()
       const { getLockScreenTime } = useBaseSetting()
+      const { getShowBreadCrumb } = useHeaderSetting()
 
       return {
         unref,
@@ -121,6 +128,7 @@
         getMenuFoldBtn,
         getMenuWidth,
         getLockScreenTime,
+        getShowBreadCrumb,
         menuFoldBtnOptions,
         drawerVisible,
         toggleDrawer,

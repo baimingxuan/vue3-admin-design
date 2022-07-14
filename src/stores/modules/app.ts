@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-import type { AppConfig, MenuSetting } from '@/interfaces/config'
+import type { AppConfig, HeaderSetting, MenuSetting } from '@/interfaces/config'
 
 import { ThemeMode } from '@/types'
 import { ThemeEnum } from '@/enums/appEnum'
@@ -26,6 +26,9 @@ export const useAppStore = defineStore('app', {
     },
     getAppConfig(): AppConfig {
       return this.appConfig || ({} as AppConfig)
+    },
+    getHeaderSetting(): HeaderSetting {
+      return this.getAppConfig.headerSetting
     },
     getMenuSetting(): MenuSetting {
       return this.getAppConfig.menuSetting
