@@ -12,10 +12,13 @@ export function useHeaderSetting() {
 
     const getShowFullScreen = computed(() => appStore.getHeaderSetting.showFullScreen)
 
+    const getShowDoc = computed(() => appStore.getHeaderSetting.showDoc)
+
     return {
         getShowBreadCrumb,
         getShowPageTags,
         getShowLocale,
-        getShowFullScreen
+        getShowFullScreen,
+        getShowDoc
     }
 }

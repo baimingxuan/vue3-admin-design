@@ -96,6 +96,11 @@
         :event="HandlerEnum.SHOW_FULL_SCREEN"
       />
       <SwitchItem
+        title="文档"
+        :def="unref(getShowDoc)"
+        :event="HandlerEnum.SHOW_DOC"
+      />
+      <SwitchItem
         title="页脚"
         :def="unref(getShowFooter)"
         :event="HandlerEnum.SHOW_FOOTER"
@@ -136,7 +141,7 @@
 
       const { getMenuType, getThemeColor, getMenuSplit, getMenuFold, getMenuFoldShowTitle, getMenuFoldBtn, getMenuWidth } = useMenuSetting()
       const { getLockScreenTime, getShowFooter } = useBaseSetting()
-      const { getShowBreadCrumb, getShowPageTags, getShowLocale, getShowFullScreen } = useHeaderSetting()
+      const { getShowBreadCrumb, getShowPageTags, getShowLocale, getShowFullScreen, getShowDoc } = useHeaderSetting()
 
       return {
         unref,
@@ -151,6 +156,7 @@
         getShowBreadCrumb,
         getShowLocale,
         getShowFullScreen,
+        getShowDoc,
         getShowPageTags,
         getShowFooter,
         menuFoldBtnOptions,

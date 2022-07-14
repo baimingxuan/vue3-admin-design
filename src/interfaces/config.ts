@@ -1,6 +1,5 @@
 import { MenuModeEnum, MenuTypeEnum, MenuFoldBtnEnum } from '../enums/menuEnum'
 import { PageTransitionEnum, ThemeEnum } from '../enums/appEnum'
-import { LocaleType } from '@/types'
 
 export interface AppConfig {
   // theme color

@@ -57,6 +57,9 @@ export function handler(event: HandlerEnum, value: any): DeepPartial<AppConfig> 
         case HandlerEnum.SHOW_FULL_SCREEN:
             return { headerSetting: { showFullScreen: value } }
 
+        case HandlerEnum.SHOW_DOC:
+            return { headerSetting: { showDoc: value } }
+
         case HandlerEnum.SHOW_FOOTER:
             return { showFooter: value }
 
