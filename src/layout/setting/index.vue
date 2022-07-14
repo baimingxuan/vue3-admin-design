@@ -85,6 +85,11 @@
         :def="unref(getShowPageTags)"
         :event="HandlerEnum.SHOW_PAGE_TAGS"
       />
+      <SwitchItem
+        title="页脚"
+        :def="unref(getShowFooter)"
+        :event="HandlerEnum.SHOW_FOOTER"
+      />
     </Container>
   </AntdDrawer>
 </template>
@@ -120,7 +125,7 @@
       }
 
       const { getMenuType, getThemeColor, getMenuSplit, getMenuFold, getMenuFoldShowTitle, getMenuFoldBtn, getMenuWidth } = useMenuSetting()
-      const { getLockScreenTime } = useBaseSetting()
+      const { getLockScreenTime, getShowFooter } = useBaseSetting()
       const { getShowBreadCrumb, getShowPageTags } = useHeaderSetting()
 
       return {
@@ -135,6 +140,7 @@
         getLockScreenTime,
         getShowBreadCrumb,
         getShowPageTags,
+        getShowFooter,
         menuFoldBtnOptions,
         drawerVisible,
         toggleDrawer,

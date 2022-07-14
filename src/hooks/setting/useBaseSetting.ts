@@ -8,8 +8,11 @@ export function useBaseSetting() {
 
     const getLockScreenTime = computed(() => appStore.getAppConfig.lockScreenTime)
 
+    const getShowFooter = computed(() => appStore.getAppConfig.showFooter)
+
     return {
         getThemeColor,
-        getLockScreenTime
+        getLockScreenTime,
+        getShowFooter
     }
 }
