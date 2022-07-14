@@ -74,7 +74,7 @@ export enum HandlerEnum {
   LOCK_SCREEN_TIME,
   // interface display
   SHOW_BREADCRUMB,
-  SHOW_TAGS,
+  SHOW_PAGE_TAGS,
   SHOW_LOCALE,
   SHOW_FOOTER,
   FULL_SCREEN,

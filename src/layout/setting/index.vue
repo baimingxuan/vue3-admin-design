@@ -80,6 +80,11 @@
         :def="unref(getShowBreadCrumb)"
         :event="HandlerEnum.SHOW_BREADCRUMB"
       />
+      <SwitchItem
+        title="标签页"
+        :def="unref(getShowPageTags)"
+        :event="HandlerEnum.SHOW_PAGE_TAGS"
+      />
     </Container>
   </AntdDrawer>
 </template>
@@ -116,7 +121,7 @@
 
       const { getMenuType, getThemeColor, getMenuSplit, getMenuFold, getMenuFoldShowTitle, getMenuFoldBtn, getMenuWidth } = useMenuSetting()
       const { getLockScreenTime } = useBaseSetting()
-      const { getShowBreadCrumb } = useHeaderSetting()
+      const { getShowBreadCrumb, getShowPageTags } = useHeaderSetting()
 
       return {
         unref,
@@ -129,6 +134,7 @@
         getMenuWidth,
         getLockScreenTime,
         getShowBreadCrumb,
+        getShowPageTags,
         menuFoldBtnOptions,
         drawerVisible,
         toggleDrawer,

@@ -48,6 +48,9 @@ export function handler(event: HandlerEnum, value: any): DeepPartial<AppConfig> 
         case HandlerEnum.SHOW_BREADCRUMB:
             return { headerSetting: { showBreadCrumb: value } }
 
+        case HandlerEnum.SHOW_PAGE_TAGS:
+            return { headerSetting: { showPageTags: value } }
+
         default:
             return {}
     }
