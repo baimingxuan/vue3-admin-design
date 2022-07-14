@@ -66,6 +66,9 @@ export function handler(event: HandlerEnum, value: any): DeepPartial<AppConfig> 
         case HandlerEnum.SHOW_FOOTER:
             return { showFooter: value }
 
+        case HandlerEnum.COLOR_WEAK:
+            return { colorWeak: value }
+
         default:
             return {}
     }

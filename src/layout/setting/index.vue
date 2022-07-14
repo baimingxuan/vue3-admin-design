@@ -110,6 +110,11 @@
         :def="unref(getShowFooter)"
         :event="HandlerEnum.SHOW_FOOTER"
       />
+      <SwitchItem
+        title="色弱模式"
+        :def="unref(getColorWeak)"
+        :event="HandlerEnum.COLOR_WEAK"
+      />
     </Container>
   </AntdDrawer>
 </template>
@@ -145,7 +150,7 @@
       }
 
       const { getMenuType, getThemeColor, getMenuSplit, getMenuFold, getMenuFoldShowTitle, getMenuFoldBtn, getMenuWidth } = useMenuSetting()
-      const { getLockScreenTime, getShowFooter } = useBaseSetting()
+      const { getLockScreenTime, getShowFooter, getColorWeak } = useBaseSetting()
       const { getShowBreadCrumb, getShowPageTags, getShowLocale, getShowFullScreen, getShowDoc, getShowGithub } = useHeaderSetting()
 
       return {
@@ -165,6 +170,7 @@
         getShowGithub,
         getShowPageTags,
         getShowFooter,
+        getColorWeak,
         menuFoldBtnOptions,
         drawerVisible,
         toggleDrawer,

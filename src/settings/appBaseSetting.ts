@@ -41,5 +41,7 @@ export const appSetting: AppConfig = {
   // Lock screen time
   lockScreenTime: 0,
   // whether to show the global footer
-  showFooter: false
+  showFooter: false,
+  // Whether to turn on the color weak mode
+  colorWeak: false
 }

@@ -12,6 +12,8 @@ export interface AppConfig {
   lockScreenTime: number
   // whether to show the global footer
   showFooter: boolean
+  // Whether to turn on the color weak mode
+  colorWeak: boolean
 }
 
 export interface HeaderSetting {

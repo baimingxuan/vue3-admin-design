@@ -10,9 +10,12 @@ export function useBaseSetting() {
 
     const getShowFooter = computed(() => appStore.getAppConfig.showFooter)
 
+    const getColorWeak = computed(() => appStore.getAppConfig.colorWeak)
+
     return {
         getThemeColor,
         getLockScreenTime,
-        getShowFooter
+        getShowFooter,
+        getColorWeak
     }
 }
