@@ -20,14 +20,14 @@ export interface HeaderSetting {
   showBreadCrumb: boolean
   // show page tags
   showPageTags: boolean
+  // show locale
+  showLocale: boolean
   // turn on full screen
   showFullScreen: boolean
   // show document button
   showDoc: boolean
   // show github button
   showGithub: boolean
-  // locale setting
-  localeSetting: LocaleSetting
 }
 
 export interface MenuSetting {
@@ -47,13 +47,6 @@ export interface MenuSetting {
   menuFoldShowTitle: boolean
   // menu width
   menuWidth: number
-}
-
-export interface LocaleSetting {
-  // show locale picker
-  showLocalePicker: boolean
-  // current locale
-  currentLocale: LocaleType
 }
 
 export interface TransitionSetting {

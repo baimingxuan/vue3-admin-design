@@ -86,6 +86,11 @@
         :event="HandlerEnum.SHOW_PAGE_TAGS"
       />
       <SwitchItem
+        title="国际化"
+        :def="unref(getShowLocale)"
+        :event="HandlerEnum.SHOW_LOCALE"
+      />
+      <SwitchItem
         title="页脚"
         :def="unref(getShowFooter)"
         :event="HandlerEnum.SHOW_FOOTER"
@@ -126,7 +131,7 @@
 
       const { getMenuType, getThemeColor, getMenuSplit, getMenuFold, getMenuFoldShowTitle, getMenuFoldBtn, getMenuWidth } = useMenuSetting()
       const { getLockScreenTime, getShowFooter } = useBaseSetting()
-      const { getShowBreadCrumb, getShowPageTags } = useHeaderSetting()
+      const { getShowBreadCrumb, getShowPageTags, getShowLocale } = useHeaderSetting()
 
       return {
         unref,
@@ -139,6 +144,7 @@
         getMenuWidth,
         getLockScreenTime,
         getShowBreadCrumb,
+        getShowLocale,
         getShowPageTags,
         getShowFooter,
         menuFoldBtnOptions,

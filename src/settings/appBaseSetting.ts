@@ -10,19 +10,14 @@ export const appSetting: AppConfig = {
     showBreadCrumb: true,
     // show page tags
     showPageTags: true,
+    // show locale
+    showLocale: true,
     // turn on full screen
-    showFullScreen: true,
+    showFullScreen: false,
     // show document button
-    showDoc: true,
+    showDoc: false,
     // show github button
-    showGithub: true,
-    // locale setting
-    localeSetting: {
-      // show locale picker
-      showLocalePicker: true,
-      // current locale
-      currentLocale: 'zh_CN'
-    }
+    showGithub: true
   },
   // Menu configuration
   menuSetting: {

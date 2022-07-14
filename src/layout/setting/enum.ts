@@ -76,8 +76,10 @@ export enum HandlerEnum {
   SHOW_BREADCRUMB,
   SHOW_PAGE_TAGS,
   SHOW_LOCALE,
+  SHOW_FULL_SCREEN,
+  SHOW_DOC,
+  SHOW_GITHUB,
   SHOW_FOOTER,
-  FULL_SCREEN,
   COLOR_WEAK,
   
   // animation settings

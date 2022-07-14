@@ -8,8 +8,11 @@ export function useHeaderSetting() {
 
     const getShowPageTags = computed(() => appStore.getHeaderSetting.showPageTags)
 
+    const getShowLocale = computed(() => appStore.getHeaderSetting.showLocale)
+
     return {
         getShowBreadCrumb,
-        getShowPageTags
+        getShowPageTags,
+        getShowLocale
     }
 }
