@@ -60,6 +60,9 @@ export function handler(event: HandlerEnum, value: any): DeepPartial<AppConfig> 
         case HandlerEnum.SHOW_DOC:
             return { headerSetting: { showDoc: value } }
 
+        case HandlerEnum.SHOW_GITHUB:
+            return { headerSetting: { showGithub: value } }
+
         case HandlerEnum.SHOW_FOOTER:
             return { showFooter: value }
 

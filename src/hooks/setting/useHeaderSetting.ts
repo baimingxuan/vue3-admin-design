@@ -14,11 +14,14 @@ export function useHeaderSetting() {
 
     const getShowDoc = computed(() => appStore.getHeaderSetting.showDoc)
 
+    const getShowGithub = computed(() => appStore.getHeaderSetting.showGithub)
+
     return {
         getShowBreadCrumb,
         getShowPageTags,
         getShowLocale,
         getShowFullScreen,
-        getShowDoc
+        getShowDoc,
+        getShowGithub
     }
 }

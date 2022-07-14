@@ -101,6 +101,11 @@
         :event="HandlerEnum.SHOW_DOC"
       />
       <SwitchItem
+        title="github"
+        :def="unref(getShowGithub)"
+        :event="HandlerEnum.SHOW_GITHUB"
+      />
+      <SwitchItem
         title="页脚"
         :def="unref(getShowFooter)"
         :event="HandlerEnum.SHOW_FOOTER"
@@ -141,7 +146,7 @@
 
       const { getMenuType, getThemeColor, getMenuSplit, getMenuFold, getMenuFoldShowTitle, getMenuFoldBtn, getMenuWidth } = useMenuSetting()
       const { getLockScreenTime, getShowFooter } = useBaseSetting()
-      const { getShowBreadCrumb, getShowPageTags, getShowLocale, getShowFullScreen, getShowDoc } = useHeaderSetting()
+      const { getShowBreadCrumb, getShowPageTags, getShowLocale, getShowFullScreen, getShowDoc, getShowGithub } = useHeaderSetting()
 
       return {
         unref,
@@ -157,6 +162,7 @@
         getShowLocale,
         getShowFullScreen,
         getShowDoc,
+        getShowGithub,
         getShowPageTags,
         getShowFooter,
         menuFoldBtnOptions,
