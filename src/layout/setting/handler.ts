@@ -42,6 +42,9 @@ export function handler(event: HandlerEnum, value: any): DeepPartial<AppConfig> 
         case HandlerEnum.MENU_WIDTH:
             return { menuSetting: { menuWidth: value } }
 
+        case HandlerEnum.LOCK_SCREEN_TIME:
+            return { lockScreenTime: value }
+
         default:
             return {}
     }

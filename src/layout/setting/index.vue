@@ -63,6 +63,17 @@
         :defaultValue="unref(getMenuWidth)"
         :formatter="(value: string) => `${parseInt(value)}px`"
       />
+      <InputNumItem
+        title="自动锁屏"
+        :min="0"
+        :event="HandlerEnum.LOCK_SCREEN_TIME"
+        :defaultValue="unref(getLockScreenTime)"
+        :formatter="(value: string) => {
+          return parseInt(value) === 0
+            ? `0(不自动锁屏)`
+            : `${value}分钟`
+        }"
+      />
       <div style="height: 1000px;"></div>
     </Container>
   </AntdDrawer>
@@ -79,6 +90,7 @@
   import Scrollbar from '@/components/Scrollbar'
   import Container from '@/components/Container/index.vue'
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
+  import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
 
   import { baseHandler } from './handler'
   import { HandlerEnum, menuFoldBtnOptions } from './enum'
@@ -97,6 +109,7 @@
       }
 
       const { getMenuType, getThemeColor, getMenuSplit, getMenuFold, getMenuFoldShowTitle, getMenuFoldBtn, getMenuWidth } = useMenuSetting()
+      const { getLockScreenTime } = useBaseSetting()
 
       return {
         unref,
@@ -107,6 +120,7 @@
         getMenuFoldShowTitle,
         getMenuFoldBtn,
         getMenuWidth,
+        getLockScreenTime,
         menuFoldBtnOptions,
         drawerVisible,
         toggleDrawer,

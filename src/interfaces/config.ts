@@ -9,6 +9,8 @@ export interface AppConfig {
   headerSetting: HeaderSetting
   // menu setting
   menuSetting: MenuSetting
+  // lock screen time
+  lockScreenTime: number
   // whether to show the global footer
   showFooter: boolean
 }

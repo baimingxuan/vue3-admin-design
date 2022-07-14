@@ -71,7 +71,7 @@ export enum HandlerEnum {
   MENU_FOLD_BTN,
   MENU_FOLD_SHOW_TITLE,
   MENU_WIDTH,
-  LOCK_TIME,
+  LOCK_SCREEN_TIME,
   // interface display
   SHOW_BREADCRUMB,
   SHOW_TAGS,

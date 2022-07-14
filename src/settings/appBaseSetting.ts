@@ -43,6 +43,8 @@ export const appSetting: AppConfig = {
     // menu width
     menuWidth: 210
   },
+  // Lock screen time
+  lockScreenTime: 0,
   // whether to show the global footer
   showFooter: false
 }
