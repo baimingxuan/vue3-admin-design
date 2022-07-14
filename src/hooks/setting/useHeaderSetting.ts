@@ -10,9 +10,12 @@ export function useHeaderSetting() {
 
     const getShowLocale = computed(() => appStore.getHeaderSetting.showLocale)
 
+    const getShowFullScreen = computed(() => appStore.getHeaderSetting.showFullScreen)
+
     return {
         getShowBreadCrumb,
         getShowPageTags,
-        getShowLocale
+        getShowLocale,
+        getShowFullScreen
     }
 }
