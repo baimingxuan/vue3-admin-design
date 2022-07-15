@@ -84,8 +84,8 @@ export enum HandlerEnum {
   
   // animation settings
   OPEN_NPROGRESS,
-  OPEN_ROUTE_TRANSITION,
-  ROUTER_TRANSITION_TYPE
+  OPEN_TRANSITION,
+  BASIC_TRANSITION
 }
 
 // menuFoldBtn options
