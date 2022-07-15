@@ -1,6 +1,6 @@
 import type { AppConfig } from '@/interfaces/config'
 import { MenuTypeEnum, MenuModeEnum, MenuFoldBtnEnum } from '@/enums/menuEnum'
-import { ThemeEnum } from '@/enums/appEnum'
+import { ThemeEnum, PageTransitionEnum } from '@/enums/appEnum'
 
 export const appSetting: AppConfig = {
   // theme color
@@ -37,6 +37,15 @@ export const appSetting: AppConfig = {
     menuFoldShowTitle: false,
     // menu width
     menuWidth: 210
+  },
+  // transition settings
+  transitionSetting: {
+    // Whether to open the top progress bar
+    openNProgress: false,
+    // whether to open the page switching animation
+    openTransition: true,
+    // Route basic switching animation
+    basicTransition: PageTransitionEnum.FADE
   },
   // Lock screen time
   lockScreenTime: 0,
