@@ -126,6 +126,12 @@
         :def="unref(getOpenTransition)"
         :event="HandlerEnum.OPEN_TRANSITION"
       />
+      <SelectItem
+        title="切换动画类型"
+        :def="unref(getBasicTransition)"
+        :event="HandlerEnum.BASIC_TRANSITION"
+        :options="pageTransitionOptions"
+      />
     </Container>
   </AntdDrawer>
 </template>
@@ -146,7 +152,7 @@
   import { useTransitionSetting } from '@/hooks/setting/useTransitionSetting'
 
   import { baseHandler } from './handler'
-  import { HandlerEnum, menuFoldBtnOptions } from './enum'
+  import { HandlerEnum, menuFoldBtnOptions, pageTransitionOptions } from './enum'
 
   export default defineComponent({
     name: 'LayoutSetting',
@@ -164,7 +170,7 @@
       const { getMenuType, getThemeColor, getMenuSplit, getMenuFold, getMenuFoldShowTitle, getMenuFoldBtn, getMenuWidth } = useMenuSetting()
       const { getLockScreenTime, getShowFooter, getColorWeak } = useBaseSetting()
       const { getShowBreadCrumb, getShowPageTags, getShowLocale, getShowFullScreen, getShowDoc, getShowGithub } = useHeaderSetting()
-      const { getOpenNProgress, getOpenTransition } = useTransitionSetting()
+      const { getOpenNProgress, getOpenTransition, getBasicTransition } = useTransitionSetting()
 
       return {
         unref,
@@ -186,7 +192,9 @@
         getColorWeak,
         getOpenNProgress,
         getOpenTransition,
+        getBasicTransition,
         menuFoldBtnOptions,
+        pageTransitionOptions,
         drawerVisible,
         toggleDrawer,
         menuTypeList,

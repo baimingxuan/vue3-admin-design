@@ -1,4 +1,5 @@
 import { MenuTypeEnum, MenuModeEnum, MenuFoldBtnEnum } from '@/enums/menuEnum'
+import { PageTransitionEnum } from '@/enums/appEnum'
 
 export interface ColorItem {
   name: string
@@ -103,3 +104,18 @@ export const menuFoldBtnOptions = [
     label: '底部'
   }
 ]
+
+// page transition options
+export const pageTransitionOptions = [
+  PageTransitionEnum.FADE,
+  PageTransitionEnum.FADE_SIDE,
+  PageTransitionEnum.FADE_BOTTOM,
+  PageTransitionEnum.FADE_SCALE,
+  PageTransitionEnum.ZOOM_FADE,
+  PageTransitionEnum.ZOOM_OUT
+].map(item => {
+  return {
+    label: item,
+    value: item,
+  }
+})

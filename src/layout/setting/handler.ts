@@ -75,6 +75,9 @@ export function handler(event: HandlerEnum, value: any): DeepPartial<AppConfig> 
         case HandlerEnum.OPEN_TRANSITION:
             return { transitionSetting: { openTransition: value } }
 
+        case HandlerEnum.BASIC_TRANSITION:
+            return { transitionSetting: { basicTransition: value } }
+
         default:
             return {}
     }

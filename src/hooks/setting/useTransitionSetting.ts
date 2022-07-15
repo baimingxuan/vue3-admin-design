@@ -8,8 +8,11 @@ export function useTransitionSetting() {
 
     const getOpenTransition = computed(() => appStore.getTransitionSetting.openTransition)
 
+    const getBasicTransition = computed(() => appStore.getTransitionSetting.basicTransition)
+
     return {
       getOpenNProgress,
-      getOpenTransition
+      getOpenTransition,
+      getBasicTransition
     }
 }
