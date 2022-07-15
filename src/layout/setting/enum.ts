@@ -83,7 +83,7 @@ export enum HandlerEnum {
   COLOR_WEAK,
   
   // animation settings
-  OPEN_PROGRESS,
+  OPEN_NPROGRESS,
   OPEN_ROUTE_TRANSITION,
   ROUTER_TRANSITION_TYPE
 }

@@ -115,6 +115,12 @@
         :def="unref(getColorWeak)"
         :event="HandlerEnum.COLOR_WEAK"
       />
+      <AntdDivider>动画设置</AntdDivider>
+      <SwitchItem
+        title="顶部进度条"
+        :def="unref(getOpenNProgress)"
+        :event="HandlerEnum.OPEN_NPROGRESS"
+      />
     </Container>
   </AntdDrawer>
 </template>
@@ -132,6 +138,7 @@
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
   import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
   import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
+  import { useTransitionSetting } from '@/hooks/setting/useTransitionSetting'
 
   import { baseHandler } from './handler'
   import { HandlerEnum, menuFoldBtnOptions } from './enum'
@@ -152,6 +159,7 @@
       const { getMenuType, getThemeColor, getMenuSplit, getMenuFold, getMenuFoldShowTitle, getMenuFoldBtn, getMenuWidth } = useMenuSetting()
       const { getLockScreenTime, getShowFooter, getColorWeak } = useBaseSetting()
       const { getShowBreadCrumb, getShowPageTags, getShowLocale, getShowFullScreen, getShowDoc, getShowGithub } = useHeaderSetting()
+      const { getOpenNProgress } = useTransitionSetting()
 
       return {
         unref,
@@ -171,6 +179,7 @@
         getShowPageTags,
         getShowFooter,
         getColorWeak,
+        getOpenNProgress,
         menuFoldBtnOptions,
         drawerVisible,
         toggleDrawer,

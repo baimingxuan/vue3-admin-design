@@ -69,6 +69,9 @@ export function handler(event: HandlerEnum, value: any): DeepPartial<AppConfig> 
         case HandlerEnum.COLOR_WEAK:
             return { colorWeak: value }
 
+        case HandlerEnum.OPEN_NPROGRESS:
+            return { transitionSetting: { openNProgress: value } }
+
         default:
             return {}
     }

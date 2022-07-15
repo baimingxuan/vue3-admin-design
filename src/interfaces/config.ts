@@ -8,6 +8,8 @@ export interface AppConfig {
   headerSetting: HeaderSetting
   // menu setting
   menuSetting: MenuSetting
+  // transition setting
+  transitionSetting: TransitionSetting
   // lock screen time
   lockScreenTime: number
   // whether to show the global footer
@@ -53,8 +55,8 @@ export interface MenuSetting {
 export interface TransitionSetting {
   // whether to open the top progress bar
   openNProgress: boolean
-  // whether to open page switching loading
-  openPageLoading: boolean
+  // whether to open the page switching animation
+  openTransition: boolean
   // page basic switching animation
   basicTransition: PageTransitionEnum
 }
