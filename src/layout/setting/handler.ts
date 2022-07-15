@@ -72,6 +72,9 @@ export function handler(event: HandlerEnum, value: any): DeepPartial<AppConfig> 
         case HandlerEnum.OPEN_NPROGRESS:
             return { transitionSetting: { openNProgress: value } }
 
+        case HandlerEnum.OPEN_TRANSITION:
+            return { transitionSetting: { openTransition: value } }
+
         default:
             return {}
     }

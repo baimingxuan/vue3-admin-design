@@ -6,7 +6,10 @@ export function useTransitionSetting() {
 
     const getOpenNProgress = computed(() => appStore.getTransitionSetting.openNProgress)
 
+    const getOpenTransition = computed(() => appStore.getTransitionSetting.openTransition)
+
     return {
-      getOpenNProgress
+      getOpenNProgress,
+      getOpenTransition
     }
 }

@@ -121,6 +121,11 @@
         :def="unref(getOpenNProgress)"
         :event="HandlerEnum.OPEN_NPROGRESS"
       />
+      <SwitchItem
+        title="切换动画"
+        :def="unref(getOpenTransition)"
+        :event="HandlerEnum.OPEN_TRANSITION"
+      />
     </Container>
   </AntdDrawer>
 </template>
@@ -159,7 +164,7 @@
       const { getMenuType, getThemeColor, getMenuSplit, getMenuFold, getMenuFoldShowTitle, getMenuFoldBtn, getMenuWidth } = useMenuSetting()
       const { getLockScreenTime, getShowFooter, getColorWeak } = useBaseSetting()
       const { getShowBreadCrumb, getShowPageTags, getShowLocale, getShowFullScreen, getShowDoc, getShowGithub } = useHeaderSetting()
-      const { getOpenNProgress } = useTransitionSetting()
+      const { getOpenNProgress, getOpenTransition } = useTransitionSetting()
 
       return {
         unref,
@@ -180,6 +185,7 @@
         getShowFooter,
         getColorWeak,
         getOpenNProgress,
+        getOpenTransition,
         menuFoldBtnOptions,
         drawerVisible,
         toggleDrawer,
