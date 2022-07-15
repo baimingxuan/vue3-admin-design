@@ -40,11 +40,11 @@ export const appSetting: AppConfig = {
   },
   // transition settings
   transitionSetting: {
-    // Whether to open the top progress bar
+    // whether to open the top progress bar
     openNProgress: false,
     // whether to open the page switching animation
     openTransition: true,
-    // Route basic switching animation
+    // page basic switching animation
     basicTransition: PageTransitionEnum.FADE
   },
   // Lock screen time
