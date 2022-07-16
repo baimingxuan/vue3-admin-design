@@ -1,8 +1,11 @@
 import { computed } from 'vue'
 import { useAppStore } from '@/stores/modules/app'
+import { AppModeEnum } from '@/enums/appEnum'
 
 export function useBaseSetting() {
     const appStore = useAppStore()
+
+    const getAppMode = computed(() => appStore.getAppMode)
 
     const getThemeColor = computed(() => appStore.getAppConfig.themeColor)
 
@@ -12,7 +15,13 @@ export function useBaseSetting() {
 
     const getColorWeak = computed(() => appStore.getAppConfig.colorWeak)
 
+    function setAppMode(mode: AppModeEnum) {
+        appStore.setAppMode(mode)
+    }
+
     return {
+        setAppMode,
+        getAppMode,
         getThemeColor,
         getLockScreenTime,
         getShowFooter,
