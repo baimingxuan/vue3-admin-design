@@ -1,3 +1,9 @@
+// app mode enum
+export enum AppModeEnum {
+  DARK = 'dark',
+  LIGHT = 'light'
+}
+
 // menu theme enum
 export enum ThemeEnum {
   DARK = 'dark',
