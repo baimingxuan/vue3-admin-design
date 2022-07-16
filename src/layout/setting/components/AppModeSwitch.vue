@@ -1,5 +1,9 @@
 <template>
-  <div class="compo_app-mode-switch" :class="{ 'compo_app-mode-switch--dark': isDark }" @click="switchAppMode">
+  <div
+    class="compo_app-mode-switch"
+    :class="{ 'compo_app-mode-switch--dark': isDarkMode }"
+    @click="switchAppMode"
+  >
     <div class="app-mode-switch__inner" />
     <SvgIcon size="14" name="sun" />
     <SvgIcon size="14" name="moon" />
@@ -7,14 +11,19 @@
 </template>
 
 <script lang="ts" setup>
-  import { computed, ref, unref } from 'vue'
+  import { computed } from 'vue'
+  import { AppModeEnum } from '@/enums/appEnum'
+  import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
 
   import SvgIcon from '@/components/SvgIcon/index.vue'
 
-  const isDark = ref<boolean>(false)
+  const { setAppMode, getAppMode } = useBaseSetting()
+
+  const isDarkMode = computed(() => getAppMode.value === AppModeEnum.DARK)
 
   function switchAppMode() {
-    return !unref(isDark)
+    const mode = getAppMode.value === AppModeEnum.DARK ? AppModeEnum.LIGHT : AppModeEnum.DARK
+    setAppMode(mode)
   }
 </script>
 
