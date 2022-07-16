@@ -3,12 +3,15 @@ import { defineStore } from 'pinia'
 import type { AppConfig, HeaderSetting, MenuSetting, TransitionSetting } from '@/interfaces/config'
 
 import { ThemeMode } from '@/types'
-import { ThemeEnum } from '@/enums/appEnum'
+import { AppModeEnum, ThemeEnum } from '@/enums/appEnum'
 import { deepMerge } from '@/utils'
 import { Persistent } from '@/utils/cache/persistent'
 import { APP_CONFIG_KEY } from '@/enums/cacheEnum'
+import { baseAppMode } from '@/settings/designSetting'
 
 interface AppState {
+  appMode?: AppModeEnum
+
   themeMode?: ThemeEnum
 
   appConfig: AppConfig | null
@@ -16,11 +19,15 @@ interface AppState {
 
 export const useAppStore = defineStore('app', {
   state: (): AppState => ({
+    appMode: undefined,
     themeMode: undefined,
     appConfig: Persistent.getLocal(APP_CONFIG_KEY)
   }),
 
   getters: {
+    getAppMode(): AppModeEnum | string {
+      return this.appMode || baseAppMode
+    },
     getThemeMode(): ThemeMode | string {
       return this.themeMode || ''
     },
@@ -39,6 +46,9 @@ export const useAppStore = defineStore('app', {
   },
 
   actions: {
+    setAppMode(mode: AppModeEnum): void {
+      this.appMode = mode
+    },
     setThemeMode(mode: ThemeEnum): void {
       this.themeMode = mode
     },
