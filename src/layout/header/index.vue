@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, computed } from 'vue'
+  import { defineComponent } from 'vue'
   import { Layout } from 'ant-design-vue'
 
   export default defineComponent({
