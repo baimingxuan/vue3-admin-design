@@ -9,7 +9,7 @@
   "dependencies": {
     "@ant-design/icons-vue": "^6.1.0",
     "@vueuse/core": "^8.4.2",
-    "ant-design-vue": "^3.2.4",
+    "ant-design-vue": "^3.2.10",
     "axios": "^0.26.1",
     "crypto-js": "^4.1.1",
     "lodash-es": "^4.17.21",
