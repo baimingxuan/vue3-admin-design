@@ -47,6 +47,8 @@ export const appSetting: AppConfig = {
     // page basic switching animation
     basicTransition: PageTransitionEnum.FADE
   },
+  // route keepAlive
+  openKeepAlive: true,
   // Lock screen time
   lockScreenTime: 0,
   // whether to show the global footer

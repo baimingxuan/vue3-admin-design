@@ -10,6 +10,8 @@ export interface AppConfig {
   menuSetting: MenuSetting
   // transition setting
   transitionSetting: TransitionSetting
+  // route keepAlive
+  openKeepAlive: boolean
   // lock screen time
   lockScreenTime: number
   // whether to show the global footer

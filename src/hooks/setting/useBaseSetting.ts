@@ -9,6 +9,8 @@ export function useBaseSetting() {
 
     const getThemeColor = computed(() => appStore.getAppConfig.themeColor)
 
+    const getOpenKeepAlive = computed(() => appStore.getAppConfig.openKeepAlive)
+
     const getLockScreenTime = computed(() => appStore.getAppConfig.lockScreenTime)
 
     const getShowFooter = computed(() => appStore.getAppConfig.showFooter)
@@ -23,6 +25,7 @@ export function useBaseSetting() {
         setAppMode,
         getAppMode,
         getThemeColor,
+        getOpenKeepAlive,
         getLockScreenTime,
         getShowFooter,
         getColorWeak
