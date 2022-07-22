@@ -15,7 +15,7 @@
   import { defineComponent } from 'vue'
   import { Layout as AntLayout } from 'ant-design-vue'
   import Setting from './setting/index.vue'
-  import Menu from './menu/src/components/Menu.vue'
+  import Menu from './menu/src/BasicMenu/index.vue'
   import { asyncRoutes } from '@/router/routes'
 
   export default defineComponent({

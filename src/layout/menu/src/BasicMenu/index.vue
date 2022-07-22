@@ -19,7 +19,7 @@
   import { defineComponent, ref, toRefs, reactive } from 'vue'
   import { Menu as AntdMenu } from 'ant-design-vue'
   
-  import SubMenuItem from './SubMenuItem.vue'
+  import SubMenuItem from './components/SubMenuItem.vue'
   import { isFunction } from '@/utils/is'
   import { menuProps } from '../props'
 

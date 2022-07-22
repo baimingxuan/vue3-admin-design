@@ -7,7 +7,7 @@
 
 <script lang="ts">
   import { defineComponent, computed } from 'vue'
-  import { menuItemContentProps } from '../props'
+  import { menuItemContentProps } from '../../props'
 
   import SvgIcon from '@/components/SvgIcon/index.vue'
 

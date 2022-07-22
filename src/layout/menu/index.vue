@@ -17,7 +17,7 @@
     },
     components: { Menu },
 
-    setup(props) {
+    setup() {
       const go = useGo()
 
       const { menusRef } = useSplitMenu()
