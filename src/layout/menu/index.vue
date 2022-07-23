@@ -23,7 +23,8 @@
       const { menusRef } = useSplitMenu()
 
       const getCommonProps = computed(() => {
-        const menus = unref(menusRef);
+        const menus = unref(menusRef)
+        
         return {
           menus,
           items: menus,
