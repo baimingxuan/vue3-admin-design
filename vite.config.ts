@@ -15,6 +15,19 @@ export default defineConfig({
   },
   // The project uses lots of vite plugins, so they are extracted and managed separately
   plugins: createVitePlugins(false),
+  build: {
+    target: 'es2015',
+    cssTarget: 'chrome86',
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        keep_infinity: true,
+        // Used to delete console in production environment
+        drop_console: false,
+      },
+    },
+    chunkSizeWarningLimit: 2000
+  },
   resolve: {
     alias: [
       {
