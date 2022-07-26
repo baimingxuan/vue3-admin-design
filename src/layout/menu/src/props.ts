@@ -1,9 +1,10 @@
 import type { PropType } from 'vue'
 import type { AppMenu } from '@/router/types'
 import type { MenuMode, MenuTheme } from 'ant-design-vue'
+
 import { propTypes } from '@/utils/propTypes'
-import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum'
 import { ThemeEnum } from '@/enums/appEnum'
+import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum'
 
 export const menuProps = {
   items: {
@@ -22,7 +23,19 @@ export const menuProps = {
     type: String as PropType<MenuTheme>,
     default: ThemeEnum.DARK
   },
+  // the value should be a multiple of 4
+  inlineIndent: propTypes.number.def(20),
+
+  inlineCollapsed: propTypes.bool,
+
+  collapsedShowTitle: propTypes.bool,
+
+  mixSider: propTypes.bool,
+
   isHorizontal: propTypes.bool,
+
+  accordion: propTypes.bool.def(true),
+
   beforeClickFn: {
     type: Function as PropType<(key: string) => Promise<boolean>>
   }
@@ -33,9 +46,13 @@ export const menuItemProps = {
     type: Object as PropType<AppMenu>,
     default: () => {}
   },
+
   level: propTypes.number,
+
   theme: propTypes.oneOf(['dark', 'light']),
+
   showTitle: propTypes.bool,
+
   isHorizontal: propTypes.bool
 }
 
@@ -45,6 +62,8 @@ export const menuItemContentProps = {
     default: () => {}
   },
   showTitle: propTypes.bool.def(true),
+
   level: propTypes.number.def(0),
+
   isHorizontal: propTypes.bool.def(true)
 }
