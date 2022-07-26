@@ -23,8 +23,6 @@ export const menuProps = {
     type: String as PropType<MenuTheme>,
     default: ThemeEnum.DARK
   },
-  // the value should be a multiple of 4
-  inlineIndent: propTypes.number.def(20),
 
   inlineCollapsed: propTypes.bool,
 
