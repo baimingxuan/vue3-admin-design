@@ -1,5 +1,5 @@
 <template>
-  <AntdMenu
+  <Menu
     :mode="mode"
     :theme="theme"
     :openKeys="openKeys"
@@ -12,14 +12,13 @@
     <template v-for="item in items" :key="item.path">
       <SubMenuItem :item="item" :theme="theme" :isHorizontal="isHorizontal" />
     </template>
-  </AntdMenu>
+  </Menu>
 </template>
 
 <script lang="ts">
   import type { MenuState } from '../types'
 
   import { defineComponent, ref, toRefs, reactive } from 'vue'
-  import { Menu as AntdMenu } from 'ant-design-vue'
   
   import SubMenuItem from './components/SubMenuItem.vue'
   import { isFunction } from '@/utils/is'
@@ -29,7 +28,6 @@
   export default defineComponent({
     name: 'Menu',
     components: {
-      AntdMenu,
       SubMenuItem
     },
     props: menuProps,
