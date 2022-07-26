@@ -2,13 +2,15 @@
   <AntdMenu
     :mode="mode"
     :theme="theme"
-    :subMenuOpenDelay="0.2"
     :openKeys="openKeys"
     :selectedKeys="selectedKeys"
+    :inlineIndent="20"
+    :subMenuOpenDelay="0.2"
+    @openChange="handleOpenChange"
     @click="handleMenuClick"
   >
     <template v-for="item in items" :key="item.path">
-      <SubMenuItem :item="item" />
+      <SubMenuItem :item="item" :theme="theme" :isHorizontal="isHorizontal" />
     </template>
   </AntdMenu>
 </template>
@@ -22,6 +24,7 @@
   import SubMenuItem from './components/SubMenuItem.vue'
   import { isFunction } from '@/utils/is'
   import { menuProps } from '../props'
+  import { useOpenKeys } from './useOpenKeys'
 
   export default defineComponent({
     name: 'Menu',
@@ -35,13 +38,24 @@
       const isClickGo = ref(false)
 
       const menuState = reactive<MenuState>({
-        defaultSelectedKeys: [],
         openKeys: [],
-        selectedKeys: []
+
+        selectedKeys: [],
+
+        collapsedOpenKeys: []
       })
 
-      async function handleMenuClick(e: object) {
-        const { key } = e as { key: string }
+      const { items, mode, accordion } = toRefs(props)
+
+      const { handleOpenChange } = useOpenKeys(
+        menuState,
+        items,
+        mode as any,
+        accordion
+      )
+
+      async function handleMenuClick(event: any) {
+        const { key } = event as { key: string }
         const { beforeClickFn } = props
         if (beforeClickFn && isFunction(beforeClickFn)) {
           const flag = await beforeClickFn(key)
@@ -54,6 +68,7 @@
       }
 
       return {
+        handleOpenChange,
         handleMenuClick,
         ...toRefs(menuState)
       }
