@@ -1,5 +1,5 @@
 <template>
-  <Menu
+  <AntdMenu
     :mode="mode"
     :theme="theme"
     :openKeys="openKeys"
@@ -10,17 +10,18 @@
     @click="handleMenuClick"
   >
     <template v-for="item in items" :key="item.path">
-      <SubMenuItem :item="item" :theme="theme" :isHorizontal="isHorizontal" />
+      <BasicSubMenuItem :item="item" :theme="theme" :isHorizontal="isHorizontal" />
     </template>
-  </Menu>
+  </AntdMenu>
 </template>
 
 <script lang="ts">
   import type { MenuState } from '../types'
 
   import { defineComponent, ref, toRefs, reactive } from 'vue'
+  import { Menu as AntdMenu } from 'ant-design-vue'
   
-  import SubMenuItem from './components/SubMenuItem.vue'
+  import BasicSubMenuItem from './components/BasicSubMenuItem.vue'
   import { isFunction } from '@/utils/is'
   import { menuProps } from '../props'
   import { useOpenKeys } from './useOpenKeys'
@@ -28,7 +29,8 @@
   export default defineComponent({
     name: 'Menu',
     components: {
-      SubMenuItem
+      AntdMenu,
+      BasicSubMenuItem
     },
     props: menuProps,
     emits: ['menuClick'],

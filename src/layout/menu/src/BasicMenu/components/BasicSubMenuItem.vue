@@ -1,15 +1,15 @@
 <template>
-  <MenuItem v-if="!menuHasChildren(item) && getShowMenu" :item="item" />
+  <BasicMenuItem v-if="!menuHasChildren(item) && getShowMenu" :item="item" />
   <AntdSubMenu
     v-if="menuHasChildren(item) && getShowMenu"
     :key="`submenu-${item.path}`"
   >
     <template #title>
-      <MenuItemContent :item="item" />
+      <BasicMenuItemCont :item="item" />
     </template>
 
     <template v-for="childrenItem in item.children || []" :key="childrenItem.path">
-      <SubMenuItem :item="childrenItem" />
+      <BasicSubMenuItem :item="childrenItem" />
     </template>
   </AntdSubMenu>
 </template>
@@ -19,14 +19,14 @@
   import { Menu as AntdMenu } from 'ant-design-vue'
   import type { AppMenu as MenuType } from '@/router/types'
   import type { PropType } from 'vue'
-  import MenuItem from './MenuItem.vue'
-  import MenuItemContent from './MenuItemContent.vue'
+  import BasicMenuItem from './BasicMenuItem.vue'
+  import BasicMenuItemCont from './BasicMenuItemCont.vue'
 
   export default defineComponent({
-    name: 'SubMenuItem',
+    name: 'BasicSubMenuItem',
     components: {
-      MenuItem,
-      MenuItemContent,
+      BasicMenuItem,
+      BasicMenuItemCont,
       AntdSubMenu: AntdMenu.SubMenu
     },
     props: {

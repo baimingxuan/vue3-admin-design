@@ -1,6 +1,6 @@
 <template>
   <AntdMenuItem :key="item.path">
-    <MenuItemContent :item="item" />
+    <BasicMenuItemCont :item="item" />
   </AntdMenuItem>
 </template>
 
@@ -9,13 +9,13 @@
   import { Menu as AntdMenu } from 'ant-design-vue'
 
   import { menuItemProps } from '../../props'
-  import MenuItemContent from './MenuItemContent.vue'
+  import BasicMenuItemCont from './BasicMenuItemCont.vue'
 
   export default defineComponent({
-    name: 'MenuItem',
+    name: 'BasicMenuItem',
     components: {
       AntdMenuItem: AntdMenu.Item,
-      MenuItemContent
+      BasicMenuItemCont
     },
     props: menuItemProps
   })

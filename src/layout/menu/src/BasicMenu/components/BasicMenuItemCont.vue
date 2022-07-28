@@ -12,7 +12,7 @@
   import SvgIcon from '@/components/SvgIcon/index.vue'
 
   export default defineComponent({
-    name: 'MenuItemContent',
+    name: 'BasicMenuItemCont',
     components: { SvgIcon },
     props: menuItemContentProps,
 
