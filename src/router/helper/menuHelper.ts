@@ -1,7 +1,12 @@
 import type { AppMenu, AppMenuModule, AppRoute } from '../types'
 import { isUrl } from '@/utils/is'
 import { cloneDeep } from 'lodash-es'
-import { treeMap } from '@/utils/helper/treeHelper'
+import { findPath, treeMap } from '@/utils/helper/treeHelper'
+
+export function getAllParentPath<T = Recordable>(treeData: T[], path: string) {
+    const menuList = findPath(treeData, (n) => n.path === path) as AppMenu[]
+    return (menuList || []).map((item) => item.path)
+  }
 
 function joinParentPath(menus: AppMenu[], parentPath = '') {
     for (let index = 0; index < menus.length; index++) {
