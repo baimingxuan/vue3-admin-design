@@ -1,6 +1,7 @@
 import type { AppMenu, AppMenuModule } from '../types'
 import { transformMenuModule } from '../helper/menuHelper'
 import { usePermissionStore } from '@/stores/modules/permission'
+import { getAllParentPath } from '@/router/helper/menuHelper'
 
 const routeModules = import.meta.globEager('./routes/modules/*.ts')
 
@@ -12,6 +13,11 @@ Object.keys(routeModules).forEach(key => {
     menuModules.push(...moduleList)
 })
 
+export async function getCurrentParentPath(currentPath: string) {
+    const menus = await getAsyncMenus()
+    const allParentPath = await getAllParentPath(menus, currentPath)
+    return allParentPath?.[0]
+}
 
 export const getMenus = async (): Promise<AppMenu[]> => {
 
