@@ -1,5 +1,6 @@
-import { computed } from 'vue'
+import { computed, unref } from 'vue'
 import { useAppStore } from '@/stores/modules/app'
+import { MenuTypeEnum } from '@/enums/menuEnum'
 
 export function useMenuSetting() {
   const appStore = useAppStore()
@@ -22,6 +23,10 @@ export function useMenuSetting() {
 
   const getMenuWidth = computed(() => appStore.getMenuSetting.menuWidth)
 
+  const getIsMixMenu = computed(() => {
+    return unref(getMenuType) === MenuTypeEnum.MIX_MENU
+  })
+
   return {
     getMenuType,
     getMenuMode,
@@ -31,6 +36,7 @@ export function useMenuSetting() {
     getMenuFold,
     getMenuFoldBtn,
     getMenuFoldShowTitle,
-    getMenuWidth
+    getMenuWidth,
+    getIsMixMenu
   }
 }
