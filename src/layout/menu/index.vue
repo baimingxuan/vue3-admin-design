@@ -1,21 +1,25 @@
 <script lang="tsx">
+  import type { PropType } from 'vue'
   import { defineComponent, computed, unref } from 'vue'
   import { propTypes } from '@/utils/propTypes'
-  import { Menu } from './src/index'
+  import { MenuModeEnum } from '@/enums/menuEnum'
+  import { BasicMenu } from './src/index'
   import { useGo } from '@/hooks/web/usePage'
   import { useSplitMenu } from './useLayoutMenu'
 
   export default defineComponent({
     name: 'LayoutMenu',
     props: {
-      menuTheme: propTypes.oneOf(['light', 'dark']),
       menuMode: {
-        type: String,
+        type: String as PropType<MenuModeEnum>,
         default: ''
       },
+
+      menuTheme: propTypes.oneOf(['light', 'dark']),
+
       isHorizontal: propTypes.bool
     },
-    components: { Menu },
+    components: { BasicMenu },
 
     setup() {
       const go = useGo()
@@ -40,7 +44,7 @@
         const { menus, ...menuProps } = unref(getCommonProps)
 
         return (
-          <Menu
+          <BasicMenu
             { ...(menuProps as any) }
             items={menus}
           />
