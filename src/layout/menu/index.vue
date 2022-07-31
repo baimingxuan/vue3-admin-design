@@ -6,6 +6,7 @@
   import { BasicMenu } from './src/index'
   import { useGo } from '@/hooks/web/usePage'
   import { useSplitMenu } from './useLayoutMenu'
+  import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 
   export default defineComponent({
     name: 'LayoutMenu',
@@ -21,10 +22,12 @@
     },
     components: { BasicMenu },
 
-    setup() {
+    setup(props) {
       const go = useGo()
 
       const { menusRef } = useSplitMenu()
+
+      const { getMenuMode, getMenuTheme } = useMenuSetting()
 
       const getCommonProps = computed(() => {
         const menus = unref(menusRef)
@@ -35,6 +38,10 @@
           onMenuClick: handleMenuClick
         }
       })
+
+      const getCurrMenuMode = computed(() => props.menuMode || unref(getMenuMode))
+
+      const getCurrMenuTheme = computed(() => props.menuTheme || unref(getMenuTheme))
 
       function handleMenuClick(path: string) {
         go(path)
