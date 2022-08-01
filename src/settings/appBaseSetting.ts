@@ -29,6 +29,8 @@ export const appSetting: AppConfig = {
     menuTheme: ThemeEnum.DARK,
     // menu split
     menuSplit: false,
+    // menu can drag
+    menuCanDrag: false,
      // menu collapse
     menuFold: false,
     // menu collapse type

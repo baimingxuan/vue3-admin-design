@@ -39,6 +39,11 @@
         :event="HandlerEnum.MENU_SPLIT"
       />
       <SwitchItem
+        title="菜单宽度拖拽"
+        :def="unref(getMenuCanDrag)"
+        :event="HandlerEnum.MENU_CAN_DRAG"
+      />
+      <SwitchItem
         title="菜单折叠"
         :def="unref(getMenuFold)"
         :event="HandlerEnum.MENU_FOLD"
@@ -167,7 +172,7 @@
         drawerVisible.value = !unref(drawerVisible)
       }
 
-      const { getMenuType, getThemeColor, getMenuSplit, getMenuFold, getMenuFoldShowTitle, getMenuFoldBtn, getMenuWidth } = useMenuSetting()
+      const { getMenuType, getThemeColor, getMenuSplit, getMenuCanDrag, getMenuFold, getMenuFoldShowTitle, getMenuFoldBtn, getMenuWidth } = useMenuSetting()
       const { getLockScreenTime, getShowFooter, getColorWeak } = useBaseSetting()
       const { getShowBreadCrumb, getShowPageTags, getShowLocale, getShowFullScreen, getShowDoc, getShowGithub } = useHeaderSetting()
       const { getOpenNProgress, getOpenTransition, getBasicTransition } = useTransitionSetting()
@@ -177,6 +182,7 @@
         getMenuType,
         getThemeColor,
         getMenuSplit,
+        getMenuCanDrag,
         getMenuFold,
         getMenuFoldShowTitle,
         getMenuFoldBtn,

@@ -68,6 +68,7 @@ export enum HandlerEnum {
   CHANGE_THEME_COLOR,
   // interface function
   MENU_SPLIT,
+  MENU_CAN_DRAG,
   MENU_FOLD,
   MENU_FOLD_BTN,
   MENU_FOLD_SHOW_TITLE,

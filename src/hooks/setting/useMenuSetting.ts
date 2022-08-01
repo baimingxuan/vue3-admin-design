@@ -15,6 +15,8 @@ export function useMenuSetting() {
 
   const getMenuSplit = computed(() => appStore.getMenuSetting.menuSplit)
 
+  const getMenuCanDrag = computed(() => appStore.getMenuSetting.menuCanDrag)
+
   const getMenuFold = computed(() => appStore.getMenuSetting.menuFold)
 
   const getMenuFoldBtn = computed(() => appStore.getMenuSetting.menuFoldBtn)
@@ -33,6 +35,7 @@ export function useMenuSetting() {
     getThemeColor,
     getMenuTheme,
     getMenuSplit,
+    getMenuCanDrag,
     getMenuFold,
     getMenuFoldBtn,
     getMenuFoldShowTitle,

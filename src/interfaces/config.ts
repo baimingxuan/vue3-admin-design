@@ -44,6 +44,8 @@ export interface MenuSetting {
   menuTheme: ThemeEnum
   // menu split
   menuSplit: boolean
+  // menu can drag
+  menuCanDrag: boolean
   // menu collapse
   menuFold: boolean
    // menu collapse type
