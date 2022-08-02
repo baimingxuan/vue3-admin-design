@@ -23,6 +23,13 @@ export async function getCurrentParentPath(currentPath: string) {
   return allParentPath?.[0];
 }
 
+// get the level 1 menu, delete children
+export async function getShallowMenus(): Promise<AppMenu[]> {
+  const menus = await getAsyncMenus()
+  const shallowMenuList = menus.map(item => ({ ...item, children: undefined }))
+  return shallowMenuList
+}
+
 export const getMenus = async (): Promise<AppMenu[]> => {
   async function generateMenus() {
     const permissionStore = usePermissionStore();
