@@ -3,15 +3,27 @@ import { transformMenuModule } from "../helper/menuHelper";
 import { usePermissionStore } from "@/stores/modules/permission";
 import { getAllParentPath } from "@/router/helper/menuHelper";
 
-const routeModules = import.meta.glob("./routes/modules/*.ts", { eager: true });
+const routeModules = import.meta.glob("./routes/modules/*.ts", { eager: true })
 
 const menuModules: AppMenuModule[] = [];
 
-Object.keys(routeModules).forEach((key) => {
+Object.keys(routeModules).forEach(key => {
   const module = routeModules[key].default || {};
   const moduleList = Array.isArray(module) ? [...module] : [module];
   menuModules.push(...moduleList);
 });
+
+const staticMenus: AppMenu[] = []
+(() => {
+  menuModules.sort((a, b) => {
+    return (a.orderNo || 0) - (b.orderNo || 0);
+  });
+
+  for (const menu of menuModules) {
+    staticMenus.push(transformMenuModule(menu));
+  }
+})();
+
 
 async function getAsyncMenus() {
   
