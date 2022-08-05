@@ -2,6 +2,7 @@ import type { AppMenu, AppMenuModule } from "../types"
 // import { transformMenuModule } from "../helper/menuHelper"
 import { usePermissionStore } from "@/stores/modules/permission"
 import { getAllParentPath } from "@/router/helper/menuHelper"
+import { PermissionModeEnum } from '@/enums/appEnum'
 
 const routeModules = import.meta.glob("./routes/modules/*.ts", { eager: true }) as Object
 
@@ -23,7 +24,9 @@ Object.keys(routeModules).forEach(key => {
 //     staticMenus.push(transformMenuModule(menu));
 //   }
 // })();
-
+const isBackendMode = () => {
+  return PermissionModeEnum.BACKEND
+}
 
 async function getAsyncMenus() {
   
