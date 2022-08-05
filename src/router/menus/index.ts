@@ -3,12 +3,12 @@ import type { AppMenu, AppMenuModule } from "../types"
 import { usePermissionStore } from "@/stores/modules/permission"
 import { getAllParentPath } from "@/router/helper/menuHelper"
 
-const routeModules = import.meta.glob("./routes/modules/*.ts", { eager: true })
+const routeModules = import.meta.glob("./routes/modules/*.ts", { eager: true }) as Object
 
 const menuModules: AppMenuModule[] = []
 
 Object.keys(routeModules).forEach(key => {
-  const module = routeModules[key] || {}
+  const module = routeModules[key].default || {}
   const moduleList = Array.isArray(module) ? [...module] : [module]
   menuModules.push(...moduleList)
 });
