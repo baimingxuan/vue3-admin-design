@@ -1,16 +1,16 @@
-// app mode enum
+// App mode enum
 export enum AppModeEnum {
   DARK = 'dark',
   LIGHT = 'light'
 }
 
-// menu theme enum
+// Menu theme enum
 export enum ThemeEnum {
   DARK = 'dark',
   LIGHT = 'light'
 }
 
-// page switching animation
+// Page switching animation
 export enum PageTransitionEnum {
   FADE = 'fade',
   FADE_SIDE = 'fade-slide',
@@ -18,4 +18,12 @@ export enum PageTransitionEnum {
   FADE_SCALE = 'fade-scale',
   ZOOM_FADE = 'zoom-fade',
   ZOOM_OUT = 'zoom-out'
+}
+
+// Permission mode
+export enum PermissionModeEnum {
+  // Route mapping
+  MAPPING = 'MAPPING',
+  // The back-end response
+  BACKEND = 'BACKEND'
 }
