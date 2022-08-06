@@ -6,3 +6,5 @@ const stores = createPinia()
 export function setupStore(app: App<Element>) {
     app.use(stores)
 }
+
+export { stores }

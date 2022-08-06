@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { stores } from '../index'
 
 import type { AppConfig, HeaderSetting, MenuSetting, TransitionSetting } from '@/interfaces/config'
 
@@ -58,3 +59,8 @@ export const useAppStore = defineStore('app', {
     }
   }
 })
+
+// Need to be used outside the setup
+export function useAppStoreWithOut() {
+  return useAppStore(stores)
+}
