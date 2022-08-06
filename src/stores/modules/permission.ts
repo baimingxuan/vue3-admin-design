@@ -1,10 +1,12 @@
-import { defineStore, createPinia } from 'pinia'
+import { defineStore } from 'pinia'
+import { stores } from '../index'
 
 import type { AppRoute, AppMenu } from '@/router/types'
 
 import { filter } from '@/utils/helper/treeHelper'
 import { transformRouteToMenu } from '@/router/helper/menuHelper'
 import { asyncRoutes } from '@/router/routes'
+// import { useAppStoreWithOut } from './app'
 
 interface PermissionState {
   menuList: AppMenu[]
@@ -24,6 +26,8 @@ export const usePermissionStore = defineStore('permission', {
       this.menuList = list
     },
     async buildRoutesAction(): Promise<AppRoute[]> {
+      // const appStore = useAppStoreWithOut()
+
       let routes: AppRoute[] = []
       routes = filter(asyncRoutes)
       
@@ -40,6 +44,6 @@ export const usePermissionStore = defineStore('permission', {
 
 // Need to be used outside the setup
 export function usePermissionStoreWithOut() {
-  return usePermissionStore(createPinia())
+  return usePermissionStore(stores)
 }
 
