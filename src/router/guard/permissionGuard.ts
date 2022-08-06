@@ -5,10 +5,10 @@ export function createPermissionGuard(router: Router) {
   const permissionStore = usePermissionStoreWithOut()
 
   router.beforeEach(async (to, from, next) => {
-    if (from.path === '/' && to.path === '/home') {
-      next('/home')
-      return
-    }
+    // if (from.path === '/' && to.path === '/') {
+    //   next('/')
+    //   return
+    // }
 
     const routes = await permissionStore.buildRoutesAction()
 
