@@ -16,14 +16,12 @@
   import { Layout as AntLayout } from 'ant-design-vue'
   import Setting from './setting/index.vue'
   import Menu from './menu/index.vue'
-  import { asyncRoutes } from '@/router/routes'
 
   export default defineComponent({
     name: 'BasicLayout',
     components: { AntLayout, AntSider: AntLayout.Sider, AntHeader: AntLayout.Header, AntContent: AntLayout.Content, Setting, Menu },
     setup() {
       return {
-        asyncRoutes
       }
     }
   })
