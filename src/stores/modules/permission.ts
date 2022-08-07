@@ -29,13 +29,14 @@ export const usePermissionStore = defineStore('permission', {
       // const appStore = useAppStoreWithOut()
 
       let routes: AppRoute[] = []
-      routes = filter(asyncRoutes)
+      // routes = filter(asyncRoutes)
       
-      const menuList = transformRouteToMenu(routes)
+      const menuList = transformRouteToMenu(asyncRoutes)
       // menuList.sort((a, b) => {
       //   return (a.meta?.orderNo || 0) - (b.meta?.orderNo || 0);
       // })
 
+      console.log('menuList', menuList)
       this.setMenuList(menuList)
       return routes
     }

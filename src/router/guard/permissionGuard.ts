@@ -15,6 +15,6 @@ export function createPermissionGuard(router: Router) {
     routes.forEach(route => {
         router.addRoute(route as RouteRecordRaw)
     })
-    next('/')
+    next()
   })
 }
