@@ -27,7 +27,7 @@
 
       const { menusRef } = useSplitMenu()
 
-      const { getMenuMode, getMenuTheme } = useMenuSetting()
+      const { getMenuMode, getMenuTheme, getMenuType } = useMenuSetting()
 
       const getCommonProps = computed(() => {
         const menus = unref(menusRef)
@@ -54,6 +54,10 @@
           <BasicMenu
             { ...(menuProps as any) }
             items={menus}
+            type={unref(getMenuType)}
+            mode={unref(getCurrMenuMode)}
+            theme={getCurrMenuTheme}
+            isHorizontal={props.isHorizontal}
           />
         )
       }
