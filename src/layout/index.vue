@@ -1,7 +1,7 @@
 <template>
   <AntLayout>
     <AntSider>
-      <Menu :items="asyncRoutes" />
+      <Menu />
     </AntSider>
     <AntLayout>
       <AntHeader>Header</AntHeader>
@@ -15,7 +15,7 @@
   import { defineComponent } from 'vue'
   import { Layout as AntLayout } from 'ant-design-vue'
   import Setting from './setting/index.vue'
-  import Menu from './menu/src/BasicMenu/index.vue'
+  import Menu from './menu/index.vue'
   import { asyncRoutes } from '@/router/routes'
 
   export default defineComponent({
