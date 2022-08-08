@@ -56,7 +56,7 @@
             items={menus}
             type={unref(getMenuType)}
             mode={unref(getCurrMenuMode)}
-            theme={getCurrMenuTheme}
+            theme={unref(getCurrMenuTheme)}
             isHorizontal={props.isHorizontal}
           />
         )
