@@ -3,57 +3,57 @@ import { MenuTypeEnum, MenuModeEnum, MenuFoldBtnEnum } from '@/enums/menuEnum'
 import { ThemeEnum, PageTransitionEnum } from '@/enums/appEnum'
 
 export const appSetting: AppConfig = {
-  // theme color
+  // Theme color
   themeColor: '#1890ff',
   headerSetting: {
-    // show breadCrumb
+    // Show breadCrumb
     showBreadCrumb: true,
-    // show page tags
+    // Show page tags
     showPageTags: true,
-    // show locale
+    // Show locale
     showLocale: true,
-    // turn on full screen
+    // Turn on full screen
     showFullScreen: false,
-    // show document button
+    // Show document button
     showDoc: false,
-    // show github button
+    // Show github button
     showGithub: true
   },
   // Menu configuration
   menuSetting: {
-    // menu type
+    // Menu type
     menuType: MenuTypeEnum.SIDE_MENU,
-    // menu mode
+    // Menu mode
     menuMode: MenuModeEnum.INLINE,
-    // menu theme
+    // Menu theme
     menuTheme: ThemeEnum.DARK,
-    // menu split
+    // Menu split
     menuSplit: false,
-    // menu can drag
+    // Menu can drag
     menuCanDrag: false,
-     // menu collapse
+     // Menu collapse
     menuFold: false,
-    // menu collapse type
+    // Menu collapse type
     menuFoldBtn: MenuFoldBtnEnum.NONE,
-    // whether to display the menu name when folding the menu
+    // Whether to display the menu name when folding the menu
     menuFoldShowTitle: false,
-    // menu width
+    // Menu width
     menuWidth: 210
   },
-  // transition settings
+  // Transition settings
   transitionSetting: {
-    // whether to open the top progress bar
+    // Whether to open the top progress bar
     openNProgress: false,
-    // whether to open the page switching animation
+    // Whether to open the page switching animation
     openTransition: true,
-    // page basic switching animation
+    // Page basic switching animation
     basicTransition: PageTransitionEnum.FADE
   },
-  // route keepAlive
+  // Route keepAlive
   openKeepAlive: true,
   // Lock screen time
   lockScreenTime: 0,
-  // whether to show the global footer
+  // Whether to show the global footer
   showFooter: false,
   // Whether to turn on the color weak mode
   colorWeak: false
