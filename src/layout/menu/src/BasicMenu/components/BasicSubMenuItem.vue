@@ -18,7 +18,7 @@
   import { defineComponent, computed } from 'vue'
   import { Menu as AntdMenu } from 'ant-design-vue'
   import type { AppMenu as MenuType } from '@/router/types'
-  import type { PropType } from 'vue'
+  import { menuItemProps } from '../../props'
   import BasicMenuItem from './BasicMenuItem.vue'
   import BasicMenuItemCont from './BasicMenuItemCont.vue'
 
@@ -29,12 +29,7 @@
       BasicMenuItemCont,
       AntdSubMenu: AntdMenu.SubMenu
     },
-    props: {
-      item: {
-        type: Object as PropType<MenuType>,
-        default: () => {}
-      }
-    },
+    props: menuItemProps,
     setup(props) {
       const getShowMenu = computed(() => !props.item.meta?.hideMenu)
 
