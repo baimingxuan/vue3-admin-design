@@ -9,7 +9,7 @@ const CompoRoute: AppRoute = {
     redirect: '/compo/image-upload',
     meta: {
         title: '组件',
-        icon: 'vue-dsn-icon-zujian'
+        icon: 'compo'
     },
     children: [
         {

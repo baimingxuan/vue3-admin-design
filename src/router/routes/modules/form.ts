@@ -9,7 +9,7 @@ const FormRoute: AppRoute = {
     redirect: '/form/form-list',
     meta: {
         title: '表单',
-        icon: 'vue-dsn-icon-biaoge'
+        icon: 'form'
     },
     children: [
         {

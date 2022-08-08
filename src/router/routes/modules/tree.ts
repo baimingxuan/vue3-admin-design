@@ -9,7 +9,7 @@ const TreeRoute: AppRoute = {
     redirect: '/tree/org-tree',
     meta: {
         title: '树形结构',
-        icon: 'vue-dsn-icon-shuxing'
+        icon: 'tree'
     },
     children: [
         {

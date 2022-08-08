@@ -9,7 +9,7 @@ const GraphEditorRoute: AppRoute = {
     redirect: '/graph-editor/flow',
     meta: {
         title: '图形编辑器',
-        icon: 'vue-dsn-icon-excel'
+        icon: 'flow'
     },
     children: [
         {

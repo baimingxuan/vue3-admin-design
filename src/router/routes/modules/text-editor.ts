@@ -9,7 +9,7 @@ const TextEditorRoute: AppRoute = {
     redirect: '/editor/markdown',
     meta: {
         title: '编辑器',
-        icon: 'vue-dsn-icon-bianjiqi'
+        icon: 'editor'
     },
     children: [
         {

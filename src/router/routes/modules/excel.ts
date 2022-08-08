@@ -9,7 +9,7 @@ const ExcelRoute: AppRoute = {
     redirect: '/excel/export-excel',
     meta: {
         title: 'Excel',
-        icon: 'vue-dsn-icon-excel'
+        icon: 'excel'
     },
     children: [
         {

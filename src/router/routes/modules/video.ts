@@ -9,7 +9,7 @@ const VideoRoute: AppRoute = {
     redirect: '/video/video-player',
     meta: {
         title: '视频处理',
-        icon: 'vue-dsn-icon-video'
+        icon: 'video'
     },
     children: [
         {

@@ -9,7 +9,7 @@ const TableRoute: AppRoute = {
     redirect: '/table/table-classic',
     meta: {
         title: '表格',
-        icon: 'vue-dsn-icon-biaoge'
+        icon: 'table'
     },
     children: [
         {

@@ -1,6 +1,6 @@
 <template>
   <span>
-    <SvgIcon v-if="getIcon" :name="getIcon" :size="18" />
+    <SvgIcon v-if="getIcon" :name="getIcon" :size="16" />
     {{ getIconName }}
   </span>
 </template>
@@ -17,7 +17,7 @@
     props: menuItemContentProps,
 
     setup(props) {
-      const getIcon = computed(() => props.item?.icon)
+      const getIcon = computed(() => props.item.meta?.icon as string)
       const getIconName = computed(() => props.item?.name)
 
       return {

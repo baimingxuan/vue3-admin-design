@@ -9,7 +9,7 @@ const ExceptionRoute: AppRoute = {
     redirect: '/exception/page-401',
     meta: {
         title: '异常页面',
-        icon: 'vue-dsn-icon-bug'
+        icon: 'bug'
     },
     children: [
         {

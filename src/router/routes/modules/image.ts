@@ -9,7 +9,7 @@ const ImageRoute: AppRoute = {
     redirect: '/image/image-cropper',
     meta: {
         title: '图片处理',
-        icon: 'vue-dsn-icon-picture'
+        icon: 'image'
     },
     children: [
         {

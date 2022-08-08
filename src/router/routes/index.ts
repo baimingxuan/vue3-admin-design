@@ -21,7 +21,7 @@ export const HomeRoute: AppRoute = {
     redirect: '/home',
     meta: {
         title: '首页',
-        icon: 'vue-dsn-icon-index',
+        icon: 'home',
         affix: true
     },
     children: [
@@ -31,7 +31,7 @@ export const HomeRoute: AppRoute = {
             component: () => import('../../views/home.vue'),
             meta: {
                 title: '首页',
-                icon: 'vue-dsn-icon-index',
+                icon: 'home',
                 affix: true
             }
         }
