@@ -1,7 +1,7 @@
 <template>
-  <span>
+  <span class="compo_menu-item-cont">
     <SvgIcon v-if="getIcon" :name="getIcon" :size="16" />
-    {{ getIconName }}
+    <span class="compo_menu-item-cont__name">{{ getIconName }}</span>
   </span>
 </template>
 
@@ -27,3 +27,11 @@
     }
   })
 </script>
+
+<style lang="less">
+  .compo_menu-item-cont {
+    &__name {
+      margin-left: 8px;
+    }
+  }
+</style>
