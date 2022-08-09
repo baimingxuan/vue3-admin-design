@@ -6,7 +6,7 @@
     :selectedKeys="selectedKeys"
     :inlineIndent="20"
     :subMenuOpenDelay="0.2"
-    v-bind="getInlineCollapsedOptions"
+    :inlineCollapsed="getInlineCollapsed"
     @openChange="handleOpenChange"
     @click="handleMenuClick"
   >
@@ -28,7 +28,7 @@
   import { menuProps } from '../props'
   import { useOpenKeys } from './useOpenKeys'
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
-  import { MenuModeEnum } from '@/enums/menuEnum'
+  // import { MenuModeEnum } from '@/enums/menuEnum'
   import { listenerRouteChange } from '@/logics/mitt/routeChange'
   import { getCurrentParentPath } from '@/router/menus'
   import { getAllParentPath } from '@/router/helper/menuHelper'
@@ -55,7 +55,8 @@
 
       const { items, mode, accordion } = toRefs(props)
 
-      const { getMenuFold, getMenuSplit } = useMenuSetting()
+      // const { getMenuFold, getMenuSplit } = useMenuSetting()
+      const { getMenuSplit } = useMenuSetting()
 
       const { currentRoute } = useRouter()
 
@@ -75,17 +76,18 @@
       //   )
       // })
 
-      const getInlineCollapsedOptions = computed(() => {
-        const isInlineMenu = props.mode === MenuModeEnum.INLINE
+      // const getInlineCollapsedOptions = computed(() => {
+      //   const isInlineMenu = props.mode === MenuModeEnum.INLINE
 
-        const inlineCollapsedOptions: { inlineCollapsed?: boolean } = {}
+      //   const inlineCollapsedOptions: { inlineCollapsed?: boolean } = {}
 
-        if (isInlineMenu) {
-          inlineCollapsedOptions.inlineCollapsed = props.mixSider ? false : unref(getMenuFold)
-        }
+      //   if (isInlineMenu) {
+      //     inlineCollapsedOptions.inlineCollapsed = props.mixSider ? false : unref(getMenuFold)
+      //   }
 
-        return inlineCollapsedOptions
-      })
+      //   return inlineCollapsedOptions
+      // })
+      const getInlineCollapsed = computed(() => props.inlineCollapsed)
 
       listenerRouteChange(route => {
         if (route.name === 'Redirect') return
@@ -145,7 +147,7 @@
         handleMenuClick,
         getOpenKeys,
         ...toRefs(menuState),
-        getInlineCollapsedOptions
+        getInlineCollapsed
       }
     }
   })
