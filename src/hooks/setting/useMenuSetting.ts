@@ -1,6 +1,7 @@
 import { computed, unref } from 'vue'
 import { useAppStore } from '@/stores/modules/app'
 import { MenuTypeEnum } from '@/enums/menuEnum'
+import { SIDE_BAR_MIN_WIDTH, SIDE_BAR_SHOW_TITLE_MIN_WIDTH } from '@/enums/appEnum'
 
 export function useMenuSetting() {
   const appStore = useAppStore()
@@ -29,6 +30,11 @@ export function useMenuSetting() {
     return unref(getMenuType) === MenuTypeEnum.MIX_MENU
   })
 
+  const getSideBarMinWidth = computed(() => {
+    const { menuFoldShowTitle } = appStore.getMenuSetting
+    return menuFoldShowTitle ? SIDE_BAR_SHOW_TITLE_MIN_WIDTH : SIDE_BAR_MIN_WIDTH
+  })
+
   return {
     getMenuType,
     getMenuMode,
@@ -40,6 +46,7 @@ export function useMenuSetting() {
     getMenuFoldBtn,
     getMenuFoldShowTitle,
     getMenuWidth,
-    getIsMixMenu
+    getIsMixMenu,
+    getSideBarMinWidth
   }
 }
