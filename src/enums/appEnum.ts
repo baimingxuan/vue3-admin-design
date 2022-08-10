@@ -1,3 +1,6 @@
+export const SIDE_BAR_MIN_WIDTH = 48
+export const SIDE_BAR_SHOW_TITLE_MIN_WIDTH = 80
+
 // App mode enum
 export enum AppModeEnum {
   DARK = 'dark',
