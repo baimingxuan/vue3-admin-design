@@ -7,6 +7,7 @@
   import { useGo } from '@/hooks/web/usePage'
   import { useSplitMenu } from './useLayoutMenu'
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
+  import ScrollContainer from '@/components/Container/index.vue'
 
   export default defineComponent({
     name: 'LayoutMenu',
@@ -27,7 +28,7 @@
 
       const { menusRef } = useSplitMenu()
 
-      const { getMenuMode, getMenuTheme, getMenuType } = useMenuSetting()
+      const { getMenuMode, getMenuTheme, getMenuType, getIsHorizontal, getIsSideMenu } = useMenuSetting()
 
       const getCommonProps = computed(() => {
         const menus = unref(menusRef)
@@ -42,6 +43,12 @@
       const getCurrMenuMode = computed(() => props.menuMode || unref(getMenuMode))
 
       const getCurrMenuTheme = computed(() => props.menuTheme || unref(getMenuTheme))
+
+      const getUseScroll = computed(() => {
+        return (
+          !unref(getIsHorizontal) && unref(getIsSideMenu)
+        )
+      })
 
       function handleMenuClick(path: string) {
         go(path)
@@ -63,7 +70,9 @@
       }
 
       return () => (
-        <>{renderMenu()}</>
+        <>{unref(getUseScroll) ? (
+          <ScrollContainer>{() => renderMenu()}</ScrollContainer>
+        ) : (renderMenu())}</>
       )
     }
   })
