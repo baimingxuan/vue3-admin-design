@@ -18,9 +18,7 @@
 
       menuTheme: propTypes.oneOf(['light', 'dark']),
 
-      isHorizontal: propTypes.bool,
-
-      menuCollapsed: propTypes.bool
+      isHorizontal: propTypes.bool
     },
     components: { BasicMenu },
 
@@ -60,7 +58,6 @@
             mode={unref(getCurrMenuMode)}
             theme={unref(getCurrMenuTheme)}
             isHorizontal={props.isHorizontal}
-            inlineCollapsed={props.menuCollapsed}
           />
         )
       }
