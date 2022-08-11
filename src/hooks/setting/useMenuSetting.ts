@@ -1,6 +1,7 @@
 import { computed, unref } from 'vue'
 import { useAppStore } from '@/stores/modules/app'
 import { MenuTypeEnum } from '@/enums/menuEnum'
+import { MenuSetting } from '@/interfaces/config'
 import { SIDE_BAR_MIN_WIDTH, SIDE_BAR_SHOW_TITLE_MIN_WIDTH } from '@/enums/appEnum'
 
 export function useMenuSetting() {
@@ -35,7 +36,20 @@ export function useMenuSetting() {
     return menuFoldShowTitle ? SIDE_BAR_SHOW_TITLE_MIN_WIDTH : SIDE_BAR_MIN_WIDTH
   })
 
+  // Set menu configuration
+  function setMenuSetting(menuSetting: Partial<MenuSetting>): void {
+    appStore.setAppConfig({ menuSetting })
+  }
+
+  // Toggled menu fold
+  function toggledMenuFold(){
+    setMenuSetting({
+      menuFold: !unref(getMenuFold)
+    })
+  }
+
   return {
+    toggledMenuFold,
     getMenuType,
     getMenuMode,
     getThemeColor,
