@@ -1,8 +1,6 @@
 <template>
   <AntLayout>
-    <AntSider v-model:collapsed="menuCollapsed" collapsible>
-      <LayoutMenu />
-    </AntSider>
+    <BasicSider />
     <AntLayout>
       <AntHeader>Header</AntHeader>
       <AntContent>
@@ -14,10 +12,10 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref } from 'vue'
+  import { defineComponent } from 'vue'
   import { Layout as AntLayout } from 'ant-design-vue'
   import Setting from './setting/index.vue'
-  import LayoutMenu from './menu/index.vue'
+  import BasicSider from './sider/BasicSider.vue'
   import LayoutPage from './content/components/Page.vue'
 
   export default defineComponent({
@@ -28,14 +26,8 @@
       AntHeader: AntLayout.Header,
       AntContent: AntLayout.Content,
       Setting,
-      LayoutMenu,
+      BasicSider,
       LayoutPage
-    },
-    setup() {
-      const menuCollapsed = ref<boolean>(false)
-      return {
-        menuCollapsed
-      }
     }
   })
 </script>
