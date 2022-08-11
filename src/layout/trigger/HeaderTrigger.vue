@@ -1,14 +1,15 @@
 <template>
-  <span :class="[theme]" @click="toggleCollapsed">
-    <MenuUnfoldOutlined v-if="getCollapsed" />
+  <span :class="[theme]" @click="toggledMenuFold">
+    <MenuUnfoldOutlined v-if="getMenuFold" />
     <MenuFoldOutlined v-else />
   </span>
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref } from 'vue'
+  import { defineComponent } from 'vue'
   import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
   import { propTypes } from '@/utils/propTypes'
+  import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 
   export default defineComponent({
     name: 'HeaderTrigger',
@@ -18,14 +19,11 @@
     },
 
     setup() {
-      const getCollapsed = ref(false)
+      const { getMenuFold, toggledMenuFold } = useMenuSetting()
 
-      function toggleCollapsed() {
-        getCollapsed.value = !getCollapsed.value
-      }
       return {
-        getCollapsed,
-        toggleCollapsed
+        getMenuFold,
+        toggledMenuFold
       }
     }
   })

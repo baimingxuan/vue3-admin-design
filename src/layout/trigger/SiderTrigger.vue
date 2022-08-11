@@ -1,28 +1,25 @@
 <template>
-  <div @click.stop="toggleCollapsed">
-    <DoubleRightOutlined v-if="getCollapsed" />
+  <div @click.stop="toggledMenuFold">
+    <DoubleRightOutlined v-if="getMenuFold" />
     <DoubleLeftOutlined v-else />
   </div>
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref } from 'vue';
+  import { defineComponent } from 'vue'
   import { DoubleRightOutlined, DoubleLeftOutlined } from '@ant-design/icons-vue'
+  import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 
   export default defineComponent({
     name: 'SiderTrigger',
     components: { DoubleRightOutlined, DoubleLeftOutlined },
 
     setup() {
-      const getCollapsed = ref(false)
-
-      function toggleCollapsed() {
-        getCollapsed.value = !getCollapsed.value
-      }
+      const { getMenuFold, toggledMenuFold } = useMenuSetting()
 
       return {
-        getCollapsed,
-        toggleCollapsed
+        getMenuFold,
+        toggledMenuFold
       }
     }
   })
