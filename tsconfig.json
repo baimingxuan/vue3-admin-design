@@ -7,6 +7,7 @@
     "noLib": false,
     "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
+    "strictFunctionTypes": false,
     "jsx": "preserve",
     "baseUrl": ".",
     "allowJs": true,
