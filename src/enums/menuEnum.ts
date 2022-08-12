@@ -5,7 +5,7 @@ export enum MenuTypeEnum {
     // top menu
     TOP_MENU = 'top-menu',
     // mix menu
-    MIX_MENU = 'mix-menu'
+    HYBRID_MENU = 'mix-menu'
 }
 
 // menu modes

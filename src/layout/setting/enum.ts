@@ -21,7 +21,7 @@ export const menuTypeList = [
   {
     title: '混合菜单',
     mode: MenuModeEnum.INLINE,
-    type: MenuTypeEnum.MIX_MENU
+    type: MenuTypeEnum.HYBRID_MENU
   }
 ]
 
