@@ -38,11 +38,13 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, computed, ref, unref } from 'vue'
+  import { defineComponent, computed, ref, unref, onMounted } from 'vue'
   import type { CSSProperties } from 'vue'
   import { AppMenu } from '@/router/types'
 
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
+  import { getShallowMenus, getChildrenMenus } from '@/router/menus'
+  import { useGo } from '@/hooks/web/usePage'
   import { SIDE_BAR_MIN_WIDTH, SIDE_BAR_SHOW_TITLE_MIN_WIDTH } from '@/enums/appEnum'
 
   import ScrollContainer from '@/components/Container/index.vue'
@@ -60,7 +62,10 @@
 
       let mainMenuList = ref<AppMenu[]>([])
       const activePath = ref('')
+      const childrenMenus = ref<AppMenu[]>([])
       const openMenu = ref(false)
+
+      const go = useGo()
 
       const { getMenuTheme, getMenuFold, getMenuWidth, getMenuFixed, setMenuSetting } = useMenuSetting()
 
@@ -86,6 +91,10 @@
         }
       })
 
+      onMounted(async () => {
+        mainMenuList.value = await getShallowMenus()
+      })
+
       function getWrapCommonStyle(width: string): CSSProperties {
         return {
           width,
@@ -108,8 +117,34 @@
       }
 
       async function handleMainMenuClick(path: string) {
-        console.log(path)
+        const children = await getChildrenMenus(path)
+        if (unref(activePath) === path) {
+          if (!unref(openMenu)) {
+            openMenu.value = true
+          } else {
+            closeMenu()
+          }
+          if (!unref(openMenu)) {
+            setActive()
+          }
+        } else {
+          openMenu.value = true
+          activePath.value = path
+        }
+
+        if (!children || children.length === 0) {
+          go(path)
+          childrenMenus.value = []
+          closeMenu()
+          return
+        }
+        childrenMenus.value = children
       }
+
+      function setActive() {}
+
+      // Close menu
+      function closeMenu() {}
 
       return {
         prefixCls,

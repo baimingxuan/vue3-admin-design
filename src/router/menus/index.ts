@@ -38,11 +38,21 @@ export async function getCurrentParentPath(currentPath: string) {
   return allParentPath?.[0];
 }
 
-// get the level 1 menu, delete children
+// Get the level 1 menu, delete children
 export async function getShallowMenus(): Promise<AppMenu[]> {
   const menus = await getAsyncMenus()
   const shallowMenuList = menus.map(item => ({ ...item, children: undefined }))
   return shallowMenuList
+}
+
+// Get the children of the menu
+export async function getChildrenMenus(parentPath: string) {
+  const menus = await getMenus()
+  const parent = menus.find((item) => item.path === parentPath)
+  if (!parent || !parent.children || !!parent?.meta?.hideChildrenInMenu) {
+    return [] as AppMenu[]
+  }
+  return parent.children
 }
 
 export const getMenus = async (): Promise<AppMenu[]> => {
