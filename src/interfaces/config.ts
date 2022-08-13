@@ -2,65 +2,67 @@ import { MenuModeEnum, MenuTypeEnum, MenuFoldBtnEnum } from '../enums/menuEnum'
 import { PageTransitionEnum, ThemeEnum } from '../enums/appEnum'
 
 export interface AppConfig {
-  // theme color
+  // Theme color
   themeColor: string
-  // header setting
+  // Header setting
   headerSetting: HeaderSetting
-  // menu setting
+  // Menu setting
   menuSetting: MenuSetting
-  // transition setting
+  // Transition setting
   transitionSetting: TransitionSetting
-  // route keepAlive
+  // Route keepAlive
   openKeepAlive: boolean
-  // lock screen time
+  // Lock screen time
   lockScreenTime: number
-  // whether to show the global footer
+  // Whether to show the global footer
   showFooter: boolean
   // Whether to turn on the color weak mode
   colorWeak: boolean
 }
 
 export interface HeaderSetting {
-  // show breadCrumb
+  // Show breadCrumb
   showBreadCrumb: boolean
-  // show page tags
+  // Show page tags
   showPageTags: boolean
-  // show locale
+  // Show locale
   showLocale: boolean
-  // turn on full screen
+  // Turn on full screen
   showFullScreen: boolean
-  // show document button
+  // Show document button
   showDoc: boolean
-  // show github button
+  // Show github button
   showGithub: boolean
 }
 
 export interface MenuSetting {
-  // menu type
+  // Menu type
   menuType: MenuTypeEnum
-  // menu mode
+  // Menu mode
   menuMode: MenuModeEnum
-  // menu theme
+  // Menu theme
   menuTheme: ThemeEnum
-  // menu split
+  // Menu split
   menuSplit: boolean
-  // menu can drag
+  // Menu can drag
   menuCanDrag: boolean
-  // menu collapse
+  // Menu collapse
   menuFold: boolean
-   // menu collapse type
+  // Menu collapse type
   menuFoldBtn: MenuFoldBtnEnum
-  // whether to display the menu name when folding the menu
+  // Whether to display the menu name when folding the menu
   menuFoldShowTitle: boolean
-  // menu width
-  menuWidth: number
+  // Menu width
+  menuWidth: number,
+  // Hydrid sider menu fixed
+  menuFixed: boolean
 }
 
 export interface TransitionSetting {
-  // whether to open the top progress bar
+  // Whether to open the top progress bar
   openNProgress: boolean
-  // whether to open the page switching animation
+  // Whether to open the page switching animation
   openTransition: boolean
-  // page basic switching animation
+  // Page basic switching animation
   basicTransition: PageTransitionEnum
 }
