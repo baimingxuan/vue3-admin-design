@@ -44,6 +44,11 @@
         :event="HandlerEnum.MENU_CAN_DRAG"
       />
       <SwitchItem
+        title="菜单固定"
+        :def="unref(getMenuFixed)"
+        :event="HandlerEnum.MENU_FIXED"
+      />
+      <SwitchItem
         title="菜单折叠"
         :def="unref(getMenuFold)"
         :event="HandlerEnum.MENU_FOLD"
@@ -172,7 +177,7 @@
         drawerVisible.value = !unref(drawerVisible)
       }
 
-      const { getMenuType, getThemeColor, getMenuSplit, getMenuCanDrag, getMenuFold, getMenuFoldShowTitle, getMenuFoldBtn, getMenuWidth } = useMenuSetting()
+      const { getMenuType, getThemeColor, getMenuSplit, getMenuCanDrag, getMenuFixed, getMenuFold, getMenuFoldShowTitle, getMenuFoldBtn, getMenuWidth } = useMenuSetting()
       const { getLockScreenTime, getShowFooter, getColorWeak } = useBaseSetting()
       const { getShowBreadCrumb, getShowPageTags, getShowLocale, getShowFullScreen, getShowDoc, getShowGithub } = useHeaderSetting()
       const { getOpenNProgress, getOpenTransition, getBasicTransition } = useTransitionSetting()
@@ -183,6 +188,7 @@
         getThemeColor,
         getMenuSplit,
         getMenuCanDrag,
+        getMenuFixed,
         getMenuFold,
         getMenuFoldShowTitle,
         getMenuFoldBtn,

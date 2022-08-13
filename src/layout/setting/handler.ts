@@ -33,6 +33,9 @@ export function handler(event: HandlerEnum, value: any): DeepPartial<AppConfig> 
         case HandlerEnum.MENU_CAN_DRAG:
             return { menuSetting: { menuCanDrag: value } }
 
+        case HandlerEnum.MENU_FIXED:
+            return { menuSetting: { menuFixed: value } }
+
         case HandlerEnum.MENU_FOLD:
             return { menuSetting: { menuFold: value } }
 

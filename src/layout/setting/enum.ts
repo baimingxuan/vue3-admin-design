@@ -69,6 +69,7 @@ export enum HandlerEnum {
   // interface function
   MENU_SPLIT,
   MENU_CAN_DRAG,
+  MENU_FIXED,
   MENU_FOLD,
   MENU_FOLD_BTN,
   MENU_FOLD_SHOW_TITLE,
