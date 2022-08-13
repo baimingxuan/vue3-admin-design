@@ -29,7 +29,7 @@
     <div :class="`${prefixCls}-sub-menu`" :style="getSubMenuStyle">
       <div v-show="openMenu" :class="[`${prefixCls}-sub-menu__title`, { show: openMenu }]">
         <span class="text">Vue-admin-design</span>
-        <SvgIcon :size="16" />
+        <SvgIcon :name="getMenuFixed ? 'pushpin-fill' : 'pushpin-line'" :size="16" @click="handleFixedMenu" />
       </div>
       <BasicMenu />
       <DragBar ref="dragBarRef" />
@@ -62,7 +62,7 @@
       const activePath = ref('')
       const openMenu = ref(false)
 
-      const { getMenuTheme, getMenuFold, getMenuWidth } = useMenuSetting()
+      const { getMenuTheme, getMenuFold, getMenuWidth, getMenuFixed, setMenuSetting } = useMenuSetting()
 
       const getHybridSiderWidth = computed(() => {
         return unref(getMenuFold) ? SIDE_BAR_MIN_WIDTH : SIDE_BAR_SHOW_TITLE_MIN_WIDTH
@@ -101,6 +101,12 @@
         }
       }
 
+      function handleFixedMenu() {
+        setMenuSetting({
+          menuFixed: !unref(false)
+        })
+      }
+
       async function handleMainMenuClick(path: string) {
         console.log(path)
       }
@@ -110,12 +116,14 @@
         mainMenuList,
         activePath,
         getMenuTheme,
+        getMenuFixed,
         getWrapStyle,
         getWrapEvents,
         getSubMenuStyle,
         getMenuFold,
         openMenu,
-        getMainMenuItemEvents
+        getMainMenuItemEvents,
+        handleFixedMenu
       }
     }
   })
