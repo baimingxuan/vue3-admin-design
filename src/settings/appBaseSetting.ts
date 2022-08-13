@@ -38,7 +38,9 @@ export const appSetting: AppConfig = {
     // Whether to display the menu name when folding the menu
     menuFoldShowTitle: false,
     // Menu width
-    menuWidth: 210
+    menuWidth: 210,
+    // Hydrid sider menu fixed
+    menuFixed: false
   },
   // Transition settings
   transitionSetting: {
