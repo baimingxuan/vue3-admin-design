@@ -6,11 +6,34 @@
         <li
           v-for="item in mainMenuList"
           :key="item.path"
-          :class="[`${prefixCls}-main-menu__item`, {[`${prefixCls}-main-menu__item--active`]: item.path === activePath}]"
-        ></li>
+          v-bind="getMainMenuItemEvents(item)"
+          :class="[
+            `${prefixCls}-main-menu__item`,
+            {
+              [`${prefixCls}-main-menu__item--active`]: item.path === activePath
+            }
+          ]"
+        >
+          <SvgIcon
+            :class="`${prefixCls}-main-menu__item-icon`"
+            :name="item?.icon || item.meta?.icon"
+            :size="getMenuFold ? 16 : 20"
+          />
+          <p :class="`${prefixCls}-main-menu__item-name`">
+            {{ item?.name }}
+          </p>
+        </li>
       </ul>
     </ScrollContainer>
-    <div></div>
+
+    <div :class="`${prefixCls}-sub-menu`" :style="getSubMenuStyle">
+      <div v-show="openMenu" :class="[`${prefixCls}-sub-menu__title`, { show: openMenu }]">
+        <span class="text">Vue-admin-design</span>
+        <SvgIcon :size="16" />
+      </div>
+      <BasicMenu />
+      <DragBar ref="dragBarRef" />
+    </div>
   </div>
 </template>
 
@@ -24,20 +47,22 @@
 
   import ScrollContainer from '@/components/Container/index.vue'
   import LayoutTrigger from '@/layout/trigger/index.vue'
-  import LayoutMenu from '@/layout/menu/index.vue'
+  import BasicMenu from '@/layout/menu/src/BasicMenu/index.vue'
   import DragBar from './components/DragBar.vue'
+  import SvgIcon from '@/components/SvgIcon/index.vue'
 
   export default defineComponent({
     name: 'LayoutHybridSider',
-    components: { ScrollContainer, LayoutTrigger, LayoutMenu, DragBar },
+    components: { ScrollContainer, LayoutTrigger, BasicMenu, DragBar, SvgIcon },
 
     setup() {
       const prefixCls = 'layout_hybrid-sider'
 
       let mainMenuList = ref<AppMenu[]>([])
       const activePath = ref('')
+      const openMenu = ref(false)
 
-      const { getMenuTheme, getMenuFold } = useMenuSetting()
+      const { getMenuTheme, getMenuFold, getMenuWidth } = useMenuSetting()
 
       const getHybridSiderWidth = computed(() => {
         return unref(getMenuFold) ? SIDE_BAR_MIN_WIDTH : SIDE_BAR_SHOW_TITLE_MIN_WIDTH
@@ -54,6 +79,13 @@
         }
       })
 
+      const getSubMenuStyle = computed((): CSSProperties => {
+        return {
+          width: unref(openMenu) ? `${unref(getMenuWidth)}` : 0,
+          left: `${unref(getHybridSiderWidth)}`
+        }
+      })
+
       function getWrapCommonStyle(width: string): CSSProperties {
         return {
           width,
@@ -63,13 +95,27 @@
         }
       }
 
+      function getMainMenuItemEvents(item: AppMenu) {
+        return {
+          onClick: () => handleMainMenuClick(item.path)
+        }
+      }
+
+      async function handleMainMenuClick(path: string) {
+        console.log(path)
+      }
+
       return {
         prefixCls,
         mainMenuList,
         activePath,
         getMenuTheme,
         getWrapStyle,
-        getWrapEvents
+        getWrapEvents,
+        getSubMenuStyle,
+        getMenuFold,
+        openMenu,
+        getMainMenuItemEvents
       }
     }
   })
