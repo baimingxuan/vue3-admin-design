@@ -10,6 +10,7 @@
     :closable="false"
     width="320"
     placement="right"
+    class="layout_setting-drawer"
     @close="toggleDrawer"
   >
     <Container>
@@ -218,7 +219,7 @@
   })
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
   .layout-setting-trigger {
     position: fixed;
     top: 240px;
@@ -235,5 +236,12 @@
     border-radius: 4px 0 0 4px;
     cursor: pointer;
     pointer-events: auto;
+  }
+  .layout_setting-drawer {
+    .ant-drawer-body {
+      .scrollbar__wrap {
+      padding: 0 16px !important;
+    }
+    }
   }
 </style>
