@@ -31,7 +31,7 @@
         <span class="text">Vue-admin-design</span>
         <SvgIcon class="pushpin" :name="getMenuFixed ? 'pushpin-fill' : 'pushpin-line'" :size="16" @click="handleFixedMenu" />
       </div>
-      <BasicMenu :item="childrenMenus" :theme="getMenuTheme" @menuClick="handleMenuClick" />
+      <BasicMenu :items="childrenMenus" :theme="getMenuTheme" @menuClick="handleMenuClick" />
       <DragBar ref="dragBarRef" />
     </div>
   </div>
@@ -148,6 +148,7 @@
           closeMenu()
           return
         }
+        console.log('children', children)
         childrenMenus.value = children
       }
 

@@ -62,7 +62,7 @@ export async function getShallowMenus(): Promise<AppMenu[]> {
 // Get the children of the menu
 export async function getChildrenMenus(parentPath: string) {
   const menus = await getMenus()
-  const parent = menus.find((item) => item.path === parentPath)
+  const parent = menus.find(item => item.path === parentPath)
   if (!parent || !parent.children || !!parent?.meta?.hideChildrenInMenu) {
     return [] as AppMenu[]
   }
