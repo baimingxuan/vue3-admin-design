@@ -1,6 +1,7 @@
 <template>
   <AntLayout>
-    <BasicSider />
+    <!-- <BasicSider /> -->
+    <HybridSider />
     <AntLayout>
       <AntHeader>Header</AntHeader>
       <AntContent>
@@ -15,7 +16,8 @@
   import { defineComponent } from 'vue'
   import { Layout as AntLayout } from 'ant-design-vue'
   import Setting from './setting/index.vue'
-  import BasicSider from './sider/BasicSider.vue'
+  // import BasicSider from './sider/BasicSider.vue'
+  import HybridSider from './sider/HybridSider/index.vue'
   import LayoutPage from './content/components/Page.vue'
 
   export default defineComponent({
@@ -26,7 +28,8 @@
       AntHeader: AntLayout.Header,
       AntContent: AntLayout.Content,
       Setting,
-      BasicSider,
+      // BasicSider,
+      HybridSider,
       LayoutPage
     }
   })

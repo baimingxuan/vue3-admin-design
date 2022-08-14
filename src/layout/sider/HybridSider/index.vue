@@ -40,17 +40,18 @@
 <script lang="ts">
   import { defineComponent, computed, ref, unref, onMounted } from 'vue'
   import type { CSSProperties } from 'vue'
+  import type { RouteLocationNormalized } from 'vue-router'
   import { AppMenu } from '@/router/types'
 
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
-  import { getShallowMenus, getChildrenMenus } from '@/router/menus'
+  import { getShallowMenus, getChildrenMenus, getCurrentParentPath } from '@/router/menus'
   import { useGo } from '@/hooks/web/usePage'
   import { SIDE_BAR_MIN_WIDTH, SIDE_BAR_SHOW_TITLE_MIN_WIDTH } from '@/enums/appEnum'
 
   import ScrollContainer from '@/components/Container/index.vue'
   import LayoutTrigger from '@/layout/trigger/index.vue'
   import BasicMenu from '@/layout/menu/src/BasicMenu/index.vue'
-  import DragBar from './components/DragBar.vue'
+  import DragBar from '../components/DragBar.vue'
   import SvgIcon from '@/components/SvgIcon/index.vue'
 
   export default defineComponent({
@@ -64,10 +65,11 @@
       const activePath = ref('')
       const childrenMenus = ref<AppMenu[]>([])
       const openMenu = ref(false)
+      const currentRoute = ref<Nullable<RouteLocationNormalized>>(null)
 
       const go = useGo()
 
-      const { getMenuTheme, getMenuFold, getMenuWidth, getMenuFixed, setMenuSetting } = useMenuSetting()
+      const { getMenuTheme, getMenuFold, getMenuWidth, getMenuFixed, getIsHybridMenu, setMenuSetting } = useMenuSetting()
 
       const getHybridSiderWidth = computed(() => {
         return unref(getMenuFold) ? SIDE_BAR_MIN_WIDTH : SIDE_BAR_SHOW_TITLE_MIN_WIDTH
@@ -79,9 +81,14 @@
       })
 
       const getWrapEvents = computed(() => {
-        return {
-          onMouseleave: () => {}
-        }
+        return !unref(getMenuFixed)
+          ? {
+              onMouseleave: () => {
+                setActive(true)
+                closeMenu()
+              }
+            }
+          : {}
       })
 
       const getSubMenuStyle = computed((): CSSProperties => {
@@ -89,6 +96,15 @@
           width: unref(openMenu) ? `${unref(getMenuWidth)}` : 0,
           left: `${unref(getHybridSiderWidth)}`
         }
+      })
+
+      const getIsFixed = computed(() => {
+        const hybridSiderHasChildren = unref(childrenMenus).length > 0
+        const isFixed = unref(getMenuFixed) && hybridSiderHasChildren
+        if (isFixed) {
+          openMenu.value = true
+        }
+        return isFixed
       })
 
       onMounted(async () => {
@@ -108,12 +124,6 @@
         return {
           onClick: () => handleMainMenuClick(item.path)
         }
-      }
-
-      function handleFixedMenu() {
-        setMenuSetting({
-          menuFixed: !unref(false)
-        })
       }
 
       async function handleMainMenuClick(path: string) {
@@ -141,10 +151,42 @@
         childrenMenus.value = children
       }
 
-      function setActive() {}
+      // Set the currently active main menu and sub menu
+      async function setActive(setChildren = false) {
+        const path = currentRoute.value?.path
+        if (!path) return
+        activePath.value = await getCurrentParentPath(path)
+        if (unref(getIsHybridMenu)) {
+          const activeMenu = unref(mainMenuList).find(item => item.path === unref(activePath))
+          if (activeMenu?.path) {
+            const children = await getChildrenMenus(activeMenu?.path)
+            if (setChildren) {
+              childrenMenus.value = children
+
+              if (unref(getMenuFixed)) {
+                openMenu.value = children.length > 0
+              }
+            }
+
+            if (children.length === 0) {
+              childrenMenus.value = []
+            }
+          }
+        }
+      }
+
+      function handleFixedMenu() {
+        setMenuSetting({
+          menuFixed: !unref(false)
+        })
+      }
 
       // Close menu
-      function closeMenu() {}
+      function closeMenu() {
+        if (!unref(getIsFixed)) {
+          openMenu.value = false
+        }
+      }
 
       return {
         prefixCls,
