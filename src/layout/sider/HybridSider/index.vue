@@ -1,6 +1,6 @@
 <template>
-  <div :class="[prefixCls, getMenuTheme]" :style="getWrapStyle" v-bind="getWrapEvents">
-    <LayoutTrigger />
+  <div :class="[prefixCls, getMenuTheme, { open: openMenu, mini: getMenuFold }]" :style="getWrapStyle" v-bind="getWrapEvents">
+    <LayoutTrigger :class="`${prefixCls}-trigger`" />
     <ScrollContainer>
       <ul :class="`${prefixCls}-main-menu`">
         <li
@@ -29,9 +29,9 @@
     <div :class="`${prefixCls}-sub-menu`" :style="getSubMenuStyle">
       <div v-show="openMenu" :class="[`${prefixCls}-sub-menu__title`, { show: openMenu }]">
         <span class="text">Vue-admin-design</span>
-        <SvgIcon :name="getMenuFixed ? 'pushpin-fill' : 'pushpin-line'" :size="16" @click="handleFixedMenu" />
+        <SvgIcon class="pushpin" :name="getMenuFixed ? 'pushpin-fill' : 'pushpin-line'" :size="16" @click="handleFixedMenu" />
       </div>
-      <BasicMenu />
+      <BasicMenu :item="childrenMenus" :theme="getMenuTheme" @menuClick="handleMenuClick" />
       <DragBar ref="dragBarRef" />
     </div>
   </div>
@@ -113,10 +113,10 @@
 
       function getWrapCommonStyle(width: string): CSSProperties {
         return {
-          width,
-          maxWidth: width,
-          minWidth: width,
-          flex: `0 0 ${width}`
+          width: width + 'px',
+          maxWidth: width + 'px',
+          minWidth: width + 'px',
+          flex: `0 0 ${width}px`
         }
       }
 
@@ -175,6 +175,10 @@
         }
       }
 
+      function handleMenuClick(path: string) {
+        go(path)
+      }
+
       function handleFixedMenu() {
         setMenuSetting({
           menuFixed: !unref(false)
@@ -199,8 +203,10 @@
         getSubMenuStyle,
         getMenuFold,
         openMenu,
+        childrenMenus,
         getMainMenuItemEvents,
-        handleFixedMenu
+        handleFixedMenu,
+        handleMenuClick
       }
     }
   })
