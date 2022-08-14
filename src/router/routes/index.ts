@@ -86,7 +86,6 @@ export const RedirectRoute: AppRoute = {
 }
 
 const routeModules = import.meta.glob('./modules/*.ts', { eager: true }) as Object
-console.log('routeModules', routeModules)
 
 const routeModulesList: AppRoute[] = []
 

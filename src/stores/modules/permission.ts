@@ -3,7 +3,7 @@ import { stores } from '../index'
 
 import type { AppRoute, AppMenu } from '@/router/types'
 
-import { filter } from '@/utils/helper/treeHelper'
+// import { filter } from '@/utils/helper/treeHelper'
 import { transformRouteToMenu } from '@/router/helper/menuHelper'
 import { asyncRoutes } from '@/router/routes'
 // import { useAppStoreWithOut } from './app'
