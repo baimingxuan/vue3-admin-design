@@ -93,8 +93,8 @@
 
       const getSubMenuStyle = computed((): CSSProperties => {
         return {
-          width: unref(openMenu) ? `${unref(getMenuWidth)}` : 0,
-          left: `${unref(getHybridSiderWidth)}`
+          width: unref(openMenu) ? `${unref(getMenuWidth)}px` : 0,
+          left: `${unref(getHybridSiderWidth)}px`
         }
       })
 
