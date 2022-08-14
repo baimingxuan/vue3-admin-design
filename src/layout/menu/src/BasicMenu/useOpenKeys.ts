@@ -16,12 +16,12 @@ export function useOpenKeys(
   mode: Ref<MenuModeEnum>,
   accordion: Ref<boolean>
 ) {
-  const { getMenuFold, getIsMixMenu } = useMenuSetting()
+  const { getMenuFold, getIsHybridMenu } = useMenuSetting()
 
   async function setOpenKeys(path: string) {
     if (mode.value === MenuModeEnum.HORIZONTAL) return
     
-    const native = unref(getIsMixMenu)
+    const native = unref(getIsHybridMenu)
 
     useTimeoutFn(
       () => {
@@ -42,12 +42,12 @@ export function useOpenKeys(
   }
 
   const getOpenKeys = computed(() => {
-    const isFold = unref(getIsMixMenu) ? false : unref(getMenuFold)
+    const isFold = unref(getIsHybridMenu) ? false : unref(getMenuFold)
     return isFold ? menuState.collapsedOpenKeys : menuState.openKeys
   })
 
   function handleOpenChange(openKeys: Key[]) {
-    if (unref(mode) === MenuModeEnum.HORIZONTAL || !unref(accordion || unref(getIsMixMenu))) {
+    if (unref(mode) === MenuModeEnum.HORIZONTAL || !unref(accordion || unref(getIsHybridMenu))) {
       menuState.openKeys = openKeys as string[]
     } else {
       const rootSubMenuKeys: string[] = []
