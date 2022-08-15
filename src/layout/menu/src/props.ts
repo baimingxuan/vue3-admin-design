@@ -28,7 +28,7 @@ export const menuProps = {
 
   collapsedShowTitle: propTypes.bool,
 
-  mixSider: propTypes.bool,
+  hybridSider: propTypes.bool,
 
   isHorizontal: propTypes.bool,
 

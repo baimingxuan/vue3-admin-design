@@ -81,7 +81,7 @@
         const inlineCollapsedOptions: { inlineCollapsed?: boolean } = {}
 
         if (isInlineMenu) {
-          inlineCollapsedOptions.inlineCollapsed = props.mixSider ? false : unref(getMenuFold)
+          inlineCollapsedOptions.inlineCollapsed = props.hybridSider ? false : unref(getMenuFold)
         }
 
         return inlineCollapsedOptions
@@ -100,7 +100,7 @@
         }
       })
 
-      !props.mixSider &&
+      !props.hybridSider &&
         watch(
           () => props.items,
           () => {

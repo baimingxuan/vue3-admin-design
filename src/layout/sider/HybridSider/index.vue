@@ -31,7 +31,7 @@
         <span class="text">Vue-admin-design</span>
         <SvgIcon class="pushpin" :name="getMenuFixed ? 'pushpin-fill' : 'pushpin-line'" :size="16" @click="handleFixedMenu" />
       </div>
-      <BasicMenu :items="childrenMenus" :theme="getMenuTheme" @menuClick="handleMenuClick" />
+      <BasicMenu :items="childrenMenus" :theme="getMenuTheme" :hybridSider="true" @menuClick="handleMenuClick" />
       <DragBar ref="dragBarRef" />
     </div>
   </div>
