@@ -28,10 +28,10 @@
 
     <div :class="`${prefixCls}-sub-menu`" :style="getSubMenuStyle">
       <div v-show="openMenu" :class="[`${prefixCls}-sub-menu__title`, { show: openMenu }]">
-        <span class="text">Vue-admin-design</span>
+        <span class="text">vue-admin-design</span>
         <SvgIcon class="pushpin" :name="getMenuFixed ? 'pushpin-fill' : 'pushpin-line'" :size="16" @click="handleFixedMenu" />
       </div>
-      <BasicMenu :items="childrenMenus" :theme="getMenuTheme" :hybridSider="true" @menuClick="handleMenuClick" />
+      <BasicMenu v-show="openMenu" :items="childrenMenus" :theme="getMenuTheme" :hybridSider="true" @menuClick="handleMenuClick" />
       <DragBar ref="dragBarRef" />
     </div>
   </div>
@@ -182,7 +182,7 @@
 
       function handleFixedMenu() {
         setMenuSetting({
-          menuFixed: !unref(false)
+          menuFixed: !unref(getIsFixed)
         })
       }
 
