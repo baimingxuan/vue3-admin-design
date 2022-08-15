@@ -222,15 +222,15 @@
 <style lang="less">
   .layout-setting-trigger {
     position: fixed;
-    top: 240px;
+    top: 320px;
     right: 0;
     z-index: 99;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 42px;
-    height: 42px;
-    font-size: 18px;
+    width: 46px;
+    height: 46px;
+    font-size: 20px;
     color: #fff;
     background-color: #1890ff;
     border-radius: 4px 0 0 4px;
@@ -240,8 +240,8 @@
   .layout_setting-drawer {
     .ant-drawer-body {
       .scrollbar__wrap {
-      padding: 0 16px !important;
-    }
+        padding: 0 16px !important;
+      }
     }
   }
 </style>

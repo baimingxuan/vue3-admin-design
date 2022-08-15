@@ -1,7 +1,7 @@
 @prefix-cls: ~'layout_hybrid-sider';
 
 .@{prefix-cls} {
-  z-index: 999;
+  z-index: 99;
   position: fixed;
   top: 0;
   left: 0;
@@ -21,6 +21,17 @@
       text-align: center;
       cursor: pointer;
       transition: all 0.3s ease;
+
+      &-icon {
+        margin-bottom: 8px;
+        transition: all 0.2s;
+      }
+  
+      &-name {
+        display: block;
+        margin-bottom: 0;
+        transition: all 0.2s;
+      }
 
       &:hover {
         color: #fff;
@@ -42,21 +53,22 @@
         }
       }
     }
+  }
 
-    &__icon {
-      margin-bottom: 8px;
-      font-size: 24px;
-      transition: all 0.2s;
-    }
+  &.mini &-main-menu {
+    &__item {
+      &-name {
+        display: none;
+      }
 
-    &__name {
-      margin-bottom: 0;
-      font-size: 12px;
-      transition: all 0.2s;
+      &-icon {
+        margin-bottom: 0;
+      }
     }
   }
 
   &-trigger {
+    z-index: 199;
     position: absolute;
     bottom: 0;
     left: 0;
