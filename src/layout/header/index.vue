@@ -4,7 +4,7 @@
       <LayoutTrigger :sider="false" />
     </div>
 
-    <div :class="`${prefixCls}-main`">
+    <div :class="`${prefixCls}-menu`">
       <LayoutMenu :isHorizontal="true" />
     </div>
 
@@ -16,7 +16,8 @@
   import { defineComponent, computed, unref } from 'vue'
   import { Layout } from 'ant-design-vue'
 
-  import { useBaseSetting } from '@/hooks/setting/useBaseSetting' 
+  import { propTypes } from '@/utils/propTypes'
+  import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
 
   import LayoutTrigger from '@/layout/trigger/index.vue'
   import LayoutMenu from '../menu/index.vue'
@@ -24,8 +25,9 @@
   export default defineComponent({
     name: 'LayoutHeader',
     components: { AntdHeader: Layout.Header, LayoutTrigger, LayoutMenu },
+    props: { fixed: propTypes.bool },
 
-    setup() {
+    setup(props) {
       const prefixCls = 'layout_header'
 
       const { getAppMode } = useBaseSetting()
@@ -36,6 +38,7 @@
         return [
           prefixCls,
           {
+            [`${prefixCls}--fixed`]: props.fixed,
             [`${prefixCls}--${mode}`]: mode
           }
         ]
