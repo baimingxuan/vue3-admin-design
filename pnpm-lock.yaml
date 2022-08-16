@@ -31,12 +31,13 @@ specifiers:
   typescript: ^4.7.4
   vite: ^3.0.2
   vite-plugin-svg-icons: ^2.0.1
-  vite-plugin-windicss: ^1.8.3
+  vite-plugin-windicss: ^1.8.7
   vue: ^3.2.37
   vue-eslint-parser: ^9.0.3
   vue-router: ^4.0.14
   vue-tsc: ^0.38.9
   vue-types: ^4.1.1
+  windicss: ^3.5.6
 
 dependencies:
   '@ant-design/icons-vue': 6.1.0_vue@3.2.37
@@ -77,6 +78,7 @@ devDependencies:
   vite-plugin-windicss: 1.8.7_vite@3.0.2
   vue-eslint-parser: 9.0.3_eslint@8.20.0
   vue-tsc: 0.38.9_typescript@4.7.4
+  windicss: 3.5.6
 
 packages:
 
