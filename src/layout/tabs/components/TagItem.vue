@@ -1,5 +1,9 @@
 <template>
-  <AntdTag class="compo_tag-item" :closable="!fixed" @close.prevent="handleClose">
+  <AntdTag
+    :class="['compo_tag-item', active]"
+    :closable="!fixed"
+    @close.prevent="handleClose"
+  >
     <span class="compo_tag-item__dot" />
     <span>{{ name }}</span>
   </AntdTag>
@@ -11,7 +15,8 @@
 
   defineProps({
     fixed: propTypes.bool,
-    name: propTypes.string
+    name: propTypes.string,
+    active: propTypes.bool
   })
 
   const emit = defineEmits(['closeTag'])
