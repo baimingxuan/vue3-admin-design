@@ -14,7 +14,7 @@ let lastChangeTab: RouteLocationNormalized
 
 
 export function listenerRouteChange(
-  callback: (route) => void,
+  callback: (route: RouteLocationNormalized) => void,
   immediate = true
 ) {
   emitter.on(key, callback)

@@ -24,9 +24,11 @@
 
 <script lang="ts">
   import { defineComponent, ref } from 'vue'
+  // import type { RouteMeta } from 'vue-router'
   import { Tabs as AntdTabs, Button as AntdButton } from 'ant-design-vue'
   import { LeftOutlined, RightOutlined } from '@ant-design/icons-vue'
 
+  import { listenerRouteChange } from '@/logics/mitt/routeChange'
   import TagItem from './components/TagItem.vue'
 
   export default defineComponent({
@@ -38,8 +40,13 @@
 
       const getTabs = ref([])
 
-      function handleMove(offset: number): void {
+      listenerRouteChange(route => {
+        console.log(route)
 
+      })
+
+      function handleMove(offset: number): void {
+        console.log(offset)
       }
 
       return {
