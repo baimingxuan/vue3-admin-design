@@ -1,5 +1,5 @@
 <template>
-  <div class="layout_tabs"></div>
+  <div :class="prefixCls"></div>
 </template>
 
 <script lang="ts">
@@ -11,10 +11,15 @@
     components: { AntdTabs },
 
     setup() {
+      const prefixCls = 'layout_tabs'
+
+      return {
+        prefixCls
+      }
     }
   })
 </script>
 
 <style lang="less" scoped>
-
+  @import './index.less';
 </style>
