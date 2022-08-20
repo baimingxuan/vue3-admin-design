@@ -176,6 +176,29 @@ export const useTagsStore = defineStore({
       handleGotoPage(router)
     },
 
+     // Close other tabs
+     async closeOtherTabs(route: RouteLocationNormalized, router: Router) {
+      const closePathList = this.visitedTags.map((item) => item.fullPath)
+
+      const pathList: string[] = []
+
+      for (const path of closePathList) {
+        if (path !== route.fullPath) {
+          const closeItem = this.visitedTags.find((item) => item.path === path)
+          if (!closeItem) {
+            continue
+          }
+          const affix = closeItem?.meta?.affix ?? false
+          if (!affix) {
+            pathList.push(closeItem.fullPath)
+          }
+        }
+      }
+      this.bulkClosedTags(pathList)
+      this.updateCachedTags()
+      handleGotoPage(router)
+    },
+
      // Close tags in bulk
      async bulkClosedTags(pathList: string[]) {
       this.visitedTags = this.visitedTags.filter(item => !pathList.includes(item.fullPath))
