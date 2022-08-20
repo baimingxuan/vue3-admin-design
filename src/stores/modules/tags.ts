@@ -9,6 +9,11 @@ interface TagsState {
   cachedTags: Set<string>
 }
 
+function handleGotoPage(router: Router) {
+  const go = useGo(router)
+  go(unref(router.currentRoute).path, true)
+}
+
 const getToTarget = (tagItem: RouteLocationNormalized) => {
   const { path, params, query } = tagItem
   return {
@@ -130,6 +135,50 @@ export const useTagsStore = defineStore({
       }
       close(currentRoute.value)
       await replace(toTarget)
+    },
+
+    // Close the tags on the right and jump
+    async closeLeftTags(route: RouteLocationNormalized, router: Router) {
+      const index = this.visitedTags.findIndex((item) => item.path === route.path)
+
+      if (index > 0) {
+        const leftTabgs = this.visitedTags.slice(0, index)
+        const pathList: string[] = []
+        for (const item of leftTabgs) {
+          const affix = item?.meta?.affix ?? false
+          if (!affix) {
+            pathList.push(item.fullPath)
+          }
+        }
+        this.bulkClosedTags(pathList)
+      }
+      this.updateCachedTags()
+      handleGotoPage(router)
+    },
+
+    // Close the tags on the left and jump
+    async closeRightTabs(route: RouteLocationNormalized, router: Router) {
+      const index = this.visitedTags.findIndex((item) => item.fullPath === route.fullPath)
+
+      if (index >= 0 && index < this.visitedTags.length - 1) {
+        const rightTags = this.visitedTags.slice(index + 1, this.visitedTags.length)
+
+        const pathList: string[] = []
+        for (const item of rightTags) {
+          const affix = item?.meta?.affix ?? false
+          if (!affix) {
+            pathList.push(item.fullPath)
+          }
+        }
+        this.bulkClosedTags(pathList)
+      }
+      this.updateCachedTags()
+      handleGotoPage(router)
+    },
+
+     // Close tags in bulk
+     async bulkClosedTags(pathList: string[]) {
+      this.visitedTags = this.visitedTags.filter(item => !pathList.includes(item.fullPath))
     },
 
     async closeAllTags(router: Router) {
