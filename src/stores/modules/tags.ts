@@ -210,6 +210,16 @@ export const useTagsStore = defineStore({
       this.gotToPage(router)
     },
 
+    // replace tags path
+    async updateTabPath(fullPath: string, route: RouteLocationNormalized) {
+      const findTag = this.getVisitedTags.find((item) => item === route)
+      if (findTag) {
+        findTag.fullPath = fullPath
+        findTag.path = fullPath
+        await this.updateCachedTags()
+      }
+    },
+
     cleanCachedTags() {
       this.cachedTags = new Set()
     },
