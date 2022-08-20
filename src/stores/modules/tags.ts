@@ -1,12 +1,21 @@
 import { defineStore } from 'pinia'
 import { unref, toRaw } from 'vue'
-import type { RouteLocationNormalized, Router } from 'vue-router'
+import type { RouteLocationNormalized, RouteLocationRaw, Router } from 'vue-router'
 import { getRawRoute } from '@/utils'
 import { useGo } from '@/hooks/web/usePage'
 
 interface TagsState {
   visitedTags: RouteLocationNormalized[]
   cachedTags: Set<string>
+}
+
+const getToTarget = (tagItem: RouteLocationNormalized) => {
+  const { path, params, query } = tagItem
+  return {
+    path,
+    params: params || {},
+    query: query || {}
+  }
 }
 
 export const useTagsStore = defineStore({
@@ -85,6 +94,42 @@ export const useTagsStore = defineStore({
 
       // Jump to the current page and report an error
       path !== toPath && go(toPath, true)
+    },
+
+    async closeTag(tag: RouteLocationNormalized, router: Router) {
+      const close = (route: RouteLocationNormalized) => {
+        const { fullPath, meta: { affix } = {} } = route
+        if (affix) return
+
+        const index = this.visitedTags.findIndex(tag => tag.fullPath === fullPath)
+        index !== -1 && this.visitedTags.splice(index, 1)
+      }
+
+      const { currentRoute, replace } = router
+
+      const { path } = unref(currentRoute)
+      if (path !== tag.path) {
+        // Closed is not the activation tag
+        close(tag)
+        return
+      }
+
+      // Closed is activated tag
+      let toTarget: RouteLocationRaw = {}
+      const index = this.visitedTags.findIndex(tag => tag.path === path)
+
+      // If the current is the leftmost tab
+      if (index === 0) {
+        // Jump to the right tab
+        const page = this.visitedTags[index + 1]
+        toTarget = getToTarget(page)
+      } else {
+        // Close the current tab
+        const page = this.visitedTags[index - 1]
+        toTarget = getToTarget(page)
+      }
+      close(currentRoute.value)
+      await replace(toTarget)
     },
 
     async closeAllTags(router: Router) {
