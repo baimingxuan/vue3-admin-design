@@ -8,7 +8,7 @@
     <div :class="`${prefixCls}__main`">
       <div :class="`${prefixCls}__main-body`">
         <TransitionGroup>
-          <template v-for="tag in getTabs" :key="tag">
+          <template v-for="item in getTagsList" :key="item.query ? item.fullPath : item.path">
             <TagItem />
           </template>
         </TransitionGroup>
@@ -23,12 +23,14 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref } from 'vue'
-  // import type { RouteMeta } from 'vue-router'
+  import { computed, defineComponent, ref, unref } from 'vue'
+  import type { RouteLocationNormalized, RouteMeta } from 'vue-router'
+  import { useRouter } from 'vue-router'
   import { Tabs as AntdTabs, Button as AntdButton } from 'ant-design-vue'
   import { LeftOutlined, RightOutlined } from '@ant-design/icons-vue'
 
   import { listenerRouteChange } from '@/logics/mitt/routeChange'
+  import { useTagsStore } from '@/stores/modules/tags'
   import TagItem from './components/TagItem.vue'
 
   export default defineComponent({
@@ -38,11 +40,33 @@
     setup() {
       const prefixCls = 'layout_tabs'
 
-      const getTabs = ref([])
+      const activeKeyRef = ref('')
+      const router = useRouter()
+      const tagsStore = useTagsStore()
+
+      const getTagsList = computed(() => {
+        return tagsStore.getVisitedTags.filter(item => !item.meta?.hideTag)
+      })
 
       listenerRouteChange(route => {
-        console.log(route)
+        // const { name } = route
+        if (!route) return
 
+        const { path, fullPath, meta = {} } = route
+        const { currentActiveMenu, hideTag } = meta as RouteMeta
+        const isHide = !hideTag ? null :currentActiveMenu
+        const currPath = isHide || fullPath || path
+        if (activeKeyRef.value !== currPath) {
+          activeKeyRef.value = currPath as string
+        }
+
+        if (isHide) {
+          const findParentRoute = router.getRoutes().find(item => item.path === currentActiveMenu)
+
+          findParentRoute && tagsStore.addVisitedTags(findParentRoute as unknown as RouteLocationNormalized)
+        } else {
+          tagsStore.addVisitedTags(unref(route))
+        }
       })
 
       function handleMove(offset: number): void {
@@ -51,7 +75,7 @@
 
       return {
         prefixCls,
-        getTabs,
+        getTagsList,
         handleMove
       }
     }
