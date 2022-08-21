@@ -9,7 +9,7 @@
       <div :class="`${prefixCls}__main-body`">
         <TransitionGroup>
           <template v-for="item in getTagsList" :key="item.query ? item.fullPath : item.path">
-            <TagItem />
+            <TagItem :name="item.name" :fixed="item.meta?.fixed" />
           </template>
         </TransitionGroup>
       </div>

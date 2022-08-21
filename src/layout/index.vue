@@ -26,7 +26,7 @@
   import Setting from './setting/index.vue'
   import BasicSider from './sider/BasicSider.vue'
   // import HybridSider from './sider/HybridSider/index.vue'
-  import LayoutHeader from './header/index.vue'
+  import LayoutHeader from './header/MultipleHeader.vue'
   import LayoutPage from './content/components/Page.vue'
 
   export default defineComponent({
