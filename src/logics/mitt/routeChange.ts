@@ -5,18 +5,28 @@
 
 import mitt from '@/utils/mitt'
 import type { RouteLocationNormalized } from 'vue-router'
+import { getRawRoute } from '@/utils'
 
 const emitter = mitt()
 
 const key = Symbol()
 
-let lastChangeTab: RouteLocationNormalized
+let lastChangeTag: RouteLocationNormalized
 
+export function setRouteChange(lastChangeRoute: RouteLocationNormalized) {
+  const route = getRawRoute(lastChangeRoute)
+  emitter.emit(key, route)
+  lastChangeTag = route
+}
 
 export function listenerRouteChange(
   callback: (route: RouteLocationNormalized) => void,
   immediate = true
 ) {
   emitter.on(key, callback)
-  immediate && lastChangeTab && callback(lastChangeTab)
+  immediate && lastChangeTag && callback(lastChangeTag)
+}
+
+export function removeRouteChange() {
+  emitter.clear()
 }
