@@ -5,7 +5,7 @@
     @close.prevent="handleClose"
   >
     <span class="compo_tag-item__dot" />
-    <span>{{ name }}</span>
+    <span class="compo_tag-item__name">{{ name }}</span>
   </AntdTag>
 </template>
 
@@ -32,11 +32,10 @@
     display: inline-block;
     vertical-align: middle;
     height: 32px;
-    margin: 4px 2px;
-    padding: 0 10px;
+    margin: 0 2px;
+    padding: 0 8px;
     border-radius: 3px;
-    line-height: 32px;
-    border: 1px solid #e8eaec;
+    line-height: 30px;
     color: #555;
     background: #fff;
     overflow: hidden;
@@ -44,11 +43,23 @@
 
     &__dot {
       display: inline-block;
-      width: 10px;
-      height: 10px;
-      margin-right: 6px;
+      width: 8px;
+      height: 8px;
+      margin-right: 8px;
       border-radius: 50%;
       background: #e8eaec;
+    }
+
+    &__name {
+      font-size: 12px;
+    }
+
+    &:deep(.anticon-close) {
+      vertical-align: middle;
+      svg {
+        width: 8px;
+        height: 8px;
+      }
     }
 
     &.active &__dot{

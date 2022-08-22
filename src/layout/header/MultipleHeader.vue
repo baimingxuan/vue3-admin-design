@@ -1,5 +1,5 @@
 <template>
-  <AntdHeader>
+  <AntdHeader style="background: #fff">
     <LayoutTags />
   </AntdHeader>
 </template>

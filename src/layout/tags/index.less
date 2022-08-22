@@ -1,5 +1,12 @@
-@prefix-cls: ~'layout-tabs';
+@prefix-cls: ~'layout_tags';
 
 .@{prefix-cls} {
   z-index: 299;
+  display: flex;
+  justify-content: space-between;
+  height: 32px;
+  line-height: 32px;
+  &__main {
+    width: calc(100% - 60px);
+  }
 }

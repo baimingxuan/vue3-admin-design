@@ -9,7 +9,7 @@
       <div :class="`${prefixCls}__main-body`">
         <TransitionGroup>
           <template v-for="item in getTagsList" :key="item.query ? item.fullPath : item.path">
-            <TagItem :name="item.name" :fixed="item.meta?.fixed" />
+            <TagItem :name="item.meta.title" :fixed="item.meta?.affix" />
           </template>
         </TransitionGroup>
       </div>
@@ -34,11 +34,11 @@
   import TagItem from './components/TagItem.vue'
 
   export default defineComponent({
-    name: 'LayoutTabs',
+    name: 'LayoutTags',
     components: { AntdTabs, AntdButton, TagItem, LeftOutlined, RightOutlined },
 
     setup() {
-      const prefixCls = 'layout_tabs'
+      const prefixCls = 'layout_tags'
 
       const activeKeyRef = ref('')
       const router = useRouter()
