@@ -1,6 +1,6 @@
 <template>
   <AntdTag
-    :class="['compo_tag-item', active]"
+    :class="['compo_tag-item', { active: active }]"
     :closable="!fixed"
     @close.prevent="handleClose"
   >

@@ -9,7 +9,7 @@
       <div :class="`${prefixCls}__main-body`">
         <TransitionGroup>
           <template v-for="item in getTagsList" :key="item.query ? item.fullPath : item.path">
-            <TagItem :name="item.meta.title" :fixed="item.meta?.affix" />
+            <TagItem :name="item.meta.title" :active="activeKeyRef === item.path" :fixed="item.meta?.affix" />
           </template>
         </TransitionGroup>
       </div>
@@ -76,6 +76,7 @@
       return {
         prefixCls,
         getTagsList,
+        activeKeyRef,
         handleMove
       }
     }
