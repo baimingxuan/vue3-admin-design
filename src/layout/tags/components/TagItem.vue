@@ -30,7 +30,7 @@
 <style lang="less" scoped>
   .compo_tag-item {
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: top;
     height: 32px;
     margin: 0 2px;
     padding: 0 8px;
