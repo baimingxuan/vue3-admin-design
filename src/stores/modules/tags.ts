@@ -137,6 +137,35 @@ export const useTagsStore = defineStore({
       await replace(toTarget)
     },
 
+    // Close according to key
+    async closeTagByKey(key: string, router: Router) {
+      const index = this.visitedTags.findIndex(item => (item.fullPath || item.path) === key)
+      if (index !== -1) {
+        await this.closeTag(this.visitedTags[index], router)
+        const { currentRoute, replace } = router
+        // Check whether the current route exists in the visitedTags
+        const isActivated = this.visitedTags.findIndex((item) => {
+          return item.fullPath === currentRoute.value.fullPath
+        })
+        // If the current route does not exist in the visitedTags, try to switch to another route
+        if (isActivated === -1) {
+          let pageIndex
+          if (index > 0) {
+            pageIndex = index - 1
+          } else if (index < this.visitedTags.length - 1) {
+            pageIndex = index + 1
+          } else {
+            pageIndex = -1
+          }
+          if (pageIndex >= 0) {
+            const page = this.visitedTags[index - 1]
+            const toTarget = getToTarget(page)
+            await replace(toTarget)
+          }
+        }
+      }
+    },
+
     // Close the tags on the right and jump
     async closeLeftTags(route: RouteLocationNormalized, router: Router) {
       const index = this.visitedTags.findIndex((item) => item.path === route.path)

@@ -2,7 +2,7 @@
   <AntdTag
     :class="['compo_tag-item', { active }]"
     :closable="!fixed"
-    @close.prevent="handleClose"
+    @close="handleClose"
   >
     <span class="compo_tag-item__dot" />
     <span class="compo_tag-item__name">{{ name }}</span>

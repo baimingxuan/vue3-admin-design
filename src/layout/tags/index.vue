@@ -8,8 +8,17 @@
     <div :class="`${prefixCls}__main`">
       <div :class="`${prefixCls}__main-body`">
         <TransitionGroup>
-          <template v-for="item in getTagsList" :key="item.query ? item.fullPath : item.path">
-            <TagItem :name="item.meta.title" :active="activeKeyRef === item.path" :fixed="item.meta?.affix" />
+          <template
+            v-for="item in getTagsList"
+            :key="item.query ? item.fullPath : item.path"
+          >
+            <TagItem
+              :name="item.meta.title"
+              :active="activeKeyRef === item.path"
+              :fixed="item.meta?.affix"
+              @click="handleClickTag(item.path)"
+              @closeTag="handleCloseTag(item.path)"
+            />
           </template>
         </TransitionGroup>
       </div>
@@ -31,6 +40,7 @@
 
   import { listenerRouteChange } from '@/logics/mitt/routeChange'
   import { useTagsStore } from '@/stores/modules/tags'
+  import { useGo } from '@/hooks/web/usePage'
   import TagItem from './components/TagItem.vue'
 
   export default defineComponent({
@@ -43,6 +53,7 @@
       const activeKeyRef = ref('')
       const router = useRouter()
       const tagsStore = useTagsStore()
+      const go = useGo()
 
       const getTagsList = computed(() => {
         return tagsStore.getVisitedTags.filter(item => !item.meta?.hideTag)
@@ -69,6 +80,15 @@
         }
       })
 
+      function handleClickTag(activeKey: string) {
+        activeKeyRef.value = activeKey
+        go(activeKey, false)
+      }
+
+      function handleCloseTag(targetKey: string) {
+        tagsStore.closeTagByKey(targetKey, router)
+      }
+
       function handleMove(offset: number): void {
         console.log(offset)
       }
@@ -77,6 +97,8 @@
         prefixCls,
         getTagsList,
         activeKeyRef,
+        handleClickTag,
+        handleCloseTag,
         handleMove
       }
     }
