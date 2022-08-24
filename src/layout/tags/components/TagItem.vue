@@ -1,6 +1,6 @@
 <template>
   <AntdTag
-    :class="['compo_tag-item', { active: active }]"
+    :class="['compo_tag-item', { active }]"
     :closable="!fixed"
     @close.prevent="handleClose"
   >
@@ -47,7 +47,7 @@
       height: 8px;
       margin-right: 8px;
       border-radius: 50%;
-      background: #e8eaec;
+      background: #dcdee0;
     }
 
     &__name {
@@ -62,8 +62,16 @@
       }
     }
 
-    &.active &__dot{
+    &.active {
+      border: none;
+      color: #fff;
       background: #409eff;
+      & .compo_tag-item__dot{
+        background: #fff;
+      }
+      &:deep(.anticon-close) {
+        color: #fff;
+      }
     }
   }
 
