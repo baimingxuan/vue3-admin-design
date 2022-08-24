@@ -28,6 +28,26 @@
         <RightOutlined />
       </template>
     </AntdButton>
+    <AntdButton :class="[`${prefixCls}__btn`, `${prefixCls}__btn-space`]">
+      <template #icon>
+        <RedoOutlined />
+      </template>
+    </AntdButton>
+    <AntdDropdown placement="bottomRight">
+      <AntdButton :class="[`${prefixCls}__btn`, `${prefixCls}__btn-space`]">
+        <template #icon>
+          <CloseOutlined />
+        </template>
+      </AntdButton>
+      <template #overlay>
+        <AntdMenu>
+          <AntdMenuItem>关闭左侧</AntdMenuItem>
+          <AntdMenuItem>关闭右侧</AntdMenuItem>
+          <AntdMenuItem>关闭其它</AntdMenuItem>
+          <AntdMenuItem>关闭所有</AntdMenuItem>
+        </AntdMenu>
+      </template>
+    </AntdDropdown>
   </div>
 </template>
 
@@ -35,8 +55,8 @@
   import { computed, defineComponent, ref, unref } from 'vue'
   import type { RouteLocationNormalized, RouteMeta } from 'vue-router'
   import { useRouter } from 'vue-router'
-  import { Tabs as AntdTabs, Button as AntdButton } from 'ant-design-vue'
-  import { LeftOutlined, RightOutlined } from '@ant-design/icons-vue'
+  import { Tabs as AntdTabs, Button as AntdButton, Dropdown as AntdDropdown, Menu as AntdMenu } from 'ant-design-vue'
+  import { LeftOutlined, RightOutlined, RedoOutlined, CloseOutlined } from '@ant-design/icons-vue'
 
   import { listenerRouteChange } from '@/logics/mitt/routeChange'
   import { useTagsStore } from '@/stores/modules/tags'
@@ -45,7 +65,10 @@
 
   export default defineComponent({
     name: 'LayoutTags',
-    components: { AntdTabs, AntdButton, TagItem, LeftOutlined, RightOutlined },
+    components: {
+      AntdTabs, AntdButton, TagItem, AntdDropdown, AntdMenu, AntdMenuItem: AntdMenu.Item,
+      LeftOutlined, RightOutlined, RedoOutlined, CloseOutlined
+    },
 
     setup() {
       const prefixCls = 'layout_tags'
