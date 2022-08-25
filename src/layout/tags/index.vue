@@ -5,8 +5,17 @@
         <LeftOutlined />
       </template>
     </AntdButton>
-    <div :class="`${prefixCls}__main`">
-      <div :class="`${prefixCls}__main-body`">
+    <div
+      ref="tagsMain"
+      :class="`${prefixCls}__main`"
+      @DOMMouseScroll="handleScroll"
+      @mousewheel="handleScroll"
+    >
+      <div
+        ref="tagsMainBody"
+        :class="`${prefixCls}__main-body`"
+        :style="getBodyStyle"
+      >
         <TransitionGroup>
           <template
             v-for="item in getTagsList"
@@ -16,7 +25,7 @@
               :name="item.meta.title"
               :active="activeKeyRef === item.path"
               :fixed="item.meta?.affix"
-              @click="handleClickTag(item.path)"
+              @click="handleClickTag(item)"
               @closeTag="handleCloseTag(item.path)"
             />
           </template>
@@ -52,7 +61,7 @@
 </template>
 
 <script lang="ts">
-  import { computed, defineComponent, ref, unref } from 'vue'
+  import { defineComponent, computed, ref, unref, nextTick, CSSProperties } from 'vue'
   import type { RouteLocationNormalized, RouteMeta } from 'vue-router'
   import { useRouter } from 'vue-router'
   import { Tabs as AntdTabs, Button as AntdButton, Dropdown as AntdDropdown, Menu as AntdMenu } from 'ant-design-vue'
@@ -74,6 +83,10 @@
     setup() {
       const prefixCls = 'layout_tags'
 
+      const tagsMain = ref<ElRef>(null)
+      const tagsMainBody = ref<ElRef>(null)
+
+      const tagsBodyLeft = ref(0)
       const loading = ref(false)
       const activeKeyRef = ref('')
       const router = useRouter()
@@ -83,6 +96,12 @@
 
       const getTagsList = computed(() => {
         return tagStore.getVisitedTags.filter(item => !item.meta?.hideTag)
+      })
+
+      const getBodyStyle = computed((): CSSProperties => {
+        return {
+          left: `${unref(tagsBodyLeft)}px`
+        }
       })
 
       listenerRouteChange(route => {
@@ -106,9 +125,11 @@
         }
       })
 
-      function handleClickTag(activeKey: string) {
+      function handleClickTag(route: RouteLocationNormalized) {
+        const activeKey = route.path
         activeKeyRef.value = activeKey
         go(activeKey, false)
+        getTagElement(route)
       }
 
       function handleCloseTag(targetKey: string) {
@@ -124,15 +145,56 @@
         }, 1000)
       }
 
+      function getTagElement(route: RouteLocationNormalized) {
+        nextTick(() => {
+          console.log(route)
+        })
+      }
+
       function handleMove(offset: number): void {
-        console.log(offset)
+        const mainWidth = unref(tagsMain)?.offsetWidth!
+        const mainBodyWidth = unref(tagsMainBody)?.offsetWidth!
+
+        if (offset > 0) {
+          tagsBodyLeft.value = Math.min(0, tagsBodyLeft.value + offset)
+        } else {
+          if (mainWidth < mainBodyWidth) {
+            if (tagsBodyLeft.value >= -(mainBodyWidth - mainWidth)) {
+              tagsBodyLeft.value = Math.max(tagsBodyLeft.value + offset, mainWidth - mainBodyWidth)
+            }
+          } else {
+            tagsBodyLeft.value = 0
+          }
+        }
+
+      }
+
+      function handleScroll(e: any) {
+        const type = e.type
+        let distance: number = 0
+
+        // Mousewheel non-Firefox mouse scroll event, DOMMouseScroll Firefox mouse scroll event
+        if (type === 'mousewheel' || type === 'DOMMouseScroll') {
+          /**
+           * The value of the event.wheelDelta property in the mousewheel event: positive if the wheel is rolling up, negative otherwise; 
+           * The returned values are all multiples of 120, that is, the magnitude = the returned value / 120 .
+           * The value of the event.detail property in the DOMMouseScroll event: The value returned is the opposite of the value returned by event.wheelDelta;
+           * The returned values are all multiples of 3, that is, the magnitude = the returned value / 3 .
+          */
+          distance = (e.wheelDelta) ? e.wheelDelta : -(e.detail || 0) * 40
+        }
+
+        handleMove(distance)
       }
 
       return {
         prefixCls,
+        tagsMain,
+        tagsMainBody,
         getTagsList,
         loading,
         activeKeyRef,
+        getBodyStyle,
         handleClickTag,
         handleCloseTag,
         handleReload,
@@ -140,7 +202,8 @@
         closeRight,
         closeOther,
         closeAll,
-        handleMove
+        handleMove,
+        handleScroll
       }
     }
   })
@@ -157,7 +220,17 @@
     height: 32px;
     line-height: 32px;
     &__main {
-      width: calc(100% - 60px);
+      position: relative;
+      width: calc(100% - 120px);
+      height: 32px;
+      overflow: hidden;
+      &-body {
+        position: absolute;
+        padding: 0 4px;
+        overflow: visible;
+        white-space: nowrap;
+        transition: left .5s ease;
+      }
     }
     &__btn-space {
       margin-left: 4px;
