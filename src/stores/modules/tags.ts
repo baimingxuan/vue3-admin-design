@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { unref, toRaw } from 'vue'
 import type { RouteLocationNormalized, RouteLocationRaw, Router } from 'vue-router'
 import { getRawRoute } from '@/utils'
-import { useGo } from '@/hooks/web/usePage'
+import { useGo, useReload } from '@/hooks/web/usePage'
 
 interface TagsState {
   visitedTags: RouteLocationNormalized[]
@@ -233,13 +233,14 @@ export const useTagStore = defineStore({
       this.visitedTags = this.visitedTags.filter(item => !pathList.includes(item.fullPath))
     },
 
+    // Close all tags
     async closeAllTags(router: Router) {
       this.visitedTags = this.visitedTags.filter(tag => tag?.meta?.affix ?? false)
       this.cleanCachedTags()
       this.gotToPage(router)
     },
 
-    // replace tags path
+    // Replace tags path
     async updateTabPath(fullPath: string, route: RouteLocationNormalized) {
       const findTag = this.getVisitedTags.find((item) => item === route)
       if (findTag) {
@@ -247,6 +248,19 @@ export const useTagStore = defineStore({
         findTag.path = fullPath
         await this.updateCachedTags()
       }
+    },
+
+    // Refresh tag pages
+    async refreshTagPage(router: Router) {
+      const { currentRoute } = router
+      const route = unref(currentRoute)
+
+      const findTag = this.getCachedTags.find(item => item === route.name)
+      if (findTag) {
+        this.cachedTags.delete(findTag)
+      }
+      const reload = useReload(router)
+      await reload()
     },
 
     cleanCachedTags() {
