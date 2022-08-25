@@ -28,9 +28,9 @@
         <RightOutlined />
       </template>
     </AntdButton>
-    <AntdButton :class="[`${prefixCls}__btn`, `${prefixCls}__btn-space`]">
+    <AntdButton :class="[`${prefixCls}__btn`, `${prefixCls}__btn-space`]" @click="handleReload">
       <template #icon>
-        <RedoOutlined />
+        <RedoOutlined :spin="loading" />
       </template>
     </AntdButton>
     <AntdDropdown placement="bottomRight">
@@ -41,10 +41,10 @@
       </AntdButton>
       <template #overlay>
         <AntdMenu>
-          <AntdMenuItem>关闭左侧</AntdMenuItem>
-          <AntdMenuItem>关闭右侧</AntdMenuItem>
-          <AntdMenuItem>关闭其它</AntdMenuItem>
-          <AntdMenuItem>关闭所有</AntdMenuItem>
+          <AntdMenuItem @click="closeLeft">关闭左侧</AntdMenuItem>
+          <AntdMenuItem @click="closeRight">关闭右侧</AntdMenuItem>
+          <AntdMenuItem @click="closeOther">关闭其它</AntdMenuItem>
+          <AntdMenuItem @click="closeAll">关闭所有</AntdMenuItem>
         </AntdMenu>
       </template>
     </AntdDropdown>
@@ -61,6 +61,7 @@
   import { listenerRouteChange } from '@/logics/mitt/routeChange'
   import { useTagStore } from '@/stores/modules/tags'
   import { useGo } from '@/hooks/web/usePage'
+  import { useTags } from '@/hooks/web/useTags'
   import TagItem from './components/TagItem.vue'
 
   export default defineComponent({
@@ -73,10 +74,12 @@
     setup() {
       const prefixCls = 'layout_tags'
 
+      const loading = ref(false)
       const activeKeyRef = ref('')
       const router = useRouter()
       const tagStore = useTagStore()
       const go = useGo()
+      const { refresh, closeLeft, closeRight, closeOther, closeAll } = useTags()
 
       const getTagsList = computed(() => {
         return tagStore.getVisitedTags.filter(item => !item.meta?.hideTag)
@@ -112,6 +115,15 @@
         tagStore.closeTagByKey(targetKey, router)
       }
 
+      async function handleReload() {
+        loading.value = true
+        await refresh()
+        setTimeout(() => {
+          loading.value = false
+          // Animation execution time
+        }, 1000)
+      }
+
       function handleMove(offset: number): void {
         console.log(offset)
       }
@@ -119,9 +131,15 @@
       return {
         prefixCls,
         getTagsList,
+        loading,
         activeKeyRef,
         handleClickTag,
         handleCloseTag,
+        handleReload,
+        closeLeft,
+        closeRight,
+        closeOther,
+        closeAll,
         handleMove
       }
     }
