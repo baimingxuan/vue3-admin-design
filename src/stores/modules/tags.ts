@@ -23,7 +23,7 @@ const getToTarget = (tagItem: RouteLocationNormalized) => {
   }
 }
 
-export const useTagsStore = defineStore({
+export const useTagStore = defineStore({
   id: 'app-tags',
   state: (): TagsState => ({
     visitedTags: [],
@@ -186,7 +186,7 @@ export const useTagsStore = defineStore({
     },
 
     // Close the tags on the left and jump
-    async closeRightTabs(route: RouteLocationNormalized, router: Router) {
+    async closeRightTags(route: RouteLocationNormalized, router: Router) {
       const index = this.visitedTags.findIndex((item) => item.fullPath === route.fullPath)
 
       if (index >= 0 && index < this.visitedTags.length - 1) {
@@ -206,7 +206,7 @@ export const useTagsStore = defineStore({
     },
 
      // Close other tabs
-     async closeOtherTabs(route: RouteLocationNormalized, router: Router) {
+     async closeOtherTags(route: RouteLocationNormalized, router: Router) {
       const closePathList = this.visitedTags.map((item) => item.fullPath)
 
       const pathList: string[] = []

@@ -2,7 +2,7 @@ import type { RouteLocationNormalized, Router } from 'vue-router'
 import { useRouter } from 'vue-router'
 import { unref } from 'vue'
 
-import { useTagsStore } from '@/stores/modules/tags'
+import { useTagStore } from '@/stores/modules/tags'
 import { useAppStore } from '@/stores/modules/app'
 
 enum TagActionEnum {
@@ -15,7 +15,7 @@ enum TagActionEnum {
 }
 
 export function useTags(_router?: Router) {
-  const tagStore = useTagsStore()
+  const tagStore = useTagStore()
   const router = _router || useRouter()
   const { currentRoute } = router
   

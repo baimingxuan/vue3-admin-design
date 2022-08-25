@@ -59,7 +59,7 @@
   import { LeftOutlined, RightOutlined, RedoOutlined, CloseOutlined } from '@ant-design/icons-vue'
 
   import { listenerRouteChange } from '@/logics/mitt/routeChange'
-  import { useTagsStore } from '@/stores/modules/tags'
+  import { useTagStore } from '@/stores/modules/tags'
   import { useGo } from '@/hooks/web/usePage'
   import TagItem from './components/TagItem.vue'
 
@@ -75,11 +75,11 @@
 
       const activeKeyRef = ref('')
       const router = useRouter()
-      const tagsStore = useTagsStore()
+      const tagStore = useTagStore()
       const go = useGo()
 
       const getTagsList = computed(() => {
-        return tagsStore.getVisitedTags.filter(item => !item.meta?.hideTag)
+        return tagStore.getVisitedTags.filter(item => !item.meta?.hideTag)
       })
 
       listenerRouteChange(route => {
@@ -97,9 +97,9 @@
         if (isHide) {
           const findParentRoute = router.getRoutes().find(item => item.path === currentActiveMenu)
 
-          findParentRoute && tagsStore.addVisitedTags(findParentRoute as unknown as RouteLocationNormalized)
+          findParentRoute && tagStore.addVisitedTags(findParentRoute as unknown as RouteLocationNormalized)
         } else {
-          tagsStore.addVisitedTags(unref(route))
+          tagStore.addVisitedTags(unref(route))
         }
       })
 
@@ -109,7 +109,7 @@
       }
 
       function handleCloseTag(targetKey: string) {
-        tagsStore.closeTagByKey(targetKey, router)
+        tagStore.closeTagByKey(targetKey, router)
       }
 
       function handleMove(offset: number): void {
