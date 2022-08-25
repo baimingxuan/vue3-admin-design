@@ -241,7 +241,7 @@ export const useTagStore = defineStore({
     },
 
     // Replace tags path
-    async updateTabPath(fullPath: string, route: RouteLocationNormalized) {
+    async updateTagPath(fullPath: string, route: RouteLocationNormalized) {
       const findTag = this.getVisitedTags.find((item) => item === route)
       if (findTag) {
         findTag.fullPath = fullPath
