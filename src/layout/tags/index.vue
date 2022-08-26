@@ -17,18 +17,19 @@
         :style="getBodyStyle"
       >
         <TransitionGroup>
-          <template
+          <span
             v-for="item in getTagsList"
-            :key="item.query ? item.fullPath : item.path"
+            :key="item.path"
+            ref="tagRef"
           >
             <TagItem
               :name="item.meta.title"
               :active="activeKeyRef === item.path"
               :fixed="item.meta?.affix"
-              @click="handleClickTag(item)"
+              @click="handleClickTag(item.path)"
               @closeTag="handleCloseTag(item.path)"
             />
-          </template>
+          </span>
         </TransitionGroup>
       </div>
     </div>
@@ -71,6 +72,7 @@
   import { useTagStore } from '@/stores/modules/tags'
   import { useGo } from '@/hooks/web/usePage'
   import { useTags } from '@/hooks/web/useTags'
+  import { Component } from '@/router/types'
   import TagItem from './components/TagItem.vue'
 
   export default defineComponent({
@@ -85,6 +87,7 @@
 
       const tagsMain = ref<ElRef>(null)
       const tagsMainBody = ref<ElRef>(null)
+      const tagRef = ref<ElRef>(null)
 
       const tagsBodyLeft = ref(0)
       const loading = ref(false)
@@ -123,13 +126,21 @@
         } else {
           tagStore.addVisitedTags(unref(route))
         }
+        
+        getActiveTag()
       })
 
-      function handleClickTag(route: RouteLocationNormalized) {
-        const activeKey = route.path
+      function handleClickTag(activeKey: string) {
         activeKeyRef.value = activeKey
         go(activeKey, false)
-        getTagElement(route)
+      }
+
+      function getActiveTag() {
+        nextTick(() => {
+          const tagRefList = unref(tagRef) as unknown as Array<Component>
+          const activeTag = tagRefList.find(item => item.__vnode.key === unref(activeKeyRef))!
+          moveToActiveTag(activeTag)
+        })
       }
 
       function handleCloseTag(targetKey: string) {
@@ -145,10 +156,22 @@
         }, 1000)
       }
 
-      function getTagElement(route: RouteLocationNormalized) {
-        nextTick(() => {
-          console.log(route)
-        })
+      function moveToActiveTag(tag: any) {
+        const mainBodyPadding = 4
+        const mainWidth = unref(tagsMain)?.offsetWidth!
+        const mainBodyWidth = unref(tagsMainBody)?.offsetWidth!
+        if (mainBodyWidth < mainWidth) {
+          tagsBodyLeft.value = 0
+        } else if (tag?.offsetLeft! < -tagsBodyLeft.value) {
+          // The active tag on the left side of the layout_tags-main
+          tagsBodyLeft.value = -tag?.offsetLeft! + mainBodyPadding
+        } else if (tag?.offsetLeft! > -tagsBodyLeft.value && tag?.offsetLeft! + tag?.offsetWidth! < -tagsBodyLeft.value + mainWidth) {
+          // The active tag on the layout_tags-main
+          tagsBodyLeft.value = Math.min(0, mainWidth - tag?.offsetWidth! - tag?.offsetLeft! - mainBodyPadding)
+        } else {
+          // The active tag on the right side of the layout_tags-main
+          tagsBodyLeft.value = -(tag?.offsetLeft! - (mainWidth - mainBodyPadding - tag?.offsetWidth!))
+        }
       }
 
       function handleMove(offset: number): void {
@@ -191,6 +214,7 @@
         prefixCls,
         tagsMain,
         tagsMainBody,
+        tagRef,
         getTagsList,
         loading,
         activeKeyRef,

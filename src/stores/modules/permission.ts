@@ -36,7 +36,6 @@ export const usePermissionStore = defineStore('permission', {
       //   return (a.meta?.orderNo || 0) - (b.meta?.orderNo || 0);
       // })
 
-      console.log('menuList', menuList)
       this.setMenuList(menuList)
       return routes
     }
