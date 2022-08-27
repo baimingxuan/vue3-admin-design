@@ -24,7 +24,7 @@ export const appSetting: AppConfig = {
     // Menu type
     menuType: MenuTypeEnum.SIDE_MENU,
     // Menu mode
-    menuMode: MenuModeEnum.HORIZONTAL,
+    menuMode: MenuModeEnum.INLINE,
     // Menu theme
     menuTheme: ThemeEnum.DARK,
     // Menu split
