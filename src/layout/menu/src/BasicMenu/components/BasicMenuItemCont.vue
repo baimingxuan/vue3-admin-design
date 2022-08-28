@@ -42,7 +42,7 @@
   })
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
   .compo_menu-item-cont {
     &__name {
       margin-left: 8px;

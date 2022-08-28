@@ -8,6 +8,7 @@
   <AntdSubMenu
     v-if="menuHasChildren(item) && getShowMenu"
     :key="`submenu-${item.path}`"
+    :class="{ 'submenu-collapsed': collapsed && showTitle }"
   >
     <template #title>
       <BasicMenuItemCont :item="item" :collapsed="collapsed" :showTitle="showTitle" />
@@ -54,3 +55,17 @@
     }
   })
 </script>
+
+<style lang="less">
+  .submenu-collapsed {
+    .ant-menu-submenu-title {
+      height: 70px !important;
+      padding: 0 !important;
+      text-align: center !important;
+      .compo_menu-item-cont__name {
+        display: block;
+        margin-left: 0;
+      } 
+    }
+  }
+</style>
