@@ -1,6 +1,6 @@
 <template>
   <AntdMenuItem :key="item.path">
-    <BasicMenuItemCont :item="item" />
+    <BasicMenuItemCont :item="item" :collapsed="collapsed" :showTitle="showTitle" />
   </AntdMenuItem>
 </template>
 

@@ -1,11 +1,16 @@
 <template>
-  <BasicMenuItem v-if="!menuHasChildren(item) && getShowMenu" :item="item" />
+  <BasicMenuItem
+    v-if="!menuHasChildren(item) && getShowMenu"
+    :item="item"
+    :collapsed="collapsed"
+    :showTitle="showTitle"
+  />
   <AntdSubMenu
     v-if="menuHasChildren(item) && getShowMenu"
     :key="`submenu-${item.path}`"
   >
     <template #title>
-      <BasicMenuItemCont :item="item" />
+      <BasicMenuItemCont :item="item" :collapsed="collapsed" :showTitle="showTitle" />
     </template>
 
     <template v-for="childrenItem in item.children || []" :key="childrenItem.path">

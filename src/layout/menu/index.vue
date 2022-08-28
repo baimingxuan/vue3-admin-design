@@ -28,7 +28,9 @@
 
       const { menusRef } = useSplitMenu()
 
-      const { getMenuMode, getMenuTheme, getMenuType, getIsHorizontal, getIsSideMenu } = useMenuSetting()
+      const { getMenuMode, getMenuTheme, getMenuType, getIsHorizontal, getIsSideMenu,
+        getMenuFoldShowTitle
+      } = useMenuSetting()
 
       const getCommonProps = computed(() => {
         const menus = unref(menusRef)
@@ -36,6 +38,7 @@
         return {
           menus,
           items: menus,
+          menuFoldShowTitle: unref(getMenuFoldShowTitle),
           onMenuClick: handleMenuClick
         }
       })

@@ -26,7 +26,7 @@ export const menuProps = {
 
   inlineCollapsed: propTypes.bool,
 
-  collapsedShowTitle: propTypes.bool,
+  menuFoldShowTitle: propTypes.bool,
 
   hybridSider: propTypes.bool,
 
@@ -49,7 +49,9 @@ export const menuItemProps = {
 
   theme: propTypes.oneOf(['dark', 'light']),
 
-  showTitle: propTypes.bool,
+  collapsed: propTypes.bool,
+
+  showTitle: propTypes.bool.def(true),
 
   isHorizontal: propTypes.bool
 }
@@ -59,6 +61,8 @@ export const menuItemContentProps = {
     type: Object as PropType<AppMenu>,
     default: () => {}
   },
+  collapsed: propTypes.bool,
+
   showTitle: propTypes.bool.def(true),
 
   level: propTypes.number.def(0),

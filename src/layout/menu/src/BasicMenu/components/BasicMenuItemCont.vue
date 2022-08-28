@@ -1,7 +1,16 @@
 <template>
-  <span class="compo_menu-item-cont">
-    <SvgIcon v-if="getIcon" :name="getIcon" :size="16" />
-    <span class="compo_menu-item-cont__name">{{ getIconName }}</span>
+  <span :class="prefixCls">
+    <SvgIcon
+      v-if="getIcon"
+      :name="getIcon"
+      :size="16"
+    />
+    <span
+      :class="[
+        `${prefixCls}__name`,
+        { hide: getHideName }
+      ]"
+    >{{ getIconName }}</span>
   </span>
 </template>
 
@@ -17,21 +26,29 @@
     props: menuItemContentProps,
 
     setup(props) {
+      const prefixCls = 'compo_menu-item-cont'
+
       const getIcon = computed(() => props.item.meta?.icon as string)
       const getIconName = computed(() => props.item?.name)
+      const getHideName = computed(() => props.collapsed && !props.showTitle)
 
       return {
+        prefixCls,
         getIcon,
-        getIconName
+        getIconName,
+        getHideName
       }
     }
   })
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
   .compo_menu-item-cont {
     &__name {
       margin-left: 8px;
+      &.hide {
+        display: none;
+      }
     }
   }
 </style>

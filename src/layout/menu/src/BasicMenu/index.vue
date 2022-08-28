@@ -11,7 +11,13 @@
     @click="handleMenuClick"
   >
     <template v-for="item in items" :key="item.path">
-      <BasicSubMenuItem :item="item" :theme="theme" :isHorizontal="isHorizontal" />
+      <BasicSubMenuItem
+        :item="item"
+        :theme="theme"
+        :collapsed="getMenuFold"
+        :showTitle="menuFoldShowTitle"
+        :isHorizontal="isHorizontal"
+      />
     </template>
   </AntdMenu>
 </template>
@@ -145,6 +151,7 @@
         handleMenuClick,
         getOpenKeys,
         ...toRefs(menuState),
+        getMenuFold,
         getInlineCollapsedOptions
       }
     }
