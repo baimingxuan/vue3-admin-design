@@ -58,13 +58,25 @@
 
 <style lang="less">
   .submenu-collapsed {
+    
     .ant-menu-submenu-title {
-      height: 70px !important;
-      padding: 0 !important;
+      height: auto !important;
+      line-height: initial !important;
+      padding: 12px 0 !important;
+      margin: 0;
       text-align: center !important;
-      .compo_menu-item-cont__name {
-        display: block;
-        margin-left: 0;
+      transition: all 0.3s ease;
+
+      .compo_menu-item-cont {
+        .svg-icon {
+          margin-bottom: 6px;
+        }
+
+        &__name {
+          display: block;
+          line-height: initial;
+          margin-left: 0;
+        }
       } 
     }
   }

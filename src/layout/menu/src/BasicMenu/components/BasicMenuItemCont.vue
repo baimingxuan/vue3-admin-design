@@ -3,7 +3,7 @@
     <SvgIcon
       v-if="getIcon"
       :name="getIcon"
-      :size="16"
+      :size="collapsed ? 20 : 16"
     />
     <span
       :class="[
@@ -44,8 +44,11 @@
 
 <style lang="less">
   .compo_menu-item-cont {
+
     &__name {
       margin-left: 8px;
+      transition: all 0.3s ease;
+      
       &.hide {
         display: none;
       }
