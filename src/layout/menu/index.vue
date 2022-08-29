@@ -3,7 +3,7 @@
   import { defineComponent, computed, unref } from 'vue'
   import { propTypes } from '@/utils/propTypes'
   import { MenuModeEnum } from '@/enums/menuEnum'
-  import { BasicMenu } from './src/index'
+  import Menu from './src/index.vue'
   import { useGo } from '@/hooks/web/usePage'
   import { useSplitMenu } from './useLayoutMenu'
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
@@ -21,7 +21,7 @@
 
       isHorizontal: propTypes.bool
     },
-    components: { BasicMenu },
+    components: { Menu },
 
     setup(props) {
       const go = useGo()
@@ -61,7 +61,7 @@
         const { menus, ...menuProps } = unref(getCommonProps)
 
         return (
-          <BasicMenu
+          <Menu
             { ...(menuProps as any) }
             items={menus}
             type={unref(getMenuType)}

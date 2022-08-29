@@ -31,7 +31,7 @@
         <span class="text">vue-admin-design</span>
         <SvgIcon class="pushpin" :name="getMenuFixed ? 'pushpin-fill' : 'pushpin-line'" :size="16" @click="handleFixedMenu" />
       </div>
-      <BasicMenu v-show="openMenu" :items="childrenMenus" :theme="getMenuTheme" :hybridSider="true" @menuClick="handleMenuClick" />
+      <Menu v-show="openMenu" :items="childrenMenus" :theme="getMenuTheme" :hybridSider="true" @menuClick="handleMenuClick" />
       <DragBar ref="dragBarRef" />
     </div>
   </div>
@@ -50,13 +50,13 @@
 
   import ScrollContainer from '@/components/Container/index.vue'
   import LayoutTrigger from '@/layout/trigger/index.vue'
-  import BasicMenu from '@/layout/menu/src/index.vue'
+  import Menu from '@/layout/menu/src/index.vue'
   import DragBar from '../components/DragBar.vue'
   import SvgIcon from '@/components/SvgIcon/index.vue'
 
   export default defineComponent({
     name: 'LayoutHybridSider',
-    components: { ScrollContainer, LayoutTrigger, BasicMenu, DragBar, SvgIcon },
+    components: { ScrollContainer, LayoutTrigger, Menu, DragBar, SvgIcon },
 
     setup() {
       const prefixCls = 'layout_hybrid-sider'

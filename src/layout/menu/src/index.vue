@@ -11,7 +11,7 @@
     @click="handleMenuClick"
   >
     <template v-for="item in items" :key="item.path">
-      <BasicSubMenuItem
+      <SubMenuItem
         :item="item"
         :theme="theme"
         :collapsed="getMenuFold"
@@ -29,7 +29,7 @@
   import { useRouter, RouteLocationNormalizedLoaded } from 'vue-router'
   import { Menu as AntdMenu } from 'ant-design-vue'
   
-  import BasicSubMenuItem from './components/BasicSubMenuItem.vue'
+  import SubMenuItem from './components/SubMenuItem.vue'
   import { isFunction } from '@/utils/is'
   import { menuProps } from './props'
   import { useOpenKeys } from './useOpenKeys'
@@ -43,7 +43,7 @@
     name: 'Menu',
     components: {
       AntdMenu,
-      BasicSubMenuItem
+      SubMenuItem
     },
     props: menuProps,
     emits: ['menuClick'],

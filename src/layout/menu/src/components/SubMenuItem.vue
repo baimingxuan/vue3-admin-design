@@ -1,5 +1,5 @@
 <template>
-  <BasicMenuItem
+  <MenuItems
     v-if="!menuHasChildren(item) && getShowMenu"
     :item="item"
     :collapsed="collapsed"
@@ -11,11 +11,11 @@
     :class="{ 'submenu-collapsed': collapsed && showTitle }"
   >
     <template #title>
-      <BasicMenuItemCont :item="item" :collapsed="collapsed" :showTitle="showTitle" />
+      <MenuItemCont :item="item" :collapsed="collapsed" :showTitle="showTitle" />
     </template>
 
     <template v-for="childrenItem in item.children || []" :key="childrenItem.path">
-      <BasicSubMenuItem :item="childrenItem" />
+      <SubMenuItem :item="childrenItem" />
     </template>
   </AntdSubMenu>
 </template>
@@ -25,14 +25,14 @@
   import { Menu as AntdMenu } from 'ant-design-vue'
   import type { AppMenu as MenuType } from '@/router/types'
   import { menuItemProps } from '../props'
-  import BasicMenuItem from './BasicMenuItem.vue'
-  import BasicMenuItemCont from './BasicMenuItemCont.vue'
+  import MenuItems from './MenuItem.vue'
+  import MenuItemCont from './MenuItemCont.vue'
 
   export default defineComponent({
-    name: 'BasicSubMenuItem',
+    name: 'SubMenuItem',
     components: {
-      BasicMenuItem,
-      BasicMenuItemCont,
+      MenuItems,
+      MenuItemCont,
       AntdSubMenu: AntdMenu.SubMenu
     },
     props: menuItemProps,
