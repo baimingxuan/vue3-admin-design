@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts">
-  import type { MenuState } from '../types'
+  import type { MenuState } from './types'
 
   import { defineComponent, ref, toRefs, reactive, computed, unref, watch } from 'vue'
   import { useRouter, RouteLocationNormalizedLoaded } from 'vue-router'
@@ -31,7 +31,7 @@
   
   import BasicSubMenuItem from './components/BasicSubMenuItem.vue'
   import { isFunction } from '@/utils/is'
-  import { menuProps } from '../props'
+  import { menuProps } from './props'
   import { useOpenKeys } from './useOpenKeys'
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
   import { MenuModeEnum } from '@/enums/menuEnum'

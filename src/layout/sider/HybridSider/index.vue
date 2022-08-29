@@ -50,7 +50,7 @@
 
   import ScrollContainer from '@/components/Container/index.vue'
   import LayoutTrigger from '@/layout/trigger/index.vue'
-  import BasicMenu from '@/layout/menu/src/BasicMenu/index.vue'
+  import BasicMenu from '@/layout/menu/src/index.vue'
   import DragBar from '../components/DragBar.vue'
   import SvgIcon from '@/components/SvgIcon/index.vue'
 

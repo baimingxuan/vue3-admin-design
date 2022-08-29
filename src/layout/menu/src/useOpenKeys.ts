@@ -4,7 +4,7 @@ import { uniq } from 'lodash-es'
 import type { Key } from 'ant-design-vue/lib/_util/type'
 
 import type { AppMenu } from '@/router/types'
-import type { MenuState } from '../types'
+import type { MenuState } from './types'
 import { MenuModeEnum } from '@/enums/menuEnum'
 import { getAllParentPath } from '@/router/helper/menuHelper'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'

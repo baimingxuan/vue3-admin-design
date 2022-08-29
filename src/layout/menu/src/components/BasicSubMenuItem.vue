@@ -24,7 +24,7 @@
   import { defineComponent, computed } from 'vue'
   import { Menu as AntdMenu } from 'ant-design-vue'
   import type { AppMenu as MenuType } from '@/router/types'
-  import { menuItemProps } from '../../props'
+  import { menuItemProps } from '../props'
   import BasicMenuItem from './BasicMenuItem.vue'
   import BasicMenuItemCont from './BasicMenuItemCont.vue'
 
