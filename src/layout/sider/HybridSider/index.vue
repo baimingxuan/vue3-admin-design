@@ -16,7 +16,7 @@
         >
           <SvgIcon
             :class="`${prefixCls}-main-menu__item-icon`"
-            :name="item?.icon || item.meta?.icon"
+            :name="((item?.icon || item.meta?.icon) as string)"
             :size="getMenuFold ? 16 : 20"
           />
           <p :class="`${prefixCls}-main-menu__item-name`">
@@ -50,7 +50,7 @@
 
   import ScrollContainer from '@/components/Container/index.vue'
   import LayoutTrigger from '@/layout/trigger/index.vue'
-  import Menu from '@/layout/menu/src/index.vue'
+  import { Menu } from '@/components/Menu'
   import DragBar from '../components/DragBar.vue'
   import SvgIcon from '@/components/SvgIcon/index.vue'
 

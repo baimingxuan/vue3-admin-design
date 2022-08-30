@@ -3,7 +3,7 @@
   import { defineComponent, computed, unref } from 'vue'
   import { propTypes } from '@/utils/propTypes'
   import { MenuModeEnum } from '@/enums/menuEnum'
-  import Menu from './src/index.vue'
+  import { Menu } from '@/components/Menu'
   import { useGo } from '@/hooks/web/usePage'
   import { useSplitMenu } from './useLayoutMenu'
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
