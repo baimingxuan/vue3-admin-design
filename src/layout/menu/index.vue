@@ -1,8 +1,8 @@
 <script lang="tsx">
   import type { PropType } from 'vue'
-  import { defineComponent, computed, unref } from 'vue'
+  import { defineComponent, computed, unref, toRef } from 'vue'
   import { propTypes } from '@/utils/propTypes'
-  import { MenuModeEnum } from '@/enums/menuEnum'
+  import { MenuModeEnum, MenuSplitTyeEnum } from '@/enums/menuEnum'
   import { Menu } from '@/components/Menu'
   import { useGo } from '@/hooks/web/usePage'
   import { useSplitMenu } from './useLayoutMenu'
@@ -19,6 +19,11 @@
 
       menuTheme: propTypes.oneOf(['light', 'dark']),
 
+      menuSplitType: {
+        type: Number as PropType<MenuSplitTyeEnum>,
+        default: MenuSplitTyeEnum.NONE
+      },
+
       isHorizontal: propTypes.bool
     },
     components: { Menu },
@@ -26,7 +31,7 @@
     setup(props) {
       const go = useGo()
 
-      const { menusRef } = useSplitMenu()
+      const { menusRef } = useSplitMenu(toRef(props, 'menuSplitType'))
 
       const { getMenuMode, getMenuTheme, getMenuType, getIsHorizontal, getIsSideMenu,
         getMenuFoldShowTitle
