@@ -76,7 +76,7 @@
       //   const { type, mode, isHorizontal } = props
 
       //   return (
-      //     (type === MenuTypeEnum.TOP_MENU && mode === MenuModeEnum.HORIZONTAL) ||
+      //     (type === MenuTypeEnum.HEADER_MENU && mode === MenuModeEnum.HORIZONTAL) ||
       //     (isHorizontal && unref(getMenuSplit))
       //   )
       // })

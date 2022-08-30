@@ -1,28 +1,35 @@
-// menu types
+// Menu types
 export enum MenuTypeEnum {
-    // side menu
-    SIDE_MENU = 'side-menu',
-    // top menu
-    TOP_MENU = 'top-menu',
-    // mix menu
-    HYBRID_MENU = 'mix-menu'
+  SIDER_MENU = 'sider-menu',
+
+  HEADER_MENU = 'header-menu',
+
+  HYBRID_MENU = 'hybrid-menu'
 }
 
-// menu modes
+// Menu modes
 export enum MenuModeEnum {
-    VERTICAL = 'vertical',
+  VERTICAL = 'vertical',
 
-    HORIZONTAL = 'horizontal',
+  HORIZONTAL = 'horizontal',
     
-    INLINE = 'inline'
+  INLINE = 'inline'
 }
 
-// menu folding button location
+// Menu split type
+export enum MenuSplitTyeEnum {
+  NONE,
+
+  HEADER,
+
+  SIDER,
+}
+
+// Menu folding button location
 export enum MenuFoldBtnEnum {
-    // don't show
-    NONE = 'none',
+  NONE = 'none',
 
-    HEADER = 'header',
+  HEADER = 'header',
 
-    FOOTER = 'footer'
+  FOOTER = 'footer'
 }

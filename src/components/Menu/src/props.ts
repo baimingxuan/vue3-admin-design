@@ -13,7 +13,7 @@ export const menuProps = {
   },
   type: {
     type: String as PropType<MenuTypeEnum>,
-    default: MenuTypeEnum.SIDE_MENU
+    default: MenuTypeEnum.SIDER_MENU
   },
   mode: {
     type: String as PropType<MenuMode>,

@@ -22,7 +22,7 @@ export const appSetting: AppConfig = {
   // Menu configuration
   menuSetting: {
     // Menu type
-    menuType: MenuTypeEnum.SIDE_MENU,
+    menuType: MenuTypeEnum.SIDER_MENU,
     // Menu mode
     menuMode: MenuModeEnum.INLINE,
     // Menu theme

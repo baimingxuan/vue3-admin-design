@@ -37,7 +37,7 @@ export function useMenuSetting() {
     return unref(getMenuMode) === MenuModeEnum.HORIZONTAL
   })
 
-  const getIsSideMenu = computed(() => unref(getMenuType) === MenuTypeEnum.SIDE_MENU)
+  const getIsSideMenu = computed(() => unref(getMenuType) === MenuTypeEnum.SIDER_MENU)
 
   const getSideBarMinWidth = computed(() => {
     const { menuFoldShowTitle } = appStore.getMenuSetting
