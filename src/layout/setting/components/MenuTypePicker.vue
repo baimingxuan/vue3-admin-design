@@ -76,7 +76,7 @@
         content: '';
       }
 
-      &--side-menu{
+      &--sider-menu{
         &::before {
           top: 0;
           left: 0;
@@ -96,7 +96,7 @@
         }
       }
 
-      &--mix-menu {
+      &--hybrid-menu {
         &::before {
           top: 0;
           left: 0;
@@ -116,7 +116,7 @@
         }
       }
 
-      &--top-menu {
+      &--header-menu {
         &::after {
           top: 0;
           left: 0;
