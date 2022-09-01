@@ -5,7 +5,7 @@
   import { MenuModeEnum, MenuSplitTyeEnum } from '@/enums/menuEnum'
   import { Menu } from '@/components/Menu'
   import { useGo } from '@/hooks/web/usePage'
-  import { useSplitMenu } from './useLayoutMenu'
+  import { useLayoutMenu } from './useLayoutMenu'
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
   import ScrollContainer from '@/components/Container/index.vue'
 
@@ -31,7 +31,7 @@
     setup(props) {
       const go = useGo()
 
-      const { menusRef } = useSplitMenu(toRef(props, 'menuSplitType'))
+      const { menusRef } = useLayoutMenu(toRef(props, 'menuSplitType'))
 
       const { getMenuMode, getMenuTheme, getMenuType, getIsHorizontal, getIsSideMenu,
         getMenuFoldShowTitle

@@ -1,31 +1,51 @@
-import { computed, Ref, unref } from 'vue'
+import type { Ref } from 'vue'
 import type { AppMenu } from '@/router/types'
+import { ref, unref, computed, watch } from 'vue'
+import { useRouter } from 'vue-router'
 
-import { ref } from 'vue'
-// import { useRouter } from 'vue-router'
-
-import { getMenus } from '@/router/menus'
 import { MenuSplitTyeEnum } from '@/enums/menuEnum'
+import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
+import { getMenus, getShallowMenus, getChildrenMenus, getCurrentParentPath } from '@/router/menus'
 
-export function useSplitMenu(menuSplitType: Ref<MenuSplitTyeEnum>) {
-    const menusRef = ref<AppMenu[]>([])
-    // const { currentRoute } = useRouter()
+export function useLayoutMenu(menuSplitType: Ref<MenuSplitTyeEnum>) {
+  // Menu array
+  const menusRef = ref<AppMenu[]>([])
+  const { currentRoute } = useRouter()
+  const { getMenuSplit, getIsHorizontal, setMenuSetting } = useMenuSetting()
 
-    const getMenuNoneSplit = computed(() => {
-        return unref(menuSplitType) === MenuSplitTyeEnum.NONE
-    })
+  const getNoSplit = computed(() => {
+    return unref(menuSplitType) === MenuSplitTyeEnum.NONE || !(unref(getMenuSplit))
+  })
 
-    // get menus
-    async function getMenuList() {
-        // normal mode
-        if (unref(getMenuNoneSplit)) {
-            menusRef.value = await getMenus()
-            return
-        }
-        
+  // Route path change
+  watch(
+    [() => unref(currentRoute).path, () => unref(menuSplitType)],
+    async () => {},
+    {
+      immediate: true
+    }
+  )
+
+  // Split menu change
+  watch(
+    () => getMenuSplit.value,
+    () => getMenuList()
+  )
+
+  // Get menu list
+  async function getMenuList() {
+    // Menu no split
+    if (unref(getNoSplit)) {
+      menusRef.value = await getMenus()
+      return
     }
 
-    getMenuList()
+    // Menu split
+    if (unref(getMenuSplit)) {
+      menusRef.value = await getShallowMenus()
+      return
+    }
+  }
 
-    return { menusRef }
+  return { menusRef }
 }
