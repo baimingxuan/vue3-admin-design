@@ -2,6 +2,7 @@ import type { Ref } from 'vue'
 import type { AppMenu } from '@/router/types'
 import { ref, unref, computed, watch } from 'vue'
 import { useRouter } from 'vue-router'
+import { useThrottleFn } from '@vueuse/core'
 
 import { MenuSplitTyeEnum } from '@/enums/menuEnum'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
@@ -11,7 +12,9 @@ export function useLayoutMenu(menuSplitType: Ref<MenuSplitTyeEnum>) {
   // Menu array
   const menusRef = ref<AppMenu[]>([])
   const { currentRoute } = useRouter()
-  const { getMenuSplit, getIsHorizontal, setMenuSetting } = useMenuSetting()
+  const { getMenuSplit, setMenuSetting } = useMenuSetting()
+
+  const throttleHandleSplitMenu = useThrottleFn(handleSpliteMenu, 50)
 
   const getNoSplit = computed(() => {
     return unref(menuSplitType) === MenuSplitTyeEnum.NONE || !(unref(getMenuSplit))
@@ -20,7 +23,16 @@ export function useLayoutMenu(menuSplitType: Ref<MenuSplitTyeEnum>) {
   // Route path change
   watch(
     [() => unref(currentRoute).path, () => unref(menuSplitType)],
-    async () => {},
+    async ([path]: [string]) => {
+      const { meta } = unref(currentRoute)
+      const currentActiveMenu = meta.currentActiveMenu as string
+      let parentPath = await getCurrentParentPath(path)
+      if (!parentPath) {
+        parentPath = await getCurrentParentPath(currentActiveMenu)
+      }
+
+      parentPath && throttleHandleSplitMenu(parentPath)
+    },
     {
       immediate: true
     }
@@ -31,6 +43,20 @@ export function useLayoutMenu(menuSplitType: Ref<MenuSplitTyeEnum>) {
     () => getMenuSplit.value,
     () => getMenuList()
   )
+
+  // Handle split menu
+  async function handleSpliteMenu(parentPath: string) {
+    const children = await getChildrenMenus(parentPath)
+
+    if (!children || !children.length) {
+      setMenuSetting({ menuHidden: true })
+      menusRef.value = []
+      return
+    }
+
+    setMenuSetting({ menuHidden: false })
+    menusRef.value = children
+  }
 
   // Get menu list
   async function getMenuList() {
