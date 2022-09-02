@@ -5,6 +5,7 @@ import { useRouter } from 'vue-router'
 import { useThrottleFn } from '@vueuse/core'
 
 import { MenuSplitTyeEnum } from '@/enums/menuEnum'
+import { usePermissionStore } from '@/stores/modules/permission'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { getMenus, getShallowMenus, getChildrenMenus, getCurrentParentPath } from '@/router/menus'
 
@@ -12,6 +13,7 @@ export function useLayoutMenu(menuSplitType: Ref<MenuSplitTyeEnum>) {
   // Menu array
   const menusRef = ref<AppMenu[]>([])
   const { currentRoute } = useRouter()
+  const permissionStore = usePermissionStore()
   const { getMenuSplit, setMenuSetting } = useMenuSetting()
 
   const throttleHandleSplitMenu = useThrottleFn(handleSpliteMenu, 50)
@@ -33,6 +35,15 @@ export function useLayoutMenu(menuSplitType: Ref<MenuSplitTyeEnum>) {
 
       parentPath && throttleHandleSplitMenu(parentPath)
     },
+    {
+      immediate: true
+    }
+  )
+
+  // Menu list change
+  watch(
+    () => permissionStore.getMenuList,
+    () => getMenuList(),
     {
       immediate: true
     }
