@@ -54,8 +54,10 @@ export interface MenuSetting {
   menuFoldShowTitle: boolean
   // Menu width
   menuWidth: number,
-  // Hydrid sider menu fixed
-  menuFixed: boolean
+  // Hydrid mode sider menu fixed
+  menuFixed: boolean,
+  // Hybrid mode sider menu hidden
+  menuHidden: boolean
 }
 
 export interface TransitionSetting {

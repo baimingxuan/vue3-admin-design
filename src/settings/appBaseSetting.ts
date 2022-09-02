@@ -40,7 +40,9 @@ export const appSetting: AppConfig = {
     // Menu width
     menuWidth: 210,
     // Hydrid sider menu fixed
-    menuFixed: false
+    menuFixed: false,
+    // Hybrid mode sider menu hidden
+    menuHidden: false
   },
   // Transition settings
   transitionSetting: {
