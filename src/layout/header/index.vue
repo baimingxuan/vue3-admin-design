@@ -1,6 +1,7 @@
 <template>
   <AntdHeader :class="getHeaderStyle">
     <div :class="`${prefixCls}-left`">
+      <AppLogo theme="light" />
       <LayoutTrigger :sider="false" />
     </div>
 
@@ -9,6 +10,8 @@
     </div>
 
     <div :class="`${prefixCls}-right`"></div>
+
+    <LayoutTags />
   </AntdHeader>
 </template>
 
@@ -19,12 +22,14 @@
   import { propTypes } from '@/utils/propTypes'
   import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
 
+  import { AppLogo } from '@/components/Application'
   import LayoutTrigger from '@/layout/trigger/index.vue'
   import LayoutMenu from '../menu/index.vue'
+  import LayoutTags from '../tags/index.vue'
 
   export default defineComponent({
     name: 'LayoutHeader',
-    components: { AntdHeader: Layout.Header, LayoutTrigger, LayoutMenu },
+    components: { AntdHeader: Layout.Header, LayoutTrigger, LayoutMenu, LayoutTags, AppLogo },
     props: { fixed: propTypes.bool },
 
     setup(props) {
