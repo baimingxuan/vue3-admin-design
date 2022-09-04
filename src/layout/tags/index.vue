@@ -1,6 +1,6 @@
 <template>
   <div :class="prefixCls">
-    <AntdButton :class="`${prefixCls}__btn`" @click="handleMove(240)">
+    <AntdButton :class="`${prefixCls}__btn`" size="small" @click="handleMove(240)">
       <template #icon>
         <LeftOutlined />
       </template>
@@ -23,9 +23,9 @@
             ref="tagRef"
           >
             <TagItem
-              :name="item.meta.title"
+              :name="(item.meta.title as string)"
               :active="activeKeyRef === item.path"
-              :fixed="item.meta?.affix"
+              :fixed="(item.meta?.affix as boolean)"
               @click="handleClickTag(item.path)"
               @closeTag="handleCloseTag(item.path)"
             />
@@ -33,18 +33,18 @@
         </TransitionGroup>
       </div>
     </div>
-    <AntdButton :class="`${prefixCls}__btn`" @click="handleMove(-240)">
+    <AntdButton :class="`${prefixCls}__btn`" size="small" @click="handleMove(-240)">
       <template #icon>
         <RightOutlined />
       </template>
     </AntdButton>
-    <AntdButton :class="[`${prefixCls}__btn`, `${prefixCls}__btn-space`]" @click="handleReload">
+    <AntdButton :class="[`${prefixCls}__btn`, `${prefixCls}__btn-space`]" size="small" @click="handleReload">
       <template #icon>
         <RedoOutlined :spin="loading" />
       </template>
     </AntdButton>
     <AntdDropdown placement="bottomRight">
-      <AntdButton :class="[`${prefixCls}__btn`, `${prefixCls}__btn-space`]">
+      <AntdButton :class="[`${prefixCls}__btn`, `${prefixCls}__btn-space`]" size="small">
         <template #icon>
           <CloseOutlined />
         </template>
@@ -240,13 +240,12 @@
     z-index: 299;
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
-    height: 32px;
-    line-height: 32px;
+    height: 24px;
+    line-height: 24px;
     &__main {
       position: relative;
       width: calc(100% - 120px);
-      height: 32px;
+      height: 24px;
       overflow: hidden;
       &-body {
         position: absolute;

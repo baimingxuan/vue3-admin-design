@@ -31,11 +31,11 @@
   .compo_tag-item {
     display: inline-block;
     vertical-align: top;
-    height: 32px;
+    height: 24px;
     margin: 0 2px;
     padding: 0 8px;
     border-radius: 3px;
-    line-height: 30px;
+    line-height: 24px;
     color: #555;
     background: #fff;
     overflow: hidden;
@@ -45,7 +45,7 @@
       display: inline-block;
       width: 8px;
       height: 8px;
-      margin-right: 8px;
+      margin-right: 6px;
       border-radius: 50%;
       background: #dcdee0;
     }
