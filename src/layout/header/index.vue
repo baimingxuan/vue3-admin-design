@@ -1,17 +1,20 @@
 <template>
   <AntdHeader :class="getHeaderStyle">
-    <div :class="`${prefixCls}-left`">
+    <div :class="`${prefixCls}-logo`">
       <AppLogo theme="light" />
-      <LayoutTrigger :sider="false" />
     </div>
 
-    <div :class="`${prefixCls}-menu`">
-      <LayoutMenu :isHorizontal="true" />
+    <div :class="`${prefixCls}-main`">
+      <div :class="`${prefixCls}-main-body`">
+        <div :class="`${prefixCls}-main-body-menu`">
+          <LayoutMenu :isHorizontal="true" />
+        </div>
+        <div :class="`${prefixCls}-main-body-feat`"></div>
+      </div>
+      <div :class="`${prefixCls}-main-tags`">
+        <LayoutTags />
+      </div>
     </div>
-
-    <div :class="`${prefixCls}-right`"></div>
-
-    <LayoutTags />
   </AntdHeader>
 </template>
 
@@ -23,13 +26,13 @@
   import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
 
   import { AppLogo } from '@/components/Application'
-  import LayoutTrigger from '@/layout/trigger/index.vue'
+
   import LayoutMenu from '../menu/index.vue'
   import LayoutTags from '../tags/index.vue'
 
   export default defineComponent({
     name: 'LayoutHeader',
-    components: { AntdHeader: Layout.Header, LayoutTrigger, LayoutMenu, LayoutTags, AppLogo },
+    components: { AntdHeader: Layout.Header, LayoutMenu, LayoutTags, AppLogo },
     props: { fixed: propTypes.bool },
 
     setup(props) {
