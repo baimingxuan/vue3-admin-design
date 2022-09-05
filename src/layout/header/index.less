@@ -29,8 +29,21 @@
     height: 100%;
 
     &-body {
+      display: flex;
+      justify-content: space-between;
       height: 48px;
       line-height: 48px;
+
+      &-menu {
+        flex: 1;
+      }
+
+      &-feat {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        min-width: 140px;
+      }
     }
 
   }
