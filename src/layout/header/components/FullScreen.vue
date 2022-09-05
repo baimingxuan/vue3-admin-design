@@ -1,9 +1,21 @@
 <template>
-  <AntdTooltip :title="getTitle" placement='bottom' :mouseEnterDelay="0.5">
-    <span @click="toggle">
-      <ExpandOutlined v-if="!isFullscreen" />
-      <CompressOutlined v-else />
-    </span>
+  <AntdTooltip
+    :title="getTitle"
+    placement='bottom'
+    :mouseEnterDelay="0.5"
+  >
+    <SvgIcon
+      v-if="!isFullscreen"
+      name="screen-full"
+      :size="20"
+      @click="toggle"
+    />
+    <SvgIcon
+      v-else
+      name="screen-normal"
+      :size="20"
+      @click="toggle"
+    />
   </AntdTooltip>
 </template>
 
@@ -11,7 +23,7 @@
   import { computed, unref } from 'vue'
   import { Tooltip as AntdTooltip } from 'ant-design-vue'
   import { useFullscreen } from '@vueuse/core'
-  import { ExpandOutlined, CompressOutlined } from '@ant-design/icons-vue'
+  import SvgIcon from '@/components/SvgIcon/index.vue'
 
   const { isFullscreen, toggle } = useFullscreen()
 
