@@ -10,6 +10,7 @@
           <LayoutMenu :isHorizontal="true" />
         </div>
         <div :class="`${prefixCls}-main-body-feat`">
+          <Search />
           <FullScreen />
           <LocalePicker />
           <GithubLink />
@@ -33,6 +34,7 @@
 
   import LayoutMenu from '../menu/index.vue'
   import LayoutTags from '../tags/index.vue'
+  import Search from './components/Search/index.vue'
   import FullScreen from './components/FullScreen.vue'
   import LocalePicker from './components/LocalePicker.vue'
   import GithubLink from './components/GithubLink.vue'
@@ -46,7 +48,8 @@
       AppLogo,
       FullScreen,
       LocalePicker,
-      GithubLink
+      GithubLink,
+      Search
     },
     props: { fixed: propTypes.bool },
 
