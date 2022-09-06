@@ -4,18 +4,18 @@
     placement='bottom'
     :mouseEnterDelay="0.5"
   >
-    <SvgIcon
-      v-if="!isFullscreen"
-      name="screen-full"
-      :size="20"
-      @click="toggle"
-    />
-    <SvgIcon
-      v-else
-      name="screen-normal"
-      :size="20"
-      @click="toggle"
-    />
+    <span @click="toggle">
+      <SvgIcon
+        v-if="!isFullscreen"
+        name="screen-full"
+        :size="20"
+      />
+      <SvgIcon
+        v-else
+        name="screen-normal"
+        :size="20"
+      />
+    </span>
   </AntdTooltip>
 </template>
 

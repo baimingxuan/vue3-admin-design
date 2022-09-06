@@ -9,12 +9,7 @@
         <div :class="`${prefixCls}-main-body-menu`">
           <LayoutMenu :isHorizontal="true" />
         </div>
-        <div :class="`${prefixCls}-main-body-feat`">
-          <Search />
-          <FullScreen />
-          <LocalePicker />
-          <GithubLink />
-        </div>
+        <LayoutFeature />
       </div>
       <div :class="`${prefixCls}-main-tags`">
         <LayoutTags />
@@ -34,7 +29,7 @@
 
   import LayoutMenu from '../menu/index.vue'
   import LayoutTags from '../tags/index.vue'
-  import { Search, FullScreen, LocalePicker, GithubLink } from './components'
+  import LayoutFeature from '../feature/index.vue'
 
   export default defineComponent({
     name: 'LayoutHeader',
@@ -42,11 +37,8 @@
       AntdHeader: Layout.Header,
       LayoutMenu,
       LayoutTags,
-      AppLogo,
-      FullScreen,
-      LocalePicker,
-      GithubLink,
-      Search
+      LayoutFeature,
+      AppLogo
     },
     props: { fixed: propTypes.bool },
 

@@ -1,13 +1,15 @@
 <template>
   <AntdTooltip
-    title="搜索"
+    title="github"
     placement='bottom'
     :mouseEnterDelay="0.5"
   >
-    <SvgIcon
-      name="search"
-      :size="20"
-    />
+    <span>
+      <SvgIcon
+        name="github"
+        :size="20"
+      />
+    </span>
   </AntdTooltip>
 </template>
 

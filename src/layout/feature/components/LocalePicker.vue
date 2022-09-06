@@ -2,8 +2,9 @@
   <AntdDropdown
     placement="bottom"
   >
-    <SvgIcon name="locale" :size="20" />
-    <span>切换语言</span>
+    <span>
+      <SvgIcon name="locale" :size="20" />
+    </span>
     <template #overlay>
       <AntdMenu>
         <AntdMenuItem>简体中文</AntdMenuItem>
