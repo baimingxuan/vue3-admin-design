@@ -11,9 +11,7 @@
         </div>
         <LayoutFeature />
       </div>
-      <div :class="`${prefixCls}-main-tags`">
-        <LayoutTags />
-      </div>
+      <LayoutTags />
     </div>
   </AntdHeader>
 </template>

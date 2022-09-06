@@ -1,12 +1,15 @@
 <template>
   <AntLayout :class="prefixCls">
-    <LayoutHeader />
+    <!-- <LayoutHeader /> -->
     <AntLayout>
       <!-- <HybridSider /> -->
       <BasicSider />
-      <AntContent>
-        <LayoutPage />
-      </AntContent>
+      <AntLayout>
+        <LayoutHeader />
+        <AntContent>
+          <LayoutPage />
+        </AntContent>
+      </AntLayout>
       <!-- <AntLayout>
         <LayoutHeader />
         <AntContent>
@@ -26,7 +29,7 @@
   import Setting from './setting/index.vue'
   import BasicSider from './sider/BasicSider.vue'
   import HybridSider from './sider/HybridSider/index.vue'
-  import LayoutHeader from './header/index.vue'
+  import LayoutHeader from './header/SimpleHeader.vue'
   import LayoutPage from './content/components/Page.vue'
 
   export default defineComponent({

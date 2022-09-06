@@ -1,27 +1,55 @@
 <template>
-  <AntdHeader style="background: #fff">
-    <div class="">
-      <LayoutTrigger :sider="false" />
+  <AntdHeader :class="prefixCls">
+    <div :class="`${prefixCls}-main`">
+      <div :class="`${prefixCls}-main-left`">
+        <LayoutTrigger :sider="false" />
+      </div>
+      <div :class="`${prefixCls}-main-right`">
+        <LayoutFeature />
+      </div>
     </div>
     <LayoutTags />
   </AntdHeader>
 </template>
 
-<script lang="ts">
+<script lang="ts" >
   import { defineComponent } from 'vue'
   import { Layout } from 'ant-design-vue'
 
   import LayoutTrigger from '@/layout/trigger/index.vue'
   import LayoutTags from '../tags/index.vue'
+  import LayoutFeature from '../feature/index.vue'
   
 
   export default defineComponent({
     name: 'LayoutSimpleHeader',
-    components: { AntdHeader: Layout.Header, LayoutTrigger, LayoutTags, }
+    components: { AntdHeader: Layout.Header, LayoutTrigger, LayoutTags, LayoutFeature },
+
+    setup() {
+      const prefixCls = 'layout_simple-header'
+
+      return {
+        prefixCls
+      }
+    }
   })
 
 </script>
 
 <style lang="less" scoped>
-
+  .layout_simple-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 80px;
+    line-height: 80px;
+    background: #fff;
+    &-main {
+      display: flex;
+      justify-content: space-between;
+      height: 48px;
+      line-height: 48px;
+    }
+  }
 </style>

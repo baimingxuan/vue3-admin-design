@@ -241,7 +241,6 @@
     display: flex;
     justify-content: space-between;
     height: 24px;
-    padding: 0 18px;
     line-height: 24px;
     &__main {
       position: relative;
