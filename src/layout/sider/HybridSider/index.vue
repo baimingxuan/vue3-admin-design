@@ -1,6 +1,6 @@
 <template>
   <div :class="[prefixCls, getMenuTheme, { open: openMenu, mini: getMenuFold }]" :style="getWrapStyle" v-bind="getWrapEvents">
-    <LayoutTrigger :class="`${prefixCls}-trigger`" />
+    <SiderTrigger :class="`${prefixCls}-trigger`" />
     <ScrollContainer>
       <ul :class="`${prefixCls}-main-menu`">
         <li
@@ -49,14 +49,14 @@
   import { SIDE_BAR_MIN_WIDTH, SIDE_BAR_SHOW_TITLE_MIN_WIDTH } from '@/enums/appEnum'
 
   import ScrollContainer from '@/components/Container/index.vue'
-  import LayoutTrigger from '@/layout/trigger/index.vue'
+  import SiderTrigger from '../components/SiderTrigger.vue'
   import { Menu } from '@/components/Menu'
   import DragBar from '../components/DragBar.vue'
   import SvgIcon from '@/components/SvgIcon/index.vue'
 
   export default defineComponent({
     name: 'LayoutHybridSider',
-    components: { ScrollContainer, LayoutTrigger, Menu, DragBar, SvgIcon },
+    components: { ScrollContainer, SiderTrigger, Menu, DragBar, SvgIcon },
 
     setup() {
       const prefixCls = 'layout_hybrid-sider'

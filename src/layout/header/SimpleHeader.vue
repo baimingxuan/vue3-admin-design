@@ -17,7 +17,6 @@
   import { defineComponent } from 'vue'
   import { Layout } from 'ant-design-vue'
 
-  import LayoutTrigger from '@/layout/trigger/index.vue'
   import LayoutTags from '../tags/index.vue'
   import LayoutFeature from '../feature/index.vue'
   import FoldTrigger from './components/FoldTrigger.vue'
@@ -25,7 +24,7 @@
   
   export default defineComponent({
     name: 'LayoutSimpleHeader',
-    components: { AntdHeader: Layout.Header, LayoutTrigger, LayoutTags, LayoutFeature, FoldTrigger, Breadcrumb },
+    components: { AntdHeader: Layout.Header, LayoutTags, LayoutFeature, FoldTrigger, Breadcrumb },
 
     setup() {
       const prefixCls = 'layout_simple-header'
