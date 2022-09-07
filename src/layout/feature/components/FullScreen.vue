@@ -4,7 +4,7 @@
     placement='bottom'
     :mouseEnterDelay="0.5"
   >
-    <span @click="toggle">
+    <span class="icon-btn" @click="toggle">
       <SvgIcon
         v-if="!isFullscreen"
         name="screen-full"

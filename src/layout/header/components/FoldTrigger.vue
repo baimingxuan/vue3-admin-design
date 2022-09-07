@@ -26,6 +26,9 @@
 
 <style lang="less" scoped>
   .compo_fold-trigger {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 
     &.unfold {
 

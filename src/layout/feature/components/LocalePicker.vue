@@ -2,7 +2,7 @@
   <AntdDropdown
     placement="bottom"
   >
-    <span>
+    <span class="icon-btn">
       <SvgIcon name="locale" :size="20" />
     </span>
     <template #overlay>

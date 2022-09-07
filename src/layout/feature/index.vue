@@ -24,5 +24,6 @@
     align-items: center;
     justify-content: space-around;
     min-width: 160px;
+    height: 100%;
   }
 </style>

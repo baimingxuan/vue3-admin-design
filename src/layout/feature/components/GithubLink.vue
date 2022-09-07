@@ -4,11 +4,8 @@
     placement='bottom'
     :mouseEnterDelay="0.5"
   >
-    <span>
-      <SvgIcon
-        name="github"
-        :size="20"
-      />
+    <span class="icon-btn">
+      <SvgIcon name="github" :size="20" />
     </span>
   </AntdTooltip>
 </template>

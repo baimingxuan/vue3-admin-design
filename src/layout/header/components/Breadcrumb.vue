@@ -40,9 +40,8 @@
 <style lang="less" scoped>
   .layout_breadcrumb {
     display: flex;
-    padding: 0 8px;
+    padding: 0 16px;
     align-items: center;
-    height: 100%;
 
     &:deep(.svg-icon) {
       margin-right: 8px;
