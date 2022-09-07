@@ -23,6 +23,11 @@
 </template>
 
 <script lang="ts" setup>
-  import { Dropdown as AntdDropdown, Menu as AntdMenu, MenuItem as AntdMenuItem } from 'ant-design-vue'
+  import {
+    Dropdown as AntdDropdown,
+    Menu as AntdMenu,
+    MenuItem as AntdMenuItem,
+    Tooltip as AntdTooltip
+  } from 'ant-design-vue'
   import SvgIcon from '@/components/SvgIcon/index.vue'
 </script>
