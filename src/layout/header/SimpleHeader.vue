@@ -2,7 +2,7 @@
   <AntdHeader :class="prefixCls">
     <div :class="`${prefixCls}-main`">
       <div :class="`${prefixCls}-main-left`">
-        <LayoutTrigger :sider="false" />
+        <FoldTrigger />
         <Breadcrumb />
       </div>
       <div :class="`${prefixCls}-main-right`">
@@ -20,12 +20,12 @@
   import LayoutTrigger from '@/layout/trigger/index.vue'
   import LayoutTags from '../tags/index.vue'
   import LayoutFeature from '../feature/index.vue'
+  import FoldTrigger from './components/FoldTrigger.vue'
   import Breadcrumb from './components/Breadcrumb.vue'
   
-
   export default defineComponent({
     name: 'LayoutSimpleHeader',
-    components: { AntdHeader: Layout.Header, LayoutTrigger, LayoutTags, LayoutFeature, Breadcrumb },
+    components: { AntdHeader: Layout.Header, LayoutTrigger, LayoutTags, LayoutFeature, FoldTrigger, Breadcrumb },
 
     setup() {
       const prefixCls = 'layout_simple-header'
@@ -60,6 +60,6 @@
       }
 
     }
-    
+
   }
 </style>
