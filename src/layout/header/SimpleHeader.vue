@@ -3,6 +3,7 @@
     <div :class="`${prefixCls}-main`">
       <div :class="`${prefixCls}-main-left`">
         <LayoutTrigger :sider="false" />
+        <Breadcrumb />
       </div>
       <div :class="`${prefixCls}-main-right`">
         <LayoutFeature />
@@ -19,11 +20,12 @@
   import LayoutTrigger from '@/layout/trigger/index.vue'
   import LayoutTags from '../tags/index.vue'
   import LayoutFeature from '../feature/index.vue'
+  import Breadcrumb from './components/Breadcrumb.vue'
   
 
   export default defineComponent({
     name: 'LayoutSimpleHeader',
-    components: { AntdHeader: Layout.Header, LayoutTrigger, LayoutTags, LayoutFeature },
+    components: { AntdHeader: Layout.Header, LayoutTrigger, LayoutTags, LayoutFeature, Breadcrumb },
 
     setup() {
       const prefixCls = 'layout_simple-header'
@@ -45,11 +47,19 @@
     height: 80px;
     line-height: 80px;
     background: #fff;
+
     &-main {
       display: flex;
       justify-content: space-between;
       height: 48px;
       line-height: 48px;
+
+      &-left {
+        display: flex;
+        align-items: center;
+      }
+
     }
+    
   }
 </style>

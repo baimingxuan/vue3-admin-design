@@ -1,59 +1,51 @@
 <template>
-  <div>
+  <div :class="['layout_breadcrumb', theme]">
     <AntdBreadcrumb>
-      <template #itemRender="{ route, routes: routesMatched, paths }">
-        <span v-if="!hasRedirect(routesMatched, route)">
-          {{ route.name || route.meta.title }}
-        </span>
-        <router-link v-else to="" @click="handleClick(route, paths, $event)">
-          {{ route.name || route.meta.title }}
-        </router-link>
-      </template>
+      <AntdBreadcrumbItem
+        v-for="route in routeMatcheds"
+        :key="route.path"
+      >
+        <SvgIcon v-if="getIcon(route)" :name="getIcon(route)" />
+        <span>{{ route.meta?.title }}</span>
+      </AntdBreadcrumbItem>
     </AntdBreadcrumb>
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
   import type { RouteLocationMatched } from 'vue-router'
   import { useRouter } from 'vue-router'
-  import type { AppMenu } from '@/router/types'
+  import { ref, watchEffect } from 'vue'
+  import { Breadcrumb as AntdBreadcrumb, BreadcrumbItem as AntdBreadcrumbItem } from 'ant-design-vue'
 
-  import { defineComponent, ref } from 'vue'
   import { propTypes } from '@/utils/propTypes'
-  import { Breadcrumb as AntdBreadcrumb } from 'ant-design-vue'
+  import SvgIcon from '@/components/SvgIcon/index.vue'
 
-  export default defineComponent({
-    name: 'LayoutBreadcrumb',
-    components: { AntdBreadcrumb },
-    props: {
-      theme: propTypes.oneOf(['dark', 'light']),
-    },
-    setup() {
-      const routes = ref<RouteLocationMatched[]>([])
-
-      function handleClick(route: RouteLocationMatched, paths: string[], e: Event) {
-        e?.preventDefault()
-        const { children, redirect, meta } = route
-
-        if (children?.length && !redirect) {
-          e?.stopPropagation()
-          return
-        }
-        if (meta?.carryParam) {
-          return
-        }
-
-      }
-
-      function hasRedirect(routes: RouteLocationMatched[], route: RouteLocationMatched) {
-        return routes.indexOf(route) !== routes.length - 1
-      }
-
-      return {
-        routes,
-        hasRedirect,
-        handleClick
-      }
-    }
+  defineProps({
+    theme: propTypes.oneOf(['dark', 'light'])
   })
+
+  let routeMatcheds = ref<RouteLocationMatched[]>([])
+  const { currentRoute } = useRouter()
+
+  watchEffect(async () => {
+    routeMatcheds.value = currentRoute.value.matched
+  })
+
+  function getIcon(route: any) {
+    return route.icon || route.meta?.icon
+  }
 </script>
+
+<style lang="less" scoped>
+  .layout_breadcrumb {
+    display: flex;
+    padding: 0 8px;
+    align-items: center;
+    height: 100%;
+
+    &:deep(.svg-icon) {
+      margin-right: 8px;
+    }
+  }
+</style>
