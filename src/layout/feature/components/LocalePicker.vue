@@ -1,10 +1,17 @@
 <template>
   <AntdDropdown
+    trigger="click"
     placement="bottom"
   >
-    <span class="icon-btn">
-      <SvgIcon name="locale" :size="20" />
-    </span>
+    <AntdTooltip
+      title="多语言"
+      placement='bottom'
+      :mouseEnterDelay="0.5"
+    >
+      <span class="icon-btn">
+        <SvgIcon name="locale" :size="20" />
+      </span>
+    </AntdTooltip>
     <template #overlay>
       <AntdMenu>
         <AntdMenuItem>简体中文</AntdMenuItem>
