@@ -1,7 +1,7 @@
 <template>
   <AntLayout :class="prefixCls">
     <LayoutHeader v-if="getIsHeaderMenu" />
-    <AntLayout>
+    <AntLayout :class="getLayoutClass">
       <LayoutSider />
       <AntLayout>
         <LayoutSimpleHeader v-if="!getIsHeaderMenu" />
@@ -47,8 +47,8 @@
 
       const { getIsHeaderMenu, getIsHybridMenu } = useMenuSetting()
 
-      const getLayoutCls = computed(() => {
-        let cls: string[] = ['ant-layout']
+      const getLayoutClass = computed(() => {
+        let cls: string[] = []
         if (unref(getIsHybridMenu)) {
           cls.push('ant-layout-has-sider')
         }
@@ -58,7 +58,7 @@
       return {
         prefixCls,
         getIsHeaderMenu,
-        getLayoutCls
+        getLayoutClass
       }
     }
   })

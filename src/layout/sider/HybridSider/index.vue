@@ -1,4 +1,5 @@
 <template>
+  <div :class="`${prefixCls}-dom`" :style="getWrapStyle"></div>
   <div :class="[prefixCls, getMenuTheme, { open: openMenu, mini: getMenuFold }]" :style="getWrapStyle" v-bind="getWrapEvents">
     <SiderTrigger :class="`${prefixCls}-trigger`" />
     <ScrollContainer>
