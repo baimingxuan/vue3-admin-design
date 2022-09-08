@@ -1,6 +1,12 @@
 <template>
-  <div :class="['compo_sider-trigger', { collapsed: getMenuFold }]" @click.stop="toggledMenuFold">
-    <SvgIcon name="collapsed" :size="20" />
+  <div
+    :class="[
+      'compo_sider-trigger',
+      { collapsed: getMenuFold }
+    ]"
+    @click.stop="toggledMenuFold"
+  >
+    <SvgIcon name="collapsed" :size="16" />
   </div>
 </template>
 
