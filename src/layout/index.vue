@@ -1,23 +1,16 @@
 <template>
   <AntLayout :class="prefixCls">
-    <!-- <LayoutHeader /> -->
+    <LayoutHeader v-if="getIsHeaderMenu" />
     <AntLayout>
-      <!-- <HybridSider /> -->
-      <BasicSider />
+      <LayoutSider />
       <AntLayout>
-        <LayoutHeader />
+        <LayoutSimpleHeader v-if="!getIsHeaderMenu" />
         <AntContent>
           <LayoutPage />
         </AntContent>
       </AntLayout>
-      <!-- <AntLayout>
-        <LayoutHeader />
-        <AntContent>
-          <LayoutPage />
-        </AntContent>
-      </AntLayout> -->
     </AntLayout>
-    <Setting></Setting>
+    <Setting />
   </AntLayout>
 </template>
 
@@ -29,7 +22,9 @@
   import Setting from './setting/index.vue'
   import BasicSider from './sider/BasicSider.vue'
   import HybridSider from './sider/HybridSider/index.vue'
-  import LayoutHeader from './header/SimpleHeader.vue'
+  import LayoutSider from './sider/index.vue'
+  import LayoutHeader from './header/index.vue'
+  import LayoutSimpleHeader from './header/SimpleHeader.vue'
   import LayoutPage from './content/components/Page.vue'
 
   export default defineComponent({
@@ -38,6 +33,8 @@
       AntLayout,
       AntSider: AntLayout.Sider,
       LayoutHeader,
+      LayoutSimpleHeader,
+      LayoutSider,
       AntContent: AntLayout.Content,
       Setting,
       BasicSider,
@@ -48,7 +45,7 @@
     setup() {
       const prefixCls = 'layout-container'
 
-      const { getIsHybridMenu } = useMenuSetting()
+      const { getIsHeaderMenu, getIsHybridMenu } = useMenuSetting()
 
       const getLayoutCls = computed(() => {
         let cls: string[] = ['ant-layout']
@@ -60,6 +57,7 @@
 
       return {
         prefixCls,
+        getIsHeaderMenu,
         getLayoutCls
       }
     }

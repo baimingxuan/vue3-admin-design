@@ -29,6 +29,10 @@ export function useMenuSetting() {
 
   const getMenuFixed = computed(() => appStore.getMenuSetting.menuFixed)
 
+  const getIsHeaderMenu = computed(() => {
+    return unref(getMenuType) === MenuTypeEnum.HEADER_MENU
+  })
+
   const getIsHybridMenu = computed(() => {
     return unref(getMenuType) === MenuTypeEnum.HYBRID_MENU
   })
@@ -70,6 +74,7 @@ export function useMenuSetting() {
     getMenuFoldShowTitle,
     getMenuWidth,
     getMenuFixed,
+    getIsHeaderMenu,
     getIsHybridMenu,
     getIsHorizontal,
     getIsSideMenu,

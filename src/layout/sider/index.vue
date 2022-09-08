@@ -1,14 +1,12 @@
 <template>
-  <Sider
-    collapsible>
-  </Sider>
+  <HybridSider v-if="getIsHybridMenu" />
+  <BasicSider v-else />
 </template>
 
-<script lang="ts">
-  import { defineComponent } from 'vue'
-  import { Layout } from 'ant-design-vue'
+<script lang="ts" setup>
+  import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
+  import BasicSider from './BasicSider.vue'
+  import HybridSider from './HybridSider/index.vue'
 
-  export default defineComponent({
-    components: { Sider: Layout.Sider }
-  })
+  const { getIsHybridMenu } = useMenuSetting()
 </script>
