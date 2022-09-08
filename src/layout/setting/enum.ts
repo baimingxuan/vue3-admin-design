@@ -102,8 +102,8 @@ export const menuFoldBtnOptions = [
     label: '顶部'
   },
   {
-    value: MenuFoldBtnEnum.FOOTER,
-    label: '底部'
+    value: MenuFoldBtnEnum.SIDER,
+    label: '侧边栏'
   }
 ]
 

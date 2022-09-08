@@ -31,5 +31,5 @@ export enum MenuFoldBtnEnum {
 
   HEADER = 'header',
 
-  FOOTER = 'footer'
+  SIDER = 'sider'
 }

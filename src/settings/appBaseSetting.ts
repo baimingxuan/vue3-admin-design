@@ -34,7 +34,7 @@ export const appSetting: AppConfig = {
      // Menu collapse
     menuFold: false,
     // Menu collapse type
-    menuFoldBtn: MenuFoldBtnEnum.NONE,
+    menuFoldBtn: MenuFoldBtnEnum.HEADER,
     // Whether to display the menu name when folding the menu
     menuFoldShowTitle: false,
     // Menu width

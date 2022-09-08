@@ -2,7 +2,7 @@
   <AntdHeader :class="prefixCls">
     <div :class="`${prefixCls}-main`">
       <div :class="`${prefixCls}-main-left`">
-        <FoldTrigger />
+        <FoldTrigger v-if="getShowTrigger" />
         <Breadcrumb />
       </div>
       <div :class="`${prefixCls}-main-right`">
@@ -13,27 +13,21 @@
   </AntdHeader>
 </template>
 
-<script lang="ts" >
-  import { defineComponent } from 'vue'
-  import { Layout } from 'ant-design-vue'
+<script lang="ts" setup>
+  import { unref, computed } from 'vue'
+  import { LayoutHeader as AntdHeader } from 'ant-design-vue'
 
   import LayoutTags from '../tags/index.vue'
   import LayoutFeature from '../feature/index.vue'
   import FoldTrigger from './components/FoldTrigger.vue'
   import Breadcrumb from './components/Breadcrumb.vue'
+
+  import { MenuFoldBtnEnum } from '@/enums/menuEnum'
+  import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
   
-  export default defineComponent({
-    name: 'LayoutSimpleHeader',
-    components: { AntdHeader: Layout.Header, LayoutTags, LayoutFeature, FoldTrigger, Breadcrumb },
-
-    setup() {
-      const prefixCls = 'layout_simple-header'
-
-      return {
-        prefixCls
-      }
-    }
-  })
+  const prefixCls = 'layout_simple-header'
+  const { getMenuFoldBtn } = useMenuSetting()
+  const getShowTrigger = computed(() => unref(getMenuFoldBtn) === MenuFoldBtnEnum.HEADER)
 
 </script>
 
