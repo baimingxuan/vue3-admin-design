@@ -66,8 +66,10 @@
         display: none;
         z-index: 9;
         position: absolute;
-        top: 20px;
-        left: 22px;
+        top: 16px;
+        left: 20px;
+        width: 16px;
+        height: 16px;
       }
 
       &::before,
@@ -133,8 +135,11 @@
 
       &:hover,
       &--active {
+        border: 2px solid #1890ff;
+
         &:deep(svg) {
           display: block;
+          color: #1890ff;
         }
 
         &::before,

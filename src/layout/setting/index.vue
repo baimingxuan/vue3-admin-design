@@ -147,15 +147,14 @@
   </AntdDrawer>
 </template>
 
-<script lang="ts">
-  import { defineComponent, ref, unref } from 'vue'
+<script lang="ts" setup>
+  import { ref, unref } from 'vue'
   
   import { Drawer as AntdDrawer, Divider as AntdDivider } from 'ant-design-vue'
   import { SettingOutlined as AntdSettingOutlined } from '@ant-design/icons-vue'
 
   import { AppModeSwitch, MenuTypePicker, ThemeColorPicker, SwitchItem, SelectItem, InputNumItem } from './components'
   import { menuTypeList, appThemeColorList } from './enum'
-  import Scrollbar from '@/components/Scrollbar'
   import Container from '@/components/Container/index.vue'
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
   import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
@@ -165,58 +164,21 @@
   import { baseHandler } from './handler'
   import { HandlerEnum, menuFoldBtnOptions, pageTransitionOptions } from './enum'
 
-  export default defineComponent({
-    name: 'LayoutSetting',
-    components: {
-      AntdDrawer, AntdDivider, AntdSettingOutlined, AppModeSwitch, MenuTypePicker, ThemeColorPicker,
-      Scrollbar, Container, SwitchItem, SelectItem, InputNumItem
-    },
-    setup() {
-      const drawerVisible = ref<boolean>(false)
+  const drawerVisible = ref<boolean>(false)
 
-      const toggleDrawer = () => {
-        drawerVisible.value = !unref(drawerVisible)
-      }
+  const toggleDrawer = () => {
+    drawerVisible.value = !unref(drawerVisible)
+  }
 
-      const { getMenuType, getThemeColor, getMenuSplit, getMenuCanDrag, getMenuFixed, getMenuFold, getMenuFoldShowTitle, getMenuFoldBtn, getMenuWidth } = useMenuSetting()
-      const { getLockScreenTime, getShowFooter, getColorWeak } = useBaseSetting()
-      const { getShowBreadCrumb, getShowPageTags, getShowLocale, getShowFullScreen, getShowDoc, getShowGithub } = useHeaderSetting()
-      const { getOpenNProgress, getOpenTransition, getBasicTransition } = useTransitionSetting()
+  const { getMenuType, getThemeColor, getMenuSplit, getMenuCanDrag, getMenuFixed, getMenuFold,
+    getMenuFoldShowTitle, getMenuFoldBtn, getMenuWidth } = useMenuSetting()
 
-      return {
-        unref,
-        getMenuType,
-        getThemeColor,
-        getMenuSplit,
-        getMenuCanDrag,
-        getMenuFixed,
-        getMenuFold,
-        getMenuFoldShowTitle,
-        getMenuFoldBtn,
-        getMenuWidth,
-        getLockScreenTime,
-        getShowBreadCrumb,
-        getShowLocale,
-        getShowFullScreen,
-        getShowDoc,
-        getShowGithub,
-        getShowPageTags,
-        getShowFooter,
-        getColorWeak,
-        getOpenNProgress,
-        getOpenTransition,
-        getBasicTransition,
-        menuFoldBtnOptions,
-        pageTransitionOptions,
-        drawerVisible,
-        toggleDrawer,
-        menuTypeList,
-        appThemeColorList,
-        baseHandler,
-        HandlerEnum
-      }
-    }
-  })
+  const { getLockScreenTime, getShowFooter, getColorWeak } = useBaseSetting()
+
+  const { getShowBreadCrumb, getShowPageTags, getShowLocale, getShowFullScreen, getShowDoc, getShowGithub } = useHeaderSetting()
+
+  const { getOpenNProgress, getOpenTransition, getBasicTransition } = useTransitionSetting()
+
 </script>
 
 <style lang="less">
@@ -237,6 +199,7 @@
     cursor: pointer;
     pointer-events: auto;
   }
+  
   .layout_setting-drawer {
     .ant-drawer-body {
       .scrollbar__wrap {

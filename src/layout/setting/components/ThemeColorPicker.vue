@@ -61,8 +61,8 @@
     margin: 16px 0;
 
     .theme-color-picker__item {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       cursor: pointer;
       border-radius: 2px;
 
@@ -74,8 +74,8 @@
 
         &:deep(svg) {
           display: inline-block;
-          margin-bottom: 6px;
-          margin-left: 4px;
+          margin-bottom: 5px;
+          margin-left: 5px;
           font-size: 12px;
           fill: #fff !important;
         }

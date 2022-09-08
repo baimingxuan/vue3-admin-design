@@ -1,5 +1,5 @@
 <template>
-  <div class="switch-item">
+  <div class="compo_switch-item">
     <span>{{ title }}</span>
     <AntdSwitch
       v-bind="getBindValue"
@@ -53,9 +53,13 @@
 </script>
 
 <style lang="less" scoped>
-  .switch-item {
+  .compo_switch-item {
     display: flex;
     justify-content: space-between;
     margin: 16px 0;
+
+    &:deep(.ant-switch) {
+      min-width: 40px;
+    }
   }
 </style>
