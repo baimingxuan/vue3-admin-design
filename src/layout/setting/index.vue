@@ -228,9 +228,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 46px;
-    height: 46px;
-    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
     color: #fff;
     background-color: #1890ff;
     border-radius: 4px 0 0 4px;
