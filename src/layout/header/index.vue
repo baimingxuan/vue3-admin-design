@@ -7,7 +7,7 @@
     <div :class="`${prefixCls}-main`">
       <div :class="`${prefixCls}-main-body`">
         <div :class="`${prefixCls}-main-body-menu`">
-          <LayoutMenu :isHorizontal="true" :menuSplit="getMenuSplit" />
+          <LayoutMenu :isHorizontal="true" />
         </div>
         <LayoutFeature />
       </div>
@@ -22,7 +22,6 @@
 
   import { propTypes } from '@/utils/propTypes'
   import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
-  import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 
   import { AppLogo } from '@/components/Application'
 
@@ -45,7 +44,6 @@
       const prefixCls = 'layout_header'
 
       const { getAppMode } = useBaseSetting()
-      const { getMenuSplit } = useMenuSetting()
 
       const getHeaderStyle = computed(() => {
         const mode = unref(getAppMode)
@@ -61,8 +59,7 @@
 
       return {
         prefixCls,
-        getHeaderStyle,
-        getMenuSplit
+        getHeaderStyle
       }
     }
   })

@@ -1,5 +1,5 @@
 import type { AppMenu } from '@/router/types'
-import { ref, unref, computed, watch } from 'vue'
+import { ref, unref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useThrottleFn } from '@vueuse/core'
 
@@ -10,6 +10,7 @@ import { getMenus, getShallowMenus, getChildrenMenus, getCurrentParentPath } fro
 export function useLayoutMenu(menuSplit: boolean) {
   // Menu array
   const menusRef = ref<AppMenu[]>([])
+  const childrenMenus = ref<AppMenu[]>([])
   const { currentRoute } = useRouter()
   const permissionStore = usePermissionStore()
   const { getMenuSplit, setMenuSetting } = useMenuSetting()
@@ -19,7 +20,8 @@ export function useLayoutMenu(menuSplit: boolean) {
   // Route path change
   watch(
     [() => unref(currentRoute).path, () => unref(menuSplit)],
-    async ([path]: [string]) => {
+    async ([path]: [string, boolean]) => {
+
       const { meta } = unref(currentRoute)
       const currentActiveMenu = meta.currentActiveMenu as string
       let parentPath = await getCurrentParentPath(path)
@@ -60,7 +62,8 @@ export function useLayoutMenu(menuSplit: boolean) {
     }
 
     setMenuSetting({ menuHidden: false })
-    menusRef.value = children
+    childrenMenus.value = children
+    
   }
 
   // Get menu list
@@ -74,5 +77,5 @@ export function useLayoutMenu(menuSplit: boolean) {
     }
   }
 
-  return { menusRef }
+  return { menusRef, childrenMenus }
 }

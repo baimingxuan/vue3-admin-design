@@ -2,7 +2,7 @@ import type { AppMenu } from "../types"
 // import { transformMenuModule } from "../helper/menuHelper"
 import { usePermissionStore } from "@/stores/modules/permission"
 import { getAllParentPath, transformRouteToMenu } from "@/router/helper/menuHelper"
-import { PermissionModeEnum } from '@/enums/appEnum'
+// import { PermissionModeEnum } from '@/enums/appEnum'
 import { asyncRoutes } from '@/router/routes'
 
 const routeModules = import.meta.glob("./routes/modules/*.ts", { eager: true }) as Object
@@ -15,13 +15,13 @@ Object.keys(routeModules).forEach(key => {
   menuModules.push(...moduleList)
 })
 
-const isMappingMode = () => {
-  return PermissionModeEnum.MAPPING
-}
+// const isMappingMode = () => {
+//   return PermissionModeEnum.MAPPING
+// }
 
-const isBackendMode = () => {
-  return PermissionModeEnum.BACKEND
-}
+// const isBackendMode = () => {
+//   return PermissionModeEnum.BACKEND
+// }
 
 
 // const staticMenus: AppMenu[] = [];
@@ -38,18 +38,20 @@ const isBackendMode = () => {
 
 
 async function getAsyncMenus() {
-  const staticMenus: AppMenu[] = []
+  // const staticMenus: AppMenu[] = []
   
   // for (const menu of menuModules) {
   //   staticMenus.push(transformMenuModule(menu))
   // }
-  return staticMenus
+  const permissionStore = usePermissionStore()
+  return permissionStore.getMenuList.filter((item) => !item.hideMenu)
+  // return staticMenus
 }
 
 export async function getCurrentParentPath(currentPath: string) {
-  const menus = await getAsyncMenus();
-  const allParentPath = await getAllParentPath(menus, currentPath);
-  return allParentPath?.[0];
+  const menus = await getAsyncMenus()
+  const allParentPath = await getAllParentPath(menus, currentPath)
+  return allParentPath?.[0]
 }
 
 // Get the level 1 menu, delete children
@@ -71,7 +73,7 @@ export async function getChildrenMenus(parentPath: string) {
 
 export const getMenus = async (): Promise<AppMenu[]> => {
   async function generateMenus() {
-    const permissionStore = usePermissionStore();
+    const permissionStore = usePermissionStore()
     // const staticMenus: AppMenu[] = []
 
     // menuModules.sort((a, b) => {
@@ -83,10 +85,9 @@ export const getMenus = async (): Promise<AppMenu[]> => {
     // }
 
     // return staticMenus
-    return permissionStore.getMenuList.filter((item) => !item.hideMenu);
+    return permissionStore.getMenuList.filter((item) => !item.hideMenu)
   }
 
-  const menus = await generateMenus();
-
-  return menus;
+  const menus = await generateMenus()
+  return menus
 };

@@ -13,7 +13,7 @@
     <template #trigger v-if="getShowTrigger">
       <SiderTrigger />
     </template>
-    <LayoutMenu />
+    <LayoutMenu :menuMode="MenuModeEnum.INLINE" :isSplitedMenu="getIsSplited" :isHorizontal="false" />
     <DragBar ref="dragBarRef" />
   </AntdSider>
 </template>
@@ -25,7 +25,7 @@
   import SiderTrigger from './components/SiderTrigger.vue'
   import DragBar from './components/DragBar.vue'
   import LayoutMenu from '@/layout/menu/index.vue'
-  import { MenuTypeEnum, MenuFoldBtnEnum } from '@/enums/menuEnum'
+  import { MenuTypeEnum, MenuModeEnum, MenuFoldBtnEnum } from '@/enums/menuEnum'
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 
   const { getMenuType, getMenuTheme, getMenuWidth, getMenuFold, getMenuFoldBtn, getMenuSplit } = useMenuSetting()
@@ -34,6 +34,7 @@
   const getShowSider = computed(() => {
     return unref(getMenuType) === MenuTypeEnum.SIDER_MENU || (unref(getMenuType) === MenuTypeEnum.HEADER_MENU && unref(getMenuSplit))
   })
+  const getIsSplited = computed(() => unref(getMenuSplit))
 
 </script>
 

@@ -13,13 +13,12 @@
     name: 'LayoutMenu',
     props: {
       menuMode: {
-        type: String as PropType<MenuModeEnum>,
-        default: ''
+        type: String as PropType<MenuModeEnum>
       },
 
       menuTheme: propTypes.oneOf(['light', 'dark']),
 
-      menuSplit: propTypes.bool.def(false),
+      isSplitedMenu: propTypes.bool.def(false),
 
       isHorizontal: propTypes.bool
     },
@@ -27,15 +26,16 @@
 
     setup(props) {
       const go = useGo()
+      const { getMenuSplit } = useMenuSetting()
 
-      const { menusRef } = useLayoutMenu(props.menuSplit)
+      const { menusRef, childrenMenus } = useLayoutMenu(unref(getMenuSplit))
 
       const { getMenuMode, getMenuTheme, getMenuType, getIsHorizontal, getIsSideMenu,
         getMenuFoldShowTitle
       } = useMenuSetting()
 
       const getCommonProps = computed(() => {
-        const menus = unref(menusRef)
+        const menus = props.isSplitedMenu ? unref(childrenMenus) : unref(menusRef)
         
         return {
           menus,
