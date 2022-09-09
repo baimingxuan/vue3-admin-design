@@ -57,11 +57,14 @@ export function handler(event: HandlerEnum, value: any): DeepPartial<AppConfig> 
         case HandlerEnum.SHOW_PAGE_TAGS:
             return { headerSetting: { showPageTags: value } }
 
-        case HandlerEnum.SHOW_LOCALE:
-            return { headerSetting: { showLocale: value } }
+        case HandlerEnum.SHOW_SEARCH:
+            return { headerSetting: { showSearch: value } }
 
         case HandlerEnum.SHOW_FULL_SCREEN:
             return { headerSetting: { showFullScreen: value } }
+
+        case HandlerEnum.SHOW_LOCALE:
+            return { headerSetting: { showLocale: value } }
 
         case HandlerEnum.SHOW_DOC:
             return { headerSetting: { showDoc: value } }

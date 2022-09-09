@@ -25,10 +25,12 @@ export interface HeaderSetting {
   showBreadCrumb: boolean
   // Show page tags
   showPageTags: boolean
-  // Show locale
-  showLocale: boolean
+  // Show search
+  showSearch: boolean
   // Turn on full screen
   showFullScreen: boolean
+  // Show locale
+  showLocale: boolean
   // Show document button
   showDoc: boolean
   // Show github button

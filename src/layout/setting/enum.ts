@@ -78,8 +78,9 @@ export enum HandlerEnum {
   // interface display
   SHOW_BREADCRUMB,
   SHOW_PAGE_TAGS,
-  SHOW_LOCALE,
+  SHOW_SEARCH,
   SHOW_FULL_SCREEN,
+  SHOW_LOCALE,
   SHOW_DOC,
   SHOW_GITHUB,
   SHOW_FOOTER,

@@ -1,10 +1,10 @@
 <template>
-  <div class="layout_feature">
-    <Search />
-    <FullScreen />
-    <LocalePicker />
-    <DocLink />
-    <GithubLink />
+  <div :class="prefixCls">
+    <Search v-if="getShowSearch" :class="`${prefixCls}-item`" />
+    <FullScreen v-if="getShowFullScreen" :class="`${prefixCls}-item`" />
+    <LocalePicker v-if="getShowLocale" :class="`${prefixCls}-item`" />
+    <DocLink v-if="getShowDoc" :class="`${prefixCls}-item`" />
+    <GithubLink v-if="getShowGithub" />
   </div>
 </template>
 
@@ -16,14 +16,20 @@
     DocLink,
     GithubLink
   } from './components'
+  import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting';
+
+  const prefixCls = 'layout_feature'
+  const { getShowSearch, getShowFullScreen, getShowLocale, getShowDoc, getShowGithub } = useHeaderSetting()
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
   .layout_feature {
     display: flex;
     align-items: center;
-    justify-content: space-around;
     min-width: 160px;
     height: 100%;
+    &-item {
+      margin-right: 12px;
+    }
   }
 </style>

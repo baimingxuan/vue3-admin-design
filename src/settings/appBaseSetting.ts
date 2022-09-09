@@ -10,12 +10,14 @@ export const appSetting: AppConfig = {
     showBreadCrumb: true,
     // Show page tags
     showPageTags: true,
+    // Show search
+    showSearch: true,
+    // Turn on full screen
+    showFullScreen: true,
     // Show locale
     showLocale: true,
-    // Turn on full screen
-    showFullScreen: false,
     // Show document button
-    showDoc: false,
+    showDoc: true,
     // Show github button
     showGithub: true
   },

@@ -11,7 +11,7 @@
         </div>
         <LayoutFeature />
       </div>
-      <LayoutTags />
+      <LayoutTags v-if="getShowPageTags" />
     </div>
   </AntdHeader>
 </template>
@@ -22,6 +22,7 @@
 
   import { propTypes } from '@/utils/propTypes'
   import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
+  import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
 
   import { AppLogo } from '@/components/Application'
 
@@ -44,6 +45,7 @@
       const prefixCls = 'layout_header'
 
       const { getAppMode } = useBaseSetting()
+      const { getShowPageTags } = useHeaderSetting()
 
       const getHeaderStyle = computed(() => {
         const mode = unref(getAppMode)
@@ -59,7 +61,8 @@
 
       return {
         prefixCls,
-        getHeaderStyle
+        getHeaderStyle,
+        getShowPageTags
       }
     }
   })

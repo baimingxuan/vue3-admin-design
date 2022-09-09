@@ -3,13 +3,13 @@
     <div :class="`${prefixCls}-main`">
       <div :class="`${prefixCls}-main-left`">
         <FoldTrigger v-if="getShowTrigger" />
-        <Breadcrumb />
+        <Breadcrumb v-if="getShowBreadCrumb" />
       </div>
       <div :class="`${prefixCls}-main-right`">
         <LayoutFeature />
       </div>
     </div>
-    <LayoutTags />
+    <LayoutTags v-if="getShowPageTags" />
   </AntdHeader>
 </template>
 
@@ -24,9 +24,12 @@
 
   import { MenuFoldBtnEnum } from '@/enums/menuEnum'
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
+  import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
   
   const prefixCls = 'layout_simple-header'
   const { getMenuFoldBtn } = useMenuSetting()
+  const { getShowPageTags, getShowBreadCrumb } = useHeaderSetting()
+
   const getShowTrigger = computed(() => unref(getMenuFoldBtn) === MenuFoldBtnEnum.HEADER)
 
 </script>

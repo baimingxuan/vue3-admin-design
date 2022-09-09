@@ -97,14 +97,19 @@
         :event="HandlerEnum.SHOW_PAGE_TAGS"
       />
       <SwitchItem
-        title="国际化"
-        :def="unref(getShowLocale)"
-        :event="HandlerEnum.SHOW_LOCALE"
+        title="搜索"
+        :def="unref(getShowSearch)"
+        :event="HandlerEnum.SHOW_SEARCH"
       />
       <SwitchItem
         title="全屏显示"
         :def="unref(getShowFullScreen)"
         :event="HandlerEnum.SHOW_FULL_SCREEN"
+      />
+      <SwitchItem
+        title="国际化"
+        :def="unref(getShowLocale)"
+        :event="HandlerEnum.SHOW_LOCALE"
       />
       <SwitchItem
         title="文档"
@@ -175,7 +180,7 @@
 
   const { getLockScreenTime, getShowFooter, getColorWeak } = useBaseSetting()
 
-  const { getShowBreadCrumb, getShowPageTags, getShowLocale, getShowFullScreen, getShowDoc, getShowGithub } = useHeaderSetting()
+  const { getShowBreadCrumb, getShowPageTags, getShowSearch, getShowFullScreen, getShowLocale, getShowDoc, getShowGithub } = useHeaderSetting()
 
   const { getOpenNProgress, getOpenTransition, getBasicTransition } = useTransitionSetting()
 
