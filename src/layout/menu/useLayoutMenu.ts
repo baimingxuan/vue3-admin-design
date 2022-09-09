@@ -1,15 +1,13 @@
-import type { Ref } from 'vue'
 import type { AppMenu } from '@/router/types'
 import { ref, unref, computed, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useThrottleFn } from '@vueuse/core'
 
-import { MenuSplitTyeEnum } from '@/enums/menuEnum'
 import { usePermissionStore } from '@/stores/modules/permission'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { getMenus, getShallowMenus, getChildrenMenus, getCurrentParentPath } from '@/router/menus'
 
-export function useLayoutMenu(menuSplitType: Ref<MenuSplitTyeEnum>) {
+export function useLayoutMenu(menuSplit: boolean) {
   // Menu array
   const menusRef = ref<AppMenu[]>([])
   const { currentRoute } = useRouter()
@@ -18,13 +16,9 @@ export function useLayoutMenu(menuSplitType: Ref<MenuSplitTyeEnum>) {
 
   const throttleHandleSplitMenu = useThrottleFn(handleSpliteMenu, 50)
 
-  const getNoSplit = computed(() => {
-    return unref(menuSplitType) === MenuSplitTyeEnum.NONE || !(unref(getMenuSplit))
-  })
-
   // Route path change
   watch(
-    [() => unref(currentRoute).path, () => unref(menuSplitType)],
+    [() => unref(currentRoute).path, () => unref(menuSplit)],
     async ([path]: [string]) => {
       const { meta } = unref(currentRoute)
       const currentActiveMenu = meta.currentActiveMenu as string
@@ -71,15 +65,11 @@ export function useLayoutMenu(menuSplitType: Ref<MenuSplitTyeEnum>) {
 
   // Get menu list
   async function getMenuList() {
-    // Menu no split
-    if (unref(getNoSplit)) {
-      menusRef.value = await getMenus()
-      return
-    }
-
-    // Menu split
     if (unref(getMenuSplit)) {
       menusRef.value = await getShallowMenus()
+      return
+    } else {
+      menusRef.value = await getMenus()
       return
     }
   }

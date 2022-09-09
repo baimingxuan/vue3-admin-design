@@ -149,7 +149,7 @@
           closeMenu()
           return
         }
-        console.log('children', children)
+        
         childrenMenus.value = children
       }
 
