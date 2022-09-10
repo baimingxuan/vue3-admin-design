@@ -9,6 +9,7 @@
     "clean": "rimraf node_modules"
   },
   "dependencies": {
+    "@ant-design/colors": "^6.0.0",
     "@ant-design/icons-vue": "^6.1.0",
     "@vueuse/core": "^8.4.2",
     "ant-design-vue": "^3.2.10",
