@@ -3,6 +3,7 @@ import { AppConfig } from '@/interfaces/config'
 
 import { useAppStore } from '@/stores/modules/app'
 import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
+import { changeTheme } from '@/logics/theme'
 
 export function handler(event: HandlerEnum, value: any): DeepPartial<AppConfig> {
     // const appStore = useAppStore()
@@ -24,6 +25,8 @@ export function handler(event: HandlerEnum, value: any): DeepPartial<AppConfig> 
         
         case HandlerEnum.CHANGE_THEME_COLOR:
             if (getThemeColor.value === value) return {}
+
+            changeTheme(value)
             
             return { themeColor: value }
 

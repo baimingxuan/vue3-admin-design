@@ -3,10 +3,10 @@
  * https://github.com/vbenjs/vite-plugin-theme
  */
 import type { Plugin } from 'vite'
-import { viteThemePlugin, mixLighten, mixDarken, tinycolor } from 'vite-plugin-theme'
+import { viteThemePlugin } from 'vite-plugin-theme'
 import { getThemeColors } from '../../config/themeConfig'
 
-export function configThemePlugin(isBuild: boolean): Plugin[] {
+export function configThemePlugin(): Plugin[] {
   const plugin = [
     viteThemePlugin({
       colorVariables: [...getThemeColors()]
