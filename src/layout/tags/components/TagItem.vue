@@ -65,7 +65,7 @@
     &.active {
       border: none;
       color: #fff;
-      background: #409eff;
+      background: #1890ff;
       & .compo_tag-item__dot{
         background: #fff;
       }
