@@ -26,8 +26,10 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       host: true,
       port: VITE_PORT
     },
+
     // the project uses lots of vite plugins, so they are extracted and managed separately
     plugins: createVitePlugins(isBuild),
+
     build: {
       target: 'es2015',
       cssTarget: 'chrome86',
@@ -41,6 +43,17 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       },
       chunkSizeWarningLimit: 2000
     },
+
+    css: {
+      preprocessorOptions: {
+        less: {
+          charset: false,
+          additionalData: `@import "${resolve('src/design/variable/index.less')}";`,
+          javascriptEnabled: true
+        }
+      }
+    },
+
     resolve: {
       alias: [
         {
