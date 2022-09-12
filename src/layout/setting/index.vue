@@ -198,8 +198,8 @@
     width: 40px;
     height: 40px;
     font-size: 16px;
-    color: #fff;
-    background-color: #1890ff;
+    color: @white;
+    background: @primary-color;
     border-radius: 4px 0 0 4px;
     cursor: pointer;
     pointer-events: auto;

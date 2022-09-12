@@ -37,7 +37,7 @@
     border-radius: 3px;
     line-height: 24px;
     color: #555;
-    background: #fff;
+    background: @white;
     overflow: hidden;
     cursor: pointer;
 
@@ -64,13 +64,13 @@
 
     &.active {
       border: none;
-      color: #fff;
-      background: #1890ff;
+      color: @white;
+      background: @primary-color;
       & .compo_tag-item__dot{
-        background: #fff;
+        background: @white;
       }
       &:deep(.anticon-close) {
-        color: #fff;
+        color: @white;
       }
     }
   }
