@@ -3,6 +3,7 @@ import { ImportAsyncComponent } from '@/utils/factory/ImportAsyncComponent'
 import appModeSwitch from './AppModeSwitch.vue'
 
 export const AppModeSwitch = withInstall(appModeSwitch)
+export const MenuColorSwitch = ImportAsyncComponent(() => import('./MenuColorSwitch.vue'))
 export const MenuTypePicker = ImportAsyncComponent(() => import('./MenuTypePicker.vue'))
 export const ThemeColorPicker = ImportAsyncComponent(() => import('./ThemeColorPicker.vue'))
 export const SwitchItem = ImportAsyncComponent(() => import('./SwitchItem.vue'))
