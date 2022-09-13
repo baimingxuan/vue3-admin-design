@@ -6,7 +6,7 @@ export interface ColorItem {
   color: string
 }
 
-// menu type list
+// Menu type list
 export const menuTypeList = [
   {
     title: '左侧菜单',
@@ -25,7 +25,7 @@ export const menuTypeList = [
   }
 ]
 
-// app theme color
+// App theme color
 export const appThemeColorList: ColorItem[] = [
   {
       name: '拂晓蓝',
@@ -62,11 +62,11 @@ export const appThemeColorList: ColorItem[] = [
 ]
 
 export enum HandlerEnum {
-  // layout type
+  // Layout type
   CHANGE_LAYOUT,
-  // theme color
+  // Theme color
   CHANGE_THEME_COLOR,
-  // interface function
+  // Interface function
   MENU_SPLIT,
   MENU_CAN_DRAG,
   MENU_FIXED,
@@ -75,7 +75,7 @@ export enum HandlerEnum {
   MENU_FOLD_SHOW_TITLE,
   MENU_WIDTH,
   LOCK_SCREEN_TIME,
-  // interface display
+  // Interface display
   SHOW_BREADCRUMB,
   SHOW_PAGE_TAGS,
   SHOW_SEARCH,
@@ -86,13 +86,13 @@ export enum HandlerEnum {
   SHOW_FOOTER,
   COLOR_WEAK,
   
-  // animation settings
+  // Animation settings
   OPEN_NPROGRESS,
   OPEN_TRANSITION,
   BASIC_TRANSITION
 }
 
-// menuFoldBtn options
+// Menu Fold Button options
 export const menuFoldBtnOptions = [
   {
     value: MenuFoldBtnEnum.NONE,
@@ -108,7 +108,7 @@ export const menuFoldBtnOptions = [
   }
 ]
 
-// page transition options
+// Page transition options
 export const pageTransitionOptions = [
   PageTransitionEnum.FADE,
   PageTransitionEnum.FADE_SIDE,
