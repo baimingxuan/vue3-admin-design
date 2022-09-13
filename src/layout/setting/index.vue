@@ -1,10 +1,13 @@
 <template>
-  <div
+  <AntdButton
     class="layout-setting-trigger"
+    type="primary"
     @click="toggleDrawer"
   >
-    <AntdSettingOutlined />
-  </div>
+    <template #icon>
+      <AntdSettingOutlined />
+    </template>
+  </AntdButton>
   <AntdDrawer
     :visible="drawerVisible"
     :closable="false"
@@ -155,7 +158,7 @@
 <script lang="ts" setup>
   import { ref, unref } from 'vue'
   
-  import { Drawer as AntdDrawer, Divider as AntdDivider } from 'ant-design-vue'
+  import { Drawer as AntdDrawer, Divider as AntdDivider, Button as AntdButton } from 'ant-design-vue'
   import { SettingOutlined as AntdSettingOutlined } from '@ant-design/icons-vue'
 
   import { AppModeSwitch, MenuTypePicker, ThemeColorPicker, SwitchItem, SelectItem, InputNumItem } from './components'
@@ -203,6 +206,10 @@
     border-radius: 4px 0 0 4px;
     cursor: pointer;
     pointer-events: auto;
+
+    svg {
+      color: @white;
+    }
   }
   
   .layout_setting-drawer {
