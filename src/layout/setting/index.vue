@@ -21,7 +21,7 @@
       <AppModeSwitch class="mx-auto" />
       <AntdDivider>菜单模式</AntdDivider>
       <div class="flex-between-h">
-        <MenuColorRadio />
+        <MenuThemeRadio />
         <MenuTypePicker
           :menuTypeList="menuTypeList"
           :def="unref(getMenuType)"
@@ -164,7 +164,7 @@
   import { Drawer as AntdDrawer, Divider as AntdDivider, Button as AntdButton } from 'ant-design-vue'
   import { SettingOutlined as AntdSettingOutlined } from '@ant-design/icons-vue'
 
-  import { AppModeSwitch, MenuColorRadio, MenuTypePicker, ThemeColorPicker, SwitchItem, SelectItem, InputNumItem } from './components'
+  import { AppModeSwitch, MenuThemeRadio, MenuTypePicker, ThemeColorPicker, SwitchItem, SelectItem, InputNumItem } from './components'
   import { menuTypeList, appThemeColorList } from './enum'
   import Container from '@/components/Container/index.vue'
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'

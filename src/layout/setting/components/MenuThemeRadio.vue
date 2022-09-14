@@ -1,6 +1,11 @@
 <template>
   <div class="compo_menu-color-switch">
-    <AntdRadioGroup v-model:value="checked" button-style="solid" size="small">
+    <AntdRadioGroup
+      :value="getMenuTheme"
+      button-style="solid"
+      size="small"
+      @change="handleChangeTheme"
+    >
       <AntdRadioButton value="dark">暗色</AntdRadioButton>
       <AntdRadioButton value="light">亮色</AntdRadioButton>
     </AntdRadioGroup>
@@ -8,10 +13,16 @@
 </template>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import { RadioGroup as AntdRadioGroup, RadioButton as AntdRadioButton } from 'ant-design-vue'
+  import { ThemeEnum } from '@/enums/appEnum'
+  import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 
-  const checked = ref('dark')
+  const { getMenuTheme, changeMenuTheme } = useMenuSetting()
+
+  function handleChangeTheme(e: any) {
+    const theme = e.target.value as ThemeEnum
+    changeMenuTheme(theme)
+  }
 
 </script>
 

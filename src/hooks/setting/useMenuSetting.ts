@@ -2,6 +2,7 @@ import { computed, unref } from 'vue'
 import { useAppStore } from '@/stores/modules/app'
 import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum'
 import { MenuSetting } from '@/interfaces/config'
+import { ThemeEnum } from '@/enums/appEnum' 
 import { SIDE_BAR_MIN_WIDTH, SIDE_BAR_SHOW_TITLE_MIN_WIDTH } from '@/enums/appEnum'
 
 export function useMenuSetting() {
@@ -60,9 +61,17 @@ export function useMenuSetting() {
     })
   }
 
+  // Change menu theme
+  function changeMenuTheme(menuTheme: ThemeEnum) {
+    setMenuSetting({
+      menuTheme
+    })
+  }
+
   return {
     setMenuSetting,
     toggledMenuFold,
+    changeMenuTheme,
     getMenuType,
     getMenuMode,
     getThemeColor,
