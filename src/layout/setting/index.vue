@@ -17,7 +17,7 @@
     @close="toggleDrawer"
   >
     <Container>
-      <AntdDivider>页面风格</AntdDivider>
+      <AntdDivider>系统风格</AntdDivider>
       <AppModeSwitch class="mx-auto" />
       <AntdDivider>菜单模式</AntdDivider>
       <div class="flex-between-h">

@@ -7,14 +7,13 @@
   height: 80px;
   line-height: 80px;
   color: #fff;
-  background: @primary-dark-bg;
 
-  &--fixed {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 299;
+  &.light {
+    background: @white;
+  }
+
+  &.dark {
+    background: @primary-dark-bg;
   }
 
   &-logo {

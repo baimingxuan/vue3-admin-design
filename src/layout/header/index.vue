@@ -20,9 +20,8 @@
   import { defineComponent, computed, unref } from 'vue'
   import { Layout } from 'ant-design-vue'
 
-  import { propTypes } from '@/utils/propTypes'
-  import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
   import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
+  import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 
   import { AppLogo } from '@/components/Application'
 
@@ -39,23 +38,19 @@
       LayoutFeature,
       AppLogo
     },
-    props: { fixed: propTypes.bool },
 
-    setup(props) {
+    setup() {
       const prefixCls = 'layout_header'
 
-      const { getAppMode } = useBaseSetting()
       const { getShowPageTags } = useHeaderSetting()
+      const { getMenuTheme } = useMenuSetting()
 
       const getHeaderStyle = computed(() => {
-        const mode = unref(getAppMode)
+        const mode = unref(getMenuTheme)
 
         return [
           prefixCls,
-          {
-            [`${prefixCls}--fixed`]: props.fixed,
-            [`${prefixCls}--${mode}`]: mode
-          }
+          mode
         ]
       })
 
