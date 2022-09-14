@@ -20,18 +20,19 @@
       <AntdDivider>页面风格</AntdDivider>
       <AppModeSwitch class="mx-auto" />
       <AntdDivider>菜单模式</AntdDivider>
-      <MenuColorSwitch class="fl" />
-      <MenuTypePicker
-        class="fl"
-        :menuTypeList="menuTypeList"
-        :def="unref(getMenuType)"
-        :handler="(item: typeof menuTypeList[0]) => {
-          baseHandler(HandlerEnum.CHANGE_LAYOUT, {
-            menuMode: item.mode,
-            menuType: item.type
-          })
-        }"
+      <div class="flex-between-h">
+        <MenuColorRadio />
+        <MenuTypePicker
+          :menuTypeList="menuTypeList"
+          :def="unref(getMenuType)"
+          :handler="(item: typeof menuTypeList[0]) => {
+            baseHandler(HandlerEnum.CHANGE_LAYOUT, {
+              menuMode: item.mode,
+              menuType: item.type
+            })
+          }"
         />
+      </div>
       <AntdDivider>主题颜色</AntdDivider>
       <ThemeColorPicker
         :colorList="appThemeColorList"
@@ -163,7 +164,7 @@
   import { Drawer as AntdDrawer, Divider as AntdDivider, Button as AntdButton } from 'ant-design-vue'
   import { SettingOutlined as AntdSettingOutlined } from '@ant-design/icons-vue'
 
-  import { AppModeSwitch, MenuColorSwitch, MenuTypePicker, ThemeColorPicker, SwitchItem, SelectItem, InputNumItem } from './components'
+  import { AppModeSwitch, MenuColorRadio, MenuTypePicker, ThemeColorPicker, SwitchItem, SelectItem, InputNumItem } from './components'
   import { menuTypeList, appThemeColorList } from './enum'
   import Container from '@/components/Container/index.vue'
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
