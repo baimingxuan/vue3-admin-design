@@ -12,6 +12,7 @@
           ]"
           @click="handler(item)"
         >
+          <div class="hybrid-sider"></div>
           <AntdCheckOutlined />
         </div>
       </AntdTooltip>
@@ -89,7 +90,7 @@
         z-index: 1;
         width: 33%;
         height: 100%;
-        background-color: #273352;
+        background-color: @primary-dark-bg;
         border-radius: 4px 0 0 4px;
       }
 
@@ -98,17 +99,17 @@
         left: 0;
         width: 100%;
         height: 25%;
-        background-color: #fff;
+        background-color: @white;
       }
     }
 
-    &--hybrid-menu {
+    &--header-menu {
       &::before {
         top: 0;
         left: 0;
         width: 33%;
         height: 100%;
-        background-color: #fff;
+        background-color: @white;
         border-radius: 4px 0 0 4px;
       }
 
@@ -118,17 +119,36 @@
         z-index: 1;
         width: 100%;
         height: 25%;
-        background-color: #273352;
+        background-color: @primary-dark-bg;
       }
     }
 
-    &--header-menu {
+    &--hybrid-menu {
+
+      &::before {
+        top: 0;
+        left: 0;
+        z-index: 1;
+        width: 25%;
+        height: 100%;
+        background-color: @primary-dark-bg;
+        border-radius: 4px 0 0 4px;
+      }
+
       &::after {
         top: 0;
         left: 0;
         width: 100%;
         height: 25%;
-        background-color: #273352;
+        background-color: @white;
+      }
+
+      .hybrid-sider {
+        position: absolute;
+        left: 25%;
+        width: 15%;
+        height: 100%;
+        background-color: @white;
       }
     }
 
@@ -139,11 +159,11 @@
 
     &:hover,
     &--active {
-      border: 2px solid #1890ff;
+      border: 2px solid @primary-color;
 
       &:deep(svg) {
         display: block;
-        color: #1890ff;
+        color: @primary-color;
       }
 
       &::before,
