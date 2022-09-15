@@ -44,6 +44,7 @@
         title="菜单分割"
         :def="unref(getMenuSplit)"
         :event="HandlerEnum.MENU_SPLIT"
+        :disabled="unref(getMenuType) !== MenuTypeEnum.HEADER_MENU"
       />
       <SwitchItem
         title="菜单宽度拖拽"
@@ -54,11 +55,13 @@
         title="菜单固定"
         :def="unref(getMenuFixed)"
         :event="HandlerEnum.MENU_FIXED"
+        :disabled="unref(getMenuType) !== MenuTypeEnum.HYBRID_MENU"
       />
       <SwitchItem
         title="菜单折叠"
         :def="unref(getMenuFold)"
         :event="HandlerEnum.MENU_FOLD"
+        :disabled="unref(getMenuType) === MenuTypeEnum.HEADER_MENU"
       />
       <SwitchItem
         title="菜单折叠显示名称"
@@ -173,6 +176,7 @@
   import { useTransitionSetting } from '@/hooks/setting/useTransitionSetting'
 
   import { baseHandler } from './handler'
+  import { MenuTypeEnum } from '@/enums/menuEnum'
   import { HandlerEnum, menuFoldBtnOptions, pageTransitionOptions } from './enum'
 
   const drawerVisible = ref<boolean>(false)
