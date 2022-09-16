@@ -58,6 +58,7 @@
 
 <style lang="less">
   .submenu-collapsed {
+    padding-bottom: 0 !important;
     
     .ant-menu-submenu-title {
       height: auto !important;
@@ -65,17 +66,23 @@
       padding: 12px 0 !important;
       margin: 0;
       text-align: center !important;
-      transition: all 0.3s ease;
+      transition: all 0.2s ease;
 
       .compo_menu-item-cont {
+        display: block;
+
         .svg-icon {
+          vertical-align: 0;
           margin-bottom: 6px;
+          transition: all 0.2s;
         }
 
         &__name {
           display: block;
-          line-height: initial;
+          height: 22px;
+          line-height: 22px;
           margin-left: 0;
+          transition: all 0.2s;
         }
       } 
     }
