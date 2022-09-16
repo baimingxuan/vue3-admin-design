@@ -1,5 +1,5 @@
 <template>
-  <div :class="`${prefixCls}-dom`" :style="getWrapStyle"></div>
+  <div :class="`${prefixCls}-dom`" :style="getDomStyle" />
   <div :class="[prefixCls, getMenuTheme, { open: openMenu, mini: getMenuFold }]" :style="getWrapStyle" v-bind="getWrapEvents">
     <SiderTrigger :class="`${prefixCls}-trigger`" />
     <ScrollContainer>
@@ -70,10 +70,16 @@
 
       const go = useGo()
 
-      const { getMenuTheme, getMenuFold, getMenuWidth, getMenuFixed, getIsHybridMenu, setMenuSetting } = useMenuSetting()
+      const { getMenuTheme, getMenuFold, getMenuWidth, getMenuFixed, getIsHybridMenu, getReallWidth, setMenuSetting } = useMenuSetting()
 
       const getHybridSiderWidth = computed(() => {
         return unref(getMenuFold) ? SIDE_BAR_MIN_WIDTH : SIDE_BAR_SHOW_TITLE_MIN_WIDTH
+      })
+
+      const getDomStyle = computed((): CSSProperties => {
+        const fixedWidth = unref(getMenuFixed) ? unref(getReallWidth) : 0
+        const width = `${unref(getHybridSiderWidth) + fixedWidth!}`
+        return getWrapCommonStyle(width)
       })
 
       const getWrapStyle = computed((): CSSProperties => {
@@ -200,6 +206,7 @@
         activePath,
         getMenuTheme,
         getMenuFixed,
+        getDomStyle,
         getWrapStyle,
         getWrapEvents,
         getSubMenuStyle,
