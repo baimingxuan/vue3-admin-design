@@ -1,13 +1,13 @@
 @prefix-cls: ~'layout_hybrid-sider';
 
 .@{prefix-cls} {
-  z-index: 99;
+  z-index: 999;
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   overflow: hidden;
-  background-color: #273352;
+  background-color: @primary-dark-bg;
   transition: all 0.2s ease 0s;
 
   &-dom {
@@ -30,13 +30,16 @@
       transition: all 0.3s ease;
 
       &-icon {
-        margin-bottom: 8px;
+        vertical-align: 0;
+        margin-bottom: 4px;
         transition: all 0.2s;
       }
   
       &-name {
         display: block;
+        height: 22px;
         margin-bottom: 0;
+        line-height: 22px;
         transition: all 0.2s;
       }
 
@@ -47,7 +50,7 @@
       &--active {
         font-weight: 600;
         color: #fff;
-        background-color: #273352;
+        background-color: @primary-dark-bg;
 
         &::before {
           position: absolute;
@@ -93,7 +96,7 @@
     position: fixed;
     top: 0;
     height: 100%;
-    background-color: #273352;
+    background-color: @submenu-dark-bg;
     transition: all 0.2s;
 
     &__title {
