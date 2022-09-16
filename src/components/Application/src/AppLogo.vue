@@ -1,6 +1,7 @@
 <template>
   <div :class="getAppLogoClass" @click="goHome">
-    <img :src="getAppLogoSrc" alt="logo">
+    <img :src="AppLogoIcon" alt="logo">
+    <h1>Vue Admin Design</h1>
   </div>
 </template>
 
@@ -10,7 +11,7 @@
   import { propTypes } from '@/utils/propTypes'
   import { useGo } from '@/hooks/web/usePage'
 
-  import AppLogoImg from '@/assets/images/logo.png'
+  // import AppLogoImg from '@/assets/images/logo.png'
   import AppLogoIcon from '@/assets/images/logo-icon.png'
 
   const props = defineProps({
@@ -23,7 +24,7 @@
 
   const getAppLogoClass = computed(() => ['compo_app-logo', props.theme])
 
-  const getAppLogoSrc = computed(() => props.collapsed ? AppLogoIcon : AppLogoImg)
+  // const getAppLogoSrc = computed(() => props.collapsed ? AppLogoIcon : AppLogoImg)
 
   const go = useGo()
 
@@ -32,7 +33,21 @@
   }
 </script>
 
-<!-- <style lang="=less" scoped>
+<style lang="less" scoped>
   .compo_app-logo {
+    display: flex;
+    width: 210px;
+
+    img {
+      width: 40px;
+      height: 40px;
+    }
+    h1 {
+      height: 40px;
+      color: @primary-color;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 40px;
+    }
   }
-</style> -->
+</style>
