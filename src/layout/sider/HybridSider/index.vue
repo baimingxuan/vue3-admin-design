@@ -3,8 +3,8 @@
   <div :class="[prefixCls, getMenuTheme, { open: openMenu, mini: getMenuFold }]" :style="getWrapStyle" v-bind="getWrapEvents">
     <SiderTrigger :class="`${prefixCls}-trigger`" />
     <ScrollContainer>
-      <ul :class="`${prefixCls}-main-menu`">
-        <li
+      <div :class="`${prefixCls}-main-menu`">
+        <div
           v-for="item in mainMenuList"
           :key="item.path"
           v-bind="getMainMenuItemEvents(item)"
@@ -23,8 +23,8 @@
           <p :class="`${prefixCls}-main-menu__item-name`">
             {{ item?.name }}
           </p>
-        </li>
-      </ul>
+        </div>
+      </div>
     </ScrollContainer>
 
     <div :class="`${prefixCls}-sub-menu`" :style="getSubMenuStyle">

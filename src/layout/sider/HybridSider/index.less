@@ -6,8 +6,8 @@
   top: 0;
   left: 0;
   bottom: 0;
+  background: @primary-dark-bg;
   overflow: hidden;
-  background-color: @primary-dark-bg;
   transition: all 0.2s ease 0s;
 
   &-dom {
@@ -44,13 +44,13 @@
       }
 
       &:hover {
-        color: #fff;
+        color: @white;
       }
       
       &--active {
         font-weight: 600;
-        color: #fff;
-        background-color: @primary-dark-bg;
+        color: @white;
+        background: @primary-dark-bg;
 
         &::before {
           position: absolute;
@@ -58,8 +58,52 @@
           left: 0;
           width: 3px;
           height: 100%;
-          background-color: #1890ff;
+          background: @primary-color;
           content: '';
+        }
+      }
+    }
+  }
+
+  &.light {
+    background: @white;
+    box-shadow: 2px 0 8px 0 rgb(29 35 41 / 5%);
+
+    .@{prefix-cls}-main-menu {
+
+      &__item {
+        color: rgb(0 0 0 / 65%);
+
+        &:hover {
+          color: @primary-color;
+        }
+  
+        &--active {
+          color: @primary-color;
+          background: @white;
+        }
+      }
+    }
+
+    .@{prefix-cls}-trigger {
+
+      &:deep(svg) {
+        color: @primary-dark-bg;
+      }
+    }
+
+    .@{prefix-cls}-sub-menu {
+      background: @white;
+      box-shadow: 2px 0 8px 0 rgb(29 35 41 / 5%);
+
+      &__title {
+
+        .pushpin {
+          color: @primary-dark-bg;
+  
+          &:hover {
+            color: @primary-color;
+          }
         }
       }
     }
@@ -87,7 +131,7 @@
     color: rgb(255 255 255 / 65%);
     text-align: center;
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
     height: 36px;
     line-height: 36px;
   }
@@ -96,14 +140,14 @@
     position: fixed;
     top: 0;
     height: 100%;
-    background-color: @submenu-dark-bg;
+    background: @submenu-dark-bg;
     transition: all 0.2s;
 
     &__title {
       display: flex;
       height: 48px;
       font-size: 18px;
-      color: #1890ff;
+      color: @primary-color;
       border-bottom: 1px solid #0c2135;
       opacity: 0%;
       transition: unset;
@@ -122,7 +166,7 @@
         cursor: pointer;
 
         &:hover {
-          color: #fff;
+          color: @white;
         }
       }
     }
