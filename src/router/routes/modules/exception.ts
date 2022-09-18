@@ -7,6 +7,7 @@ const ExceptionRoute: AppRoute = {
     name: 'Exception',
     component: Layout,
     redirect: '/exception/page-401',
+    orderNo: 10,
     meta: {
         title: '异常页面',
         icon: 'bug'

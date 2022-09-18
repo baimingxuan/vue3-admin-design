@@ -7,6 +7,7 @@ const VideoRoute: AppRoute = {
     name: 'Video',
     component: Layout,
     redirect: '/video/video-player',
+    orderNo: 4,
     meta: {
         title: '视频处理',
         icon: 'video'

@@ -7,6 +7,7 @@ const TreeRoute: AppRoute = {
     name: 'Tree',
     component: Layout,
     redirect: '/tree/org-tree',
+    orderNo: 8,
     meta: {
         title: '树形结构',
         icon: 'tree'

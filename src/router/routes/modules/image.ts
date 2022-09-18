@@ -7,6 +7,7 @@ const ImageRoute: AppRoute = {
     name: 'Image',
     component: Layout,
     redirect: '/image/image-cropper',
+    orderNo: 3,
     meta: {
         title: '图片处理',
         icon: 'image'
