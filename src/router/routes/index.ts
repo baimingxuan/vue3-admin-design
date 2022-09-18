@@ -2,23 +2,29 @@ import type { AppRoute } from '../types'
 import Layout from '../../layout/index.vue'
 
 /**
+ * Note: subMenu only appear when route children.length > 1
+ * 
+ * name: 'route-name'           the name is used by <keep-alive> (must set!!)
+ * redirect: 'redirect-path'    if set, it will redirect to path (recommend set)
+ * hidden: true                 if set true, menu item will hide in the menu (default is false)
+ * orderNo: 0                   menu item display order (recommend set)
  * meta: {
     title: 'title'              the name show in menu and breadcrumb (recommend set)
-    icon: 'icon-name'           the icon show in the menu
-    affix: false                if set true, the tag will affix in the tags-view (default is false)     
-    hideMenu: false             if set true, menu item will hide in the menu (default is false)
+    icon: 'svg-name'            the icon show in the menu (recommend set)
+    affix: false                if set true, the tag will affix in the tags-view (default is false)
+    noCache: false              if set true, the page will no be cached (default is false)
     hideChildrenInMenu: false   if set true, menu children will hide in the menu (default is false)
     hideBreadcrumb: false       if set true, breadcrumb will hide in the item (default is false)
-    orderNo: 0                  menu item display sequence
   }
  * */
 
-// home page
+// Home page
 export const HomeRoute: AppRoute = {
     path: '/',
     name: 'Home',
     component: Layout,
     redirect: '/home',
+    orderNo: 0,
     meta: {
         title: '首页',
         icon: 'home',
@@ -61,7 +67,7 @@ export const PageNotFoundRoute: AppRoute = {
     ]
 }
 
-// redirect page
+// Redirect page
 export const RedirectRoute: AppRoute = {
     path: '/redirect',
     name: 'RedirectTo',
