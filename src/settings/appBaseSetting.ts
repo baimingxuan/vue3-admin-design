@@ -1,6 +1,6 @@
 import type { AppConfig } from '@/interfaces/config'
 import { MenuTypeEnum, MenuModeEnum, MenuFoldBtnEnum } from '@/enums/menuEnum'
-import { ThemeEnum, PageTransitionEnum } from '@/enums/appEnum'
+import { ThemeEnum, PageTransitionEnum, PermissionModeEnum } from '@/enums/appEnum'
 
 export const appSetting: AppConfig = {
   // Theme color
@@ -55,6 +55,8 @@ export const appSetting: AppConfig = {
     // Page basic switching animation
     basicTransition: PageTransitionEnum.FADE
   },
+  // Permission mode
+  permissionMode: PermissionModeEnum.MAPPING,
   // Route keepAlive
   openKeepAlive: true,
   // Lock screen time

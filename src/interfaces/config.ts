@@ -1,5 +1,6 @@
 import { MenuModeEnum, MenuTypeEnum, MenuFoldBtnEnum } from '../enums/menuEnum'
 import { PageTransitionEnum, ThemeEnum } from '../enums/appEnum'
+import { PermissionModeEnum } from '../enums/appEnum'
 
 export interface AppConfig {
   // Theme color
@@ -10,6 +11,8 @@ export interface AppConfig {
   menuSetting: MenuSetting
   // Transition setting
   transitionSetting: TransitionSetting
+  // Permission mode
+  permissionMode: PermissionModeEnum
   // Route keepAlive
   openKeepAlive: boolean
   // Lock screen time
