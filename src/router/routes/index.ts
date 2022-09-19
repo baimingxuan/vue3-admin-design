@@ -6,89 +6,74 @@ import Layout from '../../layout/index.vue'
  * 
  * name: 'route-name'           the name is used by <keep-alive> (must set!!)
  * redirect: 'redirect-path'    if set, it will redirect to path (recommend set)
- * hidden: true                 if set true, menu item will hide in the menu (default is false)
  * orderNo: 0                   menu item display order (recommend set)
  * meta: {
     title: 'title'              the name show in menu and breadcrumb (recommend set)
     icon: 'svg-name'            the icon show in the menu (recommend set)
     affix: false                if set true, the tag will affix in the tags-view (default is false)
     noCache: false              if set true, the page will no be cached (default is false)
+    hideMenu: false             if set true, menu item will hide in the menu (default is false)
     hideChildrenInMenu: false   if set true, menu children will hide in the menu (default is false)
     hideBreadcrumb: false       if set true, breadcrumb will hide in the item (default is false)
   }
  * */
 
 // Home page
-export const HomeRoute: AppRoute = {
-    path: '/',
-    name: 'Home',
-    component: Layout,
-    redirect: '/home',
-    orderNo: 0,
-    meta: {
-        title: '首页',
-        icon: 'home',
-        affix: true
-    },
-    children: [
-        {
-            path: 'home',
-            name: 'Home',
-            component: () => import('../../views/home.vue'),
-            meta: {
-                title: '首页',
-                icon: 'home',
-                affix: true
-            }
-        }
-    ]
+export const RootRoute: AppRoute = {
+  path: '/',
+  name: 'Root',
+  redirect: '/home',
+  meta: {
+    title: '首页'
+  }
 }
 
 // 404 on a page
 export const PageNotFoundRoute: AppRoute = {
-    path: '/:path(.*)*',
-    name: 'PageNotFound',
-    component: Layout,
-    meta: {
+  path: '/:path(.*)*',
+  name: 'PageNotFound',
+  component: Layout,
+  meta: {
+    title: '错误页面',
+    hideMenu: true,
+    hideBreadcrumb: true
+  },
+  children: [
+    {
+      path: '/:path(.*)*',
+      name: 'PageNotFound',
+      component: () => import('@/views/redirect.vue'),
+      meta: {
         title: '错误页面',
-        hideBreadcrumb: true,
         hideMenu: true,
-    },
-    children: [
-        {
-            path: '/:path(.*)*',
-            name: 'PageNotFound',
-            meta: {
-                title: '错误页面',
-                hideBreadcrumb: true,
-                hideMenu: true,
-            }
-        }
-    ]
+        hideBreadcrumb: true
+      }
+    }
+  ]
 }
 
 // Redirect page
 export const RedirectRoute: AppRoute = {
-    path: '/redirect',
-    name: 'RedirectTo',
-    component: Layout,
-    meta: {
+  path: '/redirect',
+  name: 'RedirectTo',
+  component: Layout,
+  meta: {
+    title: '重定向页面',
+    hideMenu: true,
+    hideBreadcrumb: true,
+  },
+  children: [
+    {
+      path: '/redirect/:path(.*)',
+      name: 'RedirectTo',
+      component: () => import('@/views/redirect.vue'),
+      meta: {
         title: '重定向页面',
-        hideBreadcrumb: true,
-        hideMenu: true
-    },
-    children: [
-        {
-            path: '/redirect/:path(.*)',
-            name: 'RedirectTo',
-            component: () => import('@/views/redirect.vue'),
-            meta: {
-                title: '重定向页面',
-                hideBreadcrumb: true,
-                hideMenu: true
-            }
-        }
-    ]
+        hideMenu: true,
+        hideBreadcrumb: true
+      }
+    }
+  ]
 }
 
 const routeModules = import.meta.glob('./modules/*.ts', { eager: true }) as Object
@@ -96,12 +81,16 @@ const routeModules = import.meta.glob('./modules/*.ts', { eager: true }) as Obje
 const routeModulesList: AppRoute[] = []
 
 Object.keys(routeModules).forEach(key => {
-    const module = routeModules[key].default || {}
-    const moduleList = Array.isArray(module) ? [...module] : [module]
-    routeModulesList.push(...moduleList)
+  const module = routeModules[key].default || {}
+  const moduleList = Array.isArray(module) ? [...module] : [module]
+  routeModulesList.push(...moduleList)
 })
 
+// Async routes with permission
+export const asyncRoutes = [PageNotFoundRoute, ...routeModulesList]
+
+// Basic routes without permission
 export const basicRoutes = [
-    HomeRoute,
-    ...routeModulesList
+  RootRoute,
+  ...routeModulesList
 ]
