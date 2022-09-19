@@ -41,17 +41,17 @@ export function findPath<T = any>(
 
 export function filter<T = any>(
   tree: T[],
-  config: Partial<TreeHelperConfig> = {},
+  config: Partial<TreeHelperConfig> = {}
 ): T[] {
   config = getConfig(config)
   const children = config.children as string
   function listFilter(list: T[]) {
     return list
       .map((node: any) => ({ ...node }))
-      .filter((node) => {
+      .filter(node => {
         node[children] = node[children] && listFilter(node[children])
-        return (node[children] && node[children].length)
-      });
+        return node[children] && node[children].length
+      })
   }
   return listFilter(tree)
 }

@@ -2,8 +2,6 @@ import { defineStore } from 'pinia'
 import { stores } from '../index'
 
 import type { AppRoute, AppMenu } from '@/router/types'
-
-// import { filter } from '@/utils/helper/treeHelper'
 import { transformRouteToMenu } from '@/router/helper/menuHelper'
 import { asyncRoutes } from '@/router/routes'
 import { useAppStoreWithOut } from './app'
@@ -34,17 +32,22 @@ export const usePermissionStore = defineStore('permission', {
       const { permissionMode = appSetting.permissionMode } = appStore.getAppConfig
 
       if (permissionMode === PermissionModeEnum.MAPPING) {
-        
-      }
+        routes = asyncRoutes
+        const menuList = transformRouteToMenu(routes)
+        console.log('menuList', menuList)
+        menuList.sort((a, b) => {
+          return (a?.orderNo || menuList.length) - (b?.orderNo || menuList.length)
+        })
 
-      // routes = filter(asyncRoutes)
+        this.setMenuList(menuList)
+      }
       
-      const menuList = transformRouteToMenu(asyncRoutes)
+      
       // menuList.sort((a, b) => {
       //   return (a.meta?.orderNo || 0) - (b.meta?.orderNo || 0);
       // })
 
-      this.setMenuList(menuList)
+      
       return routes
     }
   }

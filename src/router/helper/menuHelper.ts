@@ -34,11 +34,11 @@ export function transformMenuModule(menuModule: AppMenuModule): AppMenu {
     return menuList[0]
 }
 
-export function transformRouteToMenu(routeModList: AppRoute[]) {
-    const cloneRouteModList = cloneDeep(routeModList)
+export function transformRouteToMenu(routes: AppRoute[]) {
+    const cloneRoutes = cloneDeep(routes)
     const routeList: AppRoute[] = []
 
-    cloneRouteModList.forEach(item => {
+    cloneRoutes.forEach(item => {
         if (item.meta.hideChildrenInMenu && typeof item.redirect === 'string') {
             item.path = item.redirect
         } else {
