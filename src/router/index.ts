@@ -2,11 +2,11 @@ import type { App } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 
 import { createRouter, createWebHashHistory } from 'vue-router'
-import { asyncRoutes } from './routes'
+import { basicRoutes } from './routes'
 
 export const router = createRouter({
     history: createWebHashHistory(),
-    routes: asyncRoutes as unknown as RouteRecordRaw[],
+    routes: basicRoutes as unknown as RouteRecordRaw[],
     strict: true
 })
 

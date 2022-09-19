@@ -5,7 +5,7 @@ import type { AppRoute, AppMenu } from '@/router/types'
 
 // import { filter } from '@/utils/helper/treeHelper'
 import { transformRouteToMenu } from '@/router/helper/menuHelper'
-import { asyncRoutes } from '@/router/routes'
+import { basicRoutes } from '@/router/routes'
 // import { useAppStoreWithOut } from './app'
 
 interface PermissionState {
@@ -29,9 +29,9 @@ export const usePermissionStore = defineStore('permission', {
       // const appStore = useAppStoreWithOut()
 
       let routes: AppRoute[] = []
-      // routes = filter(asyncRoutes)
+      // routes = filter(basicRoutes)
       
-      const menuList = transformRouteToMenu(asyncRoutes)
+      const menuList = transformRouteToMenu(basicRoutes)
       // menuList.sort((a, b) => {
       //   return (a.meta?.orderNo || 0) - (b.meta?.orderNo || 0);
       // })

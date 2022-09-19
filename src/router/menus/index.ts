@@ -3,7 +3,7 @@ import type { AppMenu } from "../types"
 import { usePermissionStore } from "@/stores/modules/permission"
 import { getAllParentPath, transformRouteToMenu } from "@/router/helper/menuHelper"
 // import { PermissionModeEnum } from '@/enums/appEnum'
-import { asyncRoutes } from '@/router/routes'
+import { basicRoutes } from '@/router/routes'
 
 const routeModules = import.meta.glob("./routes/modules/*.ts", { eager: true }) as Object
 
@@ -56,7 +56,7 @@ export async function getCurrentParentPath(currentPath: string) {
 
 // Get the level 1 menu, delete children
 export async function getShallowMenus(): Promise<AppMenu[]> {
-  const menus = transformRouteToMenu(asyncRoutes)
+  const menus = transformRouteToMenu(basicRoutes)
   const shallowMenuList = menus.map(item => ({ ...item, children: undefined }))
   return shallowMenuList
 }
