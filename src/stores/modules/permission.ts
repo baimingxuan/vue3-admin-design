@@ -5,8 +5,10 @@ import type { AppRoute, AppMenu } from '@/router/types'
 
 // import { filter } from '@/utils/helper/treeHelper'
 import { transformRouteToMenu } from '@/router/helper/menuHelper'
-import { basicRoutes } from '@/router/routes'
-// import { useAppStoreWithOut } from './app'
+import { asyncRoutes } from '@/router/routes'
+import { useAppStoreWithOut } from './app'
+import { appSetting } from '@/settings/appBaseSetting'
+import { PermissionModeEnum } from '@/enums/appEnum'
 
 interface PermissionState {
   menuList: AppMenu[]
@@ -26,12 +28,18 @@ export const usePermissionStore = defineStore('permission', {
       this.menuList = list
     },
     async buildRoutesAction(): Promise<AppRoute[]> {
-      // const appStore = useAppStoreWithOut()
+      const appStore = useAppStoreWithOut()
 
       let routes: AppRoute[] = []
-      // routes = filter(basicRoutes)
+      const { permissionMode = appSetting.permissionMode } = appStore.getAppConfig
+
+      if (permissionMode === PermissionModeEnum.MAPPING) {
+        
+      }
+
+      // routes = filter(asyncRoutes)
       
-      const menuList = transformRouteToMenu(basicRoutes)
+      const menuList = transformRouteToMenu(asyncRoutes)
       // menuList.sort((a, b) => {
       //   return (a.meta?.orderNo || 0) - (b.meta?.orderNo || 0);
       // })
