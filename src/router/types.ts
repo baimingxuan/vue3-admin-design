@@ -18,12 +18,16 @@ export interface AppRoute extends Omit<RouteRecordRaw, 'children'> {
 export interface AppMenu {
   name: string
   path: string
-  icon?: string
-  disabled?: boolean
   children?: AppMenu[]
+  disabled?: boolean
+  icon?: string
+  affix?: boolean
   orderNo?: number
-  meta?: Partial<RouteMeta>
+  currentActiveMenu?: string
+  ignoreKeepAlive?: boolean
   hideMenu?: boolean
+  hideChildrenInMenu?: boolean
+  hideBreadcrumb?: boolean
 }
 
 export interface AppMenuModule {
