@@ -7,10 +7,10 @@ const ExcelRoute: AppRoute = {
     name: 'Excel',
     component: Layout,
     redirect: '/excel/export-excel',
-    orderNo: 9,
     meta: {
         title: 'Excel',
-        icon: 'excel'
+        icon: 'excel',
+        orderNo: 9
     },
     children: [
         {

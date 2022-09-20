@@ -6,12 +6,12 @@ import Layout from '../../layout/index.vue'
  * 
  * name: 'route-name'           the name is used by <keep-alive> (must set!!)
  * redirect: 'redirect-path'    if set, it will redirect to path (recommend set)
- * orderNo: 0                   menu item display order (recommend set)
  * meta: {
     title: 'title'              the name show in menu and breadcrumb (recommend set)
     icon: 'svg-name'            the icon show in the menu (recommend set)
     affix: false                if set true, the tag will affix in the tags-view (default is false)
-    noCache: false              if set true, the page will no be cached (default is false)
+    orderNo: 0                  menu item display order (recommend set)
+    ignoreKeepAlive: false      if set true, the page will no be cached (default is false)
     hideMenu: false             if set true, menu item will hide in the menu (default is false)
     hideChildrenInMenu: false   if set true, menu children will hide in the menu (default is false)
     hideBreadcrumb: false       if set true, breadcrumb will hide in the item (default is false)

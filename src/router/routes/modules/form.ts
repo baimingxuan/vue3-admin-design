@@ -7,10 +7,10 @@ const FormRoute: AppRoute = {
     name: 'From',
     component: Layout,
     redirect: '/form/form-list',
-    orderNo: 1,
     meta: {
         title: '表单',
-        icon: 'form'
+        icon: 'form',
+        orderNo: 1
     },
     children: [
         {

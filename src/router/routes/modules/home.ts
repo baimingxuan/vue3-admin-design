@@ -7,11 +7,11 @@ const HomeRoute: AppRoute = {
   name: 'Home',
   component: Layout,
   redirect: '/home',
-  orderNo: 0,
   meta: {
     title: '首页',
     icon: 'home',
     affix: true,
+    orderNo: 0,
     hideChildrenInMenu: true
   },
   children: [

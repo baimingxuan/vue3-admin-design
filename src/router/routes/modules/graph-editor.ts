@@ -7,10 +7,10 @@ const GraphEditorRoute: AppRoute = {
     name: 'GraphEditor',
     component: Layout,
     redirect: '/graph-editor/flow',
-    orderNo: 7,
     meta: {
         title: '图形编辑器',
-        icon: 'flow'
+        icon: 'flow',
+        orderNo: 7
     },
     children: [
         {

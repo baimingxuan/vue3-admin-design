@@ -13,7 +13,6 @@ export interface AppRoute extends Omit<RouteRecordRaw, 'children'> {
   component?: Component | string
   children?: AppRoute[]
   fullPath?: string
-  orderNo?: number
 }
 
 export interface AppMenu {

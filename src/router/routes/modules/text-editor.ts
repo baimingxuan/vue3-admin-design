@@ -7,10 +7,10 @@ const TextEditorRoute: AppRoute = {
     name: 'Editor',
     component: Layout,
     redirect: '/editor/markdown',
-    orderNo: 6,
     meta: {
         title: '编辑器',
-        icon: 'editor'
+        icon: 'editor',
+        orderNo: 6
     },
     children: [
         {

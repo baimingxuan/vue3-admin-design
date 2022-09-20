@@ -7,10 +7,10 @@ const CompoRoute: AppRoute = {
     name: 'Compo',
     component: Layout,
     redirect: '/compo/image-upload',
-    orderNo: 5,
     meta: {
         title: '组件',
-        icon: 'compo'
+        icon: 'compo',
+        orderNo: 5
     },
     children: [
         {

@@ -7,10 +7,10 @@ const TableRoute: AppRoute = {
     name: 'Table',
     component: Layout,
     redirect: '/table/table-classic',
-    orderNo: 2,
     meta: {
         title: '表格',
-        icon: 'table'
+        icon: 'table',
+        orderNo: 2
     },
     children: [
         {
