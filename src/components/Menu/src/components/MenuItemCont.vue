@@ -28,7 +28,7 @@
     setup(props) {
       const prefixCls = 'compo_menu-item-cont'
 
-      const getIcon = computed(() => props.item.meta?.icon as string)
+      const getIcon = computed(() => props.item?.icon as string)
       const getIconName = computed(() => props.item?.name)
       const getHideName = computed(() => props.collapsed && !props.showTitle)
 

@@ -2,8 +2,9 @@ import type { AppMenu } from "../types"
 // import { transformMenuModule } from "../helper/menuHelper"
 import { usePermissionStore } from "@/stores/modules/permission"
 import { getAllParentPath, transformRouteToMenu } from "@/router/helper/menuHelper"
-// import { PermissionModeEnum } from '@/enums/appEnum'
-import { basicRoutes } from '@/router/routes'
+import { PermissionModeEnum } from '@/enums/appEnum'
+import { asyncRoutes } from '@/router/routes'
+import { useAppStoreWithOut } from '@/stores/modules/app'
 
 const routeModules = import.meta.glob("./routes/modules/*.ts", { eager: true }) as Object
 
@@ -15,9 +16,15 @@ Object.keys(routeModules).forEach(key => {
   menuModules.push(...moduleList)
 })
 
-// const isMappingMode = () => {
-//   return PermissionModeEnum.MAPPING
-// }
+
+const getPermissionMode = () => {
+  const appStore = useAppStoreWithOut()
+  return appStore.getAppConfig.permissionMode
+}
+
+const isMappingMode = () => {
+  return getPermissionMode() === PermissionModeEnum.MAPPING
+}
 
 // const isBackendMode = () => {
 //   return PermissionModeEnum.BACKEND
@@ -44,7 +51,10 @@ async function getAsyncMenus() {
   //   staticMenus.push(transformMenuModule(menu))
   // }
   const permissionStore = usePermissionStore()
-  return permissionStore.getMenuList.filter((item) => !item.hideMenu)
+
+  if (isMappingMode()) {
+    return permissionStore.getMenuList.filter((item) => !item.hideMenu)
+  }
   // return staticMenus
 }
 
@@ -56,7 +66,7 @@ export async function getCurrentParentPath(currentPath: string) {
 
 // Get the level 1 menu, delete children
 export async function getShallowMenus(): Promise<AppMenu[]> {
-  const menus = transformRouteToMenu(basicRoutes)
+  const menus = await getAsyncMenus()
   const shallowMenuList = menus.map(item => ({ ...item, children: undefined }))
   return shallowMenuList
 }
@@ -65,7 +75,7 @@ export async function getShallowMenus(): Promise<AppMenu[]> {
 export async function getChildrenMenus(parentPath: string) {
   const menus = await getMenus()
   const parent = menus.find(item => item.path === parentPath)
-  if (!parent || !parent.children || !!parent?.meta?.hideChildrenInMenu) {
+  if (!parent || !parent.children || !!parent?.hideChildrenInMenu) {
     return [] as AppMenu[]
   }
   return parent.children

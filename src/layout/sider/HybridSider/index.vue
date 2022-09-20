@@ -17,8 +17,8 @@
         >
           <SvgIcon
             :class="`${prefixCls}-main-menu__item-icon`"
-            :name="((item?.icon || item.meta?.icon) as string)"
-            :size="getMenuFold ? 16 : 20"
+            :name="(item?.icon as string)"
+            size="20"
           />
           <p :class="`${prefixCls}-main-menu__item-name`">
             {{ item?.name }}
