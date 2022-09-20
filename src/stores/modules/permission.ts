@@ -34,19 +34,14 @@ export const usePermissionStore = defineStore('permission', {
       if (permissionMode === PermissionModeEnum.MAPPING) {
         routes = asyncRoutes
         const menuList = transformRouteToMenu(routes)
-        console.log('menuList', menuList)
+        
         menuList.sort((a, b) => {
           return (a?.orderNo || menuList.length) - (b?.orderNo || menuList.length)
         })
+        console.log('menuList', menuList)
 
         this.setMenuList(menuList)
       }
-      
-      
-      // menuList.sort((a, b) => {
-      //   return (a.meta?.orderNo || 0) - (b.meta?.orderNo || 0);
-      // })
-
       
       return routes
     }

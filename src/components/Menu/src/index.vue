@@ -65,7 +65,7 @@
 
       const { currentRoute } = useRouter()
 
-      const {  handleOpenChange, setOpenKeys, getOpenKeys } = useOpenKeys(
+      const { handleOpenChange, setOpenKeys, getOpenKeys } = useOpenKeys(
         menuState,
         items,
         mode as any,
