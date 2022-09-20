@@ -11,7 +11,7 @@ const HomeRoute: AppRoute = {
     title: '首页',
     icon: 'home',
     affix: true,
-    orderNo: 0,
+    orderNo: 1,
     hideChildrenInMenu: true
   },
   children: [

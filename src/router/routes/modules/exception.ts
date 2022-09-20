@@ -10,7 +10,7 @@ const ExceptionRoute: AppRoute = {
     meta: {
         title: '异常页面',
         icon: 'bug',
-        orderNo: 10
+        orderNo: 11
     },
     children: [
         {

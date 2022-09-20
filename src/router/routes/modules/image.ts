@@ -10,7 +10,7 @@ const ImageRoute: AppRoute = {
     meta: {
         title: '图片处理',
         icon: 'image',
-        orderNo: 3
+        orderNo: 4
     },
     children: [
         {

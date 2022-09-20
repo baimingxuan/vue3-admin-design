@@ -10,7 +10,7 @@ const TextEditorRoute: AppRoute = {
     meta: {
         title: '编辑器',
         icon: 'editor',
-        orderNo: 6
+        orderNo: 7
     },
     children: [
         {

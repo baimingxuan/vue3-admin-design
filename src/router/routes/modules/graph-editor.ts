@@ -10,7 +10,7 @@ const GraphEditorRoute: AppRoute = {
     meta: {
         title: '图形编辑器',
         icon: 'flow',
-        orderNo: 7
+        orderNo: 8
     },
     children: [
         {

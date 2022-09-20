@@ -10,7 +10,7 @@ const TableRoute: AppRoute = {
     meta: {
         title: '表格',
         icon: 'table',
-        orderNo: 2
+        orderNo: 3
     },
     children: [
         {

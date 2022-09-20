@@ -10,7 +10,7 @@ const VideoRoute: AppRoute = {
     meta: {
         title: '视频处理',
         icon: 'video',
-        orderNo: 4
+        orderNo: 5
     },
     children: [
         {

@@ -10,7 +10,7 @@ const CompoRoute: AppRoute = {
     meta: {
         title: '组件',
         icon: 'compo',
-        orderNo: 5
+        orderNo: 6
     },
     children: [
         {

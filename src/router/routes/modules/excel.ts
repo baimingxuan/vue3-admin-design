@@ -10,7 +10,7 @@ const ExcelRoute: AppRoute = {
     meta: {
         title: 'Excel',
         icon: 'excel',
-        orderNo: 9
+        orderNo: 10
     },
     children: [
         {

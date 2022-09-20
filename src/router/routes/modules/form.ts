@@ -10,7 +10,7 @@ const FormRoute: AppRoute = {
     meta: {
         title: '表单',
         icon: 'form',
-        orderNo: 1
+        orderNo: 2
     },
     children: [
         {
