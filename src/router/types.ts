@@ -30,7 +30,3 @@ export interface AppMenu {
   hideBreadcrumb?: boolean
 }
 
-export interface AppMenuModule {
-  orderNo?: number
-  menu: AppMenu
-}

@@ -7,15 +7,16 @@ interface TreeHelperConfig {
 const DEFAULT_CONFIG: TreeHelperConfig = {
   id: 'id',
   children: 'children',
-  pid: 'pid',
+  pid: 'pid'
 }
 
 const getConfig = (config: Partial<TreeHelperConfig>) => Object.assign({}, DEFAULT_CONFIG, config)
 
+// Extract the parent tree node
 export function findPath<T = any>(
   tree: any,
   func: Fn,
-  config: Partial<TreeHelperConfig> = {},
+  config: Partial<TreeHelperConfig> = {}
 ): T | T[] | null {
   config = getConfig(config)
   const path: T[] = []
@@ -37,23 +38,6 @@ export function findPath<T = any>(
     }
   }
   return null
-}
-
-export function filter<T = any>(
-  tree: T[],
-  config: Partial<TreeHelperConfig> = {}
-): T[] {
-  config = getConfig(config)
-  const children = config.children as string
-  function listFilter(list: T[]) {
-    return list
-      .map((node: any) => ({ ...node }))
-      .filter(node => {
-        node[children] = node[children] && listFilter(node[children])
-        return node[children] && node[children].length
-      })
-  }
-  return listFilter(tree)
 }
 
 // Extract tree specified structure

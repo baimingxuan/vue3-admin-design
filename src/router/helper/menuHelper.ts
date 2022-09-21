@@ -1,12 +1,12 @@
-import type { AppMenu, AppMenuModule, AppRoute } from '../types'
+import type { AppMenu, AppRoute } from '../types'
 import { isUrl } from '@/utils/is'
 import { cloneDeep } from 'lodash-es'
 import { findPath, treeMap } from '@/utils/helper/treeHelper'
 
 export function getAllParentPath<T = Recordable>(menus: T[], path: string) {
-  const menuList = findPath(menus, n => n.path === path) as AppMenu[]
+  const currMenuList = findPath(menus, n => n.path === path) as AppMenu[]
 
-  return (menuList || []).map(item => item.path)
+  return (currMenuList || []).map(item => item.path)
 }
 
 function joinParentPath(menus: AppMenu[], parentPath = '') {
@@ -22,16 +22,6 @@ function joinParentPath(menus: AppMenu[], parentPath = '') {
       joinParentPath(menu.children, menu.path)
     }
   }
-}
-
-// Parsing the menu module
-export function transformMenuModule(menuModule: AppMenuModule): AppMenu {
-  const { menu } = menuModule
-  
-  const menuList = [menu]
-  
-  joinParentPath(menuList)
-  return menuList[0]
 }
 
 export function transformRouteToMenu(routes: AppRoute[]): AppMenu[] {
