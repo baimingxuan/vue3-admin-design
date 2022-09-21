@@ -38,7 +38,6 @@ export const usePermissionStore = defineStore('permission', {
         menuList.sort((a, b) => {
           return (a?.orderNo || menuList.length) - (b?.orderNo || menuList.length)
         })
-        console.log('menuList', menuList)
 
         this.setMenuList(menuList)
       }

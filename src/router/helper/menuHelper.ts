@@ -3,9 +3,10 @@ import { isUrl } from '@/utils/is'
 import { cloneDeep } from 'lodash-es'
 import { findPath, treeMap } from '@/utils/helper/treeHelper'
 
-export function getAllParentPath<T = Recordable>(treeData: T[], path: string) {
-  const menuList = findPath(treeData, (n) => n.path === path) as AppMenu[]
-  return (menuList || []).map((item) => item.path)
+export function getAllParentPath<T = Recordable>(menus: T[], path: string) {
+  const menuList = findPath(menus, n => n.path === path) as AppMenu[]
+
+  return (menuList || []).map(item => item.path)
 }
 
 function joinParentPath(menus: AppMenu[], parentPath = '') {

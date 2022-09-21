@@ -5,7 +5,7 @@ import { useThrottleFn } from '@vueuse/core'
 
 import { usePermissionStore } from '@/stores/modules/permission'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
-import { getMenus, getShallowMenus, getChildrenMenus, getCurrentParentPath } from '@/router/menus'
+import { getAsyncMenus, getShallowMenus, getChildrenMenus, getCurrentParentPath } from '@/router/menus'
 
 export function useLayoutMenu(menuSplit: boolean) {
   // Menu array
@@ -72,7 +72,7 @@ export function useLayoutMenu(menuSplit: boolean) {
       menusRef.value = await getShallowMenus()
       return
     } else {
-      menusRef.value = await getMenus()
+      menusRef.value = await getAsyncMenus()
       return
     }
   }
