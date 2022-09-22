@@ -98,7 +98,8 @@
 
         handleMenuChange(route)
 
-        currentActiveMenu.value = route.meta?.currentActiveMenu as string
+        // currentActiveMenu.value = route.meta?.currentActiveMenu as string
+        currentActiveMenu.value = route.path
 
         if (unref(currentActiveMenu)) {
           menuState.selectedKeys = [unref(currentActiveMenu)]
@@ -119,10 +120,12 @@
           isClickGo.value = false
           return
         }
+
         const path =
           (route || unref(currentRoute)).meta?.currentActiveMenu ||
           (route || unref(currentRoute)).path
         setOpenKeys(path as string)
+
         if (unref(currentActiveMenu)) return
         if (props.isHorizontal && unref(getMenuSplit)) {
           const parentPath = await getCurrentParentPath(path as string)
