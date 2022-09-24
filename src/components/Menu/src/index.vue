@@ -94,12 +94,12 @@
       })
 
       listenerRouteChange(route => {
+        console.log(route)
         if (route.name === 'Redirect') return
 
         handleMenuChange(route)
 
-        // currentActiveMenu.value = route.meta?.currentActiveMenu as string
-        currentActiveMenu.value = route.path
+        currentActiveMenu.value = route.meta?.currentActiveMenu as string
 
         if (unref(currentActiveMenu)) {
           menuState.selectedKeys = [unref(currentActiveMenu)]
@@ -131,7 +131,7 @@
           const parentPath = await getCurrentParentPath(path as string)
           menuState.selectedKeys = [parentPath]
         } else {
-          const parentPaths = await getAllParentPath(props.items, path as string)
+          const parentPaths = getAllParentPath(props.items, path as string)
           menuState.selectedKeys = parentPaths
         }
       }
