@@ -25,7 +25,7 @@
 <script lang="ts">
   import type { MenuState } from './types'
 
-  import { defineComponent, ref, toRefs, reactive, computed, unref, watch } from 'vue'
+  import { defineComponent, ref, toRefs, reactive, computed, unref } from 'vue'
   import { useRouter, RouteLocationNormalizedLoaded } from 'vue-router'
   import { Menu as AntdMenu } from 'ant-design-vue'
   
@@ -94,7 +94,7 @@
       })
 
       listenerRouteChange(route => {
-        console.log(route)
+        console.log('route', route)
         if (route.name === 'Redirect') return
 
         handleMenuChange(route)
@@ -107,24 +107,28 @@
         }
       })
 
-      !props.hybridSider &&
-        watch(
-          () => props.items,
-          () => {
-            handleMenuChange()
-          }
-        )
+      // !props.hybridSider &&
+      //   watch(
+      //     () => props.items,
+      //     () => {
+      //       handleMenuChange()
+      //     }
+      //   )
 
       async function handleMenuChange(route?: RouteLocationNormalizedLoaded) {
+        console.log('XX??:L', route)
         if (unref(isClickGo)) {
           isClickGo.value = false
           return
         }
 
         const path =
-          (route || unref(currentRoute)).meta?.currentActiveMenu ||
+          
           (route || unref(currentRoute)).path
+
+        console.log('path', path)
         setOpenKeys(path as string)
+        console.log('getOpenKeys', unref(getOpenKeys))
 
         if (unref(currentActiveMenu)) return
         if (props.isHorizontal && unref(getMenuSplit)) {

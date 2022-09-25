@@ -7,7 +7,7 @@
   />
   <AntdSubMenu
     v-if="menuHasChildren(item) && getShowMenu"
-    :key="`submenu-${item.path}`"
+    :key="item.path"
     :class="{ 'submenu-collapsed': collapsed && showTitle }"
   >
     <template #title>
