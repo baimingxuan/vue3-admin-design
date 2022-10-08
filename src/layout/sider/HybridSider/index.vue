@@ -32,7 +32,13 @@
         <span class="text">vue-admin-design</span>
         <SvgIcon class="pushpin" :name="getMenuFixed ? 'pushpin-fill' : 'pushpin-line'" :size="16" @click="handleFixedMenu" />
       </div>
-      <Menu v-show="openMenu" :items="childrenMenus" :theme="getMenuTheme" :hybridSider="true" @menuClick="handleMenuClick" />
+      <Menu
+        v-show="openMenu"
+        :items="childrenMenus"
+        :theme="getMenuTheme"
+        :hybridSider="true"
+        @menuClick="handleMenuClick"
+      />
       <DragBar ref="dragBarRef" />
     </div>
   </div>
@@ -48,6 +54,7 @@
   import { getShallowMenus, getChildrenMenus, getCurrentParentPath } from '@/router/menus'
   import { useGo } from '@/hooks/web/usePage'
   import { SIDE_BAR_MIN_WIDTH, SIDE_BAR_SHOW_TITLE_MIN_WIDTH } from '@/enums/appEnum'
+  import { listenerRouteChange } from '@/logics/mitt/routeChange'
 
   import ScrollContainer from '@/components/Container/index.vue'
   import SiderTrigger from '../components/SiderTrigger.vue'
@@ -114,9 +121,20 @@
         return isFixed
       })
 
+      listenerRouteChange(async (route) => {
+        if (route.name === 'Redirect') return
+        console.log('route', route)
+
+        const parentPath = await getCurrentParentPath(route.path as string)
+        // handleMenuChange(route)
+        activePath.value = parentPath
+        
+      })
+
       onMounted(async () => {
         mainMenuList.value = await getShallowMenus()
       })
+      
 
       function getWrapCommonStyle(width: string): CSSProperties {
         return {

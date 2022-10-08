@@ -94,7 +94,6 @@
       })
 
       listenerRouteChange(route => {
-        console.log('route', route)
         if (route.name === 'Redirect') return
 
         handleMenuChange(route)
@@ -116,7 +115,6 @@
       //   )
 
       async function handleMenuChange(route?: RouteLocationNormalizedLoaded) {
-        console.log('XX??:L', route)
         if (unref(isClickGo)) {
           isClickGo.value = false
           return
@@ -126,9 +124,7 @@
           
           (route || unref(currentRoute)).path
 
-        console.log('path', path)
         setOpenKeys(path as string)
-        console.log('getOpenKeys', unref(getOpenKeys))
 
         if (unref(currentActiveMenu)) return
         if (props.isHorizontal && unref(getMenuSplit)) {
