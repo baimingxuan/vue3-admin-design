@@ -25,8 +25,8 @@
 <script lang="ts">
   import type { MenuState } from './types'
 
-  import { defineComponent, ref, toRefs, reactive, computed, unref } from 'vue'
-  import { useRouter, RouteLocationNormalizedLoaded } from 'vue-router'
+  import { defineComponent, ref, unref, toRefs, reactive, computed, watch } from 'vue'
+  import { RouteLocationNormalized, RouteLocationNormalizedLoaded } from 'vue-router'
   import { Menu as AntdMenu } from 'ant-design-vue'
   
   import SubMenuItem from './components/SubMenuItem.vue'
@@ -50,6 +50,7 @@
     setup(props, { emit }) {
       const isClickGo = ref(false)
       const currentActiveMenu = ref('')
+      const currentRoute = ref<Nullable<RouteLocationNormalized>>(null)
 
       const menuState = reactive<MenuState>({
         openKeys: [],
@@ -62,8 +63,6 @@
       const { items, mode, accordion } = toRefs(props)
 
       const { getMenuFold, getMenuSplit } = useMenuSetting()
-
-      const { currentRoute } = useRouter()
 
       const { handleOpenChange, setOpenKeys, getOpenKeys } = useOpenKeys(
         menuState,
@@ -95,6 +94,7 @@
 
       listenerRouteChange(route => {
         if (route.name === 'Redirect') return
+        currentRoute.value = route
 
         handleMenuChange(route)
 
@@ -106,13 +106,13 @@
         }
       })
 
-      // !props.hybridSider &&
-      //   watch(
-      //     () => props.items,
-      //     () => {
-      //       handleMenuChange()
-      //     }
-      //   )
+      props.hybridSider &&
+        watch(
+          () => props.items,
+          () => {
+            handleMenuChange()
+          }
+        )
 
       async function handleMenuChange(route?: RouteLocationNormalizedLoaded) {
         if (unref(isClickGo)) {
@@ -122,7 +122,7 @@
 
         const path =
           
-          (route || unref(currentRoute)).path
+          (route || unref(currentRoute))?.path
 
         setOpenKeys(path as string)
 

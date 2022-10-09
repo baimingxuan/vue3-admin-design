@@ -121,14 +121,10 @@
         return isFixed
       })
 
-      listenerRouteChange(async (route) => {
-        if (route.name === 'Redirect') return
-        console.log('route', route)
+      listenerRouteChange(route => {
+        currentRoute.value = route
 
-        const parentPath = await getCurrentParentPath(route.path as string)
-        // handleMenuChange(route)
-        activePath.value = parentPath
-        
+        setActive(true)
       })
 
       onMounted(async () => {
