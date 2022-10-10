@@ -36,6 +36,7 @@ export function useMenuSetting() {
         ? unref(getSideBarMinWidth)
         : unref(getMenuWidth)
     }
+    return unref(getMenuFold) ? unref(getSideBarMinWidth) : unref(getMenuWidth)
   })
 
   const getIsHeaderMenu = computed(() => {

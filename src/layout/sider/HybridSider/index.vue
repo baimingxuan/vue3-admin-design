@@ -84,7 +84,7 @@
       })
 
       const getDomStyle = computed((): CSSProperties => {
-        const fixedWidth = unref(getMenuFixed) ? unref(getReallWidth) : 0
+        const fixedWidth = unref(getMenuFixed) && unref(openMenu) ? unref(getReallWidth) : 0
         const width = `${unref(getHybridSiderWidth) + fixedWidth!}`
         return getWrapCommonStyle(width)
       })
