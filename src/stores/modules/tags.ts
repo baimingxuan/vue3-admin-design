@@ -23,8 +23,7 @@ const getToTarget = (tagItem: RouteLocationNormalized) => {
   }
 }
 
-export const useTagStore = defineStore({
-  id: 'app-tags',
+export const useTagStore = defineStore('app-tags', {
   state: (): TagsState => ({
     visitedTags: [],
     cachedTags: new Set()

@@ -12,7 +12,7 @@ interface PermissionState {
   menuList: AppMenu[]
 }
 
-export const usePermissionStore = defineStore('permission', {
+export const usePermissionStore = defineStore('app-permission', {
   state: (): PermissionState => ({
     menuList: []
   }),
