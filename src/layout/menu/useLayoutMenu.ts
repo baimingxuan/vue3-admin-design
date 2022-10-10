@@ -13,17 +13,18 @@ export function useLayoutMenu(menuSplit: boolean) {
   const childrenMenus = ref<AppMenu[]>([])
   const { currentRoute } = useRouter()
   const permissionStore = usePermissionStore()
-  const { getMenuSplit, setMenuSetting } = useMenuSetting()
+  const { getIsHorizontal, getMenuSplit, setMenuSetting } = useMenuSetting()
 
   const throttleHandleSplitMenu = useThrottleFn(handleSpliteMenu, 50)
 
-  // Route path change
+  // Whether to split the horizontal menu
   watch(
     [() => unref(currentRoute).path, () => unref(menuSplit)],
     async ([path]: [string, boolean]) => {
+      if (!unref(getIsHorizontal)) return
 
       const { meta } = unref(currentRoute)
-      const currentActiveMenu = meta.currentActiveMenu as string
+      const currentActiveMenu = meta?.currentActiveMenu as string
       let parentPath = await getCurrentParentPath(path)
       if (!parentPath) {
         parentPath = await getCurrentParentPath(currentActiveMenu)
@@ -53,6 +54,8 @@ export function useLayoutMenu(menuSplit: boolean) {
 
   // Handle split menu
   async function handleSpliteMenu(parentPath: string) {
+    if (!unref(getMenuSplit)) return
+
     const children = await getChildrenMenus(parentPath)
 
     if (!children || !children.length) {

@@ -12,7 +12,7 @@ const HomeRoute: AppRoute = {
     icon: 'home',
     affix: true,
     orderNo: 1,
-    // hideChildrenInMenu: true
+    hideChildrenInMenu: true
   },
   children: [
     {
