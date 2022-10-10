@@ -124,9 +124,14 @@ export const useTagStore = defineStore('app-tags', {
 
       // If the current is the leftmost tab
       if (index === 0) {
-        // Jump to the right tab
-        const page = this.visitedTags[index + 1]
-        toTarget = getToTarget(page)
+        // There is only one tab, then jump to the homepage, otherwise jump to the right tab
+        if (this.visitedTags.length === 1) {
+          toTarget = '/home'
+        } else {
+          // Jump to the right tab
+          const page = this.visitedTags[index + 1]
+          toTarget = getToTarget(page)
+        }
       } else {
         // Close the current tab
         const page = this.visitedTags[index - 1]
