@@ -2,7 +2,6 @@ import type { AppConfig } from '@/interfaces/config'
 import { APP_CONFIG_KEY } from '@/enums/cacheEnum'
 
 import { useAppStore } from '@/stores/modules/app'
-import { Persistent } from '@/utils/cache/persistent'
 import { deepMerge } from '@/utils'
 import { appSetting } from '@/settings/appBaseSetting'
 
@@ -10,7 +9,7 @@ import { appSetting } from '@/settings/appBaseSetting'
 export function initAppConfigStore() {
   const appStore = useAppStore()
 
-  let appConfig: AppConfig = Persistent.getLocal(APP_CONFIG_KEY) as AppConfig
+  let appConfig: AppConfig = JSON.parse(localStorage.getItem(APP_CONFIG_KEY)!)
   appConfig = deepMerge(appSetting, appConfig || {})
 
   appStore.setAppConfig(appConfig)
