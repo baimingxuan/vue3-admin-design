@@ -22,7 +22,7 @@ export const useAppStore = defineStore('app', {
   state: (): AppState => ({
     appMode: undefined,
     themeMode: undefined,
-    appConfig: JSON.parse(localStorage.getItem(APP_CONFIG_KEY)!)
+    appConfig: Persistent.getLocal(APP_CONFIG_KEY)
   }),
 
   getters: {
@@ -55,8 +55,7 @@ export const useAppStore = defineStore('app', {
     },
     setAppConfig(config: DeepPartial<AppConfig>): void {
       this.appConfig = deepMerge(this.appConfig || {}, config)
-      localStorage.setItem(APP_CONFIG_KEY, JSON.stringify(this.appConfig))
-      Persistent.setLocal(APP_CONFIG_KEY, this.appConfig)
+      Persistent.setLocal(APP_CONFIG_KEY, this.appConfig, true)
     }
   }
 })
