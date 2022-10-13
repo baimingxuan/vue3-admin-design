@@ -1,6 +1,7 @@
-import { isNullOrUnDef } from '../is'
 import type { EncryptParams } from '../cipher'
+import { cacheCipher } from '@/settings/encryptionSetting'
 import { AesEncrypt } from '../cipher'
+import { isNullOrUnDef } from '../is'
 
 export interface CreateStorageParams extends EncryptParams {
   prefixKey: string
@@ -13,8 +14,8 @@ export const createStorage = ({
   prefixKey = '',
   storage = sessionStorage,
   hasEncrypt = true,
-  key = '_11111000001111@',
-  iv = '@11111000001111_',
+  key = cacheCipher.key,
+  iv = cacheCipher.iv,
   timeout = null
 }: Partial<CreateStorageParams> = {}) => {
   if (hasEncrypt && [key.length, iv.length].some(item => item !== 16)) {

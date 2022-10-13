@@ -1,10 +1,9 @@
 import { toRaw } from 'vue'
 import { Memory } from './memory'
-import { TOKEN_KEY, APP_CONFIG_KEY, APP_LOCAL_CACHE_KEY, APP_SESSION_CACHE_KEY } from '@/enums/cacheEnum'
 import { AppConfig } from '@/interfaces/config'
+import { TOKEN_KEY, APP_CONFIG_KEY, APP_LOCAL_CACHE_KEY, APP_SESSION_CACHE_KEY } from '@/enums/cacheEnum'
 import { createLocalStorage, createSessionStorage } from '@/utils/cache'
-
-const DEFAULT_CACHE_TIME = 60 * 60 * 24 * 7
+import { DEFAULT_CACHE_TIME } from '@/settings/encryptionSetting'
 
 interface BasicStore {
   [TOKEN_KEY]: string | number | null | undefined

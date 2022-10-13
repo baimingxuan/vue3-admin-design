@@ -1,17 +1,14 @@
-import { isDevMode } from '../env'
 import { createStorage as create, CreateStorageParams } from './storageCache'
+import { enableStorageEncryption, DEFAULT_CACHE_TIME } from '@/settings/encryptionSetting'
 
 type Options = Partial<CreateStorageParams>
-
-const enableStorageEncrypt = !isDevMode()
-const DEFAULT_CACHE_TIME = 60 * 60 * 24 * 7
 
 const createOptions = (storage: Storage, options: Options = {}): Options => {
   return {
     // No encryption in debug mode
-    hasEncrypt: enableStorageEncrypt,
+    hasEncrypt: enableStorageEncryption,
     storage,
-    prefixKey: 'vue-admin-design',
+    prefixKey: 'vue-admin-design__',
     ...options
   }
 }
