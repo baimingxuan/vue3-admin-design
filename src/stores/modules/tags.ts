@@ -1,8 +1,14 @@
+import type { RouteLocationNormalized, RouteLocationRaw, Router } from 'vue-router'
+
 import { defineStore } from 'pinia'
 import { unref, toRaw } from 'vue'
-import type { RouteLocationNormalized, RouteLocationRaw, Router } from 'vue-router'
 import { getRawRoute } from '@/utils'
+import { APP_TAGS_KEY } from '@/enums/cacheEnum'
+import { Persistent } from '@/utils/cache/persistent'
 import { useGo, useReload } from '@/hooks/web/usePage'
+import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
+
+const { getPageTagsCached } = useBaseSetting()
 
 interface TagsState {
   visitedTags: RouteLocationNormalized[]
@@ -25,7 +31,7 @@ const getToTarget = (tagItem: RouteLocationNormalized) => {
 
 export const useTagStore = defineStore('app-tags', {
   state: (): TagsState => ({
-    visitedTags: [],
+    visitedTags: getPageTagsCached ? Persistent.getLocal(APP_TAGS_KEY) || [] : [],
     cachedTags: new Set()
   }),
   getters: {
@@ -61,6 +67,7 @@ export const useTagStore = defineStore('app-tags', {
         // Add tag
         this.visitedTags.push(route)
       }
+      getPageTagsCached && Persistent.setLocal(APP_TAGS_KEY, this.visitedTags)
     },
     
     // Update the cached tags according to the currently opened tags
