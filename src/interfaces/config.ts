@@ -13,6 +13,8 @@ export interface AppConfig {
   transitionSetting: TransitionSetting
   // Permission mode
   permissionMode: PermissionModeEnum
+  // Page tags can cached
+  pageTagsCached: boolean
   // Route keepAlive
   openKeepAlive: boolean
   // Lock screen time

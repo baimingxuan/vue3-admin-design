@@ -68,6 +68,11 @@
         :def="unref(getMenuFoldShowTitle)"
         :event="HandlerEnum.MENU_FOLD_SHOW_TITLE"
       />
+      <SwitchItem
+        title="标签缓存"
+        :def="unref(getPageTagsCached)"
+        :event="HandlerEnum.PAGE_TAGS_CACHED"
+      />
       <SelectItem
         title="菜单折叠按钮"
         :def="unref(getMenuFoldBtn)"
@@ -188,7 +193,7 @@
   const { getMenuType, getThemeColor, getMenuSplit, getMenuCanDrag, getMenuFixed, getMenuFold,
     getMenuFoldShowTitle, getMenuFoldBtn, getMenuWidth } = useMenuSetting()
 
-  const { getLockScreenTime, getShowFooter, getColorWeak } = useBaseSetting()
+  const { getLockScreenTime, getShowFooter, getColorWeak, getPageTagsCached } = useBaseSetting()
 
   const { getShowBreadCrumb, getShowPageTags, getShowSearch, getShowFullScreen, getShowLocale, getShowDoc, getShowGithub } = useHeaderSetting()
 

@@ -73,6 +73,7 @@ export enum HandlerEnum {
   MENU_FOLD,
   MENU_FOLD_BTN,
   MENU_FOLD_SHOW_TITLE,
+  PAGE_TAGS_CACHED,
   MENU_WIDTH,
   LOCK_SCREEN_TIME,
   // Interface display
