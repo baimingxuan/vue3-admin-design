@@ -76,6 +76,16 @@ export const RedirectRoute: AppRoute = {
   ]
 }
 
+// Login page
+export const LoginRoute: AppRoute = {
+  path: '/login',
+  name: 'Login',
+  component: () => import('@/views/login.vue'),
+  meta: {
+    title: '登录页'
+  }
+}
+
 const routeModules = import.meta.glob('./modules/*.ts', { eager: true }) as Object
 
 const routeModulesList: AppRoute[] = []
@@ -91,6 +101,7 @@ export const asyncRoutes = [PageNotFoundRoute, ...routeModulesList]
 
 // Basic routes without permission
 export const basicRoutes = [
+  LoginRoute,
   RootRoute,
   ...routeModulesList
 ]
