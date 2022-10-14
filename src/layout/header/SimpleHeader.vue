@@ -9,7 +9,7 @@
         <LayoutFeature />
       </div>
     </div>
-    <LayoutTags v-if="getShowPageTags" />
+    <LayoutTags v-if="getShowTags" />
   </AntdHeader>
 </template>
 
@@ -28,7 +28,7 @@
   
   const prefixCls = 'layout_simple-header'
   const { getMenuFoldBtn } = useMenuSetting()
-  const { getShowPageTags, getShowBreadCrumb } = useHeaderSetting()
+  const { getShowTags, getShowBreadCrumb } = useHeaderSetting()
 
   const getShowTrigger = computed(() => unref(getMenuFoldBtn) === MenuFoldBtnEnum.HEADER)
 

@@ -8,8 +8,8 @@ export const appSetting: AppConfig = {
   headerSetting: {
     // Show breadCrumb
     showBreadCrumb: true,
-    // Show page tags
-    showPageTags: true,
+    // Show tags
+    showTags: true,
     // Show search
     showSearch: true,
     // Turn on full screen

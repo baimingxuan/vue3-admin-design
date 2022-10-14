@@ -61,7 +61,7 @@ export function handler(event: HandlerEnum, value: any): DeepPartial<AppConfig> 
             return { headerSetting: { showBreadCrumb: value } }
 
         case HandlerEnum.SHOW_PAGE_TAGS:
-            return { headerSetting: { showPageTags: value } }
+            return { headerSetting: { showTags: value } }
 
         case HandlerEnum.SHOW_SEARCH:
             return { headerSetting: { showSearch: value } }

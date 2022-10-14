@@ -28,10 +28,10 @@
 
     setup() {
       const { getOpenKeepAlive } = useBaseSetting()
-      const { getShowPageTags } = useHeaderSetting()
+      const { getShowTags } = useHeaderSetting()
       const { getOpenTransition, getBasicTransition } = useTransitionSetting()
 
-      const openPageCache = computed(() => unref(getOpenKeepAlive) && unref(getShowPageTags))
+      const openPageCache = computed(() => unref(getOpenKeepAlive) && unref(getShowTags))
 
       function getTransitionName({
         openTransition,

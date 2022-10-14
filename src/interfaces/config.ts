@@ -28,8 +28,8 @@ export interface AppConfig {
 export interface HeaderSetting {
   // Show breadCrumb
   showBreadCrumb: boolean
-  // Show page tags
-  showPageTags: boolean
+  // Show tags
+  showTags: boolean
   // Show search
   showSearch: boolean
   // Turn on full screen

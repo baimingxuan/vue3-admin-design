@@ -6,7 +6,7 @@ export function useHeaderSetting() {
 
     const getShowBreadCrumb = computed(() => appStore.getHeaderSetting.showBreadCrumb)
 
-    const getShowPageTags = computed(() => appStore.getHeaderSetting.showPageTags)
+    const getShowTags = computed(() => appStore.getHeaderSetting.showTags)
 
     const getShowSearch = computed(() => appStore.getHeaderSetting.showSearch)
 
@@ -20,7 +20,7 @@ export function useHeaderSetting() {
 
     return {
         getShowBreadCrumb,
-        getShowPageTags,
+        getShowTags,
         getShowSearch,
         getShowFullScreen,
         getShowLocale,

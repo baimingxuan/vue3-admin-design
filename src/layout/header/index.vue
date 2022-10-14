@@ -11,7 +11,7 @@
         </div>
         <LayoutFeature />
       </div>
-      <LayoutTags v-if="getShowPageTags" />
+      <LayoutTags v-if="getShowTags" />
     </div>
   </AntdHeader>
 </template>
@@ -42,7 +42,7 @@
     setup() {
       const prefixCls = 'layout_header'
 
-      const { getShowPageTags } = useHeaderSetting()
+      const { getShowTags } = useHeaderSetting()
       const { getMenuTheme } = useMenuSetting()
 
       const getHeaderStyle = computed(() => {
@@ -57,7 +57,7 @@
       return {
         prefixCls,
         getHeaderStyle,
-        getShowPageTags
+        getShowTags
       }
     }
   })

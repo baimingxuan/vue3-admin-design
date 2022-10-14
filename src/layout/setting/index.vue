@@ -107,7 +107,7 @@
       />
       <SwitchItem
         title="标签页"
-        :def="unref(getShowPageTags)"
+        :def="unref(getShowTags)"
         :event="HandlerEnum.SHOW_PAGE_TAGS"
       />
       <SwitchItem
@@ -195,7 +195,7 @@
 
   const { getLockScreenTime, getShowFooter, getColorWeak, getTagsCached } = useBaseSetting()
 
-  const { getShowBreadCrumb, getShowPageTags, getShowSearch, getShowFullScreen, getShowLocale, getShowDoc, getShowGithub } = useHeaderSetting()
+  const { getShowBreadCrumb, getShowTags, getShowSearch, getShowFullScreen, getShowLocale, getShowDoc, getShowGithub } = useHeaderSetting()
 
   const { getOpenNProgress, getOpenTransition, getBasicTransition } = useTransitionSetting()
 

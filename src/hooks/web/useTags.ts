@@ -21,12 +21,12 @@ export function useTags(_router?: Router) {
   
   function canUseTags(): boolean {
     const appStore = useAppStore()
-    const { showPageTags } = appStore.getHeaderSetting
+    const { showTags } = appStore.getHeaderSetting
 
-    if (!showPageTags) {
+    if (!showTags) {
       throw new Error('The multi-tab page is currently not open, please open it in the settings！')
     }
-    return showPageTags
+    return showTags
   }
   
   function getCurrentTag() {
