@@ -30,9 +30,9 @@ const getToTarget = (tagItem: RouteLocationNormalized) => {
 export const useTagStore = defineStore('app-tags', {
   state: (): TagsState => {
     const { getPageTagsCached } = useBaseSetting()
-    
+
     return {
-      visitedTags: getPageTagsCached ? Persistent.getLocal(APP_TAGS_KEY) || [] : [],
+      visitedTags: unref(getPageTagsCached) ? Persistent.getLocal(APP_TAGS_KEY) || [] : [],
       cachedTags: new Set()
     }
   },
@@ -70,7 +70,7 @@ export const useTagStore = defineStore('app-tags', {
         // Add tag
         this.visitedTags.push(route)
       }
-      getPageTagsCached && Persistent.setLocal(APP_TAGS_KEY, this.visitedTags)
+      unref(getPageTagsCached) && Persistent.setLocal(APP_TAGS_KEY, this.visitedTags)
     },
     
     // Update the cached tags according to the currently opened tags
