@@ -70,7 +70,7 @@
       />
       <SwitchItem
         title="标签缓存"
-        :def="unref(getPageTagsCached)"
+        :def="unref(getTagsCached)"
         :event="HandlerEnum.PAGE_TAGS_CACHED"
       />
       <SelectItem
@@ -193,7 +193,7 @@
   const { getMenuType, getThemeColor, getMenuSplit, getMenuCanDrag, getMenuFixed, getMenuFold,
     getMenuFoldShowTitle, getMenuFoldBtn, getMenuWidth } = useMenuSetting()
 
-  const { getLockScreenTime, getShowFooter, getColorWeak, getPageTagsCached } = useBaseSetting()
+  const { getLockScreenTime, getShowFooter, getColorWeak, getTagsCached } = useBaseSetting()
 
   const { getShowBreadCrumb, getShowPageTags, getShowSearch, getShowFullScreen, getShowLocale, getShowDoc, getShowGithub } = useHeaderSetting()
 

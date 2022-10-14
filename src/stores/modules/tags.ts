@@ -29,10 +29,10 @@ const getToTarget = (tagItem: RouteLocationNormalized) => {
 
 export const useTagStore = defineStore('app-tags', {
   state: (): TagsState => {
-    const { getPageTagsCached } = useBaseSetting()
+    const { getTagsCached } = useBaseSetting()
 
     return {
-      visitedTags: unref(getPageTagsCached) ? Persistent.getLocal(APP_TAGS_KEY) || [] : [],
+      visitedTags: unref(getTagsCached) ? Persistent.getLocal(APP_TAGS_KEY) || [] : [],
       cachedTags: new Set()
     }
   },
@@ -47,7 +47,7 @@ export const useTagStore = defineStore('app-tags', {
   actions: {
     async addVisitedTags(route: RouteLocationNormalized) {
       const { path, fullPath, params, query } = getRawRoute(route)
-      const { getPageTagsCached } = useBaseSetting()
+      const { getTagsCached } = useBaseSetting()
 
       let updateIndex = -1
       // Existing tag, do not add tag repeatedly
@@ -70,7 +70,7 @@ export const useTagStore = defineStore('app-tags', {
         // Add tag
         this.visitedTags.push(route)
       }
-      unref(getPageTagsCached) && Persistent.setLocal(APP_TAGS_KEY, this.visitedTags)
+      unref(getTagsCached) && Persistent.setLocal(APP_TAGS_KEY, this.visitedTags)
     },
     
     // Update the cached tags according to the currently opened tags

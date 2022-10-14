@@ -57,8 +57,8 @@ export const appSetting: AppConfig = {
   },
   // Permission mode
   permissionMode: PermissionModeEnum.MAPPING,
-  // Page tags can cached
-  pageTagsCached: false,
+  // Whether tags cached
+  tagsCached: false,
   // Route keepAlive
   openKeepAlive: true,
   // Lock screen time

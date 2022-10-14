@@ -46,7 +46,7 @@ export function handler(event: HandlerEnum, value: any): DeepPartial<AppConfig> 
             return { menuSetting: { menuFoldShowTitle: value } }
 
         case HandlerEnum.PAGE_TAGS_CACHED:
-            return { pageTagsCached: value }
+            return { tagsCached: value }
 
         case HandlerEnum.MENU_FOLD_BTN:
             return { menuSetting: { menuFoldBtn: value } }
