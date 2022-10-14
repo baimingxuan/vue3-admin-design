@@ -70,6 +70,9 @@ export const useTagStore = defineStore('app-tags', {
         // Add tag
         this.visitedTags.push(route)
       }
+
+      this.updateCachedTags()
+      
       unref(getTagsCached) && Persistent.setLocal(APP_TAGS_KEY, this.visitedTags)
     },
     

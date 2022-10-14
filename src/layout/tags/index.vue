@@ -70,6 +70,7 @@
 
   import { listenerRouteChange } from '@/logics/mitt/routeChange'
   import { useTagStore } from '@/stores/modules/tags'
+  import { initAffixTags } from './useTags'
   import { useGo } from '@/hooks/web/usePage'
   import { useTags } from '@/hooks/web/useTags'
   import { Component } from '@/router/types'
@@ -107,13 +108,15 @@
         }
       })
 
+      initAffixTags()
+
       listenerRouteChange(route => {
         // const { name } = route
         if (!route) return
 
         const { path, fullPath, meta = {} } = route
         const { currentActiveMenu, hideTag } = meta as RouteMeta
-        const isHide = !hideTag ? null :currentActiveMenu
+        const isHide = !hideTag ? null : currentActiveMenu
         const currPath = isHide || fullPath || path
         if (activeKeyRef.value !== currPath) {
           activeKeyRef.value = currPath as string
