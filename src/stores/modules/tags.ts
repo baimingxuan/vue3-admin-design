@@ -8,8 +8,6 @@ import { Persistent } from '@/utils/cache/persistent'
 import { useGo, useReload } from '@/hooks/web/usePage'
 import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
 
-const { getPageTagsCached } = useBaseSetting()
-
 interface TagsState {
   visitedTags: RouteLocationNormalized[]
   cachedTags: Set<string>
@@ -30,10 +28,14 @@ const getToTarget = (tagItem: RouteLocationNormalized) => {
 }
 
 export const useTagStore = defineStore('app-tags', {
-  state: (): TagsState => ({
-    visitedTags: getPageTagsCached ? Persistent.getLocal(APP_TAGS_KEY) || [] : [],
-    cachedTags: new Set()
-  }),
+  state: (): TagsState => {
+    const { getPageTagsCached } = useBaseSetting()
+    
+    return {
+      visitedTags: getPageTagsCached ? Persistent.getLocal(APP_TAGS_KEY) || [] : [],
+      cachedTags: new Set()
+    }
+  },
   getters: {
     getVisitedTags(): RouteLocationNormalized[] {
       return this.visitedTags
@@ -45,6 +47,7 @@ export const useTagStore = defineStore('app-tags', {
   actions: {
     async addVisitedTags(route: RouteLocationNormalized) {
       const { path, fullPath, params, query } = getRawRoute(route)
+      const { getPageTagsCached } = useBaseSetting()
 
       let updateIndex = -1
       // Existing tag, do not add tag repeatedly
