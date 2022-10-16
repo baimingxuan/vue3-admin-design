@@ -5,7 +5,12 @@
         <img src="../assets/images/logo2.png" alt="icon">
         <p>账 号 登 录</p>
       </div>
-      <AntdForm :model="loginForm" class="login-box-form">
+      <AntdForm
+        ref="loginFormRef"
+        :model="loginForm"
+        class="login-box-form"
+        @keypress.enter="handleLogin"
+      >
         <AntdFormItem name="username" :rules="[{ required: true, message: '请输入账号' }]">
           <AntdInput v-model:value="loginForm.username" placeholder="请输入账号">
             <template #prefix>
@@ -27,7 +32,13 @@
           <a class="fr" href="">忘记密码？</a>
         </AntdFormItem>
         <AntdFormItem>
-          <AntdButton type="primary" html-type="submit" class="login-btn">登 录</AntdButton>
+          <AntdButton
+            type="primary"
+            html-type="submit"
+            class="login-btn"
+            :loading="loading"
+            @click="handleLogin"
+          >登 录</AntdButton>
         </AntdFormItem>
       </AntdForm>
     </div>
@@ -36,9 +47,11 @@
 
 <script lang="ts" setup>
   import type { UnwrapRef } from 'vue'
-  import { reactive } from 'vue'
+  import type { FormInstance } from 'ant-design-vue'
+
+  import { ref, unref, reactive } from 'vue'
   import { Form as AntdForm, FormItem as AntdFormItem, Input as AntdInput,
-    Checkbox as AntdCheckbox, Button as AntdButton } from 'ant-design-vue'
+    Checkbox as AntdCheckbox, Button as AntdButton, message as AntdMessage } from 'ant-design-vue'
   import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 
   interface FormState {
@@ -51,7 +64,26 @@
     username: 'admin',
     password: 'admin123',
     remember: true
-  }) 
+  })
+
+  const loading = ref(false)
+  const loginFormRef = ref<FormInstance>()
+
+  async function handleLogin() {
+    const form = unref(loginFormRef)
+    const data = await form?.validate()
+    if (!data) return
+
+    try {
+      loading.value = true
+      AntdMessage.success('登陆成功！')
+    } catch (error) {
+      AntdMessage.error((error as unknown as Error).message)
+    } finally {
+      loading.value = false
+    }
+  }
+
 </script>
 
 <style lang="less" scoped>
