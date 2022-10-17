@@ -3,12 +3,14 @@ import type { RouteLocationNormalized } from 'vue-router'
 import { toRaw } from 'vue'
 import { Memory } from './memory'
 import { AppConfig } from '@/interfaces/config'
-import { TOKEN_KEY, APP_CONFIG_KEY, APP_TAGS_KEY, APP_LOCAL_CACHE_KEY, APP_SESSION_CACHE_KEY } from '@/enums/cacheEnum'
+import { TOKEN_KEY, USER_INFO_KEY, APP_CONFIG_KEY, APP_TAGS_KEY, APP_LOCAL_CACHE_KEY, APP_SESSION_CACHE_KEY } from '@/enums/cacheEnum'
 import { createLocalStorage, createSessionStorage } from '@/utils/cache'
 import { DEFAULT_CACHE_TIME } from '@/settings/encryptionSetting'
+import { UserInfo } from '@/interfaces'
 
 interface BasicStore {
   [TOKEN_KEY]: string | number | null | undefined
+  [USER_INFO_KEY]: UserInfo
   [APP_CONFIG_KEY]: AppConfig
   [APP_TAGS_KEY]: RouteLocationNormalized[]
 }

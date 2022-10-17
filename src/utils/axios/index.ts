@@ -46,4 +46,4 @@ service.interceptors.response.use((response: AxiosResponse) => {
 },
 handleError)
 
-export default service
+export { service }
