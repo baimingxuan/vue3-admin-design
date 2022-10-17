@@ -16,6 +16,7 @@ interface BasicStore {
 type LocalStore = BasicStore
 type SessionStore = BasicStore
 
+export type BasicKeys = keyof BasicStore
 type LocalKeys = keyof LocalStore
 type SessionKeys = keyof SessionStore
 
