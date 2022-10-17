@@ -2,6 +2,7 @@ import type { RouteLocationNormalized, RouteLocationRaw, Router } from 'vue-rout
 
 import { defineStore } from 'pinia'
 import { unref, toRaw } from 'vue'
+import { stores } from '@/stores'
 import { getRawRoute } from '@/utils'
 import { APP_TAGS_KEY } from '@/enums/cacheEnum'
 import { Persistent } from '@/utils/cache/persistent'
@@ -290,3 +291,8 @@ export const useTagStore = defineStore('app-tags', {
     },
   }
 })
+
+// Need to be used outside the setup
+export function useAppStoreWithOut() {
+  return useTagStore(stores)
+}
