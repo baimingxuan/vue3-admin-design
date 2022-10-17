@@ -53,6 +53,7 @@
   import { Form as AntdForm, FormItem as AntdFormItem, Input as AntdInput,
     Checkbox as AntdCheckbox, Button as AntdButton, message as AntdMessage } from 'ant-design-vue'
   import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
+  import { useUserStore } from '@/stores/modules/user'
 
   interface FormState {
     username: string
@@ -62,12 +63,13 @@
 
   const loginForm: UnwrapRef<FormState> = reactive({
     username: 'admin',
-    password: 'admin123',
+    password: '123456',
     remember: true
   })
 
   const loading = ref(false)
   const loginFormRef = ref<FormInstance>()
+  const userStore = useUserStore()
 
   async function handleLogin() {
     const form = unref(loginFormRef)
@@ -76,7 +78,13 @@
 
     try {
       loading.value = true
-      AntdMessage.success('登陆成功！')
+      const userInfo = await userStore.login({
+        username: data.username,
+        password: data.password
+      })
+      if (userInfo) {
+        AntdMessage.success('登陆成功！')
+      }
     } catch (error) {
       AntdMessage.error((error as unknown as Error).message)
     } finally {
