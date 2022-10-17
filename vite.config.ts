@@ -1,5 +1,6 @@
 import type { ConfigEnv, UserConfig } from 'vite'
 import { loadEnv } from 'vite'
+import { createProxy } from './build/vite/proxy'
 import { createVitePlugins } from './build/vite/plugin'
 import { wrapperEnv } from './build/utils'
 // need install plugin @types/node
@@ -17,14 +18,17 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
 
   // this function can be converted to different types
   const viteEnv = wrapperEnv(env)
-  const { VITE_PORT, VITE_DROP_CONSOLE } = viteEnv
+  const { VITE_PORT, VITE_PROXY, VITE_DROP_CONSOLE } = viteEnv
 
   const isBuild = command === 'build'
 
   return {
     server: {
+      // Listening on all local ips
       host: true,
-      port: VITE_PORT
+      port: VITE_PORT,
+      // Load proxy configuration from .env
+      proxy: createProxy(VITE_PROXY)
     },
 
     // the project uses lots of vite plugins, so they are extracted and managed separately
