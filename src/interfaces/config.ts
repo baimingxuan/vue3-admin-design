@@ -1,10 +1,13 @@
 import { MenuModeEnum, MenuTypeEnum, MenuFoldBtnEnum } from '../enums/menuEnum'
 import { PageTransitionEnum, ThemeEnum } from '../enums/appEnum'
 import { PermissionModeEnum } from '../enums/appEnum'
+import { CacheTypeEnum } from '../enums/cacheEnum'
 
 export interface AppConfig {
   // Theme color
   themeColor: string
+  // Storage location of permission related information
+  permissionCacheType: CacheTypeEnum
   // Header setting
   headerSetting: HeaderSetting
   // Menu setting

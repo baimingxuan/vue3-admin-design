@@ -9,3 +9,8 @@ export const APP_TAGS_KEY = 'APP_TAGS_KEY'
 export const APP_LOCAL_CACHE_KEY = 'APP_LOCAL_CACHE_KEY'
 
 export const APP_SESSION_CACHE_KEY = 'APP_SESSION_CACHE_KEY'
+
+export enum CacheTypeEnum {
+  SESSION,
+  LOCAL,
+}

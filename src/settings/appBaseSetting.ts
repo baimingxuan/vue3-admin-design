@@ -1,10 +1,14 @@
 import type { AppConfig } from '@/interfaces/config'
 import { MenuTypeEnum, MenuModeEnum, MenuFoldBtnEnum } from '@/enums/menuEnum'
 import { ThemeEnum, PageTransitionEnum, PermissionModeEnum } from '@/enums/appEnum'
+import { CacheTypeEnum } from '@/enums/cacheEnum'
 
 export const appSetting: AppConfig = {
   // Theme color
   themeColor: '#1890ff',
+  // Permission-related cache is stored in sessionStorage or localStorage
+  permissionCacheType: CacheTypeEnum.LOCAL,
+  // Header configuration
   headerSetting: {
     // Show breadCrumb
     showBreadCrumb: true,
