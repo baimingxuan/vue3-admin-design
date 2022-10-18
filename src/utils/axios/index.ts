@@ -25,7 +25,7 @@ const handleError = (error: AxiosError): Promise<AxiosError> => {
 service.interceptors.request.use((config: AxiosRequestConfig) => {
   const token = getToken()
   if (token) {
-    (config as Recordable).headers['Authorization'] = `Bearer ${token}`
+    (config as Recordable).headers['Authorization'] = `${token}`
   }
   (config as Recordable).headers['Content-Type'] = 'application/json'
   return config

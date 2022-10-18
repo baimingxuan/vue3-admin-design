@@ -1,5 +1,5 @@
 import { MockMethod } from 'vite-plugin-mock'
-import { requestParams, resultSuccess, resultError, getRequestToken,  } from '../_util'
+import { requestParams, resultSuccess, resultError, getRequestToken } from '../_util'
 
 export function createFakeUserList() {
   return [
@@ -45,7 +45,7 @@ export default [
     method: 'get',
     response: (request: requestParams) => {
       const token = getRequestToken(request)
-      if (!token) return resultError('Invalid token!');
+      if (!token) return resultError('Invalid token!')
       const checkUser = createFakeUserList().find(item => item.token === token)
       if (!checkUser) {
         return resultError('The corresponding user information was not obtained!')

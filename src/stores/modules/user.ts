@@ -91,7 +91,7 @@ export const useUserStore = defineStore('app-user', {
       const userInfo = await getUserInfo()
 
       this.setUserInfo(userInfo)
-      
+
       return userInfo
     }
   }
