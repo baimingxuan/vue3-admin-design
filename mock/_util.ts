@@ -7,20 +7,20 @@ export interface requestParams {
   query: any
 }
 
-export function resultSuccess<T = Recordable>(result: T, { message = '成功' } = {}) {
+export function resultSuccess<T = Recordable>(data: T, { message = '成功' } = {}) {
   return {
     type: 'success',
     code: 0,
-    result,
+    data,
     message
   }
 }
 
-export function resultError(message = '失败', { code = -1, result = null } = {}) {
+export function resultError(message = '失败', { code = -1, data = null } = {}) {
   return {
     type: 'error',
     code,
-    result,
+    data,
     message
   }
 }
