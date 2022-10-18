@@ -1,11 +1,13 @@
 import type { LoginParams, UserInfo } from '@/interfaces'
 
+import { h } from 'vue'
 import { defineStore } from 'pinia'
 import { stores } from '../index'
 import { router } from '@/router'
-import { loginApi, getUserInfo } from '@/api'
+import { loginApi, getUserInfo, logoutApi } from '@/api'
 import { TOKEN_KEY, USER_INFO_KEY } from '@/enums/cacheEnum'
 import { setAuthCache, getAuthCache } from '@/utils/auth'
+import { useMessage } from '@/hooks/web/useMessage'
 
 interface UserState {
   userInfo: Nullable<UserInfo>
@@ -93,6 +95,33 @@ export const useUserStore = defineStore('app-user', {
       this.setUserInfo(userInfo)
 
       return userInfo
+    },
+    // Confirm before logging out
+    confirmLogout() {
+      const { createConfirm } = useMessage()
+
+      createConfirm({
+        iconType: 'warning',
+        title: () => h('span', '温馨提醒'),
+        content: () => h('span', '是否确认退出系统?'),
+        onOk: async () => {
+          await this.logout(true)
+        }
+      })
+    },
+    async logout(goLogin = false) {
+      if (this.getToken) {
+        try {
+          await logoutApi()
+        } catch (error) {
+          const { createMessage } = useMessage()
+          createMessage.error('注销失败!')
+        }
+      }
+      this.setUserInfo(null)
+      this.setToken(undefined)
+      this.setSessionTimeout(false)
+      goLogin && router.push('/login')
     }
   }
 })

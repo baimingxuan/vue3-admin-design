@@ -5,7 +5,7 @@ import { service } from '@/utils/axios'
 export function loginApi(data: LoginParams): Promise<any> {
   return service({
     url: '/login',
-    method: 'POST',
+    method: 'post',
     data
   })
 }
@@ -14,6 +14,14 @@ export function loginApi(data: LoginParams): Promise<any> {
 export function getUserInfo(): Promise<any> {
   return service({
     url: '/getUserInfo',
-    method: 'GET'
+    method: 'get'
+  })
+}
+
+// User logout api
+export function logoutApi() {
+  return service({
+    url: '/logout',
+    method: 'get'
   })
 }
