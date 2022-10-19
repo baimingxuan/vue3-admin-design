@@ -5,6 +5,8 @@
     <LocalePicker v-if="getShowLocale" :class="`${prefixCls}-item`" />
     <DocLink v-if="getShowDoc" :class="`${prefixCls}-item`" />
     <GithubLink v-if="getShowGithub" />
+    <AntdDivider type="vertical" :class="`${prefixCls}-divider`" />
+    <UserDropdown />
   </div>
 </template>
 
@@ -14,9 +16,11 @@
     FullScreen,
     LocalePicker,
     DocLink,
-    GithubLink
+    GithubLink,
+    UserDropdown
   } from './components'
-  import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting';
+  import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
+  import { Divider as AntdDivider } from 'ant-design-vue'
 
   const prefixCls = 'layout_feature'
   const { getShowSearch, getShowFullScreen, getShowLocale, getShowDoc, getShowGithub } = useHeaderSetting()
@@ -30,6 +34,12 @@
     height: 100%;
     &-item {
       margin-right: 12px;
+    }
+    &-divider {
+      height: 50%;
+      margin-left: 12px;
+      margin-right: 12px;
+      border-color: rgba(0, 0, 0, .3);
     }
   }
 </style>
