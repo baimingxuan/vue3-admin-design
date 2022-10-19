@@ -5,6 +5,7 @@ import type { AppConfig, HeaderSetting, MenuSetting, TransitionSetting } from '@
 
 import { ThemeMode } from '@/types'
 import { AppModeEnum, ThemeEnum } from '@/enums/appEnum'
+import { resetRouter } from '@/router'
 import { deepMerge } from '@/utils'
 import { Persistent } from '@/utils/cache/persistent'
 import { APP_CONFIG_KEY } from '@/enums/cacheEnum'
@@ -56,6 +57,10 @@ export const useAppStore = defineStore('app', {
     setAppConfig(config: DeepPartial<AppConfig>): void {
       this.appConfig = deepMerge(this.appConfig || {}, config)
       Persistent.setLocal(APP_CONFIG_KEY, this.appConfig, true)
+    },
+    async resetState() {
+      resetRouter()
+      Persistent.clearAll()
     }
   }
 })

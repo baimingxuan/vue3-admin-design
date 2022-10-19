@@ -43,6 +43,9 @@ export const usePermissionStore = defineStore('app-permission', {
       }
       
       return routes
+    },
+    resetState(): void {
+      this.menuList = []
     }
   }
 })
