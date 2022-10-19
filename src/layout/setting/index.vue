@@ -162,6 +162,8 @@
         :event="HandlerEnum.BASIC_TRANSITION"
         :options="pageTransitionOptions"
       />
+      <AntdDivider />
+      <SettingFooter />
     </Container>
   </AntdDrawer>
 </template>
@@ -172,7 +174,8 @@
   import { Drawer as AntdDrawer, Divider as AntdDivider, Button as AntdButton } from 'ant-design-vue'
   import { SettingOutlined as AntdSettingOutlined } from '@ant-design/icons-vue'
 
-  import { AppModeSwitch, MenuThemeRadio, MenuTypePicker, ThemeColorPicker, SwitchItem, SelectItem, InputNumItem } from './components'
+  import { AppModeSwitch, MenuThemeRadio, MenuTypePicker, ThemeColorPicker,
+    SwitchItem, SelectItem, InputNumItem, SettingFooter } from './components'
   import { menuTypeList, appThemeColorList } from './enum'
   import Container from '@/components/Container/index.vue'
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
@@ -203,7 +206,7 @@
 
 <style lang="less">
   .layout-setting-trigger {
-    position: fixed;
+    position: fixed !important;
     top: 320px;
     right: 0;
     z-index: 99;
@@ -227,7 +230,7 @@
   .layout_setting-drawer {
     .ant-drawer-body {
       .scrollbar__wrap {
-        padding: 0 16px !important;
+        padding: 0 16px 20px !important;
       }
     }
   }
