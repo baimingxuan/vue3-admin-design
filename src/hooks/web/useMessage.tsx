@@ -45,6 +45,8 @@ function createConfirm(options: ModalOptionsEx): ConfirmOptions {
     centered: true,
     icon: getIcon(iconType),
     content: renderContent(options),
+    okText: '确定',
+    cancelText: '取消',
     ...options
   }
 
