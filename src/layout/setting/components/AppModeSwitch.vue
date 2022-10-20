@@ -14,6 +14,7 @@
   import { computed } from 'vue'
   import { AppModeEnum } from '@/enums/appEnum'
   import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
+  import { updateDarkTheme } from '@/logics/theme/mode'
 
   import SvgIcon from '@/components/SvgIcon/index.vue'
 
@@ -24,7 +25,9 @@
   function switchAppMode() {
     const mode = getAppMode.value === AppModeEnum.DARK ? AppModeEnum.LIGHT : AppModeEnum.DARK
     setAppMode(mode)
+    updateDarkTheme(mode)
   }
+  
 </script>
 
 <style lang="less" scoped>
