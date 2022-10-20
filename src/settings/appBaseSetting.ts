@@ -70,5 +70,7 @@ export const appSetting: AppConfig = {
   // Whether to show the global footer
   showFooter: false,
   // Whether to turn on the color weak mode
-  colorWeak: false
+  colorWeak: false,
+  // Whether to turn on the gray mode
+  grayMode: false
 }

@@ -4,22 +4,20 @@ import { AppConfig } from '@/interfaces/config'
 import { useAppStore } from '@/stores/modules/app'
 import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
 import { changeTheme } from '@/logics/theme'
+import { updateColorWeak, updateGrayMode } from '@/logics/theme/mode'
 
 export function handler(event: HandlerEnum, value: any): DeepPartial<AppConfig> {
-    // const appStore = useAppStore()
 
     const { getThemeColor } = useBaseSetting()
 
     switch (event) {
         case HandlerEnum.CHANGE_LAYOUT:
             const { menuType, menuMode } = value
-            // const splitOpt = split === undefined ? { split } : {}
 
             return {
                 menuSetting: {
                     menuType,
                     menuMode
-                    // ...splitOpt
                 }
             }
         
@@ -82,7 +80,12 @@ export function handler(event: HandlerEnum, value: any): DeepPartial<AppConfig> 
             return { showFooter: value }
 
         case HandlerEnum.COLOR_WEAK:
+            updateColorWeak(value)
             return { colorWeak: value }
+
+        case HandlerEnum.GRAY_MODE:
+            updateGrayMode(value)
+            return { grayMode: value }
 
         case HandlerEnum.OPEN_NPROGRESS:
             return { transitionSetting: { openNProgress: value } }

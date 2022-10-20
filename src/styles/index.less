@@ -21,6 +21,22 @@ a:hover {
   text-decoration: none;
 }
 
+html {
+  height: 100%;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+
+  &.color-weak {
+    filter: invert(80%);
+  }
+
+  &.gray-mode {
+    filter: grayscale(100%);
+    filter: progid:dximagetransform.microsoft.basicimage(grayscale=1);
+  }
+}
+
 body {
   height: 100%;
   -moz-osx-font-smoothing: grayscale;
@@ -29,13 +45,6 @@ body {
   font-family: Microsoft YaHei,Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Arial, sans-serif;
   font-size: 14px;
   color: #222;
-}
-
-html {
-  height: 100%;
-  line-height: 1.15;
-  -webkit-text-size-adjust: 100%;
-  box-sizing: border-box;
 }
 
 img {
