@@ -145,6 +145,11 @@
         :def="unref(getColorWeak)"
         :event="HandlerEnum.COLOR_WEAK"
       />
+      <SwitchItem
+        title="灰色模式"
+        :def="unref(getGrayMode)"
+        :event="HandlerEnum.GRAY_MODE"
+      />
       <AntdDivider>动画设置</AntdDivider>
       <SwitchItem
         title="顶部进度条"
@@ -196,7 +201,7 @@
   const { getMenuType, getThemeColor, getMenuSplit, getMenuCanDrag, getMenuFixed, getMenuFold,
     getMenuFoldShowTitle, getMenuFoldBtn, getMenuWidth } = useMenuSetting()
 
-  const { getLockScreenTime, getShowFooter, getColorWeak, getTagsCached } = useBaseSetting()
+  const { getLockScreenTime, getShowFooter, getColorWeak, getGrayMode, getTagsCached } = useBaseSetting()
 
   const { getShowBreadCrumb, getShowTags, getShowSearch, getShowFullScreen, getShowLocale, getShowDoc, getShowGithub } = useHeaderSetting()
 

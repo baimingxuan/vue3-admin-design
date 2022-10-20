@@ -19,6 +19,8 @@ export function useBaseSetting() {
 
     const getColorWeak = computed(() => appStore.getAppConfig.colorWeak)
 
+    const getGrayMode = computed(() => appStore.getAppConfig.grayMode)
+
     function setAppMode(mode: AppModeEnum) {
         appStore.setAppMode(mode)
     }
@@ -31,6 +33,7 @@ export function useBaseSetting() {
         getOpenKeepAlive,
         getLockScreenTime,
         getShowFooter,
-        getColorWeak
+        getColorWeak,
+        getGrayMode
     }
 }

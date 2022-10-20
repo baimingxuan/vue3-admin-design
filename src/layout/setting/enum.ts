@@ -86,6 +86,7 @@ export enum HandlerEnum {
   SHOW_GITHUB,
   SHOW_FOOTER,
   COLOR_WEAK,
+  GRAY_MODE,
   
   // Animation settings
   OPEN_NPROGRESS,

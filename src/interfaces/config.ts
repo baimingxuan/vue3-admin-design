@@ -26,6 +26,8 @@ export interface AppConfig {
   showFooter: boolean
   // Whether to turn on the color weak mode
   colorWeak: boolean
+  // Whether to turn on the gray mode
+  grayMode: boolean
 }
 
 export interface HeaderSetting {
