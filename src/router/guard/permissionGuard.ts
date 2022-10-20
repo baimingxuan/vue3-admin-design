@@ -91,15 +91,15 @@ export function createPermissionGuard(router: Router) {
 
     router.addRoute(PageNotFoundRoute as unknown as RouteRecordRaw)
 
-    // if (to.name === PageNotFoundRoute.name) {
-    //   next({ path: to.fullPath, replace: true, query: to.query })
-    // } else {
-    //   const redirectPath = (from.query.redirect || to.path) as string
-    //   const redirect = decodeURIComponent(redirectPath)
-    //   const nextData = to.path === redirect ? { ...to, replace: true } : { path: redirect }
-    //   next(nextData)
-    // }
+    if (to.name === PageNotFoundRoute.name) {
+      next({ path: to.fullPath, replace: true, query: to.query })
+    } else {
+      // const redirectPath = (from.query.redirect || to.path) as string
+      // const redirect = decodeURIComponent(redirectPath)
+      // const nextData = to.path === redirect ? { ...to, replace: true } : { path: redirect }
+      // next(nextData)
+      next()
+    }
 
-    next()
   })
 }
