@@ -1,5 +1,5 @@
 import Search from './Search/index.vue'
-import FullScreen from './FullScreen.vue'
+import FullScreen from './FullScreen'
 import LocalePicker from './LocalePicker.vue'
 import DocLink from './DocLink'
 import GithubLink from './GithubLink'
