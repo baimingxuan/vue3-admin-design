@@ -1,4 +1,4 @@
-import Search from './Search/index.vue'
+import Search from './Search'
 import FullScreen from './FullScreen'
 import LocalePicker from './LocalePicker.vue'
 import DocLink from './DocLink'
