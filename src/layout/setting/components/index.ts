@@ -8,5 +8,5 @@ export const MenuTypePicker = ImportAsyncComponent(() => import('./MenuTypePicke
 export const ThemeColorPicker = ImportAsyncComponent(() => import('./ThemeColorPicker.vue'))
 export const SwitchItem = ImportAsyncComponent(() => import('./SwitchItem.vue'))
 export const SelectItem = ImportAsyncComponent(() => import('./SelectItem.vue'))
-export const InputNumItem = ImportAsyncComponent(() => import('./InputNumItem.vue'))
+export const InputNumItem = ImportAsyncComponent(() => import('./InputNumItem'))
 export const SettingFooter = ImportAsyncComponent(() => import('./SettingFooter.vue'))

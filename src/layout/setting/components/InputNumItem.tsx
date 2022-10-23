@@ -1,16 +1,3 @@
-<template>
-  <div class="compo_input-num-item">
-    <span>{{ title }}</span>
-    <AntdInputNum
-      class="input-number"
-      size="small"
-      v-bind="$attrs"
-      @change="handleChange"
-    />
-  </div>
-</template>
-
-<script lang="ts">
   import { defineComponent } from 'vue'
   import type { PropType } from 'vue'
 
@@ -30,26 +17,21 @@
         type: Number as PropType<HandlerEnum>
       }
     },
-    setup(props) {
+    setup(props, { attrs }) {
       function handleChange(value: number | string) {
         props.event && baseHandler(props.event, value)
       }
 
-      return {
-        handleChange
-      }
+      return () => (
+        <div class='flex-between-h' style='margin: 16px 0;'>
+          <span>{props.title}</span>
+          <AntdInputNum
+            style='width: 120px;'
+            size='small'
+            {...attrs}
+            onChange={handleChange}
+          />
+        </div>
+      )
     }
   })
-</script>
-
-<style lang="less" scoped>
-  .compo_input-num-item {
-    display: flex;
-    justify-content: space-between;
-    margin: 16px 0;
-
-    .input-number {
-      width: 120px;
-    }
-  }
-</style>
