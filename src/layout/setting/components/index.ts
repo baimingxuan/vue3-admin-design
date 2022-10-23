@@ -9,4 +9,4 @@ export const ThemeColorPicker = ImportAsyncComponent(() => import('./ThemeColorP
 export const SwitchItem = ImportAsyncComponent(() => import('./SwitchItem.vue'))
 export const SelectItem = ImportAsyncComponent(() => import('./SelectItem.vue'))
 export const InputNumItem = ImportAsyncComponent(() => import('./InputNumItem'))
-export const SettingFooter = ImportAsyncComponent(() => import('./SettingFooter.vue'))
+export const SettingFooter = ImportAsyncComponent(() => import('./SettingFooter'))
