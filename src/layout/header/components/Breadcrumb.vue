@@ -29,8 +29,13 @@
   const { currentRoute } = useRouter()
 
   watchEffect(async () => {
-    routeMatcheds.value = currentRoute.value.matched
+    routeMatcheds.value = filterMatched(currentRoute.value.matched)
+    console.log('matched', routeMatcheds.value)
   })
+
+  function filterMatched(list: RouteLocationMatched[]) {
+    return list.filter(item => (!item.meta?.hideBreadcrumb && !item.meta?.hideMenu))
+  }
 
   function getIcon(route: any) {
     return route.icon || route.meta?.icon
