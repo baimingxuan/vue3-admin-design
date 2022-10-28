@@ -25,7 +25,7 @@
   import LayoutSider from './sider/index.vue'
   import LayoutHeader from './header/index.vue'
   import LayoutSimpleHeader from './header/SimpleHeader.vue'
-  import LayoutPage from './content/components/Page.vue'
+  import LayoutPage from './content/index'
 
   export default defineComponent({
     name: 'BasicLayout',
