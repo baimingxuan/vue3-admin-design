@@ -19,7 +19,7 @@
 
   import LayoutTags from '../tags/index.vue'
   import LayoutFeature from '../feature/index.vue'
-  import FoldTrigger from './components/FoldTrigger.vue'
+  import FoldTrigger from './components/FoldTrigger'
   import Breadcrumb from './components/Breadcrumb'
 
   import { MenuFoldBtnEnum } from '@/enums/menuEnum'

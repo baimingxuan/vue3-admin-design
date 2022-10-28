@@ -12,7 +12,6 @@
 
       watchEffect(async () => {
         routeMatcheds.value = filterMatched(currentRoute.value.matched)
-        console.log('matched', routeMatcheds.value)
       })
 
       function filterMatched(list: RouteLocationMatched[]) {
