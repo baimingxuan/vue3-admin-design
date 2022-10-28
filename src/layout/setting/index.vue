@@ -157,6 +157,11 @@
         :event="HandlerEnum.OPEN_NPROGRESS"
       />
       <SwitchItem
+        title="切换loading"
+        :def="unref(getOpenPageLoading)"
+        :event="HandlerEnum.OPEN_PAGE_LOADING"
+      />
+      <SwitchItem
         title="切换动画"
         :def="unref(getOpenTransition)"
         :event="HandlerEnum.OPEN_TRANSITION"
@@ -205,7 +210,7 @@
 
   const { getShowBreadCrumb, getShowTags, getShowSearch, getShowFullScreen, getShowLocale, getShowDoc, getShowGithub } = useHeaderSetting()
 
-  const { getOpenNProgress, getOpenTransition, getBasicTransition } = useTransitionSetting()
+  const { getOpenNProgress, getOpenPageLoading, getOpenTransition, getBasicTransition } = useTransitionSetting()
 
 </script>
 
