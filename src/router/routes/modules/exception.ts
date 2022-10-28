@@ -16,7 +16,7 @@ const ExceptionRoute: AppRoute = {
   children: [
     {
       path: 'page-403',
-      name: 'PageNotAccess',
+      name: 'Page403',
       component: () => import('@/views/exception/index'),
       props: {
         status: ExceptionEnum.PAGE_NOT_ACCESS
@@ -27,7 +27,7 @@ const ExceptionRoute: AppRoute = {
     },
     {
       path: 'page-404',
-      name: 'PageNotFound',
+      name: 'Page404',
       component: () => import('@/views/exception/index'),
       props: {
         status: ExceptionEnum.PAGE_NOT_FOUND
@@ -38,7 +38,7 @@ const ExceptionRoute: AppRoute = {
     },
     {
       path: 'page-500',
-      name: 'ServiceError',
+      name: 'Page500',
       component: () => import('@/views/exception/index'),
       props: {
         status: ExceptionEnum.SERVER_ERROR

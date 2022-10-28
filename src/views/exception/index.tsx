@@ -73,8 +73,21 @@ export default defineComponent({
       const { status, title, subTitle, btnText, handler } = unref(getMapValue) || {}
 
       return (
-        <AntdResult status={status as any} title={title} subTitle={subTitle}>
-          {{ extra: () => btnText && (<AntdButton type='primary' onClick={handler}>{btnText}</AntdButton>) }}
+        <AntdResult
+          status={status as any}
+          title={title}
+          subTitle={subTitle}
+        >
+          {{
+            extra: () => btnText && (
+              <AntdButton
+                type='primary'
+                onClick={handler}
+              >
+                {btnText}
+              </AntdButton>
+            )
+          }}
         </AntdResult>
       )
     }
