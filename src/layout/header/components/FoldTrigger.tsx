@@ -5,7 +5,7 @@
   import compoStyle from './compo.module.less'
 
   export default defineComponent({
-    name: '',
+    name: 'FoldTrigger',
     setup() {
       const { getMenuFold, toggledMenuFold } = useMenuSetting()
 
