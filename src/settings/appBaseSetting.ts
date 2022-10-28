@@ -54,6 +54,8 @@ export const appSetting: AppConfig = {
   transitionSetting: {
     // Whether to open the top progress bar
     openNProgress: false,
+    // Whether to open page switching loading
+    openPageLoading: false,
     // Whether to open the page switching animation
     openTransition: true,
     // Page basic switching animation
