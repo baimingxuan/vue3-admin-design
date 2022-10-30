@@ -23,8 +23,8 @@ const TextEditorRoute: AppRoute = {
         },
         {
             path: 'rich-text',
-            name: 'ImageRichText',
-            component: () => import('@/views/home.vue'),
+            name: 'RichText',
+            component: () => import('@/views/editor/rich-text/index'),
             meta: {
                 title: '富文本编辑器'
             }
