@@ -8,7 +8,7 @@ const TextEditorRoute: AppRoute = {
     component: Layout,
     redirect: '/editor/markdown',
     meta: {
-        title: '编辑器',
+        title: '文本编辑器',
         icon: 'editor',
         orderNo: 7
     },
@@ -16,7 +16,7 @@ const TextEditorRoute: AppRoute = {
         {
             path: 'markdown',
             name: 'Markdown',
-            component: () => import('@/views/home.vue'),
+            component: () => import('@/views/editor/markdown/index.vue'),
             meta: {
                 title: 'Markdown编辑器'
             }
