@@ -16,6 +16,7 @@ import App from './App.vue'
 import { setupRouter, router } from './router'
 import { setupStore } from '@/stores'
 import { setupRouterGuard } from '@/router/guard'
+import { setupPlugins } from '@/plugins'
 
 function launchApp() {
     const app = createApp(App)
@@ -27,6 +28,8 @@ function launchApp() {
 
     // Configure store
     setupStore(app)
+
+    setupPlugins(app)
 
     // Initialize internal system configuration
     initAppConfigStore()

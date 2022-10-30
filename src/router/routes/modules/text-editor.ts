@@ -16,7 +16,7 @@ const TextEditorRoute: AppRoute = {
         {
             path: 'markdown',
             name: 'Markdown',
-            component: () => import('@/views/editor/markdown/index.vue'),
+            component: () => import('@/views/editor/markdown/index'),
             meta: {
                 title: 'Markdown编辑器'
             }
