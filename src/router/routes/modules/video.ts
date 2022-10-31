@@ -16,7 +16,7 @@ const VideoRoute: AppRoute = {
         {
             path: 'video-player',
             name: 'VideoPlayer',
-            component: () => import('@/views/home.vue'),
+            component: () => import('@/views/video/video-player'),
             meta: {
                 title: '视频播放器'
             }
