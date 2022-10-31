@@ -16,7 +16,7 @@ const TreeRoute: AppRoute = {
         {
             path: 'org-tree',
             name: 'OrgTree',
-            component: () => import('@/views/home.vue'),
+            component: () => import('@/views/tree/org-tree/index'),
             meta: {
                 title: '组织树'
             }

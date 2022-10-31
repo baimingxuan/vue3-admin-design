@@ -48,6 +48,7 @@ specifiers:
   vue-router: ^4.0.14
   vue-tsc: ^0.38.9
   vue-types: ^4.1.1
+  vue3-tree-org: ^4.1.1
   windicss: ^3.5.6
 
 dependencies:
@@ -71,6 +72,7 @@ dependencies:
   vue-i18n: 9.2.2_vue@3.2.37
   vue-router: 4.1.2_vue@3.2.37
   vue-types: 4.1.1_vue@3.2.37
+  vue3-tree-org: 4.1.1_vue@3.2.37
 
 devDependencies:
   '@types/crypto-js': 4.1.1
@@ -5282,6 +5284,15 @@ packages:
       '@vue/runtime-dom': 3.2.37
       '@vue/server-renderer': 3.2.37_vue@3.2.37
       '@vue/shared': 3.2.37
+
+  /vue3-tree-org/4.1.1_vue@3.2.37:
+    resolution: {integrity: sha512-+7uIvQjyJTSSMiDd5Jon/xQpkvzEAIfIxGqVQKPJ8IZz8b1LVT7N73K8wcwuuwakyxYbraw2DIiOZ45NBJ6xdg==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      core-js: 3.23.5
+      vue: 3.2.37
+    dev: false
 
   /warning/4.0.3:
     resolution: {integrity: sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==}
