@@ -1,6 +1,6 @@
 import { defineComponent, reactive } from 'vue'
 import { Card as AntdCard, Form as AntdForm, FormItem as AntdFormItem, Input as AntdInput,
-  InputNumber as AntdInputNumber, Button as AntdButton } from 'ant-design-vue'
+  InputNumber as AntdInputNumber, InputPassword as AntdInputPassword, Button as AntdButton } from 'ant-design-vue'
 import { FORM_PLUGIN_URL } from '@/settings/websiteSetting'
 import { openWindow } from '@/utils'
 import { PageWrapper } from '@/components/Page'
@@ -11,6 +11,7 @@ export default defineComponent({
     const formState = reactive<Record<string, any>>({
       inputLimit: '',
       inputNum: '',
+      password: ''
     })
 
     function openGithub() {
@@ -25,12 +26,28 @@ export default defineComponent({
             <p>组件地址:<AntdButton type='link' onClick={openGithub}>立即访问</AntdButton></p>
           </>,
           default: () => <AntdCard bordered={false}>
-              <AntdForm model={formState} style='width: 40%; margin: 0 auto;'>
+              <AntdForm model={formState} labelCol={{span: 6}} wrapperCol={{span: 18}} style='width: 42%; margin: 0 auto;'>
                 <AntdFormItem label='输入框(长度限制):'>
-                  <AntdInput showCount maxlength={20} defaultValue='请输入内容' />
+                  <AntdInput
+                    v-model={[formState.inputLimit, 'value']}
+                    showCount
+                    maxlength={20}
+                    placeholder='请输入内容'
+                  />
                 </AntdFormItem>
                 <AntdFormItem label='输入框(纯数字):'>
-                  <AntdInputNumber min={0} style='width: 100%;' defaultValue={0} />
+                  <AntdInputNumber
+                    v-model={[formState.inputNum, 'value']}
+                    style='width: 100%;'
+                    placeholder='请输入数字'
+                  />
+                </AntdFormItem>
+                <AntdFormItem label='输入框(密码隐藏):'>
+                  <AntdInputPassword
+                    v-model={[formState.password, 'value']}
+                    maxlength={16}
+                    placeholder="请输入密码"
+                  />
                 </AntdFormItem>
               </AntdForm>
             </AntdCard>
