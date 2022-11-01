@@ -19,12 +19,10 @@ export default defineComponent({
       <div ref={pageWrapperRef} class={compoStyle['compo_page-wrapper']}>
         <div class={compoStyle['page-header']}>
           <div class={compoStyle['page-header-name']}>
-            <SvgIcon name='hints' size={16} />
+            <SvgIcon name='hints' size={18} />
             <span>{props.name}</span>
           </div>
-          <div class={compoStyle['page-header-info']}>
-            {slots.header?.()}
-          </div>
+          {slots.header?.()}
         </div>
         <div ref={pageContentRef} class={compoStyle['page-content']}>
           {slots.default?.()}
