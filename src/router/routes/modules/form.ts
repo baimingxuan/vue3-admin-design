@@ -16,7 +16,7 @@ const FormRoute: AppRoute = {
         {
             path: 'form-list',
             name: 'FormList',
-            component: () => import('@/views/home.vue'),
+            component: () => import('@/views/form/form-list'),
             meta: {
                 title: '表单列表'
             }
