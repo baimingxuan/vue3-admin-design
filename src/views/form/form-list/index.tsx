@@ -1,4 +1,4 @@
-import { defineComponent, reactive, watch } from 'vue'
+import { defineComponent, ref, reactive, watch } from 'vue'
 import { Card as AntdCard, Form as AntdForm, FormItem as AntdFormItem, Row as AntdRow, Col as AntdCol,
   Input as AntdInput, InputNumber as AntdInputNumber, InputPassword as AntdInputPassword, Button as AntdButton,
   Select as AntdSelect, DatePicker as AntdDatePicker, TimePicker as AntdTimePicker, Switch as AntdSwitch,
@@ -25,6 +25,18 @@ export default defineComponent({
       cascaderVal: '',
       cascaderLazy: ''
     })
+
+    const lazyOptions = ref([])
+
+    const loadCascaders = selectedOptions => {
+      const targetOption = selectedOptions[selectedOptions.length - 1]
+      targetOption.loading = true
+
+      setTimeout(() => {
+        targetOption.loading = false
+        targetOption.children = []
+      }, 1000)
+    }
 
     watch(
       () => formState.selectProvince,
@@ -110,18 +122,20 @@ export default defineComponent({
                     <AntdSlider v-model={[formState.sliderVal, 'value']} />
                   </AntdFormItem>
                   <AntdFormItem label='级联选择器:'>
-                    <AntdRow>
-                      <AntdCol span={10}>
+                    <AntdRow gutter={12}>
+                      <AntdCol span={12}>
                         <AntdCascader
                           v-model={[formState.cascaderVal, 'value']}
                           options={cascaderData}
                           placeholder='请选择'
                         />
                       </AntdCol>
-                      <AntdCol span={4}>(懒加载)</AntdCol>
-                      <AntdCol span={10}>
+                      <AntdCol span={12}>
                         <AntdCascader
                           v-model={[formState.cascaderLazy, 'value']}
+                          options={lazyOptions}
+                          loadData={loadCascaders}
+                          changeOnSelect
                         />
                       </AntdCol>
                     </AntdRow>
