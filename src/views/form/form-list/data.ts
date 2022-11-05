@@ -1,3 +1,4 @@
+
 export const provinceData = ['guangdong', 'Zhejiang', 'Jiangsu']
 
 export const cityData = {
@@ -202,3 +203,46 @@ export const cascaderData = [{
   }]
 }]
 
+export const treeData = [{
+  title: 'Node1',
+  value: '0-0',
+  children: [{
+    title: 'Child Node1',
+    value: '0-0-0',
+    children: [{
+      title: 'Child Node6',
+      value: '0-0-1'
+    }]
+  }]
+}, {
+  title: 'Node2',
+  value: '0-1',
+  children: [{
+    title: 'Child Node3',
+    value: '0-1-0',
+    disabled: true,
+  }, {
+    title: 'Child Node4',
+    value: '0-1-1',
+  }, {
+    title: 'Child Node5',
+    value: '0-1-2',
+  }]
+}]
+
+export const radioData = [
+  { label: '免费', value: 'free' },
+  { label: '收费', value: 'fee' },
+  { label: '赞助', value: 'sponsor' },
+  { label: '线上', value: 'online', disabled: true },
+  { label: '线下', value: 'offline', disabled: true }
+]
+
+export const checkboxData = [
+  { label: '游泳', value: 'swim' },
+  { label: '跑步', value: 'run' },
+  { label: '健身', value: 'fit' },
+  { label: '阅读', value: 'read', disabled: true },
+  { label: '音乐', value: 'music', disabled: true },
+  { label: '电影', value: 'movie' }
+]

@@ -1,12 +1,14 @@
-import { defineComponent, ref, reactive, watch } from 'vue'
+import { defineComponent, reactive, watch } from 'vue'
 import { Card as AntdCard, Form as AntdForm, FormItem as AntdFormItem, Row as AntdRow, Col as AntdCol,
   Input as AntdInput, InputNumber as AntdInputNumber, InputPassword as AntdInputPassword, Button as AntdButton,
   Select as AntdSelect, DatePicker as AntdDatePicker, TimePicker as AntdTimePicker, Switch as AntdSwitch,
-  Slider as AntdSlider, Cascader as AntdCascader } from 'ant-design-vue'
+  Slider as AntdSlider, Cascader as AntdCascader, TreeSelect as AntdTreeSelect, RadioGroup as AntdRadioGroup,
+  CheckboxGroup as AntdCheckboxGroup, Textarea as AntdTextarea
+} from 'ant-design-vue'
 import { FORM_PLUGIN_URL } from '@/settings/websiteSetting'
 import { openWindow } from '@/utils'
 import { PageWrapper } from '@/components/Page'
-import { provinceData, cityData, cascaderData } from './data'
+import { provinceData, cityData, cascaderData, treeData, radioData, checkboxData } from './data'
 
 export default defineComponent({
   name: 'FormList',
@@ -23,20 +25,18 @@ export default defineComponent({
       switchVal: true,
       sliderVal: 32,
       cascaderVal: '',
-      cascaderLazy: ''
+      cascaderSearch: '',
+      treeVal: undefined,
+      treeLazy: undefined,
+      radioVal: 'offline',
+      checkboxVal: 'read',
+      textareaVal: ''
     })
-
-    const lazyOptions = ref([])
-
-    const loadCascaders = selectedOptions => {
-      const targetOption = selectedOptions[selectedOptions.length - 1]
-      targetOption.loading = true
-
-      setTimeout(() => {
-        targetOption.loading = false
-        targetOption.children = []
-      }, 1000)
-    }
+    let treeLazyData = [
+      { id: 1, pId: 0, value: '1', title: 'Expand to load' },
+      { id: 2, pId: 0, value: '2', title: 'Expand to load' },
+      { id: 3, pId: 0, value: '3', title: 'Tree Node', isLeaf: true }
+    ]
 
     watch(
       () => formState.selectProvince,
@@ -45,6 +45,35 @@ export default defineComponent({
       }
     )
 
+    function filterCascader(inputValue, path) {
+      const isBoolean: boolean = path.some(option => option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1)
+      return isBoolean
+    }
+
+    function loadLazyTree(treeNode: any) {
+      return new Promise(resolve => {
+        if (treeNode.dataRef.children) {
+          resolve(true)
+          return
+        }
+        
+        const { id } = treeNode.dataRef
+        const random = Math.random().toString(36).substring(2, 6)
+        setTimeout(() => {
+          treeLazyData = treeLazyData.concat([
+            {
+              id: random as unknown as number,
+              pId: id,
+              value: random,
+              title: 'Tree Node',
+              isLeaf: false
+            }
+          ])
+          resolve(true)
+        }, 1000)
+      })
+    }
+    
     function openGithub() {
       openWindow(FORM_PLUGIN_URL)
     }
@@ -132,13 +161,50 @@ export default defineComponent({
                       </AntdCol>
                       <AntdCol span={12}>
                         <AntdCascader
-                          v-model={[formState.cascaderLazy, 'value']}
-                          options={lazyOptions}
-                          loadData={loadCascaders}
-                          changeOnSelect
+                          v-model={[formState.cascaderSearch, 'value']}
+                          options={cascaderData}
+                          showSearch={filterCascader}
+                          placeholder='请输入'
                         />
                       </AntdCol>
                     </AntdRow>
+                  </AntdFormItem>
+                  <AntdFormItem label='树选择器(可勾选):'>
+                    <AntdRow gutter={12}>
+                      <AntdCol span={12}>
+                        <AntdTreeSelect
+                          v-model={[formState.treeVal, 'value']}
+                          treeData={treeData}
+                          treeCheckable
+                          allowClear
+                          showCheckedStrategy={AntdTreeSelect.SHOW_PARENT}
+                          placeholder='请选择'
+                        />
+                      </AntdCol>
+                      <AntdCol span={12}>
+                        <AntdTreeSelect
+                          v-model={[formState.treeLazy, 'value']}
+                          treeDataSimpleMode
+                          treeData={treeLazyData}
+                          loadData={loadLazyTree}
+                          placeholder='请选择'
+                        />
+                      </AntdCol>
+                    </AntdRow>
+                  </AntdFormItem>
+                  <AntdFormItem label='单选框(带禁止):'>
+                    <AntdRadioGroup v-model={[formState.radioVal, 'value']} options={radioData} />
+                  </AntdFormItem>
+                  <AntdFormItem label='多选框(带禁止):'>
+                    <AntdCheckboxGroup v-model={[formState.checkboxVal, 'value']} options={checkboxData} />
+                  </AntdFormItem>
+                  <AntdFormItem label='文本域(长度限制):'>
+                    <AntdTextarea
+                      v-model={[formState.textareaVal, 'value']}
+                      maxlength={50}
+                      rows={3}
+                      placeholder='请输入内容'
+                    />
                   </AntdFormItem>
                 </div>
               </AntdForm>
