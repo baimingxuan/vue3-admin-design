@@ -1,4 +1,5 @@
-import { defineComponent, reactive, watch } from 'vue'
+import type { CascaderProps, TreeSelectProps } from 'ant-design-vue'
+import { defineComponent, ref, reactive, watch } from 'vue'
 import { Card as AntdCard, Form as AntdForm, FormItem as AntdFormItem, Row as AntdRow, Col as AntdCol,
   Input as AntdInput, InputNumber as AntdInputNumber, InputPassword as AntdInputPassword, Button as AntdButton,
   Select as AntdSelect, DatePicker as AntdDatePicker, TimePicker as AntdTimePicker, Switch as AntdSwitch,
@@ -29,14 +30,23 @@ export default defineComponent({
       treeVal: undefined,
       treeLazy: undefined,
       radioVal: 'offline',
-      checkboxVal: 'read',
+      checkboxVal: ['read'],
       textareaVal: ''
     })
-    let treeLazyData = [
+    
+    const cascaderLazyData = ref<CascaderProps['options']>([
+      {
+        value: 1,
+        label: '选项1',
+        isLeaf: false
+      }
+    ])
+
+    const treeLazyData = ref<TreeSelectProps['treeData']>([
       { id: 1, pId: 0, value: '1', title: 'Expand to load' },
       { id: 2, pId: 0, value: '2', title: 'Expand to load' },
-      { id: 3, pId: 0, value: '3', title: 'Tree Node', isLeaf: true }
-    ]
+      { id: 3, pId: 0, value: '3', title: 'Tree Node', isLeaf: true },
+    ])
 
     watch(
       () => formState.selectProvince,
@@ -45,29 +55,44 @@ export default defineComponent({
       }
     )
 
-    function filterCascader(inputValue, path) {
-      const isBoolean: boolean = path.some(option => option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1)
-      return isBoolean
+    function loadCascaderLazy(selectedOptions: any) {
+      console.log('selectedOptions', selectedOptions)
+      const targetOption = selectedOptions[selectedOptions.length - 1]
+      targetOption.loading = true
+
+      setTimeout(() => {
+        targetOption.loading = false
+        let id = selectedOptions.length
+        const level = selectedOptions.length
+        targetOption.children = Array.from({ length: level + 1 })
+          .map(() => ({
+            value: ++id,
+            label: `选项${id}`,
+            isLeaf: level >= 2
+          }))
+          cascaderLazyData.value = [...cascaderLazyData.value!]
+      }, 1000)
     }
 
-    function loadLazyTree(treeNode: any) {
-      return new Promise(resolve => {
-        if (treeNode.dataRef.children) {
-          resolve(true)
-          return
-        }
-        
-        const { id } = treeNode.dataRef
+    function loadTreeLazy(treeNode: any) {
+      const genTreeNode = (parentId: number, isLeaf = false) => {
         const random = Math.random().toString(36).substring(2, 6)
+        return {
+          id: random,
+          pId: parentId,
+          value: random,
+          title: isLeaf ? 'Tree Node' : 'Expand to load',
+          isLeaf
+        }
+      }
+
+      return new Promise(resolve => {
+        const { id } = treeNode.dataRef
         setTimeout(() => {
-          treeLazyData = treeLazyData.concat([
-            {
-              id: random as unknown as number,
-              pId: id,
-              value: random,
-              title: 'Tree Node',
-              isLeaf: false
-            }
+          treeLazyData.value = treeLazyData.value?.concat([
+            genTreeNode(id, false),
+            genTreeNode(id, true),
+            genTreeNode(id, true)
           ])
           resolve(true)
         }, 1000)
@@ -162,8 +187,9 @@ export default defineComponent({
                       <AntdCol span={12}>
                         <AntdCascader
                           v-model={[formState.cascaderSearch, 'value']}
-                          options={cascaderData}
-                          showSearch={filterCascader}
+                          options={cascaderLazyData.value}
+                          loadData={loadCascaderLazy}
+                          changeOnSelect
                           placeholder='请输入'
                         />
                       </AntdCol>
@@ -185,8 +211,8 @@ export default defineComponent({
                         <AntdTreeSelect
                           v-model={[formState.treeLazy, 'value']}
                           treeDataSimpleMode
-                          treeData={treeLazyData}
-                          loadData={loadLazyTree}
+                          treeData={treeLazyData.value}
+                          loadData={loadTreeLazy}
                           placeholder='请选择'
                         />
                       </AntdCol>
@@ -207,6 +233,10 @@ export default defineComponent({
                     />
                   </AntdFormItem>
                 </div>
+                <AntdFormItem wrapperCol={{span: 12, offset: 12}}>
+                  <AntdButton type='primary' htmlType='submit'>提交</AntdButton>
+                  <AntdButton style='margin-left: 12px;'>重置</AntdButton>
+                </AntdFormItem>
               </AntdForm>
             </AntdCard>
         }}
