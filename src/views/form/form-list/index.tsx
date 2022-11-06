@@ -70,7 +70,6 @@ export default defineComponent({
     )
 
     function loadCascaderLazy(selectedOptions: any) {
-      console.log('selectedOptions', selectedOptions)
       const targetOption = selectedOptions[selectedOptions.length - 1]
       targetOption.loading = true
 
