@@ -4,6 +4,9 @@ export const GITHUB_URL = 'https://github.com/baimingxuan/vue3-admin-design'
 // Form plugin src
 export const FORM_PLUGIN_URL = 'https://www.antdv.com/components/form'
 
+// Table plugin url
+export const TABLE_PLUGIN_URL = 'https://www.antdv.com/components/table'
+
 // Video player plugin src
 export const VIDEO_PLUGIN_SRC = 'https://github.com/surmon-china/videojs-player'
 

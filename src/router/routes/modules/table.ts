@@ -16,7 +16,7 @@ const TableRoute: AppRoute = {
         {
             path: 'table-classic',
             name: 'TableClassic',
-            component: () => import('@/views/home.vue'),
+            component: () => import('@/views/table/table-classic'),
             meta: {
                 title: '综合表格'
             }
