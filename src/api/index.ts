@@ -25,3 +25,12 @@ export function logoutApi() {
     method: 'get'
   })
 }
+
+// Table list
+export function getTableList(param) {
+  return({
+    url: 'https://cdn.jsdelivr.net/gh/baimingxuan/media-store/mock-data/table-list.json',
+    method: 'get',
+    param
+  })
+}
