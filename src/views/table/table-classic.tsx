@@ -1,7 +1,8 @@
-import { ColumnType, TablePaginationConfig } from 'ant-design-vue/lib/table'
-import { defineComponent, ref, computed } from 'vue'
+import { TableProps, ColumnType, TablePaginationConfig } from 'ant-design-vue/lib/table'
+import { defineComponent, ref, computed, reactive, onMounted } from 'vue'
 import { Button as AntdButton, Table as AntdTable } from 'ant-design-vue'
 import { TABLE_PLUGIN_URL } from '@/settings/websiteSetting'
+import { getTableList } from '@/api'
 import { openWindow } from '@/utils'
 import { PageWrapper } from '@/components/Page'
 
@@ -9,12 +10,23 @@ export default defineComponent({
   name: 'Markdown',
   setup() {
     const tableLoading = ref(false)
+    const tableQuery = reactive({
+      currentPage: 1,
+      pageSize: 10
+    })
+
+    const tableSelection: TableProps['rowSelection'] = {
+      onChange: (selectedRowKeys: string[]) => {
+        console.log(selectedRowKeys)
+      }
+    }
 
     const tableColumns: ColumnType[] = [
       { title: '编号', dataIndex: 'id', sorter: true, width: '120', align: 'center' },
       { title: '性别', dataIndex: 'sex', align: 'center' },
       { title: '手机', dataIndex: 'phone', align: 'center' },
       { title: '学历', dataIndex: 'education', align: 'center' },
+      { title: '婚姻状况', dataIndex: 'married', width: '100', align: 'center' },
     ]
 
     const tablePagination = computed(() => ({
@@ -23,7 +35,19 @@ export default defineComponent({
       pageSize: 10
     })) as TablePaginationConfig
 
-    function handleTableChange() {}
+    onMounted(() => {
+      fetchData()
+    })
+
+    async function fetchData() {
+      tableLoading.value = true
+      const data = await getTableList(tableQuery)
+      console.log('tableData', data)
+    }
+
+    function handleTableChange() {
+      
+    }
 
     function openGithub() {
       openWindow(TABLE_PLUGIN_URL)
@@ -38,11 +62,18 @@ export default defineComponent({
           </>,
           default: () => <div>
             <AntdTable
+              rowSelection={tableSelection}
               columns={tableColumns}
               pagination={tablePagination}
               loading={tableLoading.value}
               onChange={handleTableChange}
-            />
+            >
+              {{ bodyCell: (column, record) => {
+                if (column.key === '') {
+                  return <a>{record.name}</a>
+                }
+              } }}
+            </AntdTable>
           </div>
         }}
       </PageWrapper>
