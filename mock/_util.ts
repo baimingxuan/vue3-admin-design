@@ -29,3 +29,31 @@ export function resultError(message = '失败', { code = -1, data = null } = {})
 export function getRequestToken({ headers }: requestParams): string | undefined {
   return headers?.authorization
 }
+
+export function pagination<T = any>(
+  pageNo: number,
+  pageSize: number,
+  array: T[]
+): T[] {
+  const offset = (pageNo - 1) * pageSize
+  return offset + pageSize >= array.length
+    ? array.slice(offset, array.length)
+    : array.slice(offset, offset + pageSize)
+}
+
+export function resultPageSuccess<T = any> (
+  page: number,
+  pageSize: number,
+  list: T[],
+  { message = 'ok' } = {}
+) {
+  const pageData = pagination(page, pageSize, list)
+
+  return {
+    ...resultSuccess({
+      list: pageData,
+      total: list.length
+    }),
+    message
+  }
+}
