@@ -29,7 +29,7 @@ export function logoutApi() {
 // Table list
 export function getTableList(params) {
   return service({
-    url: 'https://cdn.jsdelivr.net/gh/baimingxuan/media-store/mock-data/table-list.json',
+    url: '/table/getTableList',
     method: 'get',
     params
   })

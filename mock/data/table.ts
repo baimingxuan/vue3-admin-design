@@ -1,14 +1,58 @@
 import { MockMethod } from 'vite-plugin-mock'
+import { Random } from 'mockjs'
 import { resultPageSuccess } from '../_util'
+
+const getPhone = () => {
+  const prefixList = [135, 136, 137, 138, 139, 155, 158, 183, 185, 189]
+  const randomNum = Math.floor(Math.random() * 10)
+  const phoneStr = prefixList[randomNum] + Math.random().toString().slice(-8)
+  return Number(phoneStr)
+}
+
+const getEducation = () => {
+  const educationList = ['小学', '初中', '高中', '专科', '本科', '研究生']
+  const randomNum = Math.floor(Math.random() * 10)
+  const randomIndex = randomNum > 5 ? randomNum - 5 : randomNum
+  return educationList[randomIndex]
+}
+
+const getHobby = () => {
+  const list: any[] = []
+  const hobbyList = ['羽毛球', '乒乓球', '篮球', '排球', '网球', '游泳', '滑雪', '跳高', '滑翔', '潜水']
+  const len = [3, 4][Number(Random.boolean())]
+  for (let key = 0; key < len; key++) {
+    const randomNum = Math.floor(Math.random() * 10)
+    list.push(hobbyList[randomNum])
+  }
+  return list
+}
+
+const genList = (page: number, pageSize: number) => {
+  const list: any[] = []
+  for (let index = 0; index < 100; index++) {
+    list.push({
+      id: Number(`100${index}`) + (page - 1) * pageSize + 1,
+      name: Random.cname(),
+      sex: ['男', '女'][Number(Random.boolean())],
+      phone: getPhone(),
+      education: getEducation(),
+      married: Number(Random.boolean()),
+      forbid: Random.boolean(),
+      hobby: getHobby()
+    })
+  }
+  return list
+}
 
 export default [
   {
-    url: '/basic-api/table/getTableList',
+    url: '/api/table/getTableList',
     timeout: 200,
     method: 'get',
     response: ({ query }) => {
       const { page = 1, pageSize = 10 } = query
-      return resultPageSuccess(page, pageSize, [])
+      const tableList = genList(page, pageSize)
+      return resultPageSuccess(page, pageSize, tableList)
     }
   }
 ] as MockMethod[]
