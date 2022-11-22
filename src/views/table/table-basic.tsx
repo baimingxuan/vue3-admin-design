@@ -1,17 +1,24 @@
 import { TableProps, ColumnType, TablePaginationConfig } from 'ant-design-vue/lib/table'
-import { defineComponent, ref, computed, reactive, onMounted } from 'vue'
+import { defineComponent, ref, unref, computed, reactive, onMounted } from 'vue'
 import { Button as AntdButton, Table as AntdTable } from 'ant-design-vue'
 import { TABLE_PLUGIN_URL } from '@/settings/websiteSetting'
 import { getTableList } from '@/api'
 import { openWindow } from '@/utils'
 import { PageWrapper } from '@/components/Page'
 
+interface APIResult {
+  list: any[],
+  total: number
+}
+
 export default defineComponent({
   name: 'Markdown',
   setup() {
     const tableLoading = ref(false)
+    const tableData = ref<any[]>([])
+    const tableTotal = ref<number>(0)
     const tableQuery = reactive({
-      currentPage: 1,
+      current: 1,
       pageSize: 10
     })
 
@@ -30,9 +37,9 @@ export default defineComponent({
     ]
 
     const tablePagination = computed(() => ({
-      total: 100,
-      current: 1,
-      pageSize: 10
+      total: unref(tableTotal),
+      current: tableQuery.current,
+      pageSize: tableQuery.pageSize
     })) as TablePaginationConfig
 
     onMounted(() => {
@@ -42,11 +49,19 @@ export default defineComponent({
     async function fetchData() {
       tableLoading.value = true
       const data = await getTableList(tableQuery)
+      const { list, total } = data as unknown as APIResult
+      tableData.value = list
+      tableTotal.value = total
+      tableLoading.value = false
       console.log('tableData', data)
     }
 
-    function handleTableChange() {
-      
+    function handleTableChange(pagination: TablePaginationConfig) {
+      const { current, pageSize } = pagination
+      tableQuery.current = current!
+      tableQuery.pageSize = pageSize!
+      console.log('pagination', pagination)
+      fetchData()
     }
 
     function openGithub() {
@@ -64,8 +79,9 @@ export default defineComponent({
             <AntdTable
               rowSelection={tableSelection}
               columns={tableColumns}
+              dataSource={unref(tableData)}
               pagination={tablePagination}
-              loading={tableLoading.value}
+              loading={unref(tableLoading)}
               onChange={handleTableChange}
             >
               {{ bodyCell: (column, record) => {
