@@ -6,7 +6,7 @@ const TableRoute: AppRoute = {
     path: '/table',
     name: 'Table',
     component: Layout,
-    redirect: '/table/table-classic',
+    redirect: '/table/table-basic',
     meta: {
         title: '表格',
         icon: 'table',
@@ -14,11 +14,11 @@ const TableRoute: AppRoute = {
     },
     children: [
         {
-            path: 'table-classic',
-            name: 'TableClassic',
-            component: () => import('@/views/table/table-classic'),
+            path: 'table-basic',
+            name: 'TableBasic',
+            component: () => import('@/views/table/table-basic'),
             meta: {
-                title: '综合表格'
+                title: '基础表格'
             }
         },
         {
