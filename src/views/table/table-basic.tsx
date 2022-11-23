@@ -1,6 +1,6 @@
 import { TableProps, ColumnType, TablePaginationConfig } from 'ant-design-vue/lib/table'
 import { defineComponent, ref, unref, computed, reactive, onMounted } from 'vue'
-import { Button as AntdButton, Table as AntdTable } from 'ant-design-vue'
+import { Button as AntdButton, Table as AntdTable, Tag as AntdTag, Select as AntdSelect } from 'ant-design-vue'
 import { TABLE_PLUGIN_URL } from '@/settings/websiteSetting'
 import { getTableList } from '@/api'
 import { openWindow } from '@/utils'
@@ -12,7 +12,7 @@ interface APIResult {
 }
 
 export default defineComponent({
-  name: 'Markdown',
+  name: 'TableBasic',
   setup() {
     const tableLoading = ref(false)
     const tableData = ref<any[]>([])
@@ -29,11 +29,12 @@ export default defineComponent({
     }
 
     const tableColumns: ColumnType[] = [
-      { title: '编号', dataIndex: 'id', sorter: true, width: '120', align: 'center' },
+      { title: '编号', dataIndex: 'id', sorter: true, align: 'center' },
+      { title: '姓名', dataIndex: 'name', align: 'center' },
       { title: '性别', dataIndex: 'sex', align: 'center' },
       { title: '手机', dataIndex: 'phone', align: 'center' },
       { title: '学历', dataIndex: 'education', align: 'center' },
-      { title: '婚姻状况', dataIndex: 'married', width: '100', align: 'center' },
+      { title: '婚姻状况', dataIndex: 'married', align: 'center' },
     ]
 
     const tablePagination = computed(() => ({
@@ -57,11 +58,11 @@ export default defineComponent({
     }
 
     function handleTableChange(pagination: TablePaginationConfig) {
-      const { current, pageSize } = pagination
-      tableQuery.current = current!
-      tableQuery.pageSize = pageSize!
+      const { current = 1, pageSize = 10 } = pagination
+      tableQuery.current = current
+      tableQuery.pageSize = pageSize
       console.log('pagination', pagination)
-      fetchData()
+      // fetchData()
     }
 
     function openGithub() {
@@ -84,11 +85,16 @@ export default defineComponent({
               loading={unref(tableLoading)}
               onChange={handleTableChange}
             >
-              {{ bodyCell: (column, record) => {
-                if (column.key === '') {
-                  return <a>{record.name}</a>
+              {{ bodyCell: ({column, record}) => {
+                  if (column.dataIndex === 'name') {
+                    return <AntdTag color='blue'>{record.name}</AntdTag>
+                  }
+                  if (column.dataIndex === 'married') {
+                    return <AntdSelect v-model={[record.married, 'value']} options={['未婚', '已婚'].map(pro => ({ value: pro }))}
+                  />
+                  }
                 }
-              } }}
+              }}
             </AntdTable>
           </div>
         }}
