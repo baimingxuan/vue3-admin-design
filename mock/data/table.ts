@@ -27,11 +27,12 @@ const getHobby = () => {
   return list
 }
 
-const genList = (current: number, pageSize: number) => {
+const genList = () => {
   const list: any[] = []
   for (let index = 0; index < 100; index++) {
+    const num = index < 10 ? '0' + index : index
     list.push({
-      id: Number(`100${index}`) + (current - 1) * pageSize + 1,
+      id: Number(`10${num}`) + 1,
       name: Random.cname(),
       sex: ['男', '女'][Number(Random.boolean())],
       phone: getPhone(),
@@ -51,8 +52,7 @@ export default [
     method: 'get',
     response: ({ query }) => {
       const { current = 1, pageSize = 10 } = query
-      const tableList = genList(current, pageSize)
-      return resultPageSuccess(current, pageSize, tableList)
+      return resultPageSuccess(current, pageSize, genList())
     }
   }
 ] as MockMethod[]

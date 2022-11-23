@@ -31,23 +31,23 @@ export function getRequestToken({ headers }: requestParams): string | undefined 
 }
 
 export function pagination<T = any>(
-  pageNo: number,
+  currentPage: number,
   pageSize: number,
   array: T[]
 ): T[] {
-  const offset = (pageNo - 1) * pageSize
-  return offset + pageSize >= array.length
+  const offset = (currentPage - 1) * pageSize
+  return (offset + pageSize) >= array.length
     ? array.slice(offset, array.length)
     : array.slice(offset, offset + pageSize)
 }
 
 export function resultPageSuccess<T = any> (
-  page: number,
+  currentPage: number,
   pageSize: number,
   list: T[],
   { message = 'ok' } = {}
 ) {
-  const pageData = pagination(page, pageSize, list)
+  const pageData = pagination(currentPage, pageSize, list)
 
   return {
     ...resultSuccess({
