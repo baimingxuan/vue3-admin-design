@@ -1,6 +1,8 @@
 import { TableProps, ColumnType, TablePaginationConfig } from 'ant-design-vue/lib/table'
-import { defineComponent, ref, unref, computed, reactive, onMounted } from 'vue'
-import { Button as AntdButton, Table as AntdTable, Tag as AntdTag, Select as AntdSelect } from 'ant-design-vue'
+import { defineComponent, createVNode, ref, unref, computed, reactive, onMounted } from 'vue'
+import { Button as AntdButton, Table as AntdTable, Tag as AntdTag, Select as AntdSelect, Switch as AntdSwitch,
+  Popover as AntdPopover, Space as AntdSpace, Modal as AntdModal } from 'ant-design-vue'
+import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
 import { TABLE_PLUGIN_URL } from '@/settings/websiteSetting'
 import { getTableList } from '@/api'
 import { openWindow } from '@/utils'
@@ -10,6 +12,13 @@ interface APIResult {
   list: any[],
   total: number
 }
+
+const marriedOptions = [
+  { label: '单身', value: 0 },
+  { label: '未婚', value: 1 },
+  { label: '已婚', value: 2 },
+  { label: '离异', value: 3 }
+]
 
 export default defineComponent({
   name: 'TableBasic',
@@ -35,6 +44,9 @@ export default defineComponent({
       { title: '手机', dataIndex: 'phone', align: 'center' },
       { title: '学历', dataIndex: 'education', align: 'center' },
       { title: '婚姻状况', dataIndex: 'married', align: 'center' },
+      { title: '禁止编辑', dataIndex: 'forbid', align: 'center' },
+      { title: '爱好', dataIndex: 'hobby', align: 'center' },
+      { title: '操作', key: 'action', align: 'center' }
     ]
 
     const tablePagination = computed(() => ({
@@ -69,6 +81,22 @@ export default defineComponent({
       openWindow(TABLE_PLUGIN_URL)
     }
 
+    function handleDelete() {
+      AntdModal.confirm({
+        title: '此操作将删除选中数据, 是否继续?',
+        icon: createVNode(ExclamationCircleOutlined),
+        // okType: 'danger',
+        okText: '确定',
+        cancelText: '取消',
+        onOk() {
+          console.log('OK')
+        },
+        onCancel() {
+          console.log('Cancel')
+        }
+      })
+    }
+
     return () => (
       <PageWrapper name='Table 表格'>
         {{
@@ -85,15 +113,36 @@ export default defineComponent({
               loading={unref(tableLoading)}
               onChange={handleTableChange}
             >
-              {{ bodyCell: ({column, record}) => {
-                  if (column.dataIndex === 'name') {
-                    return <AntdTag color='blue'>{record.name}</AntdTag>
+              {{
+                  bodyCell: ({column, record}) => {
+                    if (column.dataIndex === 'name') {
+                      const slots = {
+                        content: () => <>
+                          <p>姓名: {record.name}</p>
+                          <p>手机: {record.phone}</p>
+                          <p>爱好: {record.hobby.join('、')}</p>
+                        </>
+                      }
+                      return <AntdPopover v-slots={slots}>
+                        <AntdTag color='blue'>{record.name}</AntdTag>
+                      </AntdPopover>
+                    }
+                    else if (column.dataIndex === 'married') {
+                      return <AntdSelect v-model={[record.married, 'value']} options={marriedOptions} />
+                    }
+                    else if (column.dataIndex === 'hobby') {
+                      return <span>{record.hobby.join('、')}</span>
+                    }
+                    else if (column.dataIndex === 'forbid') {
+                      return <AntdSwitch v-model={[record.forbid, 'checked']} />
+                    }
+                    else if (column.key === 'action') {
+                      return <AntdSpace>
+                        <AntdButton disabled={record.forbid}>编辑</AntdButton>
+                        <AntdButton danger onClick={handleDelete}>删除</AntdButton>
+                      </AntdSpace>
+                    }
                   }
-                  if (column.dataIndex === 'married') {
-                    return <AntdSelect v-model={[record.married, 'value']} options={['未婚', '已婚'].map(pro => ({ value: pro }))}
-                  />
-                  }
-                }
               }}
             </AntdTable>
           </div>

@@ -11,9 +11,12 @@ const getPhone = () => {
 
 const getEducation = () => {
   const educationList = ['小学', '初中', '高中', '专科', '本科', '研究生']
-  const randomNum = Math.floor(Math.random() * 10)
-  const randomIndex = randomNum > 5 ? randomNum - 5 : randomNum
-  return educationList[randomIndex]
+  const randomNum = Math.floor(Math.random() * educationList.length)
+  return educationList[randomNum]
+}
+
+const getMarried = () => {
+  return Math.floor(Math.random() * 4)
 }
 
 const getHobby = () => {
@@ -37,7 +40,7 @@ const genList = () => {
       sex: ['男', '女'][Number(Random.boolean())],
       phone: getPhone(),
       education: getEducation(),
-      married: Number(Random.boolean()),
+      married: getMarried(),
       forbid: Random.boolean(),
       hobby: getHobby()
     })
