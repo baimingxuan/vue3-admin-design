@@ -7,6 +7,9 @@ export const FORM_PLUGIN_URL = 'https://www.antdv.com/components/form'
 // Table plugin url
 export const TABLE_PLUGIN_URL = 'https://www.antdv.com/components/table'
 
+// Tree plugin url
+export const TREE_PLUGIN_URL = 'https://www.antdv.com/components/tree'
+
 // Video player plugin src
 export const VIDEO_PLUGIN_SRC = 'https://github.com/surmon-china/videojs-player'
 

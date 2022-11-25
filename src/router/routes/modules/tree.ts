@@ -22,9 +22,9 @@ const TreeRoute: AppRoute = {
             }
         },
         {
-            path: 'ele-tree',
-            name: 'EleTree',
-            component: () => import('@/views/home.vue'),
+            path: 'antd-tree',
+            name: 'AntdTree',
+            component: () => import('@/views/tree/antd-tree/index'),
             meta: {
                 title: '控件树'
             }
