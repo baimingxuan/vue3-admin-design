@@ -5,6 +5,7 @@ specifiers:
   '@ant-design/icons-vue': ^6.1.0
   '@kangc/v-md-editor': ^2.3.15
   '@types/crypto-js': ^4.1.1
+  '@types/file-saver': ^2.0.5
   '@types/lodash-es': ^4.17.6
   '@types/node': ^17.0.10
   '@types/path-browserify': ^1.0.0
@@ -27,6 +28,7 @@ specifiers:
   eslint-define-config: ^1.5.1
   eslint-plugin-prettier: ^4.2.1
   eslint-plugin-vue: ^9.2.0
+  file-saver: ^2.0.5
   highlight.js: ^11.6.0
   less: ^4.1.2
   lodash-es: ^4.17.21
@@ -68,6 +70,7 @@ dependencies:
   ant-design-vue: 3.2.10_vue@3.2.37
   axios: 0.26.1
   crypto-js: 4.1.1
+  file-saver: 2.0.5
   highlight.js: 11.6.0
   lodash-es: 4.17.21
   mockjs: 1.1.0
@@ -84,6 +87,7 @@ dependencies:
 
 devDependencies:
   '@types/crypto-js': 4.1.1
+  '@types/file-saver': 2.0.5
   '@types/lodash-es': 4.17.6
   '@types/node': 17.0.45
   '@types/path-browserify': 1.0.0
@@ -677,6 +681,10 @@ packages:
     resolution: {integrity: sha512-UfnOK1pIxO7P+EgPRZXD9jMpimd8QEFcEZ5R67R1UhGbv4zghU5+NE7U8M8G9H5Jc8FI51rqDWQs6FtUfq2e/Q==}
     dev: false
 
+  /@types/file-saver/2.0.5:
+    resolution: {integrity: sha512-zv9kNf3keYegP5oThGLaPk8E081DFDuwfqjtiTzm6PoxChdJ1raSuADf2YGCVIyrSynLrgc8JWv296s7Q7pQSQ==}
+    dev: true
+
   /@types/glob/7.2.0:
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
     dependencies:
@@ -932,9 +940,11 @@ packages:
       vue: 3.2.37
     dev: false
 
-  /@videojs/http-streaming/2.14.3:
+  /@videojs/http-streaming/2.14.3_video.js@7.20.3:
     resolution: {integrity: sha512-2tFwxCaNbcEZzQugWf8EERwNMyNtspfHnvxRGRABQs09W/5SqmkWFuGWfUAm4wQKlXGfdPyAJ1338ASl459xAA==}
     engines: {node: '>=8', npm: '>=5'}
+    peerDependencies:
+      video.js: ^6 || ^7
     dependencies:
       '@babel/runtime': 7.18.9
       '@videojs/vhs-utils': 3.0.5
@@ -3234,6 +3244,10 @@ packages:
       flat-cache: 3.0.4
     dev: true
 
+  /file-saver/2.0.5:
+    resolution: {integrity: sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==}
+    dev: false
+
   /fill-range/4.0.0:
     resolution: {integrity: sha512-VcpLTWqWDiTerugjj8e3+esbg+skS3M9e54UuR3iCeIDMXCLTsAH8hTSzDQU/X6/6t3eYkOKoZSef2PlU6U1XQ==}
     engines: {node: '>=0.10.0'}
@@ -5283,7 +5297,7 @@ packages:
     resolution: {integrity: sha512-JMspxaK74LdfWcv69XWhX4rILywz/eInOVPdKefpQiZJSMD5O8xXYueqACP2Q5yqKstycgmmEKlJzZ+kVmDciw==}
     dependencies:
       '@babel/runtime': 7.18.9
-      '@videojs/http-streaming': 2.14.3
+      '@videojs/http-streaming': 2.14.3_video.js@7.20.3
       '@videojs/vhs-utils': 3.0.5
       '@videojs/xhr': 2.6.0
       aes-decrypter: 3.1.3
