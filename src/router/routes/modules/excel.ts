@@ -16,7 +16,7 @@ const ExcelRoute: AppRoute = {
         {
             path: 'export-excel',
             name: 'ExportExcel',
-            component: () => import('@/views/home.vue'),
+            component: () => import('@/views/excel/export-excel'),
             meta: {
                 title: '导出Excel'
             }

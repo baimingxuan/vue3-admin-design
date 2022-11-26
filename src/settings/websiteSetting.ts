@@ -15,3 +15,6 @@ export const VIDEO_PLUGIN_SRC = 'https://github.com/surmon-china/videojs-player'
 
 // Video resource src
 export const VIDEO_RES_SRC = 'https://cdn.jsdelivr.net/gh/baimingxuan/media-store/videos/houlang.mp4'
+
+// Xlsx plugin url
+export const XLSX_PLUGIN_URL = 'https://github.com/SheetJS/sheetjs'
