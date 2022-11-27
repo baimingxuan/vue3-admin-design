@@ -1,5 +1,5 @@
 import type { WorkSheet } from 'xlsx'
-import XLSX from 'xlsx'
+import { write, read, utils } from 'xlsx'
 import { saveAs } from 'file-saver'
 import { ImportType, DataToSheet } from './types'
 
@@ -53,19 +53,19 @@ export function useExcel() {
       bookType = 'xlsx' // Export file type (导出文件格式)
     }: DataToSheet) {
     // Create the Workbook object (创建Workbook对象)
-    const wb = XLSX.utils.book_new()
+    const wb = utils.book_new()
     const arr = formatJSON(key, data)
     fileName = fileName || 'excel-list'
     arr.unshift(header)
     // Convert the array to worksheet (将数组数据转换为worksheet)
-    const ws = XLSX.utils.aoa_to_sheet(arr)
+    const ws = utils.aoa_to_sheet(arr)
     if (autoWidth) {
       AutoWidth(ws, arr)
     }
     // Appends the worksheet and fileName to the Workbook object (向Workbook对象中追加worksheet和fileName)
-    XLSX.utils.book_append_sheet(wb, ws, fileName)
+    utils.book_append_sheet(wb, ws, fileName)
     // Generate EXCEL configuration items (生成EXCEL的配置项)
-    const wbout = XLSX.write(wb, {
+    const wbout = write(wb, {
       bookType: bookType,
       bookSST: false,
       type: 'binary'
@@ -82,16 +82,16 @@ export function useExcel() {
 
     const headers: string[] = []
     // Converts a string such as A1:G8 to a column and row object (将 A1:G8 这种字符串转换为行列对象)
-    const range = XLSX.utils.decode_range(sheet['!ref'])
+    const range = utils.decode_range(sheet['!ref'])
     
     const R = range.s.r
     // Start in the first row, walk every column in the range (从第一列开始，遍历范围中的每一列)
     for (let C = range.s.c; C <= range.e.c; ++C) {
       // Converts a row object to a string such as A1 (将行列对象转换为 A1 这种字符串)
-      const cell = sheet[XLSX.utils.encode_cell({ c: C, r: R })]
+      const cell = sheet[utils.encode_cell({ c: C, r: R })]
       // Replace with your desired default (用默认值替换)
       let hdr = 'UNKNOWN ' + C
-      if (cell && cell.t) hdr = XLSX.utils.format_cell(cell)
+      if (cell && cell.t) hdr = utils.format_cell(cell)
       headers.push(hdr)
     }
     return headers
@@ -100,13 +100,13 @@ export function useExcel() {
   // Reading excel files (读取Excel文件)
   function readDataFromExcel(data: ArrayBuffer, type: ImportType) {
     // Read the Excel file and save it to the Workbook object (读取Excel文件并保存到Workbook对象)
-    const workbook = XLSX.read(data, { type: type })
+    const workbook = read(data, { type: type })
     const firstSheetName = workbook.SheetNames[0]
     // Gets the worksheet of the Workbook object (获取Workbook对象的worksheet)
     const worksheet = workbook.Sheets[firstSheetName]
     const header = getHeaderRow(worksheet)
     // Convert the worksheet to an array (将worksheet转化成数组)
-    const results = XLSX.utils.sheet_to_json(worksheet)
+    const results = utils.sheet_to_json(worksheet)
     return { header, results }
   }
 
