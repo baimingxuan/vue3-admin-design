@@ -2,7 +2,7 @@ import 'ant-design-vue/dist/antd.css'
 
 import 'virtual:windi-base.css'
 import 'virtual:windi-components.css'
-import '@/styles/index.less'
+import '@/design/index.less'
 import 'virtual:windi-utilities.css'
 
 // register svg icon

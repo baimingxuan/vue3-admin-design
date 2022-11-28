@@ -9,5 +9,5 @@
 </script>
 
 <style lang="less">
-@import "./styles/index.less";
+@import "./design/index.less";
 </style>

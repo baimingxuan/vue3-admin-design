@@ -18,7 +18,7 @@ export function generateModifyVars(dark = false) {
 
   return {
     ...modifyVars,
-    hack: `${modifyVars.hack} @import (reference) "${resolve('src/styles/config.less')}";`,
+    hack: `${modifyVars.hack} @import (reference) "${resolve('src/design/config.less')}";`,
     'primary-color': primary,
     ...primaryColorObj
   }

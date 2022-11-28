@@ -52,7 +52,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       preprocessorOptions: {
         less: {
           charset: false,
-          additionalData: `@import "${resolve('src/styles/variable/index.less')}";`,
+          additionalData: `@import "${resolve('src/design/variable/index.less')}";`,
           javascriptEnabled: true
         }
       }
