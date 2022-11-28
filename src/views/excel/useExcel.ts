@@ -98,7 +98,7 @@ export function useExcel() {
   }
 
   // Reading excel files (读取Excel文件)
-  function readDataFromExcel(data: ArrayBuffer, type: ImportType) {
+  function readDataFromExcel(data: any, type: ImportType) {
     // Read the Excel file and save it to the Workbook object (读取Excel文件并保存到Workbook对象)
     const workbook = read(data, { type: type })
     const firstSheetName = workbook.SheetNames[0]
