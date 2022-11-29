@@ -9,7 +9,6 @@ Object.keys(pluginModules).forEach(key => {
   pluginModulesList.push(module)
 })
 
-
 export function setupPlugins(app: App<Element>) {
   pluginModulesList.forEach(plugin => {
     app.use(plugin)
