@@ -1,7 +1,7 @@
 import type { PropType } from 'vue'
 import { defineComponent, ref, computed, unref } from 'vue'
 import { useRoute } from 'vue-router'
-import { Result as AntdResult, Button as AntdButton } from 'ant-design-vue'
+import { Result as AntdResult, Card as AntdCard, Button as AntdButton } from 'ant-design-vue'
 import { ExceptionEnum } from '@/enums/exceptionEnum'
 import { useGo } from '@/hooks/web/usePage'
 
@@ -73,22 +73,24 @@ export default defineComponent({
       const { status, title, subTitle, btnText, handler } = unref(getMapValue) || {}
 
       return (
-        <AntdResult
-          status={status as any}
-          title={title}
-          subTitle={subTitle}
-        >
-          {{
-            extra: () => btnText && (
-              <AntdButton
-                type='primary'
-                onClick={handler}
-              >
-                {btnText}
-              </AntdButton>
-            )
-          }}
-        </AntdResult>
+        <AntdCard bordered={false}>
+          <AntdResult
+            status={status as any}
+            title={title}
+            subTitle={subTitle}
+          >
+            {{
+              extra: () => btnText && (
+                <AntdButton
+                  type='primary'
+                  onClick={handler}
+                >
+                  {btnText}
+                </AntdButton>
+              )
+            }}
+          </AntdResult>
+        </AntdCard>
       )
     }
   }
