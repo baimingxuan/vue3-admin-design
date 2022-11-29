@@ -11,6 +11,7 @@
   "dependencies": {
     "@ant-design/colors": "^6.0.0",
     "@ant-design/icons-vue": "^6.1.0",
+    "@form-create/designer": "^3.0.2",
     "@kangc/v-md-editor": "^2.3.15",
     "@types/video.js": "^7.3.49",
     "@videojs-player/vue": "^1.0.0",
@@ -47,6 +48,7 @@
     "@vitejs/plugin-legacy": "^2.0.0",
     "@vitejs/plugin-vue": "^3.0.1",
     "@vitejs/plugin-vue-jsx": "^2.0.0",
+    "element-plus": "^2.2.25",
     "eslint": "^8.19.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-define-config": "^1.5.1",
