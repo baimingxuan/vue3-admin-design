@@ -18,3 +18,6 @@ export const VIDEO_RES_SRC = 'https://cdn.jsdelivr.net/gh/baimingxuan/media-stor
 
 // Xlsx plugin url
 export const XLSX_PLUGIN_URL = 'https://github.com/SheetJS/sheetjs'
+
+// Form-create plugin url
+export const FORM_CREATE_DESIGNER_URL = 'https://github.com/xaboy/form-create-designer/tree/next'

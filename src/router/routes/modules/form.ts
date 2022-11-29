@@ -24,7 +24,7 @@ const FormRoute: AppRoute = {
         {
             path: 'form-marking',
             name: 'FormMarking',
-            component: () => import('@/views/home.vue'),
+            component: () => import('@/views/form/form-create'),
             meta: {
                 title: '表单生成器'
             }
