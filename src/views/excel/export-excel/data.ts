@@ -7,8 +7,8 @@ export const tableData = [
     birth: '2002-05-06',
     education: '高中',
     hobby: '羽毛球、篮球、听歌、阅读',
-    forbid: true,
-    editable: false
+    forbid: false,
+    editable: true
   },
   {
     key: 1002,
@@ -18,7 +18,7 @@ export const tableData = [
     birth: '1998-09-21',
     education: '初中',
     hobby: '乒乓球、排球、游泳',
-    forbid: false,
+    forbid: true,
     editable: false
   },
   {
@@ -29,7 +29,7 @@ export const tableData = [
     birth: '1993-06-06',
     education: '本科',
     hobby: '旱冰、滑雪、跳高、打游戏',
-    forbid: true,
+    forbid: false,
     editable: false
   },
   {
@@ -40,7 +40,7 @@ export const tableData = [
     birth: '1995-08-03',
     education: '大专',
     hobby: '网球、篮球、跳伞',
-    forbid: false,
+    forbid: true,
     editable: false
   },
   {
@@ -62,7 +62,7 @@ export const tableData = [
     birth: '2000-07-18',
     education: '大专',
     hobby: '游泳、篮球、潜水',
-    forbid: true,
+    forbid: false,
     editable: false
   },
   {
