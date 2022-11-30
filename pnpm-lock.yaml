@@ -24,6 +24,7 @@ specifiers:
   ant-design-vue: ^3.2.10
   axios: ^0.26.1
   crypto-js: ^4.1.1
+  dayjs: ^1.11.6
   element-plus: ^2.2.25
   eslint: ^8.19.0
   eslint-config-prettier: ^8.5.0
@@ -99,6 +100,7 @@ devDependencies:
   '@vitejs/plugin-legacy': 2.0.0_terser@5.14.2+vite@3.0.2
   '@vitejs/plugin-vue': 3.0.1_vite@3.0.2+vue@3.2.37
   '@vitejs/plugin-vue-jsx': 2.0.0_vite@3.0.2+vue@3.2.37
+  dayjs: 1.11.6
   element-plus: 2.2.25_vue@3.2.37
   eslint: 8.20.0
   eslint-config-prettier: 8.5.0_eslint@8.20.0
@@ -1700,7 +1702,7 @@ packages:
       '@simonwep/pickr': 1.8.2
       array-tree-filter: 2.1.0
       async-validator: 4.2.5
-      dayjs: 1.11.4
+      dayjs: 1.11.6
       dom-align: 1.12.3
       dom-scroll-into-view: 2.0.1
       lodash: 4.17.21
@@ -2640,8 +2642,8 @@ packages:
       lodash: 4.17.21
     dev: false
 
-  /dayjs/1.11.4:
-    resolution: {integrity: sha512-Zj/lPM5hOvQ1Bf7uAvewDaUcsJoI6JmNqmHhHl3nyumwe0XHwt8sWdOVAPACJzCebL8gQCi+K49w7iKWnGwX9g==}
+  /dayjs/1.11.6:
+    resolution: {integrity: sha512-zZbY5giJAinCG+7AGaw0wIhNZ6J8AhWuSXKvuc1KAyMiRsvGQWqh4L+MomvhdAYjN+lqvVCMq1I41e3YHvXkyQ==}
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
@@ -2837,7 +2839,7 @@ packages:
       '@types/lodash-es': 4.17.6
       '@vueuse/core': 9.6.0_vue@3.2.37
       async-validator: 4.2.5
-      dayjs: 1.11.4
+      dayjs: 1.11.6
       escape-html: 1.0.3
       lodash: 4.17.21
       lodash-es: 4.17.21

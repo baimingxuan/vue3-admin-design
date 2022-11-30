@@ -48,6 +48,7 @@
     "@vitejs/plugin-legacy": "^2.0.0",
     "@vitejs/plugin-vue": "^3.0.1",
     "@vitejs/plugin-vue-jsx": "^2.0.0",
+    "dayjs": "^1.11.6",
     "element-plus": "^2.2.25",
     "eslint": "^8.19.0",
     "eslint-config-prettier": "^8.5.0",
