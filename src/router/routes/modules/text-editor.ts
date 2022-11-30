@@ -28,6 +28,14 @@ const TextEditorRoute: AppRoute = {
             meta: {
                 title: '富文本编辑器'
             }
+        },
+        {
+            path: 'code-editor',
+            name: 'CodeEditor',
+            component: () => import('@/views/home.vue'),
+            meta: {
+                title: '代码编辑器'
+            }
         }
     ]
 }

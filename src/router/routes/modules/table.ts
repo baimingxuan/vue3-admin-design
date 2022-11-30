@@ -22,11 +22,11 @@ const TableRoute: AppRoute = {
             }
         },
         {
-            path: 'table-inline-edit',
-            name: 'TableInlineEdit',
-            component: () => import('@/views/home.vue'),
+            path: 'table-edit-row',
+            name: 'TableEditRow',
+            component: () => import('@/views/table/table-edit-row'),
             meta: {
-                title: '行内编辑表格'
+                title: '可编辑行'
             }
         }
     ]
