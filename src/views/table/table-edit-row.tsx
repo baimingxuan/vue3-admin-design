@@ -46,6 +46,10 @@ export default defineComponent({
       record.birth = date
     }
 
+    function handleChecked(record: Recordable, checkedValue: string[]) {
+      record.hobby = checkedValue.join('、')
+    }
+
     function handleEdit(key: string) {
       editableData[key] = cloneDeep(unref(dataSource).filter(item => Number(key) === item.key)[0])
     }
@@ -120,8 +124,9 @@ export default defineComponent({
                     else if (column.dataIndex === 'hobby') {
                       return editableData[record.key]
                         ? <AntdCheckboxGroup
-                            v-model:value={editableData[record.key]['hobby']}
+                            value={editableData[record.key]['hobby'].split('、')}
                             options={record.hobby.split('、').map(item => ({label: item, value: item}))}
+                            onChange={handleChecked.bind(null, editableData[record.key])}
                           />
                         : <span>{text}</span>
                     }
