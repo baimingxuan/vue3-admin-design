@@ -51,7 +51,7 @@ const CompoRoute: AppRoute = {
         {
             path: 'transfer',
             name: 'Transfer',
-            component: () => import('@/views/home.vue'),
+            component: () => import('@/views/compo/transfer'),
             meta: {
                 title: '穿梭框'
             }
