@@ -29,6 +29,7 @@ export default defineComponent({
 
     const { exportDataToExcel } = useExcel()
 
+    const dataSource = ref(tableData)
     const tableColumns: ColumnType[] = [
       { title: '编号', dataIndex: 'key', align: 'center' },
       { title: '姓名', dataIndex: 'name', align: 'center' },
@@ -121,7 +122,7 @@ export default defineComponent({
                 </AntdFormItem>
               </AntdForm>
               <AntdTable
-                dataSource={tableData}
+                dataSource={unref(dataSource)}
                 columns={tableColumns}
                 rowSelection={{
                   selectedRowKeys: unref(tableSelectedKeys),

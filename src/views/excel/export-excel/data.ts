@@ -1,4 +1,16 @@
-export const tableData = [
+export interface DataItem {
+  key: number
+  name: string
+  sex: string
+  phone: number
+  birth: string
+  education: string
+  hobby: string
+  forbid: boolean
+  editable: boolean
+}
+
+export const tableData: DataItem[] = [
   {
     key: 1001,
     name: '张三',
