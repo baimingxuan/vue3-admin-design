@@ -10,6 +10,9 @@ export const TABLE_PLUGIN_URL = 'https://www.antdv.com/components/table'
 // Tree plugin url
 export const TREE_PLUGIN_URL = 'https://www.antdv.com/components/tree'
 
+// Transfer plugin url
+export const TRANSFER_COMPO_URL = 'https://www.antdv.com/components/transfer'
+
 // Video player plugin src
 export const VIDEO_PLUGIN_SRC = 'https://github.com/surmon-china/videojs-player'
 

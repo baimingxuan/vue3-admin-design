@@ -26,15 +26,7 @@ const TableRoute: AppRoute = {
             name: 'TableEditRow',
             component: () => import('@/views/table/table-edit-row'),
             meta: {
-                title: '可编辑行'
-            }
-        },
-        {
-            path: 'table-edit-cell',
-            name: 'TableEditCell',
-            component: () => import('@/views/home.vue'),
-            meta: {
-                title: '可编辑单元格'
+                title: '可编辑行表格'
             }
         }
     ]
