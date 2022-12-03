@@ -59,7 +59,7 @@ const CompoRoute: AppRoute = {
         {
             path: 'count-to',
             name: 'CountTo',
-            component: () => import('@/views/home.vue'),
+            component: () => import('@/views/compo/count-to'),
             meta: {
                 title: '数字滚动'
             }
