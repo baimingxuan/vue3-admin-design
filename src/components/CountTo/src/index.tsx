@@ -8,14 +8,14 @@ export default defineComponent({
   props,
   emits: ['onStarted', 'onFinished'],
   setup(props, { emit }) {
-    const source = ref(props.startVal)
+    const sourceValue = ref(props.startVal)
     const disabled = ref(false)
-    let outputValue = useTransition(source)
+    let outputValue = useTransition(sourceValue)
 
-    const value = computed(() => formatNumber(unref(outputValue)))
+    const showValue = computed(() => formatNumber(unref(outputValue)))
 
     watchEffect(() => {
-      source.value = props.startVal
+      sourceValue.value = props.startVal
     })
 
     watch([() => props.startVal, () => props.endVal], () => {
@@ -30,11 +30,16 @@ export default defineComponent({
 
     function start() {
       run()
-      source.value = props.endVal
+      sourceValue.value = props.endVal
+    }
+
+    function reset() {
+      sourceValue.value = props.startVal
+      run()
     }
 
     function run() {
-      outputValue = useTransition(source, {
+      outputValue = useTransition(sourceValue, {
         disabled,
         duration: props.duration,
         onFinished: () => emit('onFinished'),
@@ -64,9 +69,11 @@ export default defineComponent({
       return prefix + x1 + x2 + suffix
     }
 
-    return () => (
-      <span style={{color: props.color}}>{value}</span>
-    )
+    return { showValue, start, reset }
 
+  },
+
+  render() {
+    return <span style={{color: this.color, fontSize: this.size + 'px'}}>{this.showValue}</span>
   }
 })

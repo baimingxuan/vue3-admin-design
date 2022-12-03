@@ -38,9 +38,15 @@ export const props = {
     type: String,
     default: '.' 
   },
+  // Font size
+  size: {
+    type: Number,
+    default: 32
+  },
   // Font color
   color: {
-    type: String
+    type: String,
+    default: '#e65d6e'
   },
   // Turn on digital animation
   useEasing: {

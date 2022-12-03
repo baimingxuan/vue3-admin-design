@@ -1,3 +1,3 @@
-import CountTo from './src/index'
+import CountTo from './src'
 
 export { CountTo }
