@@ -25,7 +25,7 @@ const CompoRoute: AppRoute = {
             path: 'drag',
             name: 'Drag',
             component: () => import('@/views/home.vue'),
-            redirect: '/tools/drag/drag-list',
+            redirect: '/compo/drag/drag-list',
             meta: {
                 title: '拖拽'
             },
@@ -33,7 +33,7 @@ const CompoRoute: AppRoute = {
                 {
                     path: 'drag-list',
                     name: 'DragList',
-                    component: () => import('@/views/home.vue'),
+                    component: () => import('@/views/compo/drag/drag-list'),
                     meta: {
                         title: '列表拖拽'
                     }
