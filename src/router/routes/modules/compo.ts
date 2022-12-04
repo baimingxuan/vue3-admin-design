@@ -16,7 +16,7 @@ const CompoRoute: AppRoute = {
         {
             path: 'image-upload',
             name: 'ImageUpload',
-            component: () => import('@/views/home.vue'),
+            component: () => import('@/views/compo/image-upload'),
             meta: {
                 title: '图片上传'
             }

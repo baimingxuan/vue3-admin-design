@@ -13,6 +13,9 @@ export const TREE_PLUGIN_URL = 'https://www.antdv.com/components/tree'
 // Transfer plugin url
 export const TRANSFER_COMPO_URL = 'https://www.antdv.com/components/transfer'
 
+// Upload component url
+export const UPLOAD_COMPO_URL = 'https://antdv.com/components/upload'
+
 // Video player plugin src
 export const VIDEO_PLUGIN_SRC = 'https://github.com/surmon-china/videojs-player'
 
