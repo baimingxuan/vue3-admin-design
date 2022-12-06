@@ -30,8 +30,8 @@ const ImageRoute: AppRoute = {
             }
         },
         {
-            path: 'image-synthesizer',
-            name: 'ImageSynthesizer',
+            path: 'image-composition',
+            name: 'ImageComposition',
             component: () => import('@/views/home.vue'),
             meta: {
                 title: '图片合成'
