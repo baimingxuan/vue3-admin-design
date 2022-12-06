@@ -31,6 +31,7 @@
     "video.js": "^7.20.3",
     "vite-plugin-svg-icons": "^2.0.1",
     "vue": "^3.2.37",
+    "vue-drag-resize": "2.0.3",
     "vue-i18n": "^9.2.2",
     "vue-router": "^4.0.14",
     "vue-types": "^4.1.1",

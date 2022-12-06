@@ -51,6 +51,7 @@ specifiers:
   vite-plugin-theme: ^0.8.6
   vite-plugin-windicss: ^1.8.7
   vue: ^3.2.37
+  vue-drag-resize: 2.0.3
   vue-eslint-parser: ^9.0.3
   vue-i18n: ^9.2.2
   vue-router: ^4.0.14
@@ -84,6 +85,7 @@ dependencies:
   video.js: 7.20.3
   vite-plugin-svg-icons: 2.0.1_vite@3.0.2
   vue: 3.2.37
+  vue-drag-resize: 2.0.3
   vue-i18n: 9.2.2_vue@3.2.37
   vue-router: 4.1.2_vue@3.2.37
   vue-types: 4.1.1_vue@3.2.37
@@ -5644,6 +5646,10 @@ packages:
         optional: true
     dependencies:
       vue: 3.2.37
+
+  /vue-drag-resize/2.0.3:
+    resolution: {integrity: sha512-5q03tZ/LyvQsg1iHRcqs+wI2OKNbNIWl9+7V8rVL6MxJhZLCIYSSgbAUaDE38LhD6dFd5aJhdgNmES61AxjXuw==}
+    dev: false
 
   /vue-eslint-parser/9.0.3_eslint@8.20.0:
     resolution: {integrity: sha512-yL+ZDb+9T0ELG4VIFo/2anAOz8SvBdlqEnQnvJ3M7Scq56DvtjY0VY88bByRZB0D4J0u8olBcfrXTVONXsh4og==}
