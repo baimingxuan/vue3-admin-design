@@ -51,6 +51,7 @@ specifiers:
   vite-plugin-theme: ^0.8.6
   vite-plugin-windicss: ^1.8.7
   vue: ^3.2.37
+  vue-cropper: ^1.0.5
   vue-drag-resize: 2.0.3
   vue-eslint-parser: ^9.0.3
   vue-i18n: ^9.2.2
@@ -85,6 +86,7 @@ dependencies:
   video.js: 7.20.3
   vite-plugin-svg-icons: 2.0.1_vite@3.0.2
   vue: 3.2.37
+  vue-cropper: 1.0.5
   vue-drag-resize: 2.0.3
   vue-i18n: 9.2.2_vue@3.2.37
   vue-router: 4.1.2_vue@3.2.37
@@ -5632,6 +5634,10 @@ packages:
       terser: 5.14.2
     optionalDependencies:
       fsevents: 2.3.2
+
+  /vue-cropper/1.0.5:
+    resolution: {integrity: sha512-D4XXdqWmMWRLOIV9LIh7/mkH6OBOMQDFbRjwntkxmAtxOtwpC9U5ZZ6lSXw5F5cbd4g8znDjk6MuCwIL+fZSrA==}
+    dev: false
 
   /vue-demi/0.13.5_vue@3.2.37:
     resolution: {integrity: sha512-tO3K2bML3AwiHmVHeKCq6HLef2st4zBXIV5aEkoJl6HZ+gJWxWv2O8wLH8qrA3SX3lDoTDHNghLX1xZg83MXvw==}
