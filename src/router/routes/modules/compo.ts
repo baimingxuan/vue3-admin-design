@@ -38,9 +38,9 @@ const CompoRoute: AppRoute = {
                     }
                 },
                 {
-                    path: 'vue-drr',
-                    name: 'VueDrr',
-                    component: () => import('@/views/home.vue'),
+                    path: 'drag-resize',
+                    name: 'VueDragResize',
+                    component: () => import('@/views/compo/drag/drag-resize'),
                     meta: {
                         title: '组件拖拽'
                     }

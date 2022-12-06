@@ -30,3 +30,6 @@ export const FORM_CREATE_DESIGNER_URL = 'https://github.com/xaboy/form-create-de
 
 // Vue-Draggable plugin url
 export const DRAGGABLE_PLUGIN_URL = 'https://github.com/SortableJS/vue.draggable.next'
+
+// Vue-drag-resize plugin url
+export const VUEDRAGRESIZE_PLUGIN_URL = 'https://github.com/kirillmurashov/vue-drag-resize/tree/vue3'
