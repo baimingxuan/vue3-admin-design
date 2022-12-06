@@ -16,7 +16,7 @@ const ImageRoute: AppRoute = {
         {
             path: 'image-cropper',
             name: 'ImageCropper',
-            component: () => import('@/views/home.vue'),
+            component: () => import('@/views/image/image-cropper'),
             meta: {
                 title: '图片裁剪'
             }
