@@ -35,4 +35,7 @@ export const DRAGGABLE_PLUGIN_URL = 'https://github.com/SortableJS/vue.draggable
 export const VUEDRAGRESIZE_PLUGIN_URL = 'https://github.com/kirillmurashov/vue-drag-resize/tree/vue3'
 
 // Vue-cropper plugin url
-export const VUECROPPER_PLUGIN_URL = 'https://github.com/xyxiao001/vue-cropper/tree/next-vue3'
+export const VUECROPPER_PLUGIN_URL = 'https://github.com/xyxiao001/vue-cropper'
+
+// Cropper image src
+export const CROPPER_IMG_SRC = 'https://cdn.jsdelivr.net/gh/baimingxuan/media-store/images/img02.jpg'

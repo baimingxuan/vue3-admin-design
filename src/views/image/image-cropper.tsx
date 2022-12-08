@@ -1,20 +1,23 @@
-import { defineComponent, reactive, ref, unref } from 'vue'
-import { Row as AntdRow, Col as AntdCol, Card as AntdCard, Button as AntdButton } from 'ant-design-vue'
+import { defineComponent, reactive, ref, unref, nextTick } from 'vue'
+import { Row as AntdRow, Col as AntdCol, Card as AntdCard, Button as AntdButton, Space as AntdSpace } from 'ant-design-vue'
 import { PageWrapper } from '@/components/Page'
-import { VUECROPPER_PLUGIN_URL } from '@/settings/websiteSetting'
+import { VUECROPPER_PLUGIN_URL, CROPPER_IMG_SRC } from '@/settings/websiteSetting'
 import { openWindow } from '@/utils'
 import 'vue-cropper/dist/index.css'
 import { VueCropper }  from 'vue-cropper'
+import { UploadImage } from '@/components/Upload'
 
 export default defineComponent({
   name: 'Markdown',
   setup() {
     const cropper = ref()
+    const downloadDom = ref()
     const config = reactive({
-      imgSrc: 'https://cdn.jsdelivr.net/gh/baimingxuan/media-store/images/img02.jpg',
+      imgSrc: CROPPER_IMG_SRC,
       canMove: false,
       autoCrop: true,
       centerBox: true,
+      info: true,
       infoTrue: true,
       full: true,
       autoCropWidth: 300,
@@ -32,6 +35,19 @@ export default defineComponent({
       previews.value = data
     }
 
+    function handleSuccess(data: any) {
+      config.imgSrc = data
+    }
+
+    function downloadImage() {
+      cropper.value.getCropBlob(data => {
+        downImg.value = window.URL.createObjectURL(data)
+        nextTick(() => {
+          downloadDom.value.click()
+        })
+      })
+    }
+
     return () => (
       <PageWrapper name='Vue-Cropper 图片裁剪'>
         {{
@@ -47,10 +63,11 @@ export default defineComponent({
                     ref={cropper}
                     img={config.imgSrc}
                     canMove={config.canMove}
-                    autoCrop={config.autoCrop}
                     centerBox={config.centerBox}
+                    info={config.info}
                     infoTrue={config.infoTrue}
                     full={config.full}
+                    autoCrop={config.autoCrop}
                     autoCropWidth={config.autoCropWidth}
                     autoCropHeight={config.autoCropHeight}
                     outputType={config.outputType}
@@ -59,17 +76,26 @@ export default defineComponent({
                 </AntdCard>
               </AntdCol>
               <AntdCol span={4}>
-                <AntdCard title='设置区域' bordered={false} bodyStyle={{height: '400px'}}>
-                  
+                <AntdCard title='设置区域' bordered={false}>
+                  <div class='flex-center' style='height: 352px'>
+                    <AntdSpace direction='vertical'>
+                      <UploadImage onSuccess={handleSuccess} />
+                      <AntdButton type='primary'>
+                        <a onClick={downloadImage}>下载图片</a>
+                      </AntdButton>
+                      <a ref={downloadDom} href={unref(downImg)} download='demo.png' />
+                    </AntdSpace>
+                  </div>
                 </AntdCard>
               </AntdCol>
               <AntdCol span={10}>
                 <AntdCard title='预览区域' bordered={false} bodyStyle={{height: '400px'}}>
-                  <div class='show-preview' style={{
+                  <div style={{
                     width: unref(previews).w + 'px',
                     height: unref(previews).h + 'px',
                     overflow: 'hidden',
-                    zoom: (400 / unref(previews).h)
+                    margin: 'auto',
+                    zoom: (350 / unref(previews).h)
                   }}>
                     <div style={unref(previews).div}>
                       <img src={unref(previews).url} style={unref(previews).img} />
