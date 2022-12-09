@@ -39,3 +39,6 @@ export const VUECROPPER_PLUGIN_URL = 'https://github.com/xyxiao001/vue-cropper'
 
 // Cropper image src
 export const CROPPER_IMG_SRC = 'https://cdn.jsdelivr.net/gh/baimingxuan/media-store/images/img02.jpg'
+
+// Compress image src
+export const COMPRESS_IMG_SRC = 'https://cdn.jsdelivr.net/gh/baimingxuan/media-store/images/img03.jpg'

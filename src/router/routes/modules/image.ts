@@ -24,7 +24,7 @@ const ImageRoute: AppRoute = {
         {
             path: 'image-compress',
             name: 'ImageCompress',
-            component: () => import('@/views/home.vue'),
+            component: () => import('@/views/image/image-compress'),
             meta: {
                 title: '图片压缩'
             }
