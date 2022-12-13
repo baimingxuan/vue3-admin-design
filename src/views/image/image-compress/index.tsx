@@ -4,7 +4,9 @@ import { Row, Col as Col, Card, Button, Form, FormItem, InputNumber, Select } fr
 import { COMPRESS_IMG_SRC } from '@/settings/websiteSetting'
 import { PageWrapper } from '@/components/Page'
 import { UploadImage } from '@/components/Upload'
-import { getComputedImageProp, base64toBlob } from '@/utils/image'
+import { getComputedImageProp, urlToBase64 } from '@/utils/image'
+import { isUrl } from '@/utils/is'
+import { downloadImgByBase64 } from '@/utils/download'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 
 interface OptionState {
@@ -80,11 +82,11 @@ export default defineComponent({
     })
 
     // 输入宽高关联
-    function bindInput(type: 'w'|'h') {
+    function handleChange(type: 'w'|'h', value: number) {
       if (type === 'h') {
-        imageCompr.height = Number(Math.round(imageCompr.width / unref(getImageRatio)).toFixed(0))
+        imageCompr.height = Number(Math.round(value / unref(getImageRatio)).toFixed(0))
       } else if (type === 'w') {
-        imageCompr.width = Number(Math.round(imageCompr.height * unref(getImageRatio)).toFixed(0))
+        imageCompr.width = Number(Math.round(value * unref(getImageRatio)).toFixed(0))
       }
       imageCompr.ratio = Number((imageCompr.width / imageBase.width * 100).toFixed(2))
     }
@@ -92,13 +94,14 @@ export default defineComponent({
     // 计算图片显示宽高
     function getContainerSize(imageW: number, imageH: number) {
       const [showAreaW, showAreaH] = [850, 550]
-      const sizeObj = getComputedImageProp(imageW, imageH, showAreaW, showAreaH)
+      const { width, height } = getComputedImageProp(imageW, imageH, showAreaW, showAreaH)
       // 更新图片展示区宽高
-      imageShow.width = sizeObj.width
-      imageShow.height = sizeObj.height
+      imageShow.width = width
+      imageShow.height = height
     }
 
     function handleSuccess(data: any) {
+      console.log(data)
       imageBase.src = data
       const image = new Image()
       image.src = data
@@ -108,44 +111,8 @@ export default defineComponent({
       }
     }
 
-    // 图片压缩
     function handleCompressImage() {
-      const width = imageCompr.width
-      const height = imageCompr.height
-      const quality = imageCompr.quality
-      const img = new Image()
-      img.src = imageBase.src
-      img.onload = () => {
-        // 创建canvas
-        const canvas = document.createElement('canvas')
-        const ctx = canvas.getContext('2d')!
-        // 创建属性节点
-        const anw = document.createAttribute('width')
-        anw.nodeValue = String(width)
-        const anh = document.createAttribute('height')
-        anh.nodeValue = String(height)
-        canvas.setAttributeNode(anw)
-        canvas.setAttributeNode(anh)
-        // 绘制图片
-        ctx.fillRect(0, 0, width, height)
-        ctx.drawImage(img, 0, 0, width, height)
-        // 生成base64图片
-        const imageBase64 = canvas.toDataURL('image/png', quality)
-        handleDownloadImage(imageBase64)
-      }
-    }
-
-    // 下载压缩的图片
-    function handleDownloadImage(imageBase64) {
-      const imageBlob = base64toBlob(imageBase64)
-      const link = document.createElement('a')
-      const event = document.createEvent('HTMLEvents')
-      // initEvent 不加后两个参数会在火狐下报错 事件类型，是否冒泡，是否阻止浏览器的默认行为
-      event.initEvent('click', true, true)
-      link.download = 'image.png'
-      link.href = URL.createObjectURL(imageBlob)
-      // 兼容火狐
-      link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }))
+      
     }
 
     return () => (
@@ -176,14 +143,16 @@ export default defineComponent({
                           v-model:value={imageCompr.width}
                           min={0}
                           max={10000}
-                          onKeyupNative={bindInput('h')}
+                          onChange={handleChange.bind(null, 'h')}
+                          onStep={handleChange.bind(null, 'h')}
                         />
                         <SvgIcon name='linking' size={20} />
                         <InputNumber
                           v-model:value={imageCompr.height}
                           min={0} 
                           max={10000} 
-                          onKeyupNative={bindInput('w')}
+                          onChange={handleChange.bind(null, 'w')}
+                          onStep={handleChange.bind(null, 'w')}
                         />
                       </div>
                     </FormItem>

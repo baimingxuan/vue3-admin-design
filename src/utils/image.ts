@@ -44,6 +44,12 @@ export function urlToBase64(url: string, mineType?: string): Promise<string> {
 }
 
 /**
+ * 
+ * 
+*/
+function getCompressImage() {}
+
+/**
  * Computed image width, height and ratio
  * @param imageTrueW
  * @param imageTrueH
