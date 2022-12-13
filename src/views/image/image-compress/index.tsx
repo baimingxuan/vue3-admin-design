@@ -4,8 +4,7 @@ import { Row, Col as Col, Card, Button, Form, FormItem, InputNumber, Select } fr
 import { COMPRESS_IMG_SRC } from '@/settings/websiteSetting'
 import { PageWrapper } from '@/components/Page'
 import { UploadImage } from '@/components/Upload'
-import { getComputedImageProp, urlToBase64 } from '@/utils/image'
-import { isUrl } from '@/utils/is'
+import { getComputedImageProp, getCompressImage } from '@/utils/image'
 import { downloadImgByBase64 } from '@/utils/download'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 
@@ -44,6 +43,7 @@ export default defineComponent({
       width: 0,
       height: 0,
       ratio: 100,
+      mineType: 'image/png',
       quality: 1
     })
 
@@ -101,7 +101,6 @@ export default defineComponent({
     }
 
     function handleSuccess(data: any) {
-      console.log(data)
       imageBase.src = data
       const image = new Image()
       image.src = data
@@ -112,7 +111,16 @@ export default defineComponent({
     }
 
     function handleCompressImage() {
-      
+      const imgProps = {
+        width: imageCompr.width,
+        height: imageCompr.height,
+        mineType: imageCompr.mineType,
+        quality: imageCompr.quality
+      }
+
+      getCompressImage(imageBase.src, imgProps).then((base64) => {
+        downloadImgByBase64(base64, 'image.png')
+      })
     }
 
     return () => (
@@ -166,8 +174,21 @@ export default defineComponent({
                         parser={value => value.replace('%', '')}
                       />
                     </FormItem>
+                    <FormItem label='图片类型: '>
+                      <Select
+                        v-model:value={imageCompr.mineType}
+                        options={[
+                          { label: 'PNG', value: 'image/png' },
+                          { label: 'JPG', value: 'image/jpg' },
+                          { label: 'BMP', value: 'image/bmp' },
+                        ]}
+                      />
+                    </FormItem>
                     <FormItem label='图片质量: '>
-                      <Select v-model:value={imageCompr.quality} options={qualityOptions} />
+                      <Select
+                        v-model:value={imageCompr.quality}
+                        options={qualityOptions}
+                      />
                     </FormItem>
                     <FormItem>
                       <Button type='primary' onClick={handleCompressImage}>压缩图片</Button>

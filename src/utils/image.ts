@@ -44,10 +44,38 @@ export function urlToBase64(url: string, mineType?: string): Promise<string> {
 }
 
 /**
- * 
- * 
+ * Compress image through Settings
+ * @param imgSrc
+ * @param settings
 */
-function getCompressImage() {}
+interface ImageProps {
+  width: number
+  height: number
+  quality?: number
+  mineType?: string
+}
+export function getCompressImage(imgSrc: string, settings: ImageProps): Promise<string> {
+  return new Promise((resolve, reject) => {
+    let canvas = document.createElement('CANVAS') as Nullable<HTMLCanvasElement>
+    const ctx = canvas!.getContext('2d')
+
+    const { width, height, quality, mineType } = settings
+    const img = new Image()
+    img.crossOrigin = ''
+    img.src = imgSrc
+    img.onload = function () {
+      if (!canvas || !ctx) return reject()
+
+      canvas.width = width
+      canvas.height = height
+      ctx.fillRect(0, 0, width, height)
+      ctx.drawImage(img, 0, 0, width, height)
+      const dataURL = canvas.toDataURL(mineType || 'image/png', quality || 1)
+      canvas = null
+      resolve(dataURL)
+    }
+  })
+}
 
 /**
  * Computed image width, height and ratio
