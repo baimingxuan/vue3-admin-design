@@ -6,6 +6,8 @@ import { PageWrapper } from '@/components/Page'
 import { UploadImage } from '@/components/Upload'
 import { getComputedImageProp, getCompressImage } from '@/utils/image'
 import { downloadImgByBase64 } from '@/utils/download'
+import { FORM_CREATE_DESIGNER_URL } from '@/settings/websiteSetting'
+import { openWindow } from '@/utils'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 
 interface OptionState {
@@ -81,6 +83,10 @@ export default defineComponent({
       imageCompr.height = imageBase.height
     })
 
+    function openGithub() {
+      openWindow(FORM_CREATE_DESIGNER_URL)
+    }
+
     // 输入宽高关联
     function handleChange(type: 'w'|'h', value: number) {
       if (type === 'h') {
@@ -119,7 +125,7 @@ export default defineComponent({
       }
 
       getCompressImage(imageBase.src, imgProps).then((base64) => {
-        downloadImgByBase64(base64, 'image.png')
+        downloadImgByBase64(base64, imageCompr.mineType.replace(/\//, '.'))
       })
     }
 
@@ -128,7 +134,7 @@ export default defineComponent({
         {{
           header: () => <>
             <p>ImageCompress: 纯JS实现对图片的等比压缩和放大的功能, 并能对图片进行下载。</p>
-            <p>github地址: 立即访问 </p>
+            <p>github源码:<Button type='link' onClick={openGithub}>立即访问</Button></p>
           </>,
           default: () => (
             <Row gutter={12}>
@@ -140,60 +146,63 @@ export default defineComponent({
                 </Card>
               </Col>
               <Col span={8}>
-                <Card title='设置区域' bordered={false} bodyStyle={{height: '598px'}}>
-                  <Form>
-                    <FormItem label='上传图片: '>
-                      <UploadImage onSuccess={handleSuccess} />
-                    </FormItem>
-                    <FormItem label='图片尺寸: '>
-                      <div>
+                <Card title='设置区域' bordered={false}>
+                  <div class='flex-center' style='height: 550px'>
+                    <Form style='width: 280px'>
+                      <FormItem label='上传图片: '>
+                        <UploadImage onSuccess={handleSuccess} />
+                      </FormItem>
+                      <FormItem label='图片尺寸: '>
+                        <div>
+                          <InputNumber
+                            v-model:value={imageCompr.width}
+                            min={0}
+                            max={10000}
+                            onChange={handleChange.bind(null, 'h')}
+                            onStep={handleChange.bind(null, 'h')}
+                          />
+                          <SvgIcon name='linking' size={20} style='margin: 0 4px' />
+                          <InputNumber
+                            v-model:value={imageCompr.height}
+                            min={0} 
+                            max={10000} 
+                            onChange={handleChange.bind(null, 'w')}
+                            onStep={handleChange.bind(null, 'w')}
+                          />
+                        </div>
+                      </FormItem>
+                      <FormItem label='压缩比例: '>
                         <InputNumber
-                          v-model:value={imageCompr.width}
+                          v-model:value={imageCompr.ratio}
                           min={0}
-                          max={10000}
-                          onChange={handleChange.bind(null, 'h')}
-                          onStep={handleChange.bind(null, 'h')}
+                          max={100}
+                          disabled
+                          formatter={value => `${value}%`}
+                          parser={value => value.replace('%', '')}
+                          style='width: 100%'
                         />
-                        <SvgIcon name='linking' size={20} />
-                        <InputNumber
-                          v-model:value={imageCompr.height}
-                          min={0} 
-                          max={10000} 
-                          onChange={handleChange.bind(null, 'w')}
-                          onStep={handleChange.bind(null, 'w')}
+                      </FormItem>
+                      <FormItem label='图片类型: '>
+                        <Select
+                          v-model:value={imageCompr.mineType}
+                          options={[
+                            { label: 'PNG', value: 'image/png' },
+                            { label: 'JPG', value: 'image/jpg' },
+                            { label: 'BMP', value: 'image/bmp' },
+                          ]}
                         />
-                      </div>
-                    </FormItem>
-                    <FormItem label='压缩比例: '>
-                      <InputNumber
-                        v-model:value={imageCompr.ratio}
-                        min={0}
-                        max={100}
-                        disabled
-                        formatter={value => `${value}%`}
-                        parser={value => value.replace('%', '')}
-                      />
-                    </FormItem>
-                    <FormItem label='图片类型: '>
-                      <Select
-                        v-model:value={imageCompr.mineType}
-                        options={[
-                          { label: 'PNG', value: 'image/png' },
-                          { label: 'JPG', value: 'image/jpg' },
-                          { label: 'BMP', value: 'image/bmp' },
-                        ]}
-                      />
-                    </FormItem>
-                    <FormItem label='图片质量: '>
-                      <Select
-                        v-model:value={imageCompr.quality}
-                        options={qualityOptions}
-                      />
-                    </FormItem>
-                    <FormItem>
-                      <Button type='primary' onClick={handleCompressImage}>压缩图片</Button>
-                    </FormItem>
-                  </Form>
+                      </FormItem>
+                      <FormItem label='图片质量: '>
+                        <Select
+                          v-model:value={imageCompr.quality}
+                          options={qualityOptions}
+                        />
+                      </FormItem>
+                      <FormItem>
+                        <Button type='primary' style='width: 100%' onClick={handleCompressImage}>压缩图片</Button>
+                      </FormItem>
+                    </Form>
+                  </div>
                 </Card>
               </Col>
             </Row>
