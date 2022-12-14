@@ -42,3 +42,9 @@ export const CROPPER_IMG_SRC = 'https://cdn.jsdelivr.net/gh/baimingxuan/media-st
 
 // Compress image src
 export const COMPRESS_IMG_SRC = 'https://cdn.jsdelivr.net/gh/baimingxuan/media-store/images/img03.jpg'
+
+// Image-compress plugin url
+export const IMAGE_COMPRESS_PLUGIN = 'https://github.com/baimingxuan/vue3-admin-design/blob/main/src/views/image/image-compress.tsx'
+
+// Count-to plugin url
+export const COUNTTO_PLUGIN_URL = 'https://github.com/baimingxuan/vue3-admin-design/blob/main/src/components/CountTo/src/index.tsx'

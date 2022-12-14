@@ -4,7 +4,7 @@ import { Row as AntdRow, Col as AntdCol, Card as AntdCard, Button as AntdButton,
   Space as AntdSpace } from 'ant-design-vue'
 import { PageWrapper } from '@/components/Page'
 import { CountTo } from '@/components/CountTo'
-import { TRANSFER_COMPO_URL } from '@/settings/websiteSetting'
+import { COUNTTO_PLUGIN_URL } from '@/settings/websiteSetting'
 import { openWindow } from '@/utils'
 
 export default defineComponent({
@@ -22,7 +22,7 @@ export default defineComponent({
     })
     
     function openGithub() {
-      openWindow(TRANSFER_COMPO_URL)
+      openWindow(COUNTTO_PLUGIN_URL)
     }
 
     function handleStart() {

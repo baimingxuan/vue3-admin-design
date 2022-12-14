@@ -6,7 +6,7 @@ import { PageWrapper } from '@/components/Page'
 import { UploadImage } from '@/components/Upload'
 import { getComputedImageProp, getCompressImage } from '@/utils/image'
 import { downloadImgByBase64 } from '@/utils/download'
-import { FORM_CREATE_DESIGNER_URL } from '@/settings/websiteSetting'
+import { IMAGE_COMPRESS_PLUGIN } from '@/settings/websiteSetting'
 import { openWindow } from '@/utils'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 
@@ -84,7 +84,7 @@ export default defineComponent({
     })
 
     function openGithub() {
-      openWindow(FORM_CREATE_DESIGNER_URL)
+      openWindow(IMAGE_COMPRESS_PLUGIN)
     }
 
     // 输入宽高关联
