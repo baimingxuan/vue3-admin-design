@@ -41,10 +41,10 @@ export function useEventListener({
       element,
       (v, _ov, cleanUp) => {
         if (v) {
-          !unref(isAddRef) && addEventListener(v);
+          !unref(isAddRef) && addEventListener(v)
           cleanUp(() => {
-            autoRemove && removeEventListener(v);
-          });
+            autoRemove && removeEventListener(v)
+          })
         }
       },
       { immediate: true }
