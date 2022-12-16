@@ -18,7 +18,7 @@ const HomeRoute: AppRoute = {
     {
       path: '',
       name: 'HomePage',
-      component: () => import('@/views/home.vue'),
+      component: () => import('@/views/home'),
       meta: {
         title: '首页',
         icon: 'home',
