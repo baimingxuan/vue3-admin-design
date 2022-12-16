@@ -14,6 +14,10 @@ export default defineComponent({
       type: String as PropType<string>,
       default: ''
     },
+    color: {
+      type: String as PropType<string>,
+      default: ''
+    },
     iconName: {
       type: String as PropType<string>,
       default: ''
@@ -25,12 +29,34 @@ export default defineComponent({
   setup(props) {
     
     return () => (
-      <Card loading={props.loading} bordered={false} bodyStyle={{padding: 0}}>
+      <Card
+        loading={props.loading}
+        bordered={false}
+        bodyStyle={{padding: 0}}
+      >
         <div class='flex-center-v'>
-          <SvgIcon name={props.iconName} size={40} />
-          <div>
-            <CountTo startVal={0} endVal={props.countNum} duration={3000} />
-            <p>{props.title}</p>
+          <div
+            class='flex-center'
+            style={{
+              width: '120px',
+              height: '120px',
+              background: props.color
+            }}
+          >
+            <SvgIcon
+              name={props.iconName}
+              size={40}
+              style='color: #fff'
+            />
+          </div>
+          <div style='flex: 1; text-align: center;'>
+            <CountTo
+              startVal={0}
+              endVal={props.countNum}
+              duration={3000}
+              color='#515a6e'
+            />
+            <p style='font-size: 16px;'>{props.title}</p>
           </div>
         </div>
       </Card>

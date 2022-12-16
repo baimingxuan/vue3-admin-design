@@ -23,6 +23,7 @@ export default defineComponent({
                   <CountToCard
                     loading={unref(isLoading)}
                     title={item.title}
+                    color={item.color}
                     iconName={item.icon}
                     countNum={item.count}
                   />
