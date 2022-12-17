@@ -8,7 +8,7 @@ export default defineComponent({
   props: {
     loading: {
       type: Boolean as PropType<boolean>
-    },
+    }
   },
   setup(props) {
     const chartRef = ref<HTMLDivElement | null>(null)
