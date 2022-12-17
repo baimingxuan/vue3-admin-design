@@ -16,7 +16,7 @@ const TextEditorRoute: AppRoute = {
         {
             path: 'markdown',
             name: 'Markdown',
-            component: () => import('@/views/editor/markdown/index'),
+            component: () => import('@/views/editor/markdown'),
             meta: {
                 title: 'Markdown编辑器'
             }
@@ -24,7 +24,7 @@ const TextEditorRoute: AppRoute = {
         {
             path: 'rich-text',
             name: 'RichText',
-            component: () => import('@/views/editor/rich-text/index'),
+            component: () => import('@/views/editor/rich-text'),
             meta: {
                 title: '富文本编辑器'
             }
