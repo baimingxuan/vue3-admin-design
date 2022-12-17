@@ -1,8 +1,12 @@
 import { defineComponent, ref, unref } from 'vue'
-import { Row, Col, Card } from 'ant-design-vue'
+import { Row, Col } from 'ant-design-vue'
 import { countToData } from './data'
 import CountToCard from './components/CountToCard'
-
+import ChartsPie from './components/ChartsPie'
+import ChartsRing from './components/ChartsRing'
+import ChartsRadar from './components/ChartsRadar'
+import ChartsLine from './components/ChartsLine'
+import ChartsBar from './components/ChartsBar'
 
 export default defineComponent({
   name: 'HomePage',
@@ -14,8 +18,8 @@ export default defineComponent({
     }, 1500)
     
     return () => (
-      <div>
-        <Row gutter={12}>
+      <>
+        <Row gutter={12} style='margin-bottom: 12px'>
           {
             countToData.map(item => {
               return (
@@ -32,7 +36,26 @@ export default defineComponent({
             })
           }
         </Row>
-      </div>
+        <Row gutter={12} style='margin-bottom: 12px'>
+          <Col span={8}>
+            <ChartsPie loading={unref(isLoading)} />
+          </Col>
+          <Col span={8}>
+            <ChartsRing loading={unref(isLoading)} />
+          </Col>
+          <Col span={8}>
+            <ChartsRadar loading={unref(isLoading)} />
+          </Col>
+        </Row>
+        <Row gutter={12}>
+          <Col span={12}>
+            <ChartsBar loading={unref(isLoading)} />
+          </Col>
+          <Col span={12}>
+            <ChartsLine loading={unref(isLoading)} />
+          </Col>
+        </Row>
+      </>
     )
   }
 })
