@@ -48,3 +48,6 @@ export const IMAGE_COMPRESS_PLUGIN = 'https://github.com/baimingxuan/vue3-admin-
 
 // Count-to plugin url
 export const COUNTTO_PLUGIN_URL = 'https://github.com/baimingxuan/vue3-admin-design/blob/main/src/components/CountTo/src/index.tsx'
+
+// Vue-codemirror plugin url
+export const CODEMIRROR_PLUGIN_URL = 'https://github.com/surmon-china/vue-codemirror'
