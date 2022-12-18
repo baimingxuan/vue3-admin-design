@@ -11,6 +11,7 @@
   "dependencies": {
     "@ant-design/colors": "^6.0.0",
     "@ant-design/icons-vue": "^6.1.0",
+    "@codemirror/lang-javascript": "^6.1.2",
     "@form-create/designer": "^3.0.2",
     "@kangc/v-md-editor": "^2.3.15",
     "@types/video.js": "^7.3.49",
@@ -21,6 +22,7 @@
     "@wangeditor/editor-for-vue": "^5.1.12",
     "ant-design-vue": "^3.2.10",
     "axios": "^0.26.1",
+    "codemirror": "^6.0.1",
     "crypto-js": "^4.1.1",
     "echarts": "^5.4.1",
     "file-saver": "^2.0.5",
@@ -32,6 +34,7 @@
     "video.js": "^7.20.3",
     "vite-plugin-svg-icons": "^2.0.1",
     "vue": "^3.2.37",
+    "vue-codemirror": "^6.1.1",
     "vue-cropper": "^1.0.5",
     "vue-drag-resize": "2.0.3",
     "vue-i18n": "^9.2.2",
