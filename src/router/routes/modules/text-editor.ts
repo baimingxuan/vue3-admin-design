@@ -32,7 +32,7 @@ const TextEditorRoute: AppRoute = {
         {
             path: 'code-editor',
             name: 'CodeEditor',
-            component: () => import('@/views/home.vue'),
+            component: () => import('@/views/editor/code-mirror'),
             meta: {
                 title: '代码编辑器'
             }
