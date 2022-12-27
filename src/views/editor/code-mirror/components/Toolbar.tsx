@@ -9,7 +9,16 @@ export default defineComponent({
       required: true
     }
   },
-  setup(props) {
+  emits: ['undo', 'redo'],
+  setup(props, { emit }) {
+
+    function handleUndo() {
+      emit('undo')
+    }
+
+    function handleRedo() {
+      emit('redo')
+    }
 
     return () => (
       <div class='flex-between-h' style='padding: 8px; border: solid 1px #ddd;'>
@@ -59,8 +68,8 @@ export default defineComponent({
           </FormItem>
         </Form>
         <Space>
-          <Button type="primary" size='small' ghost>Undo</Button>
-          <Button type="primary" size='small' ghost>Redo</Button>
+          <Button type="primary" size='small' ghost onClick={handleUndo}>Undo</Button>
+          <Button type="primary" size='small' ghost onClick={handleRedo}>Redo</Button>
         </Space>
       </div>
     )

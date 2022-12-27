@@ -5,6 +5,8 @@ import { CODEMIRROR_PLUGIN_URL } from '@/settings/websiteSetting'
 import { openWindow } from '@/utils'
 import { Codemirror } from 'vue-codemirror'
 import { javascript } from '@codemirror/lang-javascript'
+import { EditorView, ViewUpdate } from '@codemirror/view'
+// import { redo, undo } from '@codemirror/commands'
 import Toolbar from './components/Toolbar'
 import CodeInfo from './components/CodeInfo'
 
@@ -22,10 +24,33 @@ export default defineComponent({
       height: '350px'
     })
 
+    const state = reactive({
+      lines: null as null | number,
+      cursor: null as null | number,
+      selected: null as null | number,
+      length: null as null | number
+    })
+
     // Codemirror EditorView instance ref
-    const view = shallowRef()
-    function handleReady(payload) {
-      view.value = payload.view
+    const cmView = shallowRef<EditorView>()
+    function handleReady({ view }: any) {
+      cmView.value = view
+    }
+
+    function handleStateUpdate(viewUpdate: ViewUpdate) {
+      const ranges = viewUpdate.state.selection.ranges
+      state.selected = ranges.reduce((plus, range) => plus + range.to - range.from, 0)
+      state.cursor = ranges[0].anchor
+      state.length = viewUpdate.state.doc.length
+      state.lines = viewUpdate.state.doc.lines
+    }
+
+    function handleUndo() {
+      
+    }
+
+    function handleRedo() {
+      
     }
     
     function openGithub() {
@@ -41,7 +66,7 @@ export default defineComponent({
           </>,
           default: () => (
             <Card bordered={false}>
-              <Toolbar config={config} />
+              <Toolbar config={config} onUndo={handleUndo} onRedo={handleRedo} />
               <Codemirror
                 v-model={codeRef.value}
                 style={{
@@ -55,8 +80,9 @@ export default defineComponent({
                 extensions={extensions}
                 placeholder="Please enter the code..."
                 onReady={handleReady}
+                onUpdate={handleStateUpdate}
               />
-              <CodeInfo />
+              <CodeInfo config={config} state={state} />
             </Card>
           )
         }}

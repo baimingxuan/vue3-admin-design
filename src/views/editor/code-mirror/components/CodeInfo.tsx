@@ -3,25 +3,35 @@ import { Form, FormItem } from 'ant-design-vue'
 
 export default defineComponent({
   name: 'CodeInfo',
-  setup() {
+  props: {
+    config: {
+      type: Object,
+      default: () => {}
+    },
+    state: {
+      type: Object,
+      default: () => {}
+    }
+  },
+  setup(props) {
 
     return () => (
       <div style='padding: 4px 8px; border: solid 1px #ddd;'>
         <Form layout='inline'>
           <FormItem label='Spaces'>
-            <span>2</span>
+            <span>{props.config.tabSize}</span>
           </FormItem>
           <FormItem label='Length'>
-            <span>322</span>
+            <span>{props.state.length}</span>
           </FormItem>
           <FormItem label='Lines'>
-            <span>56</span>
+            <span>{props.state.lines}</span>
           </FormItem>
           <FormItem label='Cursor'>
-            <span>1120</span>
+            <span>{props.state.cursor}</span>
           </FormItem>
           <FormItem label='Selected'>
-            <span>0</span>
+            <span>{props.state.selected}</span>
           </FormItem>
         </Form>
       </div>
