@@ -4,9 +4,6 @@ import { PageWrapper } from '@/components/Page'
 import { CODEMIRROR_PLUGIN_URL } from '@/settings/websiteSetting'
 import { openWindow } from '@/utils'
 import { Codemirror } from 'vue-codemirror'
-import { javascript } from '@codemirror/lang-javascript'
-import { EditorView, ViewUpdate } from '@codemirror/view'
-// import { redo, undo } from '@codemirror/commands'
 import Toolbar from './components/Toolbar'
 import CodeInfo from './components/CodeInfo'
 
@@ -14,7 +11,7 @@ export default defineComponent({
   name: 'CodeMirror',
   setup() {
     const codeRef = ref(`console.log('Hello, world!')`)
-    const extensions = [javascript()]
+    const extensions = []
 
     const config = reactive({
       language: 'javascript',
@@ -32,25 +29,17 @@ export default defineComponent({
     })
 
     // Codemirror EditorView instance ref
-    const cmView = shallowRef<EditorView>()
+    const cmView = shallowRef()
     function handleReady({ view }: any) {
       cmView.value = view
     }
 
-    function handleStateUpdate(viewUpdate: ViewUpdate) {
+    function handleStateUpdate(viewUpdate: any) {
       const ranges = viewUpdate.state.selection.ranges
       state.selected = ranges.reduce((plus, range) => plus + range.to - range.from, 0)
       state.cursor = ranges[0].anchor
       state.length = viewUpdate.state.doc.length
       state.lines = viewUpdate.state.doc.lines
-    }
-
-    function handleUndo() {
-      
-    }
-
-    function handleRedo() {
-      
     }
     
     function openGithub() {
@@ -66,7 +55,7 @@ export default defineComponent({
           </>,
           default: () => (
             <Card bordered={false}>
-              <Toolbar config={config} onUndo={handleUndo} onRedo={handleRedo} />
+              <Toolbar config={config} />
               <Codemirror
                 v-model={codeRef.value}
                 style={{

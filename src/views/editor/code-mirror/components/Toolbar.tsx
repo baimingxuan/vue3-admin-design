@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue'
-import { Form, FormItem, Select, Checkbox, Button, Space } from 'ant-design-vue'
+import { Form, FormItem, Select, Checkbox } from 'ant-design-vue'
 
 export default defineComponent({
   name: 'CodeToolbar',
@@ -9,16 +9,7 @@ export default defineComponent({
       required: true
     }
   },
-  emits: ['undo', 'redo'],
-  setup(props, { emit }) {
-
-    function handleUndo() {
-      emit('undo')
-    }
-
-    function handleRedo() {
-      emit('redo')
-    }
+  setup(props) {
 
     return () => (
       <div class='flex-between-h' style='padding: 8px; border: solid 1px #ddd;'>
@@ -32,7 +23,7 @@ export default defineComponent({
                 { label: 'javascript', value: 'javascript' },
                 { label: 'typescript', value: 'typescript' }
               ]}
-              style='width: 100px'
+              style='width: 110px'
             />
           </FormItem>
           <FormItem label='autofocus'>
@@ -67,10 +58,6 @@ export default defineComponent({
             />
           </FormItem>
         </Form>
-        <Space>
-          <Button type="primary" size='small' ghost onClick={handleUndo}>Undo</Button>
-          <Button type="primary" size='small' ghost onClick={handleRedo}>Redo</Button>
-        </Space>
       </div>
     )
   }

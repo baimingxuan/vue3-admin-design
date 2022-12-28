@@ -30,23 +30,23 @@ export default defineComponent({
             splitNumber: 8,
             indicator: [
               {
-                text: '直接访问',
+                name: '直接访问',
                 max: 2000,
               },
               {
-                text: '邮件营销',
+                name: '邮件营销',
                 max: 2000,
               },
               {
-                text: '联盟广告',
+                name: '联盟广告',
                 max: 2000,
               },
               {
-                text: '视频广告',
+                name: '视频广告',
                 max: 2000,
               },
               {
-                text: '搜索引擎',
+                name: '搜索引擎',
                 max: 2000,
               }
             ]
