@@ -1,12 +1,29 @@
-import { defineComponent, ref } from 'vue'
-import { Row, Col, Card, Button, Space } from 'ant-design-vue'
+import type { CSSProperties } from 'vue'
+import { defineComponent, reactive, ref, unref, computed } from 'vue'
+import { Row, Col, Card, Button } from 'ant-design-vue'
 import { PageWrapper } from '@/components/Page'
 import { VUECROPPER_PLUGIN_URL } from '@/settings/websiteSetting'
 import { openWindow } from '@/utils'
+import { ElementDrr } from '@/components/VueDrr'
 
 export default defineComponent({
   name: 'ImageComposition',
   setup() {
+    const container = reactive({
+      width: 0,
+      height: 0,
+      bgImgSrc: 'https://cdn.jsdelivr.net/gh/baimingxuan/media-store/images/img01.jpg'
+    })
+    const elements = ref([])
+
+    const getWrapStyle = computed((): CSSProperties => ({
+      width: container.width + 'px',
+      height: container.height + 'px',
+      backgroundImage: 'url(\'' + container.bgImgSrc + '\')',
+      backgroundSize: 'contain',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat'
+    }))
     
     function openGithub() {
       openWindow(VUECROPPER_PLUGIN_URL)
@@ -23,6 +40,17 @@ export default defineComponent({
             <Row gutter={12}>
               <Col span={16}>
                 <Card title='合成区域' bordered={false} bodyStyle={{height: '550px'}}>
+                  <div class='flex-center' style='overflow: hidden'>
+                    <div style={unref(getWrapStyle)}>
+                      {
+                        unref(elements).map(item => {
+                          return (
+                            <ElementDrr element={item}></ElementDrr>
+                          )
+                        })
+                      }
+                    </div>
+                  </div>
                 </Card>
               </Col>
               <Col span={8}>
