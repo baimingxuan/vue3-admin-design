@@ -1,4 +1,6 @@
-type Overflow = 'visible' | 'hidden' | 'clip' | 'scroll' | 'auto'
+import type { PropType } from 'vue'
+
+type OverflowMode = 'visible' | 'hidden' | 'clip' | 'scroll' | 'auto'
 
 export const props = {
   active: {
@@ -120,7 +122,7 @@ export const props = {
     default: false
   },
   overflowY: {
-    type: String,
+    type: String as PropType<OverflowMode>,
     default: ''
   }
 }

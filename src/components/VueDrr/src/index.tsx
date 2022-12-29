@@ -1,5 +1,5 @@
 import { CSSProperties } from 'vue'
-import { defineComponent, reactive, computed } from 'vue'
+import { defineComponent, reactive, unref, computed } from 'vue'
 import { props } from './props'
 
 export default defineComponent({
@@ -38,13 +38,12 @@ export default defineComponent({
       width: config.width + 'px',
       height: config.height + 'px',
       transform: 'rotate(' + config.rotateAngle + 'deg)',
-      zIndex: config.zIndex,
-      overflowY: props.overflowY,
-      overflowX: ''
+      zIndex: config.zIndex as CSSProperties['zIndex'],
+      overflowY: props.overflowY
     }))
 
     return () => (
-      <div class='drr-container'></div>
+      <div class='drr-container' style={unref(getWrapStyle)}></div>
     )
   }
 })
