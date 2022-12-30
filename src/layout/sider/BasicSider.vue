@@ -24,7 +24,7 @@
 
   import SiderTrigger from './components/SiderTrigger.vue'
   import DragBar from './components/DragBar.vue'
-  import LayoutMenu from '@/layout/menu/index.vue'
+  import LayoutMenu from '@/layout/menu'
   import { MenuTypeEnum, MenuModeEnum, MenuFoldBtnEnum } from '@/enums/menuEnum'
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 

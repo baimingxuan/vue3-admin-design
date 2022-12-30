@@ -25,7 +25,7 @@
 
   import { AppLogo } from '@/components/Application'
 
-  import LayoutMenu from '../menu/index.vue'
+  import LayoutMenu from '../menu'
   import LayoutTags from '../tags/index.vue'
   import LayoutFeature from '../feature/index.vue'
 
