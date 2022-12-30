@@ -1,10 +1,9 @@
 import type { CSSProperties } from 'vue'
-import { defineComponent, reactive, ref, unref, computed } from 'vue'
+import { defineComponent, reactive, unref, computed } from 'vue'
 import { Row, Col, Card, Button } from 'ant-design-vue'
 import { PageWrapper } from '@/components/Page'
 import { VUECROPPER_PLUGIN_URL } from '@/settings/websiteSetting'
 import { openWindow } from '@/utils'
-import { ElementDrr } from '@/components/VueDrr'
 
 export default defineComponent({
   name: 'ImageComposition',
@@ -14,7 +13,6 @@ export default defineComponent({
       height: 0,
       bgImgSrc: 'https://cdn.jsdelivr.net/gh/baimingxuan/media-store/images/img01.jpg'
     })
-    const elements = ref([])
 
     const getWrapStyle = computed((): CSSProperties => ({
       width: container.width + 'px',
@@ -42,13 +40,6 @@ export default defineComponent({
                 <Card title='合成区域' bordered={false} bodyStyle={{height: '550px'}}>
                   <div class='flex-center' style='overflow: hidden'>
                     <div style={unref(getWrapStyle)}>
-                      {
-                        unref(elements).map(item => {
-                          return (
-                            <ElementDrr element={item}></ElementDrr>
-                          )
-                        })
-                      }
                     </div>
                   </div>
                 </Card>

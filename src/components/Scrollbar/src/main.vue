@@ -3,7 +3,6 @@
     <div
       ref="wrap"
       :class="[wrapClass, 'scrollbar__wrap', native ? '' : 'scrollbar__wrap--hidden-default']"
-      :style="style"
       @scroll="handleScroll"
     >
       <component :is="tag" ref="resize" :class="['scrollbar__view', viewClass]" :style="viewStyle">
@@ -18,10 +17,10 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, computed, ref, unref, provide, nextTick, onMounted, onBeforeUnmount } from 'vue'
+  import { defineComponent, ref, unref, provide, nextTick, onMounted, onBeforeUnmount } from 'vue'
 
   import Bar from './bar'
-  import { toObject } from './util'
+  // import { toObject } from './util'
   import { addResizeListener, removeResizeListener } from '@/utils/resizeEvent'
 
   export default defineComponent({
@@ -65,12 +64,12 @@
 
       provide('scroll-bar-wrap', wrap)
 
-      const style = computed(() => {
-        if (Array.isArray(props.wrapStyle)) {
-          return toObject(props.wrapStyle)
-        }
-        return props.wrapStyle
-      });
+      // const style = computed(() => {
+      //   if (Array.isArray(props.wrapStyle)) {
+      //     return toObject(props.wrapStyle)
+      //   }
+      //   return props.wrapStyle
+      // });
 
       const handleScroll = () => {
         if (!props.native) {
@@ -113,7 +112,6 @@
         moveY,
         sizeWidth,
         sizeHeight,
-        style,
         wrap,
         resize,
         update,

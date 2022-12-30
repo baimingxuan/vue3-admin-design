@@ -32,7 +32,7 @@ const ImageRoute: AppRoute = {
         {
             path: 'image-composition',
             name: 'ImageComposition',
-            component: () => import('@/views/image/image-composition'),
+            component: () => import('@/views/home.vue'),
             meta: {
                 title: '图片合成'
             }
