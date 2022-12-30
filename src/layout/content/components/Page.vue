@@ -8,10 +8,12 @@
       mode="out-in"
       appear
     >
-      <keep-alive v-if="openPageCache">
-        <component :is="Component" :key="route.fullPath" />
-      </keep-alive>
-      <component v-else :is="Component" :key="route.fullPath" />
+      <div>
+        <keep-alive v-if="openPageCache">
+          <component :is="Component" :key="route.fullPath" />
+        </keep-alive>
+        <component v-else :is="Component" :key="route.fullPath" />
+      </div>
     </transition>
   </router-view>
 </template>
