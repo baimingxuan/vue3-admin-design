@@ -5,7 +5,7 @@
       <LayoutSider />
       <AntLayout>
         <LayoutSimpleHeader v-if="!getIsHeaderMenu" />
-        <AntContent>
+        <AntContent class="cont-height">
           <LayoutPage />
         </AntContent>
       </AntLayout>
@@ -71,5 +71,10 @@
     display: flex;
     width: 100%;
     min-height: 100%;
+    
+    .cont-height {
+      height: calc(100vh - 80px);
+      overflow-y: auto;
+    }
   }
 </style>

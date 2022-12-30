@@ -11,7 +11,7 @@ export default defineComponent({
     return () => (
       <div
         class={moduleStyle['layout_content']}
-        loading={unref(getOpenPageLoading)}
+        v-loading={unref(getOpenPageLoading)}
       >
         <Page />
       </div>
