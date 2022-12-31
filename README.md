@@ -38,13 +38,13 @@
 
 ## Preview
 
-> ##### 前端演示地址1：[https://baimingxuan.net/page-admin-design](https://baimingxuan.net/page-admin-design)
+> ##### Preview Site：[https://baimingxuan.github.io/vue3-admin-design/](https://baimingxuan.github.io/vue3-admin-design/)
 >
-> ##### 前端演示地址2：[https://baimingxuan.gitee.io/page-admin-design](https://baimingxuan.gitee.io/page-admin-design)
+> ##### Github Site：[https://github.com/baimingxuan/vue3-admin-design](https://github.com/baimingxuan/vue3-admin-design)
 >
-> ##### github项目地址： [https://github.com/baimingxuan/vue-admin-design](https://github.com/baimingxuan/vue-admin-design)
+> ##### Preview Site of Vue2： [https://baimingxuan.github.io/page-admin-design/](https://baimingxuan.github.io/page-admin-design/)
 >
-> ##### github接口地址： [https://github.com/baimingxuan/node-admin-design](https://github.com/baimingxuan/node-admin-design)
+> ##### Github Site of Vue2： [https://github.com/baimingxuan/vue-admin-design](https://github.com/baimingxuan/vue-admin-design)
 
 ![](https://cdn.jsdelivr.net/gh/baimingxuan/media-store/images/home-vue3.png)
 
