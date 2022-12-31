@@ -23,6 +23,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
   const isBuild = command === 'build'
 
   return {
+    base: './',
     server: {
       // Listening on all local ips
       host: true,
