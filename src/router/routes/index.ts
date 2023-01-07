@@ -42,7 +42,7 @@ export const PageNotFoundRoute: AppRoute = {
     {
       path: '/:path(.*)*',
       name: 'PageNotFound',
-      component: () => import('@/views/redirect.vue'),
+      component: () => import('@/views/redirect'),
       meta: {
         title: '错误页面',
         hideMenu: true,
@@ -66,7 +66,7 @@ export const RedirectRoute: AppRoute = {
     {
       path: '/redirect/:path(.*)',
       name: 'RedirectTo',
-      component: () => import('@/views/redirect.vue'),
+      component: () => import('@/views/redirect'),
       meta: {
         title: '重定向页面',
         hideMenu: true,
@@ -97,11 +97,12 @@ Object.keys(routeModules).forEach(key => {
 })
 
 // Async routes with permission
-export const asyncRoutes = [PageNotFoundRoute, ...routeModulesList]
+export const asyncRoutes = [PageNotFoundRoute, RedirectRoute, ...routeModulesList]
 
 // Basic routes without permission
 export const basicRoutes = [
   LoginRoute,
   RootRoute,
+  RedirectRoute,
   ...routeModulesList
 ]
