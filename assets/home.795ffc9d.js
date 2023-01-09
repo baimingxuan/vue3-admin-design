@@ -1,0 +1,1 @@
+import{d as e,bU as a,_ as s,o as t,f as o,cg as r}from"./index.86be3cdc.js";const c=e({name:"Home",setup:()=>({routeName:a().meta.title})}),d={class:"home-wrap"};const m=s(c,[["render",function(e,a,s,c,m,n){return t(),o("div",d,r(e.routeName),1)}],["__scopeId","data-v-e9146e61"]]);export{m as default};
