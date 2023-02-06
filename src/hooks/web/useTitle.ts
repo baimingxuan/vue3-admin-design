@@ -15,6 +15,8 @@ export function useTitle() {
     () => {
       const route = unref(currentRoute)
 
+      if (route.name === 'RedirectTo') return
+
       pageTitle.value = route?.meta?.title
     },
     { immediate: true }
