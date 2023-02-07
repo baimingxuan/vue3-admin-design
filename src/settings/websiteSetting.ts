@@ -51,3 +51,6 @@ export const COUNTTO_PLUGIN_URL = 'https://github.com/baimingxuan/vue3-admin-des
 
 // Vue-codemirror plugin url
 export const CODEMIRROR_PLUGIN_URL = 'https://github.com/surmon-china/vue-codemirror'
+
+// Antv-g6 plugin url
+export const ANTV_G6_PLUGIN_URL = 'https://github.com/antvis/g6'

@@ -14,9 +14,9 @@ const GraphEditorRoute: AppRoute = {
     },
     children: [
         {
-            path: 'flow',
-            name: 'Flow',
-            component: () => import('@/views/home.vue'),
+            path: 'flow-chart',
+            name: 'FlowChart',
+            component: () => import('@/views/graph/flow-chart'),
             meta: {
                 title: '流程图'
             }
