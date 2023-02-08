@@ -53,7 +53,7 @@ export const UPLOAD_COMPO = {
 // Video player plugin
 export const VIDEO_PLUGIN = {
   name: 'Video视频播放器',
-  src: 'https://github.com/surmon-china/videojs-player',
+  url: 'https://github.com/surmon-china/videojs-player',
   desc: 'videojs-player: 一个支持 vue3 的 video.js 视频播放器组件, 适用于目前主流网络视频的播放。'
 }
 
