@@ -7,7 +7,7 @@ import { ColumnType } from 'ant-design-vue/lib/table'
 import dayjs from 'dayjs'
 import { cloneDeep } from 'lodash-es'
 import { PageWrapper } from '@/components/Page'
-import { TABLE_PLUGIN_EDIT } from '@/settings/websiteSetting'
+import { TABLE_EDIT_COMPO } from '@/settings/websiteSetting'
 import { tableData, DataItem } from '../excel/export-excel/data'
 
 const theadMap = {
@@ -59,7 +59,7 @@ export default defineComponent({
     }
 
     return () => (
-      <PageWrapper plugin={TABLE_PLUGIN_EDIT}>
+      <PageWrapper plugin={TABLE_EDIT_COMPO}>
         {{
           default: () => <AntdCard bordered={false}>
             <AntdTable

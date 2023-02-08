@@ -1,29 +1,36 @@
 // Github repo url
 export const GITHUB_URL = 'https://github.com/baimingxuan/vue3-admin-design'
 
-// Form plugin
-export const FORM_PLUGIN = {
+// Form component
+export const FORM_COMPO = {
   name: 'Form表单',
   url: 'https://www.antdv.com/components/form',
   desc: 'ant-design-form: 使用 ant-design 的 form 组件, 可用以收集、校验和提交数据等操作。'
 }
 
-// Table plugin
-export const TABLE_PLUGIN = {
+// Form-create plugin
+export const FORM_CREATE_DESIGNER = {
+  name: 'Form表单设计器',
+  url: 'https://github.com/xaboy/form-create-designer/tree/next',
+  desc: 'form-create-designer: 一个通过拖拽的方式快速创建表单的设计器组件, 能提高开发者对表单的开发效率, 节省开发者的时间。'
+}
+
+// Table component
+export const TABLE_COMPO = {
   name: 'Table表格',
   url: 'https://www.antdv.com/components/table',
   desc: 'ant-design-table: 使用 ant-design 的 table 组件, 可用于展示多条结构类似的数据, 并对其进行相关操作。'
 }
 
-// Table edit plugin
-export const TABLE_PLUGIN_EDIT = {
+// Table edit component
+export const TABLE_EDIT_COMPO = {
   name: 'Table表格(可编辑行)',
   url: 'https://www.antdv.com/components/table',
   desc: 'ant-design-table: 使用 ant-design 的 table 组件, 可用于展示多条结构类似的数据, 并对其进行行数据编辑操作。'
 }
 
-// Tree plugin
-export const TREE_PLUGIN = {
+// Tree component
+export const TREE_COMPO = {
   name: 'Tree树形控件',
   url: 'https://www.antdv.com/components/tree',
   desc: 'ant-design-tree: 基于Ant-Design的Tree组件, 可以完整展现其中的层级关系, 并具有展开收起选择等交互功能。'
@@ -53,18 +60,11 @@ export const VIDEO_PLUGIN = {
 // Video resource src
 export const VIDEO_RES_SRC = 'https://cdn.jsdelivr.net/gh/baimingxuan/media-store/videos/houlang.mp4'
 
-// Xlsx plugin url
+// Xlsx plugin
 export const XLSX_PLUGIN = {
   name: 'JS-xlsx插件',
   url: 'https://github.com/SheetJS/sheetjs',
   desc: 'JS-xlsx: 由SheetJS出品的一款非常方便的只需要纯JS即可读取和导出excel的工具库, 功能强大, 支持xlsx、csv、txt等格式。'
-}
-
-// Form-create plugin
-export const FORM_CREATE_DESIGNER = {
-  name: 'Form表单设计器',
-  url: 'https://github.com/xaboy/form-create-designer/tree/next',
-  desc: 'form-create-designer: 一个通过拖拽的方式快速创建表单的设计器组件, 能提高开发者对表单的开发效率, 节省开发者的时间。'
 }
 
 // Vue-Draggable plugin
@@ -88,7 +88,7 @@ export const VUE_CROPPER_PLUGIN = {
   desc: 'vue-cropper: 一个优雅的图片裁剪插件, 可实现图片裁剪、图片生成等功能, 并支持生成png、jpeg、webp等图片格式。'
 }
 
-// Image-composition plugin
+// Image-composition component
 export const IMAGE_COMPOSITION = {
   name: 'Image图片合成',
   url: 'https://github.com/xyxiao001/vue-cropper',
@@ -101,7 +101,7 @@ export const CROPPER_IMG_SRC = 'https://cdn.jsdelivr.net/gh/baimingxuan/media-st
 // Compress image src
 export const COMPRESS_IMG_SRC = 'https://cdn.jsdelivr.net/gh/baimingxuan/media-store/images/img03.jpg'
 
-// Image-compress plugin
+// Image-compress component
 export const IMAGE_COMPRESS = {
   name: 'Image图片压缩',
   url: 'https://github.com/baimingxuan/vue3-admin-design/blob/main/src/views/image/image-compress.tsx',
@@ -115,7 +115,7 @@ export const COUNTTO_PLUGIN = {
   desc: 'CountTo: 一个无依赖、轻量级的vue3数字滚动插件, 可以通过你自己的方式轻松编写。'
 }
 
-// VueCodemirror plugin
+// Vue-codemirror plugin
 export const CODEMIRROR_PLUGIN = {
   name: 'CodeMirror代码编辑器',
   url: 'https://github.com/surmon-china/vue-codemirror',

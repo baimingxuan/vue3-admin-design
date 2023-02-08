@@ -7,7 +7,7 @@ import { Card as AntdCard, Form as AntdForm, FormItem as AntdFormItem, Row as An
   Slider as AntdSlider, Cascader as AntdCascader, TreeSelect as AntdTreeSelect, RadioGroup as AntdRadioGroup,
   CheckboxGroup as AntdCheckboxGroup, Textarea as AntdTextarea
 } from 'ant-design-vue'
-import { FORM_PLUGIN } from '@/settings/websiteSetting'
+import { FORM_COMPO } from '@/settings/websiteSetting'
 import { PageWrapper } from '@/components/Page'
 import { provinceData, cityData, cascaderData, treeData, radioData, checkboxData } from './data'
 
@@ -117,7 +117,7 @@ export default defineComponent({
     }
     
     return () => (
-      <PageWrapper plugin={FORM_PLUGIN}>
+      <PageWrapper plugin={FORM_COMPO}>
         {{
           default: () => <AntdCard bordered={false}>
               <AntdForm

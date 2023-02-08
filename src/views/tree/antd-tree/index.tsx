@@ -1,7 +1,7 @@
 import type { AntTreeNodeDropEvent, TreeProps } from 'ant-design-vue/es/tree'
 import { defineComponent, ref } from 'vue'
 import { Row as AntdRow, Col as AntdCol, Card as AntdCard, Tree as AntdTree } from 'ant-design-vue'
-import { TREE_PLUGIN } from '@/settings/websiteSetting'
+import { TREE_COMPO } from '@/settings/websiteSetting'
 import { PageWrapper } from '@/components/Page'
 import { treeData } from './data'
 import { cloneDeep } from 'lodash-es'
@@ -94,7 +94,7 @@ export default defineComponent({
     }
 
     return () => (
-      <PageWrapper plugin={TREE_PLUGIN}>
+      <PageWrapper plugin={TREE_COMPO}>
         {{
           default: () => <AntdRow gutter={12}>
               <AntdCol span={8}>

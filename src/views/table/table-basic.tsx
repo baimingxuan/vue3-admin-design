@@ -3,7 +3,7 @@ import { defineComponent, createVNode, ref, unref, computed, reactive, onMounted
 import { Button as AntdButton, Table as AntdTable, Tag as AntdTag, Select as AntdSelect, Switch as AntdSwitch,
   Popover as AntdPopover, Space as AntdSpace, Modal as AntdModal } from 'ant-design-vue'
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
-import { TABLE_PLUGIN } from '@/settings/websiteSetting'
+import { TABLE_COMPO } from '@/settings/websiteSetting'
 import { getTableList } from '@/api'
 import { PageWrapper } from '@/components/Page'
 
@@ -93,7 +93,7 @@ export default defineComponent({
     }
 
     return () => (
-      <PageWrapper plugin={TABLE_PLUGIN}>
+      <PageWrapper plugin={TABLE_COMPO}>
         {{
           default: () => <div>
             <AntdTable
