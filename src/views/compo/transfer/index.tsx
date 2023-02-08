@@ -1,10 +1,9 @@
 import type { TransferProps, TreeProps } from 'ant-design-vue'
 import { defineComponent, ref, computed } from 'vue'
-import { Row as AntdRow, Col as AntdCol, Card as AntdCard, Button as AntdButton, Transfer as AntdTransfer,
+import { Row as AntdRow, Col as AntdCol, Card as AntdCard, Transfer as AntdTransfer,
   Table as AntdTable, Tree as AntdTree } from 'ant-design-vue'
 import { PageWrapper } from '@/components/Page'
-import { TRANSFER_COMPO_URL } from '@/settings/websiteSetting'
-import { openWindow } from '@/utils'
+import { TRANSFER_COMPO } from '@/settings/websiteSetting'
 import { mockData, treeData, transferDataSource } from './data'
 
 type tableColumn = Record<string, string>
@@ -30,10 +29,6 @@ export default defineComponent({
     const newTreeData = computed(() => {
       return handleTreeData(treeData, treeTargetKeys.value)
     })
-
-    function openGithub() {
-      openWindow(TRANSFER_COMPO_URL)
-    }
 
     function isChecked(selectedKeys: (string | number)[], eventKey: string | number) {
       return selectedKeys.indexOf(eventKey) !== -1
@@ -78,12 +73,8 @@ export default defineComponent({
     }
 
     return () => (
-      <PageWrapper name='Transfer 穿梭框'>
+      <PageWrapper plugin={TRANSFER_COMPO}>
         {{
-          header: () => <>
-            <p>ant-design-transfer: 使用 ant-design 的 transfer 组件, 可用于对列表数据进行选中、取消等操作。</p>
-            <p>组件地址:<AntdButton type='link' onClick={openGithub}>立即访问</AntdButton></p>
-          </>,
           default: () => <AntdRow gutter={12}>
               <AntdCol span={8}>
                 <AntdCard title='基础用法' bordered={false} bodyStyle={{height: '420px'}}>

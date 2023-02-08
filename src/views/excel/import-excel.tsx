@@ -1,12 +1,11 @@
 import type { UploadChangeParam } from 'ant-design-vue'
 import { defineComponent, ref, unref } from 'vue'
-import { Button as AntdButton, Card as AntdCard, Table as AntdTable, UploadDragger as AntdUploadDragger,
+import { Card as AntdCard, Table as AntdTable, UploadDragger as AntdUploadDragger,
     Space as AntdSpace, message } from 'ant-design-vue'
 import { ColumnType } from 'ant-design-vue/lib/table'
 import { CloudUploadOutlined } from '@ant-design/icons-vue'
 import { PageWrapper } from '@/components/Page'
-import { XLSX_PLUGIN_URL } from '@/settings/websiteSetting'
-import { openWindow } from '@/utils'
+import { XLSX_PLUGIN } from '@/settings/websiteSetting'
 import { useExcel } from './useExcel'
 
 export default defineComponent({
@@ -17,9 +16,6 @@ export default defineComponent({
 
     const { readDataFromExcel } = useExcel()
 
-    function openGithub() {
-      openWindow(XLSX_PLUGIN_URL)
-    }
 
     function handleChange(fileParam: UploadChangeParam) {
       const { file } = fileParam
@@ -55,12 +51,8 @@ export default defineComponent({
     }
     
     return () => (
-      <PageWrapper name='JS-xlsx插件'>
+      <PageWrapper plugin={XLSX_PLUGIN}>
         {{
-          header: () => <>
-            <p>JS-xlsx: 由SheetJS出品的一款非常方便的只需要纯JS即可读取和导出excel的工具库, 功能强大, 支持xlsx、csv、txt等格式。</p>
-            <p>组件地址:<AntdButton type='link' onClick={openGithub}>立即访问</AntdButton></p>
-          </>,
           default: () => <AntdCard bordered={false}>
             <AntdSpace direction='vertical' size={16} style={{width: '100%'}}>
               <AntdUploadDragger

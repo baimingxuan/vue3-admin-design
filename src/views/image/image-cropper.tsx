@@ -1,8 +1,7 @@
 import { defineComponent, reactive, ref, unref, nextTick } from 'vue'
 import { Row as AntdRow, Col as AntdCol, Card as AntdCard, Button as AntdButton, Space as AntdSpace } from 'ant-design-vue'
 import { PageWrapper } from '@/components/Page'
-import { VUECROPPER_PLUGIN_URL, CROPPER_IMG_SRC } from '@/settings/websiteSetting'
-import { openWindow } from '@/utils'
+import { VUE_CROPPER_PLUGIN, CROPPER_IMG_SRC } from '@/settings/websiteSetting'
 import 'vue-cropper/dist/index.css'
 import { VueCropper }  from 'vue-cropper'
 import { UploadImage } from '@/components/Upload'
@@ -27,10 +26,6 @@ export default defineComponent({
     const downImg = ref('#')
     const previews = ref<Record<string, any>>({})
 
-    function openGithub() {
-      openWindow(VUECROPPER_PLUGIN_URL)
-    }
-
     function realTime(data: any) {
       previews.value = data
     }
@@ -49,12 +44,8 @@ export default defineComponent({
     }
 
     return () => (
-      <PageWrapper name='Vue-Cropper 图片裁剪'>
+      <PageWrapper plugin={VUE_CROPPER_PLUGIN}>
         {{
-          header: () => <>
-            <p>vue-cropper: 一个优雅的图片裁剪插件, 可实现图片裁剪、图片生成等功能, 并支持生成png、jpeg、webp等图片格式。</p>
-            <p>组件地址:<AntdButton type='link' onClick={openGithub}>立即访问</AntdButton></p>
-          </>,
           default: () => (
             <AntdRow gutter={12}>
               <AntdCol span={10}>

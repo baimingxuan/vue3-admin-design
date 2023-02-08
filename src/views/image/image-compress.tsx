@@ -6,8 +6,7 @@ import { PageWrapper } from '@/components/Page'
 import { UploadImage } from '@/components/Upload'
 import { getComputedImageProp, getCompressImage } from '@/utils/image'
 import { downloadImgByBase64 } from '@/utils/download'
-import { IMAGE_COMPRESS_PLUGIN } from '@/settings/websiteSetting'
-import { openWindow } from '@/utils'
+import { IMAGE_COMPRESS } from '@/settings/websiteSetting'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 
 interface OptionState {
@@ -83,10 +82,6 @@ export default defineComponent({
       imageCompr.height = imageBase.height
     })
 
-    function openGithub() {
-      openWindow(IMAGE_COMPRESS_PLUGIN)
-    }
-
     // 输入宽高关联
     function handleChange(type: 'w'|'h', value: number) {
       if (type === 'h') {
@@ -130,12 +125,8 @@ export default defineComponent({
     }
 
     return () => (
-      <PageWrapper name='Image 图片压缩'>
+      <PageWrapper plugin={IMAGE_COMPRESS}>
         {{
-          header: () => <>
-            <p>ImageCompress: 纯JS实现对图片的等比压缩和放大的功能, 并能对图片进行下载。</p>
-            <p>github源码:<Button type='link' onClick={openGithub}>立即访问</Button></p>
-          </>,
           default: () => (
             <Row gutter={12}>
               <Col span={16}>

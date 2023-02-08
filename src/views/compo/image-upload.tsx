@@ -4,8 +4,7 @@ import { Row as AntdRow, Col as AntdCol, Card as AntdCard, Button as AntdButton,
   UploadDragger as AntdUploadDragger, Modal as AntdModal } from 'ant-design-vue'
 import { CloudUploadOutlined, PlusOutlined } from '@ant-design/icons-vue'
 import { PageWrapper } from '@/components/Page'
-import { UPLOAD_COMPO_URL } from '@/settings/websiteSetting'
-import { openWindow } from '@/utils'
+import { UPLOAD_COMPO } from '@/settings/websiteSetting'
 
 export default defineComponent({
   name: 'Markdown',
@@ -35,10 +34,6 @@ export default defineComponent({
         thumbUrl: 'https://cdn.jsdelivr.net/gh/baimingxuan/media-store/images/img03.jpg'
       }
     ])
-    
-    function openGithub() {
-      openWindow(UPLOAD_COMPO_URL)
-    }
 
     async function handlePreview(file: any) {
       if (!file.url && !file.preview) {
@@ -64,12 +59,8 @@ export default defineComponent({
     }
 
     return () => (
-      <PageWrapper name='图片上传组件'>
+      <PageWrapper plugin={UPLOAD_COMPO}>
         {{
-          header: () => <>
-            <p>ant-design-upload: 使用 ant-design 的 upload 组件, 并具有多种列表展示方式。</p>
-            <p>组件地址:<AntdButton type='link' onClick={openGithub}>立即访问</AntdButton></p>
-          </>,
           default: () => <AntdRow gutter={12}>
               <AntdCol span={8}>
                 <AntdCard title='拖拽上传' bordered={false} bodyStyle={{height: '300px'}}>

@@ -1,8 +1,7 @@
 import type { AntTreeNodeDropEvent, TreeProps } from 'ant-design-vue/es/tree'
 import { defineComponent, ref } from 'vue'
-import { Row as AntdRow, Col as AntdCol, Card as AntdCard, Button as AntdButton, Tree as AntdTree } from 'ant-design-vue'
-import { TREE_PLUGIN_URL } from '@/settings/websiteSetting'
-import { openWindow } from '@/utils'
+import { Row as AntdRow, Col as AntdCol, Card as AntdCard, Tree as AntdTree } from 'ant-design-vue'
+import { TREE_PLUGIN } from '@/settings/websiteSetting'
 import { PageWrapper } from '@/components/Page'
 import { treeData } from './data'
 import { cloneDeep } from 'lodash-es'
@@ -20,10 +19,6 @@ export default defineComponent({
       { title: 'Expand to load', key: '1' },
       { title: 'Tree Node', key: '2', isLeaf: true }
     ])
-
-    function openGithub() {
-      openWindow(TREE_PLUGIN_URL)
-    }
 
     function handleLoadData(treeNode) {
       return new Promise<void>(resolve => {
@@ -99,12 +94,8 @@ export default defineComponent({
     }
 
     return () => (
-      <PageWrapper name='Tree树形控件'>
+      <PageWrapper plugin={TREE_PLUGIN}>
         {{
-          header: () => <>
-            <p>ant-design-tree: 基于Ant-Design的Tree组件, 可以完整展现其中的层级关系, 并具有展开收起选择等交互功能。</p>
-            <p>组件地址:<AntdButton type='link' onClick={openGithub}>立即访问</AntdButton></p>
-          </>,
           default: () => <AntdRow gutter={12}>
               <AntdCol span={8}>
                 <AntdCard title='可选择节点' bordered={false} bodyStyle={{height: '420px'}}>

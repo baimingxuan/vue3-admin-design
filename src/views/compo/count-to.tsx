@@ -4,8 +4,7 @@ import { Row as AntdRow, Col as AntdCol, Card as AntdCard, Button as AntdButton,
   Space as AntdSpace } from 'ant-design-vue'
 import { PageWrapper } from '@/components/Page'
 import { CountTo } from '@/components/CountTo'
-import { COUNTTO_PLUGIN_URL } from '@/settings/websiteSetting'
-import { openWindow } from '@/utils'
+import { COUNTTO_PLUGIN } from '@/settings/websiteSetting'
 
 export default defineComponent({
   name: 'CountToPage',
@@ -20,10 +19,6 @@ export default defineComponent({
       prefix: '￥ ',
       suffix: ' rmb'
     })
-    
-    function openGithub() {
-      openWindow(COUNTTO_PLUGIN_URL)
-    }
 
     function handleStart() {
       unref(countRef).start()
@@ -34,12 +29,8 @@ export default defineComponent({
     }
 
     return () => (
-      <PageWrapper name='CountTo 数字滚动'>
+      <PageWrapper plugin={COUNTTO_PLUGIN}>
         {{
-          header: () => <>
-            <p>CountTo: 一个无依赖、轻量级的vue3数字滚动插件, 可以通过你自己的方式轻松编写。</p>
-            <p>组件地址:<AntdButton type='link' onClick={openGithub}>立即访问</AntdButton></p>
-          </>,
           default: () => <AntdRow gutter={12}>
               <AntdCol span={6}>
                 <AntdCard title='正向增加' bordered={false} bodyStyle={{height: '300px'}}>

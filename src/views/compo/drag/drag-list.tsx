@@ -1,8 +1,7 @@
 import { defineComponent, ref } from 'vue'
-import { Row as AntdRow, Col as AntdCol, Card as AntdCard, Button as AntdButton } from 'ant-design-vue'
+import { Row as AntdRow, Col as AntdCol, Card as AntdCard } from 'ant-design-vue'
 import { PageWrapper } from '@/components/Page'
-import { DRAGGABLE_PLUGIN_URL } from '@/settings/websiteSetting'
-import { openWindow } from '@/utils'
+import { DRAGGABLE_PLUGIN } from '@/settings/websiteSetting'
 import Draggable from 'vuedraggable'
 
 export default defineComponent({
@@ -24,10 +23,6 @@ export default defineComponent({
       '列表1 => 列表2, 6 => 2'
     ])
 
-    function openGithub() {
-      openWindow(DRAGGABLE_PLUGIN_URL)
-    }
-
     function handleDrop(event: any) {
       const listMap = new Map([
         ['list1', '列表1'],
@@ -41,12 +36,8 @@ export default defineComponent({
     }
 
     return () => (
-      <PageWrapper name='Draggable 拖拽列表'>
+      <PageWrapper plugin={DRAGGABLE_PLUGIN}>
         {{
-          header: () => <>
-            <p>Vue.Draggable: 基于Sortable.js的vue组件, 用以实现拖拽功能。</p>
-            <p>组件地址:<AntdButton type='link' onClick={openGithub}>立即访问</AntdButton></p>
-          </>,
           default: () => <AntdRow gutter={12}>
               <AntdCol span={5}>
                 <AntdCard title='列表1事项' bordered={false} bodyStyle={{height: '520px'}}>

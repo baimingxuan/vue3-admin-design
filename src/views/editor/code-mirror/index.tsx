@@ -1,8 +1,7 @@
 import { defineComponent, ref, reactive, shallowRef } from 'vue'
-import { Button, Card } from 'ant-design-vue'
+import { Card } from 'ant-design-vue'
 import { PageWrapper } from '@/components/Page'
-import { CODEMIRROR_PLUGIN_URL } from '@/settings/websiteSetting'
-import { openWindow } from '@/utils'
+import { CODEMIRROR_PLUGIN } from '@/settings/websiteSetting'
 import { Codemirror } from 'vue-codemirror'
 import Toolbar from './components/Toolbar'
 import CodeInfo from './components/CodeInfo'
@@ -41,18 +40,10 @@ export default defineComponent({
       state.length = viewUpdate.state.doc.length
       state.lines = viewUpdate.state.doc.lines
     }
-    
-    function openGithub() {
-      openWindow(CODEMIRROR_PLUGIN_URL)
-    }
 
     return () => (
-      <PageWrapper name='CodeMirror代码编辑器'>
+      <PageWrapper plugin={CODEMIRROR_PLUGIN}>
         {{
-          header: () => <>
-            <p>VueCodeMirror: 是一款基于vue的代码编辑器, 可支持html、javascript、typescript等。</p>
-            <p>组件地址:<Button type='link' onClick={openGithub}>立即访问</Button></p>
-          </>,
           default: () => (
             <Card bordered={false}>
               <Toolbar config={config} />

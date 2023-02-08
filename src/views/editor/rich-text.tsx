@@ -1,6 +1,7 @@
 import { defineComponent, ref, shallowRef, onBeforeUnmount } from 'vue'
 import { PageWrapper } from '@/components/Page'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
+import { WANG_EDITOR_PLUGIN } from '@/settings/websiteSetting'
 import '@wangeditor/editor/dist/css/style.css'
 
 export default defineComponent({
@@ -22,12 +23,8 @@ export default defineComponent({
     }
 
     return () => (
-      <PageWrapper name='富文本编辑器'>
+      <PageWrapper plugin={WANG_EDITOR_PLUGIN}>
         {{
-          header: () => <>
-            <p>wangEditor: 基于javascript和css开发的 Web富文本编辑器, 轻量、简洁、易用、开源免费;</p>
-            <p>github地址: 立即访问 </p>
-          </>,
           default: () => <div style='border: 1px solid #ccc;'>
             <Toolbar
               style='border-bottom: 1px solid #ccc;'

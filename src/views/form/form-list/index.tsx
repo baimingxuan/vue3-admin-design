@@ -7,8 +7,7 @@ import { Card as AntdCard, Form as AntdForm, FormItem as AntdFormItem, Row as An
   Slider as AntdSlider, Cascader as AntdCascader, TreeSelect as AntdTreeSelect, RadioGroup as AntdRadioGroup,
   CheckboxGroup as AntdCheckboxGroup, Textarea as AntdTextarea
 } from 'ant-design-vue'
-import { FORM_PLUGIN_URL } from '@/settings/websiteSetting'
-import { openWindow } from '@/utils'
+import { FORM_PLUGIN } from '@/settings/websiteSetting'
 import { PageWrapper } from '@/components/Page'
 import { provinceData, cityData, cascaderData, treeData, radioData, checkboxData } from './data'
 
@@ -117,17 +116,9 @@ export default defineComponent({
       formRef.value?.resetFields()
     }
     
-    function openGithub() {
-      openWindow(FORM_PLUGIN_URL)
-    }
-    
     return () => (
-      <PageWrapper name='Form 表单'>
+      <PageWrapper plugin={FORM_PLUGIN}>
         {{
-          header: () => <>
-            <p>ant-design-form: 使用 ant-design 的 form 组件, 可用以收集、校验和提交数据等操作。</p>
-            <p>组件地址:<AntdButton type='link' onClick={openGithub}>立即访问</AntdButton></p>
-          </>,
           default: () => <AntdCard bordered={false}>
               <AntdForm
                 ref={formRef}

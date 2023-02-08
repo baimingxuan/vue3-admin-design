@@ -7,8 +7,7 @@ import { ColumnType } from 'ant-design-vue/lib/table'
 import dayjs from 'dayjs'
 import { cloneDeep } from 'lodash-es'
 import { PageWrapper } from '@/components/Page'
-import { TABLE_PLUGIN_URL } from '@/settings/websiteSetting'
-import { openWindow } from '@/utils'
+import { TABLE_PLUGIN_EDIT } from '@/settings/websiteSetting'
 import { tableData, DataItem } from '../excel/export-excel/data'
 
 const theadMap = {
@@ -37,10 +36,6 @@ export default defineComponent({
       { title: '操作', dataIndex: 'action', key: 'action', width: 70, align: 'center' }
     ]
     const editableData: UnwrapRef<Record<string, DataItem>> = reactive({})
-    
-    function openGithub() {
-      openWindow(TABLE_PLUGIN_URL)
-    }
 
     function handlePickDate(record: Recordable, date: string) {
       record.birth = date
@@ -64,12 +59,8 @@ export default defineComponent({
     }
 
     return () => (
-      <PageWrapper name='Table 表格(可编辑行)'>
+      <PageWrapper plugin={TABLE_PLUGIN_EDIT}>
         {{
-          header: () => <>
-            <p>ant-design-table: 使用 ant-design 的 table 组件, 可用于展示多条结构类似的数据, 并对其进行行数据编辑操作。</p>
-            <p>组件地址:<AntdButton type='link' onClick={openGithub}>立即访问</AntdButton></p>
-          </>,
           default: () => <AntdCard bordered={false}>
             <AntdTable
               dataSource={unref(dataSource)}

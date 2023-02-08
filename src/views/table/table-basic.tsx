@@ -3,9 +3,8 @@ import { defineComponent, createVNode, ref, unref, computed, reactive, onMounted
 import { Button as AntdButton, Table as AntdTable, Tag as AntdTag, Select as AntdSelect, Switch as AntdSwitch,
   Popover as AntdPopover, Space as AntdSpace, Modal as AntdModal } from 'ant-design-vue'
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
-import { TABLE_PLUGIN_URL } from '@/settings/websiteSetting'
+import { TABLE_PLUGIN } from '@/settings/websiteSetting'
 import { getTableList } from '@/api'
-import { openWindow } from '@/utils'
 import { PageWrapper } from '@/components/Page'
 
 interface APIResult {
@@ -77,10 +76,6 @@ export default defineComponent({
       // fetchData()
     }
 
-    function openGithub() {
-      openWindow(TABLE_PLUGIN_URL)
-    }
-
     function handleDelete() {
       AntdModal.confirm({
         title: '此操作将删除选中数据, 是否继续?',
@@ -98,12 +93,8 @@ export default defineComponent({
     }
 
     return () => (
-      <PageWrapper name='Table 表格'>
+      <PageWrapper plugin={TABLE_PLUGIN}>
         {{
-          header: () => <>
-            <p>ant-design-table: 使用 ant-design 的 table 组件, 可用于展示多条结构类似的数据, 并对其进行相关操作。</p>
-            <p>组件地址:<AntdButton type='link' onClick={openGithub}>立即访问</AntdButton></p>
-          </>,
           default: () => <div>
             <AntdTable
               rowSelection={tableSelection}

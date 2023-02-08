@@ -1,9 +1,8 @@
 import type { CSSProperties } from 'vue'
 import { defineComponent, reactive, unref, computed } from 'vue'
-import { Row, Col, Card, Button } from 'ant-design-vue'
+import { Row, Col, Card } from 'ant-design-vue'
 import { PageWrapper } from '@/components/Page'
-import { VUECROPPER_PLUGIN_URL } from '@/settings/websiteSetting'
-import { openWindow } from '@/utils'
+import { IMAGE_COMPOSITION } from '@/settings/websiteSetting'
 
 export default defineComponent({
   name: 'ImageComposition',
@@ -22,18 +21,10 @@ export default defineComponent({
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat'
     }))
-    
-    function openGithub() {
-      openWindow(VUECROPPER_PLUGIN_URL)
-    }
 
     return () => (
-      <PageWrapper name='图片合成'>
+      <PageWrapper plugin={IMAGE_COMPOSITION}>
         {{
-          header: () => <>
-            <p>图片合成: 基于VueDRR拖拽功能, 在其上通过叠加图片、文字等, 实现图片的叠加伪合成功能。</p>
-            <p>组件地址:<Button type='link' onClick={openGithub}>立即访问</Button></p>
-          </>,
           default: () => (
             <Row gutter={12}>
               <Col span={16}>

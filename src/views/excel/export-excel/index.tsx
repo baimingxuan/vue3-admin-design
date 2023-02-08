@@ -4,8 +4,7 @@ import { Form as AntdForm, FormItem as AntdFormItem, Button as AntdButton, Card 
   Space as AntdSpace, message } from 'ant-design-vue'
 import { ColumnType } from 'ant-design-vue/lib/table'
 import { PageWrapper } from '@/components/Page'
-import { XLSX_PLUGIN_URL } from '@/settings/websiteSetting'
-import { openWindow } from '@/utils'
+import { XLSX_PLUGIN } from '@/settings/websiteSetting'
 import { useExcel } from '../useExcel'
 import { DataToSheet } from '../types'
 import { tableData } from './data'
@@ -58,10 +57,6 @@ export default defineComponent({
       tableSelectedRows.value = selectedRows
     }
 
-    function openGithub() {
-      openWindow(XLSX_PLUGIN_URL)
-    }
-
     function handleExport() {
       if (!(unref(tableSelectedRows).length)) {
         message.warning('请勾选要导出的数据项！')
@@ -82,12 +77,8 @@ export default defineComponent({
     }
     
     return () => (
-      <PageWrapper name='JS-xlsx插件'>
+      <PageWrapper plugin={XLSX_PLUGIN}>
         {{
-          header: () => <>
-            <p>JS-xlsx: 由SheetJS出品的一款非常方便的只需要纯JS即可读取和导出excel的工具库, 功能强大, 支持xlsx、csv、txt等格式。</p>
-            <p>组件地址:<AntdButton type='link' onClick={openGithub}>立即访问</AntdButton></p>
-          </>,
           default: () => <AntdCard bordered={false}>
             <AntdSpace direction='vertical' size={16} style={{width: '100%'}}>
               <AntdForm model={formParam} layout='inline'>
