@@ -11,6 +11,3 @@
   useTitle()
 </script>
 
-<style lang="less">
-@import "./design/index.less";
-</style>
