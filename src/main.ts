@@ -11,7 +11,7 @@ import 'virtual:svg-icons-register'
 import { createApp } from 'vue'
 import { initAppConfigStore } from '@/logics/initAppConfig'
 
-import App from './App.vue'
+import App from './App'
 
 import { setupRouter, router } from './router'
 import { setupStore } from '@/stores'
