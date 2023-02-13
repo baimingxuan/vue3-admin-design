@@ -18,7 +18,7 @@
   import { LayoutHeader as AntdHeader } from 'ant-design-vue'
 
   import LayoutTags from '../tags/index.vue'
-  import LayoutFeature from '../feature/index.vue'
+  import LayoutFeature from '../feature'
   import FoldTrigger from './components/FoldTrigger'
   import Breadcrumb from './components/Breadcrumb'
 

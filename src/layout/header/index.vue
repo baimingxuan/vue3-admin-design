@@ -29,7 +29,7 @@
 
   import LayoutMenu from '../menu'
   import LayoutTags from '../tags/index.vue'
-  import LayoutFeature from '../feature/index.vue'
+  import LayoutFeature from '../feature'
 
   export default defineComponent({
     name: 'LayoutHeader',
