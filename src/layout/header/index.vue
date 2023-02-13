@@ -1,18 +1,20 @@
 <template>
   <AntdHeader :class="getHeaderStyle">
-    <div :class="`${prefixCls}-logo`">
-      <AppLogo theme="light" />
-    </div>
-
-    <div :class="`${prefixCls}-main`">
-      <div :class="`${prefixCls}-main-body`">
-        <div :class="`${prefixCls}-main-body-menu`">
-          <LayoutMenu :isHorizontal="true" />
-        </div>
-        <LayoutFeature />
+    <div :class="`${prefixCls}-wrap`">
+      <div :class="`${prefixCls}-wrap-logo`">
+        <AppLogo theme="light" />
       </div>
-      <LayoutTags v-if="getShowTags" />
+
+      <div :class="`${prefixCls}-wrap-main`">
+        <div :class="`${prefixCls}-wrap-main-body`">
+          <div :class="`${prefixCls}-wrap-main-body-menu`">
+            <LayoutMenu :isHorizontal="true" />
+          </div>
+          <LayoutFeature />
+        </div>
+      </div>
     </div>
+    <LayoutTags v-if="getShowTags" />
   </AntdHeader>
 </template>
 

@@ -2,7 +2,7 @@
 
 .@{prefix-cls} {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   padding: 0 20px;
   height: 80px;
   line-height: 80px;
@@ -16,30 +16,35 @@
     background: @primary-dark-bg;
   }
 
-  &-logo {
+  &-wrap {
     display: flex;
-    height: 100%;
-  }
-
-  &-main {
-    display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    flex-grow: 1;
-    height: 100%;
 
-    &-body {
+    &-logo {
       display: flex;
-      justify-content: space-between;
-      height: 48px;
-      line-height: 48px;
-
-      &-menu {
-        flex: 1;
-      }
-
+      height: 100%;
     }
-
+  
+    &-main {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-grow: 1;
+      height: 100%;
+  
+      &-body {
+        display: flex;
+        justify-content: space-between;
+        height: 48px;
+        line-height: 48px;
+  
+        &-menu {
+          flex: 1;
+        }
+  
+      }
+  
+    }
   }
 
 }
