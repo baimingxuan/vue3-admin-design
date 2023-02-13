@@ -50,6 +50,7 @@
         title="菜单宽度拖拽"
         :def="unref(getMenuCanDrag)"
         :event="HandlerEnum.MENU_CAN_DRAG"
+        :disabled="unref(getMenuType) !== MenuTypeEnum.SIDER_MENU"
       />
       <SwitchItem
         title="菜单固定"
