@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { unref, computed } from 'vue'
+  import { ref, unref, computed } from 'vue'
   import { LayoutSider as AntdSider } from 'ant-design-vue'
 
   import SiderTrigger from './components/SiderTrigger.vue'
@@ -27,6 +27,10 @@
   import LayoutMenu from '@/layout/menu'
   import { MenuTypeEnum, MenuModeEnum, MenuFoldBtnEnum } from '@/enums/menuEnum'
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
+  import { useDragLine } from './useLayoutSider'
+
+  const siderRef = ref<ElRef>(null)
+  const dragBarRef = ref<ElRef>(null)
 
   const { getMenuType, getMenuTheme, getMenuWidth, getMenuFold, getMenuFoldBtn, getMenuSplit } = useMenuSetting()
   const getShowTrigger = computed(() => unref(getMenuFoldBtn) === MenuFoldBtnEnum.SIDER)
@@ -35,6 +39,8 @@
     return unref(getMenuType) === MenuTypeEnum.SIDER_MENU || (unref(getMenuType) === MenuTypeEnum.HEADER_MENU && unref(getMenuSplit))
   })
   const getIsSplited = computed(() => unref(getMenuSplit))
+
+  useDragLine(siderRef, dragBarRef)
 
 </script>
 
