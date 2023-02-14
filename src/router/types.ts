@@ -20,6 +20,7 @@ export interface AppMenu {
   path: string
   children?: AppMenu[]
   disabled?: boolean
+  meta?: Partial<RouteMeta>
   icon?: string
   affix?: boolean
   orderNo?: number
