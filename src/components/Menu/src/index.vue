@@ -6,7 +6,7 @@
     :selectedKeys="selectedKeys"
     :inlineIndent="20"
     :subMenuOpenDelay="0.2"
-    v-bind="getInlineCollapsedOptions"
+    v-bind="getCollapsedOptions"
     @openChange="handleOpenChange"
     @click="handleMenuClick"
   >
@@ -80,16 +80,16 @@
       //   )
       // })
 
-      const getInlineCollapsedOptions = computed(() => {
+      const getCollapsedOptions = computed(() => {
         const isInlineMenu = props.mode === MenuModeEnum.INLINE
 
-        const inlineCollapsedOptions: { inlineCollapsed?: boolean } = {}
+        const collapsedOptions: { collapsed?: boolean } = {}
 
         if (isInlineMenu) {
-          inlineCollapsedOptions.inlineCollapsed = props.hybridSider ? false : unref(getMenuFold)
+          collapsedOptions.collapsed = props.hybridSider ? false : unref(getMenuFold)
         }
 
-        return inlineCollapsedOptions
+        return collapsedOptions
       })
 
       listenerRouteChange(route => {
@@ -155,7 +155,7 @@
         getOpenKeys,
         ...toRefs(menuState),
         getMenuFold,
-        getInlineCollapsedOptions
+        getCollapsedOptions
       }
     }
   })
