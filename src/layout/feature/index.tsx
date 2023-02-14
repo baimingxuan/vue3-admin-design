@@ -1,6 +1,7 @@
 import { defineComponent, unref } from 'vue'
 import { Divider } from 'ant-design-vue'
-import { Search, FullScreen, LocalePicker, DocLink, GithubLink, UserDropdown } from './components'
+import AppSearch from '@/components/Application/src/AppSearch'
+import { FullScreen, LocalePicker, DocLink, GithubLink, UserDropdown } from './components'
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
 import moduleStyle from './index.module.less'
 
@@ -13,7 +14,7 @@ export default defineComponent({
 
     return () => (
       <div class={moduleStyle[prefixCls]}>
-        { unref(getShowSearch) && <Search class={moduleStyle[`${prefixCls}-item`]} /> }
+        { unref(getShowSearch) && <AppSearch class={moduleStyle[`${prefixCls}-item`]} /> }
         { unref(getShowFullScreen) && <FullScreen class={moduleStyle[`${prefixCls}-item`]} /> }
         { unref(getShowLocale) && <LocalePicker class={moduleStyle[`${prefixCls}-item`]} /> }
         { unref(getShowDoc) && <DocLink class={moduleStyle[`${prefixCls}-item`]} /> }
