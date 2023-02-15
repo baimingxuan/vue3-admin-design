@@ -1,9 +1,5 @@
-import { withInstall } from '@/utils'
+import AppLogo from './src/AppLogo.vue'
+import AppLocalePicker from './src/AppLocalePicker'
+import AppSearch from './src/AppSearch'
 
-import appLogo from './src/AppLogo.vue'
-import appLocalePicker from './src/AppLocalePicker.vue'
-import appSearch from './src/AppSearch'
-
-export const AppLogo = withInstall(appLogo)
-export const AppLocalePicker = withInstall(appLocalePicker)
-export const AppSearch = withInstall(appSearch)
+export { AppLogo, AppSearch, AppLocalePicker }
