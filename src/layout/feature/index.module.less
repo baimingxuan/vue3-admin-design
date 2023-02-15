@@ -1,15 +1,19 @@
 .layout_feature {
   display: flex;
   align-items: center;
-  min-width: 160px;
+  justify-content: space-between;
+  min-width: 210px;
   height: 100%;
-  &-item {
-    margin-right: 12px;
+
+  &-main {
+    display: flex;
+    justify-content: right;
+    min-width: 156px;
   }
+
   &-divider {
     height: 50%;
-    margin-left: 12px;
-    margin-right: 12px;
+    margin: 0;
     border-color: rgba(0, 0, 0, .3);
   }
 }

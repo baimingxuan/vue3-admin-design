@@ -14,11 +14,13 @@ export default defineComponent({
 
     return () => (
       <div class={moduleStyle[prefixCls]}>
-        { unref(getShowSearch) && <AppSearch class={moduleStyle[`${prefixCls}-item`]} /> }
-        { unref(getShowFullScreen) && <FullScreen class={moduleStyle[`${prefixCls}-item`]} /> }
-        { unref(getShowLocale) && <AppLocalePicker class={moduleStyle[`${prefixCls}-item`]} /> }
-        { unref(getShowDoc) && <DocLink class={moduleStyle[`${prefixCls}-item`]} /> }
-        { unref(getShowGithub) && <GithubLink /> }
+        <div class={moduleStyle[`${prefixCls}-main`]}>
+          { unref(getShowSearch) && <AppSearch /> }
+          { unref(getShowFullScreen) && <FullScreen /> }
+          { unref(getShowLocale) && <AppLocalePicker /> }
+          { unref(getShowDoc) && <DocLink /> }
+          { unref(getShowGithub) && <GithubLink /> }
+        </div>
         <Divider type='vertical' class={moduleStyle[`${prefixCls}-divider`]} />
         <UserDropdown />
       </div>

@@ -13,7 +13,7 @@ export default defineComponent({
     }
 
     return () => (
-      <div class='p-1' onClick={changeModal.bind(null, true)}>
+      <span class='icon-btn' onClick={changeModal.bind(null, true)}>
         <Tooltip
           title="搜索"
           placement='bottom'
@@ -24,7 +24,7 @@ export default defineComponent({
           </span>
         </Tooltip>
         <SearchModal visible={unref(showModal)} onClose={changeModal.bind(null, false)} />
-      </div>
+      </span>
     )
   }
 })
