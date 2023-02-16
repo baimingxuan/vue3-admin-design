@@ -13,7 +13,7 @@ export default defineComponent({
     }
 
     return () => (
-      <span class='icon-btn' onClick={changeModal.bind(null, true)}>
+      <span onClick={changeModal.bind(null, true)}>
         <Tooltip
           title="搜索"
           placement='bottom'

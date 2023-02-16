@@ -39,9 +39,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 0 12px;
     height: 80px;
-    line-height: 80px;
     background: #fff;
 
     &-main {
