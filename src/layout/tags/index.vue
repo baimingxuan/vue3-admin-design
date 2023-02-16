@@ -243,21 +243,28 @@
     z-index: 299;
     display: flex;
     justify-content: space-between;
-    height: 24px;
-    line-height: 24px;
+    height: 32px;
+    padding: 4px 12px;
+    line-height: 32px;
+    // border-top: solid 1px #d9d9d9;
+    box-sizing: border-box;
+
     &__main {
       position: relative;
-      width: calc(100% - 120px);
+      width: calc(100% - 116px);
       height: 24px;
       overflow: hidden;
+
       &-body {
         position: absolute;
-        padding: 0 4px;
+        height: 100%;
+        padding: 0 2px;
         overflow: visible;
         white-space: nowrap;
         transition: left .5s ease;
       }
     }
+
     &__btn-space {
       margin-left: 4px;
     }

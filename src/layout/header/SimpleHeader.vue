@@ -1,13 +1,11 @@
 <template>
   <AntdHeader :class="prefixCls">
     <div :class="`${prefixCls}-main`">
-      <div :class="`${prefixCls}-main-left`">
+      <div class="flex-center-v">
         <FoldTrigger v-if="getShowTrigger" />
         <Breadcrumb v-if="getShowBreadCrumb" />
       </div>
-      <div :class="`${prefixCls}-main-right`">
-        <LayoutFeature />
-      </div>
+      <LayoutFeature />
     </div>
     <LayoutTags v-if="getShowTags" />
   </AntdHeader>
@@ -39,21 +37,15 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 0 12px;
     height: 80px;
     background: #fff;
 
     &-main {
       display: flex;
       justify-content: space-between;
+      padding: 0 12px;
       height: 48px;
       line-height: 48px;
-
-      &-left {
-        display: flex;
-        align-items: center;
-      }
-
     }
 
   }
