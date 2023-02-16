@@ -19,9 +19,9 @@ export const appSetting: AppConfig = {
     // Turn on full screen
     showFullScreen: true,
     // Show locale
-    showLocale: true,
+    showLocale: false,
     // Show document button
-    showDoc: true,
+    showDoc: false,
     // Show github button
     showGithub: true
   },
