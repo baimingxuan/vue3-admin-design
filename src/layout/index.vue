@@ -4,7 +4,7 @@
     <AntLayout :class="getLayoutClass">
       <LayoutSider />
       <AntLayout>
-        <LayoutSimpleHeader v-if="!getIsHeaderMenu" />
+        <LayoutBasicHeader v-if="!getIsHeaderMenu" />
         <AntContent class="cont-height">
           <LayoutPage />
         </AntContent>
@@ -24,7 +24,7 @@
   import HybridSider from './sider/HybridSider/index.vue'
   import LayoutSider from './sider/index.vue'
   import LayoutHeader from './header/index.vue'
-  import LayoutSimpleHeader from './header/SimpleHeader.vue'
+  import LayoutBasicHeader from './header/BasicHeader'
   import LayoutPage from './content/index'
 
   export default defineComponent({
@@ -33,7 +33,7 @@
       AntLayout,
       AntSider: AntLayout.Sider,
       LayoutHeader,
-      LayoutSimpleHeader,
+      LayoutBasicHeader,
       LayoutSider,
       AntContent: AntLayout.Content,
       Setting,

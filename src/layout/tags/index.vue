@@ -246,7 +246,7 @@
     height: 32px;
     padding: 4px 12px;
     line-height: 32px;
-    // border-top: solid 1px #d9d9d9;
+    // border-top: dashed 1px #d9d9d9;
     box-sizing: border-box;
 
     &__main {
