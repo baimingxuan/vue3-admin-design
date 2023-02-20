@@ -18,7 +18,7 @@
   >
     <Container>
       <AntdDivider>系统风格</AntdDivider>
-      <AppModeSwitch class="mx-auto" />
+      <AppDarkMode class="mx-auto" />
       <AntdDivider>菜单模式</AntdDivider>
       <div class="flex-between-h">
         <MenuThemeRadio />
@@ -185,7 +185,8 @@
   import { Drawer as AntdDrawer, Divider as AntdDivider, Button as AntdButton } from 'ant-design-vue'
   import { SettingOutlined as AntdSettingOutlined } from '@ant-design/icons-vue'
 
-  import { AppModeSwitch, MenuThemeRadio, MenuTypePicker, ThemeColorPicker,
+  import { AppDarkMode } from '@/components/Application'
+  import { MenuThemeRadio, MenuTypePicker, ThemeColorPicker,
     SwitchItem, SelectItem, InputNumItem, SettingFooter } from './components'
   import { menuTypeList, appThemeColorList } from './enum'
   import Container from '@/components/Container/index.vue'
