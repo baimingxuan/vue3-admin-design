@@ -1,11 +1,11 @@
   import type { RouteLocationMatched } from 'vue-router'
   import { useRouter } from 'vue-router'
   import { defineComponent, ref, watchEffect } from 'vue'
-  import { Breadcrumb as AntdBreadcrumb, BreadcrumbItem as AntdBreadcrumbItem } from 'ant-design-vue'
+  import { Breadcrumb } from 'ant-design-vue'
   import SvgIcon from '@/components/SvgIcon/index.vue'
 
   export default defineComponent({
-    name: 'Breadcrumb',
+    name: 'LayoutBreadcrumb',
     setup() {
       let routeMatcheds = ref<RouteLocationMatched[]>([])
       const { currentRoute } = useRouter()
@@ -24,18 +24,18 @@
 
       return () => (
         <div class='flex-center-v' style='padding: 0 16px;'>
-          <AntdBreadcrumb>
+          <Breadcrumb>
             {
               routeMatcheds.value.map((route: RouteLocationMatched) => {
                 return (
-                  <AntdBreadcrumbItem>
+                  <Breadcrumb.Item>
                     {getIcon(route) ? <SvgIcon name={getIcon(route)} style='margin-right: 8px;' /> : ''}
                     <span>{ route.meta?.title }</span>
-                  </AntdBreadcrumbItem>
+                  </Breadcrumb.Item>
                 )
               })
             }
-          </AntdBreadcrumb>
+          </Breadcrumb>
         </div>
       )
     }

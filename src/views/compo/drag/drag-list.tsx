@@ -1,5 +1,5 @@
 import { defineComponent, ref } from 'vue'
-import { Row as AntdRow, Col as AntdCol, Card as AntdCard } from 'ant-design-vue'
+import { Row, Col, Card } from 'ant-design-vue'
 import { PageWrapper } from '@/components/Page'
 import { DRAGGABLE_PLUGIN } from '@/settings/websiteSetting'
 import Draggable from 'vuedraggable'
@@ -38,65 +38,65 @@ export default defineComponent({
     return () => (
       <PageWrapper plugin={DRAGGABLE_PLUGIN}>
         {{
-          default: () => <AntdRow gutter={12}>
-              <AntdCol span={5}>
-                <AntdCard title='列表1事项' bordered={false} bodyStyle={{height: '520px'}}>
+          default: () => <Row gutter={12}>
+              <Col span={5}>
+                <Card title='列表1事项' bordered={false} bodyStyle={{height: '520px'}}>
                   {/* @ts-ignore */}
                   <Draggable list={listOne.value} itemKey='name' group='list' style='height: 100%' class='list1' onEnd={handleDrop}>
                     {{
                       item: ({ element}) => (
-                          <AntdCard
+                          <Card
                             hoverable
                             size='small'
                             style='margin-bottom: 12px;'
                           >
                             {element.name}
-                          </AntdCard>
+                          </Card>
                         )
                     }}
                   </Draggable>
-                </AntdCard>
-              </AntdCol>
-              <AntdCol span={5}>
-                <AntdCard title='列表2事项' bordered={false} bodyStyle={{height: '520px'}}>
+                </Card>
+              </Col>
+              <Col span={5}>
+                <Card title='列表2事项' bordered={false} bodyStyle={{height: '520px'}}>
                   {/* @ts-ignore */}
                   <Draggable list={listTwo.value} itemKey='name' group='list' style='height: 100%' class='list2' onEnd={handleDrop}>
                     {{
                       item: ({ element}) => (
-                          <AntdCard
+                          <Card
                             hoverable
                             size='small'
                             style='margin-bottom: 12px;'
                           >
                             {element.name}
-                          </AntdCard>
+                          </Card>
                         )
                     }}
                   </Draggable>
-                </AntdCard>
-              </AntdCol>
-              <AntdCol span={4}>
-                <AntdCard title='操作记录' bordered={false} bodyStyle={{height: '520px'}}>
+                </Card>
+              </Col>
+              <Col span={4}>
+                <Card title='操作记录' bordered={false} bodyStyle={{height: '520px'}}>
                   { dragLogs.value.map(item => {
                     return <p style='margin-bottom: 8px'>{item}</p>
                   }) }
-                </AntdCard>
-              </AntdCol>
-              <AntdCol span={5}>
-                <AntdCard title='列表1数据' bordered={false} bodyStyle={{height: '520px'}}>
+                </Card>
+              </Col>
+              <Col span={5}>
+                <Card title='列表1数据' bordered={false} bodyStyle={{height: '520px'}}>
                   <pre>
                     {JSON.stringify(listOne.value, null, 2)}
                   </pre>
-                </AntdCard>
-              </AntdCol>
-              <AntdCol span={5}>
-                <AntdCard title='列表2数据' bordered={false} bodyStyle={{height: '520px'}}>
+                </Card>
+              </Col>
+              <Col span={5}>
+                <Card title='列表2数据' bordered={false} bodyStyle={{height: '520px'}}>
                   <pre>
                    {JSON.stringify(listTwo.value, null, 2)}
                   </pre>
-                </AntdCard>
-              </AntdCol>
-            </AntdRow>
+                </Card>
+              </Col>
+            </Row>
         }}
       </PageWrapper>
     )

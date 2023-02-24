@@ -1,11 +1,11 @@
 import type { CSSProperties } from 'vue'
 import { defineComponent, unref, computed } from 'vue'
-import { LayoutHeader as AntdHeader } from 'ant-design-vue'
+import { Layout } from 'ant-design-vue'
 
 import LayoutTags from '../tags/index.vue'
 import LayoutFeature from '../feature'
 import FoldTrigger from './components/FoldTrigger'
-import Breadcrumb from './components/Breadcrumb'
+import LayoutBreadcrumb from './components/Breadcrumb'
 
 import { MenuFoldBtnEnum } from '@/enums/menuEnum'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
@@ -25,16 +25,16 @@ export default defineComponent({
     const getShowTrigger = computed(() => unref(getMenuFoldBtn) === MenuFoldBtnEnum.HEADER)
 
     return () => (
-      <AntdHeader class='flex-between-h' style={unref(getHeaderStyle)}>
+      <Layout.Header class='flex-between-h' style={unref(getHeaderStyle)}>
         <div class='flex-between-h' style='padding: 0 12px;'>
           <div class='flex-center-v'>
             { unref(getShowTrigger) && <FoldTrigger /> }
-            { unref(getShowBreadCrumb) && <Breadcrumb /> }
+            { unref(getShowBreadCrumb) && <LayoutBreadcrumb /> }
           </div>
           <LayoutFeature />
         </div>
         { unref(getShowTags) && <LayoutTags /> }
-      </AntdHeader>
+      </Layout.Header>
     )
   }
 })

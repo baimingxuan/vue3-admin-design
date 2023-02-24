@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue'
-import { Form, FormItem } from 'ant-design-vue'
+import { Form } from 'ant-design-vue'
 
 export default defineComponent({
   name: 'CodeInfo',
@@ -18,21 +18,21 @@ export default defineComponent({
     return () => (
       <div style='padding: 4px 8px; border: solid 1px #ddd;'>
         <Form layout='inline'>
-          <FormItem label='Spaces'>
+          <Form.Item label='Spaces'>
             <span>{props.config.tabSize}</span>
-          </FormItem>
-          <FormItem label='Length'>
+          </Form.Item>
+          <Form.Item label='Length'>
             <span>{props.state.length}</span>
-          </FormItem>
-          <FormItem label='Lines'>
+          </Form.Item>
+          <Form.Item label='Lines'>
             <span>{props.state.lines}</span>
-          </FormItem>
-          <FormItem label='Cursor'>
+          </Form.Item>
+          <Form.Item label='Cursor'>
             <span>{props.state.cursor}</span>
-          </FormItem>
-          <FormItem label='Selected'>
+          </Form.Item>
+          <Form.Item label='Selected'>
             <span>{props.state.selected}</span>
-          </FormItem>
+          </Form.Item>
         </Form>
       </div>
     )

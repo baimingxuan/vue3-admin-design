@@ -1,7 +1,6 @@
 import type { TransferProps, TreeProps } from 'ant-design-vue'
 import { defineComponent, ref, computed } from 'vue'
-import { Row as AntdRow, Col as AntdCol, Card as AntdCard, Transfer as AntdTransfer,
-  Table as AntdTable, Tree as AntdTree } from 'ant-design-vue'
+import { Row, Col, Card, Transfer, Table, Tree } from 'ant-design-vue'
 import { PageWrapper } from '@/components/Page'
 import { TRANSFER_COMPO } from '@/settings/websiteSetting'
 import { mockData, treeData, transferDataSource } from './data'
@@ -75,10 +74,10 @@ export default defineComponent({
     return () => (
       <PageWrapper plugin={TRANSFER_COMPO}>
         {{
-          default: () => <AntdRow gutter={12}>
-              <AntdCol span={8}>
-                <AntdCard title='基础用法' bordered={false} bodyStyle={{height: '420px'}}>
-                  <AntdTransfer
+          default: () => <Row gutter={12}>
+              <Col span={8}>
+                <Card title='基础用法' bordered={false} bodyStyle={{height: '420px'}}>
+                  <Transfer
                     v-model:targetKeys={targetKeys.value}
                     v-model:selectedKeys={selectedKeys.value}
                     dataSource={mockData}
@@ -86,11 +85,11 @@ export default defineComponent({
                     listStyle={{width: '230px', height: '360px'}}
                     locale={{itemsUnit: '项 '}}
                   />
-                </AntdCard>
-              </AntdCol>
-              <AntdCol span={8}>
-                <AntdCard title='树穿梭框' bordered={false} bodyStyle={{height: '420px'}}>
-                  <AntdTransfer
+                </Card>
+              </Col>
+              <Col span={8}>
+                <Card title='树穿梭框' bordered={false} bodyStyle={{height: '420px'}}>
+                  <Transfer
                     v-model:targetKeys={treeTargetKeys.value}
                     dataSource={dataSource.value}
                     render={item => item.title}
@@ -103,7 +102,7 @@ export default defineComponent({
                         selectedKeys,
                         onItemSelect
                       }) => direction === 'left'
-                        ? <AntdTree
+                        ? <Tree
                             blockNode
                             checkable
                             checkStrictly
@@ -119,12 +118,12 @@ export default defineComponent({
                           />
                         : null
                     }}
-                  </AntdTransfer>
-                </AntdCard>
-              </AntdCol>
-              <AntdCol span={8}>
-                <AntdCard title='表格穿梭框' bordered={false} bodyStyle={{height: '420px'}}>
-                  <AntdTransfer
+                  </Transfer>
+                </Card>
+              </Col>
+              <Col span={8}>
+                <Card title='表格穿梭框' bordered={false} bodyStyle={{height: '420px'}}>
+                  <Transfer
                     v-model:targetKeys={targetKeys.value}
                     dataSource={mockData}
                     listStyle={{width: '230px', height: '360px'}}
@@ -136,7 +135,7 @@ export default defineComponent({
                         selectedKeys,
                         onItemSelectAll,
                         onItemSelect
-                      }) => <AntdTable
+                      }) => <Table
                           rowSelection={getRowSelection({selectedKeys, onItemSelectAll, onItemSelect})}
                           columns={columns.value}
                           dataSource={filteredItems}
@@ -145,10 +144,10 @@ export default defineComponent({
                           customRow={({key}) => ({onClick: () => {onItemSelect(key, !selectedKeys.includes(key))}})}
                         />
                     }}
-                  </AntdTransfer>
-                </AntdCard>
-              </AntdCol>
-            </AntdRow>
+                  </Transfer>
+                </Card>
+              </Col>
+            </Row>
         }}
       </PageWrapper>
     )

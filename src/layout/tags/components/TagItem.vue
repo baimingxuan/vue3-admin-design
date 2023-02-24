@@ -1,17 +1,17 @@
 <template>
-  <AntdTag
+  <Tag
     :class="['compo_tag-item', { active }]"
     :closable="!fixed"
     @close="handleClose"
   >
     <span class="compo_tag-item__dot" />
     <span class="compo_tag-item__name">{{ name }}</span>
-  </AntdTag>
+  </Tag>
 </template>
 
 <script lang="ts" setup>
   import { propTypes } from '@/utils/propTypes'
-  import { Tag as AntdTag } from 'ant-design-vue'
+  import { Tag } from 'ant-design-vue'
 
   defineProps({
     fixed: propTypes.bool,

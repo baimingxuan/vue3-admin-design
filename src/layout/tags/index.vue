@@ -1,10 +1,10 @@
 <template>
   <div :class="prefixCls">
-    <AntdButton :class="`${prefixCls}__btn`" size="small" @click="handleMove(240)">
+    <Button :class="`${prefixCls}__btn`" size="small" @click="handleMove(240)">
       <template #icon>
         <LeftOutlined />
       </template>
-    </AntdButton>
+    </Button>
     <div
       ref="tagsMain"
       :class="`${prefixCls}__main`"
@@ -33,31 +33,31 @@
         </TransitionGroup>
       </div>
     </div>
-    <AntdButton :class="`${prefixCls}__btn`" size="small" @click="handleMove(-240)">
+    <Button :class="`${prefixCls}__btn`" size="small" @click="handleMove(-240)">
       <template #icon>
         <RightOutlined />
       </template>
-    </AntdButton>
-    <AntdButton :class="[`${prefixCls}__btn`, `${prefixCls}__btn-space`]" size="small" @click="handleReload">
+    </Button>
+    <Button :class="[`${prefixCls}__btn`, `${prefixCls}__btn-space`]" size="small" @click="handleReload">
       <template #icon>
         <RedoOutlined :spin="loading" />
       </template>
-    </AntdButton>
-    <AntdDropdown placement="bottomRight">
-      <AntdButton :class="[`${prefixCls}__btn`, `${prefixCls}__btn-space`]" size="small">
+    </Button>
+    <Dropdown placement="bottomRight">
+      <Button :class="[`${prefixCls}__btn`, `${prefixCls}__btn-space`]" size="small">
         <template #icon>
           <CloseOutlined />
         </template>
-      </AntdButton>
+      </Button>
       <template #overlay>
         <AntdMenu>
-          <AntdMenuItem @click="closeLeft">关闭左侧</AntdMenuItem>
-          <AntdMenuItem @click="closeRight">关闭右侧</AntdMenuItem>
-          <AntdMenuItem @click="closeOther">关闭其它</AntdMenuItem>
-          <AntdMenuItem @click="closeAll">关闭所有</AntdMenuItem>
+          <Menu.Item @click="closeLeft">关闭左侧</Menu.Item>
+          <Menu.Item @click="closeRight">关闭右侧</Menu.Item>
+          <Menu.Item @click="closeOther">关闭其它</Menu.Item>
+          <Menu.Item @click="closeAll">关闭所有</Menu.Item>
         </AntdMenu>
       </template>
-    </AntdDropdown>
+    </Dropdown>
   </div>
 </template>
 
@@ -65,7 +65,7 @@
   import { defineComponent, computed, ref, unref, nextTick, CSSProperties } from 'vue'
   import type { RouteLocationNormalized, RouteMeta } from 'vue-router'
   import { useRouter } from 'vue-router'
-  import { Tabs as AntdTabs, Button as AntdButton, Dropdown as AntdDropdown, Menu as AntdMenu } from 'ant-design-vue'
+  import { Tabs, Button, Dropdown, Menu } from 'ant-design-vue'
   import { LeftOutlined, RightOutlined, RedoOutlined, CloseOutlined } from '@ant-design/icons-vue'
 
   import { listenerRouteChange } from '@/logics/mitt/routeChange'
@@ -79,7 +79,7 @@
   export default defineComponent({
     name: 'LayoutTags',
     components: {
-      AntdTabs, AntdButton, TagItem, AntdDropdown, AntdMenu, AntdMenuItem: AntdMenu.Item,
+      Tabs, Button, TagItem, Dropdown, Menu,
       LeftOutlined, RightOutlined, RedoOutlined, CloseOutlined
     },
 

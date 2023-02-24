@@ -1,7 +1,5 @@
 import { defineComponent, reactive, ref, unref } from 'vue'
-import { Row as AntdRow, Col as AntdCol, Card as AntdCard, Button as AntdButton,
-  Form as AntdForm, FormItem as AntdFormItem, Input as AntdInput, InputNumber as AntdInputNumber,
-  Space as AntdSpace } from 'ant-design-vue'
+import { Row, Col, Card, Button, Form, Input, InputNumber, Space } from 'ant-design-vue'
 import { PageWrapper } from '@/components/Page'
 import { CountTo } from '@/components/CountTo'
 import { COUNTTO_PLUGIN } from '@/settings/websiteSetting'
@@ -31,9 +29,9 @@ export default defineComponent({
     return () => (
       <PageWrapper plugin={COUNTTO_PLUGIN}>
         {{
-          default: () => <AntdRow gutter={12}>
-              <AntdCol span={6}>
-                <AntdCard title='正向增加' bordered={false} bodyStyle={{height: '300px'}}>
+          default: () => <Row gutter={12}>
+              <Col span={6}>
+                <Card title='正向增加' bordered={false} bodyStyle={{height: '300px'}}>
                   <CountTo
                     startVal={0}
                     endVal={2020}
@@ -42,10 +40,10 @@ export default defineComponent({
                     style='height: 100%;'
                     class='flex-center'
                   />
-                </AntdCard>
-              </AntdCol>
-              <AntdCol span={12}>
-                <AntdCard title='自定义配置' bordered={false} bodyStyle={{height: '300px'}}>
+                </Card>
+              </Col>
+              <Col span={12}>
+                <Card title='自定义配置' bordered={false} bodyStyle={{height: '300px'}}>
                   <div class='flex-center' style='margin-bottom: 30px'>
                     <CountTo
                       ref={countRef}
@@ -60,64 +58,64 @@ export default defineComponent({
                       autoplay={false}
                     />
                   </div>
-                  <AntdForm
+                  <Form
                     model={formRef}
                     layout='inline'
                     labelAlign='left'
                     labelCol={{style: {width: '80px', marginBottom: '12px'}}}
                   >
-                    <AntdFormItem label='startVal:' name='startVal'>
-                      <AntdInputNumber
+                    <Form.Item label='startVal:' name='startVal'>
+                      <InputNumber
                         v-model:value={formRef.startVal}
                         min={0}
                         max={10000}
                         style='width: 100px'
                       />
-                    </AntdFormItem>
-                    <AntdFormItem label='endVal:' name='endVal'>
-                      <AntdInputNumber
+                    </Form.Item>
+                    <Form.Item label='endVal:' name='endVal'>
+                      <InputNumber
                         v-model:value={formRef.endVal}
                         min={0}
                         max={10000}
                         style='width: 100px'
                       />
-                    </AntdFormItem>
-                    <AntdFormItem label='duration:' name='duration'>
-                      <AntdInputNumber
+                    </Form.Item>
+                    <Form.Item label='duration:' name='duration'>
+                      <InputNumber
                         v-model:value={formRef.duration}
                         min={100}
                         max={100000}
                         style='width: 100px'
                       />
-                    </AntdFormItem>
-                    <AntdFormItem label='decimals:' name='decimals'>
-                      <AntdInputNumber
+                    </Form.Item>
+                    <Form.Item label='decimals:' name='decimals'>
+                      <InputNumber
                         v-model:value={formRef.decimals}
                         min={0}
                         max={100}
                         style='width: 100px'
                       />
-                    </AntdFormItem>
-                    <AntdFormItem label='separator:' name='separator'>
-                      <AntdInput v-model:value={formRef.separator} style='width: 100px' />
-                    </AntdFormItem>
-                    <AntdFormItem label='prefix:' name='prefix'>
-                      <AntdInput v-model:value={formRef.prefix} style='width: 100px' />
-                    </AntdFormItem>
-                    <AntdFormItem label='suffix:' name='suffix'>
-                      <AntdInput v-model:value={formRef.suffix} style='width: 100px' />
-                    </AntdFormItem>
-                    <AntdFormItem>
-                      <AntdSpace>
-                        <AntdButton type='primary' onClick={handleStart}>开始</AntdButton>
-                        <AntdButton type='primary' danger onClick={handleReset}>重置</AntdButton>
-                      </AntdSpace>
-                    </AntdFormItem>
-                  </AntdForm>
-                </AntdCard>
-              </AntdCol>
-              <AntdCol span={6}>
-                <AntdCard title='反向减少' bordered={false} bodyStyle={{height: '300px'}}>
+                    </Form.Item>
+                    <Form.Item label='separator:' name='separator'>
+                      <Input v-model:value={formRef.separator} style='width: 100px' />
+                    </Form.Item>
+                    <Form.Item label='prefix:' name='prefix'>
+                      <Input v-model:value={formRef.prefix} style='width: 100px' />
+                    </Form.Item>
+                    <Form.Item label='suffix:' name='suffix'>
+                      <Input v-model:value={formRef.suffix} style='width: 100px' />
+                    </Form.Item>
+                    <Form.Item>
+                      <Space>
+                        <Button type='primary' onClick={handleStart}>开始</Button>
+                        <Button type='primary' danger onClick={handleReset}>重置</Button>
+                      </Space>
+                    </Form.Item>
+                  </Form>
+                </Card>
+              </Col>
+              <Col span={6}>
+                <Card title='反向减少' bordered={false} bodyStyle={{height: '300px'}}>
                   <CountTo
                     startVal={2020}
                     endVal={0}
@@ -127,9 +125,9 @@ export default defineComponent({
                     style='height: 100%;'
                     class='flex-center'
                   />
-                </AntdCard>
-              </AntdCol>
-            </AntdRow>
+                </Card>
+              </Col>
+            </Row>
         }}
       </PageWrapper>
     )

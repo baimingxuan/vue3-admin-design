@@ -1,5 +1,5 @@
 <template>
-  <AntdSider
+  <Layout.Sider
     v-if="getShowSider"
     ref="siderRef"
     breakpoint="lg"
@@ -15,12 +15,12 @@
     </template>
     <LayoutMenu :menuMode="MenuModeEnum.INLINE" :isSplitedMenu="getIsSplited" :isHorizontal="false" />
     <DragBar ref="dragBarRef" />
-  </AntdSider>
+  </Layout.Sider>
 </template>
 
 <script lang="ts" setup>
   import { ref, unref, computed } from 'vue'
-  import { LayoutSider as AntdSider } from 'ant-design-vue'
+  import { Layout } from 'ant-design-vue'
 
   import SiderTrigger from './components/SiderTrigger.vue'
   import DragBar from './components/DragBar.vue'

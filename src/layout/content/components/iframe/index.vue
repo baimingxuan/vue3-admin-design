@@ -1,18 +1,18 @@
 <template>
   <div class="compo_iframe">
-    <AntdSpin :spinning="isLoading" size="large">
+    <Spin :spinning="isLoading" size="large">
       <iframe
         ref="iframeRef"
         :src="iframeSrc"
         @load="hideLoading"
       />
-    </AntdSpin>
+    </Spin>
   </div>
 </template>
 
 <script lang="ts" setup>
   import { ref } from 'vue'
-  import { Spin as AntdSpin } from 'ant-design-vue'
+  import { Spin } from 'ant-design-vue'
   import { propTypes } from '@/utils/propTypes'
 
   defineProps({

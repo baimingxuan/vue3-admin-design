@@ -1,7 +1,7 @@
 <template>
   <div class="compo_menu-type-picker">
     <template v-for="item in menuTypeList || []" :key="item.title">
-      <AntdTooltip :title="item.title" placement="top">
+      <Tooltip :title="item.title" placement="top">
         <div
           :class="[
             'menu-type-picker__item',
@@ -13,9 +13,9 @@
           @click="handler(item)"
         >
           <div class="hybrid-sider"></div>
-          <AntdCheckOutlined />
+          <CheckOutlined />
         </div>
-      </AntdTooltip>
+      </Tooltip>
     </template>
   </div>
 </template>
@@ -24,13 +24,13 @@
   import { defineComponent } from 'vue'
   import type { PropType } from 'vue'
 
-  import { CheckOutlined as AntdCheckOutlined } from '@ant-design/icons-vue'
-  import { Tooltip as AntdTooltip } from 'ant-design-vue'
+  import { CheckOutlined } from '@ant-design/icons-vue'
+  import { Tooltip } from 'ant-design-vue'
   import { menuTypeList } from '../enum'
 
   export default defineComponent({
     name: 'MenuTypePicker',
-    components: { AntdTooltip, AntdCheckOutlined },
+    components: { Tooltip, CheckOutlined },
     props: {
       menuTypeList: {
         type: Array as PropType<typeof menuTypeList>,

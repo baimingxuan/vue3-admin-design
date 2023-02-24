@@ -1,7 +1,5 @@
 import { defineComponent, reactive, ref, unref } from 'vue'
-import { Form as AntdForm, FormItem as AntdFormItem, Button as AntdButton, Card as AntdCard,
-  Input as AntdInput, RadioGroup as AntdRadioGroup, Select as AntdSelect, Table as AntdTable,
-  Space as AntdSpace, message } from 'ant-design-vue'
+import { Form, Button, Card, Input, Radio, Select, Table, Space, message } from 'ant-design-vue'
 import { ColumnType } from 'ant-design-vue/lib/table'
 import { PageWrapper } from '@/components/Page'
 import { XLSX_PLUGIN } from '@/settings/websiteSetting'
@@ -79,26 +77,26 @@ export default defineComponent({
     return () => (
       <PageWrapper plugin={XLSX_PLUGIN}>
         {{
-          default: () => <AntdCard bordered={false}>
-            <AntdSpace direction='vertical' size={16} style={{width: '100%'}}>
-              <AntdForm model={formParam} layout='inline'>
-                <AntdFormItem label='文件名:' name='fileName'>
-                  <AntdInput
+          default: () => <Card bordered={false}>
+            <Space direction='vertical' size={16} style={{width: '100%'}}>
+              <Form model={formParam} layout='inline'>
+                <Form.Item label='文件名:' name='fileName'>
+                  <Input
                     v-model:value={formParam.fileName}
                     placeholder='文件名'
                   />
-                </AntdFormItem>
-                <AntdFormItem label='自动宽度:' name='autoWidth'>
-                  <AntdRadioGroup
+                </Form.Item>
+                <Form.Item label='自动宽度:' name='autoWidth'>
+                  <Radio.Group
                     v-model:value={formParam.autoWidth}
                     options={[
                       { label: '自动', value: true },
                       { label: '固定', value: false }
                     ]}
                   />
-                </AntdFormItem>
-                <AntdFormItem label='文件类型:' name='fileType'>
-                  <AntdSelect
+                </Form.Item>
+                <Form.Item label='文件类型:' name='fileType'>
+                  <Select
                     v-model:value={formParam.fileType}
                     options={[
                       { label: 'xlsx', value: 'xlsx' },
@@ -107,12 +105,12 @@ export default defineComponent({
                     ]}
                     style={{width: '180px'}}
                   />
-                </AntdFormItem>
-                <AntdFormItem>
-                  <AntdButton type='primary' htmlType='submit' onClick={handleExport}>导出Excel</AntdButton>
-                </AntdFormItem>
-              </AntdForm>
-              <AntdTable
+                </Form.Item>
+                <Form.Item>
+                  <Button type='primary' htmlType='submit' onClick={handleExport}>导出Excel</Button>
+                </Form.Item>
+              </Form>
+              <Table
                 dataSource={unref(dataSource)}
                 columns={tableColumns}
                 rowSelection={{
@@ -123,8 +121,8 @@ export default defineComponent({
                 }}
                 pagination={false}
               />
-            </AntdSpace>
-          </AntdCard>
+            </Space>
+          </Card>
         }}
       </PageWrapper>
     )

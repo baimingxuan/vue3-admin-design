@@ -1,7 +1,6 @@
 import { TableProps, ColumnType, TablePaginationConfig } from 'ant-design-vue/lib/table'
 import { defineComponent, createVNode, ref, unref, computed, reactive, onMounted } from 'vue'
-import { Button as AntdButton, Table as AntdTable, Tag as AntdTag, Select as AntdSelect, Switch as AntdSwitch,
-  Popover as AntdPopover, Space as AntdSpace, Modal as AntdModal } from 'ant-design-vue'
+import { Button, Table, Tag, Select, Switch, Popover, Space, Modal } from 'ant-design-vue'
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
 import { TABLE_COMPO } from '@/settings/websiteSetting'
 import { getTableList } from '@/api'
@@ -77,7 +76,7 @@ export default defineComponent({
     }
 
     function handleDelete() {
-      AntdModal.confirm({
+      Modal.confirm({
         title: '此操作将删除选中数据, 是否继续?',
         icon: createVNode(ExclamationCircleOutlined),
         // okType: 'danger',
@@ -96,7 +95,7 @@ export default defineComponent({
       <PageWrapper plugin={TABLE_COMPO}>
         {{
           default: () => <div>
-            <AntdTable
+            <Table
               rowSelection={tableSelection}
               columns={tableColumns}
               dataSource={unref(tableData)}
@@ -114,28 +113,28 @@ export default defineComponent({
                           <p>爱好: {record.hobby.join('、')}</p>
                         </>
                       }
-                      return <AntdPopover v-slots={slots}>
-                        <AntdTag color='blue'>{record.name}</AntdTag>
-                      </AntdPopover>
+                      return <Popover v-slots={slots}>
+                        <Tag color='blue'>{record.name}</Tag>
+                      </Popover>
                     }
                     else if (column.dataIndex === 'married') {
-                      return <AntdSelect v-model={[record.married, 'value']} options={marriedOptions} />
+                      return <Select v-model={[record.married, 'value']} options={marriedOptions} />
                     }
                     else if (column.dataIndex === 'hobby') {
                       return <span>{record.hobby.join('、')}</span>
                     }
                     else if (column.dataIndex === 'forbid') {
-                      return <AntdSwitch v-model={[record.forbid, 'checked']} />
+                      return <Switch v-model={[record.forbid, 'checked']} />
                     }
                     else if (column.key === 'action') {
-                      return <AntdSpace>
-                        <AntdButton disabled={record.forbid}>编辑</AntdButton>
-                        <AntdButton danger onClick={handleDelete}>删除</AntdButton>
-                      </AntdSpace>
+                      return <Space>
+                        <Button disabled={record.forbid}>编辑</Button>
+                        <Button danger onClick={handleDelete}>删除</Button>
+                      </Space>
                     }
                   }
               }}
-            </AntdTable>
+            </Table>
           </div>
         }}
       </PageWrapper>

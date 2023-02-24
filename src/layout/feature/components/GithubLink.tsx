@@ -1,5 +1,5 @@
   import { defineComponent } from 'vue'
-  import { Tooltip as AntdTooltip } from 'ant-design-vue'
+  import { Tooltip } from 'ant-design-vue'
   import SvgIcon from '@/components/SvgIcon/index.vue'
   import { openWindow } from '@/utils'
   import { GITHUB_URL } from '@/settings/websiteSetting'
@@ -12,7 +12,7 @@
     name: 'GithubLink',
     setup() {
       return () => (
-        <AntdTooltip
+        <Tooltip
           title='github'
           placement='bottom'
           mouseEnterDelay={0.5}
@@ -24,7 +24,7 @@
               onclick={openGithub}
             />
           </span>
-        </AntdTooltip>
+        </Tooltip>
       )
     }
   })

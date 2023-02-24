@@ -1,5 +1,5 @@
 import { defineComponent, reactive, ref, onMounted, onBeforeUnmount } from 'vue'
-import { Card as AntdCard } from 'ant-design-vue'
+import { Card } from 'ant-design-vue'
 import { PageWrapper } from '@/components/Page'
 import { VUE_DRAG_RESIZE_PLUGIN } from '@/settings/websiteSetting'
 import VueDragResize from 'vue-drag-resize'
@@ -44,7 +44,7 @@ export default defineComponent({
       <PageWrapper plugin={VUE_DRAG_RESIZE_PLUGIN}>
         {{
           default: () => (
-              <AntdCard bordered={false} bodyStyle={{padding: 0}}>
+              <Card bordered={false} bodyStyle={{padding: 0}}>
                 <div ref={rectWrapper} style='width: 100%; height: 500px;'>
                   <VueDragResize
                     isActive={true}
@@ -72,7 +72,7 @@ export default defineComponent({
                     </div>
                   </VueDragResize>
                 </div>
-              </AntdCard>
+              </Card>
             )
         }}
       </PageWrapper>

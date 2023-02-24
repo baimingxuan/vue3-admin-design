@@ -5,42 +5,42 @@
         <img src="../assets/images/logo2.png" alt="icon">
         <p>账 号 登 录</p>
       </div>
-      <AntdForm
+      <Form
         ref="loginFormRef"
         :model="loginForm"
         class="login-box-form"
         @keypress.enter="handleLogin"
       >
-        <AntdFormItem name="username" :rules="[{ required: true, message: '请输入账号' }]">
-          <AntdInput v-model:value="loginForm.username" placeholder="请输入账号">
+        <Form.Item name="username" :rules="[{ required: true, message: '请输入账号' }]">
+          <Input v-model:value="loginForm.username" placeholder="请输入账号">
             <template #prefix>
               <UserOutlined style="color: rgba(0, 0, 0, 0.25)" />
             </template>
-          </AntdInput>
-        </AntdFormItem>
-        <AntdFormItem name="password" :rules="[{ required: true, message: '请输入密码' }]">
-          <AntdInput v-model:value="loginForm.password" type="password" placeholder="请输入密码">
+          </Input>
+        </Form.Item>
+        <Form.Item name="password" :rules="[{ required: true, message: '请输入密码' }]">
+          <Input v-model:value="loginForm.password" type="password" placeholder="请输入密码">
             <template #prefix>
               <LockOutlined style="color: rgba(0, 0, 0, 0.25)" />
             </template>
-          </AntdInput>
-        </AntdFormItem>
-        <AntdFormItem>
-          <AntdFormItem name="remember" no-style>
-            <AntdCheckbox v-model:checked="loginForm.remember">记住我</AntdCheckbox>
-          </AntdFormItem>
+          </Input>
+        </Form.Item>
+        <Form.Item>
+          <Form.Item name="remember" no-style>
+            <Checkbox v-model:checked="loginForm.remember">记住我</Checkbox>
+          </Form.Item>
           <a class="fr" href="">忘记密码？</a>
-        </AntdFormItem>
-        <AntdFormItem>
-          <AntdButton
+        </Form.Item>
+        <Form.Item>
+          <Button
             type="primary"
             html-type="submit"
             class="login-btn"
             :loading="loading"
             @click="handleLogin"
-          >登 录</AntdButton>
-        </AntdFormItem>
-      </AntdForm>
+          >登 录</Button>
+        </Form.Item>
+      </Form>
     </div>
   </div>
 </template>
@@ -50,8 +50,7 @@
   import type { FormInstance } from 'ant-design-vue'
 
   import { ref, unref, reactive } from 'vue'
-  import { Form as AntdForm, FormItem as AntdFormItem, Input as AntdInput,
-    Checkbox as AntdCheckbox, Button as AntdButton, message as AntdMessage } from 'ant-design-vue'
+  import { Form, Input, Checkbox, Button, message } from 'ant-design-vue'
   import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
   import { useUserStore } from '@/stores/modules/user'
 
@@ -83,10 +82,10 @@
         password: data.password
       })
       if (userInfo) {
-        AntdMessage.success('登陆成功！')
+        message.success('登陆成功！')
       }
     } catch (error) {
-      AntdMessage.error((error as unknown as Error).message)
+      message.error((error as unknown as Error).message)
     } finally {
       loading.value = false
     }

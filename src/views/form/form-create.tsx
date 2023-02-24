@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue'
-import { Card as AntdCard } from 'ant-design-vue'
+import { Card } from 'ant-design-vue'
 import { PageWrapper } from '@/components/Page'
 import { FORM_CREATE_DESIGNER } from '@/settings/websiteSetting'
 
@@ -10,9 +10,9 @@ export default defineComponent({
     return () => (
       <PageWrapper plugin={FORM_CREATE_DESIGNER}>
         {{
-          default: () => <AntdCard bordered={false}>
+          default: () => <Card bordered={false}>
             <fc-designer height='664px' />
-          </AntdCard>
+          </Card>
         }}
       </PageWrapper>
     )

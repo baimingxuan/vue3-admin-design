@@ -1,15 +1,15 @@
 <template>
   <div class="compo_theme-color-picker">
     <template v-for="item in colorList || []" :key="item.color">
-      <AntdTooltip :title="item.name" placement="top">
+      <Tooltip :title="item.name" placement="top">
         <span
           :class="['theme-color-picker__item', { 'theme-color-picker__item--active': def === item.color }]"
           :style="{ background: item.color }"
           @click="handleClick(item.color)"
         >
-          <AntdCheckOutlined />
+          <CheckOutlined />
         </span>
-      </AntdTooltip>
+      </Tooltip>
     </template>
   </div>
 </template>
@@ -18,8 +18,8 @@
   import { defineComponent } from 'vue'
   import type { PropType } from 'vue'
 
-  import { Tooltip as AntdTooltip } from 'ant-design-vue'
-  import { CheckOutlined as AntdCheckOutlined } from '@ant-design/icons-vue'
+  import { Tooltip } from 'ant-design-vue'
+  import { CheckOutlined } from '@ant-design/icons-vue'
 
   import { ColorItem } from '../enum'
   import { HandlerEnum } from '../enum'
@@ -27,7 +27,7 @@
 
   export default defineComponent({
     name: 'ThemeColorPicker',
-    components: { AntdTooltip, AntdCheckOutlined },
+    components: { Tooltip, CheckOutlined },
     props: {
       colorList: {
         type: Array as PropType<ColorItem[]>,

@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue'
-import { Form, FormItem, Select, Checkbox } from 'ant-design-vue'
+import { Form, Select, Checkbox } from 'ant-design-vue'
 
 export default defineComponent({
   name: 'CodeToolbar',
@@ -14,7 +14,7 @@ export default defineComponent({
     return () => (
       <div class='flex-between-h' style='padding: 8px; border: solid 1px #ddd;'>
         <Form model={props.config} layout='inline'>
-          <FormItem label='language'>
+          <Form.Item label='language'>
             <Select
               v-model:value={props.config.language}
               size='small'
@@ -25,14 +25,14 @@ export default defineComponent({
               ]}
               style='width: 110px'
             />
-          </FormItem>
-          <FormItem label='autofocus'>
+          </Form.Item>
+          <Form.Item label='autofocus'>
             <Checkbox v-model:checked={props.config.autofocus} />
-          </FormItem>
-          <FormItem label='indentWithTab'>
+          </Form.Item>
+          <Form.Item label='indentWithTab'>
             <Checkbox v-model:checked={props.config.indentWithTab} />
-          </FormItem>
-          <FormItem label='tabSize'>
+          </Form.Item>
+          <Form.Item label='tabSize'>
             <Select
               v-model:value={props.config.tabSize}
               size='small'
@@ -44,8 +44,8 @@ export default defineComponent({
               ]}
               style='width: 100px'
             />
-          </FormItem>
-          <FormItem label='height'>
+          </Form.Item>
+          <Form.Item label='height'>
             <Select
               v-model:value={props.config.height}
               size='small'
@@ -56,7 +56,7 @@ export default defineComponent({
               ]}
               style='width: 100px'
             />
-          </FormItem>
+          </Form.Item>
         </Form>
       </div>
     )

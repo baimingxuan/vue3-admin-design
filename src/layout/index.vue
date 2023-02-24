@@ -1,22 +1,22 @@
 <template>
-  <AntLayout :class="prefixCls">
+  <Layout :class="prefixCls">
     <LayoutHeader v-if="getIsHeaderMenu" />
-    <AntLayout :class="getLayoutClass">
+    <Layout :class="getLayoutClass">
       <LayoutSider />
-      <AntLayout>
+      <Layout>
         <LayoutBasicHeader v-if="!getIsHeaderMenu" />
-        <AntContent class="cont-height">
+        <Layout.Content class="cont-height">
           <LayoutPage />
-        </AntContent>
-      </AntLayout>
-    </AntLayout>
+        </Layout.Content>
+      </Layout>
+    </Layout>
     <Setting />
-  </AntLayout>
+  </Layout>
 </template>
 
 <script lang="ts">
   import { defineComponent, computed, unref } from 'vue'
-  import { Layout as AntLayout } from 'ant-design-vue'
+  import { Layout } from 'ant-design-vue'
 
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
   import Setting from './setting/index.vue'
@@ -30,12 +30,10 @@
   export default defineComponent({
     name: 'BasicLayout',
     components: {
-      AntLayout,
-      AntSider: AntLayout.Sider,
+      Layout,
       LayoutHeader,
       LayoutBasicHeader,
       LayoutSider,
-      AntContent: AntLayout.Content,
       Setting,
       BasicSider,
       HybridSider,

@@ -1,7 +1,6 @@
 import type { UploadProps } from 'ant-design-vue'
 import { defineComponent, ref } from 'vue'
-import { Row as AntdRow, Col as AntdCol, Card as AntdCard, Button as AntdButton, Upload as AntdUpload,
-  UploadDragger as AntdUploadDragger, Modal as AntdModal } from 'ant-design-vue'
+import { Row, Col, Card, Button, Upload, Modal } from 'ant-design-vue'
 import { CloudUploadOutlined, PlusOutlined } from '@ant-design/icons-vue'
 import { PageWrapper } from '@/components/Page'
 import { UPLOAD_COMPO } from '@/settings/websiteSetting'
@@ -61,10 +60,10 @@ export default defineComponent({
     return () => (
       <PageWrapper plugin={UPLOAD_COMPO}>
         {{
-          default: () => <AntdRow gutter={12}>
-              <AntdCol span={8}>
-                <AntdCard title='拖拽上传' bordered={false} bodyStyle={{height: '300px'}}>
-                  <AntdUploadDragger
+          default: () => <Row gutter={12}>
+              <Col span={8}>
+                <Card title='拖拽上传' bordered={false} bodyStyle={{height: '300px'}}>
+                  <Upload.Dragger
                     v-model:fileList={dragImgs.value}
                     action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
                     accept='.jpg, .jpeg, .gif, .png, .bmp'
@@ -76,29 +75,29 @@ export default defineComponent({
                     </p>
                     <p>将图片拖到此处, 或<span style='color: #1890ff;'>点击上传</span></p>
                     <p class="ant-upload-hint">只能上传jpg、jpeg、gif、png、bmp文件, 且不超过500kb</p>
-                  </AntdUploadDragger>
-                </AntdCard>
-              </AntdCol>
-              <AntdCol span={8}>
-                <AntdCard title='列表样式' bordered={false} bodyStyle={{height: '300px'}}>
-                  <AntdUpload
+                  </Upload.Dragger>
+                </Card>
+              </Col>
+              <Col span={8}>
+                <Card title='列表样式' bordered={false} bodyStyle={{height: '300px'}}>
+                  <Upload
                     v-model:fileList={listImgs.value}
                     action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
                     accept='.jpg, .jpeg, .gif, .png, .bmp'
                     listType='picture'
                     class='list-upload'
                   >
-                    <AntdButton type='primary'>
+                    <Button type='primary'>
                       <CloudUploadOutlined />
                       <span>点击上传</span>
-                    </AntdButton>
+                    </Button>
                     <p class="ant-upload-hint">只能上传jpg、jpeg、gif、png、bmp文件, 且不超过500kb</p>
-                  </AntdUpload>
-                </AntdCard>
-              </AntdCol>
-              <AntdCol span={8}>
-                <AntdCard title='照片墙' bordered={false} bodyStyle={{height: '300px'}}>
-                  <AntdUpload
+                  </Upload>
+                </Card>
+              </Col>
+              <Col span={8}>
+                <Card title='照片墙' bordered={false} bodyStyle={{height: '300px'}}>
+                  <Upload
                     v-model:fileList={listImgs.value}
                     action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
                     accept='.jpg, .jpeg, .gif, .png, .bmp'
@@ -110,18 +109,18 @@ export default defineComponent({
                       <PlusOutlined />
                       <div style="margin-top: 8px">点击上传</div>
                     </div>
-                  </AntdUpload>
-                </AntdCard>
-                <AntdModal
+                  </Upload>
+                </Card>
+                <Modal
                   visible={previewVisible.value}
                   title={previewTitle.value}
                   footer={null}
                   onCancel={handleCancle}
                 >
                   <img src={previewImage.value} style='width: 100%' />
-                </AntdModal>
-              </AntdCol>
-            </AntdRow>
+                </Modal>
+              </Col>
+            </Row>
         }}
       </PageWrapper>
     )

@@ -1,7 +1,7 @@
 <template>
   <div class="select-item">
     <span> {{ title }}</span>
-    <AntdSelect
+    <Select
       class="select-item-select"
       size="small"
       v-bind="getBindValue"
@@ -16,7 +16,7 @@
   import { defineComponent, computed } from 'vue'
   import type { PropType } from 'vue'
 
-  import { Select as AntdSelect } from 'ant-design-vue'
+  import { Select } from 'ant-design-vue'
   import type { SelectOptions } from '@/types'
 
   import { HandlerEnum } from '../enum'
@@ -24,7 +24,7 @@
 
   export default defineComponent({
     name: 'SelectItem',
-    components: { AntdSelect },
+    components: { Select },
     props: {
       title: {
         type: String,

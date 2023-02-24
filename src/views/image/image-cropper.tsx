@@ -1,5 +1,5 @@
 import { defineComponent, reactive, ref, unref, nextTick } from 'vue'
-import { Row as AntdRow, Col as AntdCol, Card as AntdCard, Button as AntdButton, Space as AntdSpace } from 'ant-design-vue'
+import { Row, Col, Card, Button, Space } from 'ant-design-vue'
 import { PageWrapper } from '@/components/Page'
 import { VUE_CROPPER_PLUGIN, CROPPER_IMG_SRC } from '@/settings/websiteSetting'
 import 'vue-cropper/dist/index.css'
@@ -47,9 +47,9 @@ export default defineComponent({
       <PageWrapper plugin={VUE_CROPPER_PLUGIN}>
         {{
           default: () => (
-            <AntdRow gutter={12}>
-              <AntdCol span={10}>
-                <AntdCard title='裁剪区域' bordered={false} bodyStyle={{height: '400px'}}>
+            <Row gutter={12}>
+              <Col span={10}>
+                <Card title='裁剪区域' bordered={false} bodyStyle={{height: '400px'}}>
                   <VueCropper
                     ref={cropper}
                     img={config.imgSrc}
@@ -64,23 +64,23 @@ export default defineComponent({
                     outputType={config.outputType}
                     onRealTime={realTime}
                   />
-                </AntdCard>
-              </AntdCol>
-              <AntdCol span={4}>
-                <AntdCard title='设置区域' bordered={false}>
+                </Card>
+              </Col>
+              <Col span={4}>
+                <Card title='设置区域' bordered={false}>
                   <div class='flex-center' style='height: 352px'>
-                    <AntdSpace direction='vertical'>
+                    <Space direction='vertical'>
                       <UploadImage onSuccess={handleSuccess} />
-                      <AntdButton type='primary'>
+                      <Button type='primary'>
                         <a onClick={downloadImage}>下载图片</a>
-                      </AntdButton>
+                      </Button>
                       <a ref={downloadDom} href={unref(downImg)} download='demo.png' />
-                    </AntdSpace>
+                    </Space>
                   </div>
-                </AntdCard>
-              </AntdCol>
-              <AntdCol span={10}>
-                <AntdCard title='预览区域' bordered={false} bodyStyle={{height: '400px'}}>
+                </Card>
+              </Col>
+              <Col span={10}>
+                <Card title='预览区域' bordered={false} bodyStyle={{height: '400px'}}>
                   <div style={{
                     width: unref(previews).w + 'px',
                     height: unref(previews).h + 'px',
@@ -92,9 +92,9 @@ export default defineComponent({
                       <img src={unref(previews).url} style={unref(previews).img} />
                     </div>
                   </div>
-                </AntdCard>
-              </AntdCol>
-            </AntdRow>
+                </Card>
+              </Col>
+            </Row>
           )
         }}
       </PageWrapper>

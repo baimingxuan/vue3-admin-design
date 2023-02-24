@@ -1,5 +1,5 @@
   import { defineComponent, computed, unref } from 'vue'
-  import { Tooltip as AntdTooltip } from 'ant-design-vue'
+  import { Tooltip } from 'ant-design-vue'
   import { useFullscreen } from '@vueuse/core'
   import SvgIcon from '@/components/SvgIcon/index.vue'
 
@@ -13,7 +13,7 @@
     name: 'FullScreen',
     setup() {
       return () => (
-        <AntdTooltip
+        <Tooltip
           title={unref(getTitle)}
           placement='bottom'
           mouseEnterDelay={0.5}
@@ -27,7 +27,7 @@
               )
             }
           </span>
-        </AntdTooltip>
+        </Tooltip>
       )
     }
   })

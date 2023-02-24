@@ -1,5 +1,5 @@
 <template>
-  <AntdButton
+  <Button
     class="layout-setting-trigger"
     type="primary"
     @click="toggleDrawer"
@@ -7,8 +7,8 @@
     <template #icon>
       <AntdSettingOutlined />
     </template>
-  </AntdButton>
-  <AntdDrawer
+  </Button>
+  <Drawer
     :visible="drawerVisible"
     :closable="false"
     width="320"
@@ -17,9 +17,9 @@
     @close="toggleDrawer"
   >
     <Container>
-      <AntdDivider>系统风格</AntdDivider>
+      <Divider>系统风格</Divider>
       <AppDarkMode class="mx-auto" />
-      <AntdDivider>菜单模式</AntdDivider>
+      <Divider>菜单模式</Divider>
       <div class="flex-between-h">
         <MenuThemeRadio />
         <MenuTypePicker
@@ -33,13 +33,13 @@
           }"
         />
       </div>
-      <AntdDivider>主题颜色</AntdDivider>
+      <Divider>主题颜色</Divider>
       <ThemeColorPicker
         :colorList="appThemeColorList"
         :def="unref(getThemeColor)"
         :event="HandlerEnum.CHANGE_THEME_COLOR"
       />
-      <AntdDivider>界面功能</AntdDivider>
+      <Divider>界面功能</Divider>
       <SwitchItem
         title="菜单分割"
         :def="unref(getMenuSplit)"
@@ -100,7 +100,7 @@
             : `${value}分钟`
         }"
       />
-      <AntdDivider>界面显示</AntdDivider>
+      <Divider>界面显示</Divider>
       <SwitchItem
         title="面包屑"
         :def="unref(getShowBreadCrumb)"
@@ -151,7 +151,7 @@
         :def="unref(getGrayMode)"
         :event="HandlerEnum.GRAY_MODE"
       />
-      <AntdDivider>动画设置</AntdDivider>
+      <Divider>动画设置</Divider>
       <SwitchItem
         title="顶部进度条"
         :def="unref(getOpenNProgress)"
@@ -173,16 +173,16 @@
         :event="HandlerEnum.BASIC_TRANSITION"
         :options="pageTransitionOptions"
       />
-      <AntdDivider />
+      <Divider />
       <SettingFooter />
     </Container>
-  </AntdDrawer>
+  </Drawer>
 </template>
 
 <script lang="ts" setup>
   import { ref, unref } from 'vue'
   
-  import { Drawer as AntdDrawer, Divider as AntdDivider, Button as AntdButton } from 'ant-design-vue'
+  import { Drawer, Divider, Button } from 'ant-design-vue'
   import { SettingOutlined as AntdSettingOutlined } from '@ant-design/icons-vue'
 
   import { AppDarkMode } from '@/components/Application'

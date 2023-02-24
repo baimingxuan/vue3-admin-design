@@ -1,6 +1,6 @@
 import type { AntTreeNodeDropEvent, TreeProps } from 'ant-design-vue/es/tree'
 import { defineComponent, ref } from 'vue'
-import { Row as AntdRow, Col as AntdCol, Card as AntdCard, Tree as AntdTree } from 'ant-design-vue'
+import { Row, Col, Card, Tree } from 'ant-design-vue'
 import { TREE_COMPO } from '@/settings/websiteSetting'
 import { PageWrapper } from '@/components/Page'
 import { treeData } from './data'
@@ -96,40 +96,40 @@ export default defineComponent({
     return () => (
       <PageWrapper plugin={TREE_COMPO}>
         {{
-          default: () => <AntdRow gutter={12}>
-              <AntdCol span={8}>
-                <AntdCard title='可选择节点' bordered={false} bodyStyle={{height: '420px'}}>
-                  <AntdTree
+          default: () => <Row gutter={12}>
+              <Col span={8}>
+                <Card title='可选择节点' bordered={false} bodyStyle={{height: '420px'}}>
+                  <Tree
                     v-model:checkedKeys={checkedKeys.value}
                     treeData={treeData}
                     checkable
                     defaultExpandAll
                   />
-                </AntdCard>
-              </AntdCol>
-              <AntdCol span={8}>
-                <AntdCard title='懒加载节点' bordered={false} bodyStyle={{height: '420px'}}>
-                  <AntdTree
+                </Card>
+              </Col>
+              <Col span={8}>
+                <Card title='懒加载节点' bordered={false} bodyStyle={{height: '420px'}}>
+                  <Tree
                     v-model:expandedKeys={expandedKeys.value}
                     v-model:selectedKeys={selectedKeys.value}
                     checkable
                     treeData={lazyTreeData.value}
                     loadData={handleLoadData}
                   />
-                </AntdCard>
-              </AntdCol>
-              <AntdCol span={8}>
-                <AntdCard title='可拖拽节点' bordered={false} bodyStyle={{height: '420px'}}>
-                  <AntdTree
+                </Card>
+              </Col>
+              <Col span={8}>
+                <Card title='可拖拽节点' bordered={false} bodyStyle={{height: '420px'}}>
+                  <Tree
                     treeData={dragTreeData.value}
                     draggable
                     blockNode
                     defaultExpandAll
                     onDrop={handleDrop}
                   />
-                </AntdCard>
-              </AntdCol>
-            </AntdRow>
+                </Card>
+              </Col>
+            </Row>
         }}
       </PageWrapper>
     )

@@ -1,8 +1,6 @@
 import type { UnwrapRef } from 'vue'
 import { defineComponent, ref, unref, reactive } from 'vue'
-import { Button as AntdButton, Table as AntdTable, Select as AntdSelect, Switch as AntdSwitch, InputNumber as AntdInputNumber,
-  Input as AntdInput, DatePicker as AntdDatePicker, RadioGroup as AntdRadioGroup, CheckboxGroup as AntdCheckboxGroup,
-  Card as AntdCard, Popconfirm as AntdPopconfirm, Space as AntdSpace } from 'ant-design-vue'
+import { Button, Table, Select, Switch, InputNumber, Input, DatePicker, Radio, Checkbox, Card, Popconfirm, Space } from 'ant-design-vue'
 import { ColumnType } from 'ant-design-vue/lib/table'
 import dayjs from 'dayjs'
 import { cloneDeep } from 'lodash-es'
@@ -61,8 +59,8 @@ export default defineComponent({
     return () => (
       <PageWrapper plugin={TABLE_EDIT_COMPO}>
         {{
-          default: () => <AntdCard bordered={false}>
-            <AntdTable
+          default: () => <Card bordered={false}>
+            <Table
               dataSource={unref(dataSource)}
               columns={tableColumns}
               pagination={false}
@@ -77,17 +75,17 @@ export default defineComponent({
                   bodyCell: ({column, record, text}) => {
                     if (column.dataIndex === 'key') {
                       return editableData[record.key]
-                        ? <AntdInputNumber v-model:value={editableData[record.key]['key']} min={1000} max={2000} />
+                        ? <InputNumber v-model:value={editableData[record.key]['key']} min={1000} max={2000} />
                         : <span>{text}</span>
                     }
                     else if (column.dataIndex === 'name') {
                       return editableData[record.key]
-                        ? <AntdInput v-model:value={editableData[record.key]['name']} />
+                        ? <Input v-model:value={editableData[record.key]['name']} />
                         : <span>{text}</span>
                     }
                     else if (column.dataIndex === 'sex') {
                       return editableData[record.key]
-                        ? <AntdRadioGroup
+                        ? <Radio.Group
                             v-model:value={editableData[record.key]['sex']}
                             options={['男', '女'].map(item => ({value: item, label: item}))}
                           />
@@ -95,7 +93,7 @@ export default defineComponent({
                     }
                     else if (column.dataIndex === 'birth') {
                       return editableData[record.key]
-                        ? <AntdDatePicker
+                        ? <DatePicker
                             value={dayjs(editableData[record.key]['birth'], 'YYYY-MM-DD')}
                             format='YYYY-MM-DD'
                             valueFormat='YYYY-MM-DD'
@@ -105,7 +103,7 @@ export default defineComponent({
                     }
                     else if (column.dataIndex === 'education') {
                       return editableData[record.key]
-                        ? <AntdSelect
+                        ? <Select
                             v-model:value={editableData[record.key]['education']}
                             options={['初中', '高中', '大专', '本科'].map(item => ({ value: item }))}
                             style='width: 80px'
@@ -114,7 +112,7 @@ export default defineComponent({
                     }
                     else if (column.dataIndex === 'hobby') {
                       return editableData[record.key]
-                        ? <AntdCheckboxGroup
+                        ? <Checkbox.Group
                             value={editableData[record.key]['hobby'].split('、')}
                             options={record.hobby.split('、').map(item => ({label: item, value: item}))}
                             onChange={handleChecked.bind(null, editableData[record.key])}
@@ -123,37 +121,37 @@ export default defineComponent({
                     }
                     else if (column.dataIndex === 'forbid') {
                       return editableData[record.key]
-                        ? <AntdSwitch v-model:checked={editableData[record.key]['forbid']} />
+                        ? <Switch v-model:checked={editableData[record.key]['forbid']} />
                         : <span>{record.forbid ? '是' : '否'}</span>
                     }
                     else if (column.key === 'action') {
                       return editableData[record.key]
-                        ? <AntdSpace>
-                            <AntdButton
+                        ? <Space>
+                            <Button
                               type='primary'
                               ghost
                               onClick={handleSave.bind(null, String(record.key))}
-                            >保存</AntdButton>
-                            <AntdPopconfirm
+                            >保存</Button>
+                            <Popconfirm
                               title='是否取消编辑？'
                               onConfirm={handleCancle.bind(null, String(record.key))}
                             >
-                              <AntdButton
+                              <Button
                                 type='primary'
                                 danger
                                 ghost
-                              >取消</AntdButton>
-                            </AntdPopconfirm>
-                          </AntdSpace>
-                        : <AntdButton
+                              >取消</Button>
+                            </Popconfirm>
+                          </Space>
+                        : <Button
                             disabled={record.forbid}
                             onClick={handleEdit.bind(null, String(record.key))}
-                          >编辑</AntdButton>
+                          >编辑</Button>
                     }
                   }
               }}
-            </AntdTable>
-          </AntdCard>
+            </Table>
+          </Card>
         }}
       </PageWrapper>
     )

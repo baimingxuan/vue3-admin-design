@@ -1,5 +1,5 @@
 <template>
-  <AntdHeader :class="getHeaderStyle">
+  <Layout.Header :class="getHeaderStyle">
     <div :class="`${prefixCls}-wrap`">
       <div :class="`${prefixCls}-wrap-logo`">
         <AppLogo theme="light" />
@@ -15,7 +15,7 @@
       </div>
     </div>
     <LayoutTags v-if="getShowTags" />
-  </AntdHeader>
+  </Layout.Header>
 </template>
 
 <script lang="ts">
@@ -34,7 +34,7 @@
   export default defineComponent({
     name: 'LayoutHeader',
     components: {
-      AntdHeader: Layout.Header,
+      Layout,
       LayoutMenu,
       LayoutTags,
       LayoutFeature,

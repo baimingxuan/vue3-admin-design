@@ -1,5 +1,5 @@
 <template>
-  <AntdMenu
+  <Menu
     :mode="mode"
     :theme="theme"
     :openKeys="getOpenKeys"
@@ -19,7 +19,7 @@
         :isHorizontal="isHorizontal"
       />
     </template>
-  </AntdMenu>
+  </Menu>
 </template>
 
 <script lang="ts">
@@ -27,7 +27,7 @@
 
   import { defineComponent, ref, unref, toRefs, reactive, computed, watch } from 'vue'
   import { RouteLocationNormalized, RouteLocationNormalizedLoaded } from 'vue-router'
-  import { Menu as AntdMenu } from 'ant-design-vue'
+  import { Menu } from 'ant-design-vue'
   
   import SubMenuItem from './components/SubMenuItem.vue'
   import { isFunction } from '@/utils/is'
@@ -42,7 +42,7 @@
   export default defineComponent({
     name: 'Menu',
     components: {
-      AntdMenu,
+      Menu,
       SubMenuItem
     },
     props: menuProps,

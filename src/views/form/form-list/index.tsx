@@ -1,12 +1,8 @@
 import type { FormInstance, CascaderProps, TreeSelectProps } from 'ant-design-vue'
 import type { Rule } from 'ant-design-vue/es/form'
 import { defineComponent, ref, reactive, watch } from 'vue'
-import { Card as AntdCard, Form as AntdForm, FormItem as AntdFormItem, Row as AntdRow, Col as AntdCol,
-  Input as AntdInput, InputNumber as AntdInputNumber, InputPassword as AntdInputPassword, Button as AntdButton,
-  Select as AntdSelect, DatePicker as AntdDatePicker, TimePicker as AntdTimePicker, Switch as AntdSwitch,
-  Slider as AntdSlider, Cascader as AntdCascader, TreeSelect as AntdTreeSelect, RadioGroup as AntdRadioGroup,
-  CheckboxGroup as AntdCheckboxGroup, Textarea as AntdTextarea
-} from 'ant-design-vue'
+import { Card, Form, Row, Col, Input, InputNumber, Button, Select, DatePicker, TimePicker, Switch, Slider, Cascader,
+  TreeSelect, Radio, Checkbox, Textarea } from 'ant-design-vue'
 import { FORM_COMPO } from '@/settings/websiteSetting'
 import { PageWrapper } from '@/components/Page'
 import { provinceData, cityData, cascaderData, treeData, radioData, checkboxData } from './data'
@@ -119,8 +115,8 @@ export default defineComponent({
     return () => (
       <PageWrapper plugin={FORM_COMPO}>
         {{
-          default: () => <AntdCard bordered={false}>
-              <AntdForm
+          default: () => <Card bordered={false}>
+              <Form
                 ref={formRef}
                 model={formState}
                 rules={formRules}
@@ -128,142 +124,142 @@ export default defineComponent({
                 wrapperCol={{span: 18}}
                 style='width: 40%; margin: 0 auto;'
               >
-                <AntdFormItem label='输入框(长度限制):' name='inputLimit'>
-                  <AntdInput
+                <Form.Item label='输入框(长度限制):' name='inputLimit'>
+                  <Input
                     v-model={[formState.inputLimit, 'value']}
                     showCount
                     maxlength={20}
                     placeholder='请输入内容'
                   />
-                </AntdFormItem>
-                <AntdFormItem label='输入框(纯数字):' name='inputNum'>
-                  <AntdInputNumber
+                </Form.Item>
+                <Form.Item label='输入框(纯数字):' name='inputNum'>
+                  <InputNumber
                     v-model={[formState.inputNum, 'value']}
                     style='width: 100%;'
                     placeholder='请输入数字'
                   />
-                </AntdFormItem>
-                <AntdFormItem label='输入框(密码隐藏):' name='password'>
-                  <AntdInputPassword
+                </Form.Item>
+                <Form.Item label='输入框(密码隐藏):' name='password'>
+                  <Input.Password
                     v-model={[formState.password, 'value']}
                     maxlength={16}
                     autocomplete='off'
                     placeholder="请输入密码"
                   />
-                </AntdFormItem>
-                <AntdFormItem label='select选择器(联动):' name='selectProvince'>
-                  <AntdRow gutter={12}>
-                    <AntdCol span={12}>
-                      <AntdSelect
+                </Form.Item>
+                <Form.Item label='select选择器(联动):' name='selectProvince'>
+                  <Row gutter={12}>
+                    <Col span={12}>
+                      <Select
                         v-model={[formState.selectProvince, 'value']}
                         options={provinceData.map(pro => ({ value: pro }))}
                       />
-                    </AntdCol>
-                    <AntdCol span={12}>
-                      <AntdFormItem name='selectCity'>
-                        <AntdSelect
+                    </Col>
+                    <Col span={12}>
+                      <Form.Item name='selectCity'>
+                        <Select
                           v-model={[formState.selectCity, 'value']}
                           options={cityData[formState.selectProvince].map(city => ({ value: city }))}
                         />
-                      </AntdFormItem>
-                    </AntdCol>
-                  </AntdRow>
-                </AntdFormItem>
-                <AntdFormItem label='日期和时间选择器:' name='dateVal'>
-                  <AntdRow gutter={12}>
-                    <AntdCol span={12}>
-                      <AntdDatePicker
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                </Form.Item>
+                <Form.Item label='日期和时间选择器:' name='dateVal'>
+                  <Row gutter={12}>
+                    <Col span={12}>
+                      <DatePicker
                         v-model={[formState.dateVal, 'value']}
                         placeholder='选择日期'
                         style='width: 100%;'
                       />
-                    </AntdCol>
-                    <AntdCol span={12}>
-                      <AntdFormItem name='timeVal'>
-                        <AntdTimePicker
+                    </Col>
+                    <Col span={12}>
+                      <Form.Item name='timeVal'>
+                        <TimePicker
                           v-model={[formState.timeVal, 'value']}
                           placeholder='选择时间'
                           style='width: 100%;'
                         />
-                      </AntdFormItem>
-                    </AntdCol>
-                  </AntdRow>
-                </AntdFormItem>
-                <AntdFormItem label='switch开关(显示隐藏):' name='switchVal'>
-                  <AntdSwitch v-model={[formState.switchVal, 'checked']} />
-                </AntdFormItem>
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                </Form.Item>
+                <Form.Item label='switch开关(显示隐藏):' name='switchVal'>
+                  <Switch v-model={[formState.switchVal, 'checked']} />
+                </Form.Item>
                 <div v-show={formState.switchVal}>
-                  <AntdFormItem label='滑块条(初始值):' name='sliderVal'>
-                    <AntdSlider v-model={[formState.sliderVal, 'value']} />
-                  </AntdFormItem>
-                  <AntdFormItem label='级联选择器:' name='cascaderVal'>
-                    <AntdRow gutter={12}>
-                      <AntdCol span={12}>
-                        <AntdCascader
+                  <Form.Item label='滑块条(初始值):' name='sliderVal'>
+                    <Slider v-model={[formState.sliderVal, 'value']} />
+                  </Form.Item>
+                  <Form.Item label='级联选择器:' name='cascaderVal'>
+                    <Row gutter={12}>
+                      <Col span={12}>
+                        <Cascader
                           v-model={[formState.cascaderVal, 'value']}
                           options={cascaderData}
                           placeholder='请选择'
                         />
-                      </AntdCol>
-                      <AntdCol span={12}>
-                        <AntdFormItem name='cascaderLazy'>
-                          <AntdCascader
+                      </Col>
+                      <Col span={12}>
+                        <Form.Item name='cascaderLazy'>
+                          <Cascader
                             v-model={[formState.cascaderLazy, 'value']}
                             options={cascaderLazyData.value}
                             loadData={loadCascaderLazy}
                             changeOnSelect
                             placeholder='请输入'
                           />
-                        </AntdFormItem>
-                      </AntdCol>
-                    </AntdRow>
-                  </AntdFormItem>
-                  <AntdFormItem label='树选择器(可勾选):' name='treeVal'>
-                    <AntdRow gutter={12}>
-                      <AntdCol span={12}>
-                        <AntdTreeSelect
+                        </Form.Item>
+                      </Col>
+                    </Row>
+                  </Form.Item>
+                  <Form.Item label='树选择器(可勾选):' name='treeVal'>
+                    <Row gutter={12}>
+                      <Col span={12}>
+                        <TreeSelect
                           v-model={[formState.treeVal, 'value']}
                           treeData={treeData}
                           treeCheckable
                           allowClear
-                          showCheckedStrategy={AntdTreeSelect.SHOW_PARENT}
+                          showCheckedStrategy={TreeSelect.SHOW_PARENT}
                           placeholder='请选择'
                         />
-                      </AntdCol>
-                      <AntdCol span={12}>
-                        <AntdFormItem name='treeLazy'>
-                          <AntdTreeSelect
+                      </Col>
+                      <Col span={12}>
+                        <Form.Item name='treeLazy'>
+                          <TreeSelect
                             v-model={[formState.treeLazy, 'value']}
                             treeDataSimpleMode
                             treeData={treeLazyData.value}
                             loadData={loadTreeLazy}
                             placeholder='请选择'
                           />
-                        </AntdFormItem>
-                      </AntdCol>
-                    </AntdRow>
-                  </AntdFormItem>
-                  <AntdFormItem label='单选框(带禁止):' name='radioVal'>
-                    <AntdRadioGroup v-model={[formState.radioVal, 'value']} options={radioData} />
-                  </AntdFormItem>
-                  <AntdFormItem label='多选框(带禁止):' name='checkboxVal'>
-                    <AntdCheckboxGroup v-model={[formState.checkboxVal, 'value']} options={checkboxData} />
-                  </AntdFormItem>
-                  <AntdFormItem label='文本域(长度限制):' name='textareaVal'>
-                    <AntdTextarea
+                        </Form.Item>
+                      </Col>
+                    </Row>
+                  </Form.Item>
+                  <Form.Item label='单选框(带禁止):' name='radioVal'>
+                    <Radio.Group v-model={[formState.radioVal, 'value']} options={radioData} />
+                  </Form.Item>
+                  <Form.Item label='多选框(带禁止):' name='checkboxVal'>
+                    <Checkbox.Group v-model={[formState.checkboxVal, 'value']} options={checkboxData} />
+                  </Form.Item>
+                  <Form.Item label='文本域(长度限制):' name='textareaVal'>
+                    <Textarea
                       v-model={[formState.textareaVal, 'value']}
                       maxlength={50}
                       rows={3}
                       placeholder='请输入内容'
                     />
-                  </AntdFormItem>
+                  </Form.Item>
                 </div>
-                <AntdFormItem wrapperCol={{span: 12, offset: 12}}>
-                  <AntdButton type='primary' htmlType='submit'>提交</AntdButton>
-                  <AntdButton style='margin-left: 12px;' onClick={resetForm}>重置</AntdButton>
-                </AntdFormItem>
-              </AntdForm>
-            </AntdCard>
+                <Form.Item wrapperCol={{span: 12, offset: 12}}>
+                  <Button type='primary' htmlType='submit'>提交</Button>
+                  <Button style='margin-left: 12px;' onClick={resetForm}>重置</Button>
+                </Form.Item>
+              </Form>
+            </Card>
         }}
       </PageWrapper>
     )

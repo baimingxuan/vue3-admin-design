@@ -1,6 +1,6 @@
 import type { UploadChangeParam } from 'ant-design-vue'
 import { defineComponent } from 'vue'
-import { Upload as AntdUpload, Button as AntdButton, message } from 'ant-design-vue'
+import { Upload, Button, message } from 'ant-design-vue'
 
 export default defineComponent({
   name: 'UploadImage',
@@ -44,15 +44,15 @@ export default defineComponent({
     }
 
     return () => (
-      <AntdUpload
+      <Upload
         action=''
         accept='.jpg, .jpeg, .gif, .png, .bmp'
         multiple={false}
         showUploadList={false}
         onChange={handleChange}
       >
-        <AntdButton type='primary'>上传图片</AntdButton>
-      </AntdUpload>
+        <Button type='primary'>上传图片</Button>
+      </Upload>
     )
   }
 })

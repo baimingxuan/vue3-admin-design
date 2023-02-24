@@ -1,12 +1,12 @@
 <template>
-  <AntdMenuItem :key="item.path">
+  <Menu.Item :key="item.path">
     <MenuItemCont :item="item" :collapsed="collapsed" :showTitle="showTitle" />
-  </AntdMenuItem>
+  </Menu.Item>
 </template>
 
 <script lang="ts">
   import { defineComponent } from 'vue'
-  import { Menu as AntdMenu } from 'ant-design-vue'
+  import { Menu } from 'ant-design-vue'
 
   import { menuItemProps } from '../props'
   import MenuItemCont from './MenuItemCont.vue'
@@ -14,7 +14,7 @@
   export default defineComponent({
     name: 'MenuItem',
     components: {
-      AntdMenuItem: AntdMenu.Item,
+      Menu,
       MenuItemCont
     },
     props: menuItemProps
