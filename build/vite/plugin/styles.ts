@@ -16,8 +16,19 @@ export function configStyleImportPlugin() {
         esModule: true,
         resolveStyle: (name) => {
           const replaceList = {
+            'layout-header': 'layout',
+            'layout-sider': 'layout',
+            'layout-content': 'layout',
+            'layout-footer': 'layout',
             'sub-menu': 'menu',
-            'menu-item': 'menu'
+            'menu-item': 'menu',
+            'form-item': 'form',
+            'input-password': 'input',
+            'textarea': 'input',
+            'radio-group': 'radio',
+            'radio-button': 'radio',
+            'checkbox-group': 'checkbox',
+            'upload-dragger': 'upload'
           }
           return replaceList.hasOwnProperty(name)
             ? `ant-design-vue/es/${replaceList[name]}/style/index`
