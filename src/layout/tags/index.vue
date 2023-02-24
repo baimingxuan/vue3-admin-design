@@ -50,12 +50,12 @@
         </template>
       </Button>
       <template #overlay>
-        <AntdMenu>
+        <Menu>
           <Menu.Item @click="closeLeft">关闭左侧</Menu.Item>
           <Menu.Item @click="closeRight">关闭右侧</Menu.Item>
           <Menu.Item @click="closeOther">关闭其它</Menu.Item>
           <Menu.Item @click="closeAll">关闭所有</Menu.Item>
-        </AntdMenu>
+        </Menu>
       </template>
     </Dropdown>
   </div>

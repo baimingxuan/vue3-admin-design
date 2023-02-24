@@ -5,7 +5,7 @@
     @click="toggleDrawer"
   >
     <template #icon>
-      <AntdSettingOutlined />
+      <SettingOutlined />
     </template>
   </Button>
   <Drawer
@@ -183,7 +183,7 @@
   import { ref, unref } from 'vue'
   
   import { Drawer, Divider, Button } from 'ant-design-vue'
-  import { SettingOutlined as AntdSettingOutlined } from '@ant-design/icons-vue'
+  import { SettingOutlined } from '@ant-design/icons-vue'
 
   import { AppDarkMode } from '@/components/Application'
   import { MenuThemeRadio, MenuTypePicker, ThemeColorPicker,

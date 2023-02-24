@@ -1,5 +1,5 @@
 import { defineAsyncComponent } from 'vue'
-import { Spin as AntdSpin } from 'ant-design-vue'
+import { Spin } from 'ant-design-vue'
 
 interface Fn<T = any, R = T> {
   (...arg: T[]): R;
@@ -17,7 +17,7 @@ export function ImportAsyncComponent(loader: Fn, options: Options = {}) {
   const { size = 'small', delay = 100, timeout = 5000, loading = false, retry = true } = options
   return defineAsyncComponent({
     loader,
-    loadingComponent: loading ? <AntdSpin spinning={true} size={size} /> : undefined,
+    loadingComponent: loading ? <Spin spinning={true} size={size} /> : undefined,
     timeout,
     delay,
     onError: !retry
