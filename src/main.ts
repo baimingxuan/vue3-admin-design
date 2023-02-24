@@ -1,4 +1,4 @@
-import 'ant-design-vue/dist/antd.css'
+// import 'ant-design-vue/dist/antd.css'
 
 import 'virtual:windi-base.css'
 import 'virtual:windi-components.css'

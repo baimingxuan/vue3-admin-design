@@ -4,6 +4,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import windiCSS from 'vite-plugin-windicss'
 import { configMockPlugin } from './mock'
 import { configSvgIconsPlugin } from './svgIcons'
+import { configStyleImportPlugin } from './styles'
 import { configThemePlugin } from './theme'
 
 export function createVitePlugins(isBuild: boolean) {
@@ -15,6 +16,9 @@ export function createVitePlugins(isBuild: boolean) {
 
     // vite-plugin-windicss
     vitePlugins.push(windiCSS())
+
+    // vite-plugin-style-import
+    vitePlugins.push(configStyleImportPlugin())
 
     // vite-plugin-svg-icons
     vitePlugins.push(configSvgIconsPlugin(isBuild))
