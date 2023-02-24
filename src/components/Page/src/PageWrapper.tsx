@@ -36,7 +36,7 @@ export default defineComponent({
           <p>{props.plugin?.desc}</p>
           <p>
             <span>github源码:</span>
-            <Button type='link' onClick={openGithub}>立即访问</Button>
+            <Button type='link' size='small' onClick={openGithub}>立即访问</Button>
           </p>
         </div>
         <div ref={pageContentRef} class={compoStyle['page-content']}>
