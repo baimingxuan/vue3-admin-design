@@ -1,5 +1,5 @@
 import { defineComponent, reactive, ref, unref } from 'vue'
-import { Row, Col, Card, Button, Form, Input, InputNumber, Space } from 'ant-design-vue'
+import { Row, Col, Card, Button, Form, FormItem, Input, InputNumber, Space } from 'ant-design-vue'
 import { PageWrapper } from '@/components/Page'
 import { CountTo } from '@/components/CountTo'
 import { COUNTTO_PLUGIN } from '@/settings/websiteSetting'
@@ -64,53 +64,53 @@ export default defineComponent({
                     labelAlign='left'
                     labelCol={{style: {width: '80px', marginBottom: '12px'}}}
                   >
-                    <Form.Item label='startVal:' name='startVal'>
+                    <FormItem label='startVal:' name='startVal'>
                       <InputNumber
                         v-model:value={formRef.startVal}
                         min={0}
                         max={10000}
                         style='width: 100px'
                       />
-                    </Form.Item>
-                    <Form.Item label='endVal:' name='endVal'>
+                    </FormItem>
+                    <FormItem label='endVal:' name='endVal'>
                       <InputNumber
                         v-model:value={formRef.endVal}
                         min={0}
                         max={10000}
                         style='width: 100px'
                       />
-                    </Form.Item>
-                    <Form.Item label='duration:' name='duration'>
+                    </FormItem>
+                    <FormItem label='duration:' name='duration'>
                       <InputNumber
                         v-model:value={formRef.duration}
                         min={100}
                         max={100000}
                         style='width: 100px'
                       />
-                    </Form.Item>
-                    <Form.Item label='decimals:' name='decimals'>
+                    </FormItem>
+                    <FormItem label='decimals:' name='decimals'>
                       <InputNumber
                         v-model:value={formRef.decimals}
                         min={0}
                         max={100}
                         style='width: 100px'
                       />
-                    </Form.Item>
-                    <Form.Item label='separator:' name='separator'>
+                    </FormItem>
+                    <FormItem label='separator:' name='separator'>
                       <Input v-model:value={formRef.separator} style='width: 100px' />
-                    </Form.Item>
-                    <Form.Item label='prefix:' name='prefix'>
+                    </FormItem>
+                    <FormItem label='prefix:' name='prefix'>
                       <Input v-model:value={formRef.prefix} style='width: 100px' />
-                    </Form.Item>
-                    <Form.Item label='suffix:' name='suffix'>
+                    </FormItem>
+                    <FormItem label='suffix:' name='suffix'>
                       <Input v-model:value={formRef.suffix} style='width: 100px' />
-                    </Form.Item>
-                    <Form.Item>
+                    </FormItem>
+                    <FormItem>
                       <Space>
                         <Button type='primary' onClick={handleStart}>开始</Button>
                         <Button type='primary' danger onClick={handleReset}>重置</Button>
                       </Space>
-                    </Form.Item>
+                    </FormItem>
                   </Form>
                 </Card>
               </Col>

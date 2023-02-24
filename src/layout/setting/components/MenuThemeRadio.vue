@@ -1,19 +1,19 @@
 <template>
   <div class="compo_menu-color-switch">
-    <Radio.Group
+    <RadioGroup
       :value="getMenuTheme"
       button-style="solid"
       size="small"
       @change="handleChangeTheme"
     >
-      <Radio.Button value="dark">暗色</Radio.Button>
-      <Radio.Button value="light">亮色</Radio.Button>
-    </Radio.Group>
+      <RadioButton value="dark">暗色</RadioButton>
+      <RadioButton value="light">亮色</RadioButton>
+    </RadioGroup>
   </div>
 </template>
 
 <script lang="ts" setup>
-  import { Radio } from 'ant-design-vue'
+  import { RadioGroup, RadioButton } from 'ant-design-vue'
   import { ThemeEnum } from '@/enums/appEnum'
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 

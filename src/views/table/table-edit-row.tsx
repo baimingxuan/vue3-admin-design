@@ -1,6 +1,6 @@
 import type { UnwrapRef } from 'vue'
 import { defineComponent, ref, unref, reactive } from 'vue'
-import { Button, Table, Select, Switch, InputNumber, Input, DatePicker, Radio, Checkbox, Card, Popconfirm, Space } from 'ant-design-vue'
+import { Button, Table, Select, Switch, InputNumber, Input, DatePicker, RadioGroup, CheckboxGroup, Card, Popconfirm, Space } from 'ant-design-vue'
 import { ColumnType } from 'ant-design-vue/lib/table'
 import dayjs from 'dayjs'
 import { cloneDeep } from 'lodash-es'
@@ -85,7 +85,7 @@ export default defineComponent({
                     }
                     else if (column.dataIndex === 'sex') {
                       return editableData[record.key]
-                        ? <Radio.Group
+                        ? <RadioGroup
                             v-model:value={editableData[record.key]['sex']}
                             options={['男', '女'].map(item => ({value: item, label: item}))}
                           />
@@ -112,7 +112,7 @@ export default defineComponent({
                     }
                     else if (column.dataIndex === 'hobby') {
                       return editableData[record.key]
-                        ? <Checkbox.Group
+                        ? <CheckboxGroup
                             value={editableData[record.key]['hobby'].split('、')}
                             options={record.hobby.split('、').map(item => ({label: item, value: item}))}
                             onChange={handleChecked.bind(null, editableData[record.key])}

@@ -1,5 +1,5 @@
 import { defineComponent, computed, unref } from 'vue'
-import { Dropdown, Menu } from 'ant-design-vue'
+import { Dropdown, Menu, MenuItem } from 'ant-design-vue'
 import { LockOutlined, PoweroffOutlined } from '@ant-design/icons-vue'
 import { useUserStore } from '@/stores/modules/user'
 import headerImg from '@/assets/images/avatar.png'
@@ -47,18 +47,18 @@ export default defineComponent({
           ),
           overlay: () => (
             <Menu onClick={handleMenuClick}>
-              <Menu.Item key='lock'>
+              <MenuItem key='lock'>
                 <span class='flex-center-v'>
                   <LockOutlined />
                   <span style='margin-left: 4px;'>锁定屏幕</span>
                 </span>
-              </Menu.Item>
-              <Menu.Item key='logout'>
+              </MenuItem>
+              <MenuItem key='logout'>
                 <span class='flex-center-v'>
                   <PoweroffOutlined />
                   <span style='margin-left: 4px;'>退出登录</span>
                 </span>
-              </Menu.Item>
+              </MenuItem>
             </Menu>
           )
         }}

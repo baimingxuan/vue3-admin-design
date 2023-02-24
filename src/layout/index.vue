@@ -5,9 +5,9 @@
       <LayoutSider />
       <Layout>
         <LayoutBasicHeader v-if="!getIsHeaderMenu" />
-        <Layout.Content class="cont-height">
+        <LayoutContent class="cont-height">
           <LayoutPage />
-        </Layout.Content>
+        </LayoutContent>
       </Layout>
     </Layout>
     <Setting />
@@ -31,6 +31,7 @@
     name: 'BasicLayout',
     components: {
       Layout,
+      LayoutContent: Layout.Content,
       LayoutHeader,
       LayoutBasicHeader,
       LayoutSider,

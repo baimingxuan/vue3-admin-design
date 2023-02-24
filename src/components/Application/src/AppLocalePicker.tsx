@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue'
-import { Dropdown, Menu, Tooltip } from 'ant-design-vue'
+import { Dropdown, Menu, MenuItem, Tooltip } from 'ant-design-vue'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 
 export default defineComponent({
@@ -19,9 +19,9 @@ export default defineComponent({
           ),
           overlay: () => (
             <Menu>
-              <Menu.Item>简体中文</Menu.Item>
-              <Menu.Item>繁體中文</Menu.Item>
-              <Menu.Item>English</Menu.Item>
+              <MenuItem>简体中文</MenuItem>
+              <MenuItem>繁體中文</MenuItem>
+              <MenuItem>English</MenuItem>
             </Menu>
           )
         }}

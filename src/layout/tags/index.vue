@@ -51,10 +51,10 @@
       </Button>
       <template #overlay>
         <Menu>
-          <Menu.Item @click="closeLeft">关闭左侧</Menu.Item>
-          <Menu.Item @click="closeRight">关闭右侧</Menu.Item>
-          <Menu.Item @click="closeOther">关闭其它</Menu.Item>
-          <Menu.Item @click="closeAll">关闭所有</Menu.Item>
+          <MenuItem @click="closeLeft">关闭左侧</MenuItem>
+          <MenuItem @click="closeRight">关闭右侧</MenuItem>
+          <MenuItem @click="closeOther">关闭其它</MenuItem>
+          <MenuItem @click="closeAll">关闭所有</MenuItem>
         </Menu>
       </template>
     </Dropdown>
@@ -65,7 +65,7 @@
   import { defineComponent, computed, ref, unref, nextTick, CSSProperties } from 'vue'
   import type { RouteLocationNormalized, RouteMeta } from 'vue-router'
   import { useRouter } from 'vue-router'
-  import { Tabs, Button, Dropdown, Menu } from 'ant-design-vue'
+  import { Tabs, Button, Dropdown, Menu, MenuItem } from 'ant-design-vue'
   import { LeftOutlined, RightOutlined, RedoOutlined, CloseOutlined } from '@ant-design/icons-vue'
 
   import { listenerRouteChange } from '@/logics/mitt/routeChange'
@@ -79,7 +79,7 @@
   export default defineComponent({
     name: 'LayoutTags',
     components: {
-      Tabs, Button, TagItem, Dropdown, Menu,
+      Tabs, Button, TagItem, Dropdown, Menu, MenuItem,
       LeftOutlined, RightOutlined, RedoOutlined, CloseOutlined
     },
 

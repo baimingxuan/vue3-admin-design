@@ -1,8 +1,8 @@
 import type { FormInstance, CascaderProps, TreeSelectProps } from 'ant-design-vue'
 import type { Rule } from 'ant-design-vue/es/form'
 import { defineComponent, ref, reactive, watch } from 'vue'
-import { Card, Form, Row, Col, Input, InputNumber, Button, Select, DatePicker, TimePicker, Switch, Slider, Cascader,
-  TreeSelect, Radio, Checkbox, Textarea } from 'ant-design-vue'
+import { Card, Form, FormItem, Row, Col, Input, InputNumber, InputPassword, Button, Select, DatePicker, TimePicker,
+  Switch, Slider, Cascader, TreeSelect, RadioGroup, Checkbox, Textarea } from 'ant-design-vue'
 import { FORM_COMPO } from '@/settings/websiteSetting'
 import { PageWrapper } from '@/components/Page'
 import { provinceData, cityData, cascaderData, treeData, radioData, checkboxData } from './data'
@@ -124,30 +124,30 @@ export default defineComponent({
                 wrapperCol={{span: 18}}
                 style='width: 40%; margin: 0 auto;'
               >
-                <Form.Item label='输入框(长度限制):' name='inputLimit'>
+                <FormItem label='输入框(长度限制):' name='inputLimit'>
                   <Input
                     v-model={[formState.inputLimit, 'value']}
                     showCount
                     maxlength={20}
                     placeholder='请输入内容'
                   />
-                </Form.Item>
-                <Form.Item label='输入框(纯数字):' name='inputNum'>
+                </FormItem>
+                <FormItem label='输入框(纯数字):' name='inputNum'>
                   <InputNumber
                     v-model={[formState.inputNum, 'value']}
                     style='width: 100%;'
                     placeholder='请输入数字'
                   />
-                </Form.Item>
-                <Form.Item label='输入框(密码隐藏):' name='password'>
-                  <Input.Password
+                </FormItem>
+                <FormItem label='输入框(密码隐藏):' name='password'>
+                  <InputPassword
                     v-model={[formState.password, 'value']}
                     maxlength={16}
                     autocomplete='off'
                     placeholder="请输入密码"
                   />
-                </Form.Item>
-                <Form.Item label='select选择器(联动):' name='selectProvince'>
+                </FormItem>
+                <FormItem label='select选择器(联动):' name='selectProvince'>
                   <Row gutter={12}>
                     <Col span={12}>
                       <Select
@@ -156,16 +156,16 @@ export default defineComponent({
                       />
                     </Col>
                     <Col span={12}>
-                      <Form.Item name='selectCity'>
+                      <FormItem name='selectCity'>
                         <Select
                           v-model={[formState.selectCity, 'value']}
                           options={cityData[formState.selectProvince].map(city => ({ value: city }))}
                         />
-                      </Form.Item>
+                      </FormItem>
                     </Col>
                   </Row>
-                </Form.Item>
-                <Form.Item label='日期和时间选择器:' name='dateVal'>
+                </FormItem>
+                <FormItem label='日期和时间选择器:' name='dateVal'>
                   <Row gutter={12}>
                     <Col span={12}>
                       <DatePicker
@@ -175,24 +175,24 @@ export default defineComponent({
                       />
                     </Col>
                     <Col span={12}>
-                      <Form.Item name='timeVal'>
+                      <FormItem name='timeVal'>
                         <TimePicker
                           v-model={[formState.timeVal, 'value']}
                           placeholder='选择时间'
                           style='width: 100%;'
                         />
-                      </Form.Item>
+                      </FormItem>
                     </Col>
                   </Row>
-                </Form.Item>
-                <Form.Item label='switch开关(显示隐藏):' name='switchVal'>
+                </FormItem>
+                <FormItem label='switch开关(显示隐藏):' name='switchVal'>
                   <Switch v-model={[formState.switchVal, 'checked']} />
-                </Form.Item>
+                </FormItem>
                 <div v-show={formState.switchVal}>
-                  <Form.Item label='滑块条(初始值):' name='sliderVal'>
+                  <FormItem label='滑块条(初始值):' name='sliderVal'>
                     <Slider v-model={[formState.sliderVal, 'value']} />
-                  </Form.Item>
-                  <Form.Item label='级联选择器:' name='cascaderVal'>
+                  </FormItem>
+                  <FormItem label='级联选择器:' name='cascaderVal'>
                     <Row gutter={12}>
                       <Col span={12}>
                         <Cascader
@@ -202,7 +202,7 @@ export default defineComponent({
                         />
                       </Col>
                       <Col span={12}>
-                        <Form.Item name='cascaderLazy'>
+                        <FormItem name='cascaderLazy'>
                           <Cascader
                             v-model={[formState.cascaderLazy, 'value']}
                             options={cascaderLazyData.value}
@@ -210,11 +210,11 @@ export default defineComponent({
                             changeOnSelect
                             placeholder='请输入'
                           />
-                        </Form.Item>
+                        </FormItem>
                       </Col>
                     </Row>
-                  </Form.Item>
-                  <Form.Item label='树选择器(可勾选):' name='treeVal'>
+                  </FormItem>
+                  <FormItem label='树选择器(可勾选):' name='treeVal'>
                     <Row gutter={12}>
                       <Col span={12}>
                         <TreeSelect
@@ -227,7 +227,7 @@ export default defineComponent({
                         />
                       </Col>
                       <Col span={12}>
-                        <Form.Item name='treeLazy'>
+                        <FormItem name='treeLazy'>
                           <TreeSelect
                             v-model={[formState.treeLazy, 'value']}
                             treeDataSimpleMode
@@ -235,29 +235,29 @@ export default defineComponent({
                             loadData={loadTreeLazy}
                             placeholder='请选择'
                           />
-                        </Form.Item>
+                        </FormItem>
                       </Col>
                     </Row>
-                  </Form.Item>
-                  <Form.Item label='单选框(带禁止):' name='radioVal'>
-                    <Radio.Group v-model={[formState.radioVal, 'value']} options={radioData} />
-                  </Form.Item>
-                  <Form.Item label='多选框(带禁止):' name='checkboxVal'>
+                  </FormItem>
+                  <FormItem label='单选框(带禁止):' name='radioVal'>
+                    <RadioGroup v-model={[formState.radioVal, 'value']} options={radioData} />
+                  </FormItem>
+                  <FormItem label='多选框(带禁止):' name='checkboxVal'>
                     <Checkbox.Group v-model={[formState.checkboxVal, 'value']} options={checkboxData} />
-                  </Form.Item>
-                  <Form.Item label='文本域(长度限制):' name='textareaVal'>
+                  </FormItem>
+                  <FormItem label='文本域(长度限制):' name='textareaVal'>
                     <Textarea
                       v-model={[formState.textareaVal, 'value']}
                       maxlength={50}
                       rows={3}
                       placeholder='请输入内容'
                     />
-                  </Form.Item>
+                  </FormItem>
                 </div>
-                <Form.Item wrapperCol={{span: 12, offset: 12}}>
+                <FormItem wrapperCol={{span: 12, offset: 12}}>
                   <Button type='primary' htmlType='submit'>提交</Button>
                   <Button style='margin-left: 12px;' onClick={resetForm}>重置</Button>
-                </Form.Item>
+                </FormItem>
               </Form>
             </Card>
         }}

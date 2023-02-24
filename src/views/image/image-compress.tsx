@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'vue'
 import { defineComponent, unref, reactive, computed, watch, onMounted } from 'vue'
-import { Row, Col, Card, Button, Form, InputNumber, Select } from 'ant-design-vue'
+import { Row, Col, Card, Button, Form, FormItem, InputNumber, Select } from 'ant-design-vue'
 import { COMPRESS_IMG_SRC } from '@/settings/websiteSetting'
 import { PageWrapper } from '@/components/Page'
 import { UploadImage } from '@/components/Upload'
@@ -140,10 +140,10 @@ export default defineComponent({
                 <Card title='设置区域' bordered={false}>
                   <div class='flex-center' style='height: 550px'>
                     <Form style='width: 280px'>
-                      <Form.Item label='上传图片: '>
+                      <FormItem label='上传图片: '>
                         <UploadImage onSuccess={handleSuccess} />
-                      </Form.Item>
-                      <Form.Item label='图片尺寸: '>
+                      </FormItem>
+                      <FormItem label='图片尺寸: '>
                         <div>
                           <InputNumber
                             v-model:value={imageCompr.width}
@@ -161,8 +161,8 @@ export default defineComponent({
                             onStep={handleChange.bind(null, 'w')}
                           />
                         </div>
-                      </Form.Item>
-                      <Form.Item label='压缩比例: '>
+                      </FormItem>
+                      <FormItem label='压缩比例: '>
                         <InputNumber
                           v-model:value={imageCompr.ratio}
                           min={0}
@@ -172,8 +172,8 @@ export default defineComponent({
                           parser={value => value.replace('%', '')}
                           style='width: 100%'
                         />
-                      </Form.Item>
-                      <Form.Item label='图片类型: '>
+                      </FormItem>
+                      <FormItem label='图片类型: '>
                         <Select
                           v-model:value={imageCompr.mineType}
                           options={[
@@ -182,16 +182,16 @@ export default defineComponent({
                             { label: 'BMP', value: 'image/bmp' },
                           ]}
                         />
-                      </Form.Item>
-                      <Form.Item label='图片质量: '>
+                      </FormItem>
+                      <FormItem label='图片质量: '>
                         <Select
                           v-model:value={imageCompr.quality}
                           options={qualityOptions}
                         />
-                      </Form.Item>
-                      <Form.Item>
+                      </FormItem>
+                      <FormItem>
                         <Button type='primary' style='width: 100%' onClick={handleCompressImage}>压缩图片</Button>
-                      </Form.Item>
+                      </FormItem>
                     </Form>
                   </div>
                 </Card>

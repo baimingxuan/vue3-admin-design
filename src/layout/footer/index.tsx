@@ -1,13 +1,13 @@
 import { defineComponent } from 'vue'
-import { Layout } from 'ant-design-vue'
+import { LayoutFooter } from 'ant-design-vue'
 
 export default defineComponent({
-  name: 'LayoutFooter',
+  name: 'LayoutFooters',
   setup() {
     return () => (
-      <Layout.Footer>
+      <LayoutFooter>
         <div>Copyright &copy;2022 baimingxuan</div>
-      </Layout.Footer>
+      </LayoutFooter>
     )
   }
 })

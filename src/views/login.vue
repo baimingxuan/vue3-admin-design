@@ -11,27 +11,27 @@
         class="login-box-form"
         @keypress.enter="handleLogin"
       >
-        <Form.Item name="username" :rules="[{ required: true, message: '请输入账号' }]">
+        <FormItem name="username" :rules="[{ required: true, message: '请输入账号' }]">
           <Input v-model:value="loginForm.username" placeholder="请输入账号">
             <template #prefix>
               <UserOutlined style="color: rgba(0, 0, 0, 0.25)" />
             </template>
           </Input>
-        </Form.Item>
-        <Form.Item name="password" :rules="[{ required: true, message: '请输入密码' }]">
+        </FormItem>
+        <FormItem name="password" :rules="[{ required: true, message: '请输入密码' }]">
           <Input v-model:value="loginForm.password" type="password" placeholder="请输入密码">
             <template #prefix>
               <LockOutlined style="color: rgba(0, 0, 0, 0.25)" />
             </template>
           </Input>
-        </Form.Item>
-        <Form.Item>
-          <Form.Item name="remember" no-style>
+        </FormItem>
+        <FormItem>
+          <FormItem name="remember" no-style>
             <Checkbox v-model:checked="loginForm.remember">记住我</Checkbox>
-          </Form.Item>
+          </FormItem>
           <a class="fr" href="">忘记密码？</a>
-        </Form.Item>
-        <Form.Item>
+        </FormItem>
+        <FormItem>
           <Button
             type="primary"
             html-type="submit"
@@ -39,7 +39,7 @@
             :loading="loading"
             @click="handleLogin"
           >登 录</Button>
-        </Form.Item>
+        </FormItem>
       </Form>
     </div>
   </div>
@@ -50,7 +50,7 @@
   import type { FormInstance } from 'ant-design-vue'
 
   import { ref, unref, reactive } from 'vue'
-  import { Form, Input, Checkbox, Button, message } from 'ant-design-vue'
+  import { Form, FormItem, Input, Checkbox, Button, message } from 'ant-design-vue'
   import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
   import { useUserStore } from '@/stores/modules/user'
 

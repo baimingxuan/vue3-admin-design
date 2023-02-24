@@ -1,6 +1,6 @@
 import type { UploadProps } from 'ant-design-vue'
 import { defineComponent, ref } from 'vue'
-import { Row, Col, Card, Button, Upload, Modal } from 'ant-design-vue'
+import { Row, Col, Card, Button, Upload, UploadDragger, Modal } from 'ant-design-vue'
 import { CloudUploadOutlined, PlusOutlined } from '@ant-design/icons-vue'
 import { PageWrapper } from '@/components/Page'
 import { UPLOAD_COMPO } from '@/settings/websiteSetting'
@@ -63,7 +63,7 @@ export default defineComponent({
           default: () => <Row gutter={12}>
               <Col span={8}>
                 <Card title='拖拽上传' bordered={false} bodyStyle={{height: '300px'}}>
-                  <Upload.Dragger
+                  <UploadDragger
                     v-model:fileList={dragImgs.value}
                     action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
                     accept='.jpg, .jpeg, .gif, .png, .bmp'
@@ -75,7 +75,7 @@ export default defineComponent({
                     </p>
                     <p>将图片拖到此处, 或<span style='color: #1890ff;'>点击上传</span></p>
                     <p class="ant-upload-hint">只能上传jpg、jpeg、gif、png、bmp文件, 且不超过500kb</p>
-                  </Upload.Dragger>
+                  </UploadDragger>
                 </Card>
               </Col>
               <Col span={8}>

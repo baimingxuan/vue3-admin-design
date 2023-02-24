@@ -15,7 +15,13 @@ export function configStyleImportPlugin() {
         libraryName: 'ant-design-vue',
         esModule: true,
         resolveStyle: (name) => {
-          return `ant-design-vue/es/${name}/style/index`
+          const replaceList = {
+            'sub-menu': 'menu',
+            'menu-item': 'menu'
+          }
+          return replaceList.hasOwnProperty(name)
+            ? `ant-design-vue/es/${replaceList[name]}/style/index`
+            : `ant-design-vue/es/${name}/style/index`
         }
       }
     ]

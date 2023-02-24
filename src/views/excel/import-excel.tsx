@@ -1,6 +1,6 @@
 import type { UploadChangeParam } from 'ant-design-vue'
 import { defineComponent, ref, unref } from 'vue'
-import { Card, Table, Upload, Space, message } from 'ant-design-vue'
+import { Card, Table, UploadDragger, Space, message } from 'ant-design-vue'
 import { ColumnType } from 'ant-design-vue/lib/table'
 import { CloudUploadOutlined } from '@ant-design/icons-vue'
 import { PageWrapper } from '@/components/Page'
@@ -54,7 +54,7 @@ export default defineComponent({
         {{
           default: () => <Card bordered={false}>
             <Space direction='vertical' size={16} style={{width: '100%'}}>
-              <Upload.Dragger
+              <UploadDragger
                 ref='uploadExcel'
                 accept='.xlsx, .xls, .csv'
                 showUploadList={false}
@@ -65,7 +65,7 @@ export default defineComponent({
                   <CloudUploadOutlined />
                 </p>
                 <p>将Excel文件拖到此处, 或<span style='color: #1890ff;'>点击上传</span></p>
-              </Upload.Dragger>
+              </UploadDragger>
               <Table
                 dataSource={unref(tableData)}
                 columns={unref(tableColumns)}

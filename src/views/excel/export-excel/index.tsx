@@ -1,5 +1,5 @@
 import { defineComponent, reactive, ref, unref } from 'vue'
-import { Form, Button, Card, Input, Radio, Select, Table, Space, message } from 'ant-design-vue'
+import { Form, FormItem, Button, Card, Input, RadioGroup, Select, Table, Space, message } from 'ant-design-vue'
 import { ColumnType } from 'ant-design-vue/lib/table'
 import { PageWrapper } from '@/components/Page'
 import { XLSX_PLUGIN } from '@/settings/websiteSetting'
@@ -80,22 +80,22 @@ export default defineComponent({
           default: () => <Card bordered={false}>
             <Space direction='vertical' size={16} style={{width: '100%'}}>
               <Form model={formParam} layout='inline'>
-                <Form.Item label='文件名:' name='fileName'>
+                <FormItem label='文件名:' name='fileName'>
                   <Input
                     v-model:value={formParam.fileName}
                     placeholder='文件名'
                   />
-                </Form.Item>
-                <Form.Item label='自动宽度:' name='autoWidth'>
-                  <Radio.Group
+                </FormItem>
+                <FormItem label='自动宽度:' name='autoWidth'>
+                  <RadioGroup
                     v-model:value={formParam.autoWidth}
                     options={[
                       { label: '自动', value: true },
                       { label: '固定', value: false }
                     ]}
                   />
-                </Form.Item>
-                <Form.Item label='文件类型:' name='fileType'>
+                </FormItem>
+                <FormItem label='文件类型:' name='fileType'>
                   <Select
                     v-model:value={formParam.fileType}
                     options={[
@@ -105,10 +105,10 @@ export default defineComponent({
                     ]}
                     style={{width: '180px'}}
                   />
-                </Form.Item>
-                <Form.Item>
+                </FormItem>
+                <FormItem>
                   <Button type='primary' htmlType='submit' onClick={handleExport}>导出Excel</Button>
-                </Form.Item>
+                </FormItem>
               </Form>
               <Table
                 dataSource={unref(dataSource)}

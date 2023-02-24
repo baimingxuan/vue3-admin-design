@@ -40,7 +40,7 @@
   import { getAllParentPath } from '@/router/helper/menuHelper'
 
   export default defineComponent({
-    name: 'Menu',
+    name: 'BasicMenu',
     components: {
       Menu,
       SubMenuItem
