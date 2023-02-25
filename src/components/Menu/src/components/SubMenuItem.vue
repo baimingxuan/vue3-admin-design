@@ -25,7 +25,7 @@
   import { SubMenu } from 'ant-design-vue'
   import type { AppMenu as MenuType } from '@/router/types'
   import { menuItemProps } from '../props'
-  import MenuItems from './MenuItem.vue'
+  import MenuItems from './MenuItems'
   import MenuItemCont from './MenuItemCont.vue'
 
   export default defineComponent({
