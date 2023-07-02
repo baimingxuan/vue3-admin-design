@@ -1,5 +1,5 @@
 <template>
-  <Layout.Header :class="getHeaderStyle">
+  <LayoutHeader :class="getHeaderStyle">
     <div :class="`${prefixCls}-wrap`">
       <div :class="`${prefixCls}-wrap-logo`">
         <AppLogo theme="light" />
@@ -15,12 +15,12 @@
       </div>
     </div>
     <LayoutTags v-if="getShowTags" />
-  </Layout.Header>
+  </LayoutHeader>
 </template>
 
 <script lang="ts">
   import { defineComponent, computed, unref } from 'vue'
-  import { Layout } from 'ant-design-vue'
+  import { LayoutHeader } from 'ant-design-vue'
 
   import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
@@ -32,9 +32,9 @@
   import LayoutFeature from '../feature'
 
   export default defineComponent({
-    name: 'LayoutHeader',
+    name: 'LayoutHeaders',
     components: {
-      Layout,
+      LayoutHeader,
       LayoutMenu,
       LayoutTags,
       LayoutFeature,

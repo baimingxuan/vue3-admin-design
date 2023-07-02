@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'vue'
 import { defineComponent, unref, computed } from 'vue'
-import { Layout } from 'ant-design-vue'
+import { LayoutHeader } from 'ant-design-vue'
 
 import LayoutTags from '../tags/index.vue'
 import LayoutFeature from '../feature'
@@ -25,7 +25,7 @@ export default defineComponent({
     const getShowTrigger = computed(() => unref(getMenuFoldBtn) === MenuFoldBtnEnum.HEADER)
 
     return () => (
-      <Layout.Header class='flex-between-h' style={unref(getHeaderStyle)}>
+      <LayoutHeader class='flex-between-h' style={unref(getHeaderStyle)}>
         <div class='flex-between-h' style='padding: 0 12px;'>
           <div class='flex-center-v'>
             { unref(getShowTrigger) && <FoldTrigger /> }
@@ -34,7 +34,7 @@ export default defineComponent({
           <LayoutFeature />
         </div>
         { unref(getShowTags) && <LayoutTags /> }
-      </Layout.Header>
+      </LayoutHeader>
     )
   }
 })
