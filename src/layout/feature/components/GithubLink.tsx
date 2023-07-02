@@ -17,11 +17,10 @@
           placement='bottom'
           mouseEnterDelay={0.5}
         >
-          <span class='icon-btn'>
+          <span class='icon-btn' onClick={openGithub}>
             <SvgIcon
               name='github'
               size={20}
-              onclick={openGithub}
             />
           </span>
         </Tooltip>
