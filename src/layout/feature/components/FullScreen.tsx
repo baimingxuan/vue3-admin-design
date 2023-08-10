@@ -1,7 +1,7 @@
   import { defineComponent, computed, unref } from 'vue'
   import { Tooltip } from 'ant-design-vue'
   import { useFullscreen } from '@vueuse/core'
-  import SvgIcon from '@/components/SvgIcon/index.vue'
+  import SvgIcon from '@/components/SvgIcon'
 
   const { isFullscreen, toggle } = useFullscreen()
 

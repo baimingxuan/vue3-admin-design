@@ -12,7 +12,7 @@
 
 <script lang="ts" setup>
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
-  import SvgIcon from '@/components/SvgIcon/index.vue'
+  import SvgIcon from '@/components/SvgIcon'
 
   const { getMenuFold, toggledMenuFold } = useMenuSetting()
 </script>

@@ -2,7 +2,7 @@
   import { useRouter } from 'vue-router'
   import { defineComponent, ref, watchEffect } from 'vue'
   import { Breadcrumb } from 'ant-design-vue'
-  import SvgIcon from '@/components/SvgIcon/index.vue'
+  import SvgIcon from '@/components/SvgIcon'
 
   export default defineComponent({
     name: 'LayoutBreadcrumb',

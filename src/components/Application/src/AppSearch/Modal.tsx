@@ -3,7 +3,7 @@ import { Input } from 'ant-design-vue'
 import { SearchOutlined } from '@ant-design/icons-vue'
 import { useRefs } from '@/hooks/core/useRefs'
 import { useMenuSearch } from './useMenuSearch'
-import SvgIcon from '@/components/SvgIcon/index.vue'
+import SvgIcon from '@/components/SvgIcon'
 import clickOutside from '@/directives/clickOutside'
 import compoStyle from './modal.module.less'
 

@@ -1,6 +1,6 @@
   import { defineComponent } from 'vue'
   import { Tooltip } from 'ant-design-vue'
-  import SvgIcon from '@/components/SvgIcon/index.vue'
+  import SvgIcon from '@/components/SvgIcon'
   import { openWindow } from '@/utils'
   import { GITHUB_URL } from '@/settings/websiteSetting'
 

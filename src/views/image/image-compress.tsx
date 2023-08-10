@@ -7,7 +7,7 @@ import { UploadImage } from '@/components/Upload'
 import { getComputedImageProp, getCompressImage } from '@/utils/image'
 import { downloadImgByBase64 } from '@/utils/download'
 import { IMAGE_COMPRESS } from '@/settings/websiteSetting'
-import SvgIcon from '@/components/SvgIcon/index.vue'
+import SvgIcon from '@/components/SvgIcon'
 
 interface OptionState {
   label: number

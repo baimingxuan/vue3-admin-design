@@ -2,7 +2,7 @@ import { defineComponent, computed, unref } from 'vue'
 import { AppModeEnum } from '@/enums/appEnum'
 import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
 import { updateDarkTheme } from '@/logics/theme/mode'
-import SvgIcon from '@/components/SvgIcon/index.vue'
+import SvgIcon from '@/components/SvgIcon'
 import compoStyle from './index.module.less'
 
 export default defineComponent({

@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 import { Dropdown, Menu, MenuItem, Tooltip } from 'ant-design-vue'
-import SvgIcon from '@/components/SvgIcon/index.vue'
+import SvgIcon from '@/components/SvgIcon'
 
 export default defineComponent({
   name: 'AppLocalePicker',

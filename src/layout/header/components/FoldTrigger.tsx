@@ -1,7 +1,7 @@
 
   import { defineComponent, unref } from 'vue'
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
-  import SvgIcon from '@/components/SvgIcon/index.vue'
+  import SvgIcon from '@/components/SvgIcon'
   import compoStyle from './compo.module.less'
 
   export default defineComponent({

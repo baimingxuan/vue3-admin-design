@@ -1,6 +1,6 @@
 import { defineComponent, ref, unref } from 'vue'
 import { Tooltip } from 'ant-design-vue'
-import SvgIcon from '@/components/SvgIcon/index.vue'
+import SvgIcon from '@/components/SvgIcon'
 import SearchModal from './Modal'
 
 export default defineComponent({

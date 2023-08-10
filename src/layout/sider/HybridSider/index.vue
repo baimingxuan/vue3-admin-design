@@ -60,7 +60,7 @@
   import SiderTrigger from '../components/SiderTrigger.vue'
   import { Menu } from '@/components/Menu'
   import DragBar from '../components/DragBar.vue'
-  import SvgIcon from '@/components/SvgIcon/index.vue'
+  import SvgIcon from '@/components/SvgIcon'
 
   export default defineComponent({
     name: 'LayoutHybridSider',

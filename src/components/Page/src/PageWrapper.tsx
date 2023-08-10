@@ -2,7 +2,7 @@ import type { PropType } from 'vue'
 import { defineComponent, ref } from 'vue'
 import { Button } from 'ant-design-vue'
 import { openWindow } from '@/utils'
-import SvgIcon from '@/components/SvgIcon/index.vue'
+import SvgIcon from '@/components/SvgIcon'
 import compoStyle from './compo.module.less'
 
 interface PluginProp {

@@ -18,7 +18,7 @@
   import { defineComponent, computed } from 'vue'
   import { menuItemContentProps } from '../props'
 
-  import SvgIcon from '@/components/SvgIcon/index.vue'
+  import SvgIcon from '@/components/SvgIcon'
 
   export default defineComponent({
     name: 'MenuItemCont',

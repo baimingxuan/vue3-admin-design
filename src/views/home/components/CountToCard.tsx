@@ -2,7 +2,7 @@ import type { PropType } from 'vue'
 import { defineComponent } from 'vue'
 import { Card } from 'ant-design-vue'
 import { CountTo } from '@/components/CountTo'
-import SvgIcon from '@/components/SvgIcon/index.vue'
+import SvgIcon from '@/components/SvgIcon'
 
 export default defineComponent({
   name: 'CountToCard',
