@@ -6,7 +6,7 @@ import { PageWrapper } from '@/components/Page'
 import { UPLOAD_COMPO } from '@/settings/websiteSetting'
 
 export default defineComponent({
-  name: 'Markdown',
+  name: 'ImageUpload',
   setup() {
     const previewVisible = ref(false)
     const previewImage = ref('')
