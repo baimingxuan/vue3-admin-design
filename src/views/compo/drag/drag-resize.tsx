@@ -5,7 +5,7 @@ import { VUE_DRAG_RESIZE_PLUGIN } from '@/settings/websiteSetting'
 import VueDragResize from 'vue-drag-resize'
 
 export default defineComponent({
-  name: 'Markdown',
+  name: 'DragResize',
   setup() {
     const rectWrapper = ref()
     const config = reactive({
