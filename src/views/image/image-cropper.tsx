@@ -7,7 +7,7 @@ import { VueCropper }  from 'vue-cropper'
 import { UploadImage } from '@/components/Upload'
 
 export default defineComponent({
-  name: 'Markdown',
+  name: 'ImageCropper',
   setup() {
     const cropper = ref()
     const downloadDom = ref()
