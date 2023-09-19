@@ -4,7 +4,7 @@ import { PageWrapper } from '@/components/Page'
 import { FORM_CREATE_DESIGNER } from '@/settings/websiteSetting'
 
 export default defineComponent({
-  name: 'FormCreate',
+  name: 'FormDesigner',
   setup() {
 
     return () => (

@@ -4,9 +4,9 @@ import Layout from '@/layout/index.vue'
 // form module page
 const FormRoute: AppRoute = {
     path: '/form',
-    name: 'From',
+    name: 'Form',
     component: Layout,
-    redirect: '/form/form-list',
+    redirect: '/form/basic-form',
     meta: {
         title: '表单',
         icon: 'form',
@@ -14,19 +14,19 @@ const FormRoute: AppRoute = {
     },
     children: [
         {
-            path: 'form-list',
-            name: 'FormList',
-            component: () => import('@/views/form/form-list'),
+            path: 'basic-form',
+            name: 'BasicForm',
+            component: () => import('@/views/form/basic-form'),
             meta: {
-                title: '表单列表'
+                title: '基础表单'
             }
         },
         {
-            path: 'form-marking',
-            name: 'FormMarking',
-            component: () => import('@/views/form/form-create'),
+            path: 'form-designer',
+            name: 'FormDesigner',
+            component: () => import('@/views/form/form-designer'),
             meta: {
-                title: '表单生成器'
+                title: '表单设计器'
             }
         }
     ]

@@ -8,7 +8,7 @@ import { PageWrapper } from '@/components/Page'
 import { provinceData, cityData, cascaderData, treeData, radioData, checkboxData } from './data'
 
 export default defineComponent({
-  name: 'FormList',
+  name: 'BasicForm',
   setup() {
     const formRef = ref<FormInstance>()
 
@@ -108,7 +108,6 @@ export default defineComponent({
     }
 
     function resetForm() {
-      console.log('formState', formState, formRef)
       formRef.value?.resetFields()
     }
     
