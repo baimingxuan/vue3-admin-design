@@ -35,10 +35,10 @@ export function pagination<T = any>(
   pageSize: number,
   array: T[]
 ): T[] {
-  const offset = (currentPage - 1) * pageSize
-  return (offset + pageSize) >= array.length
+  const offset = (currentPage - 1) * Number(pageSize)
+  return (offset + Number(pageSize)) >= array.length
     ? array.slice(offset, array.length)
-    : array.slice(offset, offset + pageSize)
+    : array.slice(offset, offset + Number(pageSize))
 }
 
 export function resultPageSuccess<T = any> (
