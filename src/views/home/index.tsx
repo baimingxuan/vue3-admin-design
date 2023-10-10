@@ -1,12 +1,8 @@
 import { defineComponent, ref, unref } from 'vue'
 import { Row, Col } from 'ant-design-vue'
-import { countToData } from './data'
 import CountToCard from './components/CountToCard'
-import ChartsPie from './components/ChartsPie'
-import ChartsRing from './components/ChartsRing'
-import ChartsRadar from './components/ChartsRadar'
-import ChartsLine from './components/ChartsLine'
-import ChartsBar from './components/ChartsBar'
+import ChartsCard from './components/ChartsCard'
+import { countToData, pieOptions, ringOptions, radarOptions, barOptions, lineOptions } from './data'
 
 export default defineComponent({
   name: 'HomePage',
@@ -38,21 +34,21 @@ export default defineComponent({
         </Row>
         <Row gutter={12} style='margin-bottom: 12px'>
           <Col span={8}>
-            <ChartsPie loading={unref(isLoading)} />
+            <ChartsCard loading={unref(isLoading)} options={pieOptions} height={300} />
           </Col>
           <Col span={8}>
-            <ChartsRing loading={unref(isLoading)} />
+            <ChartsCard loading={unref(isLoading)} options={ringOptions} height={300} />
           </Col>
           <Col span={8}>
-            <ChartsRadar loading={unref(isLoading)} />
+            <ChartsCard loading={unref(isLoading)} options={radarOptions} height={300} />
           </Col>
         </Row>
         <Row gutter={12}>
           <Col span={12}>
-            <ChartsBar loading={unref(isLoading)} />
+            <ChartsCard loading={unref(isLoading)} options={barOptions} height={350} />
           </Col>
           <Col span={12}>
-            <ChartsLine loading={unref(isLoading)} />
+            <ChartsCard loading={unref(isLoading)} options={lineOptions} height={350} />
           </Col>
         </Row>
       </>
