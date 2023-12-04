@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "serve": "vite",
+    "build": "rimraf dist && vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "clean": "rimraf node_modules"
+    "clean:cache": "rimraf .eslintcache && rimraf node_modules && pnpm install"
   },
   "dependencies": {
     "@ant-design/colors": "^6.0.0",
