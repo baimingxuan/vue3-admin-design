@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="420" src="https://baimingxuan.gitee.io/media-store/images/logo-md.png">
+  <img width="420" src="https://baimingxuan.gitee.io/media-store/images/logo-v3_md.png">
 </p>
 
 
