@@ -2,7 +2,7 @@
   <div class="login-wrapper">
     <div class="login-box">
       <div class="login-box-title">
-        <img src="../assets/images/logo2.png" alt="icon">
+        <img src="../assets/images/logo_name.png" alt="icon">
         <p>账 号 登 录</p>
       </div>
       <Form
@@ -115,6 +115,12 @@
         color: #707070;
         font-size: 18px;
         letter-spacing: 2px;
+
+        img {
+          width: 200px;
+          height: 82px;
+          margin: 14px auto 0;
+        }
       }
 
       &-form {
