@@ -104,7 +104,7 @@
     background-size: cover;
 
     .login-box {
-      padding: 15px 30px 20px;
+      padding: 16px 30px 10px;
       background: #fff;
       border-radius: 4px;
       box-shadow: 0 15px 30px 0 rgba(0, 0, 1, .1);
