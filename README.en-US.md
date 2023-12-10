@@ -1,7 +1,6 @@
 <p align="center">
   <img width="420" src="https://cdn.jsdelivr.net/gh/baimingxuan/media-store/images/logo-v3-md.png">
 </p>
-
 <p align="center">
   <a href="https://github.com/vuejs/core">
     <img src="https://img.shields.io/badge/vue-3.2.37-brightgreen.svg" alt="vue">
@@ -18,11 +17,13 @@
   <a href="https://github.com/vueComponent/ant-design-vue">
     <img src="https://img.shields.io/badge/antdesign-3.2.10-brightgreen.svg" alt="ant-design-vue">
   </a>
+  <a href="https://github.com/microsoft/TypeScript">
+    <img src="https://img.shields.io/badge/typescript-4.7.4-brightgreen.svg" alt="typescript">
+  </a>
   <a href="https://github.com/less">
     <img src="https://img.shields.io/badge/less-4.1.3-brightgreen.svg" alt="less">
   </a>
-</p>  
-
+</p>
 
 **English** | [中文](./README.md)
 
