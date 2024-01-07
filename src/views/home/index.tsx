@@ -15,7 +15,7 @@ export default defineComponent({
     
     return () => (
       <>
-        <Row gutter={12} style='margin-bottom: 12px'>
+        <Row gutter={12} style={{marginBottom: '12px'}}>
           {
             countToData.map(item => {
               return (
@@ -32,7 +32,7 @@ export default defineComponent({
             })
           }
         </Row>
-        <Row gutter={12} style='margin-bottom: 12px'>
+        <Row gutter={12} style={{marginBottom: '12px'}}>
           <Col span={8}>
             <ChartsCard loading={unref(isLoading)} options={pieOptions} height={300} />
           </Col>
