@@ -143,9 +143,9 @@ export const WANG_EDITOR_PLUGIN = {
   desc: 'wangEditor: 基于javascript和css开发的 Web富文本编辑器, 轻量、简洁、易用、开源免费。'
 }
 
-// Vue-markdown-editor plugin
+// Md-editor-v3 plugin
 export const MARKDOWN_EDITOR_PLUGIN = {
   name: 'Markdown编辑器',
-  url: 'https://github.com/code-farmer-i/vue-markdown-editor',
-  desc: 'VMdEditor: 是一款基于vue的Markdown编辑器,比较适合博客系统。'
+  url: 'https://github.com/imzbf/md-editor-v3',
+  desc: 'Md-editor-v3: 是一款基于vue3的Markdown编辑器,比较适合博客系统。'
 }

@@ -1,6 +1,9 @@
 import { defineComponent, ref } from 'vue'
 import { PageWrapper } from '@/components/Page'
 import { MARKDOWN_EDITOR_PLUGIN } from '@/settings/websiteSetting'
+import { MdEditor } from 'md-editor-v3'
+import 'md-editor-v3/lib/style.css'
+
 
 export default defineComponent({
   name: 'Markdown',
@@ -9,7 +12,7 @@ export default defineComponent({
     return () => (
       <PageWrapper plugin={MARKDOWN_EDITOR_PLUGIN}>
         {{
-          default: () => <v-md-editor v-model={content.value} height='400px' />
+          default: () => <MdEditor v-model={content.value} />
         }}
       </PageWrapper>
     )
