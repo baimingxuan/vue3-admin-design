@@ -1,7 +1,7 @@
 import type { FormInstance, CascaderProps, TreeSelectProps } from 'ant-design-vue'
 import type { Rule } from 'ant-design-vue/es/form'
 import { defineComponent, ref, reactive, watch } from 'vue'
-import { Card, Form, FormItem, Row, Col, Input, InputNumber, InputPassword, Button, Select, DatePicker, TimePicker,
+import { Card, Form, FormItem, Row, Col, Input, InputNumber, InputPassword, Button, Select, DatePicker,
   Switch, Slider, Cascader, TreeSelect, RadioGroup, Checkbox, Textarea } from 'ant-design-vue'
 import { FORM_COMPO } from '@/settings/websiteSetting'
 import { PageWrapper } from '@/components/Page'
@@ -20,7 +20,7 @@ export default defineComponent({
       selectProvince: province,
       selectCity: cityData[province][0],
       dateVal: '',
-      timeVal: '',
+      // timeVal: '',
       switchVal: true,
       sliderVal: 32,
       cascaderVal: [],
@@ -121,7 +121,7 @@ export default defineComponent({
                 rules={formRules}
                 labelCol={{span: 6}}
                 wrapperCol={{span: 18}}
-                style='width: 40%; margin: 0 auto;'
+                style={{ width: '40%', margin: '0 auto' }}
               >
                 <FormItem label='输入框(长度限制):' name='inputLimit'>
                   <Input
@@ -134,7 +134,7 @@ export default defineComponent({
                 <FormItem label='输入框(纯数字):' name='inputNum'>
                   <InputNumber
                     v-model={[formState.inputNum, 'value']}
-                    style='width: 100%;'
+                    style={{ width: '100%' }}
                     placeholder='请输入数字'
                   />
                 </FormItem>
@@ -170,16 +170,16 @@ export default defineComponent({
                       <DatePicker
                         v-model={[formState.dateVal, 'value']}
                         placeholder='选择日期'
-                        style='width: 100%;'
+                        style={{ width: '100%' }}
                       />
                     </Col>
                     <Col span={12}>
                       <FormItem name='timeVal'>
-                        <TimePicker
+                        {/* <TimePicker
                           v-model={[formState.timeVal, 'value']}
                           placeholder='选择时间'
-                          style='width: 100%;'
-                        />
+                          style={{ width: '100%' }}
+                        /> */}
                       </FormItem>
                     </Col>
                   </Row>
@@ -255,7 +255,7 @@ export default defineComponent({
                 </div>
                 <FormItem wrapperCol={{span: 12, offset: 12}}>
                   <Button type='primary' htmlType='submit'>提交</Button>
-                  <Button style='margin-left: 12px;' onClick={resetForm}>重置</Button>
+                  <Button style={{ marginLeft: '12px' }} onClick={resetForm}>重置</Button>
                 </FormItem>
               </Form>
             </Card>

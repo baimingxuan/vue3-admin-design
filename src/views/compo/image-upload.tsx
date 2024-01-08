@@ -112,7 +112,7 @@ export default defineComponent({
                   </Upload>
                 </Card>
                 <Modal
-                  visible={previewVisible.value}
+                  open={previewVisible.value}
                   title={previewTitle.value}
                   footer={null}
                   onCancel={handleCancle}

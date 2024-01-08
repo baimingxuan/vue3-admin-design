@@ -2,7 +2,7 @@ import { defineComponent, reactive, ref, onMounted, onBeforeUnmount } from 'vue'
 import { Card } from 'ant-design-vue'
 import { PageWrapper } from '@/components/Page'
 import { VUE_DRAG_RESIZE_PLUGIN } from '@/settings/websiteSetting'
-import VueDragResize from 'vue-drag-resize'
+import VueDragResize from 'vue-drag-resize/src'
 
 export default defineComponent({
   name: 'DragResize',
