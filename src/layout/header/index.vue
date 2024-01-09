@@ -19,52 +19,49 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, computed, unref } from 'vue'
-  import { LayoutHeader } from 'ant-design-vue'
+import { defineComponent, computed, unref } from 'vue'
+import { LayoutHeader } from 'ant-design-vue'
 
-  import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
-  import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
+import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
+import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 
-  import { AppLogo } from '@/components/Application'
+import { AppLogo } from '@/components/Application'
 
-  import LayoutMenu from '../menu'
-  import LayoutTags from '../tags/index.vue'
-  import LayoutFeature from '../feature'
+import LayoutMenu from '../menu'
+import LayoutTags from '../tags/index.vue'
+import LayoutFeature from '../feature'
 
-  export default defineComponent({
-    name: 'LayoutHeaders',
-    components: {
-      LayoutHeader,
-      LayoutMenu,
-      LayoutTags,
-      LayoutFeature,
-      AppLogo
-    },
+export default defineComponent({
+  name: 'LayoutHeaders',
+  components: {
+    LayoutHeader,
+    LayoutMenu,
+    LayoutTags,
+    LayoutFeature,
+    AppLogo
+  },
 
-    setup() {
-      const prefixCls = 'layout_header'
+  setup() {
+    const prefixCls = 'layout_header'
 
-      const { getShowTags } = useHeaderSetting()
-      const { getMenuTheme } = useMenuSetting()
+    const { getShowTags } = useHeaderSetting()
+    const { getMenuTheme } = useMenuSetting()
 
-      const getHeaderStyle = computed(() => {
-        const mode = unref(getMenuTheme)
+    const getHeaderStyle = computed(() => {
+      const mode = unref(getMenuTheme)
 
-        return [
-          prefixCls,
-          mode
-        ]
-      })
+      return [prefixCls, mode]
+    })
 
-      return {
-        prefixCls,
-        getHeaderStyle,
-        getShowTags
-      }
+    return {
+      prefixCls,
+      getHeaderStyle,
+      getShowTags
     }
-  })
+  }
+})
 </script>
 
 <style lang="less" scoped>
-  @import './index.less';
+@import './index.less';
 </style>

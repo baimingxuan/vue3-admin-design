@@ -171,11 +171,12 @@ export default defineFlatConfig([
       'no-undef': 'off',
       'no-unused-vars': 'off',
       'vue/no-v-html': 'off',
-      'vue/script-setup-uses-vars': 'error',
       'vue/require-default-prop': 'off',
       'vue/require-explicit-emits': 'off',
       'vue/multi-word-component-names': 'off',
+      'vue/no-reserved-component-names': 'off',
       'vue/no-setup-props-reactivity-loss': 'off',
+      'vue/no-side-effects-in-computed-properties': 'off',
       'vue/html-self-closing': [
         'error',
         {

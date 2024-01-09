@@ -2,15 +2,10 @@
   <div class="login-wrapper">
     <div class="login-box">
       <div class="login-box-title">
-        <img src="../assets/images/logo_name.png" alt="icon">
+        <img src="../assets/images/logo_name.png" alt="icon" />
         <p>账 号 登 录</p>
       </div>
-      <Form
-        ref="loginFormRef"
-        :model="loginForm"
-        class="login-box-form"
-        @keypress.enter="handleLogin"
-      >
+      <Form ref="loginFormRef" :model="loginForm" class="login-box-form" @keypress.enter="handleLogin">
         <FormItem name="username" :rules="[{ required: true, message: '请输入账号' }]">
           <Input v-model:value="loginForm.username" placeholder="请输入账号">
             <template #prefix>
@@ -32,13 +27,9 @@
           <a class="fr" href="">忘记密码？</a>
         </FormItem>
         <FormItem>
-          <Button
-            type="primary"
-            html-type="submit"
-            class="login-btn"
-            :loading="loading"
-            @click="handleLogin"
-          >登 录</Button>
+          <Button type="primary" html-type="submit" class="login-btn" :loading="loading" @click="handleLogin"
+            >登 录</Button
+          >
         </FormItem>
       </Form>
     </div>
@@ -46,90 +37,89 @@
 </template>
 
 <script lang="ts" setup>
-  import type { UnwrapRef } from 'vue'
-  import type { FormInstance } from 'ant-design-vue'
+import type { UnwrapRef } from 'vue'
+import type { FormInstance } from 'ant-design-vue'
 
-  import { ref, unref, reactive } from 'vue'
-  import { Form, FormItem, Input, Checkbox, Button, message } from 'ant-design-vue'
-  import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
-  import { useUserStore } from '@/stores/modules/user'
+import { ref, unref, reactive } from 'vue'
+import { Form, FormItem, Input, Checkbox, Button, message } from 'ant-design-vue'
+import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
+import { useUserStore } from '@/stores/modules/user'
 
-  interface FormState {
-    username: string
-    password: string
-    remember: boolean
-  }
+interface FormState {
+  username: string
+  password: string
+  remember: boolean
+}
 
-  const loginForm: UnwrapRef<FormState> = reactive({
-    username: 'admin',
-    password: '123456',
-    remember: true
-  })
+const loginForm: UnwrapRef<FormState> = reactive({
+  username: 'admin',
+  password: '123456',
+  remember: true
+})
 
-  const loading = ref(false)
-  const loginFormRef = ref<FormInstance>()
-  const userStore = useUserStore()
+const loading = ref(false)
+const loginFormRef = ref<FormInstance>()
+const userStore = useUserStore()
 
-  async function handleLogin() {
-    const form = unref(loginFormRef)
-    const data = await form?.validate()
-    if (!data) return
+async function handleLogin() {
+  const form = unref(loginFormRef)
+  const data = await form?.validate()
+  if (!data) return
 
-    try {
-      loading.value = true
-      const userInfo = await userStore.login({
-        username: data.username,
-        password: data.password
-      })
-      if (userInfo) {
-        message.success('登陆成功！')
-      }
-    } catch (error) {
-      message.error((error as unknown as Error).message)
-    } finally {
-      loading.value = false
+  try {
+    loading.value = true
+    const userInfo = await userStore.login({
+      username: data.username,
+      password: data.password
+    })
+    if (userInfo) {
+      message.success('登陆成功！')
     }
+  } catch (error) {
+    message.error((error as unknown as Error).message)
+  } finally {
+    loading.value = false
   }
-
+}
 </script>
 
 <style lang="less" scoped>
-  .login-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-    background-image: url(../assets/images/login-background.jpg);
-    background-size: cover;
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-image: url(../assets/images/login-background.jpg);
+  background-size: cover;
 
-    .login-box {
-      padding: 16px 30px 10px;
-      background: #fff;
-      border-radius: 4px;
-      box-shadow: 0 15px 30px 0 rgba(0, 0, 1, .1);
+  .login-box {
+    padding: 16px 30px 10px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 15px 30px 0 rgba(0, 0, 1, 0.1);
 
-      &-title {
-        margin: 0 auto 35px;
-        text-align: center;
-        color: #707070;
-        font-size: 18px;
-        letter-spacing: 2px;
+    &-title {
+      margin: 0 auto 35px;
+      text-align: center;
+      color: #707070;
+      font-size: 18px;
+      letter-spacing: 2px;
 
-        img {
-          width: 200px;
-          height: 82px;
-          margin: 14px auto 0;
-        }
-      }
-
-      &-form {
-        width: 320px;
-      }
-
-      .login-btn {
-        width: 100%;
+      img {
+        width: 200px;
+        height: 82px;
+        margin: 14px auto 0;
       }
     }
+
+    &-form {
+      width: 320px;
+    }
+
+    .login-btn {
+      width: 100%;
+    }
   }
+}
 </style>

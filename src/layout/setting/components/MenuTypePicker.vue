@@ -7,12 +7,12 @@
             'menu-type-picker__item',
             `menu-type-picker__item--${item.type}`,
             {
-              ['menu-type-picker__item--active'] : def === item.type
+              ['menu-type-picker__item--active']: def === item.type
             }
           ]"
           @click="handler(item)"
         >
-          <div class="hybrid-sider"></div>
+          <div class="hybrid-sider" />
           <CheckOutlined />
         </div>
       </Tooltip>
@@ -21,31 +21,31 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from 'vue'
-  import type { PropType } from 'vue'
+import { defineComponent } from 'vue'
+import type { PropType } from 'vue'
 
-  import { CheckOutlined } from '@ant-design/icons-vue'
-  import { Tooltip } from 'ant-design-vue'
-  import { menuTypeList } from '../enum'
+import { CheckOutlined } from '@ant-design/icons-vue'
+import { Tooltip } from 'ant-design-vue'
+import { menuTypeList } from '../enum'
 
-  export default defineComponent({
-    name: 'MenuTypePicker',
-    components: { Tooltip, CheckOutlined },
-    props: {
-      menuTypeList: {
-        type: Array as PropType<typeof menuTypeList>,
-        default: () => []
-      },
-      handler: {
-        type: Function as PropType<Fn>,
-        default: () => ({}),
-      },
-      def: {
-        type: String,
-        default: '',
-      }
+export default defineComponent({
+  name: 'MenuTypePicker',
+  components: { Tooltip, CheckOutlined },
+  props: {
+    menuTypeList: {
+      type: Array as PropType<typeof menuTypeList>,
+      default: () => []
+    },
+    handler: {
+      type: Function as PropType<Fn>,
+      default: () => ({})
+    },
+    def: {
+      type: String,
+      default: ''
     }
-  })
+  }
+})
 </script>
 
 <style lang="less" scoped>
@@ -83,7 +83,7 @@
       content: '';
     }
 
-    &--sider-menu{
+    &--sider-menu {
       &::before {
         top: 0;
         left: 0;
@@ -124,7 +124,6 @@
     }
 
     &--hybrid-menu {
-
       &::before {
         top: 0;
         left: 0;
@@ -155,7 +154,6 @@
     &--dark {
       background-color: #273352;
     }
-
 
     &:hover,
     &--active {

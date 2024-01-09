@@ -13,63 +13,63 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, computed } from 'vue'
-  import type { PropType } from 'vue'
+import { defineComponent, computed } from 'vue'
+import type { PropType } from 'vue'
 
-  import { Select } from 'ant-design-vue'
-  import type { SelectOptions } from '@/types'
+import { Select } from 'ant-design-vue'
+import type { SelectOptions } from '@/types'
 
-  import { HandlerEnum } from '../enum'
-  import { baseHandler } from '../handler'
+import { HandlerEnum } from '../enum'
+import { baseHandler } from '../handler'
 
-  export default defineComponent({
-    name: 'SelectItem',
-    components: { Select },
-    props: {
-      title: {
-        type: String,
-        default: ''
-      },
-      disabled: {
-        type: Boolean,
-        default: false
-      },
-      def: {
-        type: [String, Number] as PropType<string | number>
-      },
-      event: {
-        type: Number as PropType<HandlerEnum>
-      },
-      options: {
-        type: Array as PropType<SelectOptions>,
-        default: () => []
-      }
+export default defineComponent({
+  name: 'SelectItem',
+  components: { Select },
+  props: {
+    title: {
+      type: String,
+      default: ''
     },
-    setup(props) {
-      const getBindValue = computed(() => {
-        return props.def ? { value: props.def, defaultValue: props.def } : {}
-      })
-
-      function handleChange(value: any) {
-        props.event && baseHandler(props.event, value)
-      }
-
-      return {
-        getBindValue,
-        handleChange
-      }
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    def: {
+      type: [String, Number] as PropType<string | number>
+    },
+    event: {
+      type: Number as PropType<HandlerEnum>
+    },
+    options: {
+      type: Array as PropType<SelectOptions>,
+      default: () => []
     }
-  })
+  },
+  setup(props) {
+    const getBindValue = computed(() => {
+      return props.def ? { value: props.def, defaultValue: props.def } : {}
+    })
+
+    function handleChange(value: any) {
+      props.event && baseHandler(props.event, value)
+    }
+
+    return {
+      getBindValue,
+      handleChange
+    }
+  }
+})
 </script>
 
 <style lang="less">
-  .select-item {
-    display: flex;
-    justify-content: space-between;
-    margin: 16px 0;
+.select-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px 0;
 
-    &-select {
-      width: 120px
-    }
+  &-select {
+    width: 120px;
   }
+}
 </style>

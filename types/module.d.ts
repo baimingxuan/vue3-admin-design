@@ -1,10 +1,10 @@
 declare module '*.vue' {
-    import { DefineComponent } from 'vue'
-    const Component: DefineComponent<{}, {}, any>
-    export default Component
+  import type { DefineComponent } from 'vue'
+  const Component: DefineComponent<{}, {}, any>
+  export default Component
 }
 
 declare module 'vue-drag-resize/src' {
-    import VueDragResize from 'vue-drag-resize/src'
-    export default VueDragResize
+  import VueDragResize from 'vue-drag-resize/src'
+  export default VueDragResize
 }

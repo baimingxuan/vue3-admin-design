@@ -6,17 +6,17 @@ declare type TimeoutHandle = ReturnType<typeof setTimeout>
 declare type IntervalHandle = ReturnType<typeof setInterval>
 
 declare type DeepPartial<T> = {
-    [P in keyof T]?: DeepPartial<T[P]>
+  [P in keyof T]?: DeepPartial<T[P]>
 }
 
 declare type CheckedType = boolean | string | number
 
 declare interface ChangeEvent extends Event {
-    target: HTMLInputElement;
+  target: HTMLInputElement
 }
 
 declare interface ViteEnv {
-    VITE_PORT: number;
-    VITE_PUBLIC_PATH: string;
-    VITE_PROXY: [string, string][];
+  VITE_PORT: number
+  VITE_PUBLIC_PATH: string
+  VITE_PROXY: [string, string][]
 }

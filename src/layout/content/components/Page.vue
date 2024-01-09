@@ -1,10 +1,12 @@
 <template>
   <router-view v-slot="{ Component, route }">
     <transition
-      :name="getTransitionName({
-        openTransition: getOpenTransition,
-        def: getBasicTransition
-      })"
+      :name="
+        getTransitionName({
+          openTransition: getOpenTransition,
+          def: getBasicTransition
+        })
+      "
       mode="out-in"
       appear
     >
@@ -19,40 +21,33 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, computed, unref } from 'vue'
+import { defineComponent, computed, unref } from 'vue'
 
-  import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
-  import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
-  import { useTransitionSetting } from '@/hooks/setting/useTransitionSetting'
+import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
+import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
+import { useTransitionSetting } from '@/hooks/setting/useTransitionSetting'
 
-  export default defineComponent({
-    name: 'LayoutPage',
+export default defineComponent({
+  name: 'LayoutPage',
 
-    setup() {
-      const { getOpenKeepAlive } = useBaseSetting()
-      const { getShowTags } = useHeaderSetting()
-      const { getOpenTransition, getBasicTransition } = useTransitionSetting()
+  setup() {
+    const { getOpenKeepAlive } = useBaseSetting()
+    const { getShowTags } = useHeaderSetting()
+    const { getOpenTransition, getBasicTransition } = useTransitionSetting()
 
-      const openPageCache = computed(() => unref(getOpenKeepAlive) && unref(getShowTags))
+    const openPageCache = computed(() => unref(getOpenKeepAlive) && unref(getShowTags))
 
-      function getTransitionName({
-        openTransition,
-        def
-      }: {
-        openTransition: boolean
-        def: string
-      }): string | undefined {
-        if (!openTransition) return undefined
-        return def
-      }
-
-      return {
-        openPageCache,
-        getOpenTransition,
-        getBasicTransition,
-        getTransitionName
-      }
-
+    function getTransitionName({ openTransition, def }: { openTransition: boolean; def: string }): string | undefined {
+      if (!openTransition) return undefined
+      return def
     }
-  })
+
+    return {
+      openPageCache,
+      getOpenTransition,
+      getBasicTransition,
+      getTransitionName
+    }
+  }
+})
 </script>

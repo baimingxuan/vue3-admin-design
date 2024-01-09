@@ -10,7 +10,7 @@
     :width="getMenuWidth"
     :collapsed="getMenuFold"
   >
-    <template #trigger v-if="getShowTrigger">
+    <template v-if="getShowTrigger" #trigger>
       <SiderTrigger />
     </template>
     <LayoutMenu :menuMode="MenuModeEnum.INLINE" :isSplitedMenu="getIsSplited" :isHorizontal="false" />
@@ -19,33 +19,35 @@
 </template>
 
 <script lang="ts" setup>
-  import { ref, unref, computed } from 'vue'
-  import { LayoutSider } from 'ant-design-vue'
+import { ref, unref, computed } from 'vue'
+import { LayoutSider } from 'ant-design-vue'
 
-  import SiderTrigger from './components/SiderTrigger.vue'
-  import DragBar from './components/DragBar.vue'
-  import LayoutMenu from '@/layout/menu'
-  import { MenuTypeEnum, MenuModeEnum, MenuFoldBtnEnum } from '@/enums/menuEnum'
-  import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
-  import { useDragLine } from './useLayoutSider'
+import SiderTrigger from './components/SiderTrigger.vue'
+import DragBar from './components/DragBar.vue'
+import LayoutMenu from '@/layout/menu'
+import { MenuTypeEnum, MenuModeEnum, MenuFoldBtnEnum } from '@/enums/menuEnum'
+import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
+import { useDragLine } from './useLayoutSider'
 
-  const siderRef = ref<ElRef>(null)
-  const dragBarRef = ref<ElRef>(null)
+const siderRef = ref<ElRef>(null)
+const dragBarRef = ref<ElRef>(null)
 
-  const { getMenuType, getMenuTheme, getMenuWidth, getMenuFold, getMenuFoldBtn, getMenuSplit } = useMenuSetting()
-  const getShowTrigger = computed(() => unref(getMenuFoldBtn) === MenuFoldBtnEnum.SIDER)
-  const getTriggerAttr = computed(() => unref(getShowTrigger) ? {} : { trigger: null })
-  const getShowSider = computed(() => {
-    return unref(getMenuType) === MenuTypeEnum.SIDER_MENU || (unref(getMenuType) === MenuTypeEnum.HEADER_MENU && unref(getMenuSplit))
-  })
-  const getIsSplited = computed(() => unref(getMenuSplit))
+const { getMenuType, getMenuTheme, getMenuWidth, getMenuFold, getMenuFoldBtn, getMenuSplit } = useMenuSetting()
+const getShowTrigger = computed(() => unref(getMenuFoldBtn) === MenuFoldBtnEnum.SIDER)
+const getTriggerAttr = computed(() => (unref(getShowTrigger) ? {} : { trigger: null }))
+const getShowSider = computed(() => {
+  return (
+    unref(getMenuType) === MenuTypeEnum.SIDER_MENU ||
+    (unref(getMenuType) === MenuTypeEnum.HEADER_MENU && unref(getMenuSplit))
+  )
+})
+const getIsSplited = computed(() => unref(getMenuSplit))
 
-  useDragLine(siderRef, dragBarRef)
-
+useDragLine(siderRef, dragBarRef)
 </script>
 
 <style lang="less" scoped>
-  .layout_basic-sider {
-    height: 100vh;
-  }
+.layout_basic-sider {
+  height: 100vh;
+}
 </style>

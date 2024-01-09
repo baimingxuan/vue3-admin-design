@@ -4,9 +4,9 @@
 </template>
 
 <script lang="ts" setup>
-  import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
-  import BasicSider from './BasicSider.vue'
-  import HybridSider from './HybridSider/index.vue'
+import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
+import BasicSider from './BasicSider.vue'
+import HybridSider from './HybridSider/index.vue'
 
-  const { getIsHybridMenu } = useMenuSetting()
+const { getIsHybridMenu } = useMenuSetting()
 </script>
