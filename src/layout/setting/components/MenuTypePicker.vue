@@ -3,49 +3,58 @@
     <template v-for="item in menuTypeList || []" :key="item.title">
       <Tooltip :title="item.title" placement="top">
         <div
-          :class="[
-            'menu-type-picker__item',
-            `menu-type-picker__item--${item.type}`,
-            {
-              ['menu-type-picker__item--active']: def === item.type
-            }
-          ]"
+          :class="['menu-type-picker__item', `menu-type-picker__item--${item.type}`]"
+          :style="getStyle(item, 'item')"
           @click="handler(item)"
         >
           <div class="hybrid-sider" />
-          <CheckOutlined />
+          <CheckOutlined :style="getStyle(item, 'icon')" />
         </div>
       </Tooltip>
     </template>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-import type { PropType } from 'vue'
-
+<script lang="ts" setup>
+import type { PropType, CSSProperties } from 'vue'
+import { computed, unref } from 'vue'
 import { CheckOutlined } from '@ant-design/icons-vue'
 import { Tooltip } from 'ant-design-vue'
-import { menuTypeList } from '../enum'
+import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
+// import { menuTypeList } from '../enum'
 
-export default defineComponent({
-  name: 'MenuTypePicker',
-  components: { Tooltip, CheckOutlined },
-  props: {
-    menuTypeList: {
-      type: Array as PropType<typeof menuTypeList>,
-      default: () => []
-    },
-    handler: {
-      type: Function as PropType<Fn>,
-      default: () => ({})
-    },
-    def: {
-      type: String,
-      default: ''
-    }
+const props = defineProps({
+  menuTypeList: {
+    type: Array as PropType<any>,
+    default: () => []
+  },
+  handler: {
+    type: Function as PropType<Fn>,
+    default: () => ({})
+  },
+  def: {
+    type: String,
+    default: ''
   }
 })
+
+const { getThemeColor } = useBaseSetting()
+
+const getStyle = (item: any, type: 'item' | 'icon'): CSSProperties => {
+  if (item.type === props.def) {
+    if (type === 'item') {
+      return {
+        border: `2px solid ${unref(getThemeColor)}`
+      }
+    } else if (type === 'icon') {
+      return {
+        display: 'block',
+        color: unref(getThemeColor)
+      }
+    }
+  }
+  return {}
+}
 </script>
 
 <style lang="less" scoped>
@@ -67,7 +76,7 @@ export default defineComponent({
       margin-right: 0;
     }
 
-    &:deep(svg) {
+    &:deep(.anticon) {
       display: none;
       z-index: 9;
       position: absolute;
@@ -153,21 +162,6 @@ export default defineComponent({
 
     &--dark {
       background-color: #273352;
-    }
-
-    &:hover,
-    &--active {
-      border: 2px solid @primary-color;
-
-      &:deep(svg) {
-        display: block;
-        color: @primary-color;
-      }
-
-      &::before,
-      &::after {
-        border-radius: 0;
-      }
     }
   }
 }

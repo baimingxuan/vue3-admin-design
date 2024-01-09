@@ -5,7 +5,6 @@ import windiCSS from 'vite-plugin-windicss'
 import { configMockPlugin } from './mock'
 import { configSvgIconsPlugin } from './svgIcons'
 import { configStyleImportPlugin } from './styles'
-import { configThemePlugin } from './theme'
 
 export function createVitePlugins(isBuild: boolean) {
   const vitePlugins: (Plugin | Plugin[])[] = [
@@ -25,9 +24,6 @@ export function createVitePlugins(isBuild: boolean) {
 
   // vite-plugin-mock
   vitePlugins.push(configMockPlugin(isBuild))
-
-  // vite-plugin-theme
-  vitePlugins.push(configThemePlugin())
 
   return vitePlugins
 }

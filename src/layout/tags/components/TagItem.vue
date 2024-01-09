@@ -1,5 +1,5 @@
 <template>
-  <Tag :class="['compo_tag-item', { active }]" :closable="!fixed" @close="handleClose">
+  <Tag :class="['compo_tag-item', { 'ant-tag-checkable-checked': active }]" :closable="!fixed" @close="handleClose">
     <span class="compo_tag-item__dot" />
     <span class="compo_tag-item__name">{{ name }}</span>
   </Tag>
@@ -25,14 +25,13 @@ function handleClose() {
 <style lang="less" scoped>
 .compo_tag-item {
   display: inline-block;
-  vertical-align: top;
+  vertical-align: baseline;
   height: 24px;
   margin: 0 2px;
   padding: 0 8px;
   border-radius: 3px;
   line-height: 24px;
   color: #555;
-  background: @white;
   overflow: hidden;
   cursor: pointer;
 
@@ -50,17 +49,17 @@ function handleClose() {
   }
 
   &:deep(.anticon-close) {
-    vertical-align: middle;
+    vertical-align: baseline;
     svg {
       width: 8px;
       height: 8px;
     }
   }
 
-  &.active {
+  &.ant-tag-checkable-checked {
     border: none;
     color: @white;
-    background: @primary-color;
+
     & .compo_tag-item__dot {
       background: @white;
     }

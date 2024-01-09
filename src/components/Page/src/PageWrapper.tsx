@@ -1,7 +1,8 @@
 import type { PropType } from 'vue'
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, unref } from 'vue'
 import { Button } from 'ant-design-vue'
 import { openWindow } from '@/utils'
+import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
 import SvgIcon from '@/components/SvgIcon'
 import compoStyle from './compo.module.less'
 
@@ -22,6 +23,8 @@ export default defineComponent({
     const pageWrapperRef = ref(null)
     const pageContentRef = ref(null)
 
+    const { getThemeColor } = useBaseSetting()
+
     function openGithub() {
       openWindow(props.plugin?.url!)
     }
@@ -36,7 +39,7 @@ export default defineComponent({
           <p>{props.plugin?.desc}</p>
           <p>
             <span>github源码:</span>
-            <Button type='link' size='small' onClick={openGithub}>
+            <Button type='link' size='small' style={{ color: unref(getThemeColor) }} onClick={openGithub}>
               立即访问
             </Button>
           </p>

@@ -1,6 +1,4 @@
-import { darkCssIsReady, loadDarkThemeCss } from 'vite-plugin-theme/es/client'
 import { addClass, hasClass, removeClass } from '@/utils/dom'
-import { isProdMode } from '@/utils/env'
 import { toggleClass } from './util'
 
 // Change the system dark mode
@@ -11,10 +9,6 @@ export async function updateDarkTheme(mode: string | null = 'light') {
   const hasDarkClass = hasClass(htmlRoot, 'dark')
 
   if (mode === 'dark') {
-    if (isProdMode() && !darkCssIsReady) {
-      await loadDarkThemeCss()
-    }
-
     htmlRoot.setAttribute('data-theme', 'dark')
 
     if (!hasDarkClass) {

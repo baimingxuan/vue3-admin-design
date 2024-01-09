@@ -77,7 +77,6 @@
     "vite-plugin-mock": "2.9.8",
     "vite-plugin-style-import": "^2.0.0",
     "vite-plugin-svg-icons": "^2.0.1",
-    "vite-plugin-theme": "^0.8.6",
     "vite-plugin-windicss": "^1.9.3",
     "vue-eslint-parser": "^9.3.2",
     "vue-tsc": "^1.8.27",

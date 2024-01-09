@@ -183,11 +183,10 @@ const { getOpenNProgress, getOpenPageLoading, getOpenTransition, getBasicTransit
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
+  width: 40px !important;
   height: 40px;
   font-size: 16px;
   color: @white;
-  background: @primary-color;
   border-radius: 4px 0 0 4px;
   cursor: pointer;
   pointer-events: auto;
