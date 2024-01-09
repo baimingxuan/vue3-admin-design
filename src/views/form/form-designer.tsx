@@ -6,13 +6,14 @@ import { FORM_CREATE_DESIGNER } from '@/settings/websiteSetting'
 export default defineComponent({
   name: 'FormDesigner',
   setup() {
-
     return () => (
       <PageWrapper plugin={FORM_CREATE_DESIGNER}>
         {{
-          default: () => <Card bordered={false}>
-            <fc-designer height='664px' />
-          </Card>
+          default: () => (
+            <Card bordered={false}>
+              <fc-designer height='664px' />
+            </Card>
+          )
         }}
       </PageWrapper>
     )

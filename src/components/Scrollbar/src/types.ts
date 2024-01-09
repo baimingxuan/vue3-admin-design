@@ -9,7 +9,6 @@ interface BarMapItem {
   direction: string
 }
 
-
 export interface BarMap {
   vertical: BarMapItem
   horizontal: BarMapItem

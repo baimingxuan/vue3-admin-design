@@ -1,7 +1,7 @@
 import type { PropType } from 'vue'
 import { defineComponent, ref, computed, unref } from 'vue'
 import { useRoute } from 'vue-router'
-import { Result, Card , Button } from 'ant-design-vue'
+import { Result, Card, Button } from 'ant-design-vue'
 import { ExceptionEnum } from '@/enums/exceptionEnum'
 import { useGo } from '@/hooks/web/usePage'
 
@@ -74,20 +74,14 @@ export default defineComponent({
 
       return (
         <Card bordered={false}>
-          <Result
-            status={status as any}
-            title={title}
-            subTitle={subTitle}
-          >
+          <Result status={status as any} title={title} subTitle={subTitle}>
             {{
-              extra: () => btnText && (
-                <Button
-                  type='primary'
-                  onClick={handler}
-                >
-                  {btnText}
-                </Button>
-              )
+              extra: () =>
+                btnText && (
+                  <Button type='primary' onClick={handler}>
+                    {btnText}
+                  </Button>
+                )
             }}
           </Result>
         </Card>

@@ -18,7 +18,7 @@ export function useTags(_router?: Router) {
   const tagStore = useTagStore()
   const router = _router || useRouter()
   const { currentRoute } = router
-  
+
   function canUseTags(): boolean {
     const appStore = useAppStore()
     const { showTags } = appStore.getHeaderSetting
@@ -28,7 +28,7 @@ export function useTags(_router?: Router) {
     }
     return showTags
   }
-  
+
   function getCurrentTag() {
     const route = unref(currentRoute)
     return tagStore.getVisitedTags.find(item => item.fullPath === route.fullPath)!
@@ -63,7 +63,6 @@ export function useTags(_router?: Router) {
       case TagActionEnum.CLOSE_ALL:
         await tagStore.closeAllTags(router)
         break
-        
     }
   }
 

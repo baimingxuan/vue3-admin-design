@@ -4,7 +4,6 @@ import { resolve } from 'path'
 
 // Less global variable
 export function generateModifyVars(dark = false) {
-  
   const colors = generateAntColors(primaryColor)
   const primary = colors[5]
 

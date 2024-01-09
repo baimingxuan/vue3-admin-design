@@ -1,14 +1,7 @@
 import * as echarts from 'echarts/core'
 import { SVGRenderer } from 'echarts/renderers'
 
-import {
-  BarChart,
-  LineChart,
-  PieChart,
-  MapChart,
-  PictorialBarChart,
-  RadarChart
-} from 'echarts/charts'
+import { BarChart, LineChart, PieChart, MapChart, PictorialBarChart, RadarChart } from 'echarts/charts'
 
 import {
   TitleComponent,

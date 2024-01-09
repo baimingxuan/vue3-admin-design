@@ -18,7 +18,7 @@ export function useGo(router?: Router) {
     if (isString(opt)) {
       isReplace ? replace(opt).catch(handleError) : push(opt).catch(handleError)
     } else {
-      const _opt = opt as RouteLocationRaw;
+      const _opt = opt as RouteLocationRaw
       isReplace ? replace(_opt).catch(handleError) : push(_opt).catch(handleError)
     }
   }
@@ -27,7 +27,7 @@ export function useGo(router?: Router) {
 }
 
 // reload current page
-export function useReload (router?: Router) {
+export function useReload(router?: Router) {
   const { push, currentRoute } = router || useRouter()
   const { query, params = {}, name, fullPath } = unref(currentRoute)
 

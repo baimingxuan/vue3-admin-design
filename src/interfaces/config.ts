@@ -1,7 +1,7 @@
-import { MenuModeEnum, MenuTypeEnum, MenuFoldBtnEnum } from '../enums/menuEnum'
-import { PageTransitionEnum, ThemeEnum } from '../enums/appEnum'
-import { PermissionModeEnum } from '../enums/appEnum'
-import { CacheTypeEnum } from '../enums/cacheEnum'
+import type { MenuModeEnum, MenuTypeEnum, MenuFoldBtnEnum } from '../enums/menuEnum'
+import type { PageTransitionEnum, ThemeEnum } from '../enums/appEnum'
+import type { PermissionModeEnum } from '../enums/appEnum'
+import type { CacheTypeEnum } from '../enums/cacheEnum'
 
 export interface AppConfig {
   // Theme color
@@ -65,9 +65,9 @@ export interface MenuSetting {
   // Whether to display the menu name when folding the menu
   menuFoldShowTitle: boolean
   // Menu width
-  menuWidth: number,
+  menuWidth: number
   // Hydrid mode sider menu fixed
-  menuFixed: boolean,
+  menuFixed: boolean
   // Hybrid mode sider menu hidden
   menuHidden: boolean
 }

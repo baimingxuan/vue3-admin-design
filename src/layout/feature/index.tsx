@@ -15,11 +15,11 @@ export default defineComponent({
     return () => (
       <div class={moduleStyle[prefixCls]}>
         <div class={moduleStyle[`${prefixCls}-main`]}>
-          { unref(getShowSearch) && <AppSearch /> }
-          { unref(getShowFullScreen) && <FullScreen /> }
-          { unref(getShowLocale) && <AppLocalePicker /> }
-          { unref(getShowDoc) && <DocLink /> }
-          { unref(getShowGithub) && <GithubLink /> }
+          {unref(getShowSearch) && <AppSearch />}
+          {unref(getShowFullScreen) && <FullScreen />}
+          {unref(getShowLocale) && <AppLocalePicker />}
+          {unref(getShowDoc) && <DocLink />}
+          {unref(getShowGithub) && <GithubLink />}
         </div>
         <Divider type='vertical' class={moduleStyle[`${prefixCls}-divider`]} />
         <UserDropdown />

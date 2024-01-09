@@ -1,4 +1,4 @@
-import { CSSProperties } from 'vue'
+import type { CSSProperties } from 'vue'
 import { defineComponent, reactive, unref, computed } from 'vue'
 import { props } from './props'
 
@@ -32,18 +32,18 @@ export default defineComponent({
       elmH: 0
     })
 
-    const getWrapStyle = computed((): CSSProperties => ({
-      top: config.top + 'px',
-      left: config.left + 'px',
-      width: config.width + 'px',
-      height: config.height + 'px',
-      transform: 'rotate(' + config.rotateAngle + 'deg)',
-      zIndex: config.zIndex as CSSProperties['zIndex'],
-      overflowY: props.overflowY
-    }))
-
-    return () => (
-      <div class='drr-container' style={unref(getWrapStyle)}></div>
+    const getWrapStyle = computed(
+      (): CSSProperties => ({
+        top: config.top + 'px',
+        left: config.left + 'px',
+        width: config.width + 'px',
+        height: config.height + 'px',
+        transform: 'rotate(' + config.rotateAngle + 'deg)',
+        zIndex: config.zIndex as CSSProperties['zIndex'],
+        overflowY: props.overflowY
+      })
     )
+
+    return () => <div class='drr-container' style={unref(getWrapStyle)}></div>
   }
 })

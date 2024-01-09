@@ -36,7 +36,7 @@ export const props = {
   },
   decimal: {
     type: String,
-    default: '.' 
+    default: '.'
   },
   // Font size
   size: {

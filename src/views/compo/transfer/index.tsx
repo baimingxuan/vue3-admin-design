@@ -32,7 +32,7 @@ export default defineComponent({
     function isChecked(selectedKeys: (string | number)[], eventKey: string | number) {
       return selectedKeys.indexOf(eventKey) !== -1
     }
-    
+
     function handleTreeData(data: TransferProps['dataSource'] = [], targetKeys: string[] = []) {
       data.forEach(item => {
         item['disabled'] = targetKeys.includes(item.key as any)
@@ -43,25 +43,15 @@ export default defineComponent({
       return data as TreeProps['treeData']
     }
 
-    function onChecked(
-      e: any,
-      checkedKeys: string[],
-      onItemSelect: (n: any, c: boolean) => void
-    ) {
+    function onChecked(e: any, checkedKeys: string[], onItemSelect: (n: any, c: boolean) => void) {
       const { eventKey } = e.node
       onItemSelect(eventKey, !isChecked(checkedKeys, eventKey as string))
     }
 
-    function getRowSelection({
-      selectedKeys,
-      onItemSelectAll,
-      onItemSelect,
-    }: Record<string, any>) {
+    function getRowSelection({ selectedKeys, onItemSelectAll, onItemSelect }: Record<string, any>) {
       return {
         onSelectAll(selected: boolean, selectedRows: Record<string, string | boolean>[]) {
-          const treeSelectedKeys = selectedRows
-            .filter(item => !item.disabled)
-            .map(({ key }) => key)
+          const treeSelectedKeys = selectedRows.filter(item => !item.disabled).map(({ key }) => key)
           onItemSelectAll(treeSelectedKeys, selected)
         },
         onSelect({ key }: Record<string, string>, selected: boolean) {
@@ -74,35 +64,33 @@ export default defineComponent({
     return () => (
       <PageWrapper plugin={TRANSFER_COMPO}>
         {{
-          default: () => <Row gutter={12}>
+          default: () => (
+            <Row gutter={12}>
               <Col span={8}>
-                <Card title='基础用法' bordered={false} bodyStyle={{height: '420px'}}>
+                <Card title='基础用法' bordered={false} bodyStyle={{ height: '420px' }}>
                   <Transfer
                     v-model:targetKeys={targetKeys.value}
                     v-model:selectedKeys={selectedKeys.value}
                     dataSource={mockData}
                     render={item => item.title}
-                    listStyle={{width: '230px', height: '360px'}}
-                    locale={{itemsUnit: '项 '}}
+                    listStyle={{ width: '230px', height: '360px' }}
+                    locale={{ itemsUnit: '项 ' }}
                   />
                 </Card>
               </Col>
               <Col span={8}>
-                <Card title='树穿梭框' bordered={false} bodyStyle={{height: '420px'}}>
+                <Card title='树穿梭框' bordered={false} bodyStyle={{ height: '420px' }}>
                   <Transfer
                     v-model:targetKeys={treeTargetKeys.value}
                     dataSource={dataSource.value}
                     render={item => item.title}
                     showSelectAll={false}
-                    listStyle={{width: '230px', height: '360px'}}
+                    listStyle={{ width: '230px', height: '360px' }}
                   >
                     {{
-                      children: ({
-                        direction,
-                        selectedKeys,
-                        onItemSelect
-                      }) => direction === 'left'
-                        ? <Tree
+                      children: ({ direction, selectedKeys, onItemSelect }) =>
+                        direction === 'left' ? (
+                          <Tree
                             blockNode
                             checkable
                             checkStrictly
@@ -116,38 +104,40 @@ export default defineComponent({
                               onChecked(props, [...selectedKeys, ...treeTargetKeys.value], onItemSelect)
                             }}
                           />
-                        : null
+                        ) : null
                     }}
                   </Transfer>
                 </Card>
               </Col>
               <Col span={8}>
-                <Card title='表格穿梭框' bordered={false} bodyStyle={{height: '420px'}}>
+                <Card title='表格穿梭框' bordered={false} bodyStyle={{ height: '420px' }}>
                   <Transfer
                     v-model:targetKeys={targetKeys.value}
                     dataSource={mockData}
-                    listStyle={{width: '230px', height: '360px'}}
-                    locale={{itemsUnit: '项 '}}
+                    listStyle={{ width: '230px', height: '360px' }}
+                    locale={{ itemsUnit: '项 ' }}
                   >
                     {{
-                      children: ({
-                        filteredItems,
-                        selectedKeys,
-                        onItemSelectAll,
-                        onItemSelect
-                      }) => <Table
-                          rowSelection={getRowSelection({selectedKeys, onItemSelectAll, onItemSelect})}
+                      children: ({ filteredItems, selectedKeys, onItemSelectAll, onItemSelect }) => (
+                        <Table
+                          rowSelection={getRowSelection({ selectedKeys, onItemSelectAll, onItemSelect })}
                           columns={columns.value}
                           dataSource={filteredItems}
                           size='small'
                           pagination={false}
-                          customRow={({key}) => ({onClick: () => {onItemSelect(key, !selectedKeys.includes(key))}})}
+                          customRow={({ key }) => ({
+                            onClick: () => {
+                              onItemSelect(key, !selectedKeys.includes(key))
+                            }
+                          })}
                         />
+                      )
                     }}
                   </Transfer>
                 </Card>
               </Col>
             </Row>
+          )
         }}
       </PageWrapper>
     )

@@ -60,7 +60,7 @@ export const RedirectRoute: AppRoute = {
   meta: {
     title: '重定向页面',
     hideMenu: true,
-    hideBreadcrumb: true,
+    hideBreadcrumb: true
   },
   children: [
     {
@@ -100,9 +100,4 @@ Object.keys(routeModules).forEach(key => {
 export const asyncRoutes = [PageNotFoundRoute, RedirectRoute, ...routeModulesList]
 
 // Basic routes without permission
-export const basicRoutes = [
-  LoginRoute,
-  RootRoute,
-  RedirectRoute,
-  ...routeModulesList
-]
+export const basicRoutes = [LoginRoute, RootRoute, RedirectRoute, ...routeModulesList]

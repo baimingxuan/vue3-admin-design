@@ -1,8 +1,26 @@
 import type { FormInstance, CascaderProps, TreeSelectProps } from 'ant-design-vue'
 import type { Rule } from 'ant-design-vue/es/form'
 import { defineComponent, ref, reactive, watch } from 'vue'
-import { Card, Form, FormItem, Row, Col, Input, InputNumber, InputPassword, Button, Select, DatePicker,
-  Switch, Slider, Cascader, TreeSelect, RadioGroup, Checkbox, Textarea } from 'ant-design-vue'
+import {
+  Card,
+  Form,
+  FormItem,
+  Row,
+  Col,
+  Input,
+  InputNumber,
+  InputPassword,
+  Button,
+  Select,
+  DatePicker,
+  Switch,
+  Slider,
+  Cascader,
+  TreeSelect,
+  RadioGroup,
+  Checkbox,
+  Textarea
+} from 'ant-design-vue'
 import { FORM_COMPO } from '@/settings/websiteSetting'
 import { PageWrapper } from '@/components/Page'
 import { provinceData, cityData, cascaderData, treeData, radioData, checkboxData } from './data'
@@ -33,9 +51,7 @@ export default defineComponent({
     })
 
     const formRules: Record<string, Rule[]> = {
-      inputLimit: [
-        { required: true, message: '内容不能为空', trigger: 'blur' }
-      ],
+      inputLimit: [{ required: true, message: '内容不能为空', trigger: 'blur' }],
       inputNum: [
         { required: true, message: '内容不能为空', trigger: 'blur' },
         { type: 'number', message: '内容必须为数字值', trigger: 'blur' }
@@ -46,15 +62,13 @@ export default defineComponent({
         { pattern: /^[a-zA-Z0-9_-]{6,16}$/, message: '密码只支持字母、数字和下划线', trigger: ['blur', 'change'] }
       ]
     }
-    
-    const cascaderLazyData = ref<CascaderProps['options']>([
-      { value: 1, label: '选项1', isLeaf: false }
-    ])
+
+    const cascaderLazyData = ref<CascaderProps['options']>([{ value: 1, label: '选项1', isLeaf: false }])
 
     const treeLazyData = ref<TreeSelectProps['treeData']>([
       { id: 1, pId: 0, value: '1', title: 'Expand to load' },
       { id: 2, pId: 0, value: '2', title: 'Expand to load' },
-      { id: 3, pId: 0, value: '3', title: 'Tree Node', isLeaf: true },
+      { id: 3, pId: 0, value: '3', title: 'Tree Node', isLeaf: true }
     ])
 
     watch(
@@ -72,13 +86,12 @@ export default defineComponent({
         targetOption.loading = false
         let id = selectedOptions.length
         const level = selectedOptions.length
-        targetOption.children = Array.from({ length: level + 1 })
-          .map(() => ({
-            value: ++id,
-            label: `选项${id}`,
-            isLeaf: level >= 2
-          }))
-          cascaderLazyData.value = [...cascaderLazyData.value!]
+        targetOption.children = Array.from({ length: level + 1 }).map(() => ({
+          value: ++id,
+          label: `选项${id}`,
+          isLeaf: level >= 2
+        }))
+        cascaderLazyData.value = [...cascaderLazyData.value!]
       }, 1000)
     }
 
@@ -110,26 +123,22 @@ export default defineComponent({
     function resetForm() {
       formRef.value?.resetFields()
     }
-    
+
     return () => (
       <PageWrapper plugin={FORM_COMPO}>
         {{
-          default: () => <Card bordered={false}>
+          default: () => (
+            <Card bordered={false}>
               <Form
                 ref={formRef}
                 model={formState}
                 rules={formRules}
-                labelCol={{span: 6}}
-                wrapperCol={{span: 18}}
+                labelCol={{ span: 6 }}
+                wrapperCol={{ span: 18 }}
                 style={{ width: '40%', margin: '0 auto' }}
               >
                 <FormItem label='输入框(长度限制):' name='inputLimit'>
-                  <Input
-                    v-model={[formState.inputLimit, 'value']}
-                    showCount
-                    maxlength={20}
-                    placeholder='请输入内容'
-                  />
+                  <Input v-model={[formState.inputLimit, 'value']} showCount maxlength={20} placeholder='请输入内容' />
                 </FormItem>
                 <FormItem label='输入框(纯数字):' name='inputNum'>
                   <InputNumber
@@ -143,7 +152,7 @@ export default defineComponent({
                     v-model={[formState.password, 'value']}
                     maxlength={16}
                     autocomplete='off'
-                    placeholder="请输入密码"
+                    placeholder='请输入密码'
                   />
                 </FormItem>
                 <FormItem label='select选择器(联动):' name='selectProvince'>
@@ -253,12 +262,17 @@ export default defineComponent({
                     />
                   </FormItem>
                 </div>
-                <FormItem wrapperCol={{span: 12, offset: 12}}>
-                  <Button type='primary' htmlType='submit'>提交</Button>
-                  <Button style={{ marginLeft: '12px' }} onClick={resetForm}>重置</Button>
+                <FormItem wrapperCol={{ span: 12, offset: 12 }}>
+                  <Button type='primary' htmlType='submit'>
+                    提交
+                  </Button>
+                  <Button style={{ marginLeft: '12px' }} onClick={resetForm}>
+                    重置
+                  </Button>
                 </FormItem>
               </Form>
             </Card>
+          )
         }}
       </PageWrapper>
     )

@@ -1,4 +1,4 @@
-import { MockMethod } from 'vite-plugin-mock'
+import type { MockMethod } from 'vite-plugin-mock'
 import { Random } from 'mockjs'
 import { resultPageSuccess } from '../_util'
 

@@ -58,7 +58,7 @@ export default defineComponent({
                 indentWithTab={config.indentWithTab}
                 tabSize={config.tabSize}
                 extensions={extensions}
-                placeholder="Please enter the code..."
+                placeholder='Please enter the code...'
                 onReady={handleReady}
                 onUpdate={handleStateUpdate}
               />

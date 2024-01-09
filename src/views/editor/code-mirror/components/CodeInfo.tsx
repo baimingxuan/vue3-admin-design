@@ -14,7 +14,6 @@ export default defineComponent({
     }
   },
   setup(props) {
-
     return () => (
       <div style='padding: 4px 8px; border: solid 1px #ddd;'>
         <Form layout='inline'>

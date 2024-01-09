@@ -28,7 +28,7 @@ export function initAffixTags(): void {
     tagsStore.addVisitedTags({
       meta: tag.meta,
       name: tag.name,
-      path: tag.path,
+      path: tag.path
     } as unknown as RouteLocationNormalized)
   }
 }

@@ -18,13 +18,13 @@ interface ConfirmOptions {
 
 function getIcon(iconType: string) {
   if (iconType === 'warning') {
-    return <InfoCircleFilled class="modal-icon-warning" />
+    return <InfoCircleFilled class='modal-icon-warning' />
   } else if (iconType === 'success') {
-    return <CheckCircleFilled class="modal-icon-success" />
+    return <CheckCircleFilled class='modal-icon-success' />
   } else if (iconType === 'info') {
-    return <InfoCircleFilled class="modal-icon-info" />
+    return <InfoCircleFilled class='modal-icon-info' />
   } else {
-    return <CloseCircleFilled class="modal-icon-error" />
+    return <CloseCircleFilled class='modal-icon-error' />
   }
 }
 

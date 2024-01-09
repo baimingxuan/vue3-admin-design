@@ -1,4 +1,4 @@
-import { defineComponent, computed, ref, getCurrentInstance, onUnmounted, inject, Ref } from 'vue'
+import { defineComponent, computed, ref, getCurrentInstance, onUnmounted, inject, type Ref } from 'vue'
 import { on, off } from '@/utils/dom'
 
 import { BAR_MAP, renderThumbStyle } from './util'
@@ -11,25 +11,24 @@ export default defineComponent({
     size: String,
     move: Number
   },
-  
+
   setup(props) {
     const thumb = ref()
     const cursorDown = ref()
     const barStore = ref<Recordable>({})
     const wrap = inject('scroll-bar-wrap', {} as Ref<Nullable<HTMLElement>>) as any
     const instance = getCurrentInstance()
-    
 
     const bar = computed(() => {
       return BAR_MAP[props.vertical ? 'vertical' : 'horizontal']
     })
 
     function clickThumbHandler(e: any): void {
-       // prevent click event of right button
-       if (e.ctrlKey || e.button === 2) return
-       window.getSelection()?.removeAllRanges()
-       startDrag(e)
-       barStore.value[bar.value.axis] =
+      // prevent click event of right button
+      if (e.ctrlKey || e.button === 2) return
+      window.getSelection()?.removeAllRanges()
+      startDrag(e)
+      barStore.value[bar.value.axis] =
         e.currentTarget[bar.value.offset] -
         (e[bar.value.client] - e.currentTarget.getBoundingClientRect()[bar.value.direction])
     }
@@ -39,8 +38,7 @@ export default defineComponent({
       const thumbHalf = thumb.value[bar.value.offset] / 2
       const thumbPositionPercentage = ((offset - thumbHalf) * 100) / instance?.vnode.el?.[bar.value.offset]
 
-      wrap.value[bar.value.scroll] =
-        (thumbPositionPercentage * wrap.value[bar.value.scrollSize]) / 100
+      wrap.value[bar.value.scroll] = (thumbPositionPercentage * wrap.value[bar.value.scrollSize]) / 100
     }
 
     function startDrag(e: any): void {
@@ -51,7 +49,7 @@ export default defineComponent({
       document.onselectstart = () => false
     }
 
-    function mouseMoveDocumentHandler(e: any):void {
+    function mouseMoveDocumentHandler(e: any): void {
       if (cursorDown.value === false) return
       const prevPage = barStore.value[bar.value.axis]
 
@@ -75,20 +73,17 @@ export default defineComponent({
     })
 
     return () => (
-      <div
-        class={ ['scrollbar__bar', 'is-' + bar.value.key] }
-        onMousedown={ clickTrackHandler } >
+      <div class={['scrollbar__bar', 'is-' + bar.value.key]} onMousedown={clickTrackHandler}>
         <div
           ref={thumb}
-          class="scrollbar__thumb"
-          onMousedown={ clickThumbHandler }
-          style={ renderThumbStyle({
-              size: props.size,
-              move: props.move,
-              bar: bar.value
-            })
-          }>
-        </div>
+          class='scrollbar__thumb'
+          onMousedown={clickThumbHandler}
+          style={renderThumbStyle({
+            size: props.size,
+            move: props.move,
+            bar: bar.value
+          })}
+        ></div>
       </div>
     )
   }

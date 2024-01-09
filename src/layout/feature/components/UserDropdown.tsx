@@ -39,10 +39,7 @@ export default defineComponent({
         {{
           default: () => (
             <span class='flex-center' style='cursor: pointer;'>
-              <img
-                src={unref(getUserInfo).avatar}
-                style="width: 24px; height: 24px; border-radius: 50%;"
-              />
+              <img src={unref(getUserInfo).avatar} style='width: 24px; height: 24px; border-radius: 50%;' />
             </span>
           ),
           overlay: () => (
@@ -66,7 +63,3 @@ export default defineComponent({
     )
   }
 })
-
-
-
-

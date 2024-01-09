@@ -128,23 +128,23 @@ export const radarOptions: EChartsOption = {
     indicator: [
       {
         name: '直接访问',
-        max: 2000,
+        max: 2000
       },
       {
         name: '邮件营销',
-        max: 2000,
+        max: 2000
       },
       {
         name: '联盟广告',
-        max: 2000,
+        max: 2000
       },
       {
         name: '视频广告',
-        max: 2000,
+        max: 2000
       },
       {
         name: '搜索引擎',
-        max: 2000,
+        max: 2000
       }
     ]
   },
@@ -161,7 +161,7 @@ export const radarOptions: EChartsOption = {
       },
       data: [
         {
-          value: [1124, 1923, 1325, 986, 1469 ],
+          value: [1124, 1923, 1325, 986, 1469],
           name: '访问来源',
           itemStyle: {
             color: '#722ed1'

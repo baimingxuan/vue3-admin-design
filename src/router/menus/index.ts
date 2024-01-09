@@ -6,7 +6,6 @@ import { useAppStoreWithOut } from '@/stores/modules/app'
 import { usePermissionStore } from '@/stores/modules/permission'
 import { getAllParentPath, transformRouteToMenu } from '@/router/helper/menuHelper'
 
-
 const getPermissionMode = () => {
   const appStore = useAppStoreWithOut()
   return appStore.getAppConfig.permissionMode
@@ -29,10 +28,10 @@ export async function getAsyncMenus(): Promise<AppMenu[]> {
 
   const permissionStore = usePermissionStore()
   if (isMappingMode()) {
-    return permissionStore.getMenuList.filter((item) => !item.hideMenu)
+    return permissionStore.getMenuList.filter(item => !item.hideMenu)
   }
 
-  return staticMenus.filter((item) => !item.hideMenu)
+  return staticMenus.filter(item => !item.hideMenu)
 }
 
 // Get the level 1 menu, delete children
@@ -56,7 +55,7 @@ export async function getChildrenMenus(parentPath: string): Promise<AppMenu[]> {
   return parent.children
 }
 
-// Get the parent menu path of the currently active menu 
+// Get the parent menu path of the currently active menu
 export async function getCurrentParentPath(currentPath: string) {
   const menus = await getAsyncMenus()
 
@@ -64,4 +63,3 @@ export async function getCurrentParentPath(currentPath: string) {
 
   return allParentPath?.[0]
 }
-

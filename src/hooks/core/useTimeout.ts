@@ -14,7 +14,7 @@ export function useTimeoutFn(handle: Fn<any>, wait: number, native = false) {
   } else {
     watch(
       readyRef,
-      (maturity) => {
+      maturity => {
         maturity && handle()
       },
       { immediate: false }

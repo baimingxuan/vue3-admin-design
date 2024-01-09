@@ -1,22 +1,25 @@
 import type { WorkSheet } from 'xlsx'
 import { write, read, utils } from 'xlsx'
 import { saveAs } from 'file-saver'
-import { ImportType, DataToSheet } from './types'
+import type { ImportType, DataToSheet } from './types'
 
 export function useExcel() {
   // Automatic width calculation (自动宽度计算)
   function AutoWidth(ws: WorkSheet, arr: any[][]) {
     // Sets the maximum width of each column of the worksheet (设置worksheet每列的最大宽度)
-    const colWidth = arr.map(row => row.map(val => {
-      // Checked null or undefined（判断是否为null/undefined）
-      if (val == null) {
-        return { wch: 10 }
-      } else if (val.toString().charCodeAt(0) > 255) { // Checked Chinese (判断是否为中文)
-        return { wch: val.toString().length * 2 }
-      } else {
-        return { wch: val.toString().length }
-      }
-    }))
+    const colWidth = arr.map(row =>
+      row.map(val => {
+        // Checked null or undefined（判断是否为null/undefined）
+        if (val == null) {
+          return { wch: 10 }
+        } else if (val.toString().charCodeAt(0) > 255) {
+          // Checked Chinese (判断是否为中文)
+          return { wch: val.toString().length * 2 }
+        } else {
+          return { wch: val.toString().length }
+        }
+      })
+    )
     // The initial value of the first row (以第一行为初始值)
     const result = colWidth[0]
     for (let i = 1; i < colWidth.length; i++) {
@@ -31,27 +34,30 @@ export function useExcel() {
 
   // Array to JSON (数组转换成JSON)
   function formatJSON(key: any[], data: any[]) {
-    return data.map(v => key.map(i => { return v[i] }))
+    return data.map(v =>
+      key.map(i => {
+        return v[i]
+      })
+    )
   }
 
   // String to ArrayBuffer (字符串转ArrayBuffer)
   function s2ab(s: string) {
     const buf = new ArrayBuffer(s.length)
     const view = new Uint8Array(buf)
-    for (let i = 0; i !== s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF
+    for (let i = 0; i !== s.length; ++i) view[i] = s.charCodeAt(i) & 0xff
     return buf
   }
 
   // Exporting EXCEL (导出EXCEL表格)
-  function exportDataToExcel(
-    {
-      header, // Table header label (表头名数组)
-      key, // Table header key (列对应字段数组)
-      data, // Data to be exported (需要导出数据的数组)
-      fileName, // Export file name (导出文件名)
-      autoWidth = true, // Automatic width (是否自动宽度)
-      bookType = 'xlsx' // Export file type (导出文件格式)
-    }: DataToSheet) {
+  function exportDataToExcel({
+    header, // Table header label (表头名数组)
+    key, // Table header key (列对应字段数组)
+    data, // Data to be exported (需要导出数据的数组)
+    fileName, // Export file name (导出文件名)
+    autoWidth = true, // Automatic width (是否自动宽度)
+    bookType = 'xlsx' // Export file type (导出文件格式)
+  }: DataToSheet) {
     // Create the Workbook object (创建Workbook对象)
     const wb = utils.book_new()
     const arr = formatJSON(key, data)
@@ -71,9 +77,12 @@ export function useExcel() {
       type: 'binary'
     })
     // Browser download (浏览器下载)
-    saveAs(new Blob([s2ab(wbout)], {
-      type: 'application/octet-stream'
-    }), `${fileName}.${bookType}`)
+    saveAs(
+      new Blob([s2ab(wbout)], {
+        type: 'application/octet-stream'
+      }),
+      `${fileName}.${bookType}`
+    )
   }
 
   // Get the table header from the Excel file (从Excel文件中获取表格头)
@@ -83,7 +92,7 @@ export function useExcel() {
     const headers: string[] = []
     // Converts a string such as A1:G8 to a column and row object (将 A1:G8 这种字符串转换为行列对象)
     const range = utils.decode_range(sheet['!ref'])
-    
+
     const R = range.s.r
     // Start in the first row, walk every column in the range (从第一列开始，遍历范围中的每一列)
     for (let C = range.s.c; C <= range.e.c; ++C) {
@@ -114,6 +123,4 @@ export function useExcel() {
     exportDataToExcel,
     readDataFromExcel
   }
-
 }
-

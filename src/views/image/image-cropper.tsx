@@ -3,7 +3,7 @@ import { Row, Col, Card, Button, Space } from 'ant-design-vue'
 import { PageWrapper } from '@/components/Page'
 import { VUE_CROPPER_PLUGIN, CROPPER_IMG_SRC } from '@/settings/websiteSetting'
 import 'vue-cropper/dist/index.css'
-import { VueCropper }  from 'vue-cropper'
+import { VueCropper } from 'vue-cropper'
 import { UploadImage } from '@/components/Upload'
 
 export default defineComponent({
@@ -49,7 +49,7 @@ export default defineComponent({
           default: () => (
             <Row gutter={12}>
               <Col span={10}>
-                <Card title='裁剪区域' bordered={false} bodyStyle={{height: '400px'}}>
+                <Card title='裁剪区域' bordered={false} bodyStyle={{ height: '400px' }}>
                   <VueCropper
                     ref={cropper}
                     img={config.imgSrc}
@@ -80,14 +80,16 @@ export default defineComponent({
                 </Card>
               </Col>
               <Col span={10}>
-                <Card title='预览区域' bordered={false} bodyStyle={{height: '400px'}}>
-                  <div style={{
-                    width: unref(previews).w + 'px',
-                    height: unref(previews).h + 'px',
-                    overflow: 'hidden',
-                    margin: 'auto',
-                    zoom: (350 / unref(previews).h)
-                  }}>
+                <Card title='预览区域' bordered={false} bodyStyle={{ height: '400px' }}>
+                  <div
+                    style={{
+                      width: unref(previews).w + 'px',
+                      height: unref(previews).h + 'px',
+                      overflow: 'hidden',
+                      margin: 'auto',
+                      zoom: 350 / unref(previews).h
+                    }}
+                  >
                     <div style={unref(previews).div}>
                       <img src={unref(previews).url} style={unref(previews).img} />
                     </div>

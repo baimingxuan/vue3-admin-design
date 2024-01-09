@@ -1,10 +1,8 @@
+import type { ThemeMode } from '@/types'
+import type { AppModeEnum, ThemeEnum } from '@/enums/appEnum'
+import type { AppConfig, HeaderSetting, MenuSetting, TransitionSetting } from '@/interfaces/config'
 import { defineStore } from 'pinia'
 import { stores } from '../index'
-
-import type { AppConfig, HeaderSetting, MenuSetting, TransitionSetting } from '@/interfaces/config'
-
-import { ThemeMode } from '@/types'
-import { AppModeEnum, ThemeEnum } from '@/enums/appEnum'
 import { resetRouter } from '@/router'
 import { deepMerge } from '@/utils'
 import { Persistent } from '@/utils/cache/persistent'

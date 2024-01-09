@@ -12,27 +12,25 @@ export default defineComponent({
     setTimeout(() => {
       isLoading.value = false
     }, 1500)
-    
+
     return () => (
       <>
-        <Row gutter={12} style={{marginBottom: '12px'}}>
-          {
-            countToData.map(item => {
-              return (
-                <Col flex={1}>
-                  <CountToCard
-                    loading={unref(isLoading)}
-                    title={item.title}
-                    color={item.color}
-                    iconName={item.icon}
-                    countNum={item.count}
-                  />
-                </Col>
-              )
-            })
-          }
+        <Row gutter={12} style={{ marginBottom: '12px' }}>
+          {countToData.map(item => {
+            return (
+              <Col flex={1}>
+                <CountToCard
+                  loading={unref(isLoading)}
+                  title={item.title}
+                  color={item.color}
+                  iconName={item.icon}
+                  countNum={item.count}
+                />
+              </Col>
+            )
+          })}
         </Row>
-        <Row gutter={12} style={{marginBottom: '12px'}}>
+        <Row gutter={12} style={{ marginBottom: '12px' }}>
           <Col span={8}>
             <ChartsCard loading={unref(isLoading)} options={pieOptions} height={300} />
           </Col>

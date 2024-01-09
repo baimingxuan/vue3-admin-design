@@ -29,7 +29,7 @@ export function getRawRoute(route: RouteLocationNormalized): RouteLocationNormal
   return {
     ...opt,
     matched: (matched
-      ? matched.map((item) => ({
+      ? matched.map(item => ({
           meta: item.meta,
           name: item.name,
           path: item.path
@@ -40,7 +40,7 @@ export function getRawRoute(route: RouteLocationNormalized): RouteLocationNormal
 
 export function openWindow(
   url: string,
-  opt?: { 
+  opt?: {
     target?: TargetContext | string
     noopener?: boolean
     noreferrer?: boolean

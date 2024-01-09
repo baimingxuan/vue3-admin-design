@@ -66,7 +66,6 @@ export function useLayoutMenu(menuSplit: boolean) {
 
     setMenuSetting({ menuHidden: false })
     childrenMenus.value = children
-    
   }
 
   // Get menu list

@@ -6,7 +6,6 @@ export default defineComponent({
   name: 'UploadImage',
   emits: ['success'],
   setup(_, { emit }) {
-
     function handleChange(imageFile: UploadChangeParam) {
       const { file } = imageFile
       const rawImage = file.originFileObj
@@ -17,7 +16,7 @@ export default defineComponent({
         return
       }
 
-      const isLimit1M = rawImage.size / 1024 /1024 < 5
+      const isLimit1M = rawImage.size / 1024 / 1024 < 5
       if (!isLimit1M) {
         message.warning('上传的图片大小不能超过5M!')
         return
@@ -29,7 +28,7 @@ export default defineComponent({
     function readImage(image: any) {
       const reader = new FileReader()
       reader.onload = e => {
-        const data = e.target && e.target.result as any
+        const data = e.target && (e.target.result as any)
         // Convert Array Buffer to blob if it is base64
         const result = typeof data === 'object' ? window.URL.createObjectURL(new Blob([data])) : data
         emit('success', result)

@@ -1,4 +1,4 @@
-import { createStorage as create, CreateStorageParams } from './storageCache'
+import { createStorage as create, type CreateStorageParams } from './storageCache'
 import { enableStorageEncryption, DEFAULT_CACHE_TIME } from '@/settings/encryptionSetting'
 
 type Options = Partial<CreateStorageParams>
@@ -18,7 +18,7 @@ const WebStorage = create(createOptions(sessionStorage))
 export const createStorage = (storage: Storage = sessionStorage, options: Options = {}) => {
   return create(createOptions(storage, options))
 }
-  
+
 export const createSessionStorage = (options: Options = {}) => {
   return createStorage(sessionStorage, { ...options, timeout: DEFAULT_CACHE_TIME })
 }

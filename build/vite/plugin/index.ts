@@ -8,26 +8,26 @@ import { configStyleImportPlugin } from './styles'
 import { configThemePlugin } from './theme'
 
 export function createVitePlugins(isBuild: boolean) {
-    const vitePlugins: (Plugin | Plugin[])[] = [
-        // required plugin
-        vue(),
-        vueJsx(),
-    ]
+  const vitePlugins: (Plugin | Plugin[])[] = [
+    // required plugin
+    vue(),
+    vueJsx()
+  ]
 
-    // vite-plugin-windicss
-    vitePlugins.push(windiCSS())
+  // vite-plugin-windicss
+  vitePlugins.push(windiCSS())
 
-    // vite-plugin-style-import
-    vitePlugins.push(configStyleImportPlugin())
+  // vite-plugin-style-import
+  vitePlugins.push(configStyleImportPlugin())
 
-    // vite-plugin-svg-icons
-    vitePlugins.push(configSvgIconsPlugin(isBuild))
+  // vite-plugin-svg-icons
+  vitePlugins.push(configSvgIconsPlugin(isBuild))
 
-    // vite-plugin-mock
-    vitePlugins.push(configMockPlugin(isBuild))
+  // vite-plugin-mock
+  vitePlugins.push(configMockPlugin(isBuild))
 
-    // vite-plugin-theme
-    vitePlugins.push(configThemePlugin())
+  // vite-plugin-theme
+  vitePlugins.push(configThemePlugin())
 
-    return vitePlugins
+  return vitePlugins
 }

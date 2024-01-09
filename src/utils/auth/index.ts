@@ -1,4 +1,4 @@
-import { Persistent, BasicKeys } from '../cache/persistent'
+import { Persistent, type BasicKeys } from '../cache/persistent'
 import { appSetting } from '@/settings/appBaseSetting'
 import { TOKEN_KEY, CacheTypeEnum } from '@/enums/cacheEnum'
 

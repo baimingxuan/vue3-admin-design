@@ -21,7 +21,7 @@ function transform(c: string) {
 }
 
 function createSearchReg(key: string) {
-  const keys = [...key].map((item) => transform(item))
+  const keys = [...key].map(item => transform(item))
   const str = ['', ...keys, ''].join('.*')
   return new RegExp(str)
 }
@@ -39,7 +39,7 @@ export function useMenuSearch(refs: Ref<HTMLElement[]>, scrollWrap: Ref<ElRef>, 
   onBeforeMount(async () => {
     const list = await getAsyncMenus()
     menuList = cloneDeep(list)
-    forEach(menuList, (item) => {
+    forEach(menuList, item => {
       item.name = item.name
     })
   })
@@ -48,13 +48,13 @@ export function useMenuSearch(refs: Ref<HTMLElement[]>, scrollWrap: Ref<ElRef>, 
     e?.stopPropagation()
     const key = e.target.value
     keyword.value = key.trim()
-    
+
     if (!key) {
       searchResult.value = []
       return
     }
     const reg = createSearchReg(unref(keyword))
-    const filterMenu = filter(menuList, (item) => {
+    const filterMenu = filter(menuList, item => {
       return reg.test(item.name) && !item.hideMenu
     })
     searchResult.value = handlerSearchResult(filterMenu, reg)
@@ -63,7 +63,7 @@ export function useMenuSearch(refs: Ref<HTMLElement[]>, scrollWrap: Ref<ElRef>, 
 
   function handlerSearchResult(filterMenu: AppMenu[], reg: RegExp, parent?: AppMenu) {
     const ret: SearchResult[] = []
-    filterMenu.forEach((item) => {
+    filterMenu.forEach(item => {
       const { name, path, icon, children, hideMenu, meta } = item
       if (!hideMenu && reg.test(name) && (!children?.length || meta?.hideChildrenInMenu)) {
         ret.push({

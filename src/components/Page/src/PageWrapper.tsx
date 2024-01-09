@@ -25,7 +25,7 @@ export default defineComponent({
     function openGithub() {
       openWindow(props.plugin?.url!)
     }
-    
+
     return () => (
       <div ref={pageWrapperRef} class={compoStyle['compo_page-wrapper']}>
         <div class={compoStyle['page-header']}>
@@ -36,7 +36,9 @@ export default defineComponent({
           <p>{props.plugin?.desc}</p>
           <p>
             <span>github源码:</span>
-            <Button type='link' size='small' onClick={openGithub}>立即访问</Button>
+            <Button type='link' size='small' onClick={openGithub}>
+              立即访问
+            </Button>
           </p>
         </div>
         <div ref={pageContentRef} class={compoStyle['page-content']}>

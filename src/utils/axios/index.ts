@@ -25,12 +25,11 @@ const handleError = (error: AxiosError): Promise<AxiosError> => {
 service.interceptors.request.use((config: AxiosRequestConfig) => {
   const token = getToken()
   if (token) {
-    (config as Recordable).headers['Authorization'] = `${token}`
+    ;(config as Recordable).headers['Authorization'] = `${token}`
   }
-  (config as Recordable).headers['Content-Type'] = 'application/json'
+  ;(config as Recordable).headers['Content-Type'] = 'application/json'
   return config
-},
-handleError)
+}, handleError)
 
 // Respose interceptors configuration
 service.interceptors.response.use((response: AxiosResponse) => {
@@ -43,7 +42,6 @@ service.interceptors.response.use((response: AxiosResponse) => {
 
     return Promise.reject('error')
   }
-},
-handleError)
+}, handleError)
 
 export { service }

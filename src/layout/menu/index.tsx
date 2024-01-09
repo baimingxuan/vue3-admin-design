@@ -1,7 +1,7 @@
 import type { PropType } from 'vue'
 import { defineComponent, computed, unref } from 'vue'
 import { propTypes } from '@/utils/propTypes'
-import { MenuModeEnum } from '@/enums/menuEnum'
+import type { MenuModeEnum } from '@/enums/menuEnum'
 import { Menu } from '@/components/Menu'
 import { useGo } from '@/hooks/web/usePage'
 import { useLayoutMenu } from './useLayoutMenu'
@@ -29,13 +29,12 @@ export default defineComponent({
 
     const { menusRef, childrenMenus } = useLayoutMenu(unref(getMenuSplit))
 
-    const { getMenuMode, getMenuTheme, getMenuType, getIsHorizontal, getIsSideMenu,
-      getMenuFoldShowTitle
-    } = useMenuSetting()
+    const { getMenuMode, getMenuTheme, getMenuType, getIsHorizontal, getIsSideMenu, getMenuFoldShowTitle } =
+      useMenuSetting()
 
     const getCommonProps = computed(() => {
       const menus = props.isSplitedMenu ? unref(childrenMenus) : unref(menusRef)
-      
+
       return {
         menus,
         items: menus,
@@ -49,9 +48,7 @@ export default defineComponent({
     const getCurrMenuTheme = computed(() => props.menuTheme || unref(getMenuTheme))
 
     const getUseScroll = computed(() => {
-      return (
-        !unref(getIsHorizontal) && unref(getIsSideMenu)
-      )
+      return !unref(getIsHorizontal) && unref(getIsSideMenu)
     })
 
     function handleMenuClick(path: string) {
@@ -63,7 +60,7 @@ export default defineComponent({
 
       return (
         <Menu
-          { ...(menuProps as any) }
+          {...(menuProps as any)}
           items={menus}
           type={unref(getMenuType)}
           mode={unref(getCurrMenuMode)}
@@ -73,10 +70,6 @@ export default defineComponent({
       )
     }
 
-    return () => (
-      <>{unref(getUseScroll) ? (
-        <ScrollContainer>{() => renderMenu()}</ScrollContainer>
-      ) : (renderMenu())}</>
-    )
+    return () => <>{unref(getUseScroll) ? <ScrollContainer>{() => renderMenu()}</ScrollContainer> : renderMenu()}</>
   }
 })

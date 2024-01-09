@@ -100,6 +100,5 @@ export function createPermissionGuard(router: Router) {
       // next(nextData)
       next()
     }
-
   })
 }

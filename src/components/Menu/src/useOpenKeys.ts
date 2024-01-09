@@ -1,4 +1,4 @@
-import { Ref, toRaw } from 'vue'
+import { type Ref, toRaw } from 'vue'
 import { computed, unref } from 'vue'
 import { uniq } from 'lodash-es'
 import type { Key } from 'ant-design-vue/lib/_util/type'
@@ -20,7 +20,7 @@ export function useOpenKeys(
 
   async function setOpenKeys(path: string) {
     if (mode.value === MenuModeEnum.HORIZONTAL) return
-    
+
     const native = unref(getIsHybridMenu)
 
     useTimeoutFn(
@@ -57,7 +57,7 @@ export function useOpenKeys(
         }
       }
 
-      if(!unref(getMenuFold)) {
+      if (!unref(getMenuFold)) {
         const latestOpenKey = openKeys.find(key => menuState.openKeys.indexOf(key as string) === -1)
         if (rootSubMenuKeys.indexOf(latestOpenKey as string) === -1) {
           menuState.openKeys = openKeys as string[]

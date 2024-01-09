@@ -30,7 +30,7 @@ export function useDragLine(siderRef: Ref<any>, dragBarRef: Ref<any>, mix = fals
   }
 
   function handleMouseMove(ele: HTMLElement, wrap: HTMLElement, clientX: number) {
-    document.onmousemove = (innerE) => {
+    document.onmousemove = innerE => {
       let iT = (ele as any).left + (innerE.clientX - clientX)
       innerE = innerE || window.event
       const maxT = 350
@@ -55,9 +55,7 @@ export function useDragLine(siderRef: Ref<any>, dragBarRef: Ref<any>, mix = fals
       if (!mix) {
         const miniWidth = unref(getSideBarMinWidth)
         if (!unref(getMenuFold)) {
-          width > miniWidth + 20
-            ? setMenuSetting({ menuWidth: width })
-            : setMenuSetting({ menuFold: true })
+          width > miniWidth + 20 ? setMenuSetting({ menuWidth: width }) : setMenuSetting({ menuFold: true })
         } else {
           width > miniWidth && setMenuSetting({ menuFold: false, menuWidth: width })
         }

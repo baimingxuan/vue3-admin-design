@@ -6,7 +6,6 @@ export default defineComponent({
   name: 'AppLocalePicker',
 
   setup() {
-
     return () => (
       <Dropdown trigger='click' placement='bottom'>
         {{

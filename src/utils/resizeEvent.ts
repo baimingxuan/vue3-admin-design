@@ -3,7 +3,6 @@
  * @link see: https://github.com/ElemeFE/element/blob/dev/src/utils/resize-event.js
  */
 
-
 import ResizeObserver from 'resize-observer-polyfill'
 
 const isServer = typeof window === 'undefined'

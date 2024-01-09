@@ -37,7 +37,7 @@ export const appSetting: AppConfig = {
     menuSplit: false,
     // Menu can drag
     menuCanDrag: false,
-     // Menu collapse
+    // Menu collapse
     menuFold: false,
     // Menu collapse type
     menuFoldBtn: MenuFoldBtnEnum.HEADER,

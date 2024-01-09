@@ -18,28 +18,30 @@ export default defineComponent({
       editor.destroy()
     })
 
-    const handleCreated = (editor) => {
+    const handleCreated = editor => {
       editorRef.value = editor
     }
 
     return () => (
       <PageWrapper plugin={WANG_EDITOR_PLUGIN}>
         {{
-          default: () => <div style='border: 1px solid #ccc;'>
-            <Toolbar
-              style='border-bottom: 1px solid #ccc;'
-              editor={editorRef.value}
-              defaultConfig={toolbarConfig}
-              mode='default'
-            />
-            <Editor
-              style='height: 500px; overflow-y: hidden;'
-              v-model={valueHtml.value}
-              defaultConfig={editorConfig}
-              mode='default'
-              onOnCreated={handleCreated}
-            />
-          </div>
+          default: () => (
+            <div style='border: 1px solid #ccc;'>
+              <Toolbar
+                style='border-bottom: 1px solid #ccc;'
+                editor={editorRef.value}
+                defaultConfig={toolbarConfig}
+                mode='default'
+              />
+              <Editor
+                style='height: 500px; overflow-y: hidden;'
+                v-model={valueHtml.value}
+                defaultConfig={editorConfig}
+                mode='default'
+                onOnCreated={handleCreated}
+              />
+            </div>
+          )
         }}
       </PageWrapper>
     )

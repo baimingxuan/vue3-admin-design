@@ -27,13 +27,8 @@ export default defineComponent({
     }
   },
   setup(props) {
-    
     return () => (
-      <Card
-        loading={props.loading}
-        bordered={false}
-        bodyStyle={{padding: 0}}
-      >
+      <Card loading={props.loading} bordered={false} bodyStyle={{ padding: 0 }}>
         <div class='flex-center-v'>
           <div
             class='flex-center'
@@ -43,19 +38,10 @@ export default defineComponent({
               background: props.color
             }}
           >
-            <SvgIcon
-              name={props.iconName}
-              size={40}
-              style='color: #fff'
-            />
+            <SvgIcon name={props.iconName} size={40} style='color: #fff' />
           </div>
           <div style='flex: 1; text-align: center;'>
-            <CountTo
-              startVal={0}
-              endVal={props.countNum}
-              duration={3000}
-              color='#515a6e'
-            />
+            <CountTo startVal={0} endVal={props.countNum} duration={3000} color='#515a6e' />
             <p style='font-size: 16px;'>{props.title}</p>
           </div>
         </div>

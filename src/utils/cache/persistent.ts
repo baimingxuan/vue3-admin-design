@@ -2,11 +2,18 @@ import type { RouteLocationNormalized } from 'vue-router'
 
 import { toRaw } from 'vue'
 import { Memory } from './memory'
-import { AppConfig } from '@/interfaces/config'
-import { TOKEN_KEY, USER_INFO_KEY, APP_CONFIG_KEY, APP_TAGS_KEY, APP_LOCAL_CACHE_KEY, APP_SESSION_CACHE_KEY } from '@/enums/cacheEnum'
+import type { AppConfig } from '@/interfaces/config'
+import {
+  type TOKEN_KEY,
+  type USER_INFO_KEY,
+  type APP_CONFIG_KEY,
+  type APP_TAGS_KEY,
+  APP_LOCAL_CACHE_KEY,
+  APP_SESSION_CACHE_KEY
+} from '@/enums/cacheEnum'
 import { createLocalStorage, createSessionStorage } from '@/utils/cache'
 import { DEFAULT_CACHE_TIME } from '@/settings/encryptionSetting'
-import { UserInfo } from '@/interfaces'
+import type { UserInfo } from '@/interfaces'
 
 interface BasicStore {
   [TOKEN_KEY]: string | number | null | undefined

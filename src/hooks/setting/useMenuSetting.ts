@@ -1,8 +1,8 @@
 import { computed, unref } from 'vue'
 import { useAppStore } from '@/stores/modules/app'
 import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum'
-import { MenuSetting } from '@/interfaces/config'
-import { ThemeEnum } from '@/enums/appEnum' 
+import type { MenuSetting } from '@/interfaces/config'
+import type { ThemeEnum } from '@/enums/appEnum'
 import { SIDE_BAR_MIN_WIDTH, SIDE_BAR_SHOW_TITLE_MIN_WIDTH } from '@/enums/appEnum'
 
 export function useMenuSetting() {
@@ -32,9 +32,7 @@ export function useMenuSetting() {
 
   const getReallWidth = computed(() => {
     if (unref(getIsHybridMenu)) {
-      return unref(getMenuFold) && !unref(getMenuFixed)
-        ? unref(getSideBarMinWidth)
-        : unref(getMenuWidth)
+      return unref(getMenuFold) && !unref(getMenuFixed) ? unref(getSideBarMinWidth) : unref(getMenuWidth)
     }
     return unref(getMenuFold) ? unref(getSideBarMinWidth) : unref(getMenuWidth)
   })
@@ -64,7 +62,7 @@ export function useMenuSetting() {
   }
 
   // Toggled menu fold
-  function toggledMenuFold(){
+  function toggledMenuFold() {
     setMenuSetting({
       menuFold: !unref(getMenuFold)
     })

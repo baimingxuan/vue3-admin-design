@@ -10,7 +10,6 @@ export default defineComponent({
     }
   },
   setup(props) {
-
     return () => (
       <div class='flex-between-h' style='padding: 8px; border: solid 1px #ddd;'>
         <Form model={props.config} layout='inline'>

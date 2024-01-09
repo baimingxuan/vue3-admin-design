@@ -10,9 +10,11 @@ export default defineComponent({
     return () => (
       <PageWrapper plugin={VUE_TREE_ORG_PLUGIN}>
         {{
-          default: () => <div style='height: 420px;'>
-            <Vue3TreeOrg data={data} />
-          </div>
+          default: () => (
+            <div style='height: 420px;'>
+              <Vue3TreeOrg data={data} />
+            </div>
+          )
         }}
       </PageWrapper>
     )

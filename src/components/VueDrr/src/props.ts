@@ -30,8 +30,8 @@ export const props = {
   h: {
     type: [Number, String],
     default: 28,
-    validator: function(val) {
-      const valid = (typeof val === 'string') ? val === 'auto' : val >= 0
+    validator: function (val) {
+      const valid = typeof val === 'string' ? val === 'auto' : val >= 0
       return valid
     }
   },
@@ -80,8 +80,8 @@ export const props = {
   z: {
     type: [String, Number],
     default: 'auto',
-    validator: function(val) {
-      const valid = (typeof val === 'string') ? val === 'auto' : val >= 0
+    validator: function (val) {
+      const valid = typeof val === 'string' ? val === 'auto' : val >= 0
       return valid
     }
   },
@@ -90,7 +90,7 @@ export const props = {
     default() {
       return ['n', 'e', 's', 'w', 'nw', 'ne', 'se', 'sw']
     },
-    validator: function(val) {
+    validator: function (val) {
       const s = new Set(['n', 'e', 's', 'w', 'nw', 'ne', 'se', 'sw'])
 
       return new Set(val.filter(h => s.has(h))).size === val.length

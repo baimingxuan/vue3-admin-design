@@ -8,18 +8,14 @@ import 'video.js/dist/video-js.css'
 export default defineComponent({
   name: 'VideoPlayer',
   setup() {
-    
     return () => (
       <PageWrapper plugin={VIDEO_PLUGIN}>
         {{
-          default: () => <Row gutter={12}>
+          default: () => (
+            <Row gutter={12}>
               <Col span={12}>
                 <Card title='传统视频播放器' bordered={false}>
-                  <video 
-                    src={VIDEO_RES_SRC}
-                    controls
-                    style='width: 100%; outline: none;'
-                  />
+                  <video src={VIDEO_RES_SRC} controls style='width: 100%; outline: none;' />
                 </Card>
               </Col>
               <Col span={12}>
@@ -36,6 +32,7 @@ export default defineComponent({
                 </Card>
               </Col>
             </Row>
+          )
         }}
       </PageWrapper>
     )

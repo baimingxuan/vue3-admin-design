@@ -13,14 +13,16 @@ export default defineComponent({
       bgImgSrc: 'https://cdn.jsdelivr.net/gh/baimingxuan/media-store/images/img01.jpg'
     })
 
-    const getWrapStyle = computed((): CSSProperties => ({
-      width: container.width + 'px',
-      height: container.height + 'px',
-      backgroundImage: 'url(\'' + container.bgImgSrc + '\')',
-      backgroundSize: 'contain',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat'
-    }))
+    const getWrapStyle = computed(
+      (): CSSProperties => ({
+        width: container.width + 'px',
+        height: container.height + 'px',
+        backgroundImage: "url('" + container.bgImgSrc + "')",
+        backgroundSize: 'contain',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      })
+    )
 
     return () => (
       <PageWrapper plugin={IMAGE_COMPOSITION}>
@@ -28,16 +30,14 @@ export default defineComponent({
           default: () => (
             <Row gutter={12}>
               <Col span={16}>
-                <Card title='合成区域' bordered={false} bodyStyle={{height: '550px'}}>
+                <Card title='合成区域' bordered={false} bodyStyle={{ height: '550px' }}>
                   <div class='flex-center' style='overflow: hidden'>
-                    <div style={unref(getWrapStyle)}>
-                    </div>
+                    <div style={unref(getWrapStyle)}></div>
                   </div>
                 </Card>
               </Col>
               <Col span={8}>
-                <Card title='设置区域' bordered={false} bodyStyle={{height: '550px'}}>
-                </Card>
+                <Card title='设置区域' bordered={false} bodyStyle={{ height: '550px' }}></Card>
               </Col>
             </Row>
           )

@@ -28,36 +28,36 @@ export const menuTypeList = [
 // App theme color
 export const appThemeColorList: ColorItem[] = [
   {
-      name: '拂晓蓝',
-      color: '#1890ff'
+    name: '拂晓蓝',
+    color: '#1890ff'
   },
   {
-      name: '薄暮',
-      color: '#f5222d'
+    name: '薄暮',
+    color: '#f5222d'
   },
   {
-      name: '火山',
-      color: '#fa541c'
+    name: '火山',
+    color: '#fa541c'
   },
   {
-      name: '日暮',
-      color: '#faad14'
+    name: '日暮',
+    color: '#faad14'
   },
   {
-      name: '明青',
-      color: '#13c2c2'
+    name: '明青',
+    color: '#13c2c2'
   },
   {
-      name: '极光绿',
-      color: '#52c41a'
+    name: '极光绿',
+    color: '#52c41a'
   },
   {
-      name: '极客蓝',
-      color: '#2f54eb'
+    name: '极客蓝',
+    color: '#2f54eb'
   },
   {
-      name: '酱紫',
-      color: '#722ed1'
+    name: '酱紫',
+    color: '#722ed1'
   }
 ]
 
@@ -87,7 +87,7 @@ export enum HandlerEnum {
   SHOW_FOOTER,
   COLOR_WEAK,
   GRAY_MODE,
-  
+
   // Animation settings
   OPEN_NPROGRESS,
   OPEN_PAGE_LOADING,
@@ -122,6 +122,6 @@ export const pageTransitionOptions = [
 ].map(item => {
   return {
     label: item,
-    value: item,
+    value: item
   }
 })

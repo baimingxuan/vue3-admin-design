@@ -7,10 +7,7 @@ import { useEventListener } from '@/hooks/event/useEventListener'
 import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
 import echarts from '@/utils/echarts'
 
-export function useECharts(
-  elRef: Ref<HTMLDivElement>,
-  theme: 'light' | 'dark' | 'default' = 'default'
-) {
+export function useECharts(elRef: Ref<HTMLDivElement>, theme: 'light' | 'dark' | 'default' = 'default') {
   const { getAppMode } = useBaseSetting()
 
   const getDarkMode = computed(() => {
@@ -29,7 +26,7 @@ export function useECharts(
     }
     return {
       backgroundColor: 'transparent',
-      ...cacheOptions.value,
+      ...cacheOptions.value
     } as EChartsOption
   })
 
@@ -74,7 +71,7 @@ export function useECharts(
 
   watch(
     () => getDarkMode.value,
-    (theme) => {
+    theme => {
       if (chartInstance) {
         chartInstance.dispose()
         initCharts(theme as 'default')
@@ -104,4 +101,3 @@ export function useECharts(
     getInstance
   }
 }
-

@@ -60,9 +60,10 @@ export default defineComponent({
     return () => (
       <PageWrapper plugin={UPLOAD_COMPO}>
         {{
-          default: () => <Row gutter={12}>
+          default: () => (
+            <Row gutter={12}>
               <Col span={8}>
-                <Card title='拖拽上传' bordered={false} bodyStyle={{height: '300px'}}>
+                <Card title='拖拽上传' bordered={false} bodyStyle={{ height: '300px' }}>
                   <UploadDragger
                     v-model:fileList={dragImgs.value}
                     action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
@@ -70,16 +71,18 @@ export default defineComponent({
                     multiple
                     class='muti-upload'
                   >
-                    <p class="ant-upload-drag-icon" style='margin-bottom: 0;'>
+                    <p class='ant-upload-drag-icon' style='margin-bottom: 0;'>
                       <CloudUploadOutlined />
                     </p>
-                    <p>将图片拖到此处, 或<span style='color: #1890ff;'>点击上传</span></p>
-                    <p class="ant-upload-hint">只能上传jpg、jpeg、gif、png、bmp文件, 且不超过500kb</p>
+                    <p>
+                      将图片拖到此处, 或<span style='color: #1890ff;'>点击上传</span>
+                    </p>
+                    <p class='ant-upload-hint'>只能上传jpg、jpeg、gif、png、bmp文件, 且不超过500kb</p>
                   </UploadDragger>
                 </Card>
               </Col>
               <Col span={8}>
-                <Card title='列表样式' bordered={false} bodyStyle={{height: '300px'}}>
+                <Card title='列表样式' bordered={false} bodyStyle={{ height: '300px' }}>
                   <Upload
                     v-model:fileList={listImgs.value}
                     action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
@@ -91,12 +94,12 @@ export default defineComponent({
                       <CloudUploadOutlined />
                       <span>点击上传</span>
                     </Button>
-                    <p class="ant-upload-hint">只能上传jpg、jpeg、gif、png、bmp文件, 且不超过500kb</p>
+                    <p class='ant-upload-hint'>只能上传jpg、jpeg、gif、png、bmp文件, 且不超过500kb</p>
                   </Upload>
                 </Card>
               </Col>
               <Col span={8}>
-                <Card title='照片墙' bordered={false} bodyStyle={{height: '300px'}}>
+                <Card title='照片墙' bordered={false} bodyStyle={{ height: '300px' }}>
                   <Upload
                     v-model:fileList={listImgs.value}
                     action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
@@ -107,20 +110,16 @@ export default defineComponent({
                   >
                     <div>
                       <PlusOutlined />
-                      <div style="margin-top: 8px">点击上传</div>
+                      <div style='margin-top: 8px'>点击上传</div>
                     </div>
                   </Upload>
                 </Card>
-                <Modal
-                  open={previewVisible.value}
-                  title={previewTitle.value}
-                  footer={null}
-                  onCancel={handleCancle}
-                >
+                <Modal open={previewVisible.value} title={previewTitle.value} footer={null} onCancel={handleCancle}>
                   <img src={previewImage.value} style='width: 100%' />
                 </Modal>
               </Col>
             </Row>
+          )
         }}
       </PageWrapper>
     )

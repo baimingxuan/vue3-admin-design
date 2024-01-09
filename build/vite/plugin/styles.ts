@@ -7,14 +7,12 @@ import { createStyleImportPlugin, AndDesignVueResolve } from 'vite-plugin-style-
 
 export function configStyleImportPlugin() {
   return createStyleImportPlugin({
-    resolves: [
-      AndDesignVueResolve()
-    ],
+    resolves: [AndDesignVueResolve()],
     libs: [
       {
         libraryName: 'ant-design-vue',
         esModule: true,
-        resolveStyle: (name) => {
+        resolveStyle: name => {
           const replaceList = {
             'layout-header': 'layout',
             'layout-sider': 'layout',
@@ -24,7 +22,7 @@ export function configStyleImportPlugin() {
             'menu-item': 'menu',
             'form-item': 'form',
             'input-password': 'input',
-            'textarea': 'input',
+            textarea: 'input',
             'radio-group': 'radio',
             'radio-button': 'radio',
             'checkbox-group': 'checkbox',

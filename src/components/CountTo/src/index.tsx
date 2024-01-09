@@ -70,10 +70,9 @@ export default defineComponent({
     }
 
     return { showValue, start, reset }
-
   },
 
   render() {
-    return <span style={{color: this.color, fontSize: this.size + 'px'}}>{this.showValue}</span>
+    return <span style={{ color: this.color, fontSize: this.size + 'px' }}>{this.showValue}</span>
   }
 })

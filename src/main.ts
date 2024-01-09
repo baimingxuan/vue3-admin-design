@@ -19,22 +19,22 @@ import { setupRouterGuard } from '@/router/guard'
 import { setupPlugins } from '@/plugins'
 
 function launchApp() {
-    const app = createApp(App)
+  const app = createApp(App)
 
-    // Configure router
-    setupRouter(app)
+  // Configure router
+  setupRouter(app)
 
-    setupRouterGuard(router)
+  setupRouterGuard(router)
 
-    // Configure store
-    setupStore(app)
+  // Configure store
+  setupStore(app)
 
-    setupPlugins(app)
+  setupPlugins(app)
 
-    // Initialize internal system configuration
-    initAppConfigStore()
+  // Initialize internal system configuration
+  initAppConfigStore()
 
-    app.mount('#app')
+  app.mount('#app')
 }
 
 launchApp()

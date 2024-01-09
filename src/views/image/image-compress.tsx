@@ -48,21 +48,23 @@ export default defineComponent({
       quality: 1
     })
 
-    const getImageStyle = computed((): CSSProperties => ({
-      position: 'relative',
-      width: imageShow.width + 'px',
-      height: imageShow.height + 'px',
-      backgroundImage: 'url(\'' + imageShow.imgSrc + '\')',
-      backgroundSize: 'contain',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat'
-    }))
+    const getImageStyle = computed(
+      (): CSSProperties => ({
+        position: 'relative',
+        width: imageShow.width + 'px',
+        height: imageShow.height + 'px',
+        backgroundImage: "url('" + imageShow.imgSrc + "')",
+        backgroundSize: 'contain',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      })
+    )
 
     const getImageRatio = computed(() => imageBase.width / imageBase.height)
 
     watch(
       () => imageBase,
-      (value) => {
+      value => {
         getContainerSize(value.width, value.height)
         imageShow.imgSrc = value.src
         imageCompr.width = value.width
@@ -83,13 +85,13 @@ export default defineComponent({
     })
 
     // 输入宽高关联
-    function handleChange(type: 'w'|'h', value: number) {
+    function handleChange(type: 'w' | 'h', value: number) {
       if (type === 'h') {
         imageCompr.height = Number(Math.round(value / unref(getImageRatio)).toFixed(0))
       } else if (type === 'w') {
         imageCompr.width = Number(Math.round(value * unref(getImageRatio)).toFixed(0))
       }
-      imageCompr.ratio = Number((imageCompr.width / imageBase.width * 100).toFixed(2))
+      imageCompr.ratio = Number(((imageCompr.width / imageBase.width) * 100).toFixed(2))
     }
 
     // 计算图片显示宽高
@@ -119,7 +121,7 @@ export default defineComponent({
         quality: imageCompr.quality
       }
 
-      getCompressImage(imageBase.src, imgProps).then((base64) => {
+      getCompressImage(imageBase.src, imgProps).then(base64 => {
         downloadImgByBase64(base64, imageCompr.mineType.replace(/\//, '.'))
       })
     }
@@ -155,8 +157,8 @@ export default defineComponent({
                           <SvgIcon name='linking' size={20} style='margin: 0 4px' />
                           <InputNumber
                             v-model:value={imageCompr.height}
-                            min={0} 
-                            max={10000} 
+                            min={0}
+                            max={10000}
                             onChange={handleChange.bind(null, 'w')}
                             onStep={handleChange.bind(null, 'w')}
                           />
@@ -179,18 +181,17 @@ export default defineComponent({
                           options={[
                             { label: 'PNG', value: 'image/png' },
                             { label: 'JPG', value: 'image/jpg' },
-                            { label: 'BMP', value: 'image/bmp' },
+                            { label: 'BMP', value: 'image/bmp' }
                           ]}
                         />
                       </FormItem>
                       <FormItem label='图片质量: '>
-                        <Select
-                          v-model:value={imageCompr.quality}
-                          options={qualityOptions}
-                        />
+                        <Select v-model:value={imageCompr.quality} options={qualityOptions} />
                       </FormItem>
                       <FormItem>
-                        <Button type='primary' style='width: 100%' onClick={handleCompressImage}>压缩图片</Button>
+                        <Button type='primary' style='width: 100%' onClick={handleCompressImage}>
+                          压缩图片
+                        </Button>
                       </FormItem>
                     </Form>
                   </div>

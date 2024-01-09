@@ -1,4 +1,4 @@
-import { TableProps, ColumnType, TablePaginationConfig } from 'ant-design-vue/lib/table'
+import type { TableProps, ColumnType, TablePaginationConfig } from 'ant-design-vue/lib/table'
 import { defineComponent, createVNode, ref, unref, computed, reactive, onMounted } from 'vue'
 import { Button, Table, Tag, Select, Switch, Popover, Space, Modal } from 'ant-design-vue'
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
@@ -7,7 +7,7 @@ import { getTableList } from '@/api'
 import { PageWrapper } from '@/components/Page'
 
 interface APIResult {
-  list: any[],
+  list: any[]
   total: number
 }
 
@@ -94,48 +94,54 @@ export default defineComponent({
     return () => (
       <PageWrapper plugin={TABLE_COMPO}>
         {{
-          default: () => <div>
-            <Table
-              rowSelection={tableSelection}
-              columns={tableColumns}
-              dataSource={unref(tableData)}
-              pagination={tablePagination}
-              loading={unref(tableLoading)}
-              onChange={handleTableChange}
-            >
-              {{
-                  bodyCell: ({column, record}) => {
+          default: () => (
+            <div>
+              <Table
+                rowSelection={tableSelection}
+                columns={tableColumns}
+                dataSource={unref(tableData)}
+                pagination={tablePagination}
+                loading={unref(tableLoading)}
+                onChange={handleTableChange}
+              >
+                {{
+                  bodyCell: ({ column, record }) => {
                     if (column.dataIndex === 'name') {
                       const slots = {
-                        content: () => <>
-                          <p>姓名: {record.name}</p>
-                          <p>手机: {record.phone}</p>
-                          <p>爱好: {record.hobby.join('、')}</p>
-                        </>
+                        content: () => (
+                          <>
+                            <p>姓名: {record.name}</p>
+                            <p>手机: {record.phone}</p>
+                            <p>爱好: {record.hobby.join('、')}</p>
+                          </>
+                        )
                       }
-                      return <Popover v-slots={slots}>
-                        <Tag color='blue'>{record.name}</Tag>
-                      </Popover>
-                    }
-                    else if (column.dataIndex === 'married') {
+                      return (
+                        <Popover v-slots={slots}>
+                          <Tag color='blue'>{record.name}</Tag>
+                        </Popover>
+                      )
+                    } else if (column.dataIndex === 'married') {
                       return <Select v-model={[record.married, 'value']} options={marriedOptions} />
-                    }
-                    else if (column.dataIndex === 'hobby') {
+                    } else if (column.dataIndex === 'hobby') {
                       return <span>{record.hobby.join('、')}</span>
-                    }
-                    else if (column.dataIndex === 'forbid') {
+                    } else if (column.dataIndex === 'forbid') {
                       return <Switch v-model={[record.forbid, 'checked']} />
-                    }
-                    else if (column.key === 'action') {
-                      return <Space>
-                        <Button disabled={record.forbid}>编辑</Button>
-                        <Button danger onClick={handleDelete}>删除</Button>
-                      </Space>
+                    } else if (column.key === 'action') {
+                      return (
+                        <Space>
+                          <Button disabled={record.forbid}>编辑</Button>
+                          <Button danger onClick={handleDelete}>
+                            删除
+                          </Button>
+                        </Space>
+                      )
                     }
                   }
-              }}
-            </Table>
-          </div>
+                }}
+              </Table>
+            </div>
+          )
         }}
       </PageWrapper>
     )

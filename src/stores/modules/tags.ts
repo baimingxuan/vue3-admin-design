@@ -73,10 +73,10 @@ export const useTagStore = defineStore('app-tags', {
       }
 
       this.updateCachedTags()
-      
+
       unref(getTagsCached) && Persistent.setLocal(APP_TAGS_KEY, this.visitedTags)
     },
-    
+
     // Update the cached tags according to the currently opened tags
     async updateCachedTags() {
       const cachedMap: Set<string> = new Set()
@@ -162,7 +162,7 @@ export const useTagStore = defineStore('app-tags', {
         await this.closeTag(this.visitedTags[index], router)
         const { currentRoute, replace } = router
         // Check whether the current route exists in the visitedTags
-        const isActivated = this.visitedTags.findIndex((item) => {
+        const isActivated = this.visitedTags.findIndex(item => {
           return item.fullPath === currentRoute.value.fullPath
         })
         // If the current route does not exist in the visitedTags, try to switch to another route
@@ -186,7 +186,7 @@ export const useTagStore = defineStore('app-tags', {
 
     // Close the tags on the right and jump
     async closeLeftTags(route: RouteLocationNormalized, router: Router) {
-      const index = this.visitedTags.findIndex((item) => item.path === route.path)
+      const index = this.visitedTags.findIndex(item => item.path === route.path)
 
       if (index > 0) {
         const leftTabgs = this.visitedTags.slice(0, index)
@@ -205,7 +205,7 @@ export const useTagStore = defineStore('app-tags', {
 
     // Close the tags on the left and jump
     async closeRightTags(route: RouteLocationNormalized, router: Router) {
-      const index = this.visitedTags.findIndex((item) => item.fullPath === route.fullPath)
+      const index = this.visitedTags.findIndex(item => item.fullPath === route.fullPath)
 
       if (index >= 0 && index < this.visitedTags.length - 1) {
         const rightTags = this.visitedTags.slice(index + 1, this.visitedTags.length)
@@ -223,15 +223,15 @@ export const useTagStore = defineStore('app-tags', {
       handleGotoPage(router)
     },
 
-     // Close other tabs
-     async closeOtherTags(route: RouteLocationNormalized, router: Router) {
-      const closePathList = this.visitedTags.map((item) => item.fullPath)
+    // Close other tabs
+    async closeOtherTags(route: RouteLocationNormalized, router: Router) {
+      const closePathList = this.visitedTags.map(item => item.fullPath)
 
       const pathList: string[] = []
 
       for (const path of closePathList) {
         if (path !== route.fullPath) {
-          const closeItem = this.visitedTags.find((item) => item.path === path)
+          const closeItem = this.visitedTags.find(item => item.path === path)
           if (!closeItem) {
             continue
           }
@@ -246,8 +246,8 @@ export const useTagStore = defineStore('app-tags', {
       handleGotoPage(router)
     },
 
-     // Close tags in bulk
-     async bulkClosedTags(pathList: string[]) {
+    // Close tags in bulk
+    async bulkClosedTags(pathList: string[]) {
       this.visitedTags = this.visitedTags.filter(item => !pathList.includes(item.fullPath))
     },
 
@@ -260,7 +260,7 @@ export const useTagStore = defineStore('app-tags', {
 
     // Replace tags path
     async updateTagPath(fullPath: string, route: RouteLocationNormalized) {
-      const findTag = this.getVisitedTags.find((item) => item === route)
+      const findTag = this.getVisitedTags.find(item => item === route)
       if (findTag) {
         findTag.fullPath = fullPath
         findTag.path = fullPath
@@ -288,7 +288,7 @@ export const useTagStore = defineStore('app-tags', {
     resetState() {
       this.visitedTags = []
       this.cleanCachedTags()
-    },
+    }
   }
 })
 

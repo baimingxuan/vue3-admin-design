@@ -10,32 +10,32 @@ export interface EncryptParams {
 }
 
 export class AesEncrypt {
-    private key
-    private iv
-  
-    constructor(opt: Partial<EncryptParams> = {}) {
-      const { key, iv } = opt
-      if (key) {
-        this.key = parse(key)
-      }
-      if (iv) {
-        this.iv = parse(iv)
-      }
+  private key
+  private iv
+
+  constructor(opt: Partial<EncryptParams> = {}) {
+    const { key, iv } = opt
+    if (key) {
+      this.key = parse(key)
     }
-  
-    get getOptions() {
-      return {
-        mode: ECB,
-        padding: PKCS7,
-        iv: this.iv
-      };
+    if (iv) {
+      this.iv = parse(iv)
     }
-  
-    encryptByAES(cipherText: string) {
-      return encrypt(cipherText, this.key, this.getOptions).toString()
+  }
+
+  get getOptions() {
+    return {
+      mode: ECB,
+      padding: PKCS7,
+      iv: this.iv
     }
-  
-    decryptByAES(cipherText: string) {
-      return decrypt(cipherText, this.key, this.getOptions).toString(UTF8)
-    }
+  }
+
+  encryptByAES(cipherText: string) {
+    return encrypt(cipherText, this.key, this.getOptions).toString()
+  }
+
+  decryptByAES(cipherText: string) {
+    return decrypt(cipherText, this.key, this.getOptions).toString(UTF8)
+  }
 }

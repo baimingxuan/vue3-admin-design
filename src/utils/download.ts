@@ -8,13 +8,8 @@ import { base64toBlob, urlToBase64 } from './image'
  * @param mineType
  * @param bom
  */
-export function downloadImgByUrl(
-  url: string,
-  filename: string,
-  mineType?: string,
-  bom?: BlobPart
-) {
-  urlToBase64(url).then((base64) => {
+export function downloadImgByUrl(url: string, filename: string, mineType?: string, bom?: BlobPart) {
+  urlToBase64(url).then(base64 => {
     downloadImgByBase64(base64, filename, mineType, bom)
   })
 }
@@ -26,12 +21,7 @@ export function downloadImgByUrl(
  * @param mineType
  * @param bom
  */
-export function downloadImgByBase64(
-  buf: string,
-  filename: string,
-  mineType?: string,
-  bom?: BlobPart
-) {
+export function downloadImgByBase64(buf: string, filename: string, mineType?: string, bom?: BlobPart) {
   const base64Buf = base64toBlob(buf)
   downloadByData(base64Buf, filename, mineType, bom)
 }
@@ -43,12 +33,7 @@ export function downloadImgByBase64(
  * @param {*} mineType
  * @param {*} bom
  */
-export function downloadByData(
-  data: BlobPart,
-  filename: string,
-  mineType?: string,
-  bom?: BlobPart
-) {
+export function downloadByData(data: BlobPart, filename: string, mineType?: string, bom?: BlobPart) {
   const blobData = typeof bom !== 'undefined' ? [bom, data] : [data]
   const blob = new Blob(blobData, { type: mineType || 'application/octet-stream' })
 

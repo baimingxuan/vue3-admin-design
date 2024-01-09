@@ -18,10 +18,7 @@ export default defineComponent({
       { name: 'NodeJS', id: 6 },
       { name: 'TypeScript', id: 7 }
     ])
-    const dragLogs = ref<string[]>([
-      '列表1 => 列表2, 6 => 1',
-      '列表1 => 列表2, 6 => 2'
-    ])
+    const dragLogs = ref<string[]>(['列表1 => 列表2, 6 => 1', '列表1 => 列表2, 6 => 2'])
 
     function handleDrop(event: any) {
       const listMap = new Map([
@@ -38,65 +35,69 @@ export default defineComponent({
     return () => (
       <PageWrapper plugin={DRAGGABLE_PLUGIN}>
         {{
-          default: () => <Row gutter={12}>
+          default: () => (
+            <Row gutter={12}>
               <Col span={5}>
-                <Card title='列表1事项' bordered={false} bodyStyle={{height: '520px'}}>
+                <Card title='列表1事项' bordered={false} bodyStyle={{ height: '520px' }}>
                   {/* @ts-ignore */}
-                  <Draggable list={listOne.value} itemKey='name' group='list' style='height: 100%' class='list1' onEnd={handleDrop}>
+                  <Draggable
+                    list={listOne.value}
+                    itemKey='name'
+                    group='list'
+                    style='height: 100%'
+                    class='list1'
+                    onEnd={handleDrop}
+                  >
                     {{
-                      item: ({ element}) => (
-                          <Card
-                            hoverable
-                            size='small'
-                            style='margin-bottom: 12px;'
-                          >
-                            {element.name}
-                          </Card>
-                        )
+                      item: ({ element }) => (
+                        <Card hoverable size='small' style='margin-bottom: 12px;'>
+                          {element.name}
+                        </Card>
+                      )
                     }}
                   </Draggable>
                 </Card>
               </Col>
               <Col span={5}>
-                <Card title='列表2事项' bordered={false} bodyStyle={{height: '520px'}}>
+                <Card title='列表2事项' bordered={false} bodyStyle={{ height: '520px' }}>
                   {/* @ts-ignore */}
-                  <Draggable list={listTwo.value} itemKey='name' group='list' style='height: 100%' class='list2' onEnd={handleDrop}>
+                  <Draggable
+                    list={listTwo.value}
+                    itemKey='name'
+                    group='list'
+                    style='height: 100%'
+                    class='list2'
+                    onEnd={handleDrop}
+                  >
                     {{
-                      item: ({ element}) => (
-                          <Card
-                            hoverable
-                            size='small'
-                            style='margin-bottom: 12px;'
-                          >
-                            {element.name}
-                          </Card>
-                        )
+                      item: ({ element }) => (
+                        <Card hoverable size='small' style='margin-bottom: 12px;'>
+                          {element.name}
+                        </Card>
+                      )
                     }}
                   </Draggable>
                 </Card>
               </Col>
               <Col span={4}>
-                <Card title='操作记录' bordered={false} bodyStyle={{height: '520px'}}>
-                  { dragLogs.value.map(item => {
+                <Card title='操作记录' bordered={false} bodyStyle={{ height: '520px' }}>
+                  {dragLogs.value.map(item => {
                     return <p style='margin-bottom: 8px'>{item}</p>
-                  }) }
+                  })}
                 </Card>
               </Col>
               <Col span={5}>
-                <Card title='列表1数据' bordered={false} bodyStyle={{height: '520px'}}>
-                  <pre>
-                    {JSON.stringify(listOne.value, null, 2)}
-                  </pre>
+                <Card title='列表1数据' bordered={false} bodyStyle={{ height: '520px' }}>
+                  <pre>{JSON.stringify(listOne.value, null, 2)}</pre>
                 </Card>
               </Col>
               <Col span={5}>
-                <Card title='列表2数据' bordered={false} bodyStyle={{height: '520px'}}>
-                  <pre>
-                   {JSON.stringify(listTwo.value, null, 2)}
-                  </pre>
+                <Card title='列表2数据' bordered={false} bodyStyle={{ height: '520px' }}>
+                  <pre>{JSON.stringify(listTwo.value, null, 2)}</pre>
                 </Card>
               </Col>
             </Row>
+          )
         }}
       </PageWrapper>
     )

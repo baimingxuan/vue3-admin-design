@@ -1,5 +1,5 @@
 import type { RouteRecordRaw, RouteMeta } from 'vue-router'
-import { defineComponent } from 'vue'
+import type { defineComponent } from 'vue'
 
 export type Component<T = any> =
   | ReturnType<typeof defineComponent>
@@ -30,4 +30,3 @@ export interface AppMenu {
   hideChildrenInMenu?: boolean
   hideBreadcrumb?: boolean
 }
-

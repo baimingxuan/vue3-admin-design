@@ -21,7 +21,7 @@ export default defineComponent({
 
     return () => (
       <div
-        class={[compoStyle[prefixCls], {[compoStyle[`${prefixCls}--dark`]]: unref(isDarkMode)}]}
+        class={[compoStyle[prefixCls], { [compoStyle[`${prefixCls}--dark`]]: unref(isDarkMode) }]}
         onClick={switchAppMode}
       >
         <div class={compoStyle['mode__inner']} />

@@ -34,14 +34,14 @@ export const usePermissionStore = defineStore('app-permission', {
       if (permissionMode === PermissionModeEnum.MAPPING) {
         routes = asyncRoutes
         const menuList = transformRouteToMenu(routes)
-        
+
         menuList.sort((a, b) => {
           return (a?.orderNo || menuList.length) - (b?.orderNo || menuList.length)
         })
 
         this.setMenuList(menuList)
       }
-      
+
       return routes
     },
     resetState(): void {
@@ -54,4 +54,3 @@ export const usePermissionStore = defineStore('app-permission', {
 export function usePermissionStoreWithOut() {
   return usePermissionStore(stores)
 }
-

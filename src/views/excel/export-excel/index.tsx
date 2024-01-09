@@ -1,10 +1,10 @@
 import { defineComponent, reactive, ref, unref } from 'vue'
 import { Form, FormItem, Button, Card, Input, RadioGroup, Select, Table, Space, message } from 'ant-design-vue'
-import { ColumnType } from 'ant-design-vue/lib/table'
+import type { ColumnType } from 'ant-design-vue/lib/table'
 import { PageWrapper } from '@/components/Page'
 import { XLSX_PLUGIN } from '@/settings/websiteSetting'
 import { useExcel } from '../useExcel'
-import { DataToSheet } from '../types'
+import type { DataToSheet } from '../types'
 import { tableData } from './data'
 
 type FileType = 'xlsx' | 'csv' | 'txt'
@@ -43,11 +43,7 @@ export default defineComponent({
       tableSelectedKeys.value = selectedKeys
     }
 
-    function handleTableSelect(
-      _record: object,
-      _selected: boolean,
-      selectedRows: object[]
-    ) {
+    function handleTableSelect(_record: object, _selected: boolean, selectedRows: object[]) {
       tableSelectedRows.value = selectedRows
     }
 
@@ -56,7 +52,7 @@ export default defineComponent({
     }
 
     function handleExport() {
-      if (!(unref(tableSelectedRows).length)) {
+      if (!unref(tableSelectedRows).length) {
         message.warning('请勾选要导出的数据项！')
         return
       }
@@ -73,56 +69,57 @@ export default defineComponent({
       tableSelectedKeys.value = []
       tableSelectedRows.value = []
     }
-    
+
     return () => (
       <PageWrapper plugin={XLSX_PLUGIN}>
         {{
-          default: () => <Card bordered={false}>
-            <Space direction='vertical' size={16} style={{width: '100%'}}>
-              <Form model={formParam} layout='inline'>
-                <FormItem label='文件名:' name='fileName'>
-                  <Input
-                    v-model:value={formParam.fileName}
-                    placeholder='文件名'
-                  />
-                </FormItem>
-                <FormItem label='自动宽度:' name='autoWidth'>
-                  <RadioGroup
-                    v-model:value={formParam.autoWidth}
-                    options={[
-                      { label: '自动', value: true },
-                      { label: '固定', value: false }
-                    ]}
-                  />
-                </FormItem>
-                <FormItem label='文件类型:' name='fileType'>
-                  <Select
-                    v-model:value={formParam.fileType}
-                    options={[
-                      { label: 'xlsx', value: 'xlsx' },
-                      { label: 'csv', value: 'csv' },
-                      { label: 'txt', value: 'txt' }
-                    ]}
-                    style={{width: '180px'}}
-                  />
-                </FormItem>
-                <FormItem>
-                  <Button type='primary' htmlType='submit' onClick={handleExport}>导出Excel</Button>
-                </FormItem>
-              </Form>
-              <Table
-                dataSource={unref(dataSource)}
-                columns={tableColumns}
-                rowSelection={{
-                  selectedRowKeys: unref(tableSelectedKeys),
-                  onChange: handleTableChange,
-                  onSelect: handleTableSelect,
-                  onSelectAll: handleTableSelectAll
-                }}
-                pagination={false}
-              />
-            </Space>
-          </Card>
+          default: () => (
+            <Card bordered={false}>
+              <Space direction='vertical' size={16} style={{ width: '100%' }}>
+                <Form model={formParam} layout='inline'>
+                  <FormItem label='文件名:' name='fileName'>
+                    <Input v-model:value={formParam.fileName} placeholder='文件名' />
+                  </FormItem>
+                  <FormItem label='自动宽度:' name='autoWidth'>
+                    <RadioGroup
+                      v-model:value={formParam.autoWidth}
+                      options={[
+                        { label: '自动', value: true },
+                        { label: '固定', value: false }
+                      ]}
+                    />
+                  </FormItem>
+                  <FormItem label='文件类型:' name='fileType'>
+                    <Select
+                      v-model:value={formParam.fileType}
+                      options={[
+                        { label: 'xlsx', value: 'xlsx' },
+                        { label: 'csv', value: 'csv' },
+                        { label: 'txt', value: 'txt' }
+                      ]}
+                      style={{ width: '180px' }}
+                    />
+                  </FormItem>
+                  <FormItem>
+                    <Button type='primary' htmlType='submit' onClick={handleExport}>
+                      导出Excel
+                    </Button>
+                  </FormItem>
+                </Form>
+                <Table
+                  dataSource={unref(dataSource)}
+                  columns={tableColumns}
+                  rowSelection={{
+                    selectedRowKeys: unref(tableSelectedKeys),
+                    onChange: handleTableChange,
+                    onSelect: handleTableSelect,
+                    onSelectAll: handleTableSelectAll
+                  }}
+                  pagination={false}
+                />
+              </Space>
+            </Card>
+          )
         }}
       </PageWrapper>
     )

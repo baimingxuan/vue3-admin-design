@@ -1,7 +1,7 @@
 import type { UploadChangeParam } from 'ant-design-vue'
 import { defineComponent, ref, unref } from 'vue'
 import { Card, Table, UploadDragger, Space, message } from 'ant-design-vue'
-import { ColumnType } from 'ant-design-vue/lib/table'
+import type { ColumnType } from 'ant-design-vue/lib/table'
 import { CloudUploadOutlined } from '@ant-design/icons-vue'
 import { PageWrapper } from '@/components/Page'
 import { XLSX_PLUGIN } from '@/settings/websiteSetting'
@@ -15,7 +15,6 @@ export default defineComponent({
 
     const { readDataFromExcel } = useExcel()
 
-
     function handleChange(fileParam: UploadChangeParam) {
       const { file } = fileParam
       const rawFile = file.originFileObj
@@ -26,7 +25,7 @@ export default defineComponent({
         return
       }
 
-      const isLimit1M = rawFile.size / 1024 /1024 < 1
+      const isLimit1M = rawFile.size / 1024 / 1024 < 1
       if (!isLimit1M) {
         message.warning('上传的Excel文件大小不能超过1M!')
         return
@@ -40,7 +39,7 @@ export default defineComponent({
       reader.onload = e => {
         const data = e.target && e.target.result
         const { header, results } = readDataFromExcel(data, 'array')
-        tableColumns.value = header.map(key => ({title: key, dataIndex: key, align: 'center'})) as ColumnType[]
+        tableColumns.value = header.map(key => ({ title: key, dataIndex: key, align: 'center' })) as ColumnType[]
         tableData.value = results as object[]
       }
       reader.readAsArrayBuffer(rawFile)
@@ -48,31 +47,31 @@ export default defineComponent({
         message.error('Excel文件读取出错!')
       }
     }
-    
+
     return () => (
       <PageWrapper plugin={XLSX_PLUGIN}>
         {{
-          default: () => <Card bordered={false}>
-            <Space direction='vertical' size={16} style={{width: '100%'}}>
-              <UploadDragger
-                ref='uploadExcel'
-                accept='.xlsx, .xls, .csv'
-                showUploadList={false}
-                maxCount={1}
-                onChange={handleChange}
-              >
-                <p class="ant-upload-drag-icon" style='margin-bottom: 0;'>
-                  <CloudUploadOutlined />
-                </p>
-                <p>将Excel文件拖到此处, 或<span style='color: #1890ff;'>点击上传</span></p>
-              </UploadDragger>
-              <Table
-                dataSource={unref(tableData)}
-                columns={unref(tableColumns)}
-                pagination={false}
-              />
-            </Space>
-          </Card>
+          default: () => (
+            <Card bordered={false}>
+              <Space direction='vertical' size={16} style={{ width: '100%' }}>
+                <UploadDragger
+                  ref='uploadExcel'
+                  accept='.xlsx, .xls, .csv'
+                  showUploadList={false}
+                  maxCount={1}
+                  onChange={handleChange}
+                >
+                  <p class='ant-upload-drag-icon' style='margin-bottom: 0;'>
+                    <CloudUploadOutlined />
+                  </p>
+                  <p>
+                    将Excel文件拖到此处, 或<span style='color: #1890ff;'>点击上传</span>
+                  </p>
+                </UploadDragger>
+                <Table dataSource={unref(tableData)} columns={unref(tableColumns)} pagination={false} />
+              </Space>
+            </Card>
+          )
         }}
       </PageWrapper>
     )

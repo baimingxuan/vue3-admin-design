@@ -23,7 +23,7 @@ export default defineComponent({
     } else {
       replace({
         path: pathStr.startsWith('/') ? pathStr : '/' + pathStr,
-        query 
+        query
       })
     }
 

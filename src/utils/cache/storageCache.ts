@@ -54,15 +54,13 @@ export const createStorage = ({
      * @param {*} expire Expiration time in seconds
      * @memberof Cache
      */
-     set(key: string, value: any, expire: number | null = timeout) {
+    set(key: string, value: any, expire: number | null = timeout) {
       const stringData = JSON.stringify({
         value,
         time: Date.now(),
         expire: !isNullOrUnDef(expire) ? new Date().getTime() + expire * 1000 : null
       })
-      const stringifyValue = this.hasEncrypt
-        ? this.encrypt.encryptByAES(stringData)
-        : stringData
+      const stringifyValue = this.hasEncrypt ? this.encrypt.encryptByAES(stringData) : stringData
       this.storage.setItem(this.getKey(key), stringifyValue)
     }
 
@@ -72,7 +70,7 @@ export const createStorage = ({
      * @param {*} def
      * @memberof Cache
      */
-     get(key: string, def: any = null): any {
+    get(key: string, def: any = null): any {
       const val = this.storage.getItem(this.getKey(key))
       if (!val) return def
 
@@ -89,7 +87,7 @@ export const createStorage = ({
       }
     }
 
-     /**
+    /**
      * Delete cache based on key
      * @param {string} key
      * @memberof Cache
@@ -105,6 +103,6 @@ export const createStorage = ({
       this.storage.clear()
     }
   }
-  
+
   return new WebStorage()
 }

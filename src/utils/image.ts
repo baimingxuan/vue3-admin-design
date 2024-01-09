@@ -3,7 +3,7 @@
  * @param image
  * @returns {Blob}
  */
- export function base64toBlob(base64Buf: string): Blob {
+export function base64toBlob(base64Buf: string): Blob {
   const arr = base64Buf.split(',')
   const typeItem = arr[0]
   const mime = typeItem.match(/:(.*?);/)![1]
@@ -47,7 +47,7 @@ export function urlToBase64(url: string, mineType?: string): Promise<string> {
  * Compress image through Settings
  * @param imgSrc
  * @param settings
-*/
+ */
 interface ImageProps {
   width: number
   height: number
@@ -84,16 +84,12 @@ export function getCompressImage(imgSrc: string, settings: ImageProps): Promise<
  * @param showAreaW
  * @param showAreaH
  * */
-export function getComputedImageProp(
-  imageTrueW: number,
-  imageTrueH: number,
-  showAreaW: number,
-  showAreaH: number
-) {
+export function getComputedImageProp(imageTrueW: number, imageTrueH: number, showAreaW: number, showAreaH: number) {
   let [width, height, ratio] = [0, 0, 0]
   // 图片真实宽大于真实高
   if (imageTrueW > imageTrueH) {
-    if (imageTrueW >= showAreaW) { // 真实宽大于或等于展示区最大宽
+    if (imageTrueW >= showAreaW) {
+      // 真实宽大于或等于展示区最大宽
       const imageRatioH = imageTrueH * (showAreaW / imageTrueW)
       // 按展示区最大宽与实际宽比率换算后，高度大于显示高度时
       if (imageRatioH >= showAreaW) {
@@ -110,8 +106,10 @@ export function getComputedImageProp(
       height = imageTrueH
       ratio = 1
     }
-  } else { // 图片真实宽小于或等于真实高
-    if (imageTrueH >= showAreaH) { // 真实高大于或等于展示区最大高
+  } else {
+    // 图片真实宽小于或等于真实高
+    if (imageTrueH >= showAreaH) {
+      // 真实高大于或等于展示区最大高
       width = imageTrueW * (showAreaH / imageTrueH)
       height = showAreaH
       ratio = imageTrueH / showAreaH

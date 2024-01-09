@@ -16,29 +16,27 @@ export default defineComponent({
   setup() {
     const { getMenuFoldBtn } = useMenuSetting()
     const { getShowTags, getShowBreadCrumb } = useHeaderSetting()
-    
-    const getHeaderStyle = computed((): CSSProperties => ({
-      flexDirection: 'column',
-      height: 'auto',
-      background: '#fff'
-    }))
+
+    const getHeaderStyle = computed(
+      (): CSSProperties => ({
+        flexDirection: 'column',
+        height: 'auto',
+        background: '#fff'
+      })
+    )
     const getShowTrigger = computed(() => unref(getMenuFoldBtn) === MenuFoldBtnEnum.HEADER)
 
     return () => (
       <LayoutHeader class='flex-between-h' style={unref(getHeaderStyle)}>
         <div class='flex-between-h' style='padding: 0 12px;'>
           <div class='flex-center-v'>
-            { unref(getShowTrigger) && <FoldTrigger /> }
-            { unref(getShowBreadCrumb) && <LayoutBreadcrumb /> }
+            {unref(getShowTrigger) && <FoldTrigger />}
+            {unref(getShowBreadCrumb) && <LayoutBreadcrumb />}
           </div>
           <LayoutFeature />
         </div>
-        { unref(getShowTags) && <LayoutTags /> }
+        {unref(getShowTags) && <LayoutTags />}
       </LayoutHeader>
     )
   }
 })
-
-
-
-
