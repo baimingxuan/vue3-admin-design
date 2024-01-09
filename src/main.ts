@@ -1,7 +1,4 @@
-// import 'ant-design-vue/dist/antd.css'
-
 import '@/design/index.less'
-
 // register svg icon
 import 'virtual:svg-icons-register'
 
