@@ -15,7 +15,6 @@ eslint.config.js
 postcss.config.js
 prettier.config.js
 commitlint.config.js
-windi.config.ts
 
 *.md
 *.woff

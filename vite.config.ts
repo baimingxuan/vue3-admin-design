@@ -63,14 +63,9 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       alias: [
         {
           find: /@\//,
-          replacement: pathResolve('src') + '/',
+          replacement: pathResolve('src') + '/'
         }
       ]
-    },
-    define: {
-      __COLOR_PLUGIN_OUTPUT_FILE_NAME__: undefined,
-      __PROD__: true,
-      __COLOR_PLUGIN_OPTIONS__: {},
     }
   }
 }

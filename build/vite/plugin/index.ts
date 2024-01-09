@@ -1,7 +1,6 @@
 import type { Plugin } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import windiCSS from 'vite-plugin-windicss'
 import { configMockPlugin } from './mock'
 import { configSvgIconsPlugin } from './svgIcons'
 import { configStyleImportPlugin } from './styles'
@@ -12,9 +11,6 @@ export function createVitePlugins(isBuild: boolean) {
     vue(),
     vueJsx()
   ]
-
-  // vite-plugin-windicss
-  vitePlugins.push(windiCSS())
 
   // vite-plugin-style-import
   vitePlugins.push(configStyleImportPlugin())
