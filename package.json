@@ -6,7 +6,9 @@
     "serve": "vite",
     "build": "rimraf dist && vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "clean:cache": "rimraf .eslintcache && rimraf node_modules && pnpm install"
+    "clean:cache": "rimraf .eslintcache && rimraf node_modules && pnpm install",
+    "lint:eslint": "eslint --cache \"{src,mock,build}/**/*.{js,ts,tsx}\" --fix",
+    "lint:prettier": "prettier --write \"src/**/*.{js,json,ts,tsx,css,less,html,md}\""
   },
   "dependencies": {
     "@ant-design/colors": "^7.0.2",
@@ -40,6 +42,7 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "@eslint/js": "^8.56.0",
     "@types/crypto-js": "^4.2.1",
     "@types/file-saver": "^2.0.7",
     "@types/lodash-es": "^4.17.12",
@@ -62,6 +65,8 @@
     "eslint-plugin-vue": "^9.19.2",
     "less": "^4.2.0",
     "path-browserify": "^1.0.1",
+    "postcss": "^8.4.33",
+    "postcss-load-config": "^5.0.2",
     "prettier": "^3.1.1",
     "rimraf": "^5.0.5",
     "rollup": "^4.9.4",
