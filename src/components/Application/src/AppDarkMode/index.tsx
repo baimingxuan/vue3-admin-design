@@ -9,7 +9,7 @@ export default defineComponent({
   name: 'AppDarkMode',
   setup() {
     const prefixCls = 'compo_app-dark-mode'
-    const { setAppMode, getAppMode } = useBaseSetting()
+    const { setAppMode, getAppMode, getThemeColor } = useBaseSetting()
 
     const isDarkMode = computed(() => getAppMode.value === AppModeEnum.DARK)
 
@@ -22,6 +22,7 @@ export default defineComponent({
     return () => (
       <div
         class={[compoStyle[prefixCls], { [compoStyle[`${prefixCls}--dark`]]: unref(isDarkMode) }]}
+        style={{ background: unref(isDarkMode) ? unref(getThemeColor) : 'rgba(0, 0, 0, 0.45)' }}
         onClick={switchAppMode}
       >
         <div class={compoStyle['mode__inner']} />

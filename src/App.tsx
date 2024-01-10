@@ -1,9 +1,9 @@
-import { defineComponent, unref, computed } from 'vue'
+import { defineComponent, unref } from 'vue'
 import { RouterView } from 'vue-router'
-import { ConfigProvider, theme } from 'ant-design-vue'
-import { useTitle } from './hooks/web/useTitle'
+import { ConfigProvider } from 'ant-design-vue'
 import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
-import { ThemeEnum } from '@/enums/appEnum'
+import { useDarkMode } from '@/hooks/setting/useDarkMode'
+import { useTitle } from '@/hooks/web/useTitle'
 
 export default defineComponent({
   name: 'App',
@@ -11,9 +11,8 @@ export default defineComponent({
   setup() {
     useTitle()
 
-    const { getThemeColor, getAppMode } = useBaseSetting()
-
-    const isDarkMode = computed(() => unref(getAppMode) === ThemeEnum.DARK)
+    const { getThemeColor } = useBaseSetting()
+    const { getModeAlgorithm } = useDarkMode()
 
     return () => (
       <ConfigProvider
@@ -21,7 +20,7 @@ export default defineComponent({
           token: {
             colorPrimary: unref(getThemeColor)
           },
-          algorithm: theme.darkAlgorithm
+          algorithm: unref(getModeAlgorithm)
         }}
       >
         <RouterView />
