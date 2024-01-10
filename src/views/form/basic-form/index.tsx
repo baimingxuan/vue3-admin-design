@@ -128,7 +128,7 @@ export default defineComponent({
       <PageWrapper plugin={FORM_COMPO}>
         {{
           default: () => (
-            <Card bordered={false}>
+            <Card>
               <Form
                 ref={formRef}
                 model={formState}

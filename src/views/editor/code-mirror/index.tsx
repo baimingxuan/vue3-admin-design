@@ -45,7 +45,7 @@ export default defineComponent({
       <PageWrapper plugin={CODEMIRROR_PLUGIN}>
         {{
           default: () => (
-            <Card bordered={false}>
+            <Card>
               <Toolbar config={config} />
               <Codemirror
                 v-model={codeRef.value}

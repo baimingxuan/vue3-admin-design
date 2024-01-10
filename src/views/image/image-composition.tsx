@@ -30,14 +30,14 @@ export default defineComponent({
           default: () => (
             <Row gutter={12}>
               <Col span={16}>
-                <Card title='合成区域' bordered={false} bodyStyle={{ height: '550px' }}>
+                <Card title='合成区域' bodyStyle={{ height: '550px' }}>
                   <div class='flex-center' style='overflow: hidden'>
                     <div style={unref(getWrapStyle)}></div>
                   </div>
                 </Card>
               </Col>
               <Col span={8}>
-                <Card title='设置区域' bordered={false} bodyStyle={{ height: '550px' }}></Card>
+                <Card title='设置区域' bodyStyle={{ height: '550px' }}></Card>
               </Col>
             </Row>
           )

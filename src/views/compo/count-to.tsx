@@ -32,7 +32,7 @@ export default defineComponent({
           default: () => (
             <Row gutter={12}>
               <Col span={6}>
-                <Card title='正向增加' bordered={false} bodyStyle={{ height: '300px' }}>
+                <Card title='正向增加' bodyStyle={{ height: '300px' }}>
                   <CountTo
                     startVal={0}
                     endVal={2020}
@@ -44,7 +44,7 @@ export default defineComponent({
                 </Card>
               </Col>
               <Col span={12}>
-                <Card title='自定义配置' bordered={false} bodyStyle={{ height: '300px' }}>
+                <Card title='自定义配置' bodyStyle={{ height: '300px' }}>
                   <div class='flex-center' style='margin-bottom: 30px'>
                     <CountTo
                       ref={countRef}
@@ -100,7 +100,7 @@ export default defineComponent({
                 </Card>
               </Col>
               <Col span={6}>
-                <Card title='反向减少' bordered={false} bodyStyle={{ height: '300px' }}>
+                <Card title='反向减少' bodyStyle={{ height: '300px' }}>
                   <CountTo
                     startVal={2020}
                     endVal={0}

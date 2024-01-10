@@ -1,6 +1,6 @@
 import type { PropType } from 'vue'
 import { defineComponent, ref, unref } from 'vue'
-import { Button } from 'ant-design-vue'
+import { Button, Card } from 'ant-design-vue'
 import { openWindow } from '@/utils'
 import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
 import SvgIcon from '@/components/SvgIcon'
@@ -31,7 +31,7 @@ export default defineComponent({
 
     return () => (
       <div ref={pageWrapperRef} class={compoStyle['compo_page-wrapper']}>
-        <div class={compoStyle['page-header']}>
+        <Card class={compoStyle['page-header']} bodyStyle={{ padding: 0 }}>
           <div class={compoStyle['page-header-name']}>
             <SvgIcon name='hints' size={18} />
             <span>{props.plugin?.name}</span>
@@ -43,7 +43,7 @@ export default defineComponent({
               立即访问
             </Button>
           </p>
-        </div>
+        </Card>
         <div ref={pageContentRef} class={compoStyle['page-content']}>
           {slots.default?.()}
         </div>

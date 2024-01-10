@@ -49,7 +49,7 @@ export default defineComponent({
           default: () => (
             <Row gutter={12}>
               <Col span={10}>
-                <Card title='裁剪区域' bordered={false} bodyStyle={{ height: '400px' }}>
+                <Card title='裁剪区域' bodyStyle={{ height: '400px' }}>
                   <VueCropper
                     ref={cropper}
                     img={config.imgSrc}
@@ -67,7 +67,7 @@ export default defineComponent({
                 </Card>
               </Col>
               <Col span={4}>
-                <Card title='设置区域' bordered={false}>
+                <Card title='设置区域'>
                   <div class='flex-center' style='height: 352px'>
                     <Space direction='vertical'>
                       <UploadImage onSuccess={handleSuccess} />
@@ -80,7 +80,7 @@ export default defineComponent({
                 </Card>
               </Col>
               <Col span={10}>
-                <Card title='预览区域' bordered={false} bodyStyle={{ height: '400px' }}>
+                <Card title='预览区域' bodyStyle={{ height: '400px' }}>
                   <div
                     style={{
                       width: unref(previews).w + 'px',

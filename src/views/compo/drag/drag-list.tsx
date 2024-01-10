@@ -38,7 +38,7 @@ export default defineComponent({
           default: () => (
             <Row gutter={12}>
               <Col span={5}>
-                <Card title='列表1事项' bordered={false} bodyStyle={{ height: '520px' }}>
+                <Card title='列表1事项' bodyStyle={{ height: '520px' }}>
                   {/* @ts-ignore */}
                   <Draggable
                     list={listOne.value}
@@ -59,7 +59,7 @@ export default defineComponent({
                 </Card>
               </Col>
               <Col span={5}>
-                <Card title='列表2事项' bordered={false} bodyStyle={{ height: '520px' }}>
+                <Card title='列表2事项' bodyStyle={{ height: '520px' }}>
                   {/* @ts-ignore */}
                   <Draggable
                     list={listTwo.value}
@@ -80,19 +80,19 @@ export default defineComponent({
                 </Card>
               </Col>
               <Col span={4}>
-                <Card title='操作记录' bordered={false} bodyStyle={{ height: '520px' }}>
+                <Card title='操作记录' bodyStyle={{ height: '520px' }}>
                   {dragLogs.value.map(item => {
                     return <p style='margin-bottom: 8px'>{item}</p>
                   })}
                 </Card>
               </Col>
               <Col span={5}>
-                <Card title='列表1数据' bordered={false} bodyStyle={{ height: '520px' }}>
+                <Card title='列表1数据' bodyStyle={{ height: '520px' }}>
                   <pre>{JSON.stringify(listOne.value, null, 2)}</pre>
                 </Card>
               </Col>
               <Col span={5}>
-                <Card title='列表2数据' bordered={false} bodyStyle={{ height: '520px' }}>
+                <Card title='列表2数据' bodyStyle={{ height: '520px' }}>
                   <pre>{JSON.stringify(listTwo.value, null, 2)}</pre>
                 </Card>
               </Col>

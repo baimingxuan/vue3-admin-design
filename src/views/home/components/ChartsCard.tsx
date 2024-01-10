@@ -35,7 +35,7 @@ export default defineComponent({
     )
 
     return () => (
-      <Card loading={props.loading} bordered={false}>
+      <Card loading={props.loading}>
         <div
           ref={chartRef}
           style={{

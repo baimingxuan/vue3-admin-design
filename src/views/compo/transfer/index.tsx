@@ -67,7 +67,7 @@ export default defineComponent({
           default: () => (
             <Row gutter={12}>
               <Col span={8}>
-                <Card title='基础用法' bordered={false} bodyStyle={{ height: '420px' }}>
+                <Card title='基础用法' bodyStyle={{ height: '420px' }}>
                   <Transfer
                     v-model:targetKeys={targetKeys.value}
                     v-model:selectedKeys={selectedKeys.value}
@@ -79,7 +79,7 @@ export default defineComponent({
                 </Card>
               </Col>
               <Col span={8}>
-                <Card title='树穿梭框' bordered={false} bodyStyle={{ height: '420px' }}>
+                <Card title='树穿梭框' bodyStyle={{ height: '420px' }}>
                   <Transfer
                     v-model:targetKeys={treeTargetKeys.value}
                     dataSource={dataSource.value}
@@ -110,7 +110,7 @@ export default defineComponent({
                 </Card>
               </Col>
               <Col span={8}>
-                <Card title='表格穿梭框' bordered={false} bodyStyle={{ height: '420px' }}>
+                <Card title='表格穿梭框' bodyStyle={{ height: '420px' }}>
                   <Transfer
                     v-model:targetKeys={targetKeys.value}
                     dataSource={mockData}

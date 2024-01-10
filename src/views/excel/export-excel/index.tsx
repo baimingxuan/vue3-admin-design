@@ -74,7 +74,7 @@ export default defineComponent({
       <PageWrapper plugin={XLSX_PLUGIN}>
         {{
           default: () => (
-            <Card bordered={false}>
+            <Card>
               <Space direction='vertical' size={16} style={{ width: '100%' }}>
                 <Form model={formParam} layout='inline'>
                   <FormItem label='文件名:' name='fileName'>

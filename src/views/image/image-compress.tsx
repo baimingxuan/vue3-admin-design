@@ -132,14 +132,14 @@ export default defineComponent({
           default: () => (
             <Row gutter={12}>
               <Col span={16}>
-                <Card title='图片区域' bordered={false}>
+                <Card title='图片区域'>
                   <div class='flex-center' style='height: 550px; overflow: hidden'>
                     <div style={unref(getImageStyle)} />
                   </div>
                 </Card>
               </Col>
               <Col span={8}>
-                <Card title='设置区域' bordered={false}>
+                <Card title='设置区域'>
                   <div class='flex-center' style='height: 550px'>
                     <Form style='width: 280px'>
                       <FormItem label='上传图片: '>

@@ -10,7 +10,7 @@ export default defineComponent({
       <PageWrapper plugin={FORM_CREATE_DESIGNER}>
         {{
           default: () => (
-            <Card bordered={false}>
+            <Card>
               <fc-designer height='664px' />
             </Card>
           )

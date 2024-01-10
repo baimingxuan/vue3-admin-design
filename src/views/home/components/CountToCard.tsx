@@ -28,7 +28,7 @@ export default defineComponent({
   },
   setup(props) {
     return () => (
-      <Card loading={props.loading} bordered={false} bodyStyle={{ padding: 0 }}>
+      <Card loading={props.loading} bodyStyle={{ padding: 0 }}>
         <div class='flex-center-v'>
           <div
             class='flex-center'

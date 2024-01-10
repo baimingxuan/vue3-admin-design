@@ -73,7 +73,7 @@ export default defineComponent({
       const { status, title, subTitle, btnText, handler } = unref(getMapValue) || {}
 
       return (
-        <Card bordered={false}>
+        <Card>
           <Result status={status as any} title={title} subTitle={subTitle}>
             {{
               extra: () =>

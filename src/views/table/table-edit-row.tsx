@@ -73,7 +73,7 @@ export default defineComponent({
       <PageWrapper plugin={TABLE_EDIT_COMPO}>
         {{
           default: () => (
-            <Card bordered={false}>
+            <Card>
               <Table dataSource={unref(dataSource)} columns={tableColumns} pagination={false}>
                 {{
                   headerCell: ({ column, title }) => {

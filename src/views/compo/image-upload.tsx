@@ -63,7 +63,7 @@ export default defineComponent({
           default: () => (
             <Row gutter={12}>
               <Col span={8}>
-                <Card title='拖拽上传' bordered={false} bodyStyle={{ height: '300px' }}>
+                <Card title='拖拽上传' bodyStyle={{ height: '300px' }}>
                   <UploadDragger
                     v-model:fileList={dragImgs.value}
                     action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
@@ -82,7 +82,7 @@ export default defineComponent({
                 </Card>
               </Col>
               <Col span={8}>
-                <Card title='列表样式' bordered={false} bodyStyle={{ height: '300px' }}>
+                <Card title='列表样式' bodyStyle={{ height: '300px' }}>
                   <Upload
                     v-model:fileList={listImgs.value}
                     action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
@@ -99,7 +99,7 @@ export default defineComponent({
                 </Card>
               </Col>
               <Col span={8}>
-                <Card title='照片墙' bordered={false} bodyStyle={{ height: '300px' }}>
+                <Card title='照片墙' bodyStyle={{ height: '300px' }}>
                   <Upload
                     v-model:fileList={listImgs.value}
                     action='https://www.mocky.io/v2/5cc8019d300000980a055e76'

@@ -9,7 +9,7 @@ export default defineComponent({
     return () => (
       <PageWrapper plugin={ANTV_G6_PLUGIN}>
         {{
-          default: () => <Card bordered={false}></Card>
+          default: () => <Card></Card>
         }}
       </PageWrapper>
     )

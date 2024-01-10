@@ -52,7 +52,7 @@ export default defineComponent({
       <PageWrapper plugin={XLSX_PLUGIN}>
         {{
           default: () => (
-            <Card bordered={false}>
+            <Card>
               <Space direction='vertical' size={16} style={{ width: '100%' }}>
                 <UploadDragger
                   ref='uploadExcel'

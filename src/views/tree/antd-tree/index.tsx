@@ -99,12 +99,12 @@ export default defineComponent({
           default: () => (
             <Row gutter={12}>
               <Col span={8}>
-                <Card title='可选择节点' bordered={false} bodyStyle={{ height: '420px' }}>
+                <Card title='可选择节点' bodyStyle={{ height: '420px' }}>
                   <Tree v-model:checkedKeys={checkedKeys.value} treeData={treeData} checkable defaultExpandAll />
                 </Card>
               </Col>
               <Col span={8}>
-                <Card title='懒加载节点' bordered={false} bodyStyle={{ height: '420px' }}>
+                <Card title='懒加载节点' bodyStyle={{ height: '420px' }}>
                   <Tree
                     v-model:expandedKeys={expandedKeys.value}
                     v-model:selectedKeys={selectedKeys.value}
@@ -115,7 +115,7 @@ export default defineComponent({
                 </Card>
               </Col>
               <Col span={8}>
-                <Card title='可拖拽节点' bordered={false} bodyStyle={{ height: '420px' }}>
+                <Card title='可拖拽节点' bodyStyle={{ height: '420px' }}>
                   <Tree treeData={dragTreeData.value} draggable blockNode defaultExpandAll onDrop={handleDrop} />
                 </Card>
               </Col>

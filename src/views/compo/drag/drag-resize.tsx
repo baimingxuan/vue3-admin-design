@@ -44,7 +44,7 @@ export default defineComponent({
       <PageWrapper plugin={VUE_DRAG_RESIZE_PLUGIN}>
         {{
           default: () => (
-            <Card bordered={false} bodyStyle={{ padding: 0 }}>
+            <Card bodyStyle={{ padding: 0 }}>
               <div ref={rectWrapper} style='width: 100%; height: 500px;'>
                 <VueDragResize
                   isActive={true}
