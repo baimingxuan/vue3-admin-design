@@ -1,5 +1,5 @@
 <template>
-  <LayoutHeader :class="getHeaderStyle">
+  <LayoutHeader :class="getHeaderCls">
     <div :class="`${prefixCls}-wrap`">
       <div :class="`${prefixCls}-wrap-logo`">
         <AppLogo theme="light" />
@@ -21,12 +21,10 @@
 <script lang="ts">
 import { defineComponent, computed, unref } from 'vue'
 import { LayoutHeader } from 'ant-design-vue'
-
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
-
+import { useDarkModeSetting } from '@/hooks/setting/useDarkModeSetting'
 import { AppLogo } from '@/components/Application'
-
 import LayoutMenu from '../menu'
 import LayoutTags from '../tags/index.vue'
 import LayoutFeature from '../feature'
@@ -46,16 +44,17 @@ export default defineComponent({
 
     const { getShowTags } = useHeaderSetting()
     const { getMenuTheme } = useMenuSetting()
+    const { isDarkMode, getAppMode } = useDarkModeSetting()
 
-    const getHeaderStyle = computed(() => {
-      const mode = unref(getMenuTheme)
+    const getHeaderCls = computed(() => {
+      const mode = unref(isDarkMode) ? unref(getAppMode) : unref(getMenuTheme)
 
       return [prefixCls, mode]
     })
 
     return {
       prefixCls,
-      getHeaderStyle,
+      getHeaderCls,
       getShowTags
     }
   }

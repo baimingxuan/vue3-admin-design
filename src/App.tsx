@@ -2,7 +2,7 @@ import { defineComponent, unref } from 'vue'
 import { RouterView } from 'vue-router'
 import { ConfigProvider } from 'ant-design-vue'
 import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
-import { useDarkMode } from '@/hooks/setting/useDarkMode'
+import { useDarkModeSetting } from '@/hooks/setting/useDarkModeSetting'
 import { useTitle } from '@/hooks/web/useTitle'
 
 export default defineComponent({
@@ -12,7 +12,7 @@ export default defineComponent({
     useTitle()
 
     const { getThemeColor } = useBaseSetting()
-    const { getModeAlgorithm } = useDarkMode()
+    const { getModeAlgorithm } = useDarkModeSetting()
 
     return () => (
       <ConfigProvider

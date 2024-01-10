@@ -3,7 +3,7 @@ import { theme } from 'ant-design-vue/lib'
 import { ThemeEnum } from '@/enums/appEnum'
 import { useBaseSetting } from './useBaseSetting'
 
-export function useDarkMode() {
+export function useDarkModeSetting() {
   const { getAppMode } = useBaseSetting()
   const { defaultAlgorithm, darkAlgorithm } = theme
 
@@ -13,5 +13,5 @@ export function useDarkMode() {
     return unref(isDarkMode) ? darkAlgorithm : defaultAlgorithm
   })
 
-  return { getModeAlgorithm }
+  return { getModeAlgorithm, isDarkMode, getAppMode }
 }
