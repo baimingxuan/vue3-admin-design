@@ -14,7 +14,7 @@
   >
     <Container>
       <Divider>系统风格</Divider>
-      <AppDarkMode class="mx-auto" />
+      <AppDarkMode />
       <Divider>菜单模式</Divider>
       <div class="flex-between-h">
         <MenuThemeRadio />

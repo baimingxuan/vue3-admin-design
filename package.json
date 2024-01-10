@@ -78,8 +78,7 @@
     "vite-plugin-style-import": "^2.0.0",
     "vite-plugin-svg-icons": "^2.0.1",
     "vue-eslint-parser": "^9.3.2",
-    "vue-tsc": "^1.8.27",
-    "windicss": "^3.5.6"
+    "vue-tsc": "^1.8.27"
   },
   "pnpm": {
     "allowedDeprecatedVersions": {

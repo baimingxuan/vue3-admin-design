@@ -205,9 +205,6 @@ devDependencies:
   vue-tsc:
     specifier: ^1.8.27
     version: 1.8.27(typescript@5.3.3)
-  windicss:
-    specifier: ^3.5.6
-    version: 3.5.6
 
 packages:
 
@@ -7153,12 +7150,6 @@ packages:
   /wildcard@1.1.2:
     resolution: {integrity: sha512-DXukZJxpHA8LuotRwL0pP1+rS6CS7FF2qStDDE1C7DDg2rLud2PXRMuEDYIPhgEezwnlHNL4c+N6MfMTjCGTng==}
     dev: false
-
-  /windicss@3.5.6:
-    resolution: {integrity: sha512-P1mzPEjgFMZLX0ZqfFht4fhV/FX8DTG7ERG1fBLiWvd34pTLVReS5CVsewKn9PApSgXnVfPWwvq+qUsRwpnwFA==}
-    engines: {node: '>= 12'}
-    hasBin: true
-    dev: true
 
   /wmf@1.0.2:
     resolution: {integrity: sha512-/p9K7bEh0Dj6WbXg4JG0xvLQmIadrner1bi45VMJTfnbVHsc7yIajZyoSoK60/dtVBs12Fm6WkUI5/3WAVsNMw==}

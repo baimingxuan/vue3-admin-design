@@ -73,7 +73,7 @@ export default defineComponent({
     &--active {
       &:deep(svg) {
         display: inline-block;
-        margin-bottom: 5px;
+        margin-top: 5px;
         margin-left: 5px;
         font-size: 12px;
         fill: #fff !important;

@@ -6,8 +6,9 @@
   width: 50px;
   height: 26px;
   padding: 0 6px;
-  margin-left: auto;
+  margin: 0 auto;
   border-radius: 30px;
+  box-sizing: border-box;
   background-color: #151515;
   cursor: pointer;
 
@@ -22,6 +23,7 @@
   }
 
   &--dark {
+    border: 1px solid #dcdcdc;
     .mode__inner {
       transform: translateX(calc(100% + 2px));
     }
