@@ -1,5 +1,5 @@
 import { defineComponent, unref } from 'vue'
-import { Button } from 'ant-design-vue'
+import { Button, Space } from 'ant-design-vue'
 import { CopyOutlined, RedoOutlined } from '@ant-design/icons-vue'
 
 import { useAppStore } from '@/stores/modules/app'
@@ -44,19 +44,19 @@ export default defineComponent({
     }
 
     return () => (
-      <div class='flex-center-v' style='flex-direction: column;'>
+      <Space direction='vertical' style={{ width: '100%', marginBottom: '16px' }}>
         <Button type='primary' block onClick={handleCopy}>
           <CopyOutlined />
           <span>拷贝</span>
         </Button>
-        <Button block class='my-3' onClick={handleReset}>
+        <Button block onClick={handleReset}>
           <RedoOutlined />
           <span>重置</span>
         </Button>
         <Button block onClick={handleClean}>
           <span>清空缓存并返回登录页</span>
         </Button>
-      </div>
+      </Space>
     )
   }
 })
