@@ -1,4 +1,5 @@
 import { defineComponent, ref, shallowRef, onBeforeUnmount } from 'vue'
+import { Card } from 'ant-design-vue'
 import { PageWrapper } from '@/components/Page'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import { WANG_EDITOR_PLUGIN } from '@/settings/websiteSetting'
@@ -26,21 +27,18 @@ export default defineComponent({
       <PageWrapper plugin={WANG_EDITOR_PLUGIN}>
         {{
           default: () => (
-            <div style='border: 1px solid #ccc;'>
-              <Toolbar
-                style='border-bottom: 1px solid #ccc;'
-                editor={editorRef.value}
-                defaultConfig={toolbarConfig}
-                mode='default'
-              />
-              <Editor
-                style='height: 500px; overflow-y: hidden;'
-                v-model={valueHtml.value}
-                defaultConfig={editorConfig}
-                mode='default'
-                onOnCreated={handleCreated}
-              />
-            </div>
+            <Card>
+              <div class='rich-text-wrapper'>
+                <Toolbar class='toolbar-box' editor={editorRef.value} defaultConfig={toolbarConfig} mode='default' />
+                <Editor
+                  style='height: 500px; overflow-y: hidden;'
+                  v-model={valueHtml.value}
+                  defaultConfig={editorConfig}
+                  mode='default'
+                  onOnCreated={handleCreated}
+                />
+              </div>
+            </Card>
           )
         }}
       </PageWrapper>
