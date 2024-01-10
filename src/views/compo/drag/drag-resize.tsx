@@ -1,7 +1,8 @@
-import { defineComponent, reactive, ref, onMounted, onBeforeUnmount } from 'vue'
+import { defineComponent, reactive, ref, unref, onMounted, onBeforeUnmount } from 'vue'
 import { Card } from 'ant-design-vue'
 import { PageWrapper } from '@/components/Page'
 import { VUE_DRAG_RESIZE_PLUGIN } from '@/settings/websiteSetting'
+import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
 import VueDragResize from 'vue-drag-resize/src'
 
 export default defineComponent({
@@ -18,6 +19,8 @@ export default defineComponent({
       width: 0,
       height: 0
     })
+
+    const { getThemeColor } = useBaseSetting()
 
     onMounted(() => {
       changeWrapperSize()
@@ -60,7 +63,7 @@ export default defineComponent({
                   preventActiveBehavior={true}
                   onDragging={handleResize}
                   onResizing={handleResize}
-                  style='background: #1890ff'
+                  style={{ background: unref(getThemeColor) }}
                 >
                   <div class='flex-center' style='height: 100%'>
                     <div style='width: 90px; color: #fff;'>
