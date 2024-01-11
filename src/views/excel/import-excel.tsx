@@ -6,6 +6,7 @@ import { CloudUploadOutlined } from '@ant-design/icons-vue'
 import { PageWrapper } from '@/components/Page'
 import { XLSX_PLUGIN } from '@/settings/websiteSetting'
 import { useExcel } from './useExcel'
+import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
 
 export default defineComponent({
   name: 'ImportExcel',
@@ -14,6 +15,7 @@ export default defineComponent({
     const tableColumns = ref<ColumnType[]>([])
 
     const { readDataFromExcel } = useExcel()
+    const { getThemeColor } = useBaseSetting()
 
     function handleChange(fileParam: UploadChangeParam) {
       const { file } = fileParam
@@ -65,7 +67,7 @@ export default defineComponent({
                     <CloudUploadOutlined />
                   </p>
                   <p>
-                    将Excel文件拖到此处, 或<span style='color: #1890ff;'>点击上传</span>
+                    将Excel文件拖到此处, 或<span style={{ color: unref(getThemeColor) }}>点击上传</span>
                   </p>
                 </UploadDragger>
                 <Table dataSource={unref(tableData)} columns={unref(tableColumns)} pagination={false} />

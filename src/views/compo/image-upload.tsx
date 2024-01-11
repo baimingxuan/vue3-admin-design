@@ -1,9 +1,10 @@
 import type { UploadProps } from 'ant-design-vue'
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, unref } from 'vue'
 import { Row, Col, Card, Button, Upload, UploadDragger, Modal } from 'ant-design-vue'
 import { CloudUploadOutlined, PlusOutlined } from '@ant-design/icons-vue'
 import { PageWrapper } from '@/components/Page'
 import { UPLOAD_COMPO } from '@/settings/websiteSetting'
+import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
 
 export default defineComponent({
   name: 'ImageUpload',
@@ -11,6 +12,8 @@ export default defineComponent({
     const previewVisible = ref(false)
     const previewImage = ref('')
     const previewTitle = ref('')
+
+    const { getThemeColor } = useBaseSetting()
 
     const dragImgs = ref<UploadProps['fileList']>([
       { uid: '-1', name: 'beautiful-girl.jpg' },
@@ -75,7 +78,7 @@ export default defineComponent({
                       <CloudUploadOutlined />
                     </p>
                     <p>
-                      将图片拖到此处, 或<span style='color: #1890ff;'>点击上传</span>
+                      将图片拖到此处, 或<span style={{ color: unref(getThemeColor) }}>点击上传</span>
                     </p>
                     <p class='ant-upload-hint'>只能上传jpg、jpeg、gif、png、bmp文件, 且不超过500kb</p>
                   </UploadDragger>

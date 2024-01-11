@@ -21,7 +21,7 @@ export default defineComponent({
           {unref(getShowDoc) && <DocLink />}
           {unref(getShowGithub) && <GithubLink />}
         </div>
-        <Divider type='vertical' class={moduleStyle[`${prefixCls}-divider`]} />
+        <Divider type='vertical' class='feature-divider' />
         <UserDropdown />
       </div>
     )
