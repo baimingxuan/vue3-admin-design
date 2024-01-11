@@ -1,7 +1,7 @@
 // 配置文档: https://eslint.nodejs.cn/
 import { defineFlatConfig } from 'eslint-define-config'
-import pluginVue from 'eslint-plugin-vue'
 import * as parserVue from 'vue-eslint-parser'
+import pluginVue from 'eslint-plugin-vue'
 import configPrettier from 'eslint-config-prettier'
 import pluginPrettier from 'eslint-plugin-prettier'
 import * as parserTypeScript from '@typescript-eslint/parser'
@@ -55,7 +55,7 @@ export default defineFlatConfig([
     languageOptions: {
       parser: parserTypeScript,
       parserOptions: {
-        ecmaVersion: 7,
+        ecmaVersion: 2020,
         sourceType: 'module',
         jsxPragma: 'React',
         ecmaFeatures: {
@@ -141,23 +141,16 @@ export default defineFlatConfig([
   {
     files: ['**/*.vue'],
     languageOptions: {
-      globals: {
-        $: 'readonly',
-        $$: 'readonly',
-        $computed: 'readonly',
-        $customRef: 'readonly',
-        $ref: 'readonly',
-        $shallowRef: 'readonly',
-        $toRef: 'readonly'
-      },
       parser: parserVue,
       parserOptions: {
+        parser: '@typescript-eslint/parser',
+        ecmaVersion: 2020,
+        sourceType: 'module',
+        jsxPragma: 'React',
         ecmaFeatures: {
           jsx: true
         },
-        extraFileExtensions: ['.vue'],
-        parser: '@typescript-eslint/parser',
-        sourceType: 'module'
+        extraFileExtensions: ['.vue']
       }
     },
     plugins: {
@@ -168,15 +161,35 @@ export default defineFlatConfig([
       ...pluginVue.configs.base.rules,
       ...pluginVue.configs['vue3-essential'].rules,
       ...pluginVue.configs['vue3-recommended'].rules,
-      'no-undef': 'off',
-      'no-unused-vars': 'off',
+      /*
+       * Vue规则配置
+       * 配置文档: https://eslint.vuejs.org/rules/)
+       */
+      // 禁止 v-for 指令或作用域属性的未使用变量定义
+      'vue/no-unused-vars': 'off',
+      // 禁止使用 V-HTML 来防止 XSS 攻击
       'vue/no-v-html': 'off',
+      // 禁止强制执行属性的顺序
+      'vue/attributes-order': 'off',
+      // 禁止必须设置 props 的默认值
       'vue/require-default-prop': 'off',
-      'vue/require-explicit-emits': 'off',
-      'vue/multi-word-component-names': 'off',
-      'vue/no-reserved-component-names': 'off',
-      'vue/no-setup-props-reactivity-loss': 'off',
+      // 禁止强制每个组件都应位于其自己的文件中
+      'vue/one-component-per-file': 'off',
+      // 禁止计算属性中的副作用
       'vue/no-side-effects-in-computed-properties': 'off',
+      // 禁止在组件定义中使用保留名称
+      'vue/no-reserved-component-names': 'off',
+      // 禁止在模板中的自定义组件上强制实施属性命名样式
+      'vue/attribute-hyphenation': 'off',
+      // 禁止必须设置 props 的默认值
+      'vue/require-default-prop': 'off',
+      // 禁止要求组件名称始终为多个字母
+      'vue/multi-word-component-names': 'off',
+      // 禁止强制执行每行的最大属性数
+      'vue/max-attributes-per-line': 'off',
+      // 禁止要求在单行元素的内容之前和之后使用换行符
+      'vue/singleline-html-element-content-newline': 'off',
+      // 禁止强制执行元素自闭合
       'vue/html-self-closing': [
         'error',
         {
@@ -193,12 +206,3 @@ export default defineFlatConfig([
   }
 ])
 
-// 'vue/attributes-order': 'off',
-// 'vue/one-component-per-file': 'off',
-// 'vue/html-closing-bracket-newline': 'off',
-// 'vue/max-attributes-per-line': 'off',
-// 'vue/multiline-html-element-content-newline': 'off',
-// 'vue/singleline-html-element-content-newline': 'off',
-// 'vue/attribute-hyphenation': 'off',
-// 'vue/require-default-prop': 'off',
-// 'vue/require-explicit-emits': 'off',

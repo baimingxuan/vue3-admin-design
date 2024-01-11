@@ -4,6 +4,7 @@
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "csstools.postcss",
-    "Vue.volar"
+    "vue.vscode-typescript-vue-plugin",
+    "vue.volar"
   ]
 }

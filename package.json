@@ -7,7 +7,7 @@
     "build": "rimraf dist && vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "clean:cache": "rimraf .eslintcache && rimraf node_modules && pnpm install",
-    "lint:eslint": "eslint --cache \"{src,mock,build}/**/*.{js,ts,tsx}\" --fix",
+    "lint:eslint": "eslint --cache \"{src,mock,build}/**/*.{vue,js,ts,tsx}\" --fix",
     "lint:prettier": "prettier --write \"src/**/*.{js,json,ts,tsx,css,less,html,md}\""
   },
   "dependencies": {

@@ -7,7 +7,7 @@ export function createFakeUserList() {
       userId: '10000',
       username: 'admin',
       realName: 'vue admin design',
-      avatar: 'https://cdn.jsdelivr.net/gh/baimingxuan/media-store/images/avatar.png',
+      avatar: 'https://cdn.jsdelivr.net/gh/baimingxuan/media-store/images/avatar.jpeg',
       desc: 'super admin',
       password: '123456',
       token: 'fakeToken',
