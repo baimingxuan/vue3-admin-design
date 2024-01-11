@@ -5,6 +5,7 @@
     :style="getWrapStyle"
     v-bind="getWrapEvents"
   >
+    <AppLogo />
     <SiderTrigger :class="`${prefixCls}-trigger`" />
     <ScrollContainer>
       <div :class="`${prefixCls}-main-menu`">
@@ -60,7 +61,7 @@ import { getShallowMenus, getChildrenMenus, getCurrentParentPath } from '@/route
 import { useGo } from '@/hooks/web/usePage'
 import { SIDE_BAR_MIN_WIDTH, SIDE_BAR_SHOW_TITLE_MIN_WIDTH } from '@/enums/appEnum'
 import { listenerRouteChange } from '@/logics/mitt/routeChange'
-
+import { AppLogo } from '@/components/Application'
 import ScrollContainer from '@/components/Container/index.vue'
 import SiderTrigger from '../components/SiderTrigger.vue'
 import { Menu } from '@/components/Menu'
@@ -69,7 +70,7 @@ import SvgIcon from '@/components/SvgIcon'
 
 export default defineComponent({
   name: 'LayoutHybridSider',
-  components: { ScrollContainer, SiderTrigger, Menu, DragBar, SvgIcon },
+  components: { ScrollContainer, SiderTrigger, Menu, DragBar, SvgIcon, AppLogo },
 
   setup() {
     const prefixCls = 'layout_hybrid-sider'

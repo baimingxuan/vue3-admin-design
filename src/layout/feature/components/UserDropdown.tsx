@@ -2,7 +2,7 @@ import { defineComponent, computed, unref } from 'vue'
 import { Dropdown, Menu, MenuItem } from 'ant-design-vue'
 import { LockOutlined, PoweroffOutlined } from '@ant-design/icons-vue'
 import { useUserStore } from '@/stores/modules/user'
-import headerImg from '@/assets/images/avatar.png'
+import headerImg from '@/assets/images/avatar.jpeg'
 
 type MenuEvent = 'lock' | 'logout'
 
