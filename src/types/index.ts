@@ -7,3 +7,15 @@ export type SelectOptions = {
   value: any
   [key: string]: string | number | boolean
 }[]
+
+export interface styleState {
+  fontFamily?: string
+  fontSize?: string
+  lineHeight?: string
+  color?: string
+  backgroundColor?: string
+  fontWeight?: string
+  fontStyle?: string
+  textShadow?: string
+  textAlign?: string
+}

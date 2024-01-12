@@ -101,6 +101,10 @@ export const CROPPER_IMG_SRC = 'https://cdn.jsdelivr.net/gh/baimingxuan/media-st
 // Compress image src
 export const COMPRESS_IMG_SRC = 'https://cdn.jsdelivr.net/gh/baimingxuan/media-store/images/img03.jpg'
 
+// Composition image src
+export const COMPOSITION_IMG_SRC = 'https://cdn.jsdelivr.net/gh/baimingxuan/media-store/images/img01.jpg'
+export const COMPOSITION_IMG_SRC2 = 'https://cdn.jsdelivr.net/gh/baimingxuan/media-store/images/img05.jpeg'
+
 // Image-compress component
 export const IMAGE_COMPRESS = {
   name: 'Image图片压缩',
