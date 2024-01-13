@@ -44,6 +44,27 @@ export function urlToBase64(url: string, mineType?: string): Promise<string> {
 }
 
 /**
+ * 获取图片宽高
+ * @param url
+ * @returns {Promise<{width: number; height: number}>}
+ */
+export function getImageSize(url: string): Promise<{ width: number; height: number }> {
+  return new Promise((resolve, reject) => {
+    const img = new Image()
+    img.onload = function () {
+      resolve({
+        width: img.width,
+        height: img.height
+      })
+    }
+    img.onerror = function () {
+      reject()
+    }
+    img.src = url
+  })
+}
+
+/**
  * Compress image through Settings
  * @param imgSrc
  * @param settings
@@ -78,13 +99,19 @@ export function getCompressImage(imgSrc: string, settings: ImageProps): Promise<
 }
 
 /**
- * Computed image width, height and ratio
- * @param imageTrueW
- * @param imageTrueH
- * @param showAreaW
- * @param showAreaH
- * */
-export function getComputedImageProp(imageTrueW: number, imageTrueH: number, showAreaW: number, showAreaH: number) {
+ * 计算图片宽高及比率
+ * @param imageTrueW 图片实际宽
+ * @param imageTrueH 图片实际高
+ * @param showAreaW 展示区宽度
+ * @param showAreaH 展示区高度
+ * @returns {{width: number; height: number; ratio: number}}
+ */
+export function calcImageSize(
+  imageTrueW: number,
+  imageTrueH: number,
+  showAreaW: number,
+  showAreaH: number
+): { width: number; height: number; ratio: number } {
   let [width, height, ratio] = [0, 0, 0]
   // 图片真实宽大于真实高
   if (imageTrueW > imageTrueH) {
