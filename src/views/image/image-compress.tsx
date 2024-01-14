@@ -4,7 +4,7 @@ import { Row, Col, Card, Button, Form, FormItem, InputNumber, Select } from 'ant
 import { COMPRESS_IMG_SRC } from '@/settings/websiteSetting'
 import { PageWrapper } from '@/components/Page'
 import { UploadImage } from '@/components/Upload'
-import { getComputedImageProp, getCompressImage } from '@/utils/image'
+import { calcImageSize, getCompressImage } from '@/utils/image'
 import { downloadImgByBase64 } from '@/utils/download'
 import { IMAGE_COMPRESS } from '@/settings/websiteSetting'
 import SvgIcon from '@/components/SvgIcon'
@@ -97,7 +97,7 @@ export default defineComponent({
     // 计算图片显示宽高
     function getContainerSize(imageW: number, imageH: number) {
       const [showAreaW, showAreaH] = [850, 550]
-      const { width, height } = getComputedImageProp(imageW, imageH, showAreaW, showAreaH)
+      const { width, height } = calcImageSize(imageW, imageH, showAreaW, showAreaH)
       // 更新图片展示区宽高
       imageShow.width = width
       imageShow.height = height

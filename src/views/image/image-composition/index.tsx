@@ -8,10 +8,11 @@ import type {
   handlerType
 } from './types'
 import { defineComponent, reactive, ref, unref, computed } from 'vue'
-import { Row, Col, Card, Form, FormItem, Button } from 'ant-design-vue'
+import { Row, Col, Card, Form, FormItem, Button, message } from 'ant-design-vue'
 import { PageWrapper } from '@/components/Page'
 import { UploadImage } from '@/components/Upload'
 import { IMAGE_COMPOSITION } from '@/settings/websiteSetting'
+import { getImageSize, calcImageSize } from '@/utils/image'
 import { textElement, imageElement, containerObj } from './data'
 
 export default defineComponent({
@@ -20,6 +21,7 @@ export default defineComponent({
     const container = reactive<ContainerState>(containerObj)
 
     const elements = ref<Array<ElementState>>([textElement, imageElement])
+    const elementIndex = ref<number>(elements.value.length)
 
     const containerStyle = computed(
       (): CSSProperties => ({
@@ -33,11 +35,44 @@ export default defineComponent({
       })
     )
 
+    function handleAddText() {
+      const tagIndex = elementIndex.value + 1
+
+      const textElement: TextElementState = {
+        x: 300,
+        y: 100,
+        z: elements.value.length,
+        w: 180,
+        h: 36,
+        type: 'text',
+        tag: `text_${tagIndex}`,
+        active: false,
+        text: '请输入文本',
+        style: {
+          fontFamily: '微软雅黑',
+          fontSize: '24px',
+          lineHeight: '24px',
+          color: '#f70707',
+          backgroundColor: '#05f8e8',
+          fontWeight: '',
+          fontStyle: '',
+          textShadow: '',
+          textAlign: 'left'
+        }
+      }
+
+      if (elements.value.length > 4) {
+        message.warning('图片上最多叠加5个元素!')
+        return
+      } else {
+        elements.value.push(textElement)
+        elementIndex.value = tagIndex
+      }
+    }
+
     function changeBgImg(url: string) {}
 
     function uploadImage(url: string) {}
-
-    function handleAddText() {}
 
     function handleDeleteElement() {}
 
