@@ -4,25 +4,33 @@ import { Upload, Button, message } from 'ant-design-vue'
 
 export default defineComponent({
   name: 'UploadImage',
+  props: {
+    name: {
+      type: String,
+      default: '上传图片'
+    },
+    isFull: {
+      type: Boolean,
+      default: false
+    }
+  },
   emits: ['success'],
-  setup(_, { emit }) {
+  setup(props, { emit }) {
     function handleChange(imageFile: UploadChangeParam) {
       const { file } = imageFile
-      const rawImage = file.originFileObj
 
-      if (!rawImage) return
-      if (!/\.(jpg|png|bmp|jpeg|webp)$/.test(rawImage.name)) {
+      if (!/\.(jpg|png|bmp|jpeg|webp)$/.test(file.name)) {
         message.warning('图片只支持.jpg, .png, .bmp, .jpeg, .webp格式!')
         return
       }
 
-      const isLimit1M = rawImage.size / 1024 / 1024 < 5
+      const isLimit1M = file.size! / 1024 / 1024 < 5
       if (!isLimit1M) {
         message.warning('上传的图片大小不能超过5M!')
         return
       }
 
-      readImage(rawImage)
+      readImage(file)
     }
 
     function readImage(image: any) {
@@ -48,9 +56,12 @@ export default defineComponent({
         accept='.jpg, .jpeg, .gif, .png, .bmp'
         multiple={false}
         showUploadList={false}
+        beforeUpload={() => false}
         onChange={handleChange}
       >
-        <Button type='primary'>上传图片</Button>
+        <Button type='primary' style={{ width: props.isFull ? '100%' : 'auto' }}>
+          {props.name}
+        </Button>
       </Upload>
     )
   }
