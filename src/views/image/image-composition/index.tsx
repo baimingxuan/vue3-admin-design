@@ -12,6 +12,7 @@ import { Row, Col, Card, Form, FormItem, Button, message } from 'ant-design-vue'
 import { PageWrapper } from '@/components/Page'
 import { UploadImage } from '@/components/Upload'
 import { IMAGE_COMPOSITION } from '@/settings/websiteSetting'
+import { RichTextInput, RichTextSetting } from '@/components/RichText'
 import { getImageSize, calcImageSize } from '@/utils/image'
 import { textElement, imageElement, containerObj } from './data'
 
@@ -19,8 +20,8 @@ export default defineComponent({
   name: 'ImageComposition',
   setup() {
     const container = reactive<ContainerState>(containerObj)
-
     const elements = ref<Array<ElementState>>([textElement, imageElement])
+    const activeElementTag = ref<string>(elements[0]?.tag || '')
     const elementIndex = ref<number>(elements.value.length)
 
     const containerStyle = computed(
@@ -34,6 +35,10 @@ export default defineComponent({
         backgroundRepeat: 'no-repeat'
       })
     )
+
+    const activeElement = computed(() => {
+      return elements.value.find(item => item.tag === activeElementTag.value)
+    })
 
     function handleAddText() {
       const tagIndex = elementIndex.value + 1
@@ -70,11 +75,36 @@ export default defineComponent({
       }
     }
 
+    function handleAddImage(imgObj: ImageObjState) {
+      const tagIndex = elementIndex.value + 1
+
+      const imageElement: ImageElementState = {
+        x: 320,
+        y: 300,
+        z: elements.value.length,
+        w: imgObj.width,
+        h: imgObj.height,
+        type: 'image',
+        tag: `image_${tagIndex}`,
+        active: false,
+        url: imgObj.url
+      }
+      if (elements.value.length > 4) {
+        message.warning('图片上最多叠加5个元素!')
+        return
+      } else {
+        elements.value.push(imageElement)
+        elementIndex.value = tagIndex
+      }
+    }
+
     function changeBgImg(url: string) {}
 
     function uploadImage(url: string) {}
 
     function handleDeleteElement() {}
+
+    function handleComposition() {}
 
     return () => (
       <PageWrapper plugin={IMAGE_COMPOSITION}>
@@ -114,6 +144,16 @@ export default defineComponent({
                       </Button>
                     </FormItem>
                   </Form>
+                  {unref(activeElement) && unref(activeElement)?.type === 'text' ? (
+                    <RichTextSetting textValue={activeElement.value.text} textStyles={activeElement.value.style} />
+                  ) : (
+                    <></>
+                  )}
+                  <div style={{ width: '300px', margin: '0 auto' }}>
+                    <Button type='primary' style={{ width: '100%' }} onClick={handleComposition}>
+                      合成图片
+                    </Button>
+                  </div>
                 </Card>
               </Col>
             </Row>

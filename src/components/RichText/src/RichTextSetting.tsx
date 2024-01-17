@@ -3,7 +3,7 @@ import type { PropType } from 'vue'
 import type { MenuProps } from 'ant-design-vue/lib/menu'
 import { defineComponent, ref, watch } from 'vue'
 import { Form, FormItem, Button, Space, Select, Dropdown } from 'ant-design-vue'
-
+import { ElColorPicker } from 'element-plus'
 import RichTextInput from './RichTextInput'
 import SvgIcon from '@/components/SvgIcon'
 
@@ -106,15 +106,17 @@ export default defineComponent({
         </FormItem>
         <FormItem label='样式'>
           <Space size={6}>
-            {/* <ColorPicker onChange={(_, hex: string) => onChangeStyles?.({ ...props.textStyles, color: hex })}>
+            <ElColorPicker onChange={(_, hex: string) => emit('changeStyles', { ...props.textStyles, color: hex })}>
               <Button icon={<SvgIcon name='color-font' size={20} />} style={{ color: props.textStyles.color }} />
-            </ColorPicker>
-            <ColorPicker onChange={(_, hex: string) => onChangeStyles?.({ ...props.textStyles, backgroundColor: hex })}>
+            </ElColorPicker>
+            <ElColorPicker
+              onChange={(_, hex: string) => emit('changeStyles', { ...props.textStyles, backgroundColor: hex })}
+            >
               <Button
                 icon={<SvgIcon name='color-bg' size={20} />}
                 style={{ color: props.textStyles.backgroundColor }}
               />
-            </ColorPicker> */}
+            </ElColorPicker>
             <Button
               icon={<SvgIcon name='font-bold' size={20} />}
               style={{ color: props.textStyles.fontWeight ? '#1890ff' : '' }}
