@@ -1,9 +1,8 @@
-import type { styleState } from '@/types'
 import type { PropType } from 'vue'
-import type { MenuProps } from 'ant-design-vue/lib/menu'
+import type { MenuProps } from 'ant-design-vue'
+import type { styleState } from '@/types'
 import { defineComponent, ref, watch } from 'vue'
-import { Form, FormItem, Button, Space, Select, Dropdown } from 'ant-design-vue'
-import { ElColorPicker } from 'element-plus'
+import { Form, Button, Space, Select, Dropdown, Menu } from 'ant-design-vue'
 import RichTextInput from './RichTextInput'
 import SvgIcon from '@/components/SvgIcon'
 
@@ -34,9 +33,14 @@ export default defineComponent({
       default: () => ({})
     }
   },
-  emits: ['update:textValue', 'changeStyles'],
+  emits: ['changeValue', 'changeStyles'],
   setup(props, { emit }) {
     const rtValue = ref<string>(props.textValue)
+
+    watch(
+      () => rtValue.value,
+      value => emit('changeValue', value)
+    )
 
     const handleTextAlign: MenuProps['onClick'] = ({ key }) => {
       emit('changeStyles', { ...props.textStyles, textAlign: key })
@@ -58,11 +62,6 @@ export default defineComponent({
       emit('changeStyles', { ...props.textStyles, [type]: styleVal ? styleVal : '' })
     }
 
-    watch(
-      () => rtValue.value,
-      value => emit('update:textValue', value)
-    )
-
     return () => (
       <Form
         colon={false}
@@ -71,10 +70,10 @@ export default defineComponent({
         labelAlign='left'
         style={{ width: '300px', margin: '0 auto' }}
       >
-        <FormItem label='文本'>
-          <RichTextInput v-model:value={rtValue} hasBorder />
-        </FormItem>
-        <FormItem label='字体'>
+        <Form.Item label='文本'>
+          <RichTextInput v-model:value={rtValue.value} hasBorder />
+        </Form.Item>
+        <Form.Item label='字体'>
           <Select
             value={props.textStyles.fontFamily}
             onChange={(value: string) => emit('changeStyles', { ...props.textStyles, fontFamily: value })}
@@ -87,8 +86,8 @@ export default defineComponent({
               )
             })}
           </Select>
-        </FormItem>
-        <FormItem label='字号'>
+        </Form.Item>
+        <Form.Item label='字号'>
           <Select
             value={props.textStyles.fontSize}
             onChange={(value: string) =>
@@ -103,20 +102,17 @@ export default defineComponent({
               )
             })}
           </Select>
-        </FormItem>
-        <FormItem label='样式'>
+        </Form.Item>
+        <Form.Item label='样式'>
           <Space size={6}>
-            <ElColorPicker onChange={(_, hex: string) => emit('changeStyles', { ...props.textStyles, color: hex })}>
-              <Button icon={<SvgIcon name='color-font' size={20} />} style={{ color: props.textStyles.color }} />
-            </ElColorPicker>
-            <ElColorPicker
+            {/* <ColorPicker onChange={(_, hex: string) => emit('changeStyles', { ...props.textStyles, color: hex })}> */}
+            <Button icon={<SvgIcon name='color-font' size={20} />} style={{ color: props.textStyles.color }} />
+            {/* </ColorPicker> */}
+            {/* <ColorPicker
               onChange={(_, hex: string) => emit('changeStyles', { ...props.textStyles, backgroundColor: hex })}
-            >
-              <Button
-                icon={<SvgIcon name='color-bg' size={20} />}
-                style={{ color: props.textStyles.backgroundColor }}
-              />
-            </ElColorPicker>
+            > */}
+            <Button icon={<SvgIcon name='color-bg' size={20} />} style={{ color: props.textStyles.backgroundColor }} />
+            {/* </ColorPicker> */}
             <Button
               icon={<SvgIcon name='font-bold' size={20} />}
               style={{ color: props.textStyles.fontWeight ? '#1890ff' : '' }}
@@ -132,15 +128,16 @@ export default defineComponent({
               style={{ color: props.textStyles.textShadow ? '#1890ff' : '' }}
               onClick={() => handleChangeStyle('textShadow', props.textStyles.textShadow!)}
             />
-            <Dropdown
-              menu={{ items: alignItems, selectedKeys: [props.textStyles.textAlign!], onClick: handleTextAlign }}
-              placement='bottomRight'
-              trigger={['click']}
-            >
-              <Button icon={<SvgIcon name='font-align' size={20} />} />
+            <Dropdown placement='bottomRight' trigger={['click']}>
+              {{
+                default: () => <Button icon={<SvgIcon name='font-align' size={20} />} />,
+                overlay: () => (
+                  <Menu items={alignItems} selectedKeys={[props.textStyles.textAlign!]} onClick={handleTextAlign} />
+                )
+              }}
             </Dropdown>
           </Space>
-        </FormItem>
+        </Form.Item>
       </Form>
     )
   }

@@ -106,6 +106,22 @@ export default defineComponent({
 
     function uploadImage(url: string) {}
 
+    function handleSettingText(val: string) {
+      elements.value.forEach((item: any) => {
+        if (item.tag === unref(activeElementTag)) {
+          item.text = val
+        }
+      })
+    }
+
+    function handleSettingStyles(style: any) {
+      elements.value.forEach((item: any) => {
+        if (item.tag === unref(activeElementTag)) {
+          item.style = style
+        }
+      })
+    }
+
     function handleDeleteElement() {}
 
     function handleComposition() {}
@@ -149,7 +165,12 @@ export default defineComponent({
                     </FormItem>
                   </Form>
                   {unref(activeTextEle) ? (
-                    <RichTextSetting textValue={unref(activeTextEle)?.text} textStyles={unref(activeTextEle)?.style} />
+                    <RichTextSetting
+                      textValue={unref(activeTextEle)?.text}
+                      textStyles={unref(activeTextEle)?.style}
+                      onChangeValue={val => handleSettingText(val)}
+                      onChangeStyles={style => handleSettingStyles(style)}
+                    />
                   ) : (
                     <></>
                   )}

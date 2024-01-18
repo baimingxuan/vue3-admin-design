@@ -1,6 +1,6 @@
 import type { CSSProperties, PropType } from 'vue'
 import type { styleState } from '@/types'
-import { defineComponent, computed, nextTick } from 'vue'
+import { defineComponent, computed, unref, nextTick } from 'vue'
 import { useDebounceFn } from '@vueuse/core'
 import { keepCursorEnd, getPasteText } from '@/utils/rich-text'
 
@@ -52,7 +52,7 @@ export default defineComponent({
       <div
         domPropsInnerHTML={props.value}
         className='rich-text-input'
-        style={{ ...rtStyles }}
+        style={{ ...unref(rtStyles) }}
         contentEditable
         spellCheck='false'
         onPaste={handlePaste}
