@@ -21,7 +21,7 @@ export default defineComponent({
   setup() {
     const container = reactive<ContainerState>(containerObj)
     const elements = ref<Array<ElementState>>([textElement, imageElement])
-    const activeElementTag = ref<string>(elements[0]?.tag || '')
+    const activeElementTag = ref<string>(elements.value[0]?.tag || '')
     const elementIndex = ref<number>(elements.value.length)
 
     const containerStyle = computed(
@@ -38,6 +38,10 @@ export default defineComponent({
 
     const activeElement = computed(() => {
       return elements.value.find(item => item.tag === activeElementTag.value)
+    })
+
+    const activeTextEle = computed(() => {
+      return activeElement.value?.type === 'text' ? (activeElement.value as TextElementState) : null
     })
 
     function handleAddText() {
@@ -119,7 +123,7 @@ export default defineComponent({
                 </Card>
               </Col>
               <Col span={8}>
-                <Card title='设置区域' bodyStyle={{ height: '600px' }}>
+                <Card title='设置区域' bodyStyle={{ height: '550px' }}>
                   <Form
                     colon={false}
                     labelCol={{ span: 6 }}
@@ -144,8 +148,8 @@ export default defineComponent({
                       </Button>
                     </FormItem>
                   </Form>
-                  {unref(activeElement) && unref(activeElement)?.type === 'text' ? (
-                    <RichTextSetting textValue={activeElement.value.text} textStyles={activeElement.value.style} />
+                  {unref(activeTextEle) ? (
+                    <RichTextSetting textValue={unref(activeTextEle)?.text} textStyles={unref(activeTextEle)?.style} />
                   ) : (
                     <></>
                   )}
