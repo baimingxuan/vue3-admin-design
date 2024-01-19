@@ -16,24 +16,27 @@ export default defineComponent({
       default: () => ['n', 'e', 's', 'w', 'nw', 'ne', 'se', 'sw']
     }
   },
+  emits: ['change'],
   setup(props, { slots, emit }) {
     const nodeRef = ref(null)
     const nodeState = reactive<ElementState>(props.element)
 
     const sticksList = computed(() => props.handlers.map((item: handlerType) => handlerEnum[item]))
 
-    watch(
-      () => nodeState,
-      state => {
-        emit('update:element', state)
-      }
-    )
+    watch(nodeState, () => {
+      emit('change', nodeState)
+    })
 
-    function calcTextNodeHeight({ x, y }) {
-      const node = unref(nodeRef)
-      console.log(x, y)
+    function calcTextNodeHeight(y) {
+      const node = unref(nodeRef)?.$el
       if (node && nodeState.type === 'text') {
-        console.log(node)
+        const viewHeight = Math.ceil((node.parentNode as HTMLDivElement)?.getBoundingClientRect().height)
+        const childNodeHeight = Math.ceil(node.querySelector('.rich-text-input')!.getBoundingClientRect().height)
+        if (y + childNodeHeight >= viewHeight) {
+          nodeState.y = viewHeight - childNodeHeight
+        }
+        node.style.height = `${childNodeHeight}px`
+        nodeState.h = childNodeHeight
       }
     }
 
@@ -42,9 +45,9 @@ export default defineComponent({
       nodeState.y = top
     }
 
-    function handleResizing({ left, top }) {
+    function handleResizing({ top }) {
       if (nodeState.type === 'text') {
-        calcTextNodeHeight({ x: left, y: top })
+        calcTextNodeHeight(top)
       }
     }
 
@@ -54,7 +57,7 @@ export default defineComponent({
       nodeState.w = width
       nodeState.h = height
       if (nodeState.type === 'text') {
-        calcTextNodeHeight({ x: left, y: top })
+        calcTextNodeHeight(top)
       }
     }
 
@@ -79,7 +82,6 @@ export default defineComponent({
         minh={24}
         sticks={unref(sticksList)}
         parentLimitation={true}
-        preventActiveBehavior={true}
         onDragstop={handleDragStop}
         onResizing={handleResizing}
         onResizestop={handleResizeStop}

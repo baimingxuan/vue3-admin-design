@@ -1,8 +1,9 @@
 import type { PropType } from 'vue'
 import type { MenuProps } from 'ant-design-vue'
 import type { styleState } from '@/types'
-import { defineComponent, ref, watch } from 'vue'
+import { defineComponent, ref, unref, watch } from 'vue'
 import { Form, Button, Space, Select, Dropdown, Menu } from 'ant-design-vue'
+import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
 import RichTextInput from './RichTextInput'
 import SvgIcon from '@/components/SvgIcon'
 
@@ -36,6 +37,7 @@ export default defineComponent({
   emits: ['changeValue', 'changeStyles'],
   setup(props, { emit }) {
     const rtValue = ref<string>(props.textValue)
+    const { getThemeColor } = useBaseSetting()
 
     watch(
       () => rtValue.value,
@@ -115,17 +117,17 @@ export default defineComponent({
             {/* </ColorPicker> */}
             <Button
               icon={<SvgIcon name='font-bold' size={20} />}
-              style={{ color: props.textStyles.fontWeight ? '#1890ff' : '' }}
+              style={{ color: props.textStyles.fontWeight ? unref(getThemeColor) : '' }}
               onClick={() => handleChangeStyle('fontWeight', props.textStyles.fontWeight!)}
             />
             <Button
               icon={<SvgIcon name='font-italic' size={20} />}
-              style={{ color: props.textStyles.fontStyle ? '#1890ff' : '' }}
+              style={{ color: props.textStyles.fontStyle ? unref(getThemeColor) : '' }}
               onClick={() => handleChangeStyle('fontStyle', props.textStyles.fontStyle!)}
             />
             <Button
               icon={<SvgIcon name='font-shadow' size={20} />}
-              style={{ color: props.textStyles.textShadow ? '#1890ff' : '' }}
+              style={{ color: props.textStyles.textShadow ? unref(getThemeColor) : '' }}
               onClick={() => handleChangeStyle('textShadow', props.textStyles.textShadow!)}
             />
             <Dropdown placement='bottomRight' trigger={['click']}>

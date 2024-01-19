@@ -7,14 +7,17 @@ import type {
   ImageObjState,
   handlerType
 } from './types'
+import type { styleState } from '@/types'
 import { defineComponent, reactive, ref, unref, computed } from 'vue'
-import { Row, Col, Card, Form, FormItem, Button, message } from 'ant-design-vue'
+import { Row, Col, Card, Form, Button, message } from 'ant-design-vue'
+import { DndNode } from '@/components/DndNode'
 import { PageWrapper } from '@/components/Page'
-import { UploadImage } from '@/components/Upload'
 import { IMAGE_COMPOSITION } from '@/settings/websiteSetting'
 import { RichTextInput, RichTextSetting } from '@/components/RichText'
+import { UploadImage } from '@/components/Upload'
 import { getImageSize, calcImageSize } from '@/utils/image'
 import { textElement, imageElement, containerObj } from './data'
+import dom2image from 'dom-to-image'
 
 export default defineComponent({
   name: 'ImageComposition',
@@ -27,8 +30,8 @@ export default defineComponent({
     const containerStyle = computed(
       (): CSSProperties => ({
         position: 'relative',
-        width: container.width,
-        height: container.height,
+        width: container.width + 'px',
+        height: container.height + 'px',
         backgroundImage: `url(${container.bgImgUrl})`,
         backgroundSize: 'contain',
         backgroundPosition: 'center',
@@ -44,8 +47,15 @@ export default defineComponent({
       return activeElement.value?.type === 'text' ? (activeElement.value as TextElementState) : null
     })
 
-    function handleAddText() {
-      const tagIndex = elementIndex.value + 1
+    const elementHandler = (type: 'text' | 'image'): handlerType[] => {
+      if (type === 'text') {
+        return ['e', 'w']
+      }
+      return ['n', 'e', 's', 'w', 'ne', 'nw', 'se', 'sw']
+    }
+
+    const handleAddText = () => {
+      const tagIndex = ++elementIndex.value
 
       const textElement: TextElementState = {
         x: 300,
@@ -75,12 +85,12 @@ export default defineComponent({
         return
       } else {
         elements.value.push(textElement)
-        elementIndex.value = tagIndex
+        activeElementTag.value = textElement.tag
       }
     }
 
-    function handleAddImage(imgObj: ImageObjState) {
-      const tagIndex = elementIndex.value + 1
+    const handleAddImage = (imgObj: ImageObjState) => {
+      const tagIndex = ++elementIndex.value
 
       const imageElement: ImageElementState = {
         x: 320,
@@ -98,15 +108,48 @@ export default defineComponent({
         return
       } else {
         elements.value.push(imageElement)
-        elementIndex.value = tagIndex
+        activeElementTag.value = textElement.tag
       }
     }
 
-    function changeBgImg(url: string) {}
+    const handleDeleteElement = () => {
+      if (!unref(activeElementTag)) {
+        message.warning('请先选择元素!')
+        return
+      }
+      const activeElementIndex = elements.value.findIndex(item => item.tag === unref(activeElementTag))
+      elements.value.splice(activeElementIndex, 1)
+      activeElementTag.value = ''
+    }
 
-    function uploadImage(url: string) {}
+    const changeBgImg = (url: string) => {
+      getImageSize(url).then(({ width, height }) => {
+        const { width: containerWidth, height: containerHeight } = calcImageSize(width, height, 850, 550)
 
-    function handleSettingText(val: string) {
+        container.bgImgUrl = url
+        container.width = containerWidth
+        container.height = containerHeight
+      })
+    }
+
+    const uploadImage = (url: string) => {
+      getImageSize(url).then(({ width, height }) => {
+        const { width: imgWidth, height: imgHeight } = calcImageSize(
+          width,
+          height,
+          Math.floor(container.width / 4),
+          Math.floor(container.height / 4)
+        )
+
+        handleAddImage({
+          url,
+          width: imgWidth,
+          height: imgHeight
+        })
+      })
+    }
+
+    const handleSettingText = (val: string) => {
       elements.value.forEach((item: any) => {
         if (item.tag === unref(activeElementTag)) {
           item.text = val
@@ -114,7 +157,7 @@ export default defineComponent({
       })
     }
 
-    function handleSettingStyles(style: any) {
+    const handleSettingStyles = (style: any) => {
       elements.value.forEach((item: any) => {
         if (item.tag === unref(activeElementTag)) {
           item.style = style
@@ -122,9 +165,27 @@ export default defineComponent({
       })
     }
 
-    function handleDeleteElement() {}
+    const handleChangeElement = (ele: any, index: number) => {
+      elements.value[index] = ele
+      if (ele.active) {
+        activeElementTag.value = ele.tag
+        elements.value.forEach((item: any) => {
+          if (item.tag !== ele.tag) {
+            item.active = false
+          }
+        })
+      }
+      // console.log('ele, index', elements.value)
+    }
 
-    function handleComposition() {}
+    const handleComposition = async () => {
+      dom2image.toPng(document.getElementById('imageComposition')!).then(dataUrl => {
+        const a = document.createElement('a')
+        a.href = dataUrl
+        a.download = `composition-image.png`
+        a.click()
+      })
+    }
 
     return () => (
       <PageWrapper plugin={IMAGE_COMPOSITION}>
@@ -132,14 +193,33 @@ export default defineComponent({
           default: () => (
             <Row gutter={12}>
               <Col span={16}>
-                <Card title='合成区域' bodyStyle={{ height: '550px' }}>
+                <Card title='合成区域' bodyStyle={{ height: '600px' }}>
                   <div class='flex-center'>
-                    <div style={{ ...containerStyle }}></div>
+                    <div id='imageComposition' class='dnd-container' style={{ ...unref(containerStyle) }}>
+                      {elements.value.map((item, index) => {
+                        return (
+                          <DndNode
+                            key={item.tag}
+                            element={item}
+                            handlers={elementHandler(item.type)}
+                            onChange={(ele: any) => handleChangeElement(ele, index)}
+                          >
+                            {item.type === 'text' ? (
+                              <RichTextInput v-model:value={item.text} style={item.style} />
+                            ) : item.type === 'image' ? (
+                              <img src={item.url} draggable='false' />
+                            ) : (
+                              <></>
+                            )}
+                          </DndNode>
+                        )
+                      })}
+                    </div>
                   </div>
                 </Card>
               </Col>
               <Col span={8}>
-                <Card title='设置区域' bodyStyle={{ height: '550px' }}>
+                <Card title='设置区域' bodyStyle={{ height: '600px' }}>
                   <Form
                     colon={false}
                     labelCol={{ span: 6 }}
@@ -147,29 +227,29 @@ export default defineComponent({
                     labelAlign='left'
                     style={{ width: '300px', margin: '0 auto' }}
                   >
-                    <FormItem label='选择底图'>
+                    <Form.Item label='选择底图'>
                       <UploadImage name='选择底图' isFull onSuccess={changeBgImg} />
-                    </FormItem>
-                    <FormItem label='添加文本'>
+                    </Form.Item>
+                    <Form.Item label='添加文本'>
                       <Button block style={{ width: '100%' }} onClick={handleAddText}>
                         添加文本
                       </Button>
-                    </FormItem>
-                    <FormItem label='添加图片'>
+                    </Form.Item>
+                    <Form.Item label='添加图片'>
                       <UploadImage name='添加图片' isFull onSuccess={uploadImage} />
-                    </FormItem>
-                    <FormItem label='删除元素'>
+                    </Form.Item>
+                    <Form.Item label='删除元素'>
                       <Button type='primary' danger style={{ width: '100%' }} onClick={handleDeleteElement}>
                         删除元素
                       </Button>
-                    </FormItem>
+                    </Form.Item>
                   </Form>
                   {unref(activeTextEle) ? (
                     <RichTextSetting
                       textValue={unref(activeTextEle)?.text}
                       textStyles={unref(activeTextEle)?.style}
-                      onChangeValue={val => handleSettingText(val)}
-                      onChangeStyles={style => handleSettingStyles(style)}
+                      onChangeValue={(val: string) => handleSettingText(val)}
+                      onChangeStyles={(style: styleState) => handleSettingStyles(style)}
                     />
                   ) : (
                     <></>

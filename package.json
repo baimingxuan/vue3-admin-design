@@ -22,6 +22,7 @@
     "axios": "^1.6.5",
     "codemirror": "^6.0.1",
     "crypto-js": "^4.2.0",
+    "dom-to-image": "^2.6.0",
     "echarts": "^5.4.3",
     "file-saver": "^2.0.5",
     "lodash-es": "^4.17.21",

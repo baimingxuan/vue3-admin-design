@@ -50,8 +50,8 @@ export default defineComponent({
 
     return () => (
       <div
-        domPropsInnerHTML={props.value}
-        className='rich-text-input'
+        v-html={props.value}
+        class='rich-text-input'
         style={{ ...unref(rtStyles) }}
         contentEditable
         spellCheck='false'
