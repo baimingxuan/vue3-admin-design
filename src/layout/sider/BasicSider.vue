@@ -50,5 +50,9 @@ useDragLine(siderRef, dragBarRef)
 <style lang="less" scoped>
 .layout_basic-sider {
   height: 100vh;
+
+  :global(.scroll-container) {
+    height: calc(100vh - 48px);
+  }
 }
 </style>
