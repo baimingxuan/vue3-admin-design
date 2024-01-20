@@ -22,9 +22,9 @@ const VideoRoute: AppRoute = {
       }
     },
     {
-      path: 'video-mark',
-      name: 'VideoMark',
-      component: () => import('@/views/home.vue'),
+      path: 'video-watermark',
+      name: 'VideoWatermark',
+      component: () => import('@/views/video/video-watermark'),
       meta: {
         title: '视频水印'
       }
