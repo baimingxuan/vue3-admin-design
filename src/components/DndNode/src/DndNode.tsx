@@ -18,7 +18,7 @@ export default defineComponent({
   },
   emits: ['change'],
   setup(props, { slots, emit }) {
-    const nodeRef = ref(null)
+    const nodeRef = ref<InstanceType<typeof VueDragResize> | null>(null)
     const nodeState = reactive<ElementState>(props.element)
 
     const sticksList = computed(() => props.handlers.map((item: handlerType) => handlerEnum[item]))
@@ -27,7 +27,17 @@ export default defineComponent({
       emit('change', nodeState)
     })
 
-    function calcTextNodeHeight(y) {
+    watch(
+      () => props.element,
+      (ele: ElementState) => {
+        if (ele.type === 'text') {
+          calcTextNodeHeight(ele.y)
+        }
+      },
+      { deep: true }
+    )
+
+    function calcTextNodeHeight(y: number) {
       const node = unref(nodeRef)?.$el
       if (node && nodeState.type === 'text') {
         const viewHeight = Math.ceil((node.parentNode as HTMLDivElement)?.getBoundingClientRect().height)

@@ -40,6 +40,11 @@ export default defineComponent({
     const { getThemeColor } = useBaseSetting()
 
     watch(
+      () => props.textValue,
+      value => (rtValue.value = value)
+    )
+
+    watch(
       () => rtValue.value,
       value => emit('changeValue', value)
     )
