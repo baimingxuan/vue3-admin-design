@@ -161,3 +161,9 @@ export const MARKDOWN_EDITOR_PLUGIN = {
   url: 'https://github.com/imzbf/md-editor-v3',
   desc: 'Md-editor-v3: 是一款基于vue3的Markdown编辑器,比较适合博客系统。'
 }
+
+export const FLOW_EDITOR_PLUGIN = {
+  name: '流程图编辑器',
+  url: 'https://github.com/didi/LogicFlow',
+  desc: 'LogicFlow: 是一款流程图编辑框架，提供了一系列流程图交互、编辑所必需的功能和灵活的节点自定义、插件等拓展机制。'
+}
