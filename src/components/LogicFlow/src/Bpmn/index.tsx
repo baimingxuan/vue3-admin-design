@@ -1,9 +1,9 @@
-import { defineComponent, onMounted } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 import LogicFlow from '@logicflow/core'
 import { BpmnElement, Control, Menu, SelectionSelect } from '@logicflow/extension'
-import BpmnPattern from './pattern'
-import './index.css'
+import BpmnPattern from './components/Pattern'
 import '@logicflow/extension/lib/style/index.css'
+import '@logicflow/core/dist/style/index.css'
 
 const config = {
   stopScrollGraph: true,
@@ -22,7 +22,7 @@ const config = {
 export default defineComponent({
   name: 'Bpmn',
   setup() {
-    let lf = null as unknown as LogicFlow
+    const lf = ref(null) as unknown as LogicFlow
 
     onMounted(() => {
       LogicFlow.use(BpmnElement)
@@ -34,15 +34,13 @@ export default defineComponent({
         container: document.querySelector('#graphBpmn') as HTMLElement
       })
       lfInstance.render()
-      lf = lfInstance
+      lf.value = lfInstance
     })
 
     return () => (
-      <div className='bpmn-container'>
-        <div id='graphBpmn' className='viewport' />
-        <div>
-          <BpmnPattern lf={lf} />
-        </div>
+      <div style='position: relative; height: 100%; overflow: hidden;'>
+        <div id='graphBpmn' style='height: 100%;' />
+        <div>{lf.value && <BpmnPattern lf={lf} />}</div>
       </div>
     )
   }
