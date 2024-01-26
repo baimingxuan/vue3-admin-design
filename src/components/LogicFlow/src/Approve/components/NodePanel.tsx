@@ -14,7 +14,7 @@ export default defineComponent({
   },
   setup(props) {
     const dragNode = (node: HtmlNodeConfig) => {
-      props.lf.value.dnd.startDrag({
+      props.lf.value?.dnd.startDrag({
         type: node.type,
         text: node.label
       })

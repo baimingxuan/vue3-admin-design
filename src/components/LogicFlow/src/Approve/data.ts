@@ -90,7 +90,7 @@ export const themeApprove = {
   }
 }
 
-export const data = {
+export const demoData = {
   nodes: [
     {
       id: '28df2fbe-f32b-4a9b-b544-7e70d7187b33',
