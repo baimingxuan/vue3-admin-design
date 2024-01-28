@@ -1,7 +1,10 @@
 import { defineComponent, ref, onMounted } from 'vue'
+import { message } from 'ant-design-vue'
 import LogicFlow from '@logicflow/core'
 import NodePanel from './components/NodePanel'
+import RegisteNode from './register'
 import { themeApprove, demoData } from './data'
+import '@logicflow/core/dist/style/index.css'
 
 const config = {
   stopScrollGraph: true,
@@ -28,13 +31,24 @@ export default defineComponent({
         ...config,
         container: document.querySelector('#graphApprove') as HTMLElement
       })
-      lf.value.render()
+      RegisteNode(lf)
+      lf.value.render(demoData)
+      initEvent(lf)
     })
 
+    const initEvent = (lf: LogicFlow) => {
+      lf.value?.on('element:click', ({ data }) => {
+        console.log(JSON.stringify(lf.value?.getGraphData()))
+      })
+      lf.value?.on('connection:not-allowed', (data: any) => {
+        message.error(data.msg)
+      })
+    }
+
     return () => (
-      <div class='approve-wrapper'>
-        <NodePanel lf={lf} />
-        <div id='graphApprove' className='viewport' />
+      <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+        {lf.value && <NodePanel lf={lf} />}
+        <div id='graphApprove' style={{ height: '100%' }} />
       </div>
     )
   }

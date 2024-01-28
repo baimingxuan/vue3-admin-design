@@ -14,19 +14,20 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const dragNode = (node: HtmlNodeConfig) => {
-      props.lf.value?.dnd.startDrag({
-        type: node.type,
-        text: node.label
-      })
-    }
-
     return () => (
       <div class={styles['node-panel']}>
         {approveNodes.map((node: HtmlNodeConfig) => {
           return (
             <div class={styles['node-item']} key={node.type}>
-              <div style={{ ...node.style }} onMousedown={dragNode(node)} />
+              <div
+                style={{ ...node.style }}
+                onMousedown={() => {
+                  props.lf.value.dnd.startDrag({
+                    type: node.type,
+                    text: node.label
+                  })
+                }}
+              />
               <div class={styles['name']}>{node.label}</div>
             </div>
           )
