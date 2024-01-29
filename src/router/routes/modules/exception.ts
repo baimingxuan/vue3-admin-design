@@ -19,7 +19,8 @@ const ExceptionRoute: AppRoute = {
       name: 'Page403',
       component: () => import('@/views/exception/index'),
       props: {
-        status: ExceptionEnum.PAGE_NOT_ACCESS
+        status: ExceptionEnum.PAGE_NOT_ACCESS,
+        withCard: true
       },
       meta: {
         title: '403页面'
@@ -30,7 +31,8 @@ const ExceptionRoute: AppRoute = {
       name: 'Page404',
       component: () => import('@/views/exception/index'),
       props: {
-        status: ExceptionEnum.PAGE_NOT_FOUND
+        status: ExceptionEnum.PAGE_NOT_FOUND,
+        withCard: true
       },
       meta: {
         title: '404页面'
@@ -41,7 +43,8 @@ const ExceptionRoute: AppRoute = {
       name: 'Page500',
       component: () => import('@/views/exception/index'),
       props: {
-        status: ExceptionEnum.SERVER_ERROR
+        status: ExceptionEnum.SERVER_ERROR,
+        withCard: true
       },
       meta: {
         title: '500页面'

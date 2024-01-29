@@ -167,3 +167,9 @@ export const FLOW_EDITOR_PLUGIN = {
   url: 'https://github.com/didi/LogicFlow',
   desc: 'LogicFlow: 是一款流程图编辑框架，提供了一系列流程图交互、编辑所必需的功能和灵活的节点自定义、插件等拓展机制。'
 }
+
+export const RESULT_COMPO = {
+  name: 'Result结果',
+  url: 'https://antdv.com/components/result-cn',
+  desc: 'ant-design-result: 使用 ant-design 的 result 组件, 可用于反馈一系列操作任务的处理结果。'
+}

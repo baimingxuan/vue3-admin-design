@@ -3,7 +3,7 @@ import Layout from '../../layout/index.vue'
 
 /**
  * Note: subMenu only appear when route children.length > 1
- * 
+ *
  * name: 'route-name'           the name is used by <keep-alive> (must set!!)
  * redirect: 'redirect-path'    if set, it will redirect to path (recommend set)
  * meta: {
@@ -76,6 +76,19 @@ export const RedirectRoute: AppRoute = {
   ]
 }
 
+export const NotAuthRoute: AppRoute = {
+  path: '/403',
+  name: 'NotAuth',
+  component: () => import('@/views/exception/index'),
+  props: {
+    status: 403,
+    withCard: false
+  },
+  meta: {
+    title: '403页面'
+  }
+}
+
 // Login page
 export const LoginRoute: AppRoute = {
   path: '/login',
@@ -100,4 +113,4 @@ Object.keys(routeModules).forEach(key => {
 export const asyncRoutes = [PageNotFoundRoute, RedirectRoute, ...routeModulesList]
 
 // Basic routes without permission
-export const basicRoutes = [LoginRoute, RootRoute, RedirectRoute, ...routeModulesList]
+export const basicRoutes = [LoginRoute, RootRoute, RedirectRoute, NotAuthRoute, ...routeModulesList]

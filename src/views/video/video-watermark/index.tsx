@@ -164,87 +164,83 @@ export default defineComponent({
 
     return () => (
       <PageWrapper plugin={VIDEO_WATERMARK}>
-        {{
-          default: () => (
-            <Row gutter={12}>
-              <Col span={16}>
-                <Card title='合成区域' bodyStyle={{ height: '550px' }}>
-                  <div class='flex-center'>
-                    <div class='dnd-container' style={{ ...unref(containerStyle) }}>
-                      <video
-                        src={container.videoUrl}
-                        controls
-                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                      />
-                      {elements.value.map((item, index) => {
-                        return (
-                          <DndNode
-                            key={item.tag}
-                            element={item}
-                            handlers={elementHandler(item.type)}
-                            onChange={(ele: any) => handleChangeElement(ele, index)}
-                          >
-                            {item.type === 'text' ? (
-                              <RichTextInput v-model:value={item.text} style={item.style} />
-                            ) : item.type === 'image' ? (
-                              <img src={item.url} draggable='false' />
-                            ) : (
-                              <></>
-                            )}
-                          </DndNode>
-                        )
-                      })}
-                    </div>
-                  </div>
-                </Card>
-              </Col>
-              <Col span={8}>
-                <Card title='设置区域' bodyStyle={{ height: '550px' }}>
-                  <Form
-                    colon={false}
-                    labelCol={{ span: 6 }}
-                    wrapperCol={{ span: 18 }}
-                    labelAlign='left'
-                    style={{ width: '300px', margin: '0 auto' }}
-                  >
-                    <Form.Item label='选择视频'>
-                      <Button
-                        type='primary'
-                        style={{ width: '100%' }}
-                        onClick={() => message.warning('请配置视频资源服务接口！')}
+        <Row gutter={12}>
+          <Col span={16}>
+            <Card title='合成区域' bodyStyle={{ height: '550px' }}>
+              <div class='flex-center'>
+                <div class='dnd-container' style={{ ...unref(containerStyle) }}>
+                  <video
+                    src={container.videoUrl}
+                    controls
+                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                  />
+                  {elements.value.map((item, index) => {
+                    return (
+                      <DndNode
+                        key={item.tag}
+                        element={item}
+                        handlers={elementHandler(item.type)}
+                        onChange={(ele: any) => handleChangeElement(ele, index)}
                       >
-                        选择视频
-                      </Button>
-                    </Form.Item>
-                    <Form.Item label='添加文本'>
-                      <Button block style={{ width: '100%' }} onClick={handleAddText}>
-                        添加文本
-                      </Button>
-                    </Form.Item>
-                    <Form.Item label='添加图片'>
-                      <UploadImage name='添加图片' isFull onSuccess={uploadImage} />
-                    </Form.Item>
-                    <Form.Item label='删除元素'>
-                      <Button type='primary' danger style={{ width: '100%' }} onClick={handleDeleteElement}>
-                        删除元素
-                      </Button>
-                    </Form.Item>
-                  </Form>
-                  {unref(activeTextEle) ? (
-                    <RichTextSetting
-                      textValue={unref(activeTextEle)?.text}
-                      textStyles={unref(activeTextEle)?.style}
-                      onChangeValue={(val: string) => handleSettingText(val)}
-                      onChangeStyles={(style: styleState) => handleSettingStyles(style)}
-                    />
-                  ) : (
-                    <></>
-                  )}
-                </Card>
-              </Col>
-            </Row>
-          )
-        }}
+                        {item.type === 'text' ? (
+                          <RichTextInput v-model:value={item.text} style={item.style} />
+                        ) : item.type === 'image' ? (
+                          <img src={item.url} draggable='false' />
+                        ) : (
+                          <></>
+                        )}
+                      </DndNode>
+                    )
+                  })}
+                </div>
+              </div>
+            </Card>
+          </Col>
+          <Col span={8}>
+            <Card title='设置区域' bodyStyle={{ height: '550px' }}>
+              <Form
+                colon={false}
+                labelCol={{ span: 6 }}
+                wrapperCol={{ span: 18 }}
+                labelAlign='left'
+                style={{ width: '300px', margin: '0 auto' }}
+              >
+                <Form.Item label='选择视频'>
+                  <Button
+                    type='primary'
+                    style={{ width: '100%' }}
+                    onClick={() => message.warning('请配置视频资源服务接口！')}
+                  >
+                    选择视频
+                  </Button>
+                </Form.Item>
+                <Form.Item label='添加文本'>
+                  <Button block style={{ width: '100%' }} onClick={handleAddText}>
+                    添加文本
+                  </Button>
+                </Form.Item>
+                <Form.Item label='添加图片'>
+                  <UploadImage name='添加图片' isFull onSuccess={uploadImage} />
+                </Form.Item>
+                <Form.Item label='删除元素'>
+                  <Button type='primary' danger style={{ width: '100%' }} onClick={handleDeleteElement}>
+                    删除元素
+                  </Button>
+                </Form.Item>
+              </Form>
+              {unref(activeTextEle) ? (
+                <RichTextSetting
+                  textValue={unref(activeTextEle)?.text}
+                  textStyles={unref(activeTextEle)?.style}
+                  onChangeValue={(val: string) => handleSettingText(val)}
+                  onChangeStyles={(style: styleState) => handleSettingStyles(style)}
+                />
+              ) : (
+                <></>
+              )}
+            </Card>
+          </Col>
+        </Row>
       </PageWrapper>
     )
   }

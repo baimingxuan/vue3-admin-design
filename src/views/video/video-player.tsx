@@ -10,30 +10,26 @@ export default defineComponent({
   setup() {
     return () => (
       <PageWrapper plugin={VIDEO_PLUGIN}>
-        {{
-          default: () => (
-            <Row gutter={12}>
-              <Col span={12}>
-                <Card title='传统视频播放器'>
-                  <video src={VIDEO_RES_SRC} controls style='width: 100%; outline: none;' />
-                </Card>
-              </Col>
-              <Col span={12}>
-                <Card title='视频播放插件'>
-                  <VideoPlayer
-                    src={VIDEO_RES_SRC}
-                    playbackRates={[0.5, 1.0, 1.5, 2.0]}
-                    controls
-                    fluid
-                    loop={false}
-                    preload='auto'
-                    aspectRatio='16:9'
-                  />
-                </Card>
-              </Col>
-            </Row>
-          )
-        }}
+        <Row gutter={12}>
+          <Col span={12}>
+            <Card title='传统视频播放器'>
+              <video src={VIDEO_RES_SRC} controls style='width: 100%; outline: none;' />
+            </Card>
+          </Col>
+          <Col span={12}>
+            <Card title='视频播放插件'>
+              <VideoPlayer
+                src={VIDEO_RES_SRC}
+                playbackRates={[0.5, 1.0, 1.5, 2.0]}
+                controls
+                fluid
+                loop={false}
+                preload='auto'
+                aspectRatio='16:9'
+              />
+            </Card>
+          </Col>
+        </Row>
       </PageWrapper>
     )
   }
