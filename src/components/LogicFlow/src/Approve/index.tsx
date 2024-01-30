@@ -37,7 +37,7 @@ export default defineComponent({
     })
 
     const initEvent = (lf: LogicFlow) => {
-      lf.value?.on('element:click', ({ data }) => {
+      lf.value?.on('element:click', () => {
         console.log(JSON.stringify(lf.value?.getGraphData()))
       })
       lf.value?.on('connection:not-allowed', (data: any) => {

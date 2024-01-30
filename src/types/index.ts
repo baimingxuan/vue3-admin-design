@@ -19,3 +19,9 @@ export interface styleState {
   textShadow?: string
   textAlign?: string
 }
+
+export interface LoginFormState {
+  username: string
+  password: string
+  remember: boolean
+}
