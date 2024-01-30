@@ -52,29 +52,25 @@ export default defineComponent({
 
     return () => (
       <PageWrapper plugin={XLSX_PLUGIN}>
-        {{
-          default: () => (
-            <Card>
-              <Space direction='vertical' size={16} style={{ width: '100%' }}>
-                <UploadDragger
-                  ref='uploadExcel'
-                  accept='.xlsx, .xls, .csv'
-                  showUploadList={false}
-                  maxCount={1}
-                  onChange={handleChange}
-                >
-                  <p class='ant-upload-drag-icon' style='margin-bottom: 0;'>
-                    <CloudUploadOutlined />
-                  </p>
-                  <p>
-                    将Excel文件拖到此处, 或<span style={{ color: unref(getThemeColor) }}>点击上传</span>
-                  </p>
-                </UploadDragger>
-                <Table dataSource={unref(tableData)} columns={unref(tableColumns)} pagination={false} />
-              </Space>
-            </Card>
-          )
-        }}
+        <Card>
+          <Space direction='vertical' size={16} style={{ width: '100%' }}>
+            <UploadDragger
+              ref='uploadExcel'
+              accept='.xlsx, .xls, .csv'
+              showUploadList={false}
+              maxCount={1}
+              onChange={handleChange}
+            >
+              <p class='ant-upload-drag-icon' style='margin-bottom: 0;'>
+                <CloudUploadOutlined />
+              </p>
+              <p>
+                将Excel文件拖到此处, 或<span style={{ color: unref(getThemeColor) }}>点击上传</span>
+              </p>
+            </UploadDragger>
+            <Table dataSource={unref(tableData)} columns={unref(tableColumns)} pagination={false} />
+          </Space>
+        </Card>
       </PageWrapper>
     )
   }

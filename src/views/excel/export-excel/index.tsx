@@ -72,55 +72,51 @@ export default defineComponent({
 
     return () => (
       <PageWrapper plugin={XLSX_PLUGIN}>
-        {{
-          default: () => (
-            <Card>
-              <Space direction='vertical' size={16} style={{ width: '100%' }}>
-                <Form model={formParam} layout='inline'>
-                  <FormItem label='文件名:' name='fileName'>
-                    <Input v-model:value={formParam.fileName} placeholder='文件名' />
-                  </FormItem>
-                  <FormItem label='自动宽度:' name='autoWidth'>
-                    <RadioGroup
-                      v-model:value={formParam.autoWidth}
-                      options={[
-                        { label: '自动', value: true },
-                        { label: '固定', value: false }
-                      ]}
-                    />
-                  </FormItem>
-                  <FormItem label='文件类型:' name='fileType'>
-                    <Select
-                      v-model:value={formParam.fileType}
-                      options={[
-                        { label: 'xlsx', value: 'xlsx' },
-                        { label: 'csv', value: 'csv' },
-                        { label: 'txt', value: 'txt' }
-                      ]}
-                      style={{ width: '180px' }}
-                    />
-                  </FormItem>
-                  <FormItem>
-                    <Button type='primary' htmlType='submit' onClick={handleExport}>
-                      导出Excel
-                    </Button>
-                  </FormItem>
-                </Form>
-                <Table
-                  dataSource={unref(dataSource)}
-                  columns={tableColumns}
-                  rowSelection={{
-                    selectedRowKeys: unref(tableSelectedKeys),
-                    onChange: handleTableChange,
-                    onSelect: handleTableSelect,
-                    onSelectAll: handleTableSelectAll
-                  }}
-                  pagination={false}
+        <Card>
+          <Space direction='vertical' size={16} style={{ width: '100%' }}>
+            <Form model={formParam} layout='inline'>
+              <FormItem label='文件名:' name='fileName'>
+                <Input v-model:value={formParam.fileName} placeholder='文件名' />
+              </FormItem>
+              <FormItem label='自动宽度:' name='autoWidth'>
+                <RadioGroup
+                  v-model:value={formParam.autoWidth}
+                  options={[
+                    { label: '自动', value: true },
+                    { label: '固定', value: false }
+                  ]}
                 />
-              </Space>
-            </Card>
-          )
-        }}
+              </FormItem>
+              <FormItem label='文件类型:' name='fileType'>
+                <Select
+                  v-model:value={formParam.fileType}
+                  options={[
+                    { label: 'xlsx', value: 'xlsx' },
+                    { label: 'csv', value: 'csv' },
+                    { label: 'txt', value: 'txt' }
+                  ]}
+                  style={{ width: '180px' }}
+                />
+              </FormItem>
+              <FormItem>
+                <Button type='primary' htmlType='submit' onClick={handleExport}>
+                  导出Excel
+                </Button>
+              </FormItem>
+            </Form>
+            <Table
+              dataSource={unref(dataSource)}
+              columns={tableColumns}
+              rowSelection={{
+                selectedRowKeys: unref(tableSelectedKeys),
+                onChange: handleTableChange,
+                onSelect: handleTableSelect,
+                onSelectAll: handleTableSelectAll
+              }}
+              pagination={false}
+            />
+          </Space>
+        </Card>
       </PageWrapper>
     )
   }

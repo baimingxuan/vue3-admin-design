@@ -17,7 +17,7 @@ export default defineComponent({
       autofocus: true,
       indentWithTab: true,
       tabSize: 2,
-      height: '350px'
+      height: '500px'
     })
 
     const state = reactive({
@@ -43,29 +43,25 @@ export default defineComponent({
 
     return () => (
       <PageWrapper plugin={CODEMIRROR_PLUGIN}>
-        {{
-          default: () => (
-            <Card>
-              <Toolbar config={config} />
-              <Codemirror
-                v-model={codeRef.value}
-                style={{
-                  height: config.height,
-                  borderLeft: 'solid 1px #ddd',
-                  borderRight: 'solid 1px #ddd'
-                }}
-                autofocus={config.autofocus}
-                indentWithTab={config.indentWithTab}
-                tabSize={config.tabSize}
-                extensions={extensions}
-                placeholder='Please enter the code...'
-                onReady={handleReady}
-                onUpdate={handleStateUpdate}
-              />
-              <CodeInfo config={config} state={state} />
-            </Card>
-          )
-        }}
+        <Card>
+          <Toolbar config={config} />
+          <Codemirror
+            v-model={codeRef.value}
+            style={{
+              height: config.height,
+              borderLeft: 'solid 1px #ddd',
+              borderRight: 'solid 1px #ddd'
+            }}
+            autofocus={config.autofocus}
+            indentWithTab={config.indentWithTab}
+            tabSize={config.tabSize}
+            extensions={extensions}
+            placeholder='Please enter the code...'
+            onReady={handleReady}
+            onUpdate={handleStateUpdate}
+          />
+          <CodeInfo config={config} state={state} />
+        </Card>
       </PageWrapper>
     )
   }

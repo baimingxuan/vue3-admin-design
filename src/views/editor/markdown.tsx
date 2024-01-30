@@ -1,4 +1,5 @@
 import { defineComponent, ref, unref } from 'vue'
+import { Card } from 'ant-design-vue'
 import { PageWrapper } from '@/components/Page'
 import { MARKDOWN_EDITOR_PLUGIN } from '@/settings/websiteSetting'
 import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
@@ -13,9 +14,9 @@ export default defineComponent({
 
     return () => (
       <PageWrapper plugin={MARKDOWN_EDITOR_PLUGIN}>
-        {{
-          default: () => <MdEditor v-model={content.value} theme={unref(getAppMode)} />
-        }}
+        <Card>
+          <MdEditor v-model={content.value} theme={unref(getAppMode)} />
+        </Card>
       </PageWrapper>
     )
   }

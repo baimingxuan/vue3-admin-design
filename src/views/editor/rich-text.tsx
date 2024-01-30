@@ -25,22 +25,18 @@ export default defineComponent({
 
     return () => (
       <PageWrapper plugin={WANG_EDITOR_PLUGIN}>
-        {{
-          default: () => (
-            <Card>
-              <div class='rich-text-wrapper'>
-                <Toolbar class='toolbar-box' editor={editorRef.value} defaultConfig={toolbarConfig} mode='default' />
-                <Editor
-                  style='height: 500px; overflow-y: hidden;'
-                  v-model={valueHtml.value}
-                  defaultConfig={editorConfig}
-                  mode='default'
-                  onOnCreated={handleCreated}
-                />
-              </div>
-            </Card>
-          )
-        }}
+        <Card>
+          <div class='rich-text-wrapper'>
+            <Toolbar class='toolbar-box' editor={editorRef.value} defaultConfig={toolbarConfig} mode='default' />
+            <Editor
+              style='height: 500px; overflow-y: hidden;'
+              v-model={valueHtml.value}
+              defaultConfig={editorConfig}
+              mode='default'
+              onOnCreated={handleCreated}
+            />
+          </div>
+        </Card>
       </PageWrapper>
     )
   }
