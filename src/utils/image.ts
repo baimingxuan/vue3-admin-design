@@ -1,5 +1,5 @@
 /**
- * Image base64 to Blob
+ * 图片base64转blob
  * @param image
  * @returns {Blob}
  */
@@ -17,9 +17,9 @@ export function base64toBlob(base64Buf: string): Blob {
 }
 
 /**
- * Image url to base64
+ * 图片url转base64
  * @param url
- * @param mineType
+ * @param mimeType
  */
 export function urlToBase64(url: string, mineType?: string): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -65,36 +65,36 @@ export function getImageSize(url: string): Promise<{ width: number; height: numb
 }
 
 /**
- * Compress image through Settings
- * @param imgSrc
- * @param settings
+ * 压缩图片
+ * @param url
+ * @param options
+ * @returns {Promise<string>}
  */
-interface ImageProps {
-  width: number
-  height: number
-  quality?: number
-  mineType?: string
-}
-export function getCompressImage(imgSrc: string, settings: ImageProps): Promise<string> {
+export function compressImage(
+  url: string,
+  options: { width: number; height: number; quality: number; mimeType: string }
+): Promise<string> {
   return new Promise((resolve, reject) => {
+    const { width, height, quality, mimeType } = options
+
     let canvas = document.createElement('CANVAS') as Nullable<HTMLCanvasElement>
     const ctx = canvas!.getContext('2d')
 
-    const { width, height, quality, mineType } = settings
     const img = new Image()
     img.crossOrigin = ''
-    img.src = imgSrc
     img.onload = function () {
-      if (!canvas || !ctx) return reject()
+      if (!canvas || !ctx) {
+        return reject()
+      }
 
       canvas.width = width
       canvas.height = height
-      ctx.fillRect(0, 0, width, height)
       ctx.drawImage(img, 0, 0, width, height)
-      const dataURL = canvas.toDataURL(mineType || 'image/png', quality || 1)
+      const dataURL = canvas.toDataURL(mimeType || 'image/png', quality)
       canvas = null
       resolve(dataURL)
     }
+    img.src = url
   })
 }
 
