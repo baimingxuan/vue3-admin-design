@@ -128,78 +128,78 @@ export default defineComponent({
 
     return () => (
       <PageWrapper plugin={IMAGE_COMPRESS}>
-        {{
-          default: () => (
-            <Row gutter={12}>
-              <Col span={16}>
-                <Card title='图片区域'>
-                  <div class='flex-center' style='height: 550px; overflow: hidden'>
-                    <div style={unref(getImageStyle)} />
+        <Row gutter={12}>
+          <Col span={16}>
+            <Card title='图片区域' bodyStyle={{ height: '600px' }}>
+              <div class='flex-center' style='height: 550px; overflow: hidden'>
+                <div style={unref(getImageStyle)} />
+              </div>
+            </Card>
+          </Col>
+          <Col span={8}>
+            <Card title='设置区域' bodyStyle={{ height: '600px' }}>
+              <Form
+                colon={false}
+                labelCol={{ span: 6 }}
+                wrapperCol={{ span: 18 }}
+                labelAlign='left'
+                style={{ width: '300px', margin: '50px auto' }}
+              >
+                <FormItem label='上传图片'>
+                  <UploadImage isFull onSuccess={handleSuccess} />
+                </FormItem>
+                <FormItem label='图片尺寸'>
+                  <div>
+                    <InputNumber
+                      v-model:value={imageCompr.width}
+                      min={0}
+                      max={10000}
+                      onChange={handleChange.bind(null, 'h')}
+                      onStep={handleChange.bind(null, 'h')}
+                    />
+                    <SvgIcon name='linking' size={20} style='margin: 0 4px' />
+                    <InputNumber
+                      v-model:value={imageCompr.height}
+                      min={0}
+                      max={10000}
+                      onChange={handleChange.bind(null, 'w')}
+                      onStep={handleChange.bind(null, 'w')}
+                    />
                   </div>
-                </Card>
-              </Col>
-              <Col span={8}>
-                <Card title='设置区域'>
-                  <div class='flex-center' style='height: 550px'>
-                    <Form style='width: 280px'>
-                      <FormItem label='上传图片: '>
-                        <UploadImage onSuccess={handleSuccess} />
-                      </FormItem>
-                      <FormItem label='图片尺寸: '>
-                        <div>
-                          <InputNumber
-                            v-model:value={imageCompr.width}
-                            min={0}
-                            max={10000}
-                            onChange={handleChange.bind(null, 'h')}
-                            onStep={handleChange.bind(null, 'h')}
-                          />
-                          <SvgIcon name='linking' size={20} style='margin: 0 4px' />
-                          <InputNumber
-                            v-model:value={imageCompr.height}
-                            min={0}
-                            max={10000}
-                            onChange={handleChange.bind(null, 'w')}
-                            onStep={handleChange.bind(null, 'w')}
-                          />
-                        </div>
-                      </FormItem>
-                      <FormItem label='压缩比例: '>
-                        <InputNumber
-                          v-model:value={imageCompr.ratio}
-                          min={0}
-                          max={100}
-                          disabled
-                          formatter={value => `${value}%`}
-                          parser={value => value.replace('%', '')}
-                          style='width: 100%'
-                        />
-                      </FormItem>
-                      <FormItem label='图片类型: '>
-                        <Select
-                          v-model:value={imageCompr.mineType}
-                          options={[
-                            { label: 'PNG', value: 'image/png' },
-                            { label: 'JPG', value: 'image/jpg' },
-                            { label: 'BMP', value: 'image/bmp' }
-                          ]}
-                        />
-                      </FormItem>
-                      <FormItem label='图片质量: '>
-                        <Select v-model:value={imageCompr.quality} options={qualityOptions} />
-                      </FormItem>
-                      <FormItem>
-                        <Button type='primary' style='width: 100%' onClick={handleCompressImage}>
-                          压缩图片
-                        </Button>
-                      </FormItem>
-                    </Form>
-                  </div>
-                </Card>
-              </Col>
-            </Row>
-          )
-        }}
+                </FormItem>
+                <FormItem label='压缩比例'>
+                  <InputNumber
+                    v-model:value={imageCompr.ratio}
+                    min={0}
+                    max={100}
+                    disabled
+                    formatter={value => `${value}%`}
+                    parser={value => value.replace('%', '')}
+                    style='width: 100%'
+                  />
+                </FormItem>
+                <FormItem label='图片类型'>
+                  <Select
+                    v-model:value={imageCompr.mineType}
+                    options={[
+                      { label: 'PNG', value: 'image/png' },
+                      { label: 'JPG', value: 'image/jpg' },
+                      { label: 'BMP', value: 'image/bmp' }
+                    ]}
+                  />
+                </FormItem>
+                <FormItem label='图片质量'>
+                  <Select v-model:value={imageCompr.quality} options={qualityOptions} />
+                </FormItem>
+                <FormItem>
+                  <Button type='primary' style='width: 100%' onClick={handleCompressImage}>
+                    压缩图片
+                  </Button>
+                </FormItem>
+              </Form>
+            </Card>
+          </Col>
+        </Row>
       </PageWrapper>
     )
   }

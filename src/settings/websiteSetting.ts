@@ -50,6 +50,10 @@ export const UPLOAD_COMPO = {
   desc: 'ant-design-upload: 使用 ant-design 的 upload 组件, 并具有多种列表展示方式。'
 }
 
+// 图片上传组件资源
+export const UPLOAD_IMG_SRC = 'https://cdn.jsdelivr.net/gh/baimingxuan/media-store/images/img04.jpg'
+export const UPLOAD_IMG_SRC2 = 'https://cdn.jsdelivr.net/gh/baimingxuan/media-store/images/img03.jpg'
+
 // Video player plugin
 export const VIDEO_PLUGIN = {
   name: 'Video视频播放器',

@@ -189,81 +189,77 @@ export default defineComponent({
 
     return () => (
       <PageWrapper plugin={IMAGE_COMPOSITION}>
-        {{
-          default: () => (
-            <Row gutter={12}>
-              <Col span={16}>
-                <Card title='合成区域' bodyStyle={{ height: '600px' }}>
-                  <div class='flex-center'>
-                    <div id='imageComposition' class='dnd-container' style={{ ...unref(containerStyle) }}>
-                      {elements.value.map((item, index) => {
-                        return (
-                          <DndNode
-                            key={item.tag}
-                            element={item}
-                            handlers={elementHandler(item.type)}
-                            onChange={(ele: any) => handleChangeElement(ele, index)}
-                          >
-                            {item.type === 'text' ? (
-                              <RichTextInput v-model:value={item.text} style={item.style} />
-                            ) : item.type === 'image' ? (
-                              <img src={item.url} draggable='false' />
-                            ) : (
-                              <></>
-                            )}
-                          </DndNode>
-                        )
-                      })}
-                    </div>
-                  </div>
-                </Card>
-              </Col>
-              <Col span={8}>
-                <Card title='设置区域' bodyStyle={{ height: '600px' }}>
-                  <Form
-                    colon={false}
-                    labelCol={{ span: 6 }}
-                    wrapperCol={{ span: 18 }}
-                    labelAlign='left'
-                    style={{ width: '300px', margin: '0 auto' }}
-                  >
-                    <Form.Item label='选择底图'>
-                      <UploadImage name='选择底图' isFull onSuccess={changeBgImg} />
-                    </Form.Item>
-                    <Form.Item label='添加文本'>
-                      <Button block style={{ width: '100%' }} onClick={handleAddText}>
-                        添加文本
-                      </Button>
-                    </Form.Item>
-                    <Form.Item label='添加图片'>
-                      <UploadImage name='添加图片' isFull onSuccess={uploadImage} />
-                    </Form.Item>
-                    <Form.Item label='删除元素'>
-                      <Button type='primary' danger style={{ width: '100%' }} onClick={handleDeleteElement}>
-                        删除元素
-                      </Button>
-                    </Form.Item>
-                  </Form>
-                  {unref(activeTextEle) ? (
-                    <RichTextSetting
-                      textValue={unref(activeTextEle)?.text}
-                      textStyles={unref(activeTextEle)?.style}
-                      onChangeValue={(val: string) => handleSettingText(val)}
-                      onChangeStyles={(style: styleState) => handleSettingStyles(style)}
-                    />
-                  ) : (
-                    <></>
-                  )}
-                  <div style={{ width: '300px', margin: '0 auto' }}>
-                    <Button type='primary' style={{ width: '100%' }} onClick={handleComposition}>
-                      合成图片
-                    </Button>
-                  </div>
-                </Card>
-              </Col>
-            </Row>
-          )
-        }}
+        <Row gutter={12}>
+          <Col span={16}>
+            <Card title='合成区域' bodyStyle={{ height: '600px' }}>
+              <div class='flex-center'>
+                <div id='imageComposition' class='dnd-container' style={{ ...unref(containerStyle) }}>
+                  {elements.value.map((item, index) => {
+                    return (
+                      <DndNode
+                        key={item.tag}
+                        element={item}
+                        handlers={elementHandler(item.type)}
+                        onChange={(ele: any) => handleChangeElement(ele, index)}
+                      >
+                        {item.type === 'text' ? (
+                          <RichTextInput v-model:value={item.text} style={item.style} />
+                        ) : item.type === 'image' ? (
+                          <img src={item.url} draggable='false' />
+                        ) : (
+                          <></>
+                        )}
+                      </DndNode>
+                    )
+                  })}
+                </div>
+              </div>
+            </Card>
+          </Col>
+          <Col span={8}>
+            <Card title='设置区域' bodyStyle={{ height: '600px' }}>
+              <Form
+                colon={false}
+                labelCol={{ span: 6 }}
+                wrapperCol={{ span: 18 }}
+                labelAlign='left'
+                style={{ width: '300px', margin: '0 auto' }}
+              >
+                <Form.Item label='选择底图'>
+                  <UploadImage name='选择底图' isFull onSuccess={changeBgImg} />
+                </Form.Item>
+                <Form.Item label='添加文本'>
+                  <Button block style={{ width: '100%' }} onClick={handleAddText}>
+                    添加文本
+                  </Button>
+                </Form.Item>
+                <Form.Item label='添加图片'>
+                  <UploadImage name='添加图片' isFull onSuccess={uploadImage} />
+                </Form.Item>
+                <Form.Item label='删除元素'>
+                  <Button type='primary' danger style={{ width: '100%' }} onClick={handleDeleteElement}>
+                    删除元素
+                  </Button>
+                </Form.Item>
+              </Form>
+              {unref(activeTextEle) ? (
+                <RichTextSetting
+                  textValue={unref(activeTextEle)?.text}
+                  textStyles={unref(activeTextEle)?.style}
+                  onChangeValue={(val: string) => handleSettingText(val)}
+                  onChangeStyles={(style: styleState) => handleSettingStyles(style)}
+                />
+              ) : (
+                <></>
+              )}
+              <div style={{ width: '300px', margin: '0 auto' }}>
+                <Button type='primary' style={{ width: '100%' }} onClick={handleComposition}>
+                  合成图片
+                </Button>
+              </div>
+            </Card>
+          </Col>
+        </Row>
       </PageWrapper>
     )
   }

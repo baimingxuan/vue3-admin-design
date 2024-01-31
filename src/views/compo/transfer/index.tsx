@@ -63,82 +63,78 @@ export default defineComponent({
 
     return () => (
       <PageWrapper plugin={TRANSFER_COMPO}>
-        {{
-          default: () => (
-            <Row gutter={12}>
-              <Col span={8}>
-                <Card title='基础用法' bodyStyle={{ height: '420px' }}>
-                  <Transfer
-                    v-model:targetKeys={targetKeys.value}
-                    v-model:selectedKeys={selectedKeys.value}
-                    dataSource={mockData}
-                    render={item => item.title}
-                    listStyle={{ width: '230px', height: '360px' }}
-                    locale={{ itemsUnit: '项 ' }}
-                  />
-                </Card>
-              </Col>
-              <Col span={8}>
-                <Card title='树穿梭框' bodyStyle={{ height: '420px' }}>
-                  <Transfer
-                    v-model:targetKeys={treeTargetKeys.value}
-                    dataSource={dataSource.value}
-                    render={item => item.title}
-                    showSelectAll={false}
-                    listStyle={{ width: '230px', height: '360px' }}
-                  >
-                    {{
-                      children: ({ direction, selectedKeys, onItemSelect }) =>
-                        direction === 'left' ? (
-                          <Tree
-                            blockNode
-                            checkable
-                            checkStrictly
-                            defaultExpandAll
-                            checkedKeys={[...selectedKeys, ...treeTargetKeys.value]}
-                            treeData={newTreeData.value}
-                            onCheck={(_, props) => {
-                              onChecked(props, [...selectedKeys, ...treeTargetKeys.value], onItemSelect)
-                            }}
-                            onSelect={(_, props) => {
-                              onChecked(props, [...selectedKeys, ...treeTargetKeys.value], onItemSelect)
-                            }}
-                          />
-                        ) : null
-                    }}
-                  </Transfer>
-                </Card>
-              </Col>
-              <Col span={8}>
-                <Card title='表格穿梭框' bodyStyle={{ height: '420px' }}>
-                  <Transfer
-                    v-model:targetKeys={targetKeys.value}
-                    dataSource={mockData}
-                    listStyle={{ width: '230px', height: '360px' }}
-                    locale={{ itemsUnit: '项 ' }}
-                  >
-                    {{
-                      children: ({ filteredItems, selectedKeys, onItemSelectAll, onItemSelect }) => (
-                        <Table
-                          rowSelection={getRowSelection({ selectedKeys, onItemSelectAll, onItemSelect })}
-                          columns={columns.value}
-                          dataSource={filteredItems}
-                          size='small'
-                          pagination={false}
-                          customRow={({ key }) => ({
-                            onClick: () => {
-                              onItemSelect(key, !selectedKeys.includes(key))
-                            }
-                          })}
-                        />
-                      )
-                    }}
-                  </Transfer>
-                </Card>
-              </Col>
-            </Row>
-          )
-        }}
+        <Row gutter={12}>
+          <Col span={8}>
+            <Card title='基础用法' bodyStyle={{ height: '420px' }}>
+              <Transfer
+                v-model:targetKeys={targetKeys.value}
+                v-model:selectedKeys={selectedKeys.value}
+                dataSource={mockData}
+                render={item => item.title}
+                listStyle={{ width: '230px', height: '360px' }}
+                locale={{ itemsUnit: '项 ' }}
+              />
+            </Card>
+          </Col>
+          <Col span={8}>
+            <Card title='树穿梭框' bodyStyle={{ height: '420px' }}>
+              <Transfer
+                v-model:targetKeys={treeTargetKeys.value}
+                dataSource={dataSource.value}
+                render={item => item.title}
+                showSelectAll={false}
+                listStyle={{ width: '230px', height: '360px' }}
+              >
+                {{
+                  children: ({ direction, selectedKeys, onItemSelect }) =>
+                    direction === 'left' ? (
+                      <Tree
+                        blockNode
+                        checkable
+                        checkStrictly
+                        defaultExpandAll
+                        checkedKeys={[...selectedKeys, ...treeTargetKeys.value]}
+                        treeData={newTreeData.value}
+                        onCheck={(_, props) => {
+                          onChecked(props, [...selectedKeys, ...treeTargetKeys.value], onItemSelect)
+                        }}
+                        onSelect={(_, props) => {
+                          onChecked(props, [...selectedKeys, ...treeTargetKeys.value], onItemSelect)
+                        }}
+                      />
+                    ) : null
+                }}
+              </Transfer>
+            </Card>
+          </Col>
+          <Col span={8}>
+            <Card title='表格穿梭框' bodyStyle={{ height: '420px' }}>
+              <Transfer
+                v-model:targetKeys={targetKeys.value}
+                dataSource={mockData}
+                listStyle={{ width: '230px', height: '360px' }}
+                locale={{ itemsUnit: '项 ' }}
+              >
+                {{
+                  children: ({ filteredItems, selectedKeys, onItemSelectAll, onItemSelect }) => (
+                    <Table
+                      rowSelection={getRowSelection({ selectedKeys, onItemSelectAll, onItemSelect })}
+                      columns={columns.value}
+                      dataSource={filteredItems}
+                      size='small'
+                      pagination={false}
+                      customRow={({ key }) => ({
+                        onClick: () => {
+                          onItemSelect(key, !selectedKeys.includes(key))
+                        }
+                      })}
+                    />
+                  )
+                }}
+              </Transfer>
+            </Card>
+          </Col>
+        </Row>
       </PageWrapper>
     )
   }
