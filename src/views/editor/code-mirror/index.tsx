@@ -1,7 +1,8 @@
-import { defineComponent, ref, reactive, shallowRef } from 'vue'
+import { defineComponent, ref, reactive, shallowRef, onMounted, onActivated } from 'vue'
 import { Card } from 'ant-design-vue'
 import { PageWrapper } from '@/components/Page'
 import { CODEMIRROR_PLUGIN } from '@/settings/websiteSetting'
+import { removeClass } from '@/utils/dom'
 import { Codemirror } from 'vue-codemirror'
 import Toolbar from './components/Toolbar'
 import CodeInfo from './components/CodeInfo'
@@ -27,6 +28,20 @@ export default defineComponent({
       length: null as null | number
     })
 
+    // 解决与Markdown编辑器样式冲突的问题
+    onMounted(() => {
+      const cmEditorRef = document.querySelector('.cm-editor')
+      if (cmEditorRef) {
+        removeClass(cmEditorRef, 'cm-editor')
+      }
+    })
+    onActivated(() => {
+      const cmEditorRef = document.querySelector('.cm-editor')
+      if (cmEditorRef) {
+        removeClass(cmEditorRef, 'cm-editor')
+      }
+    })
+
     // Codemirror EditorView instance ref
     const cmView = shallowRef()
     function handleReady({ view }: any) {
@@ -46,6 +61,7 @@ export default defineComponent({
         <Card>
           <Toolbar config={config} />
           <Codemirror
+            id='codeMirror'
             v-model={codeRef.value}
             style={{
               height: config.height,
