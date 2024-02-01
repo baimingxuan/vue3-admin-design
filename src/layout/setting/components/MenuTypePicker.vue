@@ -17,7 +17,7 @@
 
 <script lang="ts" setup>
 import type { PropType, CSSProperties } from 'vue'
-import { computed, unref } from 'vue'
+import { unref } from 'vue'
 import { CheckOutlined } from '@ant-design/icons-vue'
 import { Tooltip } from 'ant-design-vue'
 import { useBaseSetting } from '@/hooks/setting/useBaseSetting'

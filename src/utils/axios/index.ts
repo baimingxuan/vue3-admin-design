@@ -1,4 +1,4 @@
-import type { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
+import type { AxiosResponse, AxiosError, InternalAxiosRequestConfig } from 'axios'
 import axios from 'axios'
 import { message } from 'ant-design-vue'
 
@@ -22,7 +22,7 @@ const handleError = (error: AxiosError): Promise<AxiosError> => {
 }
 
 // Request interceptors configuration
-service.interceptors.request.use((config: AxiosRequestConfig) => {
+service.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   const token = getToken()
   if (token) {
     ;(config as Recordable).headers['Authorization'] = `${token}`

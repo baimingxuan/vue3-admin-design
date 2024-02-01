@@ -71,6 +71,7 @@
     "autoprefixer": "^10.4.16",
     "commitizen": "^4.3.0",
     "consola": "^3.2.3",
+    "cssnano": "^6.0.3",
     "cz-git": "^1.8.0",
     "dayjs": "^1.11.10",
     "element-plus": "^2.4.4",
@@ -134,7 +135,10 @@
     "allowedDeprecatedVersions": {
       "stable": "*",
       "urix": "*",
+      "abab": "*",
+      "domexception": "*",
       "resolve-url": "*",
+      "w3c-hr-time": "*",
       "source-map-url": "*",
       "sourcemap-codec": "*",
       "source-map-resolve": "*"

@@ -10,7 +10,7 @@ export default function RegisteNode(lf: LogicFlow) {
       const rules = super.getConnectedTargetRules()
       const geteWayOnlyAsTarget = {
         message: '开始节点只能连出，不能连入！',
-        validate: (source: BaseNodeModel, target: BaseNodeModel) => {
+        validate: (_source: BaseNodeModel, target: BaseNodeModel) => {
           let isValid = true
           if (target) {
             isValid = false
