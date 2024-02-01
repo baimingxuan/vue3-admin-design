@@ -116,7 +116,7 @@ export default defineComponent({
       editForm.phone = record.phone
       editForm.education = record.education
       editForm.hobby = record.hobby
-      editRecord.value = record
+      editRecord.value = cloneDeep(record)
       editHobbys.value = cloneDeep(record.hobby)
       modalVisibel.value = true
     }
@@ -134,6 +134,7 @@ export default defineComponent({
       <PageWrapper plugin={TABLE_COMPO}>
         <Card>
           <Table
+            rowKey='id'
             rowSelection={tableSelection}
             columns={tableColumns}
             dataSource={unref(tableData)}
