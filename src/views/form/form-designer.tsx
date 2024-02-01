@@ -8,13 +8,9 @@ export default defineComponent({
   setup() {
     return () => (
       <PageWrapper plugin={FORM_CREATE_DESIGNER}>
-        {{
-          default: () => (
-            <Card>
-              <fc-designer height='664px' />
-            </Card>
-          )
-        }}
+        <Card>
+          <fc-designer height='664px' />
+        </Card>
       </PageWrapper>
     )
   }
