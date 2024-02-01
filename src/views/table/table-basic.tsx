@@ -1,5 +1,4 @@
 import type { TableProps, ColumnType } from 'ant-design-vue/lib/table'
-import type { Rule } from 'ant-design-vue/es/form'
 import { defineComponent, createVNode, ref, unref, reactive, onMounted } from 'vue'
 import {
   Card,

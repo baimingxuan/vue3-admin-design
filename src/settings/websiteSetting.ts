@@ -4,7 +4,7 @@ export const GITHUB_URL = 'https://github.com/baimingxuan/vue3-admin-design'
 // Form component
 export const FORM_COMPO = {
   name: 'Form表单',
-  url: 'https://www.antdv.com/components/form',
+  url: 'https://antdv.com/components/form-cn',
   desc: 'ant-design-form: 使用 ant-design 的 form 组件, 可用以收集、校验和提交数据等操作。'
 }
 
@@ -18,39 +18,46 @@ export const FORM_CREATE_DESIGNER = {
 // Table component
 export const TABLE_COMPO = {
   name: 'Table表格',
-  url: 'https://www.antdv.com/components/table',
+  url: 'https://antdv.com/components/table-cn',
   desc: 'ant-design-table: 使用 ant-design 的 table 组件, 可用于展示多条结构类似的数据, 并对其进行相关操作。'
 }
 
 // Table edit component
 export const TABLE_EDIT_COMPO = {
   name: 'Table表格(可编辑行)',
-  url: 'https://www.antdv.com/components/table',
+  url: 'https://antdv.com/components/table-cn',
   desc: 'ant-design-table: 使用 ant-design 的 table 组件, 可用于展示多条结构类似的数据, 并对其进行行数据编辑操作。'
 }
 
 // Tree component
 export const TREE_COMPO = {
   name: 'Tree树形控件',
-  url: 'https://www.antdv.com/components/tree',
+  url: 'https://antdv.com/components/tree-cn',
   desc: 'ant-design-tree: 基于Ant-Design的Tree组件, 可以完整展现其中的层级关系, 并具有展开收起选择等交互功能。'
 }
 
 // Transfer component
 export const TRANSFER_COMPO = {
   name: 'Transfer穿梭框',
-  url: 'https://www.antdv.com/components/transfer',
+  url: 'https://antdv.com/components/transfer-cn',
   desc: 'ant-design-transfer: 使用 ant-design 的 transfer 组件, 可用于对列表数据进行选中、取消等操作。'
+}
+
+// Result component
+export const RESULT_COMPO = {
+  name: 'Result结果',
+  url: 'https://antdv.com/components/result-cn',
+  desc: 'ant-design-result: 使用 ant-design 的 result 组件, 可用于反馈一系列操作任务的处理结果。'
 }
 
 // Upload component
 export const UPLOAD_COMPO = {
   name: 'Upload图片上传组件',
-  url: 'https://antdv.com/components/upload',
+  url: 'https://antdv.com/components/upload-cn',
   desc: 'ant-design-upload: 使用 ant-design 的 upload 组件, 并具有多种列表展示方式。'
 }
 
-// 图片上传组件资源
+// Upload image resource src
 export const UPLOAD_IMG_SRC = 'https://cdn.jsdelivr.net/gh/baimingxuan/media-store/images/img04.jpg'
 export const UPLOAD_IMG_SRC2 = 'https://cdn.jsdelivr.net/gh/baimingxuan/media-store/images/img03.jpg'
 
@@ -138,13 +145,6 @@ export const CODEMIRROR_PLUGIN = {
   desc: 'VueCodeMirror: 是一款基于vue的代码编辑器, 可支持html、javascript、typescript等。'
 }
 
-// Antv-g6 plugin
-export const ANTV_G6_PLUGIN = {
-  name: 'AntV-G6流程图',
-  url: 'https://github.com/antvis/g6',
-  desc: 'antv-g6: 一个图可视化引擎。它提供了图的绘制、布局、分析、交互、动画等图可视化的基础能力。'
-}
-
 // VueTreeOrg plugin
 export const VUE_TREE_ORG_PLUGIN = {
   name: 'Tree-Org树状组织图',
@@ -166,14 +166,9 @@ export const MARKDOWN_EDITOR_PLUGIN = {
   desc: 'Md-editor-v3: 是一款基于vue3的Markdown编辑器,比较适合博客系统。'
 }
 
+// Flow-editor plugin
 export const FLOW_EDITOR_PLUGIN = {
   name: '流程图编辑器',
   url: 'https://github.com/didi/LogicFlow',
   desc: 'LogicFlow: 是一款流程图编辑框架，提供了一系列流程图交互、编辑所必需的功能和灵活的节点自定义、插件等拓展机制。'
-}
-
-export const RESULT_COMPO = {
-  name: 'Result结果',
-  url: 'https://antdv.com/components/result-cn',
-  desc: 'ant-design-result: 使用 ant-design 的 result 组件, 可用于反馈一系列操作任务的处理结果。'
 }
