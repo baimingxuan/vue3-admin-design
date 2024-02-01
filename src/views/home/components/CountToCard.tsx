@@ -35,6 +35,7 @@ export default defineComponent({
             style={{
               width: '120px',
               height: '120px',
+              borderRadius: '8px 0 0 8px',
               background: props.color
             }}
           >

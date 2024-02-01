@@ -119,7 +119,7 @@ export const ringOptions: EChartsOption = {
 export const radarOptions: EChartsOption = {
   legend: {
     bottom: 0,
-    data: ['访问来源', '推广渠道']
+    data: ['推广渠道', '广告投放', '访问来源']
   },
   radar: {
     radius: '70%',
@@ -127,24 +127,19 @@ export const radarOptions: EChartsOption = {
     splitNumber: 8,
     indicator: [
       {
-        name: '直接访问',
-        max: 2000
+        name: '直接访问'
       },
       {
-        name: '邮件营销',
-        max: 2000
+        name: '邮件营销'
       },
       {
-        name: '联盟广告',
-        max: 2000
+        name: '联盟广告'
       },
       {
-        name: '视频广告',
-        max: 2000
+        name: '视频广告'
       },
       {
-        name: '搜索引擎',
-        max: 2000
+        name: '搜索引擎'
       }
     ]
   },
@@ -161,17 +156,24 @@ export const radarOptions: EChartsOption = {
       },
       data: [
         {
-          value: [1124, 1923, 1325, 986, 1469],
+          value: [1920, 1920, 1920, 0, 0],
+          name: '推广渠道',
+          itemStyle: {
+            color: '#1890ff'
+          }
+        },
+        {
+          value: [1920, 0, 0, 1920, 1920],
           name: '访问来源',
           itemStyle: {
             color: '#722ed1'
           }
         },
         {
-          value: [1820, 1369, 1556, 1637, 325],
-          name: '推广渠道',
+          value: [920, 920, 920, 920, 920],
+          name: '广告投放',
           itemStyle: {
-            color: '#1890ff'
+            color: '#faad14'
           }
         }
       ]
