@@ -84,7 +84,7 @@ export default defineComponent({
                             [compoStyle[`${prefixCls}-list__item--active`]]: unref(activeIndex) === index
                           }
                         ]}
-                        onMouseenter={e => handleMouseenter(index)}
+                        onMouseenter={() => handleMouseenter(index)}
                         onClick={handleEnter}
                       >
                         <div class={compoStyle[`${prefixCls}-list__item-icon`]}>

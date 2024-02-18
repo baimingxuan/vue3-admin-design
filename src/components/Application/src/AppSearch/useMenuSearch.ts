@@ -7,7 +7,6 @@ import { getAsyncMenus } from '@/router/menus'
 import { filter, forEach } from '@/utils/helper/treeHelper'
 import { useGo } from '@/hooks/web/usePage'
 import { useScrollTo } from '@/hooks/event/useScrollTo'
-import { pa } from 'element-plus/es/locale'
 
 export interface SearchResult {
   name: string
