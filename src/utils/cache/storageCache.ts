@@ -1,9 +1,9 @@
-import type { EncryptParams } from '../cipher'
+import type { Encryption, EncryptionParams } from '../cipher'
+import { EncryptionFactory } from '../cipher'
 import { cacheCipher } from '@/settings/encryptionSetting'
-import { AesEncrypt } from '../cipher'
-import { isNullOrUnDef } from '../is'
+import { isNil } from 'lodash-es'
 
-export interface CreateStorageParams extends EncryptParams {
+export interface CreateStorageParams extends EncryptionParams {
   prefixKey: string
   storage: Storage
   hasEncrypt: boolean
@@ -22,8 +22,10 @@ export const createStorage = ({
     throw new Error('When hasEncrypt is true, the key or iv must be 16 bits!')
   }
 
-  const encrypt = new AesEncrypt({ key, iv })
-
+  const persistEncryption: Encryption = EncryptionFactory.createAesEncryption({
+    key: cacheCipher.key,
+    iv: cacheCipher.iv
+  })
   /**
    * Cache class
    * Construction parameters can be passed into sessionStorage, localStorage
@@ -33,13 +35,13 @@ export const createStorage = ({
   const WebStorage = class WebStorage {
     private storage: Storage
     private prefixKey?: string
-    private encrypt: AesEncrypt
+    private encryption: Encryption
     private hasEncrypt: boolean
 
     constructor() {
       this.storage = storage
       this.prefixKey = prefixKey
-      this.encrypt = encrypt
+      this.encryption = persistEncryption
       this.hasEncrypt = hasEncrypt
     }
 
@@ -58,9 +60,9 @@ export const createStorage = ({
       const stringData = JSON.stringify({
         value,
         time: Date.now(),
-        expire: !isNullOrUnDef(expire) ? new Date().getTime() + expire * 1000 : null
+        expire: !isNil(expire) ? new Date().getTime() + expire * 1000 : null
       })
-      const stringifyValue = this.hasEncrypt ? this.encrypt.encryptByAES(stringData) : stringData
+      const stringifyValue = this.hasEncrypt ? this.encryption.encrypt(stringData) : stringData
       this.storage.setItem(this.getKey(key), stringifyValue)
     }
 
@@ -75,10 +77,10 @@ export const createStorage = ({
       if (!val) return def
 
       try {
-        const decVal = this.hasEncrypt ? this.encrypt.decryptByAES(val) : val
+        const decVal = this.hasEncrypt ? this.encryption.decrypt(val) : val
         const data = JSON.parse(decVal)
         const { value, expire } = data
-        if (isNullOrUnDef(expire) || expire >= new Date().getTime()) {
+        if (isNil(expire) || expire >= new Date().getTime()) {
           return value
         }
         this.remove(key)

@@ -39,6 +39,7 @@
     "md-editor-v3": "^4.10.0",
     "mockjs": "^1.1.0",
     "pinia": "^2.1.7",
+    "pinia-plugin-persistedstate": "^3.2.1",
     "resize-observer-polyfill": "^1.5.1",
     "video.js": "^7.20.3",
     "vue": "^3.4.5",
