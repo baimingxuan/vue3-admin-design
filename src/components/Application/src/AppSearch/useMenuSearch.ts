@@ -7,6 +7,7 @@ import { getAsyncMenus } from '@/router/menus'
 import { filter, forEach } from '@/utils/helper/treeHelper'
 import { useGo } from '@/hooks/web/usePage'
 import { useScrollTo } from '@/hooks/event/useScrollTo'
+import { pa } from 'element-plus/es/locale'
 
 export interface SearchResult {
   name: string
@@ -69,7 +70,7 @@ export function useMenuSearch(refs: Ref<HTMLElement[]>, scrollWrap: Ref<ElRef>, 
         ret.push({
           name: parent?.name ? `${parent.name} > ${name}` : name,
           path,
-          icon
+          icon: parent?.icon || icon
         })
       }
       if (!meta?.hideChildrenInMenu && Array.isArray(children) && children.length) {
@@ -80,9 +81,8 @@ export function useMenuSearch(refs: Ref<HTMLElement[]>, scrollWrap: Ref<ElRef>, 
   }
 
   // Activate when the mouse moves to a certain line
-  function handleMouseenter(e: any) {
-    const index = e.target.dataset.index
-    activeIndex.value = Number(index)
+  function handleMouseenter(index: number) {
+    activeIndex.value = index
   }
 
   // Arrow key up
