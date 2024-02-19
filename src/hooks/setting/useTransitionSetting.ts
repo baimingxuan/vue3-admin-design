@@ -1,8 +1,8 @@
 import { computed } from 'vue'
-import { useAppStore } from '@/stores/modules/app'
+import { useAppStoreWithOut } from '@/stores/modules/app'
 
 export function useTransitionSetting() {
-  const appStore = useAppStore()
+  const appStore = useAppStoreWithOut()
 
   const getOpenNProgress = computed(() => appStore.getTransitionSetting.openNProgress)
 

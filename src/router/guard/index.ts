@@ -1,9 +1,13 @@
 import type { Router } from 'vue-router'
+import { unref } from 'vue'
+import nProgress from 'nprogress'
 import { createPermissionGuard } from './permissionGuard'
 import { setRouteChange } from '@/logics/mitt/routeChange'
+import { useTransitionSetting } from '@/hooks/setting/useTransitionSetting'
 
 export function setupRouterGuard(router: Router) {
   createPageGuard(router)
+  createProgressGuard(router)
   createPermissionGuard(router)
 }
 
@@ -22,5 +26,21 @@ function createPageGuard(router: Router) {
 
   router.afterEach(to => {
     loadedPageMap.set(to.path, true)
+  })
+}
+
+export function createProgressGuard(router: Router) {
+  const { getOpenNProgress } = useTransitionSetting()
+  router.beforeEach(async to => {
+    if (to.meta.loaded) {
+      return true
+    }
+    unref(getOpenNProgress) && nProgress.start()
+    return true
+  })
+
+  router.afterEach(async () => {
+    unref(getOpenNProgress) && nProgress.done()
+    return true
   })
 }
