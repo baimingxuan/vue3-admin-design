@@ -18,18 +18,7 @@
       <Divider>菜单模式</Divider>
       <div class="flex-between-h">
         <MenuThemeRadio />
-        <MenuTypePicker
-          :menuTypeList="menuTypeList"
-          :def="unref(getMenuType)"
-          :handler="
-            (item: (typeof menuTypeList)[0]) => {
-              baseHandler(HandlerEnum.CHANGE_LAYOUT, {
-                menuMode: item.mode,
-                menuType: item.type
-              })
-            }
-          "
-        />
+        <MenuTypePicker :menuTypeList="menuTypeList" :def="unref(getMenuType)" :event="HandlerEnum.CHANGE_LAYOUT" />
       </div>
       <Divider>主题颜色</Divider>
       <ThemeColorPicker
@@ -143,8 +132,6 @@ import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
 import { useTransitionSetting } from '@/hooks/setting/useTransitionSetting'
-
-import { baseHandler } from './handler'
 import { MenuTypeEnum } from '@/enums/menuEnum'
 import { HandlerEnum, menuFoldBtnOptions, pageTransitionOptions } from './enum'
 

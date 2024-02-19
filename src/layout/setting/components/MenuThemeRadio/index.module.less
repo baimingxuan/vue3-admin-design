@@ -1,0 +1,24 @@
+.menu-theme-radio {
+
+  :global(.ant-radio-group) {
+    display: flex;
+    flex-direction: column;
+
+    :global(.ant-radio-button-wrapper) {
+      padding: 0 13px;
+      border-left-width: 1px;
+
+      &:first-child {
+        border-radius: 4px 4px 0 0;
+      }
+
+      &:last-child {
+        border-radius: 0 0 4px 4px;
+      }
+
+      &:not(:first-child)::before {
+        display: none;
+      }
+    }
+  }
+}

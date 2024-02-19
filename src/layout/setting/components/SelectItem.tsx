@@ -1,25 +1,8 @@
-<template>
-  <div class="select-item">
-    <span> {{ title }}</span>
-    <Select
-      class="select-item-select"
-      size="small"
-      v-bind="getBindValue"
-      :options="options"
-      :disabled="disabled"
-      @change="handleChange"
-    />
-  </div>
-</template>
-
-<script lang="ts">
-import { defineComponent, computed } from 'vue'
 import type { PropType } from 'vue'
-
-import { Select } from 'ant-design-vue'
+import type { HandlerEnum } from '../enum'
 import type { SelectOptions } from '@/types'
-
-import { HandlerEnum } from '../enum'
+import { defineComponent, computed, unref } from 'vue'
+import { Select } from 'ant-design-vue'
 import { baseHandler } from '../handler'
 
 export default defineComponent({
@@ -54,22 +37,18 @@ export default defineComponent({
       props.event && baseHandler(props.event, value)
     }
 
-    return {
-      getBindValue,
-      handleChange
-    }
+    return () => (
+      <div class='flex-between-h' style={{ margin: '16px 0' }}>
+        <span> {props.title}</span>
+        <Select
+          {...unref(getBindValue)}
+          style={{ width: '120px' }}
+          size='small'
+          options={props.options}
+          disabled={props.disabled}
+          onChange={value => handleChange(value)}
+        />
+      </div>
+    )
   }
 })
-</script>
-
-<style lang="less">
-.select-item {
-  display: flex;
-  justify-content: space-between;
-  margin: 16px 0;
-
-  &-select {
-    width: 120px;
-  }
-}
-</style>

@@ -1,0 +1,27 @@
+.theme-color-picker {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin: 16px 0;
+
+  &__item {
+    width: 22px;
+    height: 22px;
+    border-radius: 2px;
+    cursor: pointer;
+
+    :global(svg) {
+      display: none;
+    }
+
+    &--active {
+      :global(svg) {
+        display: inline-block;
+        margin-top: 5px;
+        margin-left: 5px;
+        font-size: 12px;
+        fill: #fff !important;
+      }
+    }
+  }
+}
