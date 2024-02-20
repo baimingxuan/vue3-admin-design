@@ -63,9 +63,9 @@ import { SIDE_BAR_MIN_WIDTH, SIDE_BAR_SHOW_TITLE_MIN_WIDTH } from '@/enums/appEn
 import { listenerRouteChange } from '@/logics/mitt/routeChange'
 import { AppLogo } from '@/components/Application'
 import ScrollContainer from '@/components/Container/index.vue'
-import SiderTrigger from '../components/SiderTrigger.vue'
+import SiderTrigger from '../components/SiderTrigger'
 import { Menu } from '@/components/Menu'
-import DragBar from '../components/DragBar.vue'
+import DragBar from '../components/DragBar'
 import SvgIcon from '@/components/SvgIcon'
 
 export default defineComponent({

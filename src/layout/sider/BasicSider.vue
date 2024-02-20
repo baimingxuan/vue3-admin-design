@@ -22,8 +22,8 @@
 <script lang="ts" setup>
 import { ref, unref, computed } from 'vue'
 import { LayoutSider } from 'ant-design-vue'
-import SiderTrigger from './components/SiderTrigger.vue'
-import DragBar from './components/DragBar.vue'
+import SiderTrigger from './components/SiderTrigger'
+import DragBar from './components/DragBar'
 import LayoutMenu from '@/layout/menu'
 import { AppLogo } from '@/components/Application'
 import { MenuTypeEnum, MenuModeEnum, MenuFoldBtnEnum } from '@/enums/menuEnum'

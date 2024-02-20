@@ -1,0 +1,17 @@
+.sider-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  cursor: pointer;
+
+  &:deep(svg) {
+    color: #ffffffa6;
+  }
+
+  &.collapsed {
+    &:deep(svg) {
+      transform: scaleX(-1);
+    }
+  }
+}
