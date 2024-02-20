@@ -1,0 +1,26 @@
+.layout-setting-trigger {
+  position: fixed !important;
+  top: 320px;
+  right: 0;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px !important;
+  height: 40px;
+  font-size: 16px;
+  color: @white;
+  border-radius: 4px 0 0 4px;
+  cursor: pointer;
+  pointer-events: auto;
+
+  svg {
+    color: @white;
+  }
+}
+
+.layout-setting-drawer {
+  :global(.scrollbar__wrap) {
+    padding: 0 16px 20px !important;
+  }
+}

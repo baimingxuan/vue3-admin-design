@@ -10,7 +10,7 @@
         </LayoutContent>
       </Layout>
     </Layout>
-    <Setting />
+    <LayoutSetting />
   </Layout>
 </template>
 
@@ -19,7 +19,7 @@ import { defineComponent, computed, unref } from 'vue'
 import { Layout } from 'ant-design-vue'
 
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
-import Setting from './setting/index.vue'
+import LayoutSetting from './setting'
 import LayoutSider from './sider/index.vue'
 import LayoutHeader from './header/index.vue'
 import LayoutBasicHeader from './header/BasicHeader'
@@ -33,7 +33,7 @@ export default defineComponent({
     LayoutHeader,
     LayoutBasicHeader,
     LayoutSider,
-    Setting,
+    LayoutSetting,
     LayoutPage
   },
 
