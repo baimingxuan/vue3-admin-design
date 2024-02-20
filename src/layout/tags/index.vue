@@ -61,7 +61,7 @@ import { initAffixTags } from './useTags'
 import { useGo } from '@/hooks/web/usePage'
 import { useTags } from '@/hooks/web/useTags'
 import { Component } from '@/router/types'
-import TagItem from './components/TagItem.vue'
+import TagItem from './components/TagItem'
 
 export default defineComponent({
   name: 'LayoutTags',

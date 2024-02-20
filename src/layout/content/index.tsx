@@ -1,5 +1,5 @@
 import { defineComponent, unref } from 'vue'
-import Page from './components/Page.vue'
+import Page from './components/Page'
 import { useTransitionSetting } from '@/hooks/setting/useTransitionSetting'
 import moduleStyle from './index.module.less'
 

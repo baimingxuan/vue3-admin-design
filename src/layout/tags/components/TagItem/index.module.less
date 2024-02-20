@@ -1,0 +1,34 @@
+.tag-item {
+  display: inline-block;
+  vertical-align: baseline;
+  height: 24px;
+  margin: 0 2px;
+  padding: 0 8px;
+  border-radius: 3px;
+  line-height: 24px;
+  color: #555;
+  overflow: hidden;
+  cursor: pointer;
+
+  &__dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 6px;
+    border-radius: 50%;
+    background: #dcdee0;
+  }
+
+  &__name {
+    font-size: 12px;
+  }
+
+  :global(.anticon-close) {
+    vertical-align: baseline;
+    svg {
+      width: 8px;
+      height: 8px;
+    }
+  }
+
+}
