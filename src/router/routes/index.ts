@@ -1,5 +1,5 @@
 import type { AppRoute } from '../types'
-import Layout from '../../layout/index.vue'
+import Layout from '@/layout'
 
 /**
  * Note: subMenu only appear when route children.length > 1

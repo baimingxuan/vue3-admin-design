@@ -1,6 +1,6 @@
 import type { AppRoute } from '../../types'
 import { ExceptionEnum } from '@/enums/exceptionEnum'
-import Layout from '@/layout/index.vue'
+import Layout from '@/layout'
 
 // exception module page
 const ExceptionRoute: AppRoute = {

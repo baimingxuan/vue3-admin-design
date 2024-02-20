@@ -1,5 +1,5 @@
 import type { AppRoute } from '../../types'
-import Layout from '@/layout/index.vue'
+import Layout from '@/layout'
 
 // table module page
 const TableRoute: AppRoute = {
