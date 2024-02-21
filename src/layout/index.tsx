@@ -3,7 +3,7 @@ import { Layout } from 'ant-design-vue'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import LayoutSetting from './setting'
 import LayoutSider from './sider/index.vue'
-import LayoutHeader from './header/index.vue'
+import LayoutHeader from './header'
 import LayoutBasicHeader from './header/BasicHeader'
 import LayoutPage from './content/index'
 
