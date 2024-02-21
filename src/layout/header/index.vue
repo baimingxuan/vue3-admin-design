@@ -26,7 +26,7 @@ import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { useDarkModeSetting } from '@/hooks/setting/useDarkModeSetting'
 import { AppLogo } from '@/components/Application'
 import LayoutMenu from '../menu'
-import LayoutTags from '../tags/index.vue'
+import LayoutTags from '../tags'
 import LayoutFeature from '../feature'
 
 export default defineComponent({

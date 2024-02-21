@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'vue'
 import { defineComponent, unref, computed } from 'vue'
 import { LayoutHeader } from 'ant-design-vue'
-import LayoutTags from '../tags/index.vue'
+import LayoutTags from '../tags'
 import LayoutFeature from '../feature'
 import FoldTrigger from './components/FoldTrigger'
 import LayoutBreadcrumb from './components/Breadcrumb'
