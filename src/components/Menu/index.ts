@@ -1,3 +1,3 @@
-import Menu from './src/index.vue'
+import Menu from './src'
 
 export { Menu }

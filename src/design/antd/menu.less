@@ -7,4 +7,36 @@
       background: @submenu-dark-bg !important;
     }
   }
+
+  .submenu-collapsed {
+    padding-bottom: 0 !important;
+
+    .ant-menu-submenu-title {
+      height: auto !important;
+      line-height: initial !important;
+      padding: 12px 0 !important;
+      margin: 0;
+      text-align: center !important;
+      transition: all 0.2s ease;
+
+      .menu-item-cont {
+        display: block;
+
+        .svg-icon {
+          vertical-align: 0;
+          margin-bottom: 6px;
+          transition: all 0.2s;
+        }
+
+        &__name {
+          display: block;
+          height: 22px;
+          line-height: 22px;
+          margin-left: 0;
+          transition: all 0.2s;
+        }
+      }
+    }
+  }
 }
+

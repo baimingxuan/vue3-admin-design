@@ -1,35 +1,8 @@
-<template>
-  <Menu
-    :mode="mode"
-    :theme="theme"
-    :openKeys="getOpenKeys"
-    :selectedKeys="selectedKeys"
-    :inlineIndent="20"
-    :subMenuOpenDelay="0.2"
-    v-bind="getCollapsedOptions"
-    @openChange="handleOpenChange"
-    @click="handleMenuClick"
-  >
-    <template v-for="item in items" :key="item.path">
-      <SubMenuItem
-        :item="item"
-        :theme="theme"
-        :collapsed="getMenuFold"
-        :showTitle="menuFoldShowTitle"
-        :isHorizontal="isHorizontal"
-      />
-    </template>
-  </Menu>
-</template>
-
-<script lang="ts">
 import type { MenuState } from './types'
-
+import type { RouteLocationNormalized, RouteLocationNormalizedLoaded } from 'vue-router'
 import { defineComponent, ref, unref, toRefs, reactive, computed, watch } from 'vue'
-import { RouteLocationNormalized, RouteLocationNormalizedLoaded } from 'vue-router'
 import { Menu } from 'ant-design-vue'
-
-import SubMenuItem from './components/SubMenuItem.vue'
+import SubMenuItem from './components/SubMenuItem'
 import { isFunction } from '@/utils/is'
 import { menuProps } from './props'
 import { useOpenKeys } from './useOpenKeys'
@@ -41,10 +14,6 @@ import { getAllParentPath } from '@/router/helper/menuHelper'
 
 export default defineComponent({
   name: 'BasicMenu',
-  components: {
-    Menu,
-    SubMenuItem
-  },
   props: menuProps,
   emits: ['menuClick'],
   setup(props, { emit }) {
@@ -65,15 +34,6 @@ export default defineComponent({
     const { getMenuFold, getMenuSplit } = useMenuSetting()
 
     const { handleOpenChange, setOpenKeys, getOpenKeys } = useOpenKeys(menuState, items, mode as any, accordion)
-
-    // const getIsTopMenu = computed(() => {
-    //   const { type, mode, isHorizontal } = props
-
-    //   return (
-    //     (type === MenuTypeEnum.HEADER_MENU && mode === MenuModeEnum.HORIZONTAL) ||
-    //     (isHorizontal && unref(getMenuSplit))
-    //   )
-    // })
 
     const getCollapsedOptions = computed(() => {
       const isInlineMenu = props.mode === MenuModeEnum.INLINE
@@ -142,14 +102,29 @@ export default defineComponent({
       menuState.selectedKeys = [key]
     }
 
-    return {
-      handleOpenChange,
-      handleMenuClick,
-      getOpenKeys,
-      ...toRefs(menuState),
-      getMenuFold,
-      getCollapsedOptions
-    }
+    return () => (
+      <Menu
+        {...unref(getCollapsedOptions)}
+        mode={props.mode}
+        theme={props.theme}
+        openKeys={unref(getOpenKeys)}
+        selectedKeys={menuState.selectedKeys}
+        inlineIndent={20}
+        subMenuOpenDelay={0.2}
+        onOpenChange={handleOpenChange}
+        onClick={handleMenuClick}
+      >
+        {props.items.map(item => (
+          <SubMenuItem
+            item={item}
+            key={item.path}
+            theme={props.theme}
+            collapsed={unref(getMenuFold)}
+            showTitle={props.menuFoldShowTitle}
+            isHorizontal={props.isHorizontal}
+          />
+        ))}
+      </Menu>
+    )
   }
 })
-</script>

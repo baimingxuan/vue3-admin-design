@@ -2,7 +2,7 @@ import { defineComponent } from 'vue'
 import { MenuItem } from 'ant-design-vue'
 
 import { menuItemProps } from '../props'
-import MenuItemCont from './MenuItemCont.vue'
+import MenuItemCont from './MenuItemCont'
 
 export default defineComponent({
   name: 'MenuItems',
