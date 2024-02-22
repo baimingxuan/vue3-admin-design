@@ -42,7 +42,6 @@ export default defineComponent({
     }
 
     function handlePicker(item: any) {
-      console.log('item', item, props.event)
       baseHandler(props.event!, {
         menuMode: item.mode,
         menuType: item.type

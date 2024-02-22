@@ -1,6 +1,4 @@
-@prefix-cls: ~'layout_hybrid-sider';
-
-.@{prefix-cls} {
+.layout-hybrid-sider {
   z-index: 999;
   position: fixed;
   top: 0;
@@ -17,7 +15,7 @@
     transition: all 0.2s ease 0s;
   }
 
-  &-main-menu {
+  .main-menu {
     position: relative;
     padding-top: 1px;
 
@@ -34,7 +32,7 @@
         margin-bottom: 4px;
         transition: all 0.2s;
       }
-  
+
       &-name {
         display: block;
         height: 22px;
@@ -46,7 +44,7 @@
       &:hover {
         color: @white;
       }
-      
+
       &--active {
         font-weight: 600;
         color: @white;
@@ -69,7 +67,7 @@
     background: @white;
     box-shadow: 2px 0 8px 0 rgb(29 35 41 / 5%);
 
-    .@{prefix-cls}-main-menu {
+    .main-menu {
 
       &__item {
         color: rgb(0 0 0 / 65%);
@@ -77,7 +75,7 @@
         &:hover {
           color: @primary-color;
         }
-  
+
         &--active {
           color: @primary-color;
           background: @white;
@@ -85,14 +83,14 @@
       }
     }
 
-    .@{prefix-cls}-trigger {
+    .trigger-btn {
 
       &:deep(svg) {
         color: @primary-dark-bg;
       }
     }
 
-    .@{prefix-cls}-sub-menu {
+    .sub-menu {
       background: @white;
       box-shadow: 2px 0 8px 0 rgb(29 35 41 / 5%);
 
@@ -100,7 +98,7 @@
 
         .pushpin {
           color: @primary-dark-bg;
-  
+
           &:hover {
             color: @primary-color;
           }
@@ -109,7 +107,7 @@
     }
   }
 
-  &.mini &-main-menu {
+  &.mini .main-menu {
     &__item {
       &-name {
         display: none;
@@ -121,7 +119,7 @@
     }
   }
 
-  &-trigger {
+  .trigger-btn {
     z-index: 199;
     position: absolute;
     bottom: 0;
@@ -136,7 +134,7 @@
     line-height: 36px;
   }
 
-  &-sub-menu {
+  .sub-menu {
     position: fixed;
     top: 0;
     height: 100%;

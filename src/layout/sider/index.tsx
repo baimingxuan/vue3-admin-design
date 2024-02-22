@@ -1,7 +1,7 @@
 import { defineComponent, unref } from 'vue'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
-import BasicSider from './BasicSider.vue'
-import HybridSider from './HybridSider/index.vue'
+import BasicSider from './BasicSider'
+import HybridSider from './HybridSider'
 
 export default defineComponent({
   name: 'LayoutSider',

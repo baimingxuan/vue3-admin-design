@@ -1,61 +1,7 @@
-<template>
-  <div :class="`${prefixCls}-dom`" :style="getDomStyle" />
-  <div
-    :class="[prefixCls, getMenuTheme, { open: openMenu, mini: getMenuFold }]"
-    :style="getWrapStyle"
-    v-bind="getWrapEvents"
-  >
-    <AppLogo />
-    <SiderTrigger :class="`${prefixCls}-trigger`" />
-    <ScrollContainer>
-      <div :class="`${prefixCls}-main-menu`">
-        <div
-          v-for="item in mainMenuList"
-          :key="item.path"
-          v-bind="getMainMenuItemEvents(item)"
-          :class="[
-            `${prefixCls}-main-menu__item`,
-            {
-              [`${prefixCls}-main-menu__item--active`]: item.path === activePath
-            }
-          ]"
-        >
-          <SvgIcon :class="`${prefixCls}-main-menu__item-icon`" :name="item?.icon as string" size="20" />
-          <p :class="`${prefixCls}-main-menu__item-name`">
-            {{ item?.name }}
-          </p>
-        </div>
-      </div>
-    </ScrollContainer>
-
-    <div :class="`${prefixCls}-sub-menu`" :style="getSubMenuStyle">
-      <div v-show="openMenu" :class="[`${prefixCls}-sub-menu__title`, { show: openMenu }]">
-        <span class="text">vue-admin-design</span>
-        <SvgIcon
-          class="pushpin"
-          :name="getMenuFixed ? 'pushpin-fill' : 'pushpin-line'"
-          :size="16"
-          @click="handleFixedMenu"
-        />
-      </div>
-      <Menu
-        v-show="openMenu"
-        :items="childrenMenus"
-        :theme="getMenuTheme"
-        :hybridSider="true"
-        @menuClick="handleMenuClick"
-      />
-      <DragBar ref="dragBarRef" />
-    </div>
-  </div>
-</template>
-
-<script lang="ts">
-import { defineComponent, computed, ref, unref, onMounted } from 'vue'
+import type { AppMenu } from '@/router/types'
 import type { CSSProperties } from 'vue'
 import type { RouteLocationNormalized } from 'vue-router'
-import { AppMenu } from '@/router/types'
-
+import { defineComponent, computed, ref, unref, onMounted } from 'vue'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { getShallowMenus, getChildrenMenus, getCurrentParentPath } from '@/router/menus'
 import { useGo } from '@/hooks/web/usePage'
@@ -67,14 +13,13 @@ import SiderTrigger from '../components/SiderTrigger'
 import { Menu } from '@/components/Menu'
 import DragBar from '../components/DragBar'
 import SvgIcon from '@/components/SvgIcon'
+import './index.less'
 
 export default defineComponent({
   name: 'LayoutHybridSider',
   components: { ScrollContainer, SiderTrigger, Menu, DragBar, SvgIcon, AppLogo },
 
   setup() {
-    const prefixCls = 'layout_hybrid-sider'
-
     const mainMenuList = ref<AppMenu[]>([])
     const activePath = ref('')
     const childrenMenus = ref<AppMenu[]>([])
@@ -220,27 +165,51 @@ export default defineComponent({
       }
     }
 
-    return {
-      prefixCls,
-      mainMenuList,
-      activePath,
-      getMenuTheme,
-      getMenuFixed,
-      getDomStyle,
-      getWrapStyle,
-      getWrapEvents,
-      getSubMenuStyle,
-      getMenuFold,
-      openMenu,
-      childrenMenus,
-      getMainMenuItemEvents,
-      handleFixedMenu,
-      handleMenuClick
-    }
+    return () => (
+      <>
+        <div class='layout-hybrid-sider-dom' style={unref(getDomStyle)} />
+        <div
+          {...unref(getWrapEvents)}
+          class={['layout-hybrid-sider', unref(getMenuTheme), { open: unref(openMenu), mini: unref(getMenuFold) }]}
+          style={unref(getWrapStyle)}
+        >
+          <AppLogo />
+          <SiderTrigger class='trigger-btn' />
+          <ScrollContainer>
+            <div class='main-menu'>
+              {unref(mainMenuList).map(item => (
+                <div
+                  key={item.path}
+                  class={['main-menu__item', { 'main-menu__item--active': unref(activePath) === item.path }]}
+                  {...getMainMenuItemEvents(item)}
+                >
+                  <SvgIcon class='main-menu__item-icon' name={item?.icon} size={20} />
+                  <p class='main-menu__item-name'>{item?.name}</p>
+                </div>
+              ))}
+            </div>
+          </ScrollContainer>
+          <div class='sub-menu' style={unref(getSubMenuStyle)}>
+            <div v-show={unref(openMenu)} class={['sub-menu__title', { show: unref(openMenu) }]}>
+              <span class='text'>vue-admin-design</span>
+              <SvgIcon
+                class='pushpin'
+                name={unref(getMenuFixed) ? 'pushpin-fill' : 'pushpin-line'}
+                size={16}
+                onClick={handleFixedMenu}
+              />
+            </div>
+            <Menu
+              v-show={unref(openMenu)}
+              items={unref(childrenMenus)}
+              theme={unref(getMenuTheme)}
+              hybridSider={true}
+              onMenuClick={handleMenuClick}
+            />
+            <DragBar />
+          </div>
+        </div>
+      </>
+    )
   }
 })
-</script>
-
-<style lang="less" scoped>
-@import './index.less';
-</style>
