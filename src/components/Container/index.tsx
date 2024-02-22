@@ -1,18 +1,10 @@
-<template>
-  <Scrollbar ref="scrollbarRef" class="scroll-container" v-bind="$attrs">
-    <slot />
-  </Scrollbar>
-</template>
-
-<script lang="ts">
 import { defineComponent, ref, unref, nextTick } from 'vue'
 import Scrollbar from '../Scrollbar'
 import { useScrollTo } from '@/hooks/event/useScrollTo'
 
 export default defineComponent({
   name: 'ScrollContainer',
-  components: { Scrollbar },
-  setup() {
+  setup(_, { slots, attrs, expose }) {
     const scrollbarRef = ref<Nullable<{ wrap: ElRef }>>(null)
 
     /**
@@ -67,27 +59,16 @@ export default defineComponent({
       })
     }
 
-    return {
-      scrollbarRef,
+    expose({
       scrollTo,
       scrollBottom,
       getScrollWrap
-    }
+    })
+
+    return () => (
+      <Scrollbar {...attrs} ref={scrollbarRef} class='scroll-container'>
+        {slots.default?.()}
+      </Scrollbar>
+    )
   }
 })
-</script>
-<style lang="less">
-.scroll-container {
-  width: 100%;
-  height: 100%;
-
-  .scrollbar__wrap {
-    margin-bottom: 18px !important;
-    overflow-x: hidden;
-  }
-
-  .scrollbar__view {
-    box-sizing: border-box;
-  }
-}
-</style>

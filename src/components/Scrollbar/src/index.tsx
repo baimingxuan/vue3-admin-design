@@ -1,34 +1,15 @@
-<template>
-  <div class="scrollbar">
-    <div
-      ref="wrap"
-      :class="[wrapClass, 'scrollbar__wrap', native ? '' : 'scrollbar__wrap--hidden-default']"
-      @scroll="handleScroll"
-    >
-      <component :is="tag" ref="resize" :class="['scrollbar__view', viewClass]" :style="viewStyle">
-        <slot />
-      </component>
-    </div>
-    <template v-if="!native">
-      <Bar :move="moveX" :size="sizeWidth" />
-      <Bar vertical :move="moveY" :size="sizeHeight" />
-    </template>
-  </div>
-</template>
-
-<script lang="ts">
 import { defineComponent, ref, unref, provide, nextTick, onMounted, onBeforeUnmount } from 'vue'
-
-import Bar from './bar'
-// import { toObject } from './util'
 import { addResizeListener, removeResizeListener } from '@/utils/resizeEvent'
+import Bar from './bar'
+import './index.less'
 
 export default defineComponent({
   name: 'Scrollbar',
-  components: { Bar },
   props: {
     // if the container size don't change, setting it can optimize performance
-    noresize: Boolean,
+    noresize: {
+      type: Boolean
+    },
     native: {
       type: Boolean,
       default: false
@@ -48,13 +29,9 @@ export default defineComponent({
     viewStyle: {
       type: [String, Array],
       default: ''
-    },
-    tag: {
-      type: String,
-      default: 'div'
     }
   },
-  setup(props) {
+  setup(props, { slots }) {
     const sizeWidth = ref('0')
     const sizeHeight = ref('0')
     const moveX = ref(0)
@@ -63,13 +40,6 @@ export default defineComponent({
     const resize = ref()
 
     provide('scroll-bar-wrap', wrap)
-
-    // const style = computed(() => {
-    //   if (Array.isArray(props.wrapStyle)) {
-    //     return toObject(props.wrapStyle)
-    //   }
-    //   return props.wrapStyle
-    // });
 
     const handleScroll = () => {
       if (!props.native) {
@@ -107,20 +77,24 @@ export default defineComponent({
       }
     })
 
-    return {
-      moveX,
-      moveY,
-      sizeWidth,
-      sizeHeight,
-      wrap,
-      resize,
-      update,
-      handleScroll
-    }
+    return () => (
+      <div class='scrollbar'>
+        <div
+          ref={wrap}
+          class={[props.wrapClass, 'scrollbar__wrap', props.native ? '' : 'scrollbar__wrap--hidden-default']}
+          onScroll={handleScroll}
+        >
+          <div ref={resize} class={['scrollbar__view', props.viewClass]} style={props.viewStyle}>
+            {slots.default?.()}
+          </div>
+        </div>
+        {!props.native && (
+          <>
+            <Bar move={unref(moveX)} size={unref(sizeWidth)} />
+            <Bar vertical move={unref(moveY)} size={unref(sizeHeight)} />
+          </>
+        )}
+      </div>
+    )
   }
 })
-</script>
-
-<style lang="less">
-@import './index.less';
-</style>

@@ -2,10 +2,10 @@ import { defineComponent, computed, unref } from 'vue'
 import { Layout } from 'ant-design-vue'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import LayoutSetting from './setting'
-import LayoutSider from './sider/index.vue'
+import LayoutSider from './sider'
 import LayoutHeader from './header'
 import LayoutBasicHeader from './header/BasicHeader'
-import LayoutPage from './content/index'
+import LayoutPage from './content'
 
 export default defineComponent({
   name: 'BasicLayout',

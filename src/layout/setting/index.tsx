@@ -12,7 +12,7 @@ import {
   SettingFooter
 } from './components'
 import { menuTypeList, appThemeColorList } from './enum'
-import Container from '@/components/Container/index.vue'
+import Container from '@/components/Container'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'

@@ -6,7 +6,7 @@ import { Menu } from '@/components/Menu'
 import { useGo } from '@/hooks/web/usePage'
 import { useLayoutMenu } from './useLayoutMenu'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
-import ScrollContainer from '@/components/Container/index.vue'
+import ScrollContainer from '@/components/Container'
 
 export default defineComponent({
   name: 'LayoutMenu',

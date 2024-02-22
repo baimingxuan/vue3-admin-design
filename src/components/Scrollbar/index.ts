@@ -3,6 +3,6 @@
  * @link see: https://github.com/ElemeFE/element/tree/dev/packages/scrollbar
  */
 
-import Scrollbar from './src/main.vue'
+import Scrollbar from './src'
 
 export default Scrollbar
