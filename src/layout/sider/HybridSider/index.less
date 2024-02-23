@@ -138,7 +138,7 @@
     position: fixed;
     top: 0;
     height: 100%;
-    background: @submenu-dark-bg;
+    background: @primary-dark-bg;
     transition: all 0.2s;
 
     &__title {
@@ -151,6 +151,11 @@
       transition: unset;
       align-items: center;
       justify-content: space-between;
+
+      img {
+        width: 140px;
+        height: 17.5px;
+      }
 
       &.show {
         min-width: 130px;
@@ -171,6 +176,7 @@
 
     &__content {
       height: calc(100% - 48px) !important;
+      border-left: 1px solid #0c2135;
 
       .scrollbar__wrap {
         height: 100%;

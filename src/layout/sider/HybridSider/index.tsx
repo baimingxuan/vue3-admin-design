@@ -13,6 +13,7 @@ import SiderTrigger from '../components/SiderTrigger'
 import { Menu } from '@/components/Menu'
 import DragBar from '../components/DragBar'
 import SvgIcon from '@/components/SvgIcon'
+import logoName from '@/assets/images/name.png'
 import './index.less'
 
 export default defineComponent({
@@ -191,7 +192,7 @@ export default defineComponent({
           </ScrollContainer>
           <div class='sub-menu' style={unref(getSubMenuStyle)}>
             <div v-show={unref(openMenu)} class={['sub-menu__title', { show: unref(openMenu) }]}>
-              <span class='text'>vue-admin-design</span>
+              <img src={logoName} alt='name' />
               <SvgIcon
                 class='pushpin'
                 name={unref(getMenuFixed) ? 'pushpin-fill' : 'pushpin-line'}
@@ -199,13 +200,15 @@ export default defineComponent({
                 onClick={handleFixedMenu}
               />
             </div>
-            <Menu
-              v-show={unref(openMenu)}
-              items={unref(childrenMenus)}
-              theme={unref(getMenuTheme)}
-              hybridSider={true}
-              onMenuClick={handleMenuClick}
-            />
+            <div class='sub-menu__content'>
+              <Menu
+                v-show={unref(openMenu)}
+                items={unref(childrenMenus)}
+                theme={unref(getMenuTheme)}
+                hybridSider={true}
+                onMenuClick={handleMenuClick}
+              />
+            </div>
             <DragBar />
           </div>
         </div>
