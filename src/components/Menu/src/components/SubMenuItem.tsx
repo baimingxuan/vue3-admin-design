@@ -24,7 +24,12 @@ export default defineComponent({
     return () => (
       <>
         {!menuHasChildren(props.item) && unref(getShowMenu) ? (
-          <MenuItems item={props.item} collapsed={props.collapsed} showTitle={props.showTitle} />
+          <MenuItems
+            item={props.item}
+            collapsed={props.collapsed}
+            showTitle={props.showTitle}
+            class={{ 'menu-item-collapsed': props.collapsed && props.showTitle }}
+          />
         ) : (
           <></>
         )}

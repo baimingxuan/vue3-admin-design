@@ -14,7 +14,8 @@ export default defineComponent({
     const siderRef = ref<ElRef>(null)
     const dragBarRef = ref<ElRef>(null)
 
-    const { getMenuType, getMenuTheme, getMenuWidth, getMenuFold, getMenuFoldBtn, getMenuSplit } = useMenuSetting()
+    const { getMenuType, getMenuTheme, getMenuWidth, getMenuFold, getMenuFoldBtn, getMenuSplit, getMenuFoldShowTitle } =
+      useMenuSetting()
     const getShowTrigger = computed(() => unref(getMenuFoldBtn) === MenuFoldBtnEnum.SIDER)
     const getTriggerAttr = computed(() => (unref(getShowTrigger) ? {} : { trigger: null }))
     const getShowSider = computed(() => {
@@ -22,6 +23,9 @@ export default defineComponent({
         unref(getMenuType) === MenuTypeEnum.SIDER_MENU ||
         (unref(getMenuType) === MenuTypeEnum.HEADER_MENU && unref(getMenuSplit))
       )
+    })
+    const getMenuFoldWidth = computed(() => {
+      return unref(getMenuFold) && !unref(getMenuFoldShowTitle) ? 48 : 80
     })
     const getIsSplited = computed(() => unref(getMenuSplit))
 
@@ -37,6 +41,7 @@ export default defineComponent({
             collapsible={true}
             theme={unref(getMenuTheme)}
             width={unref(getMenuWidth)}
+            collapsedWidth={unref(getMenuFoldWidth)}
             collapsed={unref(getMenuFold)}
           >
             {{

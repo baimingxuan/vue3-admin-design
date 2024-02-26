@@ -12,7 +12,7 @@ import logoNameWhite from '@/assets/images/name_white.png'
 export default defineComponent({
   name: 'AppLogo',
   setup() {
-    const { getMenuFold, getMenuType, getMenuTheme } = useMenuSetting()
+    const { getMenuFold, getMenuType, getMenuTheme, getMenuFoldShowTitle } = useMenuSetting()
     const go = useGo()
 
     function goHome() {
@@ -23,8 +23,12 @@ export default defineComponent({
       return unref(getMenuTheme) === ThemeEnum.DARK ? logoNameWhite : logoName
     })
 
+    const getLogoFold = computed(() => {
+      return unref(getMenuFold) && !unref(getMenuFoldShowTitle)
+    })
+
     return () => (
-      <div class={['anticon', styles['app-logo']]} onClick={goHome}>
+      <div class={['anticon', styles['app-logo'], { [styles['collapsed']]: unref(getLogoFold) }]} onClick={goHome}>
         <Space>
           <img class={styles['logo-img']} src={logoImg} alt='logo' />
           <img

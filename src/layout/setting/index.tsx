@@ -87,6 +87,7 @@ export default defineComponent({
             title='菜单折叠显示名称'
             def={unref(getMenuFoldShowTitle)}
             event={HandlerEnum.MENU_FOLD_SHOW_TITLE}
+            disabled={unref(getMenuType) !== MenuTypeEnum.SIDER_MENU}
           />
           <SwitchItem title='标签缓存' def={unref(getTagsCached)} event={HandlerEnum.PAGE_TAGS_CACHED} />
           <SelectItem
