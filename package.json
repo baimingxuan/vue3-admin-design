@@ -72,6 +72,7 @@
     "@vitejs/plugin-vue-jsx": "^3.1.0",
     "@vue/compiler-sfc": "^3.4.5",
     "autoprefixer": "^10.4.16",
+    "code-inspector-plugin": "^0.9.2",
     "commitizen": "^4.3.0",
     "consola": "^3.2.3",
     "cssnano": "^6.0.3",

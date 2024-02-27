@@ -1,6 +1,7 @@
 import type { Plugin } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import { codeInspectorPlugin } from 'code-inspector-plugin'
 import { configMockPlugin } from './mock'
 import { configSvgIconsPlugin } from './svgIcons'
 import { configStyleImportPlugin } from './styles'
@@ -20,6 +21,13 @@ export function createVitePlugins(isBuild: boolean) {
 
   // vite-plugin-mock
   vitePlugins.push(configMockPlugin(isBuild))
+
+  // code-inspector-plugin
+  vitePlugins.push(
+    codeInspectorPlugin({
+      bundler: 'vite'
+    })
+  )
 
   return vitePlugins
 }
