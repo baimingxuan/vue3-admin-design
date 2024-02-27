@@ -15,7 +15,8 @@ export function handler(event: HandlerEnum, value: any): DeepPartial<AppConfig> 
       return {
         menuSetting: {
           menuType,
-          menuMode
+          menuMode,
+          menuFold: false
         }
       }
 

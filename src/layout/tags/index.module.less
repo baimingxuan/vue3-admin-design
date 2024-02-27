@@ -6,7 +6,20 @@
   padding: 4px 12px;
   line-height: 32px;
   border-top: solid 1px #d9d9d9;
+  transition: all 0.3s ease;
   box-sizing: border-box;
+
+  &__btn {
+    svg {
+      opacity: 0.65;
+    }
+
+    &:hover {
+      svg {
+        opacity: 1;
+      }
+    }
+  }
 
   &__main {
     position: relative;
