@@ -5,6 +5,7 @@ import { defineComponent, computed, ref, unref, onMounted } from 'vue'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { getShallowMenus, getChildrenMenus, getCurrentParentPath } from '@/router/menus'
 import { useGo } from '@/hooks/web/usePage'
+import { MenuFoldBtnEnum } from '@/enums/menuEnum'
 import { SIDE_BAR_MIN_WIDTH, SIDE_BAR_SHOW_TITLE_MIN_WIDTH } from '@/enums/appEnum'
 import { listenerRouteChange } from '@/logics/mitt/routeChange'
 import { AppLogo } from '@/components/Application'
@@ -29,8 +30,16 @@ export default defineComponent({
 
     const go = useGo()
 
-    const { getMenuTheme, getMenuFold, getMenuWidth, getMenuFixed, getIsHybridMenu, getReallWidth, setMenuSetting } =
-      useMenuSetting()
+    const {
+      getMenuTheme,
+      getMenuFold,
+      getMenuWidth,
+      getMenuFoldBtn,
+      getMenuFixed,
+      getIsHybridMenu,
+      getReallWidth,
+      setMenuSetting
+    } = useMenuSetting()
 
     const getHybridSiderWidth = computed(() => {
       return unref(getMenuFold) ? SIDE_BAR_MIN_WIDTH : SIDE_BAR_SHOW_TITLE_MIN_WIDTH
@@ -175,7 +184,7 @@ export default defineComponent({
           style={unref(getWrapStyle)}
         >
           <AppLogo />
-          <SiderTrigger class='trigger-btn' />
+          {unref(getMenuFoldBtn) === MenuFoldBtnEnum.SIDER && <SiderTrigger class='trigger-btn' />}
           <ScrollContainer>
             <div class='main-menu'>
               {unref(mainMenuList).map(item => (

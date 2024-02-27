@@ -23,7 +23,7 @@ export default defineComponent({
     }
 
     return () => (
-      <div class='flex-center-v' style='padding: 0 16px;'>
+      <div class='flex-center-v'>
         <Breadcrumb>
           {routeMatcheds.value.map((route: RouteLocationMatched) => {
             return (

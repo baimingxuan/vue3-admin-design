@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'vue'
 import { defineComponent, unref, computed } from 'vue'
-import { LayoutHeader } from 'ant-design-vue'
+import { LayoutHeader, Space } from 'ant-design-vue'
 import LayoutTags from '../tags'
 import LayoutFeature from '../feature'
 import FoldTrigger from './components/FoldTrigger'
@@ -34,8 +34,10 @@ export default defineComponent({
       <LayoutHeader class={unref(getHeaderCls)} style={unref(getHeaderStyle)}>
         <div class='flex-between-h' style='padding: 0 12px;'>
           <div class='flex-center-v'>
-            {unref(getShowTrigger) && <FoldTrigger />}
-            {unref(getShowBreadCrumb) && <LayoutBreadcrumb />}
+            <Space>
+              {unref(getShowTrigger) && <FoldTrigger />}
+              {unref(getShowBreadCrumb) && <LayoutBreadcrumb />}
+            </Space>
           </div>
           <LayoutFeature />
         </div>
