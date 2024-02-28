@@ -183,7 +183,7 @@ export default defineComponent({
           class={['layout-hybrid-sider', unref(getMenuTheme), { open: unref(openMenu), mini: unref(getMenuFold) }]}
           style={unref(getWrapStyle)}
         >
-          <AppLogo />
+          <AppLogo style={{ marginLeft: !unref(getMenuFold) ? '10px' : '' }} />
           {unref(getMenuFoldBtn) === MenuFoldBtnEnum.SIDER && <SiderTrigger class='trigger-btn' />}
           <ScrollContainer>
             <div class='main-menu'>
@@ -209,9 +209,8 @@ export default defineComponent({
                 onClick={handleFixedMenu}
               />
             </div>
-            <div class='sub-menu__content'>
+            <div v-show={unref(openMenu)} class='sub-menu__content'>
               <Menu
-                v-show={unref(openMenu)}
                 items={unref(childrenMenus)}
                 theme={unref(getMenuTheme)}
                 hybridSider={true}

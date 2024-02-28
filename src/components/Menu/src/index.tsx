@@ -109,7 +109,7 @@ export default defineComponent({
         theme={props.theme}
         openKeys={unref(getOpenKeys)}
         selectedKeys={menuState.selectedKeys}
-        inlineIndent={20}
+        inlineIndent={16}
         subMenuOpenDelay={0.2}
         onOpenChange={handleOpenChange}
         onClick={handleMenuClick}
