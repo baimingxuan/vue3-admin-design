@@ -42,7 +42,8 @@ export default defineComponent({
       getMenuWidth
     } = useMenuSetting()
 
-    const { getLockScreenTime, getShowFooter, getColorWeak, getGrayMode, getTagsCached } = useBaseSetting()
+    // const { getLockScreenTime, getShowFooter, getColorWeak, getGrayMode, getTagsCached } = useBaseSetting()
+    const { getShowFooter, getColorWeak, getGrayMode, getTagsCached } = useBaseSetting()
 
     const {
       getShowBreadCrumb,
@@ -105,7 +106,7 @@ export default defineComponent({
             defaultValue={unref(getMenuWidth)}
             formatter={(value: string) => `${parseInt(value)}px`}
           />
-          <InputNumItem
+          {/* <InputNumItem
             title='自动锁屏'
             min={0}
             event={HandlerEnum.LOCK_SCREEN_TIME}
@@ -113,7 +114,7 @@ export default defineComponent({
             formatter={(value: string) => {
               return parseInt(value) === 0 ? `0(不自动锁屏)` : `${value}分钟`
             }}
-          />
+          /> */}
         </>
       )
     }
