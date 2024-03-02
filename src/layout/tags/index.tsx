@@ -1,13 +1,18 @@
+import type { CSSProperties } from 'vue'
 import type { RouteLocationNormalized, RouteMeta } from 'vue-router'
 import { defineComponent, computed, ref, unref, nextTick, TransitionGroup } from 'vue'
 import { useRouter } from 'vue-router'
 import { Button, Dropdown, Menu, MenuItem } from 'ant-design-vue'
 import { LeftOutlined, RightOutlined, RedoOutlined, CloseOutlined } from '@ant-design/icons-vue'
 import { listenerRouteChange } from '@/logics/mitt/routeChange'
+import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
+import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { useTagStore } from '@/stores/modules/tags'
 import { initAffixTags } from './useTags'
 import { useGo } from '@/hooks/web/usePage'
 import { useTags } from '@/hooks/web/useTags'
+import { AppModeEnum, ThemeEnum } from '@/enums/appEnum'
+import { MenuTypeEnum } from '@/enums/menuEnum'
 import TagItem from './components/TagItem'
 import styles from './index.module.less'
 
@@ -35,10 +40,29 @@ export default defineComponent({
     const router = useRouter()
     const tagStore = useTagStore()
     const go = useGo()
+
+    const { getAppMode } = useBaseSetting()
+    const { getMenuTheme, getMenuType } = useMenuSetting()
+
     const { refresh, closeLeft, closeRight, closeOther, closeAll } = useTags()
 
     const getTagsList = computed(() => {
       return tagStore.getVisitedTags.filter(item => !item.meta?.hideTag)
+    })
+
+    const getBtnStyle = computed((): CSSProperties => {
+      if (
+        unref(getAppMode) === AppModeEnum.LIGHT &&
+        unref(getMenuTheme) === ThemeEnum.DARK &&
+        unref(getMenuType) === MenuTypeEnum.HEADER_MENU
+      ) {
+        return {
+          color: 'rgba(255, 255, 255, 0.65)',
+          backgroundColor: 'transparent',
+          border: 'solid 1px rgba(255, 255, 255, 0.65)'
+        }
+      }
+      return {}
     })
 
     initAffixTags()
@@ -147,6 +171,7 @@ export default defineComponent({
           class={styles['layout-tags__btn']}
           icon={<LeftOutlined />}
           size='small'
+          style={unref(getBtnStyle)}
           onClick={() => handleMove(200)}
         />
         <div ref={tagsMain} class={styles['layout-tags__main']} onWheel={handleScroll}>
@@ -170,12 +195,14 @@ export default defineComponent({
           class={styles['layout-tags__btn']}
           icon={<RightOutlined />}
           size='small'
+          style={unref(getBtnStyle)}
           onClick={() => handleMove(-200)}
         />
         <Button
           class={[styles['layout-tags__btn'], styles['layout-tags__btn-space']]}
           icon={<RedoOutlined spin={unref(loading)} />}
           size='small'
+          style={unref(getBtnStyle)}
           onClick={handleReload}
         />
         <Dropdown placement='bottomRight'>
@@ -185,6 +212,7 @@ export default defineComponent({
                 class={[styles['layout-tags__btn'], styles['layout-tags__btn-space']]}
                 icon={<CloseOutlined />}
                 size='small'
+                style={unref(getBtnStyle)}
               />
             ),
             overlay: () => (
