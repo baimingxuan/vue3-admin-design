@@ -65,6 +65,13 @@ export default defineComponent({
       return {}
     })
 
+    const isDarkBg = computed(
+      () =>
+        unref(getAppMode) === AppModeEnum.LIGHT &&
+        unref(getMenuTheme) === ThemeEnum.DARK &&
+        unref(getMenuType) === MenuTypeEnum.HEADER_MENU
+    )
+
     initAffixTags()
 
     listenerRouteChange(route => {
@@ -183,6 +190,7 @@ export default defineComponent({
                     name={item.meta.title}
                     active={unref(activeKeyRef) === item.path}
                     fixed={item.meta?.affix}
+                    isDarkBg={unref(isDarkBg)}
                     onClick={() => handleClickTag(item.path)}
                     onCloseTag={() => handleCloseTag(item.path)}
                   />
