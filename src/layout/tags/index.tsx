@@ -65,7 +65,7 @@ export default defineComponent({
       return {}
     })
 
-    const isDarkBg = computed(
+    const isDark = computed(
       () =>
         unref(getAppMode) === AppModeEnum.LIGHT &&
         unref(getMenuTheme) === ThemeEnum.DARK &&
@@ -190,7 +190,7 @@ export default defineComponent({
                     name={item.meta.title}
                     active={unref(activeKeyRef) === item.path}
                     fixed={item.meta?.affix}
-                    isDarkBg={unref(isDarkBg)}
+                    isDark={unref(isDark)}
                     onClick={() => handleClickTag(item.path)}
                     onCloseTag={() => handleCloseTag(item.path)}
                   />

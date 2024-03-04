@@ -9,7 +9,7 @@ export default defineComponent({
     fixed: propTypes.bool,
     name: propTypes.string,
     active: propTypes.bool,
-    isDarkBg: propTypes.bool
+    isDark: propTypes.bool
   },
   setup(props, { emit }) {
     function handleClose() {
@@ -20,7 +20,7 @@ export default defineComponent({
       <Tag
         class={[
           styles['tag-item'],
-          { [styles['is-dark-bg']]: props.isDarkBg },
+          { [styles['is-dark']]: props.isDark },
           { ['ant-tag-checkable-checked']: props.active }
         ]}
         closable={!props.fixed}
