@@ -6,7 +6,7 @@ import { stores } from '../index'
 import { resetRouter } from '@/router'
 import { deepMerge } from '@/utils'
 import { Persistent } from '@/utils/cache/persistent'
-import { APP_CONFIG_KEY } from '@/enums/cacheEnum'
+import { APP_CONFIG_KEY, APP_MODE_KEY } from '@/enums/cacheEnum'
 import { baseAppMode } from '@/settings/designSetting'
 
 interface AppState {
@@ -26,7 +26,7 @@ export const useAppStore = defineStore('app', {
 
   getters: {
     getAppMode(): AppModeEnum | string {
-      return this.appMode || baseAppMode
+      return this.appMode || localStorage.getItem(APP_MODE_KEY) || baseAppMode
     },
     getThemeMode(): ThemeMode | string {
       return this.themeMode || ''
@@ -48,6 +48,7 @@ export const useAppStore = defineStore('app', {
   actions: {
     setAppMode(mode: AppModeEnum): void {
       this.appMode = mode
+      localStorage.setItem(APP_MODE_KEY, mode)
     },
     setThemeMode(mode: ThemeEnum): void {
       this.themeMode = mode

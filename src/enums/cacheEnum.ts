@@ -6,6 +6,8 @@ export const USER_INFO_KEY = 'USER_INFO_KEY'
 
 export const APP_CONFIG_KEY = 'APP_CONFIG_KEY'
 
+export const APP_MODE_KEY = 'APP_MODE_KEY';
+
 export const APP_TAGS_KEY = 'APP_TAGS_KEY'
 
 export const APP_LOCAL_CACHE_KEY = 'APP_LOCAL_CACHE_KEY'
