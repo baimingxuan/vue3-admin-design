@@ -7,6 +7,7 @@ export default defineComponent({
   name: 'LayoutSider',
   setup() {
     const { getIsHybridMenu } = useMenuSetting()
+
     return () => (unref(getIsHybridMenu) ? <HybridSider /> : <BasicSider />)
   }
 })

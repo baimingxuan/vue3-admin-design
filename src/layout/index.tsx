@@ -4,7 +4,6 @@ import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import LayoutSetting from './setting'
 import LayoutSider from './sider'
 import LayoutHeader from './header'
-import LayoutBasicHeader from './header/BasicHeader'
 import LayoutPage from './content'
 
 export default defineComponent({
@@ -22,11 +21,11 @@ export default defineComponent({
 
     return () => (
       <Layout>
-        {unref(getIsHeaderMenu) ? <LayoutHeader /> : <></>}
+        {unref(getIsHeaderMenu) && <LayoutHeader isHeaderMenu={true} />}
         <Layout class={unref(getLayoutClass)}>
           <LayoutSider />
           <Layout>
-            {!unref(getIsHeaderMenu) ? <LayoutBasicHeader /> : <></>}
+            {!unref(getIsHeaderMenu) && <LayoutHeader />}
             <Layout.Content class='content-wrapper'>
               <LayoutPage />
             </Layout.Content>

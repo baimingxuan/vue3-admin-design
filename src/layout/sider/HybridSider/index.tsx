@@ -2,12 +2,12 @@ import type { AppMenu } from '@/router/types'
 import type { CSSProperties } from 'vue'
 import type { RouteLocationNormalized } from 'vue-router'
 import { defineComponent, computed, ref, unref, onMounted } from 'vue'
-import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
+import { useDarkModeSetting } from '@/hooks/setting/useDarkModeSetting'
 import { getShallowMenus, getChildrenMenus, getCurrentParentPath } from '@/router/menus'
 import { useGo } from '@/hooks/web/usePage'
 import { MenuFoldBtnEnum } from '@/enums/menuEnum'
-import { AppModeEnum, SIDE_BAR_MIN_WIDTH, SIDE_BAR_SHOW_TITLE_MIN_WIDTH} from '@/enums/appEnum'
+import { SIDE_BAR_MIN_WIDTH, SIDE_BAR_SHOW_TITLE_MIN_WIDTH } from '@/enums/appEnum'
 import { listenerRouteChange } from '@/logics/mitt/routeChange'
 import { AppLogo } from '@/components/Application'
 import ScrollContainer from '@/components/Container'
@@ -17,7 +17,6 @@ import DragBar from '../components/DragBar'
 import SvgIcon from '@/components/SvgIcon'
 import logoName from '@/assets/images/name.png'
 import './index.less'
-
 
 export default defineComponent({
   name: 'LayoutHybridSider',
@@ -32,7 +31,7 @@ export default defineComponent({
 
     const go = useGo()
 
-    const { getAppMode } = useBaseSetting()
+    const { isDarkMode } = useDarkModeSetting()
     const {
       getMenuTheme,
       getMenuFold,
@@ -43,6 +42,10 @@ export default defineComponent({
       getReallWidth,
       setMenuSetting
     } = useMenuSetting()
+
+    const getSiderMode = computed(() => {
+      return unref(isDarkMode) ? '' : unref(getMenuTheme)
+    })
 
     const getHybridSiderWidth = computed(() => {
       return unref(getMenuFold) ? SIDE_BAR_MIN_WIDTH : SIDE_BAR_SHOW_TITLE_MIN_WIDTH
@@ -183,7 +186,7 @@ export default defineComponent({
         <div class='layout-hybrid-sider-dom' style={unref(getDomStyle)} />
         <div
           {...unref(getWrapEvents)}
-          class={['layout-hybrid-sider', unref(getAppMode) === AppModeEnum.LIGHT ? unref(getMenuTheme) : '', { open: unref(openMenu), mini: unref(getMenuFold) }]}
+          class={['layout-hybrid-sider', unref(getSiderMode), { open: unref(openMenu), mini: unref(getMenuFold) }]}
           style={unref(getWrapStyle)}
         >
           <AppLogo style={{ marginLeft: !unref(getMenuFold) ? '10px' : '' }} />
