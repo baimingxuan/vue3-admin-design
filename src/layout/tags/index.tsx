@@ -14,7 +14,7 @@ import { useTags } from '@/hooks/web/useTags'
 import { AppModeEnum, ThemeEnum } from '@/enums/appEnum'
 import { MenuTypeEnum } from '@/enums/menuEnum'
 import TagItem from './components/TagItem'
-import styles from './index.module.less'
+import './index.less'
 
 export default defineComponent({
   name: 'LayoutTags',
@@ -173,16 +173,16 @@ export default defineComponent({
     }
 
     return () => (
-      <div class={styles['layout-tags']}>
+      <div class='layout-tags'>
         <Button
-          class={styles['layout-tags__btn']}
+          class='layout-tags__btn'
           icon={<LeftOutlined />}
           size='small'
           style={unref(getBtnStyle)}
           onClick={() => handleMove(200)}
         />
-        <div ref={tagsMain} class={styles['layout-tags__main']} onWheel={handleScroll}>
-          <div ref={tagsMainCont} class={styles['layout-tags__main-cont']} style={{ left: `${unref(tagsContLeft)}px` }}>
+        <div ref={tagsMain} class='layout-tags__main' onWheel={handleScroll}>
+          <div ref={tagsMainCont} class='layout-tags__main-cont' style={{ left: `${unref(tagsContLeft)}px` }}>
             <TransitionGroup>
               {unref(getTagsList).map(item => (
                 <span key={item.path} data-path={item.path}>
@@ -200,14 +200,14 @@ export default defineComponent({
           </div>
         </div>
         <Button
-          class={styles['layout-tags__btn']}
+          class='layout-tags__btn'
           icon={<RightOutlined />}
           size='small'
           style={unref(getBtnStyle)}
           onClick={() => handleMove(-200)}
         />
         <Button
-          class={[styles['layout-tags__btn'], styles['layout-tags__btn-space']]}
+          class='layout-tags__btn layout-tags__btn-space'
           icon={<RedoOutlined spin={unref(loading)} />}
           size='small'
           style={unref(getBtnStyle)}
@@ -217,7 +217,7 @@ export default defineComponent({
           {{
             default: () => (
               <Button
-                class={[styles['layout-tags__btn'], styles['layout-tags__btn-space']]}
+                class='layout-tags__btn layout-tags__btn-space'
                 icon={<CloseOutlined />}
                 size='small'
                 style={unref(getBtnStyle)}

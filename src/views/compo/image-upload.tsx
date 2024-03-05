@@ -71,7 +71,7 @@ export default defineComponent({
                 action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
                 accept='.jpg, .jpeg, .gif, .png, .bmp'
                 multiple
-                class='muti-upload'
+                class='batch-upload'
               >
                 <p class='ant-upload-drag-icon' style='margin-bottom: 0;'>
                   <CloudUploadOutlined />
