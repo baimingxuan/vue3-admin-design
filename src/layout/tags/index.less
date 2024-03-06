@@ -6,8 +6,27 @@
   padding: 3px 12px;
   line-height: 32px;
   border-top: solid 1px @border-color;
+  border-bottom: solid 1px @border-color;
   transition: all 0.3s ease;
   box-sizing: border-box;
+
+  &.light {
+    border-top: solid 1px @border-color;
+    background: @white;
+  }
+
+  &.dark {
+    border-top: 1px solid rgba(255, 255, 255, 0.65);
+    background: @primary-dark-bg;
+
+    &.single-tags {
+      border-left: 1px solid rgba(255, 255, 255, 0.65);
+    }
+  }
+
+  &.single-tags {
+    border-top: none;
+  }
 
   &__main {
     position: relative;

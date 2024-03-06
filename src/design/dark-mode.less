@@ -32,6 +32,14 @@
     border-color: @dark-mode-color;
   }
 
+  .ant-layout-sider {
+    border-right: @dark-mode-border;
+
+    .ant-menu-inline {
+      border-right: none;
+    }
+  }
+
   .layout-hybrid-sider {
     border-right: @dark-mode-border;
     background: @dark-mode-bg;
@@ -45,6 +53,11 @@
 
   .layout-tags {
     border-top: @dark-mode-border;
+    border-bottom: @dark-mode-border;
+
+    &.single-tags {
+      border-top: none;
+    }
   }
 }
 

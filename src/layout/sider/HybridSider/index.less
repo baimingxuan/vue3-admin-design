@@ -46,7 +46,6 @@
       }
 
       &--active {
-        font-weight: 600;
         color: @white;
         background: @primary-dark-bg;
 
@@ -54,7 +53,7 @@
           position: absolute;
           top: 0;
           left: 0;
-          width: 3px;
+          width: 2px;
           height: 100%;
           background: @primary-color;
           content: '';
@@ -95,6 +94,7 @@
       box-shadow: 2px 0 8px 0 rgb(29 35 41 / 5%);
 
       &__title {
+        border-bottom: 1px solid @border-color;
 
         .pushpin {
           color: @primary-dark-bg;
@@ -103,6 +103,24 @@
             color: @primary-color;
           }
         }
+      }
+
+      &__content {
+        border-left: 1px solid @border-color;
+      }
+    }
+  }
+
+  &.dark {
+
+    .sub-menu {
+
+      &__title {
+        border-bottom: 1px solid #0c2135;
+      }
+
+      &__content {
+        border-left: 1px solid #0c2135;
       }
     }
   }
@@ -146,7 +164,6 @@
       height: 48px;
       font-size: 18px;
       color: @primary-color;
-      border-bottom: 1px solid #0c2135;
       opacity: 0%;
       transition: unset;
       align-items: center;
@@ -176,7 +193,6 @@
 
     &__content {
       height: calc(100% - 48px) !important;
-      border-left: 1px solid #0c2135;
 
       .scrollbar__wrap {
         height: 100%;

@@ -1,16 +1,22 @@
 .layout-hybrid-header {
   display: flex;
   flex-direction: column;
-  height: 80px!important;
-  line-height: 80px!important;
   color: #fff;
 
   &.light {
     background: @white;
+
+    &.has-border {
+      border-bottom: solid 1px @border-color;
+    }
   }
 
   &.dark {
     background: @primary-dark-bg;
+
+    &.has-border {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.65);
+    }
   }
 
   &-wrap {

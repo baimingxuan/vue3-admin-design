@@ -7,6 +7,7 @@ import { LeftOutlined, RightOutlined, RedoOutlined, CloseOutlined } from '@ant-d
 import { listenerRouteChange } from '@/logics/mitt/routeChange'
 import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
+import { useDarkModeSetting } from '@/hooks/setting/useDarkModeSetting'
 import { useTagStore } from '@/stores/modules/tags'
 import { initAffixTags } from './useTags'
 import { useGo } from '@/hooks/web/usePage'
@@ -18,19 +19,13 @@ import './index.less'
 
 export default defineComponent({
   name: 'LayoutTags',
-  components: {
-    Button,
-    TagItem,
-    Dropdown,
-    Menu,
-    MenuItem,
-    LeftOutlined,
-    RightOutlined,
-    RedoOutlined,
-    CloseOutlined
+  props: {
+    isHeaderTags: {
+      type: Boolean,
+      default: true
+    }
   },
-
-  setup() {
+  setup(props) {
     const tagsMain = ref<ElRef>(null)
     const tagsMainCont = ref<ElRef>(null)
 
@@ -42,9 +37,14 @@ export default defineComponent({
     const go = useGo()
 
     const { getAppMode } = useBaseSetting()
-    const { getMenuTheme, getMenuType } = useMenuSetting()
+    const { getMenuTheme, getMenuType, getIsHeaderMenu } = useMenuSetting()
+    const { isDarkMode } = useDarkModeSetting()
 
     const { refresh, closeLeft, closeRight, closeOther, closeAll } = useTags()
+
+    const getTagsMode = computed(() => {
+      return !unref(isDarkMode) ? (unref(getIsHeaderMenu) ? unref(getMenuTheme) : '') : ''
+    })
 
     const getTagsList = computed(() => {
       return tagStore.getVisitedTags.filter(item => !item.meta?.hideTag)
@@ -173,7 +173,7 @@ export default defineComponent({
     }
 
     return () => (
-      <div class='layout-tags'>
+      <div class={['layout-tags', unref(getTagsMode), { 'single-tags': !props.isHeaderTags }]}>
         <Button
           class='layout-tags__btn'
           icon={<LeftOutlined />}

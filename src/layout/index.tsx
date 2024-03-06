@@ -1,15 +1,18 @@
 import { defineComponent, computed, unref } from 'vue'
 import { Layout } from 'ant-design-vue'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
+import { useLayout } from './useLayout'
 import LayoutSetting from './setting'
 import LayoutSider from './sider'
 import LayoutHeader from './header'
+import LayoutTags from './tags'
 import LayoutPage from './content'
 
 export default defineComponent({
   name: 'BasicLayout',
   setup() {
-    const { getIsHeaderMenu, getIsHybridMenu } = useMenuSetting()
+    const { getIsHeaderMenu, getIsHybridMenu, getMenuSplit } = useMenuSetting()
+    const { getContentHeight } = useLayout()
 
     const getLayoutClass = computed(() => {
       const cls: string[] = []
@@ -26,7 +29,8 @@ export default defineComponent({
           <LayoutSider />
           <Layout>
             {!unref(getIsHeaderMenu) && <LayoutHeader />}
-            <Layout.Content class='content-wrapper'>
+            {unref(getIsHeaderMenu) && unref(getMenuSplit) && <LayoutTags isHeaderTags={false} />}
+            <Layout.Content style={{ height: unref(getContentHeight), overflowY: 'auto' }}>
               <LayoutPage />
             </Layout.Content>
           </Layout>

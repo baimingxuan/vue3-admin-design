@@ -1,8 +1,8 @@
 import { defineComponent, computed, unref } from 'vue'
 import { LayoutHeader } from 'ant-design-vue'
-import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { useDarkModeSetting } from '@/hooks/setting/useDarkModeSetting'
+import { useLayout } from '@/layout/useLayout'
 import { ThemeEnum } from '@/enums/appEnum'
 import { AppLogo } from '@/components/Application'
 import LayoutMenu from '../../menu'
@@ -13,9 +13,9 @@ import './index.less'
 export default defineComponent({
   name: 'LayoutHybridHeader',
   setup() {
-    const { getShowTags } = useHeaderSetting()
-    const { getMenuTheme } = useMenuSetting()
+    const { getMenuTheme, getMenuSplit } = useMenuSetting()
     const { isDarkMode } = useDarkModeSetting()
+    const { getShowTags, getHeaderHeight } = useLayout()
 
     const getHeaderMode = computed(() => {
       return unref(isDarkMode) ? '' : unref(getMenuTheme)
@@ -26,7 +26,10 @@ export default defineComponent({
     })
 
     return () => (
-      <LayoutHeader class={['layout-hybrid-header', unref(getHeaderMode)]}>
+      <LayoutHeader
+        class={['layout-hybrid-header', unref(getHeaderMode), { 'has-border': unref(getMenuSplit) }]}
+        style={{ height: unref(getHeaderHeight) }}
+      >
         <div class='layout-hybrid-header-wrap'>
           <div class='logo-box'>
             <AppLogo theme='light' />
@@ -40,7 +43,7 @@ export default defineComponent({
             </div>
           </div>
         </div>
-        {unref(getShowTags) && <LayoutTags />}
+        {unref(getShowTags) && !unref(getMenuSplit) && <LayoutTags />}
       </LayoutHeader>
     )
   }

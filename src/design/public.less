@@ -1,8 +1,3 @@
-.content-wrapper {
-  height: calc(100vh - 80px);
-  overflow-y: auto;
-}
-
 span.icon-btn {
   display: flex;
   align-items: center;
@@ -31,9 +26,11 @@ span.icon-btn {
   border-color: rgba(0, 0, 0, .2);
 }
 
-.layout-hybrid-header.dark {
-  .layout-tags {
-    border-top: 1px solid rgba(255, 255, 255, 0.65);
+.ant-layout-sider-light {
+  border-right: solid 1px @border-color;
+
+  .ant-menu-inline {
+    border-right: none!important;
   }
 }
 
