@@ -18,7 +18,8 @@ export default defineComponent({
       <ConfigProvider
         theme={{
           token: {
-            colorPrimary: unref(getThemeColor)
+            colorPrimary: unref(getThemeColor),
+            borderRadius: 4
           },
           algorithm: unref(getModeAlgorithm)
         }}

@@ -8,7 +8,7 @@ const FlowEditorRoute: AppRoute = {
   component: Layout,
   redirect: '/flow-editor/flow-approve',
   meta: {
-    title: '流程图编辑器',
+    title: '图形编辑器',
     icon: 'flow',
     orderNo: 8
   },
