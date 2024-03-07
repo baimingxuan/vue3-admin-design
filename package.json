@@ -21,6 +21,7 @@
   "dependencies": {
     "@ant-design/colors": "^7.0.2",
     "@ant-design/icons-vue": "^7.0.1",
+    "@emotion/css": "^11.11.2",
     "@form-create/designer": "^3.1.5",
     "@logicflow/core": "^1.2.18",
     "@logicflow/extension": "^1.2.19",

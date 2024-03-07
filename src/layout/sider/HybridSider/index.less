@@ -45,19 +45,8 @@
         color: @white;
       }
 
-      &--active {
+      &.is-active {
         color: @white;
-        background: @primary-dark-bg;
-
-        &::before {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 2px;
-          height: 100%;
-          background: @primary-color;
-          content: '';
-        }
       }
     }
   }
@@ -71,13 +60,18 @@
       &__item {
         color: rgb(0 0 0 / 65%);
 
-        &:hover {
-          color: @primary-color;
-        }
-
-        &--active {
-          color: @primary-color;
+        &:hover,
+        &.is-active {
           background: @white;
+
+          &::before {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 2px;
+            height: 100%;
+            content: '';
+          }
         }
       }
     }
@@ -98,10 +92,6 @@
 
         .pushpin {
           color: @primary-dark-bg;
-
-          &:hover {
-            color: @primary-color;
-          }
         }
       }
 
@@ -162,8 +152,6 @@
     &__title {
       display: flex;
       height: 48px;
-      font-size: 18px;
-      color: @primary-color;
       opacity: 0%;
       transition: unset;
       align-items: center;

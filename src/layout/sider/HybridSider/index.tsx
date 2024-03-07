@@ -2,6 +2,7 @@ import type { AppMenu } from '@/router/types'
 import type { CSSProperties } from 'vue'
 import type { RouteLocationNormalized } from 'vue-router'
 import { defineComponent, computed, ref, unref, onMounted } from 'vue'
+import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { useDarkModeSetting } from '@/hooks/setting/useDarkModeSetting'
 import { getShallowMenus, getChildrenMenus, getCurrentParentPath } from '@/router/menus'
@@ -16,6 +17,7 @@ import { Menu } from '@/components/Menu'
 import DragBar from '../components/DragBar'
 import SvgIcon from '@/components/SvgIcon'
 import logoName from '@/assets/images/name.png'
+import { css } from '@emotion/css'
 import './index.less'
 
 export default defineComponent({
@@ -31,6 +33,7 @@ export default defineComponent({
 
     const go = useGo()
 
+    const { getThemeColor } = useBaseSetting()
     const { isDarkMode } = useDarkModeSetting()
     const {
       getMenuTheme,
@@ -54,12 +57,12 @@ export default defineComponent({
     const getDomStyle = computed((): CSSProperties => {
       const fixedWidth = unref(getMenuFixed) && unref(openMenu) ? unref(getReallWidth) : 0
       const width = `${unref(getHybridSiderWidth) + fixedWidth!}`
-      return getWrapCommonStyle(width)
+      return getwrapClsommonStyle(width)
     })
 
     const getWrapStyle = computed((): CSSProperties => {
       const width = `${unref(getHybridSiderWidth)}`
-      return getWrapCommonStyle(width)
+      return getwrapClsommonStyle(width)
     })
 
     const getWrapEvents = computed(() => {
@@ -89,6 +92,32 @@ export default defineComponent({
       return isFixed
     })
 
+    const wrapCls = computed(
+      () => css`
+        .main-menu__item.is-active {
+          background: ${unref(getThemeColor)};
+        }
+        &.light {
+          .main-menu__item {
+            &.is-active {
+              color: ${unref(getThemeColor)};
+            }
+            &:hover,
+            &.is-active {
+              &::before {
+                background: ${unref(getThemeColor)};
+              }
+            }
+          }
+          .sub-menu__title {
+            .pushpin:hover {
+              color: ${unref(getThemeColor)};
+            }
+          }
+        }
+      `
+    )
+
     listenerRouteChange(route => {
       currentRoute.value = route
 
@@ -99,7 +128,7 @@ export default defineComponent({
       mainMenuList.value = await getShallowMenus()
     })
 
-    function getWrapCommonStyle(width: string): CSSProperties {
+    function getwrapClsommonStyle(width: string): CSSProperties {
       return {
         width: width + 'px',
         maxWidth: width + 'px',
@@ -186,7 +215,12 @@ export default defineComponent({
         <div class='layout-hybrid-sider-dom' style={unref(getDomStyle)} />
         <div
           {...unref(getWrapEvents)}
-          class={['layout-hybrid-sider', unref(getSiderMode), { open: unref(openMenu), mini: unref(getMenuFold) }]}
+          class={[
+            'layout-hybrid-sider',
+            unref(getSiderMode),
+            { open: unref(openMenu), mini: unref(getMenuFold) },
+            unref(wrapCls)
+          ]}
           style={unref(getWrapStyle)}
         >
           <AppLogo style={{ marginLeft: !unref(getMenuFold) ? '10px' : '' }} />
@@ -196,7 +230,7 @@ export default defineComponent({
               {unref(mainMenuList).map(item => (
                 <div
                   key={item.path}
-                  class={['main-menu__item', { 'main-menu__item--active': unref(activePath) === item.path }]}
+                  class={['main-menu__item', { 'is-active': unref(activePath) === item.path }]}
                   {...getMainMenuItemEvents(item)}
                 >
                   <SvgIcon class='main-menu__item-icon' name={item?.icon} size={20} />
