@@ -43,6 +43,23 @@
   .layout-hybrid-sider {
     border-right: @dark-mode-border;
     background: @dark-mode-bg;
+
+    &.open {
+      border-right: none;
+
+      .sub-menu {
+        border-right: @dark-mode-border;
+        background: @dark-mode-bg;
+
+        &__title {
+          border-bottom: @dark-mode-border;
+        }
+
+        &__content {
+          border-left: @dark-mode-border;
+        }
+      }
+    }
   }
 
   .layout-hybrid-header {

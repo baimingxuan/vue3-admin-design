@@ -2,13 +2,12 @@ import type { AppMenu } from '@/router/types'
 import type { CSSProperties } from 'vue'
 import type { RouteLocationNormalized } from 'vue-router'
 import { defineComponent, computed, ref, unref, onMounted } from 'vue'
-import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { useDarkModeSetting } from '@/hooks/setting/useDarkModeSetting'
 import { getShallowMenus, getChildrenMenus, getCurrentParentPath } from '@/router/menus'
 import { useGo } from '@/hooks/web/usePage'
 import { MenuFoldBtnEnum } from '@/enums/menuEnum'
-import { SIDE_BAR_MIN_WIDTH, SIDE_BAR_SHOW_TITLE_MIN_WIDTH } from '@/enums/appEnum'
+import { SIDE_BAR_MIN_WIDTH, SIDE_BAR_SHOW_TITLE_MIN_WIDTH, ThemeEnum } from '@/enums/appEnum'
 import { listenerRouteChange } from '@/logics/mitt/routeChange'
 import { AppLogo } from '@/components/Application'
 import ScrollContainer from '@/components/Container'
@@ -17,7 +16,6 @@ import { Menu } from '@/components/Menu'
 import DragBar from '../components/DragBar'
 import SvgIcon from '@/components/SvgIcon'
 import logoName from '@/assets/images/name.png'
-import { css } from '@emotion/css'
 import './index.less'
 
 export default defineComponent({
@@ -33,7 +31,6 @@ export default defineComponent({
 
     const go = useGo()
 
-    const { getThemeColor } = useBaseSetting()
     const { isDarkMode } = useDarkModeSetting()
     const {
       getMenuTheme,
@@ -48,6 +45,10 @@ export default defineComponent({
 
     const getSiderMode = computed(() => {
       return unref(isDarkMode) ? '' : unref(getMenuTheme)
+    })
+
+    const getCurrentMenuTheme = computed(() => {
+      return unref(isDarkMode) ? ThemeEnum.LIGHT : unref(getMenuTheme)
     })
 
     const getHybridSiderWidth = computed(() => {
@@ -91,32 +92,6 @@ export default defineComponent({
       }
       return isFixed
     })
-
-    const wrapCls = computed(
-      () => css`
-        .main-menu__item.is-active {
-          background: ${unref(getThemeColor)};
-        }
-        &.light {
-          .main-menu__item {
-            &.is-active {
-              color: ${unref(getThemeColor)};
-            }
-            &:hover,
-            &.is-active {
-              &::before {
-                background: ${unref(getThemeColor)};
-              }
-            }
-          }
-          .sub-menu__title {
-            .pushpin:hover {
-              color: ${unref(getThemeColor)};
-            }
-          }
-        }
-      `
-    )
 
     listenerRouteChange(route => {
       currentRoute.value = route
@@ -215,12 +190,7 @@ export default defineComponent({
         <div class='layout-hybrid-sider-dom' style={unref(getDomStyle)} />
         <div
           {...unref(getWrapEvents)}
-          class={[
-            'layout-hybrid-sider',
-            unref(getSiderMode),
-            { open: unref(openMenu), mini: unref(getMenuFold) },
-            unref(wrapCls)
-          ]}
+          class={['layout-hybrid-sider', unref(getSiderMode), { open: unref(openMenu), mini: unref(getMenuFold) }]}
           style={unref(getWrapStyle)}
         >
           <AppLogo style={{ marginLeft: !unref(getMenuFold) ? '10px' : '' }} />
@@ -252,7 +222,7 @@ export default defineComponent({
             <div v-show={unref(openMenu)} class='sub-menu__content'>
               <Menu
                 items={unref(childrenMenus)}
-                theme={unref(getMenuTheme)}
+                theme={unref(getCurrentMenuTheme)}
                 hybridSider={true}
                 onMenuClick={handleMenuClick}
               />

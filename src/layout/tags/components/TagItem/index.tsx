@@ -12,10 +12,6 @@ export default defineComponent({
     isDark: propTypes.bool
   },
   setup(props, { emit }) {
-    function handleClose() {
-      emit('closeTag')
-    }
-
     return () => (
       <Tag
         class={[
@@ -24,7 +20,7 @@ export default defineComponent({
           { ['ant-tag-checkable-checked']: props.active }
         ]}
         closable={!props.fixed}
-        onClose={handleClose}
+        onClose={() => emit('closeTag')}
       >
         <span class={[styles['tag-item__dot'], 'tag-dot']} />
         <span class={styles['tag-item__name']}>{props.name}</span>

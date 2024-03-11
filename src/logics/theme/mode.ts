@@ -1,11 +1,13 @@
 import { addClass, hasClass, removeClass } from '@/utils/dom'
 import { toggleClass } from './util'
+import { setThemColor } from './'
 
 // Change the system dark mode
 export async function updateDarkTheme(mode: string | null = 'light') {
   const htmlRoot = document.getElementById('htmlRoot')
   if (!htmlRoot) return
 
+  setThemColor(htmlRoot)
   const hasDarkClass = hasClass(htmlRoot, 'dark')
 
   if (mode === 'dark') {
