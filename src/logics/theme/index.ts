@@ -5,7 +5,7 @@ import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
 
 export function setThemColor(el: Element) {
   const { getThemeColor } = useBaseSetting()
-  const themeColor = unref(getThemeColor)
+  const themeColor = unref(getThemeColor) || '#1890ff'
 
   const htmlCls = computed(
     () => css`

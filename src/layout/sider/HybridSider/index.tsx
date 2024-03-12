@@ -1,7 +1,7 @@
 import type { AppMenu } from '@/router/types'
 import type { CSSProperties } from 'vue'
-import { defineComponent, computed, ref, unref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+import type { RouteLocationNormalized } from 'vue-router'
+import { defineComponent, computed, ref, unref, onMounted, nextTick } from 'vue'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { useDarkModeSetting } from '@/hooks/setting/useDarkModeSetting'
 import { getShallowMenus, getChildrenMenus, getCurrentParentPath } from '@/router/menus'
@@ -27,8 +27,8 @@ export default defineComponent({
     const activePath = ref('')
     const childrenMenus = ref<AppMenu[]>([])
     const openMenu = ref(false)
+    const currentRoute = ref<Nullable<RouteLocationNormalized>>(null)
 
-    const { currentRoute } = useRouter()
     const go = useGo()
 
     const { isDarkMode } = useDarkModeSetting()
@@ -93,12 +93,16 @@ export default defineComponent({
       return isFixed
     })
 
-    listenerRouteChange(() => {
-      setActive(true)
-    })
-
     onMounted(async () => {
       mainMenuList.value = await getShallowMenus()
+    })
+
+    listenerRouteChange(route => {
+      currentRoute.value = route
+
+      nextTick(() => {
+        setActive(true)
+      })
     })
 
     function getwrapClsommonStyle(width: string): CSSProperties {
@@ -146,9 +150,12 @@ export default defineComponent({
     async function setActive(setChildren = false) {
       const path = currentRoute.value?.path
       if (!path) return
+
       activePath.value = await getCurrentParentPath(path)
+
       if (unref(getIsHybridMenu)) {
         const activeMenu = unref(mainMenuList).find(item => item.path === unref(activePath))
+
         if (activeMenu?.path) {
           const children = await getChildrenMenus(activeMenu?.path)
           if (setChildren) {
