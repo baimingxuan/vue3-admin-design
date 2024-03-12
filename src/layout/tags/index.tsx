@@ -1,5 +1,4 @@
 import type { CSSProperties } from 'vue'
-import type { RouteLocationNormalized, RouteMeta } from 'vue-router'
 import { defineComponent, computed, ref, unref, nextTick, TransitionGroup } from 'vue'
 import { useRouter } from 'vue-router'
 import { Button, Dropdown, Menu, MenuItem } from 'ant-design-vue'
@@ -77,21 +76,13 @@ export default defineComponent({
     listenerRouteChange(route => {
       if (!route) return
 
-      const { path, fullPath, meta = {} } = route
-      const { currentActiveMenu, hideTag } = meta as RouteMeta
-      const isHide = !hideTag ? null : currentActiveMenu
-      const currPath = isHide || fullPath || path
+      const { path, fullPath } = route
+      const currPath = fullPath || path
       if (activeKeyRef.value !== currPath) {
         activeKeyRef.value = currPath as string
       }
 
-      if (isHide) {
-        const findParentRoute = router.getRoutes().find(item => item.path === currentActiveMenu)
-
-        findParentRoute && tagStore.addVisitedTags(findParentRoute as unknown as RouteLocationNormalized)
-      } else {
-        tagStore.addVisitedTags(unref(route))
-      }
+      tagStore.addVisitedTags(unref(route))
 
       getActiveTag()
     })

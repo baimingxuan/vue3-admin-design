@@ -10,8 +10,6 @@ declare module 'vue-router' {
     affix?: boolean
     // Menu sort, only for the first level
     orderNo?: number
-    // Currently active menu
-    currentActiveMenu?: string
     // Whether not to cached route
     ignoreKeepAlive?: boolean
     // Never show in menu

@@ -1,6 +1,7 @@
 import type { MenuState } from './types'
-import type { RouteLocationNormalized, RouteLocationNormalizedLoaded } from 'vue-router'
+import type { RouteLocationNormalizedLoaded } from 'vue-router'
 import { defineComponent, ref, unref, toRefs, reactive, computed, watch } from 'vue'
+import { useRouter } from 'vue-router'
 import { Menu } from 'ant-design-vue'
 import SubMenuItem from './components/SubMenuItem'
 import { isFunction } from '@/utils/is'
@@ -9,8 +10,6 @@ import { useOpenKeys } from './useOpenKeys'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { MenuModeEnum } from '@/enums/menuEnum'
 import { listenerRouteChange } from '@/logics/mitt/routeChange'
-import { getCurrentParentPath } from '@/router/menus'
-import { getAllParentPath } from '@/router/helper/menuHelper'
 
 export default defineComponent({
   name: 'BasicMenu',
@@ -18,8 +17,8 @@ export default defineComponent({
   emits: ['menuClick'],
   setup(props, { emit }) {
     const isClickGo = ref(false)
-    const currentActiveMenu = ref('')
-    const currentRoute = ref<Nullable<RouteLocationNormalized>>(null)
+
+    const { currentRoute } = useRouter()
 
     const menuState = reactive<MenuState>({
       openKeys: [],
@@ -31,7 +30,7 @@ export default defineComponent({
 
     const { items, mode, accordion } = toRefs(props)
 
-    const { getMenuFold, getMenuSplit } = useMenuSetting()
+    const { getMenuFold } = useMenuSetting()
 
     const { handleOpenChange, setOpenKeys, getOpenKeys } = useOpenKeys(menuState, items, mode as any, accordion)
 
@@ -49,16 +48,8 @@ export default defineComponent({
 
     listenerRouteChange(route => {
       if (route.name === 'Redirect') return
-      currentRoute.value = route
 
       handleMenuChange(route)
-
-      currentActiveMenu.value = route.meta?.currentActiveMenu as string
-
-      if (unref(currentActiveMenu)) {
-        menuState.selectedKeys = [unref(currentActiveMenu)]
-        setOpenKeys(unref(currentActiveMenu))
-      }
     })
 
     props.hybridSider &&
@@ -78,15 +69,7 @@ export default defineComponent({
       const path = (route || unref(currentRoute))?.path
 
       setOpenKeys(path as string)
-
-      if (unref(currentActiveMenu)) return
-      if (props.isHorizontal && unref(getMenuSplit)) {
-        const parentPath = await getCurrentParentPath(path as string)
-        menuState.selectedKeys = [parentPath]
-      } else {
-        const parentPaths = getAllParentPath(props.items, path as string)
-        menuState.selectedKeys = parentPaths
-      }
+      menuState.selectedKeys = [path]
     }
 
     async function handleMenuClick(event: any) {

@@ -1,7 +1,7 @@
 import type { AppMenu } from '@/router/types'
 import type { CSSProperties } from 'vue'
-import type { RouteLocationNormalized } from 'vue-router'
 import { defineComponent, computed, ref, unref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { useDarkModeSetting } from '@/hooks/setting/useDarkModeSetting'
 import { getShallowMenus, getChildrenMenus, getCurrentParentPath } from '@/router/menus'
@@ -27,8 +27,8 @@ export default defineComponent({
     const activePath = ref('')
     const childrenMenus = ref<AppMenu[]>([])
     const openMenu = ref(false)
-    const currentRoute = ref<Nullable<RouteLocationNormalized>>(null)
 
+    const { currentRoute } = useRouter()
     const go = useGo()
 
     const { isDarkMode } = useDarkModeSetting()
@@ -93,9 +93,7 @@ export default defineComponent({
       return isFixed
     })
 
-    listenerRouteChange(route => {
-      currentRoute.value = route
-
+    listenerRouteChange(() => {
       setActive(true)
     })
 

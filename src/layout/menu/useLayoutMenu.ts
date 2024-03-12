@@ -23,13 +23,7 @@ export function useLayoutMenu(menuSplit: boolean) {
     async ([path]: [string, boolean]) => {
       if (!unref(getIsHorizontal)) return
 
-      const { meta } = unref(currentRoute)
-      const currentActiveMenu = meta?.currentActiveMenu as string
-      let parentPath = await getCurrentParentPath(path)
-      if (!parentPath) {
-        parentPath = await getCurrentParentPath(currentActiveMenu)
-      }
-
+      const parentPath = await getCurrentParentPath(path)
       parentPath && throttleHandleSplitMenu(parentPath)
     },
     {

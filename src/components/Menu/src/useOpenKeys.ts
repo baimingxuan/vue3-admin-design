@@ -1,14 +1,15 @@
 import { type Ref, toRaw } from 'vue'
-import { computed, unref } from 'vue'
-import { uniq } from 'lodash-es'
 import type { Key } from 'ant-design-vue/lib/_util/type'
-
 import type { AppMenu } from '@/router/types'
 import type { MenuState } from './types'
+
+import { computed, unref } from 'vue'
 import { MenuModeEnum } from '@/enums/menuEnum'
 import { getAllParentPath } from '@/router/helper/menuHelper'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { useTimeoutFn } from '@/hooks/core/useTimeout'
+import { useDebounceFn } from '@vueuse/core'
+import { uniq } from 'lodash-es'
 
 export function useOpenKeys(
   menuState: MenuState,
@@ -16,29 +17,32 @@ export function useOpenKeys(
   mode: Ref<MenuModeEnum>,
   accordion: Ref<boolean>
 ) {
+  const debounceSetOpenKeys = useDebounceFn(setOpenKeys, 50)
   const { getMenuFold, getIsHybridMenu } = useMenuSetting()
 
   async function setOpenKeys(path: string) {
     if (mode.value === MenuModeEnum.HORIZONTAL) return
 
     const native = unref(getIsHybridMenu)
+    const menuList = toRaw(menus.value)
 
-    useTimeoutFn(
-      () => {
-        const menuList = toRaw(menus.value)
-        if (menuList?.length === 0) {
-          menuState.openKeys = []
-          return
-        }
-        if (!unref(accordion)) {
-          menuState.openKeys = uniq([...menuState.openKeys, ...getAllParentPath(menuList, path)])
-        } else {
-          menuState.openKeys = getAllParentPath(menuList, path)
-        }
-      },
-      16,
-      !native
-    )
+    const handle = () => {
+      if (menuList?.length === 0) {
+        menuState.openKeys = []
+        return
+      }
+
+      if (!unref(accordion)) {
+        menuState.openKeys = uniq([...menuState.openKeys, ...getAllParentPath(menuList, path)])
+      } else {
+        menuState.openKeys = getAllParentPath(menuList, path)
+      }
+    }
+    if (native) {
+      handle()
+    } else {
+      useTimeoutFn(handle, 30)
+    }
   }
 
   const getOpenKeys = computed(() => {
@@ -70,5 +74,5 @@ export function useOpenKeys(
     }
   }
 
-  return { setOpenKeys, getOpenKeys, handleOpenChange }
+  return { setOpenKeys: debounceSetOpenKeys, getOpenKeys, handleOpenChange }
 }

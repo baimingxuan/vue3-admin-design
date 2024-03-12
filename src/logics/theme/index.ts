@@ -1,6 +1,6 @@
 import { computed, unref } from 'vue'
 import { css } from '@emotion/css'
-import { addClass } from '@/utils/dom'
+import { hasClass } from '@/utils/dom'
 import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
 
 export function setThemColor(el: Element) {
@@ -36,5 +36,9 @@ export function setThemColor(el: Element) {
     `
   )
 
-  addClass(el, unref(htmlCls))
+  if (hasClass(el, 'dark')) {
+    el.className = `${unref(htmlCls)} dark`
+  } else {
+    el.className = unref(htmlCls)
+  }
 }

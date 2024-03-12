@@ -24,7 +24,6 @@ export interface AppMenu {
   icon?: string
   affix?: boolean
   orderNo?: number
-  currentActiveMenu?: string
   ignoreKeepAlive?: boolean
   hideMenu?: boolean
   hideChildrenInMenu?: boolean
