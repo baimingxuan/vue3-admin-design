@@ -114,9 +114,9 @@ export const menuFoldBtnOptions = [
 // Page transition options
 export const pageTransitionOptions = [
   PageTransitionEnum.FADE,
-  PageTransitionEnum.FADE_SIDE,
-  PageTransitionEnum.FADE_BOTTOM,
+  PageTransitionEnum.FADE_SLIDE,
   PageTransitionEnum.FADE_SCALE,
+  PageTransitionEnum.FADE_BOTTOM,
   PageTransitionEnum.ZOOM_FADE,
   PageTransitionEnum.ZOOM_OUT
 ].map(item => {

@@ -147,6 +147,7 @@ export default defineComponent({
             def={unref(getBasicTransition)}
             event={HandlerEnum.BASIC_TRANSITION}
             options={pageTransitionOptions}
+            disabled={!unref(getOpenTransition)}
           />
         </>
       )

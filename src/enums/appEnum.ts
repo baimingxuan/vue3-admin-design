@@ -16,9 +16,9 @@ export enum ThemeEnum {
 // Page switching animation
 export enum PageTransitionEnum {
   FADE = 'fade',
-  FADE_SIDE = 'fade-slide',
-  FADE_BOTTOM = 'fade-bottom',
+  FADE_SLIDE = 'fade-slide',
   FADE_SCALE = 'fade-scale',
+  FADE_BOTTOM = 'fade-bottom',
   ZOOM_FADE = 'zoom-fade',
   ZOOM_OUT = 'zoom-out'
 }
