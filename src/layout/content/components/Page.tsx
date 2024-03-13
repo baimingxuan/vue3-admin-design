@@ -30,17 +30,14 @@ export default defineComponent({
                   def: unref(getBasicTransition)
                 })}
                 mode='out-in'
-                appear
               >
-                <div>
-                  {unref(openPageCache) ? (
-                    <KeepAlive>
-                      <Component key={route.fullPath} />
-                    </KeepAlive>
-                  ) : (
+                {unref(openPageCache) ? (
+                  <KeepAlive>
                     <Component key={route.fullPath} />
-                  )}
-                </div>
+                  </KeepAlive>
+                ) : (
+                  <Component key={route.fullPath} />
+                )}
               </Transition>
             )
           }
