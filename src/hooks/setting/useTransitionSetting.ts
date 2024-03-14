@@ -6,15 +6,12 @@ export function useTransitionSetting() {
 
   const getOpenNProgress = computed(() => appStore.getTransitionSetting.openNProgress)
 
-  const getOpenPageLoading = computed(() => appStore.getTransitionSetting.openPageLoading)
-
   const getOpenTransition = computed(() => appStore.getTransitionSetting.openTransition)
 
   const getBasicTransition = computed(() => appStore.getTransitionSetting.basicTransition)
 
   return {
     getOpenNProgress,
-    getOpenPageLoading,
     getOpenTransition,
     getBasicTransition
   }

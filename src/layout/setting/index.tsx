@@ -55,7 +55,7 @@ export default defineComponent({
       getShowGithub
     } = useHeaderSetting()
 
-    const { getOpenNProgress, getOpenPageLoading, getOpenTransition, getBasicTransition } = useTransitionSetting()
+    const { getOpenNProgress, getOpenTransition, getBasicTransition } = useTransitionSetting()
 
     function renderInterfaceFunc() {
       return (
@@ -140,7 +140,6 @@ export default defineComponent({
       return (
         <>
           <SwitchItem title='顶部进度条' def={unref(getOpenNProgress)} event={HandlerEnum.OPEN_NPROGRESS} />
-          <SwitchItem title='切换loading' def={unref(getOpenPageLoading)} event={HandlerEnum.OPEN_PAGE_LOADING} />
           <SwitchItem title='切换动画' def={unref(getOpenTransition)} event={HandlerEnum.OPEN_TRANSITION} />
           <SelectItem
             title='切换动画类型'

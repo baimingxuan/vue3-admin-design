@@ -74,8 +74,6 @@ export interface MenuSetting {
 export interface TransitionSetting {
   // Whether to open the top progress bar
   openNProgress: boolean
-  // Whether to open page switching loading
-  openPageLoading: boolean
   // Whether to open the page switching animation
   openTransition: boolean
   // Page basic switching animation

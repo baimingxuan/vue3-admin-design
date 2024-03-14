@@ -90,7 +90,6 @@ export enum HandlerEnum {
 
   // Animation settings
   OPEN_NPROGRESS,
-  OPEN_PAGE_LOADING,
   OPEN_TRANSITION,
   BASIC_TRANSITION
 }
