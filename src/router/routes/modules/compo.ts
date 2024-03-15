@@ -49,7 +49,7 @@ const CompoRoute: AppRoute = {
     },
     {
       path: 'transfer',
-      name: 'Transfer',
+      name: 'TransferPage',
       component: () => import('@/views/compo/transfer'),
       meta: {
         title: '穿梭框'
@@ -57,7 +57,7 @@ const CompoRoute: AppRoute = {
     },
     {
       path: 'count-to',
-      name: 'CountTo',
+      name: 'CountToPage',
       component: () => import('@/views/compo/count-to'),
       meta: {
         title: '数字滚动'

@@ -5,7 +5,7 @@ import ChartsCard from './components/ChartsCard'
 import { countToData, pieOptions, ringOptions, radarOptions, barOptions, lineOptions } from './data'
 
 export default defineComponent({
-  name: 'HomePage',
+  name: 'Home',
   setup() {
     const isLoading = ref(true)
 
@@ -14,7 +14,7 @@ export default defineComponent({
     }, 1500)
 
     return () => (
-      <>
+      <div>
         <Row gutter={12} style={{ marginBottom: '12px' }}>
           {countToData.map(item => {
             return (
@@ -49,7 +49,7 @@ export default defineComponent({
             <ChartsCard loading={unref(isLoading)} options={lineOptions} height={350} />
           </Col>
         </Row>
-      </>
+      </div>
     )
   }
 })

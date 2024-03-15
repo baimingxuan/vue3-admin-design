@@ -63,8 +63,6 @@ export const appSetting: AppConfig = {
   permissionMode: PermissionModeEnum.MAPPING,
   // Whether tags cached
   tagsCached: false,
-  // Route keepAlive
-  openKeepAlive: true,
   // Lock screen time
   lockScreenTime: 0,
   // Whether to show the global footer

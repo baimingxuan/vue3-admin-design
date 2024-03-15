@@ -17,8 +17,6 @@ export interface AppConfig {
   permissionMode: PermissionModeEnum
   // Whether tags cached
   tagsCached: boolean
-  // Route keepAlive
-  openKeepAlive: boolean
   // Lock screen time
   lockScreenTime: number
   // Whether to show the global footer
