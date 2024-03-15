@@ -10,6 +10,7 @@ import { useOpenKeys } from './useOpenKeys'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { MenuModeEnum } from '@/enums/menuEnum'
 import { listenerRouteChange } from '@/logics/mitt/routeChange'
+import { getCurrentParentPath } from '@/router/menus'
 
 export default defineComponent({
   name: 'BasicMenu',
@@ -30,7 +31,7 @@ export default defineComponent({
 
     const { items, mode, accordion } = toRefs(props)
 
-    const { getMenuFold } = useMenuSetting()
+    const { getMenuFold, getMenuSplit } = useMenuSetting()
 
     const { handleOpenChange, setOpenKeys, getOpenKeys } = useOpenKeys(menuState, items, mode as any, accordion)
 
@@ -67,9 +68,14 @@ export default defineComponent({
       }
 
       const path = (route || unref(currentRoute))?.path
-
       setOpenKeys(path as string)
-      menuState.selectedKeys = [path]
+
+      const parentPath = await getCurrentParentPath(path)
+      if (unref(getMenuSplit)) {
+        menuState.selectedKeys = [parentPath, path]
+      } else {
+        menuState.selectedKeys = [path]
+      }
     }
 
     async function handleMenuClick(event: any) {

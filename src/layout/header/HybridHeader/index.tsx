@@ -2,6 +2,7 @@ import { defineComponent, computed, unref } from 'vue'
 import { LayoutHeader } from 'ant-design-vue'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { useDarkModeSetting } from '@/hooks/setting/useDarkModeSetting'
+import { useLayoutMenu } from '@/layout/menu/useLayoutMenu'
 import { useLayout } from '@/layout/useLayout'
 import { ThemeEnum } from '@/enums/appEnum'
 import { AppLogo } from '@/components/Application'
@@ -16,6 +17,8 @@ export default defineComponent({
     const { getMenuTheme, getMenuSplit } = useMenuSetting()
     const { isDarkMode } = useDarkModeSetting()
     const { getShowTags, getHeaderHeight } = useLayout()
+
+    const { menusRef } = useLayoutMenu(unref(getMenuSplit))
 
     const getHeaderMode = computed(() => {
       return unref(isDarkMode) ? '' : unref(getMenuTheme)
@@ -37,7 +40,7 @@ export default defineComponent({
           <div class='main-box'>
             <div class='main-box__cont'>
               <div class='main-box__cont-menu'>
-                <LayoutMenu isHorizontal={true} menuTheme={unref(getCurrentMenuTheme)} />
+                <LayoutMenu menus={unref(menusRef)} isHorizontal={true} menuTheme={unref(getCurrentMenuTheme)} />
               </div>
               <LayoutFeature />
             </div>

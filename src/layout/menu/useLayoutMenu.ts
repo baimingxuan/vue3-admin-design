@@ -54,8 +54,8 @@ export function useLayoutMenu(menuSplit: boolean) {
 
     if (!children || !children.length) {
       setMenuSetting({ menuHidden: true })
-      menusRef.value = []
-      return
+      // menusRef.value = []
+      // return
     }
 
     setMenuSetting({ menuHidden: false })
