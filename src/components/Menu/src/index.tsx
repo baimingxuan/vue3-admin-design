@@ -61,6 +61,11 @@ export default defineComponent({
         }
       )
 
+    watch(
+      () => getMenuSplit,
+      () => handleMenuChange()
+    )
+
     async function handleMenuChange(route?: RouteLocationNormalizedLoaded) {
       if (unref(isClickGo)) {
         isClickGo.value = false
