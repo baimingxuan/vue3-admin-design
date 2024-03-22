@@ -1,0 +1,70 @@
+{
+  "menu": {
+    "siderMenu": "Sider menu",
+    "headerMenu": "Header menu",
+    "hybridMenu": "Hybrid menu",
+    "collapseBtnPosition": {
+      "hidden": "Hidden",
+      "top": "Top",
+      "sider": "Sider"
+    }
+  },
+  "theme": {
+    "daybreakBlue": "Daybreak blue",
+    "dustRed": "Dust red",
+    "volcano": "Volcano",
+    "sunsetOrange": "Sunset orange",
+    "cyan": "Cyan",
+    "polarGreen": "Polar green",
+    "geekBlue": "Geek blue",
+    "goldenPurple": "Golden purple"
+  },
+  "tags": {
+    "closeLeft": "Close left",
+    "closeRight": "Close right",
+    "closeOther": "Close other",
+    "closeAll": "Close all"
+  },
+  "feature": {
+    "document": "Document",
+    "fullScreen": "Full screen",
+    "exitFullScreen": "Exit full screen",
+    "lockScreen": "Lock screen",
+    "logout": "Logout"
+  },
+  "setting": {
+    "systemMode": "System mode",
+    "darkMode": "Dark mode",
+    "lightMode": "Light mode",
+    "menuStyle": "Menu style",
+    "themeColor": "Theme color",
+    "interfaceFunction": "Interface function",
+    "menuSplit": "Split menu",
+    "menuDrag": "Drag sidebar",
+    "menuFixed": "Fixed menu",
+    "menuCollapse": "Collapse menu",
+    "menuCollapseShowTitle": "Collapse menu show title",
+    "tagsCached": "Keep alive",
+    "menuCollapseButton": "Menu collapse button",
+    "expandedMenuWidth": "Expanded menu width",
+    "autoScreenLock": "Auto screen lock",
+    "notAutoScreenLock": "Not auto screen lock",
+    "interfaceShow": "Interface show",
+    "breadcrumb": "Breadcrumbs",
+    "tags": "Tags",
+    "search": "Search",
+    "language": "Language",
+    "footer": "Footer",
+    "colorWeak": "Color weak mode",
+    "grayMode": "Gray mode",
+    "animationSetting": "Animation setting",
+    "progress": "Progress",
+    "switchAnimation": "Switch animation",
+    "animationType": "Animation type",
+    "copyBtn": "Copy",
+    "resetBtn": "Reset",
+    "clearBtn": "Clear cache and to the login page",
+    "resetSuccess": "Successfully reset!",
+    "operatingContent": "The copy is successful, please go to src/settings/appBaseSetting.ts to modify the configuration!"
+  }
+}

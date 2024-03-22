@@ -1,0 +1,70 @@
+{
+  "menu": {
+    "siderMenu": "左侧菜单",
+    "headerMenu": "顶部菜单",
+    "hybridMenu": "混合菜单",
+    "collapseBtnPosition": {
+      "hidden": "隐藏",
+      "top": "顶部",
+      "sider": "侧边栏"
+    }
+  },
+  "theme": {
+    "daybreakBlue": "拂晓蓝",
+    "dustRed": "薄暮",
+    "volcano": "火山",
+    "sunsetOrange": "日暮",
+    "cyan": "明青",
+    "polarGreen": "极光绿",
+    "geekBlue": "极客蓝",
+    "goldenPurple": "酱紫"
+  },
+  "tags": {
+    "closeLeft": "关闭左侧",
+    "closeRight": "关闭右侧",
+    "closeOther": "关闭其它",
+    "closeAll": "关闭所有"
+  },
+  "feature": {
+    "document": "文档",
+    "fullScreen": "全屏",
+    "exitFullScreen": "退出全屏",
+    "lockScreen": "锁定屏幕",
+    "logout": "退出登录"
+  },
+  "setting": {
+    "systemMode": "System mode",
+    "darkMode": "Dark mode",
+    "lightMode": "Light mode",
+    "menuStyle": "Menu style",
+    "themeColor": "Theme color",
+    "interfaceFunction": "Interface function",
+    "menuSplit": "Split menu",
+    "menuDrag": "Drag sidebar",
+    "menuFixed": "Fixed menu",
+    "menuCollapse": "Collapse menu",
+    "menuCollapseShowTitle": "Collapse menu show title",
+    "tagsCached": "Keep alive",
+    "menuCollapseButton": "Menu collapse button",
+    "expandedMenuWidth": "Expanded menu width",
+    "autoScreenLock": "Auto screen lock",
+    "notAutoScreenLock": "Not auto screen lock",
+    "interfaceShow": "Interface show",
+    "breadcrumb": "Breadcrumbs",
+    "tags": "Tags",
+    "search": "Search",
+    "language": "Language",
+    "footer": "Footer",
+    "colorWeak": "Color weak mode",
+    "grayMode": "Gray mode",
+    "animationSetting": "Animation setting",
+    "progress": "Progress",
+    "switchAnimation": "Switch animation",
+    "animationType": "Animation type",
+    "copyBtn": "Copy",
+    "resetBtn": "Reset",
+    "clearBtn": "Clear cache and to the login page",
+    "resetSuccess": "Successfully reset!",
+    "operatingContent": "The copy is successful, please go to src/settings/appBaseSetting.ts to modify the configuration!"
+  }
+}
