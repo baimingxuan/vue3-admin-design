@@ -1,0 +1,70 @@
+{
+  "menu": {
+    "siderMenu": "左側菜單",
+    "headerMenu": "頂部菜單",
+    "hybridMenu": "混合菜單",
+    "collapseBtnPosition": {
+      "hidden": "隱藏",
+      "top": "頂部",
+      "sider": "側邊欄"
+    }
+  },
+  "theme": {
+    "daybreakBlue": "拂曉藍",
+    "dustRed": "薄暮",
+    "volcano": "火山",
+    "sunsetOrange": "日暮",
+    "cyan": "明青",
+    "polarGreen": "極光綠",
+    "geekBlue": "極客藍",
+    "goldenPurple": "醬紫"
+  },
+  "tags": {
+    "closeLeft": "關閉左側",
+    "closeRight": "關閉右側",
+    "closeOther": "關閉其它",
+    "closeAll": "關閉所有"
+  },
+  "feature": {
+    "document": "文檔",
+    "fullScreen": "全屏",
+    "exitFullScreen": "退出全屏",
+    "lockScreen": "鎖定屏幕",
+    "logout": "退出登錄"
+  },
+  "setting": {
+    "systemMode": "繫統風格",
+    "darkMode": "暗色",
+    "lightMode": "亮色",
+    "menuStyle": "菜單模式",
+    "themeColor": "主題顏色",
+    "interfaceFunction": "界面功能",
+    "menuSplit": "菜單分割",
+    "menuDrag": "菜單寬度拖拽",
+    "menuFixed": "菜單固定",
+    "menuCollapse": "菜單摺疊",
+    "menuCollapseShowTitle": "菜單摺疊顯示名稱",
+    "tagsCached": "標簽緩存",
+    "menuCollapseButton": "菜單摺疊按鈕",
+    "expandedMenuWidth": "菜單展開寬度",
+    "autoScreenLock": "自動鎖屏",
+    "notAutoScreenLock": "不自動鎖屏",
+    "interfaceShow": "界面顯示",
+    "breadcrumb": "面包屑",
+    "tags": "標簽頁",
+    "search": "搜索",
+    "language": "國際化",
+    "footer": "頁腳",
+    "colorWeak": "色弱模式",
+    "grayMode": "灰色模式",
+    "animationSetting": "動畫設置",
+    "progress": "頂部進度條",
+    "switchAnimation": "切換動畫",
+    "animationType": "切換動畫類型",
+    "copyBtn": "拷貝",
+    "resetBtn": "重置",
+    "clearBtn": "清空緩存併返回登錄頁",
+    "resetSuccess": "重置成功！",
+    "operatingContent": "復制成功,請到 src/settings/appBaseSetting.ts 中修改配置！"
+  }
+}
