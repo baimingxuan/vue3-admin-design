@@ -1,4 +1,15 @@
+import type { LocaleType } from '@/types'
 import { set } from 'lodash-es'
+
+export const loadLocalePool: LocaleType[] = []
+
+export function setHtmlPageLang(locale: LocaleType) {
+  document.querySelector('html')?.setAttribute('lang', locale)
+}
+
+export function setLoadLocalePool(cb: (loadLocalePool: LocaleType[]) => void) {
+  cb(loadLocalePool)
+}
 
 export function genMessage(langs: Record<string, Record<string, any>>, prefix = 'lang') {
   const obj: Recordable = {}
