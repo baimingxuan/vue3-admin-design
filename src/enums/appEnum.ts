@@ -13,6 +13,13 @@ export enum ThemeEnum {
   LIGHT = 'light'
 }
 
+// App locale enum
+export enum LocaleEnum {
+  ZH_CN = 'zh_CN',
+  Zh_TW = 'zh_TW',
+  EN_US = 'en_US'
+}
+
 // Page switching animation
 export enum PageTransitionEnum {
   FADE = 'fade',

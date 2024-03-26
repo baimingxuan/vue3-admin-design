@@ -1,6 +1,6 @@
 export type ThemeMode = 'dark' | 'light'
 
-export type LocaleType = 'zh_CN' | 'en'
+export type LocaleType = 'zh_CN' | 'zh_TW' | 'en_US'
 
 export type SelectOptions = {
   label: string

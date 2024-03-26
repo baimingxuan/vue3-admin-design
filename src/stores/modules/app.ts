@@ -1,6 +1,6 @@
-import type { ThemeMode } from '@/types'
-import type { AppModeEnum, ThemeEnum } from '@/enums/appEnum'
+import type { ThemeMode, LocaleType } from '@/types'
 import type { AppConfig, HeaderSetting, MenuSetting, TransitionSetting } from '@/interfaces/config'
+import { type AppModeEnum, type ThemeEnum, LocaleEnum } from '@/enums/appEnum'
 import { defineStore } from 'pinia'
 import { stores } from '../index'
 import { resetRouter } from '@/router'
@@ -15,13 +15,16 @@ interface AppState {
   themeMode?: ThemeEnum
 
   appConfig: AppConfig | null
+
+  appLocale: LocaleType
 }
 
 export const useAppStore = defineStore('app', {
   state: (): AppState => ({
     appMode: undefined,
     themeMode: undefined,
-    appConfig: Persistent.getLocal(APP_CONFIG_KEY)
+    appConfig: Persistent.getLocal(APP_CONFIG_KEY),
+    appLocale: LocaleEnum.ZH_CN
   }),
 
   getters: {
@@ -33,6 +36,9 @@ export const useAppStore = defineStore('app', {
     },
     getAppConfig(): AppConfig {
       return this.appConfig || ({} as AppConfig)
+    },
+    getAppLocale(): LocaleType {
+      return this.appLocale
     },
     getHeaderSetting(): HeaderSetting {
       return this.getAppConfig.headerSetting
@@ -56,6 +62,9 @@ export const useAppStore = defineStore('app', {
     setAppConfig(config: DeepPartial<AppConfig>): void {
       this.appConfig = deepMerge(this.appConfig || {}, config)
       Persistent.setLocal(APP_CONFIG_KEY, this.appConfig, true)
+    },
+    setAppLocale(locale: LocaleType): void {
+      this.appLocale = locale
     },
     async resetState() {
       resetRouter()

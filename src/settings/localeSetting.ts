@@ -1,25 +1,22 @@
-enum LOCALE {
-  ZH_CN = 'zh_CN',
-  Zh_HK = 'zh_HK',
-  EN_US = 'en_US'
-}
+import { LocaleEnum } from '@/enums/appEnum'
+
 interface DropMenu {
   text: string
-  event: LOCALE
+  event: LocaleEnum
   onClick?: Fn
 }
 
 export const localeList: DropMenu[] = [
   {
     text: '简体中文',
-    event: LOCALE.ZH_CN
+    event: LocaleEnum.ZH_CN
   },
   {
     text: '繁體中文',
-    event: LOCALE.Zh_HK
+    event: LocaleEnum.Zh_TW
   },
   {
     text: 'English',
-    event: LOCALE.EN_US
+    event: LocaleEnum.EN_US
   }
 ]
