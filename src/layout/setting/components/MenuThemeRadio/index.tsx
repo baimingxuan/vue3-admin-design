@@ -1,6 +1,7 @@
+import type { ThemeEnum } from '@/enums/appEnum'
 import { defineComponent, unref } from 'vue'
 import { RadioGroup, RadioButton } from 'ant-design-vue'
-import type { ThemeEnum } from '@/enums/appEnum'
+import { useI18n } from 'vue-i18n'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { useDarkModeSetting } from '@/hooks/setting/useDarkModeSetting'
 import styles from './index.module.less'
@@ -8,6 +9,7 @@ import styles from './index.module.less'
 export default defineComponent({
   name: 'MenuThemeRadio',
   setup() {
+    const { t } = useI18n()
     const { getMenuTheme, changeMenuTheme } = useMenuSetting()
     const { isDarkMode } = useDarkModeSetting()
 
@@ -25,8 +27,8 @@ export default defineComponent({
           disabled={unref(isDarkMode)}
           onChange={e => handleChangeTheme(e)}
         >
-          <RadioButton value='dark'>暗色</RadioButton>
-          <RadioButton value='light'>亮色</RadioButton>
+          <RadioButton value='dark'>{t('layout.setting.darkMode')}</RadioButton>
+          <RadioButton value='light'>{t('layout.setting.lightMode')}</RadioButton>
         </RadioGroup>
       </div>
     )

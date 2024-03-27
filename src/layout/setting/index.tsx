@@ -2,6 +2,7 @@ import { defineComponent, ref, unref } from 'vue'
 import { Drawer, Divider, Button } from 'ant-design-vue'
 import { SettingOutlined } from '@ant-design/icons-vue'
 import { AppDarkMode } from '@/components/Application'
+import { useI18n } from 'vue-i18n'
 import {
   MenuThemeRadio,
   MenuTypePicker,
@@ -24,6 +25,7 @@ import styles from './index.module.less'
 export default defineComponent({
   name: 'LayoutSetting',
   setup() {
+    const { t } = useI18n()
     const drawerVisible = ref<boolean>(false)
 
     const toggleDrawer = () => {
@@ -61,44 +63,48 @@ export default defineComponent({
       return (
         <>
           <SwitchItem
-            title='菜单分割'
+            title={t('layout.setting.menuSplit')}
             def={unref(getMenuSplit)}
             event={HandlerEnum.MENU_SPLIT}
             disabled={unref(getMenuType) !== MenuTypeEnum.HEADER_MENU}
           />
           <SwitchItem
-            title='菜单宽度拖拽'
+            title={t('layout.setting.menuDrag')}
             def={unref(getMenuCanDrag)}
             event={HandlerEnum.MENU_CAN_DRAG}
             disabled={unref(getMenuType) !== MenuTypeEnum.SIDER_MENU}
           />
           <SwitchItem
-            title='菜单固定'
+            title={t('layout.setting.menuFixed')}
             def={unref(getMenuFixed)}
             event={HandlerEnum.MENU_FIXED}
             disabled={unref(getMenuType) !== MenuTypeEnum.HYBRID_MENU}
           />
           <SwitchItem
-            title='菜单折叠'
+            title={t('layout.setting.menuCollapse')}
             def={unref(getMenuFold)}
             event={HandlerEnum.MENU_FOLD}
             disabled={unref(getMenuType) === MenuTypeEnum.HEADER_MENU}
           />
           <SwitchItem
-            title='菜单折叠显示名称'
+            title={t('layout.setting.menuCollapseShowTitle')}
             def={unref(getMenuFoldShowTitle)}
             event={HandlerEnum.MENU_FOLD_SHOW_TITLE}
             disabled={unref(getMenuType) !== MenuTypeEnum.SIDER_MENU}
           />
-          <SwitchItem title='标签缓存' def={unref(getTagsCached)} event={HandlerEnum.PAGE_TAGS_CACHED} />
+          <SwitchItem
+            title={t('layout.setting.tagsCached')}
+            def={unref(getTagsCached)}
+            event={HandlerEnum.PAGE_TAGS_CACHED}
+          />
           <SelectItem
-            title='菜单折叠按钮'
+            title={t('layout.setting.menuCollapseButton')}
             def={unref(getMenuFoldBtn)}
             event={HandlerEnum.MENU_FOLD_BTN}
             options={menuFoldBtnOptions}
           />
           <InputNumItem
-            title='菜单展开宽度'
+            title={t('layout.setting.expandedMenuWidth')}
             min={160}
             max={320}
             step={10}
@@ -107,12 +113,12 @@ export default defineComponent({
             formatter={(value: string) => `${parseInt(value)}px`}
           />
           {/* <InputNumItem
-            title='自动锁屏'
+            title={t('layout.setting.autoScreenLock')}
             min={0}
             event={HandlerEnum.LOCK_SCREEN_TIME}
             defaultValue={unref(getLockScreenTime)}
             formatter={(value: string) => {
-              return parseInt(value) === 0 ? `0(不自动锁屏)` : `${value}分钟`
+              return parseInt(value) === 0 ? `0(${t('layout.setting.notAutoScreenLock')})` : `${value}分钟`
             }}
           /> */}
         </>
@@ -122,16 +128,24 @@ export default defineComponent({
     function renderInterfaceShow() {
       return (
         <>
-          <SwitchItem title='面包屑' def={unref(getShowBreadCrumb)} event={HandlerEnum.SHOW_BREADCRUMB} />
-          <SwitchItem title='标签页' def={unref(getShowTags)} event={HandlerEnum.SHOW_PAGE_TAGS} />
-          <SwitchItem title='搜索' def={unref(getShowSearch)} event={HandlerEnum.SHOW_SEARCH} />
-          <SwitchItem title='全屏显示' def={unref(getShowFullScreen)} event={HandlerEnum.SHOW_FULL_SCREEN} />
-          <SwitchItem title='国际化' def={unref(getShowLocale)} event={HandlerEnum.SHOW_LOCALE} />
-          <SwitchItem title='文档' def={unref(getShowDoc)} event={HandlerEnum.SHOW_DOC} />
+          <SwitchItem
+            title={t('layout.setting.breadcrumb')}
+            def={unref(getShowBreadCrumb)}
+            event={HandlerEnum.SHOW_BREADCRUMB}
+          />
+          <SwitchItem title={t('layout.setting.tags')} def={unref(getShowTags)} event={HandlerEnum.SHOW_PAGE_TAGS} />
+          <SwitchItem title={t('layout.setting.search')} def={unref(getShowSearch)} event={HandlerEnum.SHOW_SEARCH} />
+          <SwitchItem
+            title={t('layout.setting.fullScreen')}
+            def={unref(getShowFullScreen)}
+            event={HandlerEnum.SHOW_FULL_SCREEN}
+          />
+          <SwitchItem title={t('layout.setting.language')} def={unref(getShowLocale)} event={HandlerEnum.SHOW_LOCALE} />
+          <SwitchItem title={t('layout.feature.document')} def={unref(getShowDoc)} event={HandlerEnum.SHOW_DOC} />
           <SwitchItem title='github' def={unref(getShowGithub)} event={HandlerEnum.SHOW_GITHUB} />
-          <SwitchItem title='页脚' def={unref(getShowFooter)} event={HandlerEnum.SHOW_FOOTER} />
-          <SwitchItem title='色弱模式' def={unref(getColorWeak)} event={HandlerEnum.COLOR_WEAK} />
-          <SwitchItem title='灰色模式' def={unref(getGrayMode)} event={HandlerEnum.GRAY_MODE} />
+          <SwitchItem title={t('layout.setting.footer')} def={unref(getShowFooter)} event={HandlerEnum.SHOW_FOOTER} />
+          <SwitchItem title={t('layout.setting.colorWeak')} def={unref(getColorWeak)} event={HandlerEnum.COLOR_WEAK} />
+          <SwitchItem title={t('layout.setting.grayMode')} def={unref(getGrayMode)} event={HandlerEnum.GRAY_MODE} />
         </>
       )
     }
@@ -139,10 +153,18 @@ export default defineComponent({
     function renderTransitionSetting() {
       return (
         <>
-          <SwitchItem title='顶部进度条' def={unref(getOpenNProgress)} event={HandlerEnum.OPEN_NPROGRESS} />
-          <SwitchItem title='切换动画' def={unref(getOpenTransition)} event={HandlerEnum.OPEN_TRANSITION} />
+          <SwitchItem
+            title={t('layout.setting.progress')}
+            def={unref(getOpenNProgress)}
+            event={HandlerEnum.OPEN_NPROGRESS}
+          />
+          <SwitchItem
+            title={t('layout.setting.switchAnimation')}
+            def={unref(getOpenTransition)}
+            event={HandlerEnum.OPEN_TRANSITION}
+          />
           <SelectItem
-            title='切换动画类型'
+            title={t('layout.setting.animationType')}
             def={unref(getBasicTransition)}
             event={HandlerEnum.BASIC_TRANSITION}
             options={pageTransitionOptions}
@@ -169,24 +191,24 @@ export default defineComponent({
           onClose={toggleDrawer}
         >
           <Container>
-            <Divider>系统风格</Divider>
+            <Divider>{t('layout.setting.systemMode')}</Divider>
             <AppDarkMode />
-            <Divider>菜单模式</Divider>
+            <Divider>{t('layout.setting.menuStyle')}</Divider>
             <div class='flex-between-h'>
               <MenuThemeRadio />
               <MenuTypePicker menuTypeList={menuTypeList} def={unref(getMenuType)} event={HandlerEnum.CHANGE_LAYOUT} />
             </div>
-            <Divider>主题颜色</Divider>
+            <Divider>{t('layout.setting.themeColor')}</Divider>
             <ThemeColorPicker
               colorList={appThemeColorList}
               def={unref(getThemeColor)}
               event={HandlerEnum.CHANGE_THEME_COLOR}
             />
-            <Divider>界面功能</Divider>
+            <Divider>{t('layout.setting.interfaceFunction')}</Divider>
             {renderInterfaceFunc()}
-            <Divider>界面显示</Divider>
+            <Divider>{t('layout.setting.interfaceShow')}</Divider>
             {renderInterfaceShow()}
-            <Divider>动画设置</Divider>
+            <Divider>{t('layout.setting.animationSetting')}</Divider>
             {renderTransitionSetting()}
             <Divider />
             <SettingFooter />

@@ -11,8 +11,9 @@ import { setupRouter, router } from './router'
 import { setupStore } from '@/stores'
 import { setupRouterGuard } from '@/router/guard'
 import { setupPlugins } from '@/plugins'
+import { setupI18n } from '@/locales'
 
-function launchApp() {
+async function launchApp() {
   const app = createApp(App)
 
   // Configure router
@@ -24,6 +25,8 @@ function launchApp() {
   setupStore(app)
 
   setupPlugins(app)
+
+  await setupI18n(app)
 
   // Initialize internal system configuration
   initAppConfigStore()

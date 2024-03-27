@@ -5,8 +5,9 @@ import { defineStore } from 'pinia'
 import { stores } from '../index'
 import { resetRouter } from '@/router'
 import { deepMerge } from '@/utils'
+import { createLocalStorage } from '@/utils/cache'
 import { Persistent } from '@/utils/cache/persistent'
-import { APP_CONFIG_KEY, APP_MODE_KEY } from '@/enums/cacheEnum'
+import { APP_CONFIG_KEY, APP_MODE_KEY, LOCALE_KEY } from '@/enums/cacheEnum'
 import { baseAppMode } from '@/settings/designSetting'
 
 interface AppState {
@@ -19,12 +20,14 @@ interface AppState {
   appLocale: LocaleType
 }
 
+const ls = createLocalStorage()
+
 export const useAppStore = defineStore('app', {
   state: (): AppState => ({
     appMode: undefined,
     themeMode: undefined,
     appConfig: Persistent.getLocal(APP_CONFIG_KEY),
-    appLocale: LocaleEnum.ZH_CN
+    appLocale: ls.get(LOCALE_KEY)
   }),
 
   getters: {
@@ -38,7 +41,7 @@ export const useAppStore = defineStore('app', {
       return this.appConfig || ({} as AppConfig)
     },
     getAppLocale(): LocaleType {
-      return this.appLocale
+      return this.appLocale || LocaleEnum.EN_US
     },
     getHeaderSetting(): HeaderSetting {
       return this.getAppConfig.headerSetting
@@ -65,6 +68,7 @@ export const useAppStore = defineStore('app', {
     },
     setAppLocale(locale: LocaleType): void {
       this.appLocale = locale
+      ls.set(LOCALE_KEY, locale)
     },
     async resetState() {
       resetRouter()

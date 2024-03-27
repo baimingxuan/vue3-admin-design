@@ -1,33 +1,39 @@
 import type { App } from 'vue'
 import type { I18nOptions } from 'vue-i18n'
+import { LocaleEnum } from '@/enums/appEnum'
+import { localePool } from '@/settings/localeSetting'
 import { createI18n } from 'vue-i18n'
-import { setHtmlPageLang, setLoadLocalePool } from './helper'
+import { setHtmlPageLang } from './helper'
 import { useAppStoreWithOut } from '@/stores/modules/app'
+import { genLangs } from './langs'
+
+export let i18n: ReturnType<typeof createI18n>
 
 async function createI18nOptions(): Promise<I18nOptions> {
   const appStore = useAppStoreWithOut()
   const locale = appStore.getAppLocale
-  const defaultLocal = await import(`./langs/${locale}.ts`)
-  const message = defaultLocal.default?.message ?? {}
+  const defaultLocal = await genLangs(locale)
+  const message = defaultLocal?.message ?? {}
 
   setHtmlPageLang(locale)
 
   return {
     legacy: false,
     locale,
-    fallbackLocale: 'zh_CN',
+    fallbackLocale: LocaleEnum.ZH_CN,
     messages: {
       [locale]: message
     },
-    availableLocales: ['zh_CN', 'zh_TW', 'en_US'],
-    sync: true, //If you don’t want to inherit locale from global scope, you need to set sync of i18n component option to false.
-    silentTranslationWarn: true // true - warning off
+    // If you don’t want to inherit locale from global scope, you need to set sync of i18n component option to false.
+    sync: true,
+    availableLocales: localePool,
+    // Whether to cancel the warning output when localization fails, true - warning off
+    silentTranslationWarn: true
   }
 }
 
-// setup i18n instance with glob
 export async function setupI18n(app: App) {
   const options = await createI18nOptions()
-  const i18n = createI18n(options)
+  i18n = createI18n(options)
   app.use(i18n)
 }

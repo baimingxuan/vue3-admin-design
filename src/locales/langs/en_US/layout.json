@@ -34,8 +34,8 @@
   },
   "setting": {
     "systemMode": "System mode",
-    "darkMode": "Dark mode",
-    "lightMode": "Light mode",
+    "darkMode": "Dark",
+    "lightMode": "Light",
     "menuStyle": "Menu style",
     "themeColor": "Theme color",
     "interfaceFunction": "Interface function",
@@ -53,6 +53,7 @@
     "breadcrumb": "Breadcrumbs",
     "tags": "Tags",
     "search": "Search",
+    "fullScreen": "Full screen",
     "language": "Language",
     "footer": "Footer",
     "colorWeak": "Color weak mode",

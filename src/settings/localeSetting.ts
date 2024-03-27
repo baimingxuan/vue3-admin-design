@@ -1,3 +1,4 @@
+import type { LocaleType } from '@/types'
 import { LocaleEnum } from '@/enums/appEnum'
 
 interface DropMenu {
@@ -5,6 +6,8 @@ interface DropMenu {
   event: LocaleEnum
   onClick?: Fn
 }
+
+export const localePool: LocaleType[] = [LocaleEnum.ZH_CN, LocaleEnum.Zh_TW, LocaleEnum.EN_US]
 
 export const localeList: DropMenu[] = [
   {
