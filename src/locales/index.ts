@@ -9,10 +9,10 @@ import { genLangs } from './langs'
 
 export let i18n: ReturnType<typeof createI18n>
 
-async function createI18nOptions(): Promise<I18nOptions> {
+function createI18nOptions(): I18nOptions {
   const appStore = useAppStoreWithOut()
   const locale = appStore.getAppLocale
-  const defaultLocal = await genLangs(locale)
+  const defaultLocal = genLangs(locale)
   const message = defaultLocal?.message ?? {}
 
   setHtmlPageLang(locale)

@@ -7,7 +7,7 @@ const modules = {
   zh_TW: import.meta.glob('./zh_TW/**/*.json', { eager: true })
 }
 
-export async function genLangs(lang: LocaleType) {
+export function genLangs(lang: LocaleType) {
   return {
     message: {
       ...genMessage(modules[lang] as Recordable<Recordable>, lang)

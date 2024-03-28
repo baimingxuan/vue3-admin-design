@@ -16,20 +16,20 @@ import { setupI18n } from '@/locales'
 async function launchApp() {
   const app = createApp(App)
 
+  // Configure store
+  setupStore(app)
+
+  // Initialize internal system configuration
+  initAppConfigStore()
+
   // Configure router
   setupRouter(app)
 
   setupRouterGuard(router)
 
-  // Configure store
-  setupStore(app)
+  setupI18n(app)
 
   setupPlugins(app)
-
-  await setupI18n(app)
-
-  // Initialize internal system configuration
-  initAppConfigStore()
 
   app.mount('#app')
 }
