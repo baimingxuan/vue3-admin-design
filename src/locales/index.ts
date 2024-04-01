@@ -7,8 +7,6 @@ import { setHtmlPageLang } from './helper'
 import { useAppStoreWithOut } from '@/stores/modules/app'
 import { genLangs } from './langs'
 
-export let i18n: ReturnType<typeof createI18n>
-
 function createI18nOptions(): I18nOptions {
   const appStore = useAppStoreWithOut()
   const locale = appStore.getAppLocale
@@ -32,8 +30,8 @@ function createI18nOptions(): I18nOptions {
   }
 }
 
-export async function setupI18n(app: App) {
-  const options = await createI18nOptions()
-  i18n = createI18n(options)
+export function setupI18n(app: App) {
+  const options = createI18nOptions()
+  const i18n = createI18n(options)
   app.use(i18n)
 }

@@ -5,7 +5,7 @@
     "hybridMenu": "混合菜单",
     "collapseBtnPosition": {
       "hidden": "隐藏",
-      "top": "顶部",
+      "header": "顶部",
       "sider": "侧边栏"
     }
   },

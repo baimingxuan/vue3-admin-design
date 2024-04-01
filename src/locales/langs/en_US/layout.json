@@ -5,7 +5,7 @@
     "hybridMenu": "Hybrid menu",
     "collapseBtnPosition": {
       "hidden": "Hidden",
-      "top": "Top",
+      "header": "Header",
       "sider": "Sider"
     }
   },

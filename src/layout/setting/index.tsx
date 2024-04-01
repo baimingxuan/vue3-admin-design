@@ -101,7 +101,7 @@ export default defineComponent({
             title={t('layout.setting.menuCollapseButton')}
             def={unref(getMenuFoldBtn)}
             event={HandlerEnum.MENU_FOLD_BTN}
-            options={menuFoldBtnOptions}
+            options={menuFoldBtnOptions(t)}
           />
           <InputNumItem
             title={t('layout.setting.expandedMenuWidth')}
@@ -196,11 +196,15 @@ export default defineComponent({
             <Divider>{t('layout.setting.menuStyle')}</Divider>
             <div class='flex-between-h'>
               <MenuThemeRadio />
-              <MenuTypePicker menuTypeList={menuTypeList} def={unref(getMenuType)} event={HandlerEnum.CHANGE_LAYOUT} />
+              <MenuTypePicker
+                menuTypeList={menuTypeList(t)}
+                def={unref(getMenuType)}
+                event={HandlerEnum.CHANGE_LAYOUT}
+              />
             </div>
             <Divider>{t('layout.setting.themeColor')}</Divider>
             <ThemeColorPicker
-              colorList={appThemeColorList}
+              colorList={appThemeColorList(t)}
               def={unref(getThemeColor)}
               event={HandlerEnum.CHANGE_THEME_COLOR}
             />
