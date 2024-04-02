@@ -1,6 +1,9 @@
 import type { AppRoute } from '../../types'
+import { i18n } from '@/locales'
 import { ExceptionEnum } from '@/enums/exceptionEnum'
 import Layout from '@/layout'
+
+const { t } = i18n.global
 
 // exception module page
 const ExceptionRoute: AppRoute = {
@@ -9,7 +12,7 @@ const ExceptionRoute: AppRoute = {
   component: Layout,
   redirect: '/exception/page-403',
   meta: {
-    title: '异常页面',
+    title: t('routes.exception.name'),
     icon: 'bug',
     orderNo: 11
   },
@@ -23,7 +26,7 @@ const ExceptionRoute: AppRoute = {
         withCard: true
       },
       meta: {
-        title: '403页面'
+        title: t('routes.exception.403')
       }
     },
     {
@@ -35,7 +38,7 @@ const ExceptionRoute: AppRoute = {
         withCard: true
       },
       meta: {
-        title: '404页面'
+        title: t('routes.exception.404')
       }
     },
     {
@@ -47,7 +50,7 @@ const ExceptionRoute: AppRoute = {
         withCard: true
       },
       meta: {
-        title: '500页面'
+        title: t('routes.exception.500')
       }
     }
   ]

@@ -1,0 +1,68 @@
+{
+  "base": {
+    "home": "首页",
+    "notFound": "错误页面",
+    "redirect": "重定向页面",
+    "notAuth": "403页面",
+    "login": "登录页"
+  },
+  "form": {
+    "name": "表单",
+    "basic": "基础表单",
+    "designer": "表单设计器"
+  },
+  "table": {
+    "name": "表格",
+    "basic": "基础表格",
+    "editRow": "可编辑行表格"
+  },
+  "image": {
+    "name": "图片处理",
+    "cropper": "图片裁剪",
+    "compress": "图片压缩",
+    "composition": "图片合成"
+  },
+  "video": {
+    "name": "视频处理",
+    "player": "视频播放器",
+    "watermark": "视频水印"
+  },
+  "compo": {
+    "name": "组件",
+    "upload": "图片上传",
+    "drag": {
+      "name": "拖拽",
+      "list": "拖拽列表",
+      "resize": "组件拖拽"
+    },
+    "transfer": "穿梭框",
+    "countTo": "数字滚动"
+  },
+  "editor": {
+    "name": "文本编辑器",
+    "markdown": "Markdown编辑器",
+    "richText": "富文本编辑器",
+    "codeEditor": "代码编辑器"
+  },
+  "flow": {
+    "name": "图形编辑器",
+    "approve": "审批流程图",
+    "bpmn": "BPMN流程图"
+  },
+  "tree": {
+    "name": "树形结构",
+    "org": "组织树",
+    "antdTree": "控件树"
+  },
+  "excel": {
+    "name": "Excel",
+    "export": "导出Excel",
+    "import": "导入Excel"
+  },
+  "exception": {
+    "name": "异常页面",
+    "403": "403页面",
+    "404": "404页面",
+    "500": "500页面"
+  }
+}

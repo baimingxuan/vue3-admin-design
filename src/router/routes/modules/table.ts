@@ -1,5 +1,8 @@
 import type { AppRoute } from '../../types'
+import { i18n } from '@/locales'
 import Layout from '@/layout'
+
+const { t } = i18n.global
 
 // table module page
 const TableRoute: AppRoute = {
@@ -8,7 +11,7 @@ const TableRoute: AppRoute = {
   component: Layout,
   redirect: '/table/table-basic',
   meta: {
-    title: '表格',
+    title: t('routes.table.name'),
     icon: 'table',
     orderNo: 3
   },
@@ -18,7 +21,7 @@ const TableRoute: AppRoute = {
       name: 'TableBasic',
       component: () => import('@/views/table/table-basic'),
       meta: {
-        title: '基础表格'
+        title: t('routes.table.basic')
       }
     },
     {
@@ -26,7 +29,7 @@ const TableRoute: AppRoute = {
       name: 'TableEditRow',
       component: () => import('@/views/table/table-edit-row'),
       meta: {
-        title: '可编辑行表格'
+        title: t('routes.table.editRow')
       }
     }
   ]

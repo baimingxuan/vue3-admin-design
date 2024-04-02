@@ -1,5 +1,8 @@
 import type { AppRoute } from '../../types'
+import { i18n } from '@/locales'
 import Layout from '@/layout'
+
+const { t } = i18n.global
 
 // component module page
 const CompoRoute: AppRoute = {
@@ -8,7 +11,7 @@ const CompoRoute: AppRoute = {
   component: Layout,
   redirect: '/compo/image-upload',
   meta: {
-    title: '组件',
+    title: t('routes.compo.name'),
     icon: 'compo',
     orderNo: 6
   },
@@ -18,7 +21,7 @@ const CompoRoute: AppRoute = {
       name: 'ImageUpload',
       component: () => import('@/views/compo/image-upload'),
       meta: {
-        title: '图片上传'
+        title: t('routes.compo.upload')
       }
     },
     {
@@ -26,7 +29,7 @@ const CompoRoute: AppRoute = {
       name: 'Drag',
       redirect: '/compo/drag/drag-list',
       meta: {
-        title: '拖拽'
+        title: t('routes.compo.drag.name')
       },
       children: [
         {
@@ -34,7 +37,7 @@ const CompoRoute: AppRoute = {
           name: 'DragList',
           component: () => import('@/views/compo/drag/drag-list'),
           meta: {
-            title: '列表拖拽'
+            title: t('routes.compo.drag.list')
           }
         },
         {
@@ -42,7 +45,7 @@ const CompoRoute: AppRoute = {
           name: 'VueDragResize',
           component: () => import('@/views/compo/drag/drag-resize'),
           meta: {
-            title: '组件拖拽'
+            title: t('routes.compo.drag.resize')
           }
         }
       ]
@@ -52,7 +55,7 @@ const CompoRoute: AppRoute = {
       name: 'TransferPage',
       component: () => import('@/views/compo/transfer'),
       meta: {
-        title: '穿梭框'
+        title: t('routes.compo.transfer')
       }
     },
     {
@@ -60,7 +63,7 @@ const CompoRoute: AppRoute = {
       name: 'CountToPage',
       component: () => import('@/views/compo/count-to'),
       meta: {
-        title: '数字滚动'
+        title: t('routes.compo.countTo')
       }
     }
   ]

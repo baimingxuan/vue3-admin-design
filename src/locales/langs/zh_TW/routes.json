@@ -1,0 +1,68 @@
+{
+  "base": {
+    "home": "首頁",
+    "notFound": "錯誤頁面",
+    "redirect": "重定向頁面",
+    "notAuth": "403頁面",
+    "login": "登錄頁"
+  },
+  "form": {
+    "name": "表單",
+    "basic": "基礎表單",
+    "designer": "表單設計器"
+  },
+  "table": {
+    "name": "表格",
+    "basic": "基礎表格",
+    "editRow": "可編輯行表格"
+  },
+  "image": {
+    "name": "圖片處理",
+    "cropper": "圖片裁剪",
+    "compress": "圖片壓縮",
+    "composition": "圖片合成"
+  },
+  "video": {
+    "name": "視頻處理",
+    "player": "視頻播放器",
+    "watermark": "視頻水印"
+  },
+  "compo": {
+    "name": "組件",
+    "upload": "圖片上傳",
+    "drag": {
+      "name": "拖拽",
+      "list": "拖拽列表",
+      "resize": "組件拖拽"
+    },
+    "transfer": "穿梭框",
+    "countTo": "數字滾動"
+  },
+  "editor": {
+    "name": "文本編輯器",
+    "markdown": "Markdown編輯器",
+    "richText": "富文本編輯器",
+    "codeEditor": "代碼編輯器"
+  },
+  "flow": {
+    "name": "圖形編輯器",
+    "approve": "審批流程圖",
+    "bpmn": "BPMN流程圖"
+  },
+  "tree": {
+    "name": "樹形結構",
+    "org": "組織樹",
+    "antdTree": "控件樹"
+  },
+  "excel": {
+    "name": "Excel",
+    "export": "導出Excel",
+    "import": "導入Excel"
+  },
+  "exception": {
+    "name": "異常頁面",
+    "403": "403頁面",
+    "404": "404頁面",
+    "500": "500頁面"
+  }
+}

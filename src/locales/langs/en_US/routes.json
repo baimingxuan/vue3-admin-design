@@ -1,0 +1,68 @@
+{
+  "base": {
+    "home": "Home",
+    "notFound": "Not Found",
+    "redirect": "Redirect",
+    "notAuth": "Not Auth",
+    "login": "Login"
+  },
+  "form": {
+    "name": "Form",
+    "basic": "Basic Form",
+    "designer": "Form Designer"
+  },
+  "table": {
+    "name": "Table",
+    "basic": "Basic Table",
+    "editRow": "Edit Row Table"
+  },
+  "image": {
+    "name": "Image",
+    "cropper": "Image Cropper",
+    "compress": "Image Compress",
+    "composition": "Image Composition"
+  },
+  "video": {
+    "name": "Video",
+    "player": "Video Player",
+    "watermark": "Video Watermark"
+  },
+  "compo": {
+    "name": "Components",
+    "upload": "Image Upload",
+    "drag": {
+      "name": "Drag",
+      "list": "Drag List",
+      "resize": "Drag Resize"
+    },
+    "transfer": "Transfer",
+    "countTo": "Count To"
+  },
+  "editor": {
+    "name": "Text Editor",
+    "markdown": "Markdown Editor",
+    "richText": "Rich Text Editor",
+    "codeEditor": "Code Editor"
+  },
+  "flow": {
+    "name": "Flow Editor",
+    "approve": "Approve Flow",
+    "bpmn": "BPMN Flow"
+  },
+  "tree": {
+    "name": "Tree",
+    "org": "Org Tree",
+    "antdTree": "Antd Tree"
+  },
+  "excel": {
+    "name": "Excel",
+    "export": "Export Excel",
+    "import": "Import Excel"
+  },
+  "exception": {
+    "name": "Exception",
+    "403": "403",
+    "404": "404",
+    "500": "500"
+  }
+}

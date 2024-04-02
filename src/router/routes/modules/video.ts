@@ -1,5 +1,8 @@
 import type { AppRoute } from '../../types'
+import { i18n } from '@/locales'
 import Layout from '@/layout'
+
+const { t } = i18n.global
 
 // video module page
 const VideoRoute: AppRoute = {
@@ -8,7 +11,7 @@ const VideoRoute: AppRoute = {
   component: Layout,
   redirect: '/video/video-player',
   meta: {
-    title: '视频处理',
+    title: t('routes.video.name'),
     icon: 'video',
     orderNo: 5
   },
@@ -18,7 +21,7 @@ const VideoRoute: AppRoute = {
       name: 'VideoPlayer',
       component: () => import('@/views/video/video-player'),
       meta: {
-        title: '视频播放器'
+        title: t('routes.video.player')
       }
     },
     {
@@ -26,7 +29,7 @@ const VideoRoute: AppRoute = {
       name: 'VideoWatermark',
       component: () => import('@/views/video/video-watermark'),
       meta: {
-        title: '视频水印'
+        title: t('routes.video.watermark')
       }
     }
   ]

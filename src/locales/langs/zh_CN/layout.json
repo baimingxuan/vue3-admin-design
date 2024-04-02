@@ -26,6 +26,8 @@
     "closeAll": "关闭所有"
   },
   "feature": {
+    "search": "搜索",
+    "language": "多语言",
     "document": "文档",
     "fullScreen": "全屏",
     "exitFullScreen": "退出全屏",

@@ -1,5 +1,8 @@
 import type { AppRoute } from '../../types'
+import { i18n } from '@/locales'
 import Layout from '@/layout'
+
+const { t } = i18n.global
 
 // image module page
 const ImageRoute: AppRoute = {
@@ -8,7 +11,7 @@ const ImageRoute: AppRoute = {
   component: Layout,
   redirect: '/image/image-cropper',
   meta: {
-    title: '图片处理',
+    title: t('routes.image.name'),
     icon: 'image',
     orderNo: 4
   },
@@ -18,7 +21,7 @@ const ImageRoute: AppRoute = {
       name: 'ImageCropper',
       component: () => import('@/views/image/image-cropper'),
       meta: {
-        title: '图片裁剪'
+        title: t('routes.image.cropper')
       }
     },
     {
@@ -26,7 +29,7 @@ const ImageRoute: AppRoute = {
       name: 'ImageCompress',
       component: () => import('@/views/image/image-compress'),
       meta: {
-        title: '图片压缩'
+        title: t('routes.image.compress')
       }
     },
     {
@@ -34,7 +37,7 @@ const ImageRoute: AppRoute = {
       name: 'ImageComposition',
       component: () => import('@/views/image/image-composition'),
       meta: {
-        title: '图片合成'
+        title: t('routes.image.composition')
       }
     }
   ]

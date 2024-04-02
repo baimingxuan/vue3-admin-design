@@ -1,5 +1,8 @@
 import type { AppRoute } from '../../types'
+import { i18n } from '@/locales'
 import Layout from '@/layout'
+
+const { t } = i18n.global
 
 // tree module page
 const TreeRoute: AppRoute = {
@@ -8,7 +11,7 @@ const TreeRoute: AppRoute = {
   component: Layout,
   redirect: '/tree/org-tree',
   meta: {
-    title: '树形结构',
+    title: t('routes.tree.name'),
     icon: 'tree',
     orderNo: 9
   },
@@ -18,7 +21,7 @@ const TreeRoute: AppRoute = {
       name: 'OrgTree',
       component: () => import('@/views/tree/org-tree/index'),
       meta: {
-        title: '组织树'
+        title: t('routes.tree.org')
       }
     },
     {
@@ -26,7 +29,7 @@ const TreeRoute: AppRoute = {
       name: 'AntdTree',
       component: () => import('@/views/tree/antd-tree/index'),
       meta: {
-        title: '控件树'
+        title: t('routes.tree.antdTree')
       }
     }
   ]

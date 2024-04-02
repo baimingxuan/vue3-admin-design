@@ -26,6 +26,8 @@
     "closeAll": "Close all"
   },
   "feature": {
+    "search": "Search",
+    "language": "Language",
     "document": "Document",
     "fullScreen": "Full screen",
     "exitFullScreen": "Exit full screen",

@@ -1,5 +1,8 @@
 import type { AppRoute } from '../../types'
+import { i18n } from '@/locales'
 import Layout from '@/layout'
+
+const { t } = i18n.global
 
 // Home route
 const HomeRoute: AppRoute = {
@@ -8,7 +11,7 @@ const HomeRoute: AppRoute = {
   component: Layout,
   redirect: '/home',
   meta: {
-    title: '首页',
+    title: t('routes.base.home'),
     icon: 'home',
     affix: true,
     orderNo: 1,
@@ -20,7 +23,7 @@ const HomeRoute: AppRoute = {
       name: 'HomePage',
       component: () => import('@/views/home'),
       meta: {
-        title: '首页',
+        title: t('routes.base.home'),
         icon: 'home',
         hideMenu: true
       }

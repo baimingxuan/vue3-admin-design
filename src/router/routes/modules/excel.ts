@@ -1,5 +1,8 @@
 import type { AppRoute } from '../../types'
+import { i18n } from '@/locales'
 import Layout from '@/layout'
+
+const { t } = i18n.global
 
 // excel module page
 const ExcelRoute: AppRoute = {
@@ -8,7 +11,7 @@ const ExcelRoute: AppRoute = {
   component: Layout,
   redirect: '/excel/export-excel',
   meta: {
-    title: 'Excel',
+    title: t('routes.excel.name'),
     icon: 'excel',
     orderNo: 10
   },
@@ -18,7 +21,7 @@ const ExcelRoute: AppRoute = {
       name: 'ExportExcel',
       component: () => import('@/views/excel/export-excel'),
       meta: {
-        title: '导出Excel'
+        title: t('routes.excel.export')
       }
     },
     {
@@ -26,7 +29,7 @@ const ExcelRoute: AppRoute = {
       name: 'ImportExcel',
       component: () => import('@/views/excel/import-excel'),
       meta: {
-        title: '导入Excel'
+        title: t('routes.excel.import')
       }
     }
   ]

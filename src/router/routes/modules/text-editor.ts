@@ -1,5 +1,8 @@
 import type { AppRoute } from '../../types'
+import { i18n } from '@/locales'
 import Layout from '@/layout'
+
+const { t } = i18n.global
 
 // text-editor module page
 const TextEditorRoute: AppRoute = {
@@ -8,7 +11,7 @@ const TextEditorRoute: AppRoute = {
   component: Layout,
   redirect: '/editor/markdown',
   meta: {
-    title: '文本编辑器',
+    title: t('routes.editor.name'),
     icon: 'editor',
     orderNo: 7
   },
@@ -18,7 +21,7 @@ const TextEditorRoute: AppRoute = {
       name: 'Markdown',
       component: () => import('@/views/editor/markdown'),
       meta: {
-        title: 'Markdown编辑器'
+        title: t('routes.editor.markdown')
       }
     },
     {
@@ -26,7 +29,7 @@ const TextEditorRoute: AppRoute = {
       name: 'RichText',
       component: () => import('@/views/editor/rich-text'),
       meta: {
-        title: '富文本编辑器'
+        title: t('routes.editor.richText')
       }
     },
     {
@@ -34,7 +37,7 @@ const TextEditorRoute: AppRoute = {
       name: 'CodeEditor',
       component: () => import('@/views/editor/code-mirror'),
       meta: {
-        title: '代码编辑器'
+        title: t('routes.editor.codeEditor')
       }
     }
   ]

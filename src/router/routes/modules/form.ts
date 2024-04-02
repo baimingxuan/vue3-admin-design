@@ -1,5 +1,8 @@
 import type { AppRoute } from '../../types'
+import { i18n } from '@/locales'
 import Layout from '@/layout'
+
+const { t } = i18n.global
 
 // form module page
 const FormRoute: AppRoute = {
@@ -8,7 +11,7 @@ const FormRoute: AppRoute = {
   component: Layout,
   redirect: '/form/basic-form',
   meta: {
-    title: '表单',
+    title: t('routes.form.name'),
     icon: 'form',
     orderNo: 2
   },
@@ -18,7 +21,7 @@ const FormRoute: AppRoute = {
       name: 'BasicForm',
       component: () => import('@/views/form/basic-form'),
       meta: {
-        title: '基础表单'
+        title: t('routes.form.basic')
       }
     },
     {
@@ -26,7 +29,7 @@ const FormRoute: AppRoute = {
       name: 'FormDesigner',
       component: () => import('@/views/form/form-designer'),
       meta: {
-        title: '表单设计器'
+        title: t('routes.form.designer')
       }
     }
   ]

@@ -1,5 +1,8 @@
 import type { AppRoute } from '../../types'
+import { i18n } from '@/locales'
 import Layout from '@/layout'
+
+const { t } = i18n.global
 
 // flow-editor module page
 const FlowEditorRoute: AppRoute = {
@@ -8,7 +11,7 @@ const FlowEditorRoute: AppRoute = {
   component: Layout,
   redirect: '/flow-editor/flow-approve',
   meta: {
-    title: '图形编辑器',
+    title: t('routes.flow.name'),
     icon: 'flow',
     orderNo: 8
   },
@@ -18,7 +21,7 @@ const FlowEditorRoute: AppRoute = {
       name: 'FlowApprove',
       component: () => import('@/views/flow/flow-approve'),
       meta: {
-        title: '审批流程图'
+        title: t('routes.flow.approve')
       }
     },
     {
@@ -26,7 +29,7 @@ const FlowEditorRoute: AppRoute = {
       name: 'FlowBpmn',
       component: () => import('@/views/flow/flow-bpmn'),
       meta: {
-        title: 'BPMN流程图'
+        title: t('routes.flow.bpmn')
       }
     }
   ]
