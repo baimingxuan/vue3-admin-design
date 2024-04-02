@@ -1,6 +1,7 @@
 import { defineComponent, computed, unref } from 'vue'
 import { Dropdown, Menu, MenuItem } from 'ant-design-vue'
 import { LockOutlined, PoweroffOutlined } from '@ant-design/icons-vue'
+import { useI18n } from 'vue-i18n'
 import { useUserStore } from '@/stores/modules/user'
 import headerImg from '@/assets/images/avatar.jpeg'
 
@@ -10,6 +11,7 @@ export default defineComponent({
   name: 'UserDropdown',
 
   setup() {
+    const { t } = useI18n()
     const userStore = useUserStore()
     const getUserInfo = computed(() => {
       const { realName = '', avatar } = userStore.getUserInfo || {}
@@ -47,13 +49,13 @@ export default defineComponent({
               <MenuItem key='lock'>
                 <span class='flex-center-v'>
                   <LockOutlined />
-                  <span style='margin-left: 4px;'>锁定屏幕</span>
+                  <span style='margin-left: 4px;'>{t('layout.feature.lockScreen')}</span>
                 </span>
               </MenuItem>
               <MenuItem key='logout'>
                 <span class='flex-center-v'>
                   <PoweroffOutlined />
-                  <span style='margin-left: 4px;'>退出登录</span>
+                  <span style='margin-left: 4px;'>{t('layout.feature.logout')}</span>
                 </span>
               </MenuItem>
             </Menu>

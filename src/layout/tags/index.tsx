@@ -3,6 +3,7 @@ import { defineComponent, computed, ref, unref, nextTick, TransitionGroup } from
 import { useRouter } from 'vue-router'
 import { Button, Dropdown, Menu, MenuItem } from 'ant-design-vue'
 import { LeftOutlined, RightOutlined, RedoOutlined, CloseOutlined } from '@ant-design/icons-vue'
+import { useI18n } from 'vue-i18n'
 import { listenerRouteChange } from '@/logics/mitt/routeChange'
 import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
@@ -25,6 +26,7 @@ export default defineComponent({
     }
   },
   setup(props) {
+    const { t } = useI18n()
     const tagsMain = ref<ElRef>(null)
     const tagsMainCont = ref<ElRef>(null)
 
@@ -216,10 +218,10 @@ export default defineComponent({
             ),
             overlay: () => (
               <Menu>
-                <MenuItem onClick={closeLeft}>关闭左侧</MenuItem>
-                <MenuItem onClick={closeRight}>关闭右侧</MenuItem>
-                <MenuItem onClick={closeOther}>关闭其它</MenuItem>
-                <MenuItem onClick={closeAll}>关闭所有</MenuItem>
+                <MenuItem onClick={closeLeft}>{t('layout.tags.closeLeft')}</MenuItem>
+                <MenuItem onClick={closeRight}>{t('layout.tags.closeRight')}</MenuItem>
+                <MenuItem onClick={closeOther}>{t('layout.tags.closeOther')}</MenuItem>
+                <MenuItem onClick={closeAll}>{t('layout.tags.closeAll')}</MenuItem>
               </Menu>
             )
           }}

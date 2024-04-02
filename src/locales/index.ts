@@ -1,15 +1,17 @@
 import type { App } from 'vue'
 import type { I18nOptions } from 'vue-i18n'
 import { LocaleEnum } from '@/enums/appEnum'
+import { LOCALE_KEY } from '@/enums/cacheEnum'
 import { localePool } from '@/settings/localeSetting'
 import { createI18n } from 'vue-i18n'
-import { setHtmlPageLang } from './helper'
-import { useAppStoreWithOut } from '@/stores/modules/app'
+import { setHtmlPageLang, getBrowserLang } from './helper'
+import { createLocalStorage } from '@/utils/cache'
 import { genLangs } from './langs'
 
+const ls = createLocalStorage()
+
 function createI18nOptions(): I18nOptions {
-  const appStore = useAppStoreWithOut()
-  const locale = appStore.getAppLocale
+  const locale = ls.get(LOCALE_KEY) || getBrowserLang()
   const defaultLocal = genLangs(locale)
   const message = defaultLocal?.message ?? {}
 
@@ -30,8 +32,13 @@ function createI18nOptions(): I18nOptions {
   }
 }
 
-export function setupI18n(app: App) {
+function createI18nInstance() {
   const options = createI18nOptions()
-  const i18n = createI18n(options)
+  return createI18n(options)
+}
+
+export const i18n = createI18nInstance()
+
+export function setupI18n(app: App) {
   app.use(i18n)
 }

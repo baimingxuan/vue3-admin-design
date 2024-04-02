@@ -1,13 +1,12 @@
-import type { ThemeMode, LocaleType } from '@/types'
+import type { ThemeMode } from '@/types'
 import type { AppConfig, HeaderSetting, MenuSetting, TransitionSetting } from '@/interfaces/config'
-import { type AppModeEnum, type ThemeEnum, LocaleEnum } from '@/enums/appEnum'
+import type { AppModeEnum, ThemeEnum } from '@/enums/appEnum'
 import { defineStore } from 'pinia'
 import { stores } from '../index'
 import { resetRouter } from '@/router'
 import { deepMerge } from '@/utils'
-import { createLocalStorage } from '@/utils/cache'
 import { Persistent } from '@/utils/cache/persistent'
-import { APP_CONFIG_KEY, APP_MODE_KEY, LOCALE_KEY } from '@/enums/cacheEnum'
+import { APP_CONFIG_KEY, APP_MODE_KEY } from '@/enums/cacheEnum'
 import { baseAppMode } from '@/settings/designSetting'
 
 interface AppState {
@@ -16,18 +15,13 @@ interface AppState {
   themeMode?: ThemeEnum
 
   appConfig: AppConfig | null
-
-  appLocale: LocaleType
 }
-
-const ls = createLocalStorage()
 
 export const useAppStore = defineStore('app', {
   state: (): AppState => ({
     appMode: undefined,
     themeMode: undefined,
-    appConfig: Persistent.getLocal(APP_CONFIG_KEY),
-    appLocale: ls.get(LOCALE_KEY)
+    appConfig: Persistent.getLocal(APP_CONFIG_KEY)
   }),
 
   getters: {
@@ -39,9 +33,6 @@ export const useAppStore = defineStore('app', {
     },
     getAppConfig(): AppConfig {
       return this.appConfig || ({} as AppConfig)
-    },
-    getAppLocale(): LocaleType {
-      return this.appLocale || LocaleEnum.EN_US
     },
     getHeaderSetting(): HeaderSetting {
       return this.getAppConfig.headerSetting
@@ -65,10 +56,6 @@ export const useAppStore = defineStore('app', {
     setAppConfig(config: DeepPartial<AppConfig>): void {
       this.appConfig = deepMerge(this.appConfig || {}, config)
       Persistent.setLocal(APP_CONFIG_KEY, this.appConfig, true)
-    },
-    setAppLocale(locale: LocaleType): void {
-      this.appLocale = locale
-      ls.set(LOCALE_KEY, locale)
     },
     async resetState() {
       resetRouter()
