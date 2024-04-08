@@ -1,4 +1,4 @@
-// Menu types
+// Menu typings
 export enum MenuTypeEnum {
   SIDER_MENU = 'sider-menu',
 

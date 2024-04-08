@@ -1,4 +1,4 @@
-import type { AppConfig } from '@/interfaces/config'
+import type { AppConfig } from '@/types/config'
 import { APP_CONFIG_KEY } from '@/enums/cacheEnum'
 import { updateDarkTheme } from '@/logics/theme/mode'
 import { useAppStore } from '@/stores/modules/app'

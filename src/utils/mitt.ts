@@ -13,7 +13,7 @@ export type WildcardHandler<T = Record<string, unknown>> = (type: keyof T, event
 export type EventHandlerList<T = unknown> = Array<Handler<T>>
 export type WildCardEventHandlerList<T = Record<string, unknown>> = Array<WildcardHandler<T>>
 
-// A map of event types and their corresponding event handlers.
+// A map of event typings and their corresponding event handlers.
 export type EventHandlerMap<Events extends Record<EventType, unknown>> = Map<
   keyof Events | '*',
   EventHandlerList<Events[keyof Events]> | WildCardEventHandlerList<Events>

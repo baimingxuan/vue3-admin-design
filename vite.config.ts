@@ -3,7 +3,7 @@ import { loadEnv } from 'vite'
 import { createProxy } from './build/vite/proxy'
 import { createVitePlugins } from './build/vite/plugin'
 import { wrapperEnv } from './build/utils'
-// need install plugin @types/node
+// need install plugin @typings/node
 import { resolve } from 'path'
 
 function pathResolve(dir: string) {
@@ -16,7 +16,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
 
   const env = loadEnv(mode, root)
 
-  // this function can be converted to different types
+  // this function can be converted to different typings
   const viteEnv = wrapperEnv(env)
   const { VITE_PORT, VITE_PROXY, VITE_DROP_CONSOLE } = viteEnv
 

@@ -24,7 +24,8 @@ export default defineComponent({
         loading.value = true
         const userInfo = await userStore.login({
           username: form.username,
-          password: form.password
+          password: form.password,
+          remember: form.remember
         })
         if (userInfo) {
           message.success('登陆成功！')

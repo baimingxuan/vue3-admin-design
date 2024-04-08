@@ -1,8 +1,8 @@
-import type { LoginParams } from '@/interfaces'
+import type { LoginFormState } from '@/types'
 import { service } from '@/utils/axios'
 
 // User login api
-export function loginApi(data: LoginParams): Promise<any> {
+export function loginApi(data: LoginFormState): Promise<any> {
   return service({
     url: '/login',
     method: 'post',

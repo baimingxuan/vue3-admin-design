@@ -1,4 +1,4 @@
-import type { LoginParams, UserInfo } from '@/interfaces'
+import type { LoginFormState, UserInfo } from '@/types'
 
 import { h } from 'vue'
 import { defineStore } from 'pinia'
@@ -57,7 +57,7 @@ export const useUserStore = defineStore('app-user', {
       this.lastUpdateTime = 0
     },
     async login(
-      params: LoginParams & {
+      params: LoginFormState & {
         goHome?: boolean
       }
     ): Promise<UserInfo | null> {

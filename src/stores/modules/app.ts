@@ -1,5 +1,5 @@
 import type { ThemeMode } from '@/types'
-import type { AppConfig, HeaderSetting, MenuSetting, TransitionSetting } from '@/interfaces/config'
+import type { AppConfig, HeaderSetting, MenuSetting, TransitionSetting } from '@/types/config'
 import type { AppModeEnum, ThemeEnum } from '@/enums/appEnum'
 import { defineStore } from 'pinia'
 import { stores } from '../index'

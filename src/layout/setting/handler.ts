@@ -1,5 +1,5 @@
 import { HandlerEnum } from './enum'
-import type { AppConfig } from '@/interfaces/config'
+import type { AppConfig } from '@/types/config'
 
 import { useAppStore } from '@/stores/modules/app'
 import { useBaseSetting } from '@/hooks/setting/useBaseSetting'

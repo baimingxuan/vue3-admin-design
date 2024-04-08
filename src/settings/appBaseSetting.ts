@@ -1,4 +1,4 @@
-import type { AppConfig } from '@/interfaces/config'
+import type { AppConfig } from '@/types/config'
 import { MenuTypeEnum, MenuModeEnum, MenuFoldBtnEnum } from '@/enums/menuEnum'
 import { ThemeEnum, PageTransitionEnum, PermissionModeEnum } from '@/enums/appEnum'
 import { CacheTypeEnum } from '@/enums/cacheEnum'
