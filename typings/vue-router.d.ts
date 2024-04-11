@@ -18,5 +18,7 @@ declare module 'vue-router' {
     hideChildrenInMenu?: boolean
     // Whether the route has been dynamically added
     hideBreadcrumb?: boolean
+    // Whether is a link
+    iframeSrc?: string
   }
 }
