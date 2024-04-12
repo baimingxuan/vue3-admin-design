@@ -11,7 +11,7 @@ export default defineComponent({
     }
   },
   setup(props, { emit }) {
-    const iframeRef = ref<HTMLIFrameElement>(null)
+    const iframeRef = ref<HTMLIFrameElement>()
     const loading = ref(true)
 
     function handleLoading() {
