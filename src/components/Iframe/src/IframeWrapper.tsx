@@ -1,6 +1,8 @@
 import type { PropType } from 'vue'
-import { defineComponent, defineExpose, ref, unref, onMounted, onUnmounted } from 'vue'
+import { defineComponent, ref, unref, computed, onMounted, onUnmounted } from 'vue'
 import { Card } from 'ant-design-vue'
+import { useLayout } from '@/layout/useLayout'
+import { useWindowSizeFn } from '@/hooks/event/useWindowSizeFn'
 
 export default defineComponent({
   name: 'IframeWrapper',
@@ -10,12 +12,25 @@ export default defineComponent({
       default: ''
     }
   },
-  setup(props, { emit }) {
+  setup(props, { emit, expose }) {
     const iframeRef = ref<HTMLIFrameElement>()
-    const loading = ref(true)
+    const loading = ref(false)
+    const { getContentHeight } = useLayout()
 
-    function handleLoading() {
+    const iframeHeight = computed(() => `calc(${unref(getContentHeight)} - 32px)`)
+
+    useWindowSizeFn(calcIframeHeight, { wait: 150, immediate: true })
+
+    function calcIframeHeight() {
+      const iframe = unref(iframeRef)
+      if (!iframe) return
+
+      iframe.style.height = unref(iframeHeight)
+    }
+
+    function handleLoaded() {
       loading.value = false
+      calcIframeHeight()
     }
 
     function postMessage(message: any) {
@@ -44,7 +59,7 @@ export default defineComponent({
       window.removeEventListener('message', messageHandler)
     })
 
-    defineExpose({
+    expose({
       postMessage,
       reload
     })
@@ -59,7 +74,7 @@ export default defineComponent({
             height='100%'
             style='border: none; overflow: hidden;'
             sandbox='allow-scripts allow-same-origin allow-popups'
-            onLoad={handleLoading}
+            onLoad={handleLoaded}
           />
         </Card>
       </div>

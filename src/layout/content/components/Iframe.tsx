@@ -55,12 +55,16 @@ export default defineComponent({
       return unref(getIframeInTags).includes(name)
     }
 
-    return () => {
-      unref(getIframePages).map(
-        item =>
-          item.meta.iframeSrc &&
-          hasRenderIframe(item.name) && <IframeWrapper v-show={showIframePage(item)} iframeSrc={item.meta.iframeSrc} />
-      )
-    }
+    return () => (
+      <>
+        {unref(getIframePages).map(
+          item =>
+            item.meta.iframeSrc &&
+            hasRenderIframe(item.name) && (
+              <IframeWrapper v-show={showIframePage(item)} iframeSrc={item.meta.iframeSrc} />
+            )
+        )}
+      </>
+    )
   }
 })
