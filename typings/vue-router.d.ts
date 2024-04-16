@@ -20,5 +20,7 @@ declare module 'vue-router' {
     hideBreadcrumb?: boolean
     // Whether is a link
     iframeSrc?: string
+    // current page transition
+    transitionName?: string
   }
 }

@@ -1,8 +1,8 @@
 import type { AppRoute } from '../../types'
-// import { i18n } from '@/locales'
+import { i18n } from '@/locales'
 import Layout from '@/layout'
 
-// const { t } = i18n.global
+const { t } = i18n.global
 const IframeBlank = { template: '<div />' }
 
 // iframe module page
@@ -12,8 +12,8 @@ const IframeRoute: AppRoute = {
   component: Layout,
   redirect: '/iframe/vue-doc',
   meta: {
-    title: '外部页面',
-    icon: 'bug',
+    title: t('routes.iframe.name'),
+    icon: 'computer',
     orderNo: 12
   },
   children: [
@@ -22,7 +22,7 @@ const IframeRoute: AppRoute = {
       name: 'VueDoc',
       component: IframeBlank,
       meta: {
-        title: 'Vue文档',
+        title: t('routes.iframe.vue'),
         iframeSrc: 'https://cn.vuejs.org/'
       }
     },
@@ -31,7 +31,7 @@ const IframeRoute: AppRoute = {
       name: 'PiniaDoc',
       component: IframeBlank,
       meta: {
-        title: 'Pinia文档',
+        title: t('routes.iframe.pinia'),
         iframeSrc: 'https://pinia.vuejs.org/zh/'
       }
     },
@@ -40,7 +40,7 @@ const IframeRoute: AppRoute = {
       name: 'AntdDoc',
       component: IframeBlank,
       meta: {
-        title: 'Antd文档',
+        title: t('routes.iframe.antd'),
         iframeSrc: 'https://antdv.com/docs/vue/introduce-cn'
       }
     }

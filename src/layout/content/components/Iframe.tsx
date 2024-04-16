@@ -1,11 +1,12 @@
 import type { AppRoute } from '@/router/types'
-import { defineComponent, unref, toRaw, computed } from 'vue'
+import { defineComponent, unref, toRaw, computed, Transition } from 'vue'
 import { useRouter } from 'vue-router'
 import { uniqBy } from 'lodash-es'
 import { useBaseSetting } from '@/hooks/setting/useBaseSetting'
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
 import { useTagStore } from '@/stores/modules/tags'
 import { IframeWrapper } from '@/components/Iframe'
+import { usePageTransition } from '../usePageTransition'
 
 export default defineComponent({
   name: 'LayoutIframe',
@@ -13,6 +14,7 @@ export default defineComponent({
     const { currentRoute, getRoutes } = useRouter()
     const { getTagsCached } = useBaseSetting()
     const { getShowTags } = useHeaderSetting()
+    const { getTransitionName } = usePageTransition()
     const tagStore = useTagStore()
 
     const getIframeCache = computed(() => unref(getTagsCached) && unref(getShowTags))
@@ -61,7 +63,9 @@ export default defineComponent({
           item =>
             item.meta.iframeSrc &&
             hasRenderIframe(item.name) && (
-              <IframeWrapper v-show={showIframePage(item)} key={item.name} iframeSrc={item.meta.iframeSrc} />
+              <Transition name={getTransitionName(item)} mode='out-in'>
+                <IframeWrapper v-show={showIframePage(item)} key={item.name} iframeSrc={item.meta.iframeSrc} />
+              </Transition>
             )
         )}
       </>

@@ -64,5 +64,11 @@
     "403": "403",
     "404": "404",
     "500": "500"
+  },
+  "iframe": {
+    "name": "External Link",
+    "vue": "Vue Doc",
+    "pinia": "Pinia Doc",
+    "antd": "Ant Design Doc"
   }
 }
