@@ -1,9 +1,10 @@
 import type { ModalFunc, ModalFuncProps } from 'ant-design-vue/lib/modal/Modal'
-
 import { Modal, message as Message } from 'ant-design-vue'
 import { InfoCircleFilled, CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons-vue'
-
 import { isString } from '@/utils/is'
+import { i18n } from '@/locales'
+
+const { t } = i18n.global
 
 export interface ModalOptionsEx extends Omit<ModalFuncProps, 'iconType'> {
   iconType: 'success' | 'info' | 'warning' | 'error'
@@ -45,8 +46,8 @@ function createConfirm(options: ModalOptionsEx): ConfirmOptions {
     centered: true,
     icon: getIcon(iconType),
     content: renderContent(options),
-    okText: '确定',
-    cancelText: '取消',
+    okText: `${t('system.modal.okText')}`,
+    cancelText: `${t('system.modal.cancelText')}`,
     ...options
   }
 

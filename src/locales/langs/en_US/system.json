@@ -1,0 +1,23 @@
+{
+  "app": {
+    "logoutTip": "Reminder",
+    "logoutMsg": "Confirm to logout the system?",
+    "logoutError": "System logout failure!"
+  },
+  "login": {
+    "accountLogin": "Account Login",
+    "accountMsg": "Please input username",
+    "passwordMsg": "Please input password",
+    "rememberMe": "Remember me",
+    "forgetPassword": "Forget Password?",
+    "loginButton": "Sign in",
+    "loginSuccessTip": "Login successful！"
+  },
+  "modal": {
+    "okText": "Ok",
+    "closeText": "Close",
+    "cancelText": "Cancel",
+    "saveText": "Save",
+    "resetText": "Reset"
+  }
+}

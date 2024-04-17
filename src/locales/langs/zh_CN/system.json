@@ -1,0 +1,23 @@
+{
+  "app": {
+    "logoutTip": "温馨提醒",
+    "logoutMsg": "是否确认退出系统?",
+    "logoutError": "退出系统失败!"
+  },
+  "login": {
+    "accountLogin": "账 号 登 录",
+    "accountMsg": "请输入账号",
+    "passwordMsg": "请输入密码",
+    "rememberMe": "记住我",
+    "forgetPassword": "忘记密码?",
+    "loginButton": "登 录",
+    "loginSuccessTip": "登陆成功！"
+  },
+  "modal": {
+    "okText": "确认",
+    "closeText": "关闭",
+    "cancelText": "取消",
+    "saveText": "保存",
+    "resetText": "重置"
+  }
+}

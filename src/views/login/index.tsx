@@ -3,7 +3,9 @@ import { defineComponent } from 'vue'
 import { ref, unref, reactive } from 'vue'
 import { Form, Input, Checkbox, Button, message } from 'ant-design-vue'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
+import { useI18n } from 'vue-i18n'
 import { useUserStore } from '@/stores/modules/user'
+import { AppLocalePicker } from '@/components/Application'
 import logoIcon from '@/assets/images/logo_name.png'
 import styles from './index.module.less'
 
@@ -17,6 +19,7 @@ export default defineComponent({
     })
     const loading = ref(false)
 
+    const { t } = useI18n()
     const userStore = useUserStore()
 
     const handleLogin = async (form: LoginFormState) => {
@@ -28,7 +31,7 @@ export default defineComponent({
           remember: form.remember
         })
         if (userInfo) {
-          message.success('登陆成功！')
+          message.success(`${t('system.login.loginSuccessTip')}`)
         }
       } catch (error) {
         message.error((error as unknown as Error).message)
@@ -39,38 +42,41 @@ export default defineComponent({
 
     return () => (
       <div class={styles['login-wrapper']}>
+        <div class={styles['login-setting']}>
+          <AppLocalePicker />
+        </div>
         <div class={styles['login-box']}>
           <div class={styles['login-box-title']}>
             <img src={logoIcon} alt='icon' />
-            <p>账 号 登 录</p>
+            <p>{t('system.login.accountLogin')}</p>
           </div>
           <Form model={loginFormState} class={styles['login-box-form']} autocomplete={false} onFinish={handleLogin}>
-            <Form.Item name='username' rules={[{ required: true, message: '请输入账号' }]}>
+            <Form.Item name='username' rules={[{ required: true, message: `${t('system.login.accountMsg')}` }]}>
               <Input
                 v-model:value={loginFormState.username}
                 prefix={<UserOutlined style={{ color: 'rgba(0, 0, 0, 0.25)' }} />}
-                placeholder='请输入账号'
+                placeholder={t('system.login.accountMsg')}
               />
             </Form.Item>
-            <Form.Item name='password' rules={[{ required: true, message: '请输入密码' }]}>
+            <Form.Item name='password' rules={[{ required: true, message: `${t('system.login.passwordMsg')}` }]}>
               <Input
                 type='password'
                 v-model:value={loginFormState.password}
                 prefix={<LockOutlined style={{ color: 'rgba(0, 0, 0, 0.25)' }} />}
-                placeholder='请输入密码'
+                placeholder={t('system.login.passwordMsg')}
               />
             </Form.Item>
             <Form.Item>
               <Form.Item name='remember' class={['fl', styles['no-margin']]}>
-                <Checkbox v-model:checked={loginFormState.remember}>记住我</Checkbox>
+                <Checkbox v-model:checked={loginFormState.remember}>{t('system.login.rememberMe')}</Checkbox>
               </Form.Item>
               <Form.Item class={['fr', styles['no-margin']]}>
-                <a href=''>忘记密码？</a>
+                <a href=''>{t('system.login.forgetPassword')}</a>
               </Form.Item>
             </Form.Item>
             <Form.Item>
               <Button type='primary' htmlType='submit' class={styles['login-btn']} loading={unref(loading)}>
-                登 录
+                {t('system.login.loginButton')}
               </Button>
             </Form.Item>
           </Form>

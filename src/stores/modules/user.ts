@@ -1,5 +1,4 @@
 import type { LoginFormState, UserInfo } from '@/types'
-
 import { h } from 'vue'
 import { defineStore } from 'pinia'
 import { stores } from '../index'
@@ -8,6 +7,9 @@ import { loginApi, getUserInfo, logoutApi } from '@/api'
 import { TOKEN_KEY, USER_INFO_KEY } from '@/enums/cacheEnum'
 import { setAuthCache, getAuthCache } from '@/utils/auth'
 import { useMessage } from '@/hooks/web/useMessage'
+import { i18n } from '@/locales'
+
+const { t } = i18n.global
 
 interface UserState {
   userInfo: Nullable<UserInfo>
@@ -102,8 +104,8 @@ export const useUserStore = defineStore('app-user', {
 
       createConfirm({
         iconType: 'warning',
-        title: () => h('span', '温馨提醒'),
-        content: () => h('span', '是否确认退出系统?'),
+        title: () => h('span', `${t('system.app.logoutTip')}`),
+        content: () => h('span', `${t('system.app.logoutMsg')}`),
         onOk: async () => {
           await this.logout(true)
         }
@@ -115,7 +117,7 @@ export const useUserStore = defineStore('app-user', {
           await logoutApi()
         } catch (error) {
           const { createMessage } = useMessage()
-          createMessage.error('注销失败!')
+          createMessage.error(`${t('system.app.logoutError')}`)
         }
       }
       this.setUserInfo(null)

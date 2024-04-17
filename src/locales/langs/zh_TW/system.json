@@ -1,0 +1,23 @@
+{
+  "app": {
+    "logoutTip": "溫馨提醒",
+    "logoutMsg": "是否確認退出系統?",
+    "logoutError": "退出系統失敗!"
+  },
+  "login": {
+    "accountLogin": "賬 號 登 錄",
+    "accountMsg": "請輸入賬號",
+    "passwordMsg": "請輸入密碼",
+    "rememberMe": "記住我",
+    "forgetPassword": "忘記密碼?",
+    "loginButton": "登 錄",
+    "loginSuccessTip": "登陸成功！"
+  },
+  "modal": {
+    "okText": "確認",
+    "closeText": "關閉",
+    "cancelText": "取消",
+    "saveText": "保存",
+    "resetText": "重置"
+  }
+}
