@@ -2,11 +2,13 @@ export const TOKEN_KEY = 'TOKEN_KEY'
 
 export const LOCALE_KEY = 'LOCALE_KEY'
 
+export const LOCK_INFO_KEY = 'LOCK_INFO_KEY'
+
 export const USER_INFO_KEY = 'USER_INFO_KEY'
 
 export const APP_CONFIG_KEY = 'APP_CONFIG_KEY'
 
-export const APP_MODE_KEY = 'APP_MODE_KEY';
+export const APP_MODE_KEY = 'APP_MODE_KEY'
 
 export const APP_TAGS_KEY = 'APP_TAGS_KEY'
 

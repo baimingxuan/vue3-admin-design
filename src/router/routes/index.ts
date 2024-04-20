@@ -93,7 +93,7 @@ export const NotAuthRoute: AppRoute = {
 export const LoginRoute: AppRoute = {
   path: '/login',
   name: 'Login',
-  component: () => import('@/views/login'),
+  component: () => import('@/views/lock'),
   meta: {
     title: '登录页'
   }

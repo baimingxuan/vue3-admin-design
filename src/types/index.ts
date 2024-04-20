@@ -23,7 +23,7 @@ export interface styleState {
 export interface LoginFormState {
   username: string
   password: string
-  remember: boolean
+  remember?: boolean
 }
 
 export interface UserInfo {
@@ -33,4 +33,9 @@ export interface UserInfo {
   avatar: string
   desc?: string
   homePath?: string
+}
+
+export interface LockInfo {
+  pwd?: string | undefined
+  isLock?: boolean
 }
