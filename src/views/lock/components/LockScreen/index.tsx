@@ -1,6 +1,7 @@
-import { defineComponent, unref } from 'vue'
+import { defineComponent, unref, Transition } from 'vue'
 import { LockOutlined } from '@ant-design/icons-vue'
 import { useNowTime } from '@/views/lock/useNowTime'
+import UnlockForm from '../UnlockForm'
 import styles from './index.module.less'
 
 export default defineComponent({
@@ -32,6 +33,9 @@ export default defineComponent({
             </p>
           </div>
         </div>
+        <Transition name='fade-slide'>
+          <UnlockForm />
+        </Transition>
       </div>
     )
   }
