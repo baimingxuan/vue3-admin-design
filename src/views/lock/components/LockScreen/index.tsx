@@ -1,4 +1,4 @@
-import { defineComponent, unref, Transition } from 'vue'
+import { defineComponent, ref, unref, Transition } from 'vue'
 import { LockOutlined } from '@ant-design/icons-vue'
 import { useNowTime } from '@/views/lock/useNowTime'
 import UnlockForm from '../UnlockForm'
@@ -7,15 +7,22 @@ import styles from './index.module.less'
 export default defineComponent({
   name: 'LockScreen',
   setup() {
+    const isShowForm = ref(false)
     const { year, month, day, week, hour, minute } = useNowTime(true)
 
+    function handleShowForm(isShow: boolean) {
+      isShowForm.value = isShow
+    }
+
     return () => (
-      <div class={styles['lock-screen-wrapper']}>
+      <div class={[styles['lock-screen-wrapper'], 'flex-center']}>
         <div class={styles['main-content']}>
-          <div class={styles['unlock-btn']}>
-            <LockOutlined />
-            <p>点击解锁</p>
-          </div>
+          <Transition name='fade-slide'>
+            <div v-show={!unref(isShowForm)} class={styles['unlock-btn']} onClick={() => handleShowForm(true)}>
+              <LockOutlined />
+              <p>点击解锁</p>
+            </div>
+          </Transition>
           <div class={styles['contrast']}>
             <div class={styles['circle']} />
             <ul class={styles['bubbles']}>
@@ -24,18 +31,18 @@ export default defineComponent({
               ))}
             </ul>
           </div>
-          <div class={styles['local-time']}>
-            <p class={styles['time-text']}>
-              {unref(hour)}:{unref(minute)}
-            </p>
-            <p class={styles['date-text']}>
-              {unref(year)}/{unref(month)}/{unref(day)} {unref(week)}
-            </p>
-          </div>
         </div>
         <Transition name='fade-slide'>
-          <UnlockForm />
+          <UnlockForm v-show={unref(isShowForm)} onCancel={() => handleShowForm(false)} />
         </Transition>
+        <div class={[styles['main-footer'], 'flex-center']}>
+          <p class={styles['local-time']}>
+            {unref(hour)}:{unref(minute)}
+          </p>
+          <p class={styles['local-date']}>
+            {unref(year)}/{unref(month)}/{unref(day)} {unref(week)}
+          </p>
+        </div>
       </div>
     )
   }

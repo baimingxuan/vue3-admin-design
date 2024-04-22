@@ -1,9 +1,6 @@
 .lock-screen-wrapper {
-  z-index: 1999;
+  z-index: 299;
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
   width: 100vw;
   height: 100vh;
   background-color: #000;
@@ -122,32 +119,35 @@
     }
 
     .unlock-btn {
-      z-index: 2000;
+      z-index: 300;
       position: absolute;
       top: 80px;
-      width: 300px;
+      width: 100px;
+      margin-left: 50%;
+      transform: translateX(-50%);
       line-height: 32px;
       color: @white;
       font-size: 24px;
       text-align: center;
       cursor: pointer;
     }
+  }
+
+  .main-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    flex-direction: column;
+    color: @white;
 
     .local-time {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 160px;
-      color: @white;
+      font-size: 48px;
+    }
 
-      .time-text {
-        font-size: 48px;
-      }
-
-      .date-text {
-        font-size: 32px;
-      }
+    .local-date {
+      font-size: 32px;
     }
   }
 }
