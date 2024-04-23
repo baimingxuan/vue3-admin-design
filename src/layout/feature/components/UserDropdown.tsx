@@ -1,9 +1,9 @@
 import { defineComponent, computed, ref, unref } from 'vue'
-import { Dropdown, Menu, MenuItem } from 'ant-design-vue'
+import { Dropdown, Menu, MenuItem, Avatar } from 'ant-design-vue'
 import { LockOutlined, PoweroffOutlined } from '@ant-design/icons-vue'
 import { useI18n } from 'vue-i18n'
 import { useUserStore } from '@/stores/modules/user'
-import LockModal from './LockModal'
+import LockModal from '@/layout/lock/components/LockModal'
 import defaultAvatar from '@/assets/images/avatar.jpeg'
 
 type MenuEvent = 'lock' | 'logout'
@@ -47,7 +47,7 @@ export default defineComponent({
           {{
             default: () => (
               <span class='flex-center' style='cursor: pointer;'>
-                <img src={unref(getUserInfo).avatar} style='width: 24px; height: 24px; border-radius: 50%;' />
+                <Avatar src={unref(getUserInfo).avatar} size={24} />
               </span>
             ),
             overlay: () => (

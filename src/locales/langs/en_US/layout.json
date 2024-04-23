@@ -50,7 +50,8 @@
     "menuCollapseButton": "Menu collapse button",
     "expandedMenuWidth": "Expanded menu width",
     "autoScreenLock": "Auto screen lock",
-    "notAutoScreenLock": "Not auto screen lock",
+    "notAutoScreenLock": "Not auto lock",
+    "minute": "Minute",
     "interfaceShow": "Interface show",
     "breadcrumb": "Breadcrumbs",
     "tags": "Tags",
@@ -69,5 +70,15 @@
     "clearBtn": "Clear cache and to the login page",
     "resetSuccess": "Successfully reset!",
     "operatingContent": "The copy is successful, please go to src/settings/appBaseSetting.ts to modify the configuration!"
+  },
+  "lock": {
+    "lockScreen": "Lock screen",
+    "unlockBtn": "Unlock",
+    "unlockPlaceholder": "Please enter the lock screen password",
+    "cancelBtn": "Cancel",
+    "loginBtn": "Back to login",
+    "confirmBtn": "Enter the system",
+    "pwdPlaceholder": "Please enter the lock screen password or user password",
+    "pwdError": "The lock screen password or user password is incorrect！"
   }
 }

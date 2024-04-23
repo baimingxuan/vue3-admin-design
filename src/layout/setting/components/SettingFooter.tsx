@@ -54,7 +54,8 @@ export default defineComponent({
           <RedoOutlined />
           <span>{t('layout.setting.resetBtn')}</span>
         </Button>
-        <Button block onClick={handleClean}>
+        <Button danger block onClick={handleClean}>
+          <RedoOutlined />
           <span>{t('layout.setting.clearBtn')}</span>
         </Button>
       </Space>

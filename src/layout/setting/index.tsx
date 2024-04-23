@@ -44,8 +44,7 @@ export default defineComponent({
       getMenuWidth
     } = useMenuSetting()
 
-    // const { getLockScreenTime, getShowFooter, getColorWeak, getGrayMode, getTagsCached } = useBaseSetting()
-    const { getShowFooter, getColorWeak, getGrayMode, getTagsCached } = useBaseSetting()
+    const { getLockScreenTime, getShowFooter, getColorWeak, getGrayMode, getTagsCached } = useBaseSetting()
 
     const {
       getShowBreadCrumb,
@@ -112,15 +111,17 @@ export default defineComponent({
             defaultValue={unref(getMenuWidth)}
             formatter={(value: string) => `${parseInt(value)}px`}
           />
-          {/* <InputNumItem
+          <InputNumItem
             title={t('layout.setting.autoScreenLock')}
             min={0}
             event={HandlerEnum.LOCK_SCREEN_TIME}
             defaultValue={unref(getLockScreenTime)}
             formatter={(value: string) => {
-              return parseInt(value) === 0 ? `0(${t('layout.setting.notAutoScreenLock')})` : `${value}分钟`
+              return parseInt(value) === 0
+                ? `0(${t('layout.setting.notAutoScreenLock')})`
+                : `${value}${t('layout.setting.minute')}`
             }}
-          /> */}
+          />
         </>
       )
     }

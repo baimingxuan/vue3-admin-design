@@ -1,12 +1,14 @@
 import { defineComponent, ref, unref, Transition } from 'vue'
 import { LockOutlined } from '@ant-design/icons-vue'
-import { useNowTime } from '@/views/lock/useNowTime'
+import { useNowTime } from '@/layout/lock/useNowTime'
+import { useI18n } from 'vue-i18n'
 import UnlockForm from '../UnlockForm'
 import styles from './index.module.less'
 
 export default defineComponent({
   name: 'LockScreen',
   setup() {
+    const { t } = useI18n()
     const isShowForm = ref(false)
     const { year, month, day, week, hour, minute } = useNowTime(true)
 
@@ -20,7 +22,7 @@ export default defineComponent({
           <Transition name='fade-slide'>
             <div v-show={!unref(isShowForm)} class={styles['unlock-btn']} onClick={() => handleShowForm(true)}>
               <LockOutlined />
-              <p>点击解锁</p>
+              <p>{t('layout.lock.unlockBtn')}</p>
             </div>
           </Transition>
           <div class={styles['contrast']}>

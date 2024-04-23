@@ -51,6 +51,7 @@
     "expandedMenuWidth": "菜单展开宽度",
     "autoScreenLock": "自动锁屏",
     "notAutoScreenLock": "不自动锁屏",
+    "minute": "分钟",
     "interfaceShow": "界面显示",
     "breadcrumb": "面包屑",
     "tags": "标签页",
@@ -69,5 +70,15 @@
     "clearBtn": "清空缓存并返回登录页",
     "resetSuccess": "重置成功！",
     "operatingContent": "复制成功,请到 src/settings/appBaseSetting.ts 中修改配置！"
+  },
+  "lock": {
+    "lockScreen": "锁定屏幕",
+    "unlockBtn": "点击解锁",
+    "unlockPlaceholder": "请输入锁屏密码",
+    "cancelBtn": "取消解锁",
+    "loginBtn": "前往登录",
+    "confirmBtn": "进入系统",
+    "pwdPlaceholder": "请输入锁屏密码或用户密码",
+    "pwdError": "锁屏密码或用户密码错误！"
   }
 }

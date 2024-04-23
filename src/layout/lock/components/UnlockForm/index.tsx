@@ -2,12 +2,14 @@ import { defineComponent, reactive, ref, unref, computed } from 'vue'
 import { Form, InputPassword, Button, Flex, Avatar, message } from 'ant-design-vue'
 import { useUserStore } from '@/stores/modules/user'
 import { useLockStore } from '@/stores/modules/lock'
+import { useI18n } from 'vue-i18n'
 import defaultAvatar from '@/assets/images/avatar.jpeg'
 import styles from './index.module.less'
 
 export default defineComponent({
   name: 'UnlockForm',
   setup(_, { emit }) {
+    const { t } = useI18n()
     const userStore = useUserStore()
     const lockStore = useLockStore()
 
@@ -28,7 +30,7 @@ export default defineComponent({
         loading.value = true
         const res = await lockStore.unlockPage(unlockForm.password)
         if (!res) {
-          message.error('锁屏密码或用户密码错误！')
+          message.error(`${t('layout.lock.pwdError')}`)
         }
       } finally {
         loading.value = false
@@ -43,19 +45,19 @@ export default defineComponent({
             <p class={styles['name']}>{unref(userInfo).realName || 'Admin Design'}</p>
           </div>
           <Form model={unlockForm} autocomplete={false} onFinish={handleUnLock}>
-            <Form.Item name='password' rules={[{ required: true, message: '请输入锁屏密码或用户密码' }]}>
-              <InputPassword v-model:value={unlockForm.password} placeholder='请输入锁屏密码或用户密码' />
+            <Form.Item name='password' rules={[{ required: true, message: `${t('layout.lock.pwdPlaceholder')}` }]}>
+              <InputPassword v-model:value={unlockForm.password} placeholder={t('layout.lock.pwdPlaceholder')} />
             </Form.Item>
             <div>
               <Flex justify='space-between'>
                 <Button type='link' disabled={unref(loading)} class={styles['link-btn']} onClick={() => emit('cancel')}>
-                  取消解锁
+                  {t('layout.lock.cancelBtn')}
                 </Button>
                 <Button type='link' disabled={unref(loading)} class={styles['link-btn']} onClick={goLogin}>
-                  前往登录
+                  {t('layout.lock.loginBtn')}
                 </Button>
                 <Button type='link' disabled={unref(loading)} class={styles['link-btn']} htmlType='submit'>
-                  进入系统
+                  {t('layout.lock.confirmBtn')}
                 </Button>
               </Flex>
             </div>

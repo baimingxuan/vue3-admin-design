@@ -51,6 +51,7 @@
     "expandedMenuWidth": "菜單展開寬度",
     "autoScreenLock": "自動鎖屏",
     "notAutoScreenLock": "不自動鎖屏",
+    "minute": "分鐘",
     "interfaceShow": "界面顯示",
     "breadcrumb": "面包屑",
     "tags": "標簽頁",
@@ -69,5 +70,15 @@
     "clearBtn": "清空緩存併返回登錄頁",
     "resetSuccess": "重置成功！",
     "operatingContent": "復制成功,請到 src/settings/appBaseSetting.ts 中修改配置！"
+  },
+  "lock": {
+    "lockScreen": "鎖定屏幕",
+    "unlockBtn": "點擊解鎖",
+    "unlockPlaceholder": "請輸入鎖屏密碼",
+    "cancelBtn": "取消解鎖",
+    "loginBtn": "前往登錄",
+    "confirmBtn": "進入系統",
+    "pwdPlaceholder": "請輸入鎖屏密碼或用戶密碼",
+    "pwdError": "鎖屏密碼或用戶密碼錯誤！"
   }
 }

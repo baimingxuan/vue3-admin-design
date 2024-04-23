@@ -11,7 +11,6 @@ export default defineComponent({
     return () => (
       <Transition name='fade-bottom' mode='out-in'>
         {unref(getIsLock) && <LockScreen />}
-        <LockScreen />
       </Transition>
     )
   }
