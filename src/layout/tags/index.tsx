@@ -76,7 +76,7 @@ export default defineComponent({
     initAffixTags()
 
     listenerRouteChange(route => {
-      if (!route) return
+      if (!route || route.name === 'Redirect') return
 
       const { path, fullPath } = route
       const currPath = fullPath || path

@@ -1,7 +1,6 @@
 import type { RouteLocationNormalized, Router } from 'vue-router'
 import { useRouter } from 'vue-router'
 import { unref } from 'vue'
-
 import { useTagStore } from '@/stores/modules/tags'
 import { useAppStore } from '@/stores/modules/app'
 

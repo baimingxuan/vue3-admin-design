@@ -1,5 +1,4 @@
 import type { RouteLocationNormalized, RouteLocationRaw, Router } from 'vue-router'
-
 import { defineStore } from 'pinia'
 import { unref, toRaw } from 'vue'
 import { stores } from '@/stores'
@@ -78,7 +77,7 @@ export const useTagStore = defineStore('app-tags', {
     },
 
     // Update the cached tags according to the currently opened tags
-    async updateCachedTags() {
+    updateCachedTags() {
       const cachedMap: Set<string> = new Set()
 
       for (const tag of this.visitedTags) {
@@ -167,7 +166,7 @@ export const useTagStore = defineStore('app-tags', {
         })
         // If the current route does not exist in the visitedTags, try to switch to another route
         if (isActivated === -1) {
-          let pageIndex
+          let pageIndex: number
           if (index > 0) {
             pageIndex = index - 1
           } else if (index < this.visitedTags.length - 1) {
@@ -189,9 +188,9 @@ export const useTagStore = defineStore('app-tags', {
       const index = this.visitedTags.findIndex(item => item.path === route.path)
 
       if (index > 0) {
-        const leftTabgs = this.visitedTags.slice(0, index)
+        const leftTags = this.visitedTags.slice(0, index)
         const pathList: string[] = []
-        for (const item of leftTabgs) {
+        for (const item of leftTags) {
           const affix = item?.meta?.affix ?? false
           if (!affix) {
             pathList.push(item.fullPath)
@@ -247,7 +246,7 @@ export const useTagStore = defineStore('app-tags', {
     },
 
     // Close tags in bulk
-    async bulkClosedTags(pathList: string[]) {
+    bulkClosedTags(pathList: string[]) {
       this.visitedTags = this.visitedTags.filter(item => !pathList.includes(item.fullPath))
     },
 
@@ -264,7 +263,7 @@ export const useTagStore = defineStore('app-tags', {
       if (findTag) {
         findTag.fullPath = fullPath
         findTag.path = fullPath
-        await this.updateCachedTags()
+        this.updateCachedTags()
       }
     },
 
@@ -293,6 +292,6 @@ export const useTagStore = defineStore('app-tags', {
 })
 
 // Need to be used outside the setup
-export function useAppStoreWithOut() {
+export function useTagStoreWithOut() {
   return useTagStore(stores)
 }

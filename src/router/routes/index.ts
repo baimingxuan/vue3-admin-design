@@ -58,17 +58,17 @@ export const RedirectRoute: AppRoute = {
   name: 'RedirectTo',
   component: Layout,
   meta: {
-    title: '重定向页面',
+    title: 'Redirect',
     hideMenu: true,
     hideBreadcrumb: true
   },
   children: [
     {
-      path: '/redirect/:path(.*)',
-      name: 'RedirectTo',
+      path: '/redirect/:path(.*)/:_redirect_type(.*)/:_origin_params(.*)?',
+      name: 'Redirect',
       component: () => import('@/views/redirect'),
       meta: {
-        title: '重定向页面',
+        title: 'Redirect',
         hideMenu: true,
         hideBreadcrumb: true
       }

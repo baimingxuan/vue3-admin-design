@@ -1,6 +1,6 @@
 import type { RouteLocationMatched } from 'vue-router'
 import { useRouter } from 'vue-router'
-import { defineComponent, ref, watchEffect } from 'vue'
+import { defineComponent, ref, unref, watchEffect } from 'vue'
 import { Breadcrumb } from 'ant-design-vue'
 import SvgIcon from '@/components/SvgIcon'
 
@@ -11,6 +11,7 @@ export default defineComponent({
     const { currentRoute } = useRouter()
 
     watchEffect(async () => {
+      if (unref(currentRoute).name === 'Redirect') return
       routeMatcheds.value = filterMatched(currentRoute.value.matched)
     })
 

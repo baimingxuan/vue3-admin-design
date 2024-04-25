@@ -28,8 +28,8 @@ export function useGo(router?: Router) {
 
 // reload current page
 export function useReload(router?: Router) {
-  const { push, currentRoute } = router || useRouter()
-  const { query, params = {}, name, fullPath } = unref(currentRoute)
+  const { replace, currentRoute } = router || useRouter()
+  const { query, params = {}, name, fullPath } = unref(currentRoute.value)
 
   function reload(): Promise<boolean> {
     return new Promise(resolve => {
@@ -38,13 +38,14 @@ export function useReload(router?: Router) {
         return
       }
       if (name && Object.keys(params).length > 0) {
+        params['_origin_params'] = JSON.stringify(params ?? {})
         params['_redirect_type'] = 'name'
         params['path'] = String(name)
       } else {
         params['_redirect_type'] = 'path'
         params['path'] = fullPath
       }
-      push({ name: 'Redirect', params, query }).then(() => resolve(true))
+      replace({ name: 'Redirect', params, query }).then(() => resolve(true))
     })
   }
 
