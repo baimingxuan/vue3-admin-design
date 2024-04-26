@@ -28,6 +28,7 @@ const getToTarget = (tagItem: RouteLocationNormalized) => {
 }
 
 export const useTagStore = defineStore('app-tags', {
+  persist: true,
   state: (): TagsState => {
     const { getTagsCached } = useBaseSetting()
 
