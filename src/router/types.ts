@@ -12,6 +12,7 @@ export interface AppRoute extends Omit<RouteRecordRaw, 'children'> {
   meta: RouteMeta
   component?: Component | string
   children?: AppRoute[]
+  props?: Recordable
   fullPath?: string
 }
 
@@ -19,7 +20,6 @@ export interface AppMenu {
   name: string
   path: string
   children?: AppMenu[]
-  disabled?: boolean
   meta?: Partial<RouteMeta>
   icon?: string
   affix?: boolean
@@ -27,5 +27,4 @@ export interface AppMenu {
   ignoreKeepAlive?: boolean
   hideMenu?: boolean
   hideChildrenInMenu?: boolean
-  hideBreadcrumb?: boolean
 }

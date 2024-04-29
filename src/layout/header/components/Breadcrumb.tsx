@@ -1,7 +1,7 @@
 import type { RouteLocationMatched } from 'vue-router'
 import { useRouter } from 'vue-router'
 import { defineComponent, ref, unref, watchEffect } from 'vue'
-import { Breadcrumb } from 'ant-design-vue'
+import { Flex, Space, Breadcrumb } from 'ant-design-vue'
 import SvgIcon from '@/components/SvgIcon'
 
 export default defineComponent({
@@ -16,7 +16,7 @@ export default defineComponent({
     })
 
     function filterMatched(list: RouteLocationMatched[]) {
-      return list.filter(item => !item.meta?.hideBreadcrumb && !item.meta?.hideMenu)
+      return list.filter(item => !item.meta?.hideMenu)
     }
 
     function getIcon(route: RouteLocationMatched) {
@@ -24,18 +24,20 @@ export default defineComponent({
     }
 
     return () => (
-      <div class='flex-center-v'>
+      <Flex align='center'>
         <Breadcrumb>
-          {routeMatcheds.value.map((route: RouteLocationMatched) => {
+          {unref(routeMatcheds).map((route: RouteLocationMatched) => {
             return (
               <Breadcrumb.Item>
-                {getIcon(route) ? <SvgIcon name={getIcon(route)} style='margin-right: 8px;' /> : ''}
-                <span>{route.meta?.title}</span>
+                <Space>
+                  {getIcon(route) && <SvgIcon name={getIcon(route)} />}
+                  <span>{route.meta?.title}</span>
+                </Space>
               </Breadcrumb.Item>
             )
           })}
         </Breadcrumb>
-      </div>
+      </Flex>
     )
   }
 })
