@@ -1,6 +1,7 @@
 import { defineComponent } from 'vue'
 import { propTypes } from '@/utils/propTypes'
 import { Tag } from 'ant-design-vue'
+import { useI18n } from 'vue-i18n'
 import styles from './index.module.less'
 
 export default defineComponent({
@@ -12,6 +13,8 @@ export default defineComponent({
     isDark: propTypes.bool
   },
   setup(props, { emit }) {
+    const { t } = useI18n()
+
     return () => (
       <Tag
         class={[
@@ -23,7 +26,7 @@ export default defineComponent({
         onClose={() => emit('closeTag')}
       >
         <span class={[styles['tag-item__dot'], 'tag-dot']} />
-        <span class={styles['tag-item__name']}>{props.name}</span>
+        <span class={styles['tag-item__name']}>{t(props.name)}</span>
       </Tag>
     )
   }

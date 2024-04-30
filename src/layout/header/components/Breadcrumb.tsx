@@ -2,11 +2,13 @@ import type { RouteLocationMatched } from 'vue-router'
 import { useRouter } from 'vue-router'
 import { defineComponent, ref, unref, watchEffect } from 'vue'
 import { Flex, Space, Breadcrumb } from 'ant-design-vue'
+import { useI18n } from 'vue-i18n'
 import SvgIcon from '@/components/SvgIcon'
 
 export default defineComponent({
   name: 'LayoutBreadcrumb',
   setup() {
+    const { t } = useI18n()
     const routeMatcheds = ref<RouteLocationMatched[]>([])
     const { currentRoute } = useRouter()
 
@@ -31,7 +33,7 @@ export default defineComponent({
               <Breadcrumb.Item>
                 <Space>
                   {getIcon(route) && <SvgIcon name={getIcon(route)} />}
-                  <span>{route.meta?.title}</span>
+                  <span>{t(route.meta?.title)}</span>
                 </Space>
               </Breadcrumb.Item>
             )

@@ -53,4 +53,5 @@ export function getBrowserLang(): LocaleType {
   return LocaleEnum.ZH_CN
 }
 
+// This function is only used for routes. Please use useI18n for other places
 export const t = (key: string) => key

@@ -1,4 +1,5 @@
 import type { AppRoute } from '../types'
+import { t } from '@/locales/helper'
 import Layout from '@/layout'
 
 /**
@@ -24,7 +25,7 @@ export const RootRoute: AppRoute = {
   name: 'Root',
   redirect: '/home',
   meta: {
-    title: '首页'
+    title: t('routes.base.home')
   }
 }
 
@@ -34,7 +35,7 @@ export const PageNotFoundRoute: AppRoute = {
   name: 'PageNotFound',
   component: Layout,
   meta: {
-    title: '错误页面',
+    title: t('routes.base.notFound'),
     hideMenu: true
   },
   children: [
@@ -43,7 +44,7 @@ export const PageNotFoundRoute: AppRoute = {
       name: 'PageNotFound',
       component: () => import('@/views/redirect'),
       meta: {
-        title: '错误页面',
+        title: t('routes.base.notFound'),
         hideMenu: true
       }
     }
@@ -81,7 +82,7 @@ export const NotAuthRoute: AppRoute = {
     withCard: false
   },
   meta: {
-    title: '403页面'
+    title: t('routes.exception.403')
   }
 }
 
@@ -91,7 +92,7 @@ export const LoginRoute: AppRoute = {
   name: 'Login',
   component: () => import('@/views/login'),
   meta: {
-    title: '登录页'
+    title: t('routes.base.login')
   }
 }
 

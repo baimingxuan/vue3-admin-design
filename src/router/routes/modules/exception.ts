@@ -1,9 +1,7 @@
 import type { AppRoute } from '../../types'
-import { i18n } from '@/locales'
+import { t } from '@/locales/helper'
 import { ExceptionEnum } from '@/enums/exceptionEnum'
 import Layout from '@/layout'
-
-const { t } = i18n.global
 
 // exception module page
 const ExceptionRoute: AppRoute = {

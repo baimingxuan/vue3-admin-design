@@ -2,7 +2,7 @@
   "base": {
     "home": "首页",
     "notFound": "错误页面",
-    "redirect": "重定向页面",
+    "redirect": "Redirect",
     "notAuth": "403页面",
     "login": "登录页"
   },

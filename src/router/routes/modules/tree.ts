@@ -1,8 +1,6 @@
 import type { AppRoute } from '../../types'
-import { i18n } from '@/locales'
+import { t } from '@/locales/helper'
 import Layout from '@/layout'
-
-const { t } = i18n.global
 
 // tree module page
 const TreeRoute: AppRoute = {

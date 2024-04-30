@@ -2,7 +2,7 @@
   "base": {
     "home": "首頁",
     "notFound": "錯誤頁面",
-    "redirect": "重定向頁面",
+    "redirect": "Redirect",
     "notAuth": "403頁面",
     "login": "登錄頁"
   },
