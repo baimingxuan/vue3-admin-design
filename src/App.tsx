@@ -10,8 +10,6 @@ export default defineComponent({
   name: 'App',
 
   setup() {
-    useTitle()
-
     const { getThemeColor } = useBaseSetting()
     const { getModeAlgorithm } = useDarkModeSetting()
 
@@ -21,6 +19,8 @@ export default defineComponent({
 
       setThemColor(htmlRoot)
     })
+
+    useTitle()
 
     return () => (
       <ConfigProvider
