@@ -181,8 +181,6 @@ export default defineFlatConfig([
       'vue/no-reserved-component-names': 'off',
       // 禁止在模板中的自定义组件上强制实施属性命名样式
       'vue/attribute-hyphenation': 'off',
-      // 禁止必须设置 props 的默认值
-      'vue/require-default-prop': 'off',
       // 禁止要求组件名称始终为多个字母
       'vue/multi-word-component-names': 'off',
       // 禁止强制执行每行的最大属性数
