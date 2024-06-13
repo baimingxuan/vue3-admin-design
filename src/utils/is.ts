@@ -47,3 +47,7 @@ export function isUrl(path: string): boolean {
 export const isServer = typeof window === 'undefined'
 
 export const isClient = !isServer
+
+export const isWindow = (val: unknown): val is Window => {
+  return val === window
+}
