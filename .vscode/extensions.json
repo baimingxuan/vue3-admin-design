@@ -4,6 +4,7 @@
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "csstools.postcss",
+    "vscode-icons-team.vscode-icons",
     "vue.volar"
   ]
 }
