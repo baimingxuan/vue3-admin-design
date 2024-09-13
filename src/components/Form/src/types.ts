@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'vue'
+import type { CSSProperties, VNode } from 'vue'
 import type { RuleObject } from 'ant-design-vue/es/form'
 
 export interface ColState {
@@ -22,6 +22,10 @@ export interface FormSchemaType {
   rules?: RuleObject[]
   // Event name triggered by internal value change, default change
   changeEvent?: string
+  // Component type
+  component?: string | VNode
+  // component props
+  componentProps?: object
 }
 
 export interface FormPropType {
@@ -31,19 +35,4 @@ export interface FormPropType {
   labelCol?: ColState
   wrapperCol?: ColState
   schemas: FormSchemaType[]
-}
-
-export interface schemaType {
-  type: string
-  label: string
-  value: string | number | boolean
-  rules?: Array<{
-    required?: boolean
-    message?: string
-  }>
-  props?: object
-}
-
-export interface formType {
-  [key: string]: schemaType
 }
