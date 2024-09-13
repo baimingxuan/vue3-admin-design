@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'vue'
+import type { RuleObject } from 'ant-design-vue/es/form'
 
 export interface ColState {
   flex?: string | number
@@ -8,13 +9,28 @@ export interface ColState {
   style?: CSSProperties
 }
 
+export interface FormSchemaType {
+  // Field name
+  field: string
+  // Variable name bound to v-model Default value
+  valueField?: string
+  // Default value
+  defaultValue?: any
+  // Label name
+  label?: string
+  // Validation rules
+  rules?: RuleObject[]
+  // Event name triggered by internal value change, default change
+  changeEvent?: string
+}
+
 export interface FormPropType {
   layout?: 'inline' | 'horizontal'
-  model?: Recordable
   disabled?: boolean
-  labelAlign: 'left' | 'right'
-  labelCol: ColState
-  wrapperCol: ColState
+  labelAlign?: 'left' | 'right'
+  labelCol?: ColState
+  wrapperCol?: ColState
+  schemas: FormSchemaType[]
 }
 
 export interface schemaType {

@@ -3,7 +3,7 @@ import CrudForm from './components/Form'
 
 export default defineComponent({
   name: 'Crud',
-  setup(props) {
+  setup() {
     return () => (
       <div>
         <CrudForm />

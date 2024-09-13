@@ -1,5 +1,5 @@
 import type { PropType } from 'vue'
-import type { ColState, FormPropType } from './types/form'
+import type { ColState, FormSchemaType } from './types/form'
 import type { TableConfigType } from './types/crud'
 
 export const basicProps = {
@@ -25,12 +25,24 @@ export const formProps = {
     type: String as PropType<'inline' | 'horizontal'>,
     default: 'inline'
   },
+  disabled: {
+    type: Boolean as PropType<boolean>,
+    default: false
+  },
   labelAlign: {
     type: String as PropType<'left' | 'right'>,
     default: 'right'
   },
   labelCol: {
     type: Object as PropType<ColState>,
-    default: () => ({ span: 6 })
+    default: () => ({})
+  },
+  wrapperCol: {
+    type: Object as PropType<ColState>,
+    default: () => ({})
+  },
+  schemas: {
+    type: Array as PropType<Array<FormSchemaType>>,
+    required: true
   }
 }

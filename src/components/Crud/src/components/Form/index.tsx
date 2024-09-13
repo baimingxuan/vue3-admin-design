@@ -1,12 +1,15 @@
-import { defineComponent, reactive, h } from 'vue'
+import { defineComponent, ref, reactive, h } from 'vue'
 import { Card, Form, FormItem } from 'ant-design-vue'
+import { formProps } from '../../props'
 import { compoMap } from '../../compoMap'
 import { formSchemas } from '../../../data'
 
 export default defineComponent({
   name: 'CrudForm',
+  props: formProps,
   emits: ['submit', 'reset', 'cancle'],
   setup(props) {
+    const formRef = ref(null)
     const formModel = reactive({})
 
     const getFormCompo = (compo: string) => {
@@ -16,11 +19,14 @@ export default defineComponent({
     return () => (
       <Card>
         <Form
+          ref={formRef}
           model={formModel}
-          layout='horizontal'
           colon={false}
-          // labelCol={{ style: { width: '200px' } }}
-          wrapperCol={{ span: 8 }}
+          layout={props.layout}
+          disabled={props.disabled}
+          labelAlign={props.labelAlign}
+          labelCol={props.labelCol}
+          wrapperCol={props.wrapperCol}
         >
           {Object.entries(formSchemas).map(([key, schema]) => (
             <FormItem label={schema.label} name={key} rules={schema.rules}>

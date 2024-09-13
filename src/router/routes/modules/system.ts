@@ -10,7 +10,7 @@ const ExcelRoute: AppRoute = {
   redirect: '/system/account',
   meta: {
     title: '系统设置',
-    icon: 'account',
+    icon: 'system',
     orderNo: 14
   },
   children: [
