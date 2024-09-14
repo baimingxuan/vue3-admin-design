@@ -23,16 +23,24 @@ export interface FormSchemaType {
   // Event name triggered by internal value change, default change
   changeEvent?: string
   // Component type
-  component?: string | VNode
-  // component props
+  component?: string
+  // Component props
   componentProps?: object
+  // Whether to display
+  isShow?: boolean
+  // Whether to render
+  isRender?: boolean
+  disabled?: boolean
+  readonly?: boolean
 }
 
 export interface FormPropType {
   layout?: 'inline' | 'horizontal'
   disabled?: boolean
+  readonly?: boolean
   labelAlign?: 'left' | 'right'
   labelCol?: ColState
   wrapperCol?: ColState
   schemas: FormSchemaType[]
+  size?: 'default' | 'small' | 'large'
 }

@@ -10,6 +10,10 @@ export const formProps = {
     type: Boolean as PropType<boolean>,
     default: false
   },
+  readonly: {
+    type: Boolean as PropType<boolean>,
+    default: false
+  },
   labelAlign: {
     type: String as PropType<'left' | 'right'>,
     default: 'right'

@@ -9,7 +9,7 @@ import {
   Radio,
   RadioGroup,
   Switch,
-  Transfer,
+  // Transfer,
   TreeSelect
 } from 'ant-design-vue'
 
@@ -23,6 +23,6 @@ export const compoMap = new Map<string, Component>([
   ['radio', Radio],
   ['radioGroup', RadioGroup],
   ['switch', Switch],
-  ['transfer', Transfer],
+  // ['transfer', Transfer],
   ['treeSelect', TreeSelect]
 ])

@@ -7,10 +7,15 @@ import { formSchemas } from './_mockData'
 export default defineComponent({
   name: 'BasicForm',
   props: formProps,
-  emits: ['submit', 'reset', 'cancle'],
-  setup(props) {
+  emits: ['submit', 'reset', 'cancle', 'fieldValueChange'],
+  setup(props, { emit }) {
     const formRef = ref(null)
     const formModel = reactive({})
+
+    function setFormModel(key: string, value: any) {
+      formModel[key] = value
+      emit('fieldValueChange', key, value)
+    }
 
     return () => (
       <Card>
@@ -25,7 +30,7 @@ export default defineComponent({
           wrapperCol={props.wrapperCol}
         >
           {formSchemas.map(schema => (
-            <FormItem schema={schema} formModel={formModel} />
+            <FormItem schema={schema} formProps={props} formModel={formModel} setFormModel={setFormModel} />
           ))}
         </Form>
       </Card>
