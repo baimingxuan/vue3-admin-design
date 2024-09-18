@@ -1,4 +1,4 @@
-import type { CSSProperties, VNode } from 'vue'
+import type { CSSProperties } from 'vue'
 import type { RuleObject } from 'ant-design-vue/es/form'
 
 export interface ColState {
