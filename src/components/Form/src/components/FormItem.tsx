@@ -1,7 +1,7 @@
 import type { PropType } from 'vue'
 import type { FormPropType, FormSchemaType } from '../types'
 import { defineComponent, ref, unref, computed } from 'vue'
-import { Col, Form } from 'ant-design-vue'
+import { Form } from 'ant-design-vue'
 import { upperFirst } from 'lodash-es'
 import { compoMap } from '../compoMap'
 
@@ -91,11 +91,9 @@ export default defineComponent({
 
     return () =>
       unref(itemIsRender) && (
-        <Col v-show={unref(itemIsShow)}>
-          <Form.Item name={field} label={label} rules={rules}>
-            {renderComponent()}
-          </Form.Item>
-        </Col>
+        <Form.Item v-show={unref(itemIsShow)} name={field} label={label} rules={rules}>
+          {renderComponent()}
+        </Form.Item>
       )
   }
 })
