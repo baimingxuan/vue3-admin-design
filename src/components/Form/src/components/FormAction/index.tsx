@@ -1,4 +1,4 @@
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, unref } from 'vue'
 import { Space, Form, Button } from 'ant-design-vue'
 import { DownOutlined } from '@ant-design/icons-vue'
 import styles from './index.module.less'
@@ -40,7 +40,7 @@ export default defineComponent({
           </Button>
           {slots.backAction?.()}
           <Button type='link' size='small' onClick={toggleAdvanced}>
-            <span>展开</span>
+            <span>{unref(isExpanded) ? '收起' : '展开'}</span>
             <DownOutlined class={[styles['expand-btn'], { [styles['active']]: isExpanded.value }]} />
           </Button>
         </Space>

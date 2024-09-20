@@ -20,11 +20,20 @@ export const formProps = {
   },
   labelCol: {
     type: Object as PropType<ColState>,
-    default: () => ({})
+    default: () => ({
+      style: {
+        width: '80px'
+      }
+    })
   },
   wrapperCol: {
     type: Object as PropType<ColState>,
-    default: () => ({})
+    default: () => ({
+      style: {
+        width: '190px',
+        flexGrow: 0
+      }
+    })
   },
   schemas: {
     type: Array as PropType<Array<FormSchemaType>>,

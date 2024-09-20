@@ -30,7 +30,7 @@ export default defineComponent({
           labelCol={props.labelCol}
           wrapperCol={props.wrapperCol}
         >
-          <Flex wrap='wrap' gap='large'>
+          <Flex wrap='wrap' align='space-between' style={{ height: '90px' }}>
             {formSchemas.map(schema => (
               <FormItem schema={schema} formProps={props} formModel={formModel} setFormModel={setFormModel} />
             ))}
