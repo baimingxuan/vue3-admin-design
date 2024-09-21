@@ -1,5 +1,5 @@
 import { defineComponent, ref, reactive } from 'vue'
-import { Card, Flex, Form } from 'ant-design-vue'
+import { Row, Card, Form } from 'ant-design-vue'
 import FormItem from './components/FormItem'
 import FormAction from './components/FormAction'
 import { formProps } from './props'
@@ -9,7 +9,7 @@ export default defineComponent({
   name: 'BasicForm',
   props: formProps,
   emits: ['submit', 'reset', 'cancle', 'fieldValueChange'],
-  setup(props, { emit }) {
+  setup(props, { slots, emit }) {
     const formRef = ref(null)
     const formModel = reactive({})
 
@@ -30,14 +30,18 @@ export default defineComponent({
           labelCol={props.labelCol}
           wrapperCol={props.wrapperCol}
         >
-          <Flex wrap='wrap' align='space-between' style={{ height: '90px' }}>
+          <Row gutter={[0, 14]}>
             {formSchemas.map(schema => (
               <FormItem schema={schema} formProps={props} formModel={formModel} setFormModel={setFormModel} />
             ))}
-            <div style={{ marginLeft: 'auto' }}>
-              <FormAction />
-            </div>
-          </Flex>
+            <FormAction>
+              {{
+                frontAction: (data: any) => slots.frontAction?.(data),
+                middleAction: (data: any) => slots.middleAction?.(data),
+                backAction: (data: any) => slots.backAction?.(data)
+              }}
+            </FormAction>
+          </Row>
         </Form>
       </Card>
     )
