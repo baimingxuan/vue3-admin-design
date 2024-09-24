@@ -1,5 +1,5 @@
 import type { PropType } from 'vue'
-import type { ColState, FormSchemaType } from './types'
+import type { ColState, FormSchemaType, ActionBtnState } from './types'
 
 export const formProps = {
   layout: {
@@ -11,6 +11,10 @@ export const formProps = {
     default: false
   },
   readonly: {
+    type: Boolean as PropType<boolean>,
+    default: false
+  },
+  colon: {
     type: Boolean as PropType<boolean>,
     default: false
   },
@@ -37,6 +41,31 @@ export const formProps = {
   },
   schemas: {
     type: Array as PropType<Array<FormSchemaType>>,
-    required: true
+    required: true,
+    default: () => []
+  },
+  size: {
+    type: String as PropType<'default' | 'small' | 'large'>,
+    default: 'default'
+  },
+  submitBtn: {
+    type: Object as PropType<ActionBtnState>,
+    default: () => ({})
+  },
+  resetBtn: {
+    type: Object as PropType<ActionBtnState>,
+    default: () => ({})
+  },
+  showAdvanced: {
+    type: Boolean as PropType<boolean>,
+    default: true
+  },
+  sbumitFunc: {
+    type: Function as PropType<() => Promise<void>>,
+    default: () => Promise.resolve()
+  },
+  resetFunc: {
+    type: Function as PropType<() => Promise<void>>,
+    default: () => Promise.resolve()
   }
 }

@@ -1,4 +1,4 @@
-import type { FormSchemaType } from './types'
+import type { FormSchemaType } from '../../Form/src/types'
 
 export const formSchemas: FormSchemaType[] = [
   {

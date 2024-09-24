@@ -1,40 +1,40 @@
-import { defineComponent, ref, reactive } from 'vue'
+import type { FormProps as AntFormProps } from 'ant-design-vue'
+import type { FormRefType } from './types'
+import { defineComponent, ref, reactive, computed, unref } from 'vue'
 import { Row, Card, Form } from 'ant-design-vue'
 import FormItem from './components/FormItem'
 import FormAction from './components/FormAction'
 import { formProps } from './props'
-import { formSchemas } from './_mockData'
+import { useFormEvents } from './hooks/useFormEvents'
 
 export default defineComponent({
   name: 'BasicForm',
   props: formProps,
   emits: ['submit', 'reset', 'cancle', 'fieldValueChange'],
-  setup(props, { slots, emit }) {
-    const formRef = ref(null)
+  setup(props, { attrs, slots, emit }) {
+    const formElRef = ref<Nullable<FormRefType>>(null)
     const formModel = reactive({})
 
+    const getFormProps = computed(() => ({ ...attrs, ...props }) as AntFormProps)
+
+    const { submitForm, resetFields } = useFormEvents({ emit, schemas: props.schemas, formModel, formElRef })
     function setFormModel(key: string, value: any) {
       formModel[key] = value
       emit('fieldValueChange', key, value)
     }
 
+    function handleToggleAdvanced() {
+      console.log('toggleAdvanced')
+    }
+
     return () => (
       <Card>
-        <Form
-          ref={formRef}
-          model={formModel}
-          colon={false}
-          layout={props.layout}
-          disabled={props.disabled}
-          labelAlign={props.labelAlign}
-          labelCol={props.labelCol}
-          wrapperCol={props.wrapperCol}
-        >
+        <Form ref={formElRef} model={formModel} {...unref(getFormProps)}>
           <Row gutter={[0, 14]}>
-            {formSchemas.map(schema => (
+            {props.schemas.map(schema => (
               <FormItem schema={schema} formProps={props} formModel={formModel} setFormModel={setFormModel} />
             ))}
-            <FormAction>
+            <FormAction onResetAction={resetFields} onSubmitAction={submitForm} onToggleAdvanced={handleToggleAdvanced}>
               {{
                 frontAction: (data: any) => slots.frontAction?.(data),
                 middleAction: (data: any) => slots.middleAction?.(data),

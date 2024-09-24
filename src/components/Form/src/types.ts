@@ -1,5 +1,5 @@
-import type { CSSProperties } from 'vue'
-import type { RuleObject } from 'ant-design-vue/es/form'
+import type { CSSProperties, VNode } from 'vue'
+import type { RuleObject, NamePath } from 'ant-design-vue/lib/form/interface'
 
 export interface ColState {
   flex?: string | number
@@ -8,6 +8,25 @@ export interface ColState {
   order?: number
   style?: CSSProperties
 }
+
+export interface ActionBtnState {
+  text?: string
+  icon?: VNode
+  show?: boolean
+}
+
+export interface FormRefType {
+  submitForm: () => Promise<void>
+  validateForm: <T = Recordable>(nameList?: NamePath[] | false) => Promise<T>
+  resetFields: () => Promise<void>
+  validateFields: (nameList?: NamePath[]) => Promise<any>
+  clearValidate: (name?: string | string[]) => void
+  scrollToField: (name: NamePath, options?: ScrollOptions) => void
+}
+
+export type RegisterFn = (formInstance: FormRefType) => void
+
+export type FormReturnType = [RegisterFn, FormRefType]
 
 export interface FormSchemaType {
   // Field name
@@ -38,9 +57,16 @@ export interface FormPropType {
   layout?: 'inline' | 'horizontal'
   disabled?: boolean
   readonly?: boolean
+  colon?: boolean
   labelAlign?: 'left' | 'right'
   labelCol?: ColState
   wrapperCol?: ColState
   schemas: FormSchemaType[]
   size?: 'default' | 'small' | 'large'
+  // Form action props
+  submitBtn?: ActionBtnState
+  resetBtn?: ActionBtnState
+  showAdvanced?: boolean
+  sbumitFunc: () => Promise<void>
+  resetFunc: () => Promise<void>
 }
