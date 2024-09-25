@@ -1,5 +1,5 @@
 import type { PropType } from 'vue'
-import type { ActionBtnState } from '../../types'
+import type { ActionBtnType } from '../../types'
 import { defineComponent } from 'vue'
 import { Col, Space, Form, Button } from 'ant-design-vue'
 import { DownOutlined } from '@ant-design/icons-vue'
@@ -8,15 +8,15 @@ import styles from './index.module.less'
 export default defineComponent({
   name: 'FormAction',
   props: {
-    submitBtn: {
-      type: Object as PropType<ActionBtnState>,
+    submitBtnProps: {
+      type: Object as PropType<ActionBtnType>,
       default: () => ({
         text: '查询',
         show: true
       })
     },
-    resetBtn: {
-      type: Object as PropType<ActionBtnState>,
+    resetBtnProps: {
+      type: Object as PropType<ActionBtnType>,
       default: () => ({
         text: '重置',
         show: true
@@ -26,7 +26,7 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
-    showAdvanced: {
+    showAdvancedBtn: {
       type: Boolean,
       default: true
     },
@@ -37,7 +37,7 @@ export default defineComponent({
   },
   emits: ['submitAction', 'resetAction', 'toggleAdvanced'],
   setup(props, { slots, emit }) {
-    const { submitBtn, resetBtn } = props
+    const { submitBtnProps, resetBtnProps } = props
 
     return () => (
       <Col>
@@ -45,24 +45,24 @@ export default defineComponent({
           <Form.Item>
             <Space>
               {slots.frontAction?.()}
-              {resetBtn.show && (
-                <Button type='default' icon={resetBtn?.icon} onClick={() => emit('resetAction')}>
-                  {resetBtn.text}
+              {resetBtnProps.show && (
+                <Button type='default' icon={resetBtnProps?.icon} onClick={() => emit('resetAction')}>
+                  {resetBtnProps.text}
                 </Button>
               )}
               {slots.middleAction?.()}
-              {submitBtn.show && (
+              {submitBtnProps.show && (
                 <Button
                   type='primary'
                   loading={props.isSubmitting}
-                  icon={submitBtn?.icon}
+                  icon={submitBtnProps?.icon}
                   onClick={() => emit('submitAction')}
                 >
-                  {submitBtn.text}
+                  {submitBtnProps.text}
                 </Button>
               )}
               {slots.backAction?.()}
-              {props.showAdvanced && (
+              {props.showAdvancedBtn && (
                 <Button type='link' size='small' onClick={() => emit('toggleAdvanced')}>
                   <span>{props.isAdvanced ? '收起' : '展开'}</span>
                   <DownOutlined class={[styles['basic-form-advanced'], { [styles['active']]: props.isAdvanced }]} />

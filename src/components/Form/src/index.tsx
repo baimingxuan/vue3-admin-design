@@ -1,6 +1,6 @@
 import type { FormProps as AntFormProps } from 'ant-design-vue'
 import type { FormRefType } from './types'
-import { defineComponent, ref, reactive, computed, unref } from 'vue'
+import { defineComponent, ref, reactive, computed, unref, onMounted } from 'vue'
 import { Row, Card, Form } from 'ant-design-vue'
 import FormItem from './components/FormItem'
 import FormAction from './components/FormAction'
@@ -10,8 +10,8 @@ import { useFormEvents } from './hooks/useFormEvents'
 export default defineComponent({
   name: 'BasicForm',
   props: formProps,
-  emits: ['submit', 'reset', 'cancle', 'fieldValueChange'],
-  setup(props, { attrs, slots, emit }) {
+  emits: ['register', 'fieldValueChange'],
+  setup(props, { attrs, slots, emit, expose }) {
     const formElRef = ref<Nullable<FormRefType>>(null)
     const formModel = reactive({})
 
@@ -26,6 +26,17 @@ export default defineComponent({
     function handleToggleAdvanced() {
       console.log('toggleAdvanced')
     }
+
+    const formRef = {
+      resetFields,
+      submitForm
+    }
+
+    expose(formRef)
+
+    onMounted(() => {
+      emit('register', formRef)
+    })
 
     return () => (
       <Card>

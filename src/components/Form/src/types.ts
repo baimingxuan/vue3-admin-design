@@ -1,15 +1,16 @@
 import type { CSSProperties, VNode } from 'vue'
 import type { RuleObject, NamePath } from 'ant-design-vue/lib/form/interface'
+import type { RowProps, ColProps } from 'ant-design-vue/lib/grid'
 
-export interface ColState {
-  flex?: string | number
-  span?: number
-  offset?: number
-  order?: number
+export type RowPropsType = RowProps & { style?: CSSProperties }
+
+export type ColPropsType = ColProps & {
   style?: CSSProperties
 }
 
-export interface ActionBtnState {
+export type FieldMapToTime = [string, [string, string], (string | [string, string])?][]
+
+export interface ActionBtnType {
   text?: string
   icon?: VNode
   show?: boolean
@@ -20,8 +21,8 @@ export interface FormRefType {
   validateForm: <T = Recordable>(nameList?: NamePath[] | false) => Promise<T>
   resetFields: () => Promise<void>
   validateFields: (nameList?: NamePath[]) => Promise<any>
-  clearValidate: (name?: string | string[]) => void
-  scrollToField: (name: NamePath, options?: ScrollOptions) => void
+  clearValidate: (name?: string | string[]) => Promise<void>
+  scrollToField: (name: NamePath, options?: ScrollOptions) => Promise<void>
 }
 
 export type RegisterFn = (formInstance: FormRefType) => void
@@ -49,24 +50,55 @@ export interface FormSchemaType {
   isShow?: boolean
   // Whether to render
   isRender?: boolean
+  // Whether to disable
   disabled?: boolean
+  // Whether to readonly
   readonly?: boolean
 }
 
-export interface FormPropType {
-  layout?: 'inline' | 'horizontal'
+export interface FormPropsType {
+  // Form layout
+  layout?: 'inline' | 'horizontal' | 'vertical'
+  // Form data binding
+  model?: Recordable
+  // Whether to disable
   disabled?: boolean
+  // Whether to readonly
   readonly?: boolean
+  // Whether to show the label colon
   colon?: boolean
+  // Row configuration for the form
+  rowProps?: Partial<RowPropsType>
+  // Column configuration for the form
+  colProps?: Partial<ColPropsType>
+  // The label width of the form item
+  labelWidth?: number | string
+  // Label alignment
   labelAlign?: 'left' | 'right'
-  labelCol?: ColState
-  wrapperCol?: ColState
-  schemas: FormSchemaType[]
+  // Label column configuration
+  labelCol?: Partial<ColPropsType>
+  // Wrapper column configuration
+  wrapperCol?: Partial<ColPropsType>
+  // Form configuration field list
+  schemas?: FormSchemaType[]
+  // Form component size
   size?: 'default' | 'small' | 'large'
-  // Form action props
-  submitBtn?: ActionBtnState
-  resetBtn?: ActionBtnState
-  showAdvanced?: boolean
-  sbumitFunc: () => Promise<void>
+  // Time interval fields are mapped into multiple
+  fieldMapToTime?: FieldMapToTime
+  // Auto submit on press enter
+  autoSubmitOnEnter?: boolean
+  // Form action column configuration
+  actionColProps?: Partial<ColPropsType>
+  // Submit button configuration properties
+  submitBtnProps?: ActionBtnType
+  // Reset button configuration properties
+  resetBtnProps?: ActionBtnType
+  // Whether to show the advanced button
+  showAdvancedBtn?: boolean
+  // Automatically collapse over the specified number of rows
+  autoAdvancedRow?: number
+  // Customize the submit function
+  submitFunc: () => Promise<void>
+  // Customize the reset function
   resetFunc: () => Promise<void>
 }

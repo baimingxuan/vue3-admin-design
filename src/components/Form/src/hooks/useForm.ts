@@ -1,10 +1,11 @@
-import type { FormRefType, FormReturnType, FormPropType } from '../types'
+import type { NamePath } from 'ant-design-vue/lib/form/interface'
+import type { FormRefType, FormReturnType } from '../types'
 import { ref, unref, nextTick, onUnmounted } from 'vue'
 import { isProdMode } from '@/utils/env'
 
-export function useForm(props: Partial<FormPropType>): FormReturnType {
+export function useForm(): FormReturnType {
   const formRef = ref<Nullable<FormRefType>>(null)
-  const isLoaded = ref<boolean>(false)
+  const isLoaded = ref<Nullable<boolean>>(null)
 
   async function getForm() {
     const form = unref(formRef)
@@ -22,7 +23,7 @@ export function useForm(props: Partial<FormPropType>): FormReturnType {
     if (isProdMode()) {
       onUnmounted(() => {
         formRef.value = null
-        isLoaded.value = false
+        isLoaded.value = null
       })
 
       if (unref(isLoaded) && formInstance === unref(formRef)) return
@@ -32,7 +33,32 @@ export function useForm(props: Partial<FormPropType>): FormReturnType {
     isLoaded.value = true
   }
 
-  const formActions = {} as FormRefType
+  const formActions: FormRefType = {
+    async submitForm(): Promise<any> {
+      const form = await getForm()
+      return await form.submitForm()
+    },
+    async validateForm<T = Recordable>(nameList?: NamePath[] | false): Promise<T> {
+      const form = await getForm()
+      return await form.validateForm(nameList)
+    },
+    async resetFields(): Promise<void> {
+      const form = await getForm()
+      await form.resetFields()
+    },
+    async validateFields(nameList?: NamePath[]): Promise<Recordable> {
+      const form = await getForm()
+      return await form.validateFields(nameList)
+    },
+    async clearValidate(name?: string | string[]): Promise<void> {
+      const form = await getForm()
+      await form.clearValidate(name)
+    },
+    async scrollToField(name: NamePath, options?: ScrollOptions): Promise<void> {
+      const form = await getForm()
+      await form.scrollToField(name, options)
+    }
+  }
 
   return [register, formActions]
 }

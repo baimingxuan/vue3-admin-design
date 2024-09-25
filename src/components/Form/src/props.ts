@@ -1,9 +1,9 @@
 import type { PropType } from 'vue'
-import type { ColState, FormSchemaType, ActionBtnState } from './types'
+import type { ColPropsType, FormSchemaType, ActionBtnType } from './types'
 
 export const formProps = {
   layout: {
-    type: String as PropType<'inline' | 'horizontal'>,
+    type: String as PropType<'inline' | 'horizontal' | 'vertical'>,
     default: 'inline'
   },
   disabled: {
@@ -23,7 +23,7 @@ export const formProps = {
     default: 'right'
   },
   labelCol: {
-    type: Object as PropType<ColState>,
+    type: Object as PropType<ColPropsType>,
     default: () => ({
       style: {
         width: '80px'
@@ -31,7 +31,7 @@ export const formProps = {
     })
   },
   wrapperCol: {
-    type: Object as PropType<ColState>,
+    type: Object as PropType<ColPropsType>,
     default: () => ({
       style: {
         width: '190px',
@@ -48,19 +48,19 @@ export const formProps = {
     type: String as PropType<'default' | 'small' | 'large'>,
     default: 'default'
   },
-  submitBtn: {
-    type: Object as PropType<ActionBtnState>,
+  submitBtnProps: {
+    type: Object as PropType<ActionBtnType>,
     default: () => ({})
   },
-  resetBtn: {
-    type: Object as PropType<ActionBtnState>,
+  resetBtnProps: {
+    type: Object as PropType<ActionBtnType>,
     default: () => ({})
   },
-  showAdvanced: {
+  showAdvancedBtn: {
     type: Boolean as PropType<boolean>,
     default: true
   },
-  sbumitFunc: {
+  submitFunc: {
     type: Function as PropType<() => Promise<void>>,
     default: () => Promise.resolve()
   },
