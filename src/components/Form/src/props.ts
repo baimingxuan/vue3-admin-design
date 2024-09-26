@@ -1,10 +1,14 @@
 import type { PropType } from 'vue'
-import type { ColPropsType, FormSchemaType, ActionBtnType } from './types/form'
+import type { RowPropsType, ColPropsType, FormSchemaType, ActionBtnType, FieldMapToTime } from './types/form'
 
-export const formProps = {
+export const basicFormProps = {
   layout: {
     type: String as PropType<'inline' | 'horizontal' | 'vertical'>,
     default: 'inline'
+  },
+  model: {
+    type: Object as PropType<Recordable>,
+    default: () => ({})
   },
   disabled: {
     type: Boolean as PropType<boolean>,
@@ -18,26 +22,29 @@ export const formProps = {
     type: Boolean as PropType<boolean>,
     default: false
   },
+  rowProps: {
+    type: Object as PropType<Partial<RowPropsType>>,
+    default: () => ({})
+  },
+  colProps: {
+    type: Object as PropType<Partial<ColPropsType>>,
+    default: () => ({})
+  },
+  labelWidth: {
+    type: [Number, String] as PropType<number | string>,
+    default: 0
+  },
   labelAlign: {
     type: String as PropType<'left' | 'right'>,
     default: 'right'
   },
   labelCol: {
-    type: Object as PropType<ColPropsType>,
-    default: () => ({
-      style: {
-        width: '80px'
-      }
-    })
+    type: Object as PropType<Partial<ColPropsType>>,
+    default: () => ({})
   },
   wrapperCol: {
-    type: Object as PropType<ColPropsType>,
-    default: () => ({
-      style: {
-        width: '190px',
-        flexGrow: 0
-      }
-    })
+    type: Object as PropType<Partial<ColPropsType>>,
+    default: () => ({})
   },
   schemas: {
     type: Array as PropType<Array<FormSchemaType>>,
@@ -47,6 +54,18 @@ export const formProps = {
   size: {
     type: String as PropType<'default' | 'small' | 'large'>,
     default: 'default'
+  },
+  fieldMapToTime: {
+    type: Array as PropType<FieldMapToTime>,
+    default: () => []
+  },
+  autoSubmitOnEnter: {
+    type: Boolean as PropType<boolean>,
+    default: false
+  },
+  actionColProps: {
+    type: Object as PropType<Partial<ColPropsType>>,
+    default: () => ({})
   },
   submitBtnProps: {
     type: Object as PropType<ActionBtnType>,
@@ -59,6 +78,10 @@ export const formProps = {
   showAdvancedBtn: {
     type: Boolean as PropType<boolean>,
     default: true
+  },
+  autoAdvancedRow: {
+    type: Number as PropType<number>,
+    default: 2
   },
   submitFunc: {
     type: Function as PropType<() => Promise<void>>,

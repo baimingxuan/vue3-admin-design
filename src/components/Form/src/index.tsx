@@ -1,21 +1,23 @@
 import type { FormProps as AntFormProps } from 'ant-design-vue'
-import type { FormRefType } from './types/form'
+import type { FormRefType, FormPropsType } from './types/form'
 import { defineComponent, ref, reactive, computed, unref, onMounted } from 'vue'
 import { Row, Card, Form } from 'ant-design-vue'
 import FormItem from './components/FormItem'
 import FormAction from './components/FormAction'
-import { formProps } from './props'
+import { basicFormProps } from './props'
 import { useFormEvents } from './hooks/useFormEvents'
 
 export default defineComponent({
   name: 'BasicForm',
-  props: formProps,
+  props: basicFormProps,
   emits: ['register', 'fieldValueChange'],
   setup(props, { attrs, slots, emit, expose }) {
     const formElRef = ref<Nullable<FormRefType>>(null)
-    const formModel = reactive({})
+    const formProps = ref<Partial<FormPropsType>>({})
+    const formModel = reactive<Recordable>({})
 
-    const getFormProps = computed(() => ({ ...attrs, ...props }) as AntFormProps)
+    const getFormProps = computed(() => ({ ...props, ...unref(formProps) }) as FormPropsType)
+    const getAntFormProps = computed(() => ({ ...attrs, ...props, ...unref(getFormProps) }) as AntFormProps)
 
     const { submitForm, resetFields } = useFormEvents({ emit, schemas: props.schemas, formModel, formElRef })
     function setFormModel(key: string, value: any) {
@@ -40,8 +42,8 @@ export default defineComponent({
 
     return () => (
       <Card>
-        <Form ref={formElRef} model={formModel} {...unref(getFormProps)}>
-          <Row gutter={[0, 14]}>
+        <Form ref={formElRef} model={formModel} {...unref(getAntFormProps)}>
+          <Row {...props.rowProps}>
             {props.schemas.map(schema => (
               <FormItem schema={schema} formProps={props} formModel={formModel} setFormModel={setFormModel} />
             ))}

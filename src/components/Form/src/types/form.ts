@@ -42,7 +42,7 @@ export interface RenderCallbackParams {
   field: string
 }
 
-interface FormItemPropsType {
+interface ItemPropsType {
   // Whether to show the label colon
   colon?: boolean
   // Validation rules of form
@@ -89,7 +89,7 @@ interface BaseFormSchemaType<T extends ComponentType = any> {
   // Col properties outside formItem
   colProps?: Partial<ColPropsType>
   // FormItem properties
-  formItemProps?: Partial<FormItemPropsType>
+  itemProps?: Partial<ItemPropsType>
   // Suffix content
   suffixContent?: string | number | ((values: RenderCallbackParams) => string | number)
   // Rendering col content requires outer wrapper formItem

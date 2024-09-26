@@ -1,5 +1,5 @@
 import type { PropType } from 'vue'
-import type { FormPropsType, FormSchemaType } from '../types/form'
+import type { FormRefType, FormPropsType, FormSchemaType } from '../types/form'
 import { defineComponent, ref, unref, computed } from 'vue'
 import { Col, Form } from 'ant-design-vue'
 import { upperFirst } from 'lodash-es'
@@ -19,6 +19,10 @@ export default defineComponent({
     },
     formModel: {
       type: Object as PropType<Recordable<any>>,
+      default: () => ({})
+    },
+    formRef: {
+      type: Object as PropType<FormRefType>,
       default: () => ({})
     },
     setFormModel: {
