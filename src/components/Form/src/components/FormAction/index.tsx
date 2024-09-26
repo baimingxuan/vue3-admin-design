@@ -1,5 +1,5 @@
 import type { PropType } from 'vue'
-import type { ActionBtnType } from '../../types'
+import type { ActionBtnType } from '../../types/form'
 import { defineComponent } from 'vue'
 import { Col, Space, Form, Button } from 'ant-design-vue'
 import { DownOutlined } from '@ant-design/icons-vue'

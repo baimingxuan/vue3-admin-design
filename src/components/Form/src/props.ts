@@ -1,5 +1,5 @@
 import type { PropType } from 'vue'
-import type { ColPropsType, FormSchemaType, ActionBtnType } from './types'
+import type { ColPropsType, FormSchemaType, ActionBtnType } from './types/form'
 
 export const formProps = {
   layout: {

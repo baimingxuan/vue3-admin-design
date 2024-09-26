@@ -1,6 +1,7 @@
 import type { CSSProperties, VNode } from 'vue'
 import type { RuleObject, NamePath } from 'ant-design-vue/lib/form/interface'
 import type { RowProps, ColProps } from 'ant-design-vue/lib/grid'
+import type { ComponentProps, ComponentType } from './'
 
 export type RowPropsType = RowProps & { style?: CSSProperties }
 
@@ -9,6 +10,11 @@ export type ColPropsType = ColProps & {
 }
 
 export type FieldMapToTime = [string, [string, string], (string | [string, string])?][]
+
+export type RenderOpts = {
+  disabled: boolean
+  [key: string]: any
+}
 
 export interface ActionBtnType {
   text?: string
@@ -29,27 +35,79 @@ export type RegisterFn = (formInstance: FormRefType) => void
 
 export type FormReturnType = [RegisterFn, FormRefType]
 
-export interface FormSchemaType {
+export interface RenderCallbackParams {
+  schema: FormSchemaInnerType
+  values: Recordable
+  model: Recordable
+  field: string
+}
+
+interface FormItemPropsType {
+  // Whether to show the label colon
+  colon?: boolean
+  // Validation rules of form
+  rules?: object | object[]
+  // Label name
+  label?: string
+  // Label alignment
+  labelAlign?: 'left' | 'right'
+  // Label column configuration
+  labelCol?: Partial<ColPropsType>
+  // Validation status
+  validateStatus?: 'success' | 'warning' | 'error' | 'validating'
+}
+
+interface BaseFormSchemaType<T extends ComponentType = any> {
   // Field name
   field: string
-  // Variable name bound to v-model Default value
+  // Multiple components, extra fields name
+  fields?: string[]
+  // Variable name bound to v-model default value
   valueField?: string
   // Default value
   defaultValue?: any
+  // Multiple components, extra fields default value object
+  defaultValueObj?: { [key: string]: any }
+  // Required
+  required?: boolean | ((renderCallbackParams: RenderCallbackParams) => boolean)
   // Label name
   label?: string
+  // Label width, the labelCol and WrapperCol configured props will be invalid
+  labelWidth?: string | number
   // Validation rules
   rules?: RuleObject[]
+  // Whether the valida information is added to the label
+  rulesMessageJoinLabel?: boolean
   // Event name triggered by internal value change, default change
   changeEvent?: string
   // Component type
   component?: string
-  // Component props
-  componentProps?: object
+  // Component properties
+  componentProps?:
+    | ((opt: { schema: FormSchemaType; formModel: Recordable; formRef: FormRefType }) => ComponentProps[T])
+    | ComponentProps[T]
+  // Col properties outside formItem
+  colProps?: Partial<ColPropsType>
+  // FormItem properties
+  formItemProps?: Partial<FormItemPropsType>
+  // Suffix content
+  suffixContent?: string | number | ((values: RenderCallbackParams) => string | number)
+  // Rendering col content requires outer wrapper formItem
+  renderColContent?: (renderCallbackParams: RenderCallbackParams, opts: RenderOpts) => VNode | VNode[] | string
+  // Render the content in the formItem
+  renderComponent?: (renderCallbackParams: RenderCallbackParams, opts: RenderOpts) => VNode | VNode[] | string
+  // Render the component content in the formItem
+  renderComponentContent?:
+    | ((renderCallbackParams: RenderCallbackParams, opts: RenderOpts) => any)
+    | VNode
+    | VNode[]
+    | string
+  // Custom slot in Col, similar to renderColContent
+  colSlot?: string
   // Whether to display
-  isShow?: boolean
+  isShow?: boolean | ((renderCallbackParams: RenderCallbackParams) => boolean)
   // Whether to render
-  isRender?: boolean
+  isRender?: boolean | ((renderCallbackParams: RenderCallbackParams) => boolean)
   // Whether to disable
   disabled?: boolean
   // Whether to readonly
@@ -102,3 +160,17 @@ export interface FormPropsType {
   // Customize the reset function
   resetFunc: () => Promise<void>
 }
+
+export interface ComponentFormSchemaType<T extends ComponentType = any> extends BaseFormSchemaType<T> {
+  // render component
+  component: T
+}
+
+export interface SlotFormSchemaType extends BaseFormSchemaType {
+  // render slot
+  slot: string
+}
+
+export type FormSchemaType = ComponentFormSchemaType | SlotFormSchemaType
+
+export type FormSchemaInnerType = Partial<ComponentFormSchemaType> & Partial<SlotFormSchemaType> & BaseFormSchemaType

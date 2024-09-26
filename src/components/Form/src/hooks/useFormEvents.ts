@@ -1,6 +1,6 @@
 import type { Ref } from 'vue'
-import type { FormRefType } from '../types'
-import type { FormSchemaType } from '../types'
+import type { FormRefType } from '../types/form'
+import type { FormSchemaType } from '../types/form'
 import { unref, toRaw, nextTick } from 'vue'
 
 interface FormEventCtx {

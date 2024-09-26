@@ -1,5 +1,5 @@
 import type { FormProps as AntFormProps } from 'ant-design-vue'
-import type { FormRefType } from './types'
+import type { FormRefType } from './types/form'
 import { defineComponent, ref, reactive, computed, unref, onMounted } from 'vue'
 import { Row, Card, Form } from 'ant-design-vue'
 import FormItem from './components/FormItem'

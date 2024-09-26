@@ -1,5 +1,5 @@
 import type { NamePath } from 'ant-design-vue/lib/form/interface'
-import type { FormRefType, FormReturnType } from '../types'
+import type { FormRefType, FormReturnType } from '../types/form'
 import { ref, unref, nextTick, onUnmounted } from 'vue'
 import { isProdMode } from '@/utils/env'
 

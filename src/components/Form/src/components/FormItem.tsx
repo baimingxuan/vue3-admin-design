@@ -1,5 +1,5 @@
 import type { PropType } from 'vue'
-import type { FormPropsType, FormSchemaType } from '../types'
+import type { FormPropsType, FormSchemaType } from '../types/form'
 import { defineComponent, ref, unref, computed } from 'vue'
 import { Col, Form } from 'ant-design-vue'
 import { upperFirst } from 'lodash-es'
