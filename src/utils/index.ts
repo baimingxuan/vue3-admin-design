@@ -1,12 +1,50 @@
 import type { RouteLocationNormalized, RouteRecordNormalized } from 'vue-router'
-import { isObject } from './is'
+import { intersectionWith, isEqual, mergeWith, unionWith } from 'lodash-es'
+import { isObject, isArray } from './is'
 
-export function deepMerge<T = any>(src: any = {}, target: any = {}): T {
-  let key: string
-  for (key in target) {
-    src[key] = isObject(src[key]) ? deepMerge(src[key], target[key]) : (src[key] = target[key])
+/**
+ * Recursively merge two objects.
+ *
+ * @param source The source object to merge from.
+ * @param target The target object to merge into.
+ * @param mergeArrays How to merge arrays. Default is "replace".
+ *  - "union": Union the arrays.
+ *  - "intersection": Intersect the arrays.
+ *  - "concat": Concatenate the arrays.
+ *  - "replace": Replace the source array with the target array.
+ * @returns The merged object.
+ */
+export function deepMerge<T extends object | null | undefined, U extends object | null | undefined>(
+  source: T,
+  target: U,
+  mergeArrays: 'union' | 'intersection' | 'concat' | 'replace' = 'replace'
+): T & U {
+  if (!target) {
+    return source as T & U
   }
-  return src
+  if (!source) {
+    return target as T & U
+  }
+  return mergeWith({}, source, target, (sourceValue, targetValue) => {
+    if (isArray(targetValue) && isArray(sourceValue)) {
+      switch (mergeArrays) {
+        case 'union':
+          return unionWith(sourceValue, targetValue, isEqual)
+        case 'intersection':
+          return intersectionWith(sourceValue, targetValue, isEqual)
+        case 'concat':
+          return sourceValue.concat(targetValue)
+        case 'replace':
+          return targetValue
+        default:
+          throw new Error(`Unknown merge array strategy: ${mergeArrays as string}`)
+      }
+    }
+    if (isObject(targetValue) && isObject(sourceValue)) {
+      return deepMerge(sourceValue, targetValue, mergeArrays)
+    }
+    return undefined
+  })
 }
 
 export function getRawRoute(route: RouteLocationNormalized): RouteLocationNormalized {

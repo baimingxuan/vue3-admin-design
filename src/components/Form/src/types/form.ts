@@ -23,6 +23,7 @@ export interface ActionBtnType {
 }
 
 export interface FormRefType {
+  setFormProps: (props: Partial<FormPropsType>) => Promise<void>
   submitForm: () => Promise<void>
   validateForm: <T = Recordable>(nameList?: NamePath[] | false) => Promise<T>
   resetFields: () => Promise<void>
@@ -68,6 +69,8 @@ interface BaseFormSchemaType<T extends ComponentType = any> {
   defaultValue?: any
   // Multiple components, extra fields default value object
   defaultValueObj?: { [key: string]: any }
+  // Whether the default values for Date components are handled automatically
+  isHandleDateDefaultValue?: boolean
   // Required
   required?: boolean | ((renderCallbackParams: RenderCallbackParams) => boolean)
   // Label name
