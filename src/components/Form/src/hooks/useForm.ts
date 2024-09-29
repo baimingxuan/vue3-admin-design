@@ -1,5 +1,5 @@
 import type { NamePath } from 'ant-design-vue/lib/form/interface'
-import type { FormRefType, FormReturnType } from '../types/form'
+import type { FormRefType, FormReturnType, FormSchemaInnerType as FormSchemaType, FormPropsType } from '../types/form'
 import { ref, unref, nextTick, onUnmounted } from 'vue'
 import { isProdMode } from '@/utils/env'
 
@@ -34,11 +34,15 @@ export function useForm(): FormReturnType {
   }
 
   const formActions: FormRefType = {
+    async setFormProps(props: Partial<FormPropsType>) {
+      const form = await getForm()
+      form.setFormProps(props)
+    },
     async submitForm(): Promise<any> {
       const form = await getForm()
       return await form.submitForm()
     },
-    async validateForm<T = Recordable>(nameList?: NamePath[] | false): Promise<T> {
+    async validateForm<T = Recordable>(nameList?: NamePath[] | false | undefined): Promise<T> {
       const form = await getForm()
       return await form.validateForm(nameList)
     },
@@ -57,6 +61,10 @@ export function useForm(): FormReturnType {
     async scrollToField(name: NamePath, options?: ScrollOptions): Promise<void> {
       const form = await getForm()
       await form.scrollToField(name, options)
+    },
+    async resetSchemas(schema: Partial<FormSchemaType> | Partial<FormSchemaType>[]) {
+      const form = await getForm()
+      form.resetSchemas(schema)
     }
   }
 

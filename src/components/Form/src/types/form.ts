@@ -25,11 +25,12 @@ export interface ActionBtnType {
 export interface FormRefType {
   setFormProps: (props: Partial<FormPropsType>) => Promise<void>
   submitForm: () => Promise<void>
-  validateForm: <T = Recordable>(nameList?: NamePath[] | false) => Promise<T>
+  validateForm: <T = Recordable>(nameList?: NamePath[] | false | undefined) => Promise<T>
   resetFields: () => Promise<void>
   validateFields: (nameList?: NamePath[]) => Promise<any>
   clearValidate: (name?: string | string[]) => Promise<void>
   scrollToField: (name: NamePath, options?: ScrollOptions) => Promise<void>
+  resetSchemas: (schema: Partial<FormSchemaInnerType> | Partial<FormSchemaInnerType>[]) => Promise<void>
 }
 
 export type RegisterFn = (formInstance: FormRefType) => void

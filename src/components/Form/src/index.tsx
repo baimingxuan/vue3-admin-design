@@ -1,6 +1,7 @@
+import type { Ref } from 'vue'
 import type { FormProps as AntFormProps } from 'ant-design-vue'
 import type { FormRefType, FormPropsType, FormSchemaInnerType as FormSchemaType } from './types/form'
-import { defineComponent, ref, reactive, computed, unref, onMounted } from 'vue'
+import { defineComponent, ref, unref, reactive, computed, watch, onMounted } from 'vue'
 import { Row, Card, Form } from 'ant-design-vue'
 import { cloneDeep } from 'lodash-es'
 import FormItem from './components/FormItem'
@@ -9,7 +10,7 @@ import { basicFormProps } from './props'
 import { useFormEvents } from './hooks/useFormEvents'
 import { dateUtil } from '@/utils/dateUtil'
 import { deepMerge } from '@/utils'
-import { DATE_COMPONENT_TYPE } from './constant'
+import { DATE_COMPONENTS } from './constant'
 
 export default defineComponent({
   name: 'BasicForm',
@@ -20,6 +21,7 @@ export default defineComponent({
     const formProps = ref<Partial<FormPropsType>>({})
     const formSchemas = ref<Nullable<FormSchemaType[]>>(null)
     const formModel = reactive<Recordable>({})
+    const formDefaultVal = ref<Recordable>({})
 
     const isSubmitting = ref(false)
     const isAdvanced = ref(false)
@@ -42,7 +44,7 @@ export default defineComponent({
       for (const schema of schemas) {
         const { component, componentProps = {}, defaultValue, isHandleDateDefaultValue = true } = schema
 
-        if (isHandleDateDefaultValue && component && defaultValue && DATE_COMPONENT_TYPE.includes(component)) {
+        if (isHandleDateDefaultValue && component && defaultValue && DATE_COMPONENTS.includes(component)) {
           const opt = {
             schema,
             formModel,
@@ -70,7 +72,17 @@ export default defineComponent({
       return cloneDeep(schemas)
     })
 
-    const { submitForm, resetFields } = useFormEvents({ emit, schemas: props.schemas, formModel, formElRef })
+    const { submitForm, validateForm, resetFields, validateFields, clearValidate, scrollToField, resetSchemas } =
+      useFormEvents({
+        emit,
+        getFormProps,
+        getFormSchemas,
+        formModel,
+        formDefaultVal,
+        formSchemas: formSchemas as Ref<FormSchemaType[]>,
+        formElRef: formElRef as Ref<FormRefType>,
+        handleFormValues: () => {}
+      })
 
     async function setFormProps(props: Partial<FormPropsType>): Promise<void> {
       formProps.value = deepMerge(unref(formProps) || {}, props)
@@ -85,11 +97,24 @@ export default defineComponent({
       console.log('toggleAdvanced')
     }
 
-    const formRef = {
-      resetFields,
+    watch(
+      () => props.schemas,
+      (schemas: FormSchemaType[]) => {
+        console.log('schemas change', schemas)
+        resetSchemas(schemas ?? [])
+      }
+    )
+
+    const formRef: FormRefType = {
+      setFormProps,
       submitForm,
-      setFormProps
-    } as FormRefType
+      validateForm,
+      resetFields,
+      validateFields,
+      clearValidate,
+      scrollToField,
+      resetSchemas
+    }
 
     expose(formRef)
 
