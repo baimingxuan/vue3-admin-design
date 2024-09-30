@@ -55,6 +55,8 @@ interface ItemPropsType {
   labelAlign?: 'left' | 'right'
   // Label column configuration
   labelCol?: Partial<ColPropsType>
+  // Wrapper column configuration
+  wrapperCol?: Partial<ColPropsType>
   // Validation status
   validateStatus?: 'success' | 'warning' | 'error' | 'validating'
 }

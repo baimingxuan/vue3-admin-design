@@ -7,6 +7,7 @@ import { cloneDeep } from 'lodash-es'
 import FormItem from './components/FormItem'
 import FormAction from './components/FormAction'
 import { basicFormProps } from './props'
+import { useFormValues } from './hooks/useFormValues'
 import { useFormEvents } from './hooks/useFormEvents'
 import { dateUtil } from '@/utils/dateUtil'
 import { deepMerge } from '@/utils'
@@ -23,6 +24,7 @@ export default defineComponent({
     const formModel = reactive<Recordable>({})
     const formDefaultVal = ref<Recordable>({})
 
+    const isInitedDefault = ref(false)
     const isSubmitting = ref(false)
     const isAdvanced = ref(false)
 
@@ -72,6 +74,13 @@ export default defineComponent({
       return cloneDeep(schemas)
     })
 
+    const { initDefaultValue } = useFormValues({
+      getFormProps,
+      getFormSchemas,
+      formModel,
+      formDefaultVal
+    })
+
     const { submitForm, validateForm, resetFields, validateFields, clearValidate, scrollToField, resetSchemas } =
       useFormEvents({
         emit,
@@ -105,6 +114,18 @@ export default defineComponent({
       }
     )
 
+    watch(
+      () => getFormSchemas.value,
+      schemas => {
+        if (unref(isInitedDefault)) return
+
+        if (schemas?.length) {
+          initDefaultValue()
+          isInitedDefault.value = true
+        }
+      }
+    )
+
     const formRef: FormRefType = {
       setFormProps,
       submitForm,
@@ -119,6 +140,7 @@ export default defineComponent({
     expose(formRef)
 
     onMounted(() => {
+      initDefaultValue()
       emit('register', formRef)
     })
 
@@ -132,6 +154,7 @@ export default defineComponent({
                 schema={schema}
                 formRef={formRef}
                 formProps={unref(getFormProps)}
+                formDefaultVal={unref(formDefaultVal)}
                 formModel={formModel}
                 setFormModel={setFormModel}
               />

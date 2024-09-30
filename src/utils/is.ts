@@ -1,9 +1,27 @@
+export {
+  isBoolean,
+  isDate,
+  isElement,
+  isEmpty,
+  isEqual,
+  isEqualWith,
+  isError,
+  isFunction,
+  isMap,
+  isNil,
+  isNumber,
+  isNull,
+  isPlainObject,
+  isRegExp,
+  isSet,
+  isString,
+  isSymbol,
+  isWeakMap,
+  isWeakSet
+} from 'lodash-es'
+
 export function is(val: unknown, type: string) {
   return Object.prototype.toString.call(val) === `[object ${type}]`
-}
-
-export function isFunction(val: unknown): val is Function {
-  return typeof val === 'function'
 }
 
 export function isArray(val: any): val is Array<any> {
@@ -14,28 +32,12 @@ export function isObject(val: any): val is Record<any, any> {
   return val !== null && is(val, 'Object')
 }
 
-export function isNumber(val: unknown): val is number {
-  return is(val, 'Number')
-}
-
-export function isString(val: unknown): val is string {
-  return is(val, 'String')
-}
-
 export function isDef<T = unknown>(val?: T): val is T {
   return typeof val !== 'undefined'
 }
 
 export function isUnDef<T = unknown>(val?: T): val is T {
   return !isDef(val)
-}
-
-export function isNull(val: unknown): val is null {
-  return val === null
-}
-
-export function isNullOrUnDef(val: unknown): val is null | undefined {
-  return isUnDef(val) || isNull(val)
 }
 
 export function isUrl(path: string): boolean {

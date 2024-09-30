@@ -1,8 +1,9 @@
-import type { PropType } from 'vue'
+import type { PropType, Ref } from 'vue'
 import type { FormRefType, FormPropsType, FormSchemaInnerType as FormSchemaType } from '../types/form'
-import { defineComponent, ref, unref, computed } from 'vue'
+import { defineComponent, ref, unref, computed, toRefs } from 'vue'
 import { Col, Form } from 'ant-design-vue'
 import { upperFirst } from 'lodash-es'
+import { isNumber } from '@/utils/is'
 import { compoMap } from '../compoMap'
 
 export default defineComponent({
@@ -28,13 +29,58 @@ export default defineComponent({
     setFormModel: {
       type: Function as PropType<(key: string, value: any) => void>,
       default: null
+    },
+    formDefaultVal: {
+      type: Object as PropType<Recordable>,
+      default: () => ({})
     }
   },
   setup(props) {
+    const { schema, formProps } = toRefs(props) as {
+      schema: Ref<FormSchemaType>
+      formProps: Ref<FormPropsType>
+    }
+
     const { field, label, rules, isRender = true, isShow = true } = props.schema
 
     const itemIsShow = ref(isShow)
     const itemIsRender = ref(isRender)
+
+    const getLabelProps = computed(() => {
+      const schemaItem = unref(schema)
+
+      const { labelWidth } = schemaItem
+      const { labelCol = {}, wrapperCol = {}, labelAlign } = schemaItem.itemProps || {}
+      const {
+        labelWidth: globalLabelWidth,
+        labelCol: globalLabelCol,
+        wrapperCol: globWrapperCol,
+        labelAlign: globalLabelAlign,
+        layout
+      } = unref(formProps)
+
+      if (!globalLabelWidth && !labelWidth && !globalLabelCol) {
+        return { labelCol, wrapperCol }
+      }
+
+      let width = labelWidth || globalLabelWidth
+      const col = { ...globalLabelCol, ...labelCol }
+      const wrapCol = { ...globWrapperCol, ...wrapperCol }
+      const align = labelAlign || globalLabelAlign
+
+      if (width) {
+        width = isNumber(width) ? `${width}px` : width
+      }
+
+      return {
+        labelCol: { style: { width }, ...col },
+        wrapperCol: {
+          style: { width: layout === 'vertical' ? '100%' : `calc(100% - ${width})` },
+          ...wrapCol
+        },
+        labelAlign: align
+      }
+    })
 
     function renderComponent() {
       const {
