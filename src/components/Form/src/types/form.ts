@@ -80,6 +80,8 @@ interface BaseFormSchemaType<T extends ComponentType = any> {
   label?: string
   // Label width, the labelCol and WrapperCol configured props will be invalid
   labelWidth?: string | number
+  // Disable the adjustment of labelWidth with global settings of formModel
+  disabledLabelWidth?: boolean
   // Validation rules
   rules?: RuleObject[]
   // Whether the valida information is added to the label

@@ -1,9 +1,10 @@
-import type { PropType, Ref } from 'vue'
+import type { PropType } from 'vue'
 import type { FormRefType, FormPropsType, FormSchemaInnerType as FormSchemaType } from '../types/form'
-import { defineComponent, ref, unref, computed, toRefs } from 'vue'
+import { defineComponent, ref, unref, computed } from 'vue'
 import { Col, Form } from 'ant-design-vue'
 import { upperFirst } from 'lodash-es'
-import { isNumber } from '@/utils/is'
+import { isNumber, isFunction } from '@/utils/is'
+import { getSlot } from '@/utils/helper/tsxHelper'
 import { compoMap } from '../compoMap'
 
 export default defineComponent({
@@ -35,38 +36,29 @@ export default defineComponent({
       default: () => ({})
     }
   },
-  setup(props) {
-    const { schema, formProps } = toRefs(props) as {
-      schema: Ref<FormSchemaType>
-      formProps: Ref<FormPropsType>
-    }
-
+  setup(props, { slots }) {
     const { field, label, rules, isRender = true, isShow = true } = props.schema
 
     const itemIsShow = ref(isShow)
     const itemIsRender = ref(isRender)
 
-    const getLabelProps = computed(() => {
-      const schemaItem = unref(schema)
-
-      const { labelWidth } = schemaItem
-      const { labelCol = {}, wrapperCol = {}, labelAlign } = schemaItem.itemProps || {}
+    const getLabelWidthProp = computed(() => {
+      const { labelWidth, disabledLabelWidth } = props.schema
+      const { labelCol = {}, wrapperCol = {} } = props.schema.itemProps || {}
       const {
         labelWidth: globalLabelWidth,
         labelCol: globalLabelCol,
         wrapperCol: globWrapperCol,
-        labelAlign: globalLabelAlign,
         layout
-      } = unref(formProps)
+      } = props.formProps
 
-      if (!globalLabelWidth && !labelWidth && !globalLabelCol) {
+      if ((!globalLabelWidth && !labelWidth && !globalLabelCol) || disabledLabelWidth) {
         return { labelCol, wrapperCol }
       }
 
       let width = labelWidth || globalLabelWidth
       const col = { ...globalLabelCol, ...labelCol }
       const wrapCol = { ...globWrapperCol, ...wrapperCol }
-      const align = labelAlign || globalLabelAlign
 
       if (width) {
         width = isNumber(width) ? `${width}px` : width
@@ -77,9 +69,47 @@ export default defineComponent({
         wrapperCol: {
           style: { width: layout === 'vertical' ? '100%' : `calc(100% - ${width})` },
           ...wrapCol
-        },
-        labelAlign: align
+        }
       }
+    })
+
+    const getValues = computed(() => {
+      const { schema, formModel, formDefaultVal } = props
+
+      return {
+        field: schema.field,
+        model: formModel,
+        values: {
+          ...formDefaultVal,
+          ...formModel
+        } as Recordable<any>,
+        schema: schema
+      }
+    })
+
+    const getComponentsProps = computed(() => {
+      const { schema, formModel, formRef } = props
+      let { componentProps = {} } = schema
+
+      if (isFunction(componentProps)) {
+        componentProps = componentProps({ schema, formModel, formRef }) ?? {}
+      }
+
+      return componentProps as Recordable<any>
+    })
+
+    const getDisabled = computed(() => {
+      const { disabled: globDisabled } = props.formProps
+      const { disabled = false } = unref(getComponentsProps)
+
+      return !!globDisabled || disabled
+    })
+
+    const getReadonly = computed(() => {
+      const { readonly: globReadonly } = props.formProps
+      const { readonly = false } = unref(getComponentsProps)
+
+      return !!globReadonly || readonly
     })
 
     function renderComponent() {
@@ -137,6 +167,42 @@ export default defineComponent({
       }
 
       return <Compo {...compoAttr} />
+    }
+
+    function renderFormItem() {
+      const { field, label, itemProps, rules, slot, renderComponent: renderCompo, suffixContent } = props.schema
+      const { colon } = props.formProps
+      const { labelCol, wrapperCol } = unref(getLabelWidthProp)
+      const options = { disabled: unref(getDisabled), readonly: unref(getReadonly) }
+
+      const getContent = () => {
+        return slot
+          ? getSlot(slots, slot, unref(getValues), options)
+          : renderCompo
+            ? renderCompo(unref(getValues), options)
+            : renderComponent()
+      }
+
+      const showSuffixCont = !!suffixContent
+      const getSuffixCont = isFunction(suffixContent) ? suffixContent(unref(getValues)) : suffixContent
+
+      return (
+        <Form.Item
+          name={field}
+          label={label}
+          colon={colon}
+          rules={rules}
+          class={{ 'suffix-item': showSuffixCont }}
+          {...(itemProps as Recordable<any>)}
+          labelCol={labelCol}
+          wrapperCol={wrapperCol}
+        >
+          <div style={{ display: 'flex' }}>
+            <div style={{ flex: 1 }}>{getContent()}</div>
+            {showSuffixCont && <span class='suffix'>{getSuffixCont}</span>}
+          </div>
+        </Form.Item>
+      )
     }
 
     return () =>
