@@ -1,5 +1,6 @@
 import type { PropType } from 'vue'
 import type { RowPropsType, ColPropsType, FormSchemaType, ActionBtnType, FieldMapToTime } from './types/form'
+import { style } from '@logicflow/extension/es/bpmn-elements/presets/icons'
 
 export const basicFormProps = {
   layout: {
@@ -24,15 +25,19 @@ export const basicFormProps = {
   },
   rowProps: {
     type: Object as PropType<Partial<RowPropsType>>,
-    default: () => ({})
+    default: () => ({
+      style: { width: '100%' }
+    })
   },
   colProps: {
     type: Object as PropType<Partial<ColPropsType>>,
-    default: () => ({})
+    default: () => ({
+      span: 4
+    })
   },
   labelWidth: {
     type: [Number, String] as PropType<number | string>,
-    default: 0
+    default: 80
   },
   labelAlign: {
     type: String as PropType<'left' | 'right'>,
@@ -69,11 +74,17 @@ export const basicFormProps = {
   },
   submitBtnProps: {
     type: Object as PropType<ActionBtnType>,
-    default: () => ({})
+    default: () => ({
+      text: '查询',
+      show: true
+    })
   },
   resetBtnProps: {
     type: Object as PropType<ActionBtnType>,
-    default: () => ({})
+    default: () => ({
+      text: '重置',
+      show: true
+    })
   },
   showAdvancedBtn: {
     type: Boolean as PropType<boolean>,

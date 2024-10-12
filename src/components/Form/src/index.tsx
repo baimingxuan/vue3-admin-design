@@ -2,7 +2,7 @@ import type { Ref } from 'vue'
 import type { FormProps as AntFormProps } from 'ant-design-vue'
 import type { FormRefType, FormPropsType, FormSchemaInnerType as FormSchemaType } from './types/form'
 import { defineComponent, ref, unref, reactive, computed, watch, onMounted } from 'vue'
-import { Row, Card, Form } from 'ant-design-vue'
+import { Row, Form } from 'ant-design-vue'
 import { cloneDeep } from 'lodash-es'
 import FormItem from './components/FormItem'
 import FormAction from './components/FormAction'
@@ -12,6 +12,7 @@ import { useFormEvents } from './hooks/useFormEvents'
 import { dateUtil } from '@/utils/dateUtil'
 import { deepMerge } from '@/utils'
 import { DATE_COMPONENTS } from './constant'
+import './index.less'
 
 export default defineComponent({
   name: 'BasicForm',
@@ -109,7 +110,6 @@ export default defineComponent({
     watch(
       () => props.schemas,
       (schemas: FormSchemaType[]) => {
-        console.log('schemas change', schemas)
         resetSchemas(schemas ?? [])
       }
     )
@@ -145,35 +145,33 @@ export default defineComponent({
     })
 
     return () => (
-      <Card>
-        <Form ref={formElRef} model={formModel} {...unref(getAntFormProps)}>
-          <Row {...props.rowProps}>
-            {getFormSchemas.value.map(schema => (
-              <FormItem
-                key={schema.field}
-                schema={schema}
-                formRef={formRef}
-                formProps={unref(getFormProps)}
-                formDefaultVal={unref(formDefaultVal)}
-                formModel={formModel}
-                setFormModel={setFormModel}
-              />
-            ))}
-            <FormAction
-              {...unref(getFormActionProps)}
-              onResetAction={resetFields}
-              onSubmitAction={submitForm}
-              onToggleAdvanced={handleToggleAdvanced}
-            >
-              {{
-                frontAction: (data: any) => slots.frontAction?.(data),
-                middleAction: (data: any) => slots.middleAction?.(data),
-                backAction: (data: any) => slots.backAction?.(data)
-              }}
-            </FormAction>
-          </Row>
-        </Form>
-      </Card>
+      <Form ref={formElRef} model={formModel} {...unref(getAntFormProps)}>
+        <Row {...props.rowProps}>
+          {getFormSchemas.value.map(schema => (
+            <FormItem
+              key={schema.field}
+              schema={schema}
+              formRef={formRef}
+              formProps={unref(getFormProps)}
+              formDefaultVal={unref(formDefaultVal)}
+              formModel={formModel}
+              setFormModel={setFormModel}
+            />
+          ))}
+          <FormAction
+            {...unref(getFormActionProps)}
+            onResetAction={resetFields}
+            onSubmitAction={submitForm}
+            onToggleAdvanced={handleToggleAdvanced}
+          >
+            {{
+              frontAction: (data: any) => slots.frontAction?.(data),
+              middleAction: (data: any) => slots.middleAction?.(data),
+              backAction: (data: any) => slots.backAction?.(data)
+            }}
+          </FormAction>
+        </Row>
+      </Form>
     )
   }
 })

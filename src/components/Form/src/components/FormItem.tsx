@@ -5,6 +5,7 @@ import { Col, Form } from 'ant-design-vue'
 import { upperFirst } from 'lodash-es'
 import { isNumber, isFunction } from '@/utils/is'
 import { getSlot } from '@/utils/helper/tsxHelper'
+import { isComponentFormSchema, generatePlaceholder } from '../helper'
 import { compoMap } from '../compoMap'
 
 export default defineComponent({
@@ -37,7 +38,7 @@ export default defineComponent({
     }
   },
   setup(props, { slots }) {
-    const { field, label, rules, isRender = true, isShow = true } = props.schema
+    const { isRender = true, isShow = true } = props.schema
 
     const itemIsShow = ref(isShow)
     const itemIsRender = ref(isRender)
@@ -63,6 +64,7 @@ export default defineComponent({
       if (width) {
         width = isNumber(width) ? `${width}px` : width
       }
+      console.log('width', width)
 
       return {
         labelCol: { style: { width }, ...col },
@@ -113,32 +115,28 @@ export default defineComponent({
     })
 
     function renderComponent() {
-      const {
-        component,
-        componentProps,
-        changeEvent = 'change',
-        field,
-        valueField,
-        disabled: schemaDisabled = false,
-        readonly: schemaReadonly = false
-      } = props.schema
-      const { disabled: formDisabled = false, readonly: formReadonly = false, size = 'default' } = props.formProps
+      if (!isComponentFormSchema(props.schema)) return null
 
-      const getDisabled = computed(() => formDisabled || schemaDisabled)
+      const { component, renderComponentContent, field, changeEvent = 'change', valueField } = props.schema
+      const { size = 'default' } = props.formProps
 
-      const getReadonly = computed(() => formReadonly || schemaReadonly)
-
-      const isCheck = component && ['radio', 'checkbox', 'switch'].includes(component)
+      const isCheck = component && ['Radio', 'Checkbox', 'Switch'].includes(component)
 
       const eventKey = `on${upperFirst(changeEvent)}`
 
       const propsData: Recordable<any> = {
         size,
         allowClear: true,
+        ...unref(getComponentsProps),
         disabled: unref(getDisabled),
-        readonly: unref(getReadonly),
-        ...componentProps
+        readonly: unref(getReadonly)
       }
+
+      if (!propsData.disabled && component !== 'RangePicker' && component) {
+        propsData.placeholder = unref(getComponentsProps)?.placeholder || generatePlaceholder(component)
+      }
+      propsData.codeField = field
+      propsData.formValues = unref(getValues)
 
       const bindValue: Recordable<any> = {
         [valueField || (isCheck ? 'checked' : 'value')]: props.formModel[field]
@@ -166,7 +164,22 @@ export default defineComponent({
         ...onEvent
       }
 
-      return <Compo {...compoAttr} />
+      if (!renderComponentContent) {
+        return <Compo {...compoAttr} />
+      }
+
+      const compoSlot = isFunction(renderComponentContent)
+        ? {
+            ...renderComponentContent(unref(getValues), {
+              disabled: unref(getDisabled),
+              readonly: unref(getReadonly)
+            })
+          }
+        : {
+            default: () => renderComponentContent
+          }
+
+      return <Compo {...compoAttr}>{compoSlot}</Compo>
     }
 
     function renderFormItem() {
@@ -199,19 +212,40 @@ export default defineComponent({
         >
           <div style={{ display: 'flex' }}>
             <div style={{ flex: 1 }}>{getContent()}</div>
-            {showSuffixCont && <span class='suffix'>{getSuffixCont}</span>}
+            {showSuffixCont && <span class='suffix-cont'>{getSuffixCont}</span>}
           </div>
         </Form.Item>
       )
     }
 
-    return () =>
-      unref(itemIsRender) && (
-        <Col v-show={unref(itemIsShow)}>
-          <Form.Item name={field} label={label} rules={rules}>
-            {renderComponent()}
-          </Form.Item>
-        </Col>
+    return () => {
+      const { colProps = {}, colSlot, renderColContent, component, slot } = props.schema
+
+      if (!((component && compoMap.has(component)) || slot)) {
+        return null
+      }
+
+      const { colProps: globalColProps = {} } = props.formProps
+      const realColProps = { ...globalColProps, ...colProps }
+
+      const values = unref(getValues)
+      const options = { disabled: unref(getDisabled), readonly: unref(getReadonly) }
+
+      const getContent = () => {
+        return colSlot
+          ? getSlot(slots, colSlot, values, options)
+          : renderColContent
+            ? renderColContent(values, options)
+            : renderFormItem
+      }
+
+      return (
+        unref(itemIsRender) && (
+          <Col {...realColProps} v-show={unref(itemIsShow)}>
+            {getContent()}
+          </Col>
+        )
       )
+    }
   }
 })

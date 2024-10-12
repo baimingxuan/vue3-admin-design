@@ -14,17 +14,11 @@ export default defineComponent({
     },
     submitBtnProps: {
       type: Object as PropType<ActionBtnType>,
-      default: () => ({
-        text: '查询',
-        show: true
-      })
+      default: () => ({})
     },
     resetBtnProps: {
       type: Object as PropType<ActionBtnType>,
-      default: () => ({
-        text: '重置',
-        show: true
-      })
+      default: () => ({})
     },
     isSubmitting: {
       type: Boolean,
