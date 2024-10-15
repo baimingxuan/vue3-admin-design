@@ -104,5 +104,11 @@ export const basicFormProps = {
   resetFunc: {
     type: Function as PropType<() => Promise<void>>,
     default: () => Promise.resolve()
+  },
+  transformDateFunc: {
+    type: Function as PropType<Fn>,
+    default: (date: any) => {
+      return date?.format?.('YYYY-MM-DD HH:mm:ss') ?? date
+    }
   }
 }

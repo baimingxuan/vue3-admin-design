@@ -2,7 +2,8 @@ import type { Rule as ValidationRule } from 'ant-design-vue/lib/form'
 import type { ComponentType } from './types'
 import type { FormSchemaInnerType, SlotFormSchemaType, ComponentFormSchemaType } from './types/form'
 import { set } from 'lodash-es'
-import { isObject } from '@/utils/is'
+import { isObject, isNumber } from '@/utils/is'
+import { DEFAULT_VALUE_COMPONENTS } from './constant'
 
 export function isSlotFormSchema(schema: FormSchemaInnerType): schema is SlotFormSchemaType {
   return 'slot' in schema
@@ -42,20 +43,30 @@ export function setComponentRuleType(rule: ValidationRule, component: ComponentT
   }
 }
 
-/**
- * @desription deconstruct array-link key. This method will mutate the target.
- */
-export function tryDeconstructArray(key: string, value: any, target: Recordable) {
-  const pattern = /^\[(.+)\]$/
-  if (pattern.test(key)) {
-    const match = key.match(pattern)
+export function handleInputNumberValue(component?: ComponentType, val?: any) {
+  if (!component) return val
+  if (DEFAULT_VALUE_COMPONENTS.includes(component)) {
+    return val && isNumber(val) ? `${val}` : val
+  }
+  return val
+}
+
+export function tryConstructObject(field: string, values: Recordable = {}): Recordable | undefined {
+  const pattern = /^\{(.+)\}$/
+  if (pattern.test(field)) {
+    const match = field.match(pattern)
     if (match && match[1]) {
       const keys = match[1].split(',')
-      value = Array.isArray(value) ? value : [value]
-      keys.forEach((k, index) => {
-        set(target, k.trim(), value[index])
+      if (!keys.length) {
+        return
+      }
+
+      const result = {}
+      keys.forEach(k => {
+        set(result, k.trim(), values[k.trim()])
       })
-      return true
+
+      return Object.values(result).filter(Boolean).length ? result : undefined
     }
   }
 }
@@ -72,6 +83,44 @@ export function tryDeconstructObject(key: string, value: any, target: Recordable
       value = isObject(value) ? value : {}
       keys.forEach(k => {
         set(target, k.trim(), value[k.trim()])
+      })
+      return true
+    }
+  }
+}
+
+export function tryConstructArray(field: string, values: Recordable = {}): any[] | undefined {
+  const pattern = /^\[(.+)\]$/
+  if (pattern.test(field)) {
+    const match = field.match(pattern)
+    if (match && match[1]) {
+      const keys = match[1].split(',')
+      if (!keys.length) {
+        return undefined
+      }
+
+      const result = []
+      keys.forEach((k, index) => {
+        set(result, index, values[k.trim()])
+      })
+
+      return result.filter(Boolean).length ? result : undefined
+    }
+  }
+}
+
+/**
+ * @desription deconstruct array-link key. This method will mutate the target.
+ */
+export function tryDeconstructArray(key: string, value: any, target: Recordable) {
+  const pattern = /^\[(.+)\]$/
+  if (pattern.test(key)) {
+    const match = key.match(pattern)
+    if (match && match[1]) {
+      const keys = match[1].split(',')
+      value = Array.isArray(value) ? value : [value]
+      keys.forEach((k, index) => {
+        set(target, k.trim(), value[index])
       })
       return true
     }

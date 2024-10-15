@@ -30,7 +30,16 @@ export interface FormRefType {
   validateFields: (nameList?: NamePath[]) => Promise<any>
   clearValidate: (name?: string | string[]) => Promise<void>
   scrollToField: (name: NamePath, options?: ScrollOptions) => Promise<void>
+  updateSchemas: (data: Partial<FormSchemaInnerType> | Partial<FormSchemaInnerType>[]) => Promise<void>
   resetSchemas: (schema: Partial<FormSchemaInnerType> | Partial<FormSchemaInnerType>[]) => Promise<void>
+  setFieldsValues: (values: Recordable) => Promise<void>
+  getFieldsValues: () => Recordable
+  appendSchemaByField: (
+    schema: FormSchemaInnerType | FormSchemaInnerType[],
+    prefixField: string | undefined,
+    first?: boolean | undefined
+  ) => Promise<void>
+  removeSchemaByField: (field: string | string[]) => Promise<void>
 }
 
 export type RegisterFn = (formInstance: FormRefType) => void
