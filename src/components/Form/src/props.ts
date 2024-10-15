@@ -1,6 +1,5 @@
 import type { PropType } from 'vue'
 import type { RowPropsType, ColPropsType, FormSchemaType, ActionBtnType, FieldMapToTime } from './types/form'
-import { style } from '@logicflow/extension/es/bpmn-elements/presets/icons'
 
 export const basicFormProps = {
   layout: {
@@ -59,6 +58,10 @@ export const basicFormProps = {
   size: {
     type: String as PropType<'default' | 'small' | 'large'>,
     default: 'default'
+  },
+  rulesMessageJoinLabel: {
+    type: Boolean as PropType<boolean>,
+    default: true
   },
   fieldMapToTime: {
     type: Array as PropType<FieldMapToTime>,

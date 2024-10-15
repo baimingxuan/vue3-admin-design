@@ -98,9 +98,14 @@ export default defineComponent({
       formProps.value = deepMerge(unref(formProps) || {}, props)
     }
 
-    function setFormModel(key: string, value: any) {
+    function setFormModel(key: string, value: any, schema: FormSchemaType) {
       formModel[key] = value
       emit('fieldValueChange', key, value)
+
+      // This function will only be triggered again if autoLink=false requires a manual link
+      if (schema && schema.itemProps && !schema.itemProps.autoLink) {
+        validateFields([key]).catch(_ => {})
+      }
     }
 
     function handleToggleAdvanced() {

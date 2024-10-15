@@ -6,7 +6,7 @@ export const formSchemas: FormSchemaType[] = [
     label: '名称',
     rules: [
       {
-        required: false,
+        required: true,
         message: '请输入名称'
       }
     ],
@@ -17,7 +17,7 @@ export const formSchemas: FormSchemaType[] = [
     label: '状态',
     rules: [
       {
-        required: false,
+        required: true,
         message: '请选择状态'
       }
     ],
@@ -40,7 +40,7 @@ export const formSchemas: FormSchemaType[] = [
     label: '日期时间',
     rules: [
       {
-        required: false,
+        required: true,
         message: '请选择日期时间'
       }
     ],

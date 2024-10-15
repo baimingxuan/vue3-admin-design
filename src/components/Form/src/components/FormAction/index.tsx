@@ -38,7 +38,7 @@ export default defineComponent({
     const { submitBtnProps, resetBtnProps } = props
 
     return () => (
-      <Col {...props.actionColProps}>
+      <Col {...props.actionColProps} span={12}>
         <div style={{ textAlign: 'right' }}>
           <Form.Item>
             <Space>
