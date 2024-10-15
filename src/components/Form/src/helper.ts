@@ -1,6 +1,8 @@
 import type { Rule as ValidationRule } from 'ant-design-vue/lib/form'
 import type { ComponentType } from './types'
 import type { FormSchemaInnerType, SlotFormSchemaType, ComponentFormSchemaType } from './types/form'
+import { set } from 'lodash-es'
+import { isObject } from '@/utils/is'
 
 export function isSlotFormSchema(schema: FormSchemaInnerType): schema is SlotFormSchemaType {
   return 'slot' in schema
@@ -37,5 +39,41 @@ export function setComponentRuleType(rule: ValidationRule, component: ComponentT
     rule.type = 'array'
   } else if (['InputNumber'].includes(component)) {
     rule.type = 'number'
+  }
+}
+
+/**
+ * @desription deconstruct array-link key. This method will mutate the target.
+ */
+export function tryDeconstructArray(key: string, value: any, target: Recordable) {
+  const pattern = /^\[(.+)\]$/
+  if (pattern.test(key)) {
+    const match = key.match(pattern)
+    if (match && match[1]) {
+      const keys = match[1].split(',')
+      value = Array.isArray(value) ? value : [value]
+      keys.forEach((k, index) => {
+        set(target, k.trim(), value[index])
+      })
+      return true
+    }
+  }
+}
+
+/**
+ * @desription deconstruct object-link key. This method will mutate the target.
+ */
+export function tryDeconstructObject(key: string, value: any, target: Recordable) {
+  const pattern = /^\{(.+)\}$/
+  if (pattern.test(key)) {
+    const match = key.match(pattern)
+    if (match && match[1]) {
+      const keys = match[1].split(',')
+      value = isObject(value) ? value : {}
+      keys.forEach(k => {
+        set(target, k.trim(), value[k.trim()])
+      })
+      return true
+    }
   }
 }

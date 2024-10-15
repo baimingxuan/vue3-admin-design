@@ -11,6 +11,7 @@ import { useFormValues } from './hooks/useFormValues'
 import { useFormEvents } from './hooks/useFormEvents'
 import { dateUtil } from '@/utils/dateUtil'
 import { deepMerge } from '@/utils'
+import { isFunction, isArray } from '@/utils/is'
 import { DATE_COMPONENTS } from './constant'
 import './index.less'
 
@@ -55,12 +56,12 @@ export default defineComponent({
           }
 
           const valueFormat = componentProps
-            ? typeof componentProps === 'function'
+            ? isFunction(componentProps)
               ? componentProps(opt)['valueFormat']
               : componentProps['valueFormat']
             : null
 
-          if (!Array.isArray(defaultValue)) {
+          if (!isArray(defaultValue)) {
             schema.defaultValue = valueFormat ? dateUtil(defaultValue).format(valueFormat) : dateUtil(defaultValue)
           } else {
             const def: any[] = []
@@ -75,7 +76,7 @@ export default defineComponent({
       return cloneDeep(schemas)
     })
 
-    const { initDefaultValue } = useFormValues({
+    const { initDefaultValue, handleFormValues } = useFormValues({
       getFormProps,
       getFormSchemas,
       formModel,
@@ -91,7 +92,7 @@ export default defineComponent({
         formDefaultVal,
         formSchemas: formSchemas as Ref<FormSchemaType[]>,
         formElRef: formElRef as Ref<FormRefType>,
-        handleFormValues: () => {}
+        handleFormValues
       })
 
     async function setFormProps(props: Partial<FormPropsType>): Promise<void> {
@@ -150,7 +151,7 @@ export default defineComponent({
     })
 
     return () => (
-      <Form ref={formElRef} model={formModel} {...unref(getAntFormProps)}>
+      <Form {...unref(getAntFormProps)} ref={formElRef} model={formModel}>
         <Row {...props.rowProps}>
           {getFormSchemas.value.map(schema => (
             <FormItem

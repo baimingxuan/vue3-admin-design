@@ -1,4 +1,4 @@
-import type { CSSProperties, VNode, VNodeChild } from 'vue'
+import type { CSSProperties, VNode } from 'vue'
 import type { Rule, NamePath } from 'ant-design-vue/lib/form/interface'
 import type { RowProps, ColProps } from 'ant-design-vue/lib/grid'
 import type { ComponentProps, ComponentType } from './'
@@ -185,6 +185,8 @@ export interface FormPropsType {
   submitFunc: () => Promise<void>
   // Customize the reset function
   resetFunc: () => Promise<void>
+  // Date transform function
+  transformDateFunc?: (date: any) => string
 }
 
 export interface ComponentFormSchemaType<T extends ComponentType = any> extends BaseFormSchemaType<T> {
