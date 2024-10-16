@@ -1,7 +1,7 @@
 import type { Ref } from 'vue'
 import type { FormProps as AntFormProps } from 'ant-design-vue'
 import type { FormRefType, FormPropsType, FormSchemaInnerType as FormSchemaType } from './types/form'
-import { defineComponent, ref, unref, reactive, computed, watch, onMounted } from 'vue'
+import { defineComponent, ref, unref, reactive, computed, watch, onMounted, getCurrentInstance } from 'vue'
 import { Row, Form } from 'ant-design-vue'
 import { cloneDeep } from 'lodash-es'
 import FormItem from './components/FormItem'
@@ -18,7 +18,7 @@ import './index.less'
 export default defineComponent({
   name: 'BasicForm',
   props: basicFormProps,
-  emits: ['register', 'fieldValueChange'],
+  emits: ['register', 'fieldValueChange', 'reset', 'submit'],
   setup(props, { attrs, slots, emit, expose }) {
     const formElRef = ref<Nullable<FormRefType>>(null)
     const formProps = ref<Partial<FormPropsType>>({})
@@ -133,7 +133,19 @@ export default defineComponent({
     )
 
     watch(
-      () => getFormSchemas.value,
+      () => unref(getFormProps).model,
+      () => {
+        const { model } = unref(getFormProps)
+        if (!model) return
+        setFieldsValues(model)
+      },
+      {
+        immediate: true
+      }
+    )
+
+    watch(
+      () => unref(getFormSchemas),
       schemas => {
         if (unref(isInitedDefault)) return
 
@@ -160,15 +172,16 @@ export default defineComponent({
       removeSchemaByField
     }
 
-    expose(formRef)
-
     onMounted(() => {
       initDefaultValue()
       emit('register', formRef)
+      console.log('formInstance', getCurrentInstance()?.proxy?.$el.getClientRects())
     })
 
+    expose(formRef)
+
     return () => (
-      <Form {...unref(getAntFormProps)} ref={formElRef} model={formModel}>
+      <Form {...unref(getAntFormProps)} class='basic-form-wrapper' ref={formElRef} model={formModel}>
         <Row {...props.rowProps}>
           {getFormSchemas.value.map(schema => (
             <FormItem
