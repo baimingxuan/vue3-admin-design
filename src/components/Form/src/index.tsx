@@ -83,17 +83,29 @@ export default defineComponent({
       formDefaultVal
     })
 
-    const { submitForm, validateForm, resetFields, validateFields, clearValidate, scrollToField, resetSchemas } =
-      useFormEvents({
-        emit,
-        getFormProps,
-        getFormSchemas,
-        formModel,
-        formDefaultVal,
-        formSchemas: formSchemas as Ref<FormSchemaType[]>,
-        formElRef: formElRef as Ref<FormRefType>,
-        handleFormValues
-      })
+    const {
+      submitForm,
+      validateForm,
+      resetFields,
+      validateFields,
+      clearValidate,
+      scrollToField,
+      updateSchemas,
+      resetSchemas,
+      setFieldsValues,
+      getFieldsValues,
+      appendSchemaByField,
+      removeSchemaByField
+    } = useFormEvents({
+      emit,
+      getFormProps,
+      getFormSchemas,
+      formModel,
+      formDefaultVal,
+      formSchemas: formSchemas as Ref<FormSchemaType[]>,
+      formElRef: formElRef as Ref<FormRefType>,
+      handleFormValues
+    })
 
     async function setFormProps(props: Partial<FormPropsType>): Promise<void> {
       formProps.value = deepMerge(unref(formProps) || {}, props)
@@ -140,7 +152,12 @@ export default defineComponent({
       validateFields,
       clearValidate,
       scrollToField,
-      resetSchemas
+      updateSchemas,
+      resetSchemas,
+      setFieldsValues,
+      getFieldsValues,
+      appendSchemaByField,
+      removeSchemaByField
     }
 
     expose(formRef)

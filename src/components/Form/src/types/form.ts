@@ -178,8 +178,6 @@ export interface FormPropsType {
   rulesMessageJoinLabel?: boolean
   // Time interval fields are mapped into multiple
   fieldMapToTime?: FieldMapToTime
-  // Auto submit on press enter
-  autoSubmitOnEnter?: boolean
   // Form action column configuration
   actionColProps?: Partial<ColPropsType>
   // Submit button configuration properties

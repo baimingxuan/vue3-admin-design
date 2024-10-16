@@ -1,4 +1,4 @@
-import type { Component, VNodeProps } from 'vue'
+import type { Component, VNodeProps, ComputedRef, Ref } from 'vue'
 
 type ExtractPropTypes<T extends Component> = T extends new (...args: any[]) => any
   ? Omit<InstanceType<T>['$props'], keyof VNodeProps>
@@ -17,3 +17,7 @@ export interface ComponentProps {
 }
 
 export type ComponentType = keyof ComponentProps
+
+export type DynamicProps<T> = {
+  [P in keyof T]: Ref<T[P]> | T[P] | ComputedRef<T[P]>
+}

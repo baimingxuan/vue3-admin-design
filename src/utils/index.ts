@@ -1,4 +1,5 @@
 import type { RouteLocationNormalized, RouteRecordNormalized } from 'vue-router'
+import { unref } from 'vue'
 import { intersectionWith, isEqual, mergeWith, unionWith } from 'lodash-es'
 import { isObject, isArray } from './is'
 
@@ -79,4 +80,14 @@ export function openWindow(
   noreferrer && feature.push('noreferrer=yes')
 
   window.open(url, target, feature.join(','))
+}
+
+export function getDynamicProps<T extends Record<string, unknown>, U>(props: T): Partial<U> {
+  const ret: Recordable = {}
+
+  Object.keys(props).map(key => {
+    ret[key] = unref((props as Recordable)[key])
+  })
+
+  return ret as Partial<U>
 }

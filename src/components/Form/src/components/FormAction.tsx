@@ -1,9 +1,8 @@
 import type { PropType } from 'vue'
-import type { ColPropsType, ActionBtnType } from '../../types/form'
+import type { ColPropsType, ActionBtnType } from '../types/form'
 import { defineComponent } from 'vue'
 import { Col, Space, Form, Button } from 'ant-design-vue'
 import { DownOutlined } from '@ant-design/icons-vue'
-import styles from './index.module.less'
 
 export default defineComponent({
   name: 'FormAction',
@@ -63,7 +62,7 @@ export default defineComponent({
               {props.showAdvancedBtn && (
                 <Button type='link' size='small' onClick={() => emit('toggleAdvanced')}>
                   <span>{props.isAdvanced ? '收起' : '展开'}</span>
-                  <DownOutlined class={[styles['basic-form-advanced'], { [styles['active']]: props.isAdvanced }]} />
+                  <DownOutlined class={['form-advanced', { ['active']: props.isAdvanced }]} />
                 </Button>
               )}
             </Space>
