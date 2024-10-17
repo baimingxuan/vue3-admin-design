@@ -22,6 +22,13 @@ export interface ActionBtnType {
   show?: boolean
 }
 
+export interface AdvanceType {
+  isAdvanced: boolean
+  hideAdvanceBtn: boolean
+  isLoaded: boolean
+  actionSpan: number
+}
+
 export interface FormRefType {
   setFormProps: (props: Partial<FormPropsType>) => Promise<void>
   submitForm: () => Promise<void>
@@ -101,6 +108,8 @@ interface BaseFormSchemaType<T extends ComponentType = any> {
   isHandleDateDefaultValue?: boolean
   // Required
   required?: boolean | ((renderCallbackParams: RenderCallbackParams) => boolean)
+  // Whether to advanced form-item
+  isAdvanced?: boolean
   // Label name
   label?: string
   // Label width, the labelCol and WrapperCol configured props will be invalid
@@ -187,7 +196,7 @@ export interface FormPropsType {
   // Whether to show the advanced button
   showAdvancedBtn?: boolean
   // Automatically collapse over the specified number of rows
-  autoAdvancedRow?: number
+  alwaysShowRows?: number
   // Customize the submit function
   submitFunc: () => Promise<void>
   // Customize the reset function

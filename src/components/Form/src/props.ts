@@ -93,9 +93,9 @@ export const basicFormProps = {
     type: Boolean as PropType<boolean>,
     default: true
   },
-  autoAdvancedRow: {
+  alwaysShowRows: {
     type: Number as PropType<number>,
-    default: 2
+    default: 1
   },
   submitFunc: {
     type: Function as PropType<() => Promise<void>>,

@@ -1,12 +1,13 @@
 import type { Ref } from 'vue'
 import type { FormProps as AntFormProps } from 'ant-design-vue'
-import type { FormRefType, FormPropsType, FormSchemaInnerType as FormSchemaType } from './types/form'
-import { defineComponent, ref, unref, reactive, computed, watch, onMounted, getCurrentInstance } from 'vue'
+import type { FormRefType, FormPropsType, FormSchemaInnerType as FormSchemaType, AdvanceType } from './types/form'
+import { defineComponent, ref, unref, reactive, computed, watch, onMounted } from 'vue'
 import { Row, Form } from 'ant-design-vue'
 import { cloneDeep } from 'lodash-es'
 import FormItem from './components/FormItem'
 import FormAction from './components/FormAction'
 import { basicFormProps } from './props'
+import { useAdvanced } from './hooks/useAdvanced'
 import { useFormValues } from './hooks/useFormValues'
 import { useFormEvents } from './hooks/useFormEvents'
 import { dateUtil } from '@/utils/dateUtil'
@@ -28,7 +29,13 @@ export default defineComponent({
 
     const isInitedDefault = ref(false)
     const isSubmitting = ref(false)
-    const isAdvanced = ref(false)
+
+    const advanceState = reactive<AdvanceType>({
+      isAdvanced: false,
+      hideAdvanceBtn: false,
+      isLoaded: false,
+      actionSpan: 4
+    })
 
     const getFormProps = computed(() => ({ ...props, ...unref(formProps) }) as FormPropsType)
 
@@ -38,7 +45,7 @@ export default defineComponent({
         ({
           ...unref(getFormProps),
           isSubmitting: unref(isSubmitting),
-          isAdvanced: unref(isAdvanced)
+          ...advanceState
         }) as InstanceType<typeof FormAction>['$props']
     )
 
@@ -107,6 +114,14 @@ export default defineComponent({
       handleFormValues
     })
 
+    const { handleToggleAdvanced, fieldsIsAdvancedMap } = useAdvanced({
+      advanceState,
+      getFormProps,
+      getFormSchemas,
+      formModel,
+      formDefaultVal
+    })
+
     async function setFormProps(props: Partial<FormPropsType>): Promise<void> {
       formProps.value = deepMerge(unref(formProps) || {}, props)
     }
@@ -119,10 +134,6 @@ export default defineComponent({
       if (schema && schema.itemProps && !schema.itemProps.autoLink) {
         validateFields([key]).catch(_ => {})
       }
-    }
-
-    function handleToggleAdvanced() {
-      console.log('toggleAdvanced')
     }
 
     watch(
@@ -175,7 +186,6 @@ export default defineComponent({
     onMounted(() => {
       initDefaultValue()
       emit('register', formRef)
-      console.log('formInstance', getCurrentInstance()?.proxy?.$el.getClientRects())
     })
 
     expose(formRef)
@@ -192,6 +202,7 @@ export default defineComponent({
               formDefaultVal={unref(formDefaultVal)}
               formModel={formModel}
               setFormModel={setFormModel}
+              isAdvanced={fieldsIsAdvancedMap[schema.field]}
             />
           ))}
           <FormAction
