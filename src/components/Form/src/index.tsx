@@ -31,7 +31,7 @@ export default defineComponent({
     const isSubmitting = ref(false)
 
     const advanceState = reactive<AdvanceType>({
-      isAdvanced: false,
+      isAdvanced: true,
       hideAdvanceBtn: false,
       isLoaded: false,
       actionSpan: 4

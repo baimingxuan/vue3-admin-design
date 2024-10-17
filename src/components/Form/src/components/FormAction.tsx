@@ -20,16 +20,16 @@ export default defineComponent({
       default: () => ({})
     },
     isSubmitting: {
-      type: Boolean,
+      type: Boolean as PropType<boolean>,
       default: false
     },
     showAdvancedBtn: {
-      type: Boolean,
+      type: Boolean as PropType<boolean>,
       default: true
     },
     isAdvanced: {
-      type: Boolean,
-      default: false
+      type: Boolean as PropType<boolean>,
+      default: true
     }
   },
   emits: ['submitAction', 'resetAction', 'toggleAdvanced'],
@@ -61,8 +61,8 @@ export default defineComponent({
               {slots.backAction?.()}
               {props.showAdvancedBtn && (
                 <Button type='link' size='small' onClick={() => emit('toggleAdvanced')}>
-                  <span>{props.isAdvanced ? '收起' : '展开'}</span>
-                  <DownOutlined class={['form-advanced', { ['active']: props.isAdvanced }]} />
+                  <span>{props.isAdvanced ? '展开' : '收起'}</span>
+                  <DownOutlined class={['form-advanced', { ['active']: !props.isAdvanced }]} />
                 </Button>
               )}
             </Space>
