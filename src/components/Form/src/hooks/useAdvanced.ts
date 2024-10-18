@@ -1,6 +1,6 @@
 import type { Ref, ComputedRef } from 'vue'
-import type { FormPropsType, FormSchemaInnerType as FormSchemaType, ColPropsType, AdvanceType } from '../types/form'
-import { shallowReactive, computed, unref, watch, getCurrentInstance } from 'vue'
+import type { FormPropsType, FormSchemaInnerType as FormSchemaType, AdvanceType } from '../types/form'
+import { shallowReactive, unref, watch, getCurrentInstance } from 'vue'
 import { useDebounceFn } from '@vueuse/core'
 import { isBoolean, isFunction } from '@/utils/is'
 
@@ -37,21 +37,11 @@ export function useAdvanced({
     { immediate: true }
   )
 
-  function getAdvanced(itemCol: Partial<ColPropsType>, itemColSum = 0, isLastAction = false) {
-    itemColSum += (itemCol.span as number) || 0
-
-    if (itemColSum > BASIC_COL_LEN * (unref(getFormProps).alwaysShowRows || 1)) {
-      return { isAdvanced: advanceState.isAdvanced, itemColSum }
-    } else {
-      // The first line is always displayed
-      return { isAdvanced: true, itemColSum }
-    }
-  }
-
   function updateAdvanced() {
-    let itemColSum = 0
-    let realItemColSum = 0
-    const { colProps: baseColProps } = unref(getFormProps)
+    const { colProps: baseColProps, actionColProps } = unref(getFormProps)
+    const actionColSpanLen = (actionColProps?.span as number) || 0
+    let colSpanSum = 4
+    let advancedSpan = 0
 
     for (const schema of unref(getFormSchemas)) {
       const { isRender, isShow, colProps } = schema
@@ -86,18 +76,34 @@ export function useAdvanced({
           ? isShow
           : true
 
-      if (itemIsRender && itemIsShow && (baseColProps || colProps)) {
-        const { itemColSum: colSum, isAdvanced } = getAdvanced({ ...baseColProps, ...colProps }, itemColSum)
+      if (itemIsRender && itemIsShow && (colProps || baseColProps)) {
+        colSpanSum += (colProps?.span || baseColProps?.span) as number
 
-        itemColSum = colSum || 0
-        if (isAdvanced) {
-          realItemColSum = itemColSum
+        if (colSpanSum > BASIC_COL_LEN) {
+          fieldsIsAdvancedMap[schema.field] = advanceState.isAdvanced
+        } else {
+          advancedSpan = colSpanSum
+          fieldsIsAdvancedMap[schema.field] = true
         }
-        fieldsIsAdvancedMap[schema.field] = isAdvanced
       }
     }
+    console.log('advancedSpan', colSpanSum, advancedSpan)
 
     vm?.proxy?.$forceUpdate()
+
+    if (colSpanSum <= BASIC_COL_LEN) {
+      // advanceState.isAdvanced = true
+      advanceState.hideAdvanceBtn = true
+      advanceState.actionColSpan = BASIC_COL_LEN - advancedSpan + actionColSpanLen
+    } else {
+      advanceState.hideAdvanceBtn = false
+
+      if (advanceState.isAdvanced) {
+        advanceState.actionColSpan = BASIC_COL_LEN - advancedSpan + actionColSpanLen
+      } else {
+        advanceState.actionColSpan = BASIC_COL_LEN - (colSpanSum % BASIC_COL_LEN)
+      }
+    }
   }
 
   function handleToggleAdvanced() {

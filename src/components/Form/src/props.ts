@@ -25,6 +25,7 @@ export const basicFormProps = {
   rowProps: {
     type: Object as PropType<Partial<RowPropsType>>,
     default: () => ({
+      gutter: [0, 12],
       style: { width: '100%' }
     })
   },
@@ -73,7 +74,9 @@ export const basicFormProps = {
   },
   actionColProps: {
     type: Object as PropType<Partial<ColPropsType>>,
-    default: () => ({})
+    default: () => ({
+      span: 4
+    })
   },
   submitBtnProps: {
     type: Object as PropType<ActionBtnType>,
@@ -92,10 +95,6 @@ export const basicFormProps = {
   showAdvancedBtn: {
     type: Boolean as PropType<boolean>,
     default: true
-  },
-  alwaysShowRows: {
-    type: Number as PropType<number>,
-    default: 1
   },
   submitFunc: {
     type: Function as PropType<() => Promise<void>>,

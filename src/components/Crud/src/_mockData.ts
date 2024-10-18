@@ -37,7 +37,7 @@ export const formSchemas: FormSchemaType[] = [
   },
   {
     field: 'date',
-    label: '日期时间',
+    label: '出生日期',
     rules: [
       {
         required: true,
@@ -49,5 +49,76 @@ export const formSchemas: FormSchemaType[] = [
       showTime: true,
       format: 'YYYY-MM-DD HH:mm:ss'
     }
+  },
+  {
+    field: 'sex',
+    label: '性别',
+    rules: [
+      {
+        required: true,
+        message: '请选择性别'
+      }
+    ],
+    component: 'Select',
+    componentProps: {
+      options: [
+        {
+          label: '男',
+          value: 1
+        },
+        {
+          label: '女',
+          value: 0
+        }
+      ]
+    }
+  },
+  {
+    field: 'age',
+    label: '年龄',
+    rules: [
+      {
+        required: true,
+        message: '请输入年龄'
+      }
+    ],
+    component: 'Input'
+  },
+  {
+    field: 'education',
+    label: '学历',
+    rules: [
+      {
+        required: true,
+        message: '请输入学历'
+      }
+    ],
+    component: 'Input'
+  },
+  {
+    field: 'date',
+    label: '毕业时间',
+    rules: [
+      {
+        required: true,
+        message: '请选择毕业时间'
+      }
+    ],
+    component: 'DatePicker',
+    componentProps: {
+      showTime: true,
+      format: 'YYYY-MM-DD HH:mm:ss'
+    }
+  },
+  {
+    field: 'school',
+    label: '毕业学校',
+    rules: [
+      {
+        required: true,
+        message: '请输入学校'
+      }
+    ],
+    component: 'Input'
   }
 ]

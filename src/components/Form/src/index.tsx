@@ -33,8 +33,7 @@ export default defineComponent({
     const advanceState = reactive<AdvanceType>({
       isAdvanced: true,
       hideAdvanceBtn: false,
-      isLoaded: false,
-      actionSpan: 4
+      actionColSpan: 4
     })
 
     const getFormProps = computed(() => ({ ...props, ...unref(formProps) }) as FormPropsType)

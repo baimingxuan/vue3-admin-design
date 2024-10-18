@@ -1,6 +1,6 @@
 import type { PropType } from 'vue'
 import type { ColPropsType, ActionBtnType } from '../types/form'
-import { defineComponent } from 'vue'
+import { defineComponent, computed, unref } from 'vue'
 import { Col, Space, Form, Button } from 'ant-design-vue'
 import { DownOutlined } from '@ant-design/icons-vue'
 
@@ -30,14 +30,31 @@ export default defineComponent({
     isAdvanced: {
       type: Boolean as PropType<boolean>,
       default: true
+    },
+    actionColSpan: {
+      type: Number as PropType<number>,
+      default: 4
+    },
+    hideAdvanceBtn: {
+      type: Boolean as PropType<boolean>,
+      default: false
     }
   },
   emits: ['submitAction', 'resetAction', 'toggleAdvanced'],
   setup(props, { slots, emit }) {
     const { submitBtnProps, resetBtnProps } = props
 
+    const getActionColProps = computed(() => {
+      const { actionColProps, actionColSpan } = props
+
+      return {
+        ...actionColProps,
+        span: actionColSpan
+      }
+    })
+
     return () => (
-      <Col {...props.actionColProps} span={12}>
+      <Col {...unref(getActionColProps)}>
         <div style={{ textAlign: 'right' }}>
           <Form.Item>
             <Space>
@@ -59,7 +76,7 @@ export default defineComponent({
                 </Button>
               )}
               {slots.backAction?.()}
-              {props.showAdvancedBtn && (
+              {props.showAdvancedBtn && !props.hideAdvanceBtn && (
                 <Button type='link' size='small' onClick={() => emit('toggleAdvanced')}>
                   <span>{props.isAdvanced ? '展开' : '收起'}</span>
                   <DownOutlined class={['form-advanced', { ['active']: !props.isAdvanced }]} />
