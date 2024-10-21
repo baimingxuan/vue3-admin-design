@@ -3,6 +3,7 @@ import type { FormPropsType, FormSchemaInnerType as FormSchemaType, AdvanceType 
 import { shallowReactive, unref, watch, getCurrentInstance } from 'vue'
 import { useDebounceFn } from '@vueuse/core'
 import { isBoolean, isFunction } from '@/utils/is'
+import { BASIC_COL_LEN, MINI_ACTION_COL_LEN } from '../constant'
 
 interface AdvancedParamType {
   advanceState: AdvanceType
@@ -11,8 +12,6 @@ interface AdvancedParamType {
   formModel: Recordable
   formDefaultVal: Ref<Recordable>
 }
-
-const BASIC_COL_LEN = 24
 
 export function useAdvanced({
   advanceState,
@@ -23,7 +22,6 @@ export function useAdvanced({
 }: AdvancedParamType) {
   const vm = getCurrentInstance()
   const fieldsIsAdvancedMap = shallowReactive({})
-  const minActionColSpan = 4
 
   const debounceUpdateAdvanced = useDebounceFn(updateAdvanced, 30)
 
@@ -41,7 +39,7 @@ export function useAdvanced({
   function updateAdvanced() {
     const { colProps: baseColProps, actionColProps } = unref(getFormProps)
     const actionColSpanLen = advanceState.actionColSpan || (actionColProps?.span as number) || 0
-    let colSpanSum = minActionColSpan
+    let colSpanSum = MINI_ACTION_COL_LEN
     let advancedSpan = 0
 
     for (const schema of unref(getFormSchemas)) {
@@ -88,7 +86,6 @@ export function useAdvanced({
         }
       }
     }
-    console.log('advancedSpan', colSpanSum, advancedSpan)
 
     vm?.proxy?.$forceUpdate()
 
@@ -99,16 +96,12 @@ export function useAdvanced({
     } else {
       advanceState.hideAdvanceBtn = false
 
-      if (!advanceState.isAdvanced) {
-        advanceState.actionColSpan = BASIC_COL_LEN - advancedSpan + minActionColSpan
-        console.log('111', advanceState.actionColSpan)
+      if (advanceState.isAdvanced) {
+        advanceState.actionColSpan = BASIC_COL_LEN - ((colSpanSum - MINI_ACTION_COL_LEN) % BASIC_COL_LEN)
       } else {
-        advanceState.actionColSpan = BASIC_COL_LEN - ((colSpanSum - minActionColSpan) % BASIC_COL_LEN)
-        console.log('222', advanceState.actionColSpan)
+        advanceState.actionColSpan = BASIC_COL_LEN - advancedSpan + MINI_ACTION_COL_LEN
       }
     }
-
-    // console.log('advanceState', advanceState.actionColSpan)
   }
 
   function handleToggleAdvanced() {

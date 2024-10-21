@@ -96,7 +96,7 @@ export const formSchemas: FormSchemaType[] = [
     component: 'Input'
   },
   {
-    field: 'date',
+    field: 'graduate',
     label: '毕业时间',
     rules: [
       {

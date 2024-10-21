@@ -13,7 +13,7 @@ import { useFormEvents } from './hooks/useFormEvents'
 import { dateUtil } from '@/utils/dateUtil'
 import { deepMerge } from '@/utils'
 import { isFunction, isArray } from '@/utils/is'
-import { DATE_COMPONENTS } from './constant'
+import { MINI_ACTION_COL_LEN, DATE_COMPONENTS } from './constant'
 import './index.less'
 
 export default defineComponent({
@@ -33,7 +33,7 @@ export default defineComponent({
     const advanceState = reactive<AdvanceType>({
       isAdvanced: true,
       hideAdvanceBtn: false,
-      actionColSpan: 4
+      actionColSpan: MINI_ACTION_COL_LEN
     })
 
     const getFormProps = computed(() => ({ ...props, ...unref(formProps) }) as FormPropsType)

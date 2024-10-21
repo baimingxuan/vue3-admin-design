@@ -42,14 +42,15 @@ export default defineComponent({
   },
   emits: ['submitAction', 'resetAction', 'toggleAdvanced'],
   setup(props, { slots, emit }) {
-    const { submitBtnProps, resetBtnProps } = props
+    const { submitBtnProps, resetBtnProps, showAdvancedBtn } = props
 
     const getActionColProps = computed(() => {
-      const { actionColProps, actionColSpan } = props
+      const { actionColSpan, actionColProps } = props
+      const actionColOpt = showAdvancedBtn ? {} : actionColProps
 
       return {
-        ...actionColProps,
-        span: actionColSpan
+        span: actionColSpan,
+        ...actionColOpt
       }
     })
 
@@ -76,10 +77,10 @@ export default defineComponent({
                 </Button>
               )}
               {slots.backAction?.()}
-              {props.showAdvancedBtn && !props.hideAdvanceBtn && (
+              {showAdvancedBtn && !props.hideAdvanceBtn && (
                 <Button type='link' size='small' onClick={() => emit('toggleAdvanced')}>
-                  <span>{props.isAdvanced ? '展开' : '收起'}</span>
-                  <DownOutlined class={['form-advanced', { ['active']: !props.isAdvanced }]} />
+                  <span>{props.isAdvanced ? '收起' : '展开'}</span>
+                  <DownOutlined class={['form-advanced', { ['active']: props.isAdvanced }]} />
                 </Button>
               )}
             </Space>
