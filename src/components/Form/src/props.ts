@@ -25,7 +25,6 @@ export const basicFormProps = {
   rowProps: {
     type: Object as PropType<Partial<RowPropsType>>,
     default: () => ({
-      gutter: [0, 12],
       style: { width: '100%' }
     })
   },
@@ -97,12 +96,10 @@ export const basicFormProps = {
     default: true
   },
   submitFunc: {
-    type: Function as PropType<() => Promise<void>>,
-    default: () => Promise.resolve()
+    type: Function as PropType<() => Promise<void>>
   },
   resetFunc: {
-    type: Function as PropType<() => Promise<void>>,
-    default: () => Promise.resolve()
+    type: Function as PropType<() => Promise<void>>
   },
   transformDateFunc: {
     type: Function as PropType<Fn>,

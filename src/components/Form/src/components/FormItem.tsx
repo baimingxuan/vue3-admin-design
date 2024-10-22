@@ -303,7 +303,7 @@ export default defineComponent({
       const { labelCol, wrapperCol } = unref(getLabelWidthProp)
       const options = { disabled: unref(getDisabled), readonly: unref(getReadonly) }
 
-      const getContent = () => {
+      const getItemContent = () => {
         return slot
           ? getSlot(slots, slot, unref(getValues), options)
           : renderCompo
@@ -326,7 +326,7 @@ export default defineComponent({
           wrapperCol={wrapperCol}
         >
           <div style={{ display: 'flex' }}>
-            <div style={{ flex: 1 }}>{getContent()}</div>
+            <div style={{ flex: 1 }}>{getItemContent()}</div>
             {showSuffixCont && <span class='suffix-cont'>{getSuffixCont}</span>}
           </div>
         </Form.Item>
@@ -346,7 +346,7 @@ export default defineComponent({
       const values = unref(getValues)
       const options = { disabled: unref(getDisabled), readonly: unref(getReadonly) }
 
-      const getContent = () => {
+      const getColContent = () => {
         return colSlot
           ? getSlot(slots, colSlot, values, options)
           : renderColContent
@@ -357,7 +357,7 @@ export default defineComponent({
       return (
         itemIsRender && (
           <Col {...realColProps} v-show={unref(itemIsShow)}>
-            {getContent()}
+            {getColContent()}
           </Col>
         )
       )

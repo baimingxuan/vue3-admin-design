@@ -1,5 +1,5 @@
 import type { Ref } from 'vue'
-import type { FormProps as AntFormProps } from 'ant-design-vue'
+import type { FormProps as AntFormProps, FormInstance } from 'ant-design-vue'
 import type { FormRefType, FormPropsType, FormSchemaInnerType as FormSchemaType, AdvanceType } from './types/form'
 import { defineComponent, ref, unref, reactive, computed, watch, onMounted } from 'vue'
 import { Row, Form } from 'ant-design-vue'
@@ -21,7 +21,7 @@ export default defineComponent({
   props: basicFormProps,
   emits: ['register', 'fieldValueChange', 'reset', 'submit'],
   setup(props, { attrs, slots, emit, expose }) {
-    const formElRef = ref<Nullable<FormRefType>>(null)
+    const formElRef = ref<Nullable<FormInstance>>(null)
     const formProps = ref<Partial<FormPropsType>>({})
     const formSchemas = ref<Nullable<FormSchemaType[]>>(null)
     const formModel = reactive<Recordable>({})
@@ -109,7 +109,7 @@ export default defineComponent({
       formModel,
       formDefaultVal,
       formSchemas: formSchemas as Ref<FormSchemaType[]>,
-      formElRef: formElRef as Ref<FormRefType>,
+      formElRef: formElRef as Ref<FormInstance>,
       handleFormValues
     })
 
@@ -202,6 +202,7 @@ export default defineComponent({
               formModel={formModel}
               setFormModel={setFormModel}
               isAdvanced={fieldsIsAdvancedMap[schema.field]}
+              v-slots={{ ...slots }}
             />
           ))}
           <FormAction
@@ -209,13 +210,8 @@ export default defineComponent({
             onResetAction={resetFields}
             onSubmitAction={submitForm}
             onToggleAdvanced={handleToggleAdvanced}
-          >
-            {{
-              frontAction: (data: any) => slots.frontAction?.(data),
-              middleAction: (data: any) => slots.middleAction?.(data),
-              backAction: (data: any) => slots.backAction?.(data)
-            }}
-          </FormAction>
+            v-slots={{ ...slots }}
+          />
         </Row>
       </Form>
     )

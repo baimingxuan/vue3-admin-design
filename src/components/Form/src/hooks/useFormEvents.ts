@@ -1,5 +1,6 @@
 import type { Ref, ComputedRef } from 'vue'
 import type { NamePath } from 'ant-design-vue/lib/form/interface'
+import type { FormInstance } from 'ant-design-vue'
 import type { FormRefType, FormPropsType, FormSchemaInnerType as FormSchemaType } from '../types/form'
 import { unref, toRaw, nextTick } from 'vue'
 import { deepMerge } from '@/utils'
@@ -16,7 +17,7 @@ interface FormEventCtx {
   formModel: Recordable
   formDefaultVal: Ref<Recordable>
   formSchemas: Ref<FormSchemaType[]>
-  formElRef: Ref<FormRefType>
+  formElRef: Ref<FormInstance>
   handleFormValues: Fn
 }
 
@@ -131,7 +132,7 @@ export function useFormEvents({
       _nameList = nameList === isArray(nameList) ? nameList : undefined
     }
 
-    const values = await unref(formElRef)?.validateForm(_nameList)
+    const values = await unref(formElRef)?.validate(_nameList)
 
     return handleFormValues(values)
   }
@@ -246,8 +247,9 @@ export function useFormEvents({
       let _props = componentProps as any
       if (isFunction(componentProps)) {
         _props = _props({
+          schema,
           formModel: unref(formModel),
-          formElRef
+          formRef
         })
       }
 
@@ -330,6 +332,21 @@ export function useFormEvents({
       _removeSchemaByField(field, schemaList)
     }
     formSchemas.value = schemaList
+  }
+
+  const formRef: Partial<FormRefType> = {
+    submitForm,
+    validateForm,
+    resetFields,
+    validateFields,
+    clearValidate,
+    scrollToField,
+    updateSchemas,
+    resetSchemas,
+    setFieldsValues,
+    getFieldsValues,
+    appendSchemaByField,
+    removeSchemaByField
   }
 
   return {
