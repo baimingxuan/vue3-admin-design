@@ -4,7 +4,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 // import { codeInspectorPlugin } from 'code-inspector-plugin'
 import { configMockPlugin } from './mock'
 import { configSvgIconsPlugin } from './svgIcons'
-import { configStyleImportPlugin } from './styles'
+import { configAntdComponentsPlugin } from './components'
 
 export function createVitePlugins(isBuild: boolean) {
   const vitePlugins: (Plugin | Plugin[])[] = [
@@ -13,8 +13,8 @@ export function createVitePlugins(isBuild: boolean) {
     vueJsx()
   ]
 
-  // vite-plugin-style-import
-  vitePlugins.push(configStyleImportPlugin())
+  // unplugin-vue-components
+  vitePlugins.push(configAntdComponentsPlugin())
 
   // vite-plugin-svg-icons
   vitePlugins.push(configSvgIconsPlugin(isBuild))

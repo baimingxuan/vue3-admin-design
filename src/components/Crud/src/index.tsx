@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 import { Card } from 'ant-design-vue'
-import CrudForm from '@/components/Form'
+import { BasicForm } from '@/components/Form'
 import { formSchemas } from './_mockData'
 
 export default defineComponent({
@@ -9,7 +9,7 @@ export default defineComponent({
     return () => (
       <div>
         <Card>
-          <CrudForm schemas={formSchemas} />
+          <BasicForm schemas={formSchemas} />
         </Card>
       </div>
     )
