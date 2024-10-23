@@ -13,6 +13,7 @@ import {
   Switch,
   TimePicker,
   Transfer,
+  Tree,
   TreeSelect
 } from 'ant-design-vue'
 
@@ -35,5 +36,6 @@ export const compoMap = new Map<string, Component>([
   ['TimePicker', TimePicker],
   ['TimeRangePicker', TimePicker.TimeRangePicker],
   ['Transfer', Transfer],
+  ['Tree', Tree],
   ['TreeSelect', TreeSelect]
 ])
