@@ -1,26 +1,25 @@
 import type { PropType } from 'vue'
-import type { SelectValue } from 'ant-design-vue/es/select'
-import type { SelectOptionsType } from '../types'
-import { defineComponent, ref, computed, unref, watch, onMounted } from 'vue'
-import { Select } from 'ant-design-vue'
+import type { TreeSelectProps, SelectValue } from 'ant-design-vue/es/tree-select'
+import { defineComponent, ref, unref, computed, watch, onMounted } from 'vue'
+import { TreeSelect } from 'ant-design-vue'
 import { LoadingOutlined } from '@ant-design/icons-vue'
-import { get, omit } from 'lodash-es'
-import { isFunction, isArray } from '@/utils/is'
+import { get } from 'lodash-es'
+import { isArray, isFunction } from '@/utils/is'
 import { useFormItemRule } from '../hooks/useFormItemRule'
 
 export default defineComponent({
-  name: 'ApiSelect',
+  name: 'ApiTreeSelect',
   inheritAttrs: false,
   props: {
     value: {
-      type: [Array, Object, String, Number] as PropType<SelectValue>
+      type: [Array, String] as PropType<SelectValue>
     },
-    options: {
-      type: Array as PropType<Array<SelectOptionsType>>,
-      default: []
+    treeData: {
+      type: Array as PropType<TreeSelectProps['treeData']>,
+      default: () => []
     },
     api: {
-      type: Function as PropType<(arg?: any) => Promise<SelectOptionsType[]>>
+      type: Function as PropType<(arg?: any) => Promise<Recordable<any>>>
     },
     params: {
       type: Object as PropType<Recordable>,
@@ -38,6 +37,10 @@ export default defineComponent({
       type: String as PropType<string>,
       default: ''
     },
+    childrenField: {
+      type: String as PropType<string>,
+      default: 'children'
+    },
     immediate: {
       type: Boolean as PropType<boolean>,
       default: true
@@ -46,37 +49,29 @@ export default defineComponent({
       type: Boolean as PropType<boolean>,
       default: false
     },
-    numberToString: {
+    asyncFetch: {
       type: Boolean as PropType<boolean>,
       default: false
     }
   },
-  emits: ['update:value', 'options-change', 'change'],
+  emits: ['update:value', 'options-change', 'load-data', 'change'],
   setup(props, { attrs, slots, emit }) {
-    const optionsRef = ref<SelectOptionsType[]>([])
-
+    const treeDataRef = ref<TreeSelectProps['treeData']>([])
     const loading = ref(false)
-    const isLoaded = ref(false)
-    const emitData = ref<SelectOptionsType[]>([])
+    const isLoaded = ref<Boolean>(false)
+    const emitData = ref<any[]>([])
 
-    const getOptions = computed(() => {
-      const { labelField, valueField, numberToString } = props
+    const fieldNames = {
+      children: props.childrenField,
+      value: props.valueField,
+      label: props.labelField
+    }
 
-      const data = unref(optionsRef).reduce((prev, next: any) => {
-        if (next) {
-          const value = get(next, valueField)
-
-          prev.push({
-            ...omit(next, [labelField, valueField]),
-            label: get(next, labelField),
-            value: numberToString ? `${value}` : value
-          })
-        }
-
-        return prev
-      }, [] as SelectOptionsType[])
-
-      return data.length > 0 ? data : props.options
+    const getAttrs = computed(() => {
+      return {
+        ...(props.api ? { treeData: unref(treeDataRef) } : { treeData: props.treeData }),
+        ...attrs
+      }
     })
 
     const [state] = useFormItemRule(props, 'value', 'change', emitData)
@@ -100,55 +95,65 @@ export default defineComponent({
       { deep: true }
     )
 
-    async function fetchData() {
-      const request = props.api
-
-      if (!request || !isFunction(request) || loading.value) return
-
-      optionsRef.value = []
-
-      try {
-        loading.value = true
-        const result = await request(props.params)
-        isLoaded.value = true
-
-        if (isArray(result)) {
-          optionsRef.value = result
-          emitChange()
-          return
-        }
-
-        if (props.resultField) {
-          optionsRef.value = get(result, props.resultField) || []
-        }
-        emitChange()
-      } catch (error) {
-        console.warn(error)
-      } finally {
-        loading.value = false
-        isLoaded.value = false
-      }
-    }
-
     async function handleFetch(visible: boolean) {
       if (visible && props.alwaysLoad) {
         await fetchData()
       }
     }
 
+    async function fetchData() {
+      const request = props.api
+
+      if (!request || !isFunction(request) || loading.value) return
+
+      let result
+      treeDataRef.value = []
+
+      try {
+        loading.value = true
+        result = await request(props.params)
+        isLoaded.value = true
+
+        if (isArray(result)) {
+          treeDataRef.value = result
+          emitChange()
+          return
+        }
+
+        treeDataRef.value = get(result, props.resultField)
+        emitChange()
+      } catch (e) {
+        console.error(e)
+      } finally {
+        loading.value = false
+        isLoaded.value = false
+      }
+    }
+
     function emitChange() {
-      emit('options-change', unref(getOptions))
+      emit('options-change', unref(treeDataRef))
     }
 
     function handleChange(_, ...args) {
       emitData.value = args
     }
 
+    function loadData(treeNode) {
+      return new Promise((resolve: (value?: unknown) => void) => {
+        if (isArray(treeNode.children) && treeNode.children.length > 0) {
+          resolve()
+          return
+        }
+        emit('load-data', { treeData: treeDataRef, treeNode, resolve })
+      })
+    }
+
     return () => (
-      <Select
-        {...attrs}
-        v-model:value={state}
-        options={unref(getOptions)}
+      <TreeSelect
+        {...getAttrs}
+        v-model:selectedKeys={state}
+        fieldNames={fieldNames}
+        loadData={props.asyncFetch ? loadData : undefined}
         onDropdownVisibleChange={handleFetch}
         onChange={handleChange}
       >
@@ -162,7 +167,7 @@ export default defineComponent({
               </div>
             )
         }}
-      </Select>
+      </TreeSelect>
     )
   }
 })
