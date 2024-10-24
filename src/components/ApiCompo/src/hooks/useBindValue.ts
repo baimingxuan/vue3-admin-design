@@ -2,14 +2,14 @@ import type { UnwrapRef, Ref, WritableComputedRef, DeepReadonly } from 'vue'
 import { reactive, readonly, computed, getCurrentInstance, watchEffect, unref, toRaw, nextTick } from 'vue'
 import { isEqual } from 'lodash-es'
 
-export function useFormItemRule<T extends Recordable, K extends keyof T, V = UnwrapRef<T[K]>>(
+export function useBindValue<T extends Recordable, K extends keyof T, V = UnwrapRef<T[K]>>(
   props: T,
   key?: K,
   changeEvent?: string,
   emitData?: Ref<any[]>
 ): [WritableComputedRef<V>, (val: V) => void, DeepReadonly<V>]
 
-export function useFormItemRule<T extends Recordable>(
+export function useBindValue<T extends Recordable>(
   props: T,
   key: keyof T = 'value',
   changeEvent = 'change',

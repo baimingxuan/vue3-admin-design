@@ -5,7 +5,7 @@ import { TreeSelect } from 'ant-design-vue'
 import { LoadingOutlined } from '@ant-design/icons-vue'
 import { get } from 'lodash-es'
 import { isArray, isFunction } from '@/utils/is'
-import { useFormItemRule } from '../hooks/useFormItemRule'
+import { useBindValue } from '../hooks/useBindValue'
 
 export default defineComponent({
   name: 'ApiTreeSelect',
@@ -74,7 +74,7 @@ export default defineComponent({
       }
     })
 
-    const [state] = useFormItemRule(props, 'value', 'change', emitData)
+    const [state] = useBindValue(props, 'value', 'change', emitData)
 
     onMounted(() => {
       props.immediate && fetchData()
@@ -151,7 +151,7 @@ export default defineComponent({
     return () => (
       <TreeSelect
         {...getAttrs}
-        v-model:selectedKeys={state}
+        v-model:value={state}
         fieldNames={fieldNames}
         loadData={props.asyncFetch ? loadData : undefined}
         onDropdownVisibleChange={handleFetch}

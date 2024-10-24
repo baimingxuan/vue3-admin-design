@@ -6,7 +6,7 @@ import { Select } from 'ant-design-vue'
 import { LoadingOutlined } from '@ant-design/icons-vue'
 import { get, omit } from 'lodash-es'
 import { isFunction, isArray } from '@/utils/is'
-import { useFormItemRule } from '../hooks/useFormItemRule'
+import { useBindValue } from '../hooks/useBindValue'
 
 export default defineComponent({
   name: 'ApiSelect',
@@ -79,7 +79,7 @@ export default defineComponent({
       return data.length > 0 ? data : props.options
     })
 
-    const [state] = useFormItemRule(props, 'value', 'change', emitData)
+    const [state] = useBindValue(props, 'value', 'change', emitData)
 
     onMounted(() => {
       props.immediate && fetchData()

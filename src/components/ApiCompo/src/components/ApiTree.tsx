@@ -4,7 +4,7 @@ import { defineComponent, ref, unref, computed, watch, onMounted } from 'vue'
 import { Tree, Spin } from 'ant-design-vue'
 import { get } from 'lodash-es'
 import { isArray, isFunction } from '@/utils/is'
-import { useFormItemRule } from '../hooks/useFormItemRule'
+import { useBindValue } from '../hooks/useBindValue'
 
 export default defineComponent({
   name: 'ApiTree',
@@ -51,7 +51,7 @@ export default defineComponent({
       }
     })
 
-    const [state] = useFormItemRule(props, 'value', 'change', emitData)
+    const [state] = useBindValue(props, 'value', 'change', emitData)
 
     onMounted(() => {
       props.immediate && fetchData()
