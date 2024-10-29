@@ -39,7 +39,7 @@ export default defineComponent({
     },
     resultField: {
       type: String as PropType<string>,
-      default: ''
+      default: 'result'
     },
     immediate: {
       type: Boolean as PropType<boolean>,
@@ -121,9 +121,7 @@ export default defineComponent({
           return
         }
 
-        if (props.resultField) {
-          resData.value = get(result, props.resultField) || []
-        }
+        resData.value = get(result, props.resultField) || []
       } catch (error) {
         console.warn(error)
       } finally {
@@ -152,10 +150,8 @@ export default defineComponent({
           return
         }
 
-        if (props.resultField) {
-          const children = generatorOptions(get(res, props.resultField) || [])
-          targetOption.children = children
-        }
+        const children = generatorOptions(get(res, props.resultField) || [])
+        targetOption.children = children
       } catch (e) {
         console.error(e)
       } finally {

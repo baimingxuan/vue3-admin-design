@@ -35,7 +35,7 @@ export default defineComponent({
     },
     resultField: {
       type: String as PropType<string>,
-      default: ''
+      default: 'result'
     },
     childrenField: {
       type: String as PropType<string>,

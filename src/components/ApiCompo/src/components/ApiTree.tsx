@@ -1,20 +1,32 @@
 import type { PropType } from 'vue'
-import type { TreeProps, DataNode } from 'ant-design-vue/es/tree'
+import type { DataNode, EventDataNode } from 'ant-design-vue/es/tree'
 import { defineComponent, ref, unref, computed, watch, onMounted } from 'vue'
 import { Tree, Spin } from 'ant-design-vue'
-import { get } from 'lodash-es'
+import { get, omit } from 'lodash-es'
 import { isArray, isFunction } from '@/utils/is'
-import { useBindValue } from '../hooks/useBindValue'
 
 export default defineComponent({
   name: 'ApiTree',
   inheritAttrs: false,
   props: {
-    value: {
-      type: Array as PropType<TreeProps['selectedKeys']>
+    selectedKeys: {
+      type: Array as PropType<Array<string | number>>,
+      default: () => []
+    },
+    checkedKeys: {
+      type: Array as PropType<Array<string | number>>,
+      default: () => []
+    },
+    expandedKeys: {
+      type: Array as PropType<Array<string | number>>,
+      default: () => []
+    },
+    checkable: {
+      type: Boolean as PropType<boolean>,
+      default: false
     },
     treeData: {
-      type: Array as PropType<TreeProps['treeData']>,
+      type: Array as PropType<DataNode[]>,
       default: () => []
     },
     api: {
@@ -24,9 +36,21 @@ export default defineComponent({
       type: Object as PropType<Recordable>,
       default: () => ({})
     },
+    labelField: {
+      type: String as PropType<string>,
+      default: 'title'
+    },
+    valueField: {
+      type: String as PropType<string>,
+      default: 'key'
+    },
+    childrenField: {
+      type: String as PropType<string>,
+      default: 'children'
+    },
     resultField: {
       type: String as PropType<string>,
-      default: ''
+      default: 'result'
     },
     immediate: {
       type: Boolean as PropType<boolean>,
@@ -35,34 +59,23 @@ export default defineComponent({
     asyncFetch: {
       type: Boolean as PropType<boolean>,
       default: false
+    },
+    asyncParamKey: {
+      type: String as PropType<string>,
+      default: 'parentId'
     }
   },
-  emits: ['update:value', 'options-change', 'load-data', 'change'],
+  emits: ['update:selectedKeys', 'update:checkedKeys', 'data-change', 'select', 'check'],
   setup(props, { attrs, slots, emit }) {
     const treeDataRef = ref<DataNode[]>([])
     const loading = ref(false)
     const isLoaded = ref<Boolean>(false)
-    const emitData = ref<any[]>([])
 
-    const getAttrs = computed(() => {
-      return {
-        ...(props.api ? { treeData: unref(treeDataRef) } : { treeData: props.treeData }),
-        ...attrs
-      }
-    })
-
-    const [state] = useBindValue(props, 'value', 'change', emitData)
+    const getTreeData = computed(() => (unref(treeDataRef).length > 0 ? unref(treeDataRef) : props.treeData))
 
     onMounted(() => {
       props.immediate && fetchData()
     })
-
-    watch(
-      () => state.value,
-      value => {
-        emit('update:value', value)
-      }
-    )
 
     watch(
       () => props.params,
@@ -76,6 +89,22 @@ export default defineComponent({
       () => props.immediate,
       value => {
         value && !isLoaded.value && fetchData()
+      }
+    )
+
+    watch(
+      () => unref(treeDataRef),
+      () => {
+        emit('data-change', unref(treeDataRef))
+      }
+    )
+
+    watch(
+      () => props.checkable,
+      checkable => {
+        if (!checkable) {
+          emit('update:checkedKeys', [])
+        }
       }
     )
 
@@ -93,13 +122,12 @@ export default defineComponent({
         isLoaded.value = true
 
         if (isArray(result)) {
-          treeDataRef.value = result
-          emitChange()
+          treeDataRef.value = generatorTreeData(result)
           return
         }
 
-        treeDataRef.value = get(result, props.resultField)
-        emitChange()
+        const data = get(result, props.resultField)
+        treeDataRef.value = generatorTreeData(data)
       } catch (e) {
         console.error(e)
       } finally {
@@ -108,27 +136,95 @@ export default defineComponent({
       }
     }
 
-    function emitChange() {
-      emit('options-change', unref(treeDataRef))
-    }
+    async function loadData(treeNode: EventDataNode) {
+      if (treeNode.dataRef?.children) return
 
-    function loadData(treeNode: DataNode) {
-      return new Promise((resolve: (value?: unknown) => void) => {
-        if (isArray(treeNode.children) && treeNode.children.length > 0) {
-          resolve()
+      const request = props.api
+
+      if (!request || !isFunction(request) || treeNode.loading) return
+
+      try {
+        treeNode.loading = true
+        const res = await request({
+          ...props.params,
+          [props.asyncParamKey]: Reflect.get(treeNode, 'eventKey')
+        })
+
+        if (isArray(res)) {
+          const children = generatorTreeData(res)
+          treeNode.dataRef!.children = children
+          const _newTreeData = treeDataRef.value.map(node => {
+            if (node.key === treeNode.eventKey) {
+              node.children = children
+            }
+            return node
+          })
+          treeDataRef.value = [..._newTreeData]
           return
         }
-        emit('load-data', { treeData: treeDataRef, treeNode, resolve })
-      })
+
+        const children = generatorTreeData(get(res, props.resultField) || [])
+        treeNode.dataRef!.children = children
+        const _newTreeData = treeDataRef.value.map(node => {
+          if (node.key === treeNode.eventKey) {
+            node.children = children
+          }
+          return node
+        })
+        treeDataRef.value = [..._newTreeData]
+      } catch (e) {
+        console.error(e)
+      } finally {
+        treeNode.loading = false
+      }
+    }
+
+    function handleSelect(selectedKeys, info: any) {
+      emit('update:selectedKeys', selectedKeys)
+      emit('select', selectedKeys, info)
+    }
+
+    function handleCheck(checkedKeys, info: any) {
+      emit('update:checkedKeys', checkedKeys)
+      emit('check', checkedKeys, info)
+    }
+
+    function generatorTreeData(options: any[]): DataNode[] {
+      const { labelField, valueField, childrenField } = props
+
+      return options.reduce((prev, next: Recordable<any>) => {
+        if (next) {
+          const item = {
+            ...omit(next, [labelField, valueField]),
+            title: get(next, labelField),
+            key: get(next, valueField),
+            isLeaf: next.isLeaf
+          }
+
+          const children = Reflect.get(next, childrenField)
+          if (children) {
+            Reflect.set(item, childrenField, generatorTreeData(children))
+          }
+
+          prev.push(item)
+        }
+
+        return prev
+      }, [] as DataNode[])
     }
 
     return () => (
       <Spin spinning={unref(loading)}>
         <Tree
-          {...getAttrs}
-          v-model:selectedKeys={state}
+          {...attrs}
+          selectedKeys={props.selectedKeys}
+          checkedKeys={props.checkedKeys}
+          expandedKeys={props.expandedKeys}
           v-slots={{ ...slots }}
+          treeData={unref(getTreeData)}
           loadData={props.asyncFetch ? loadData : undefined}
+          onSelect={handleSelect}
+          onCheck={handleCheck}
         />
       </Spin>
     )
