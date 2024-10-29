@@ -34,7 +34,7 @@ export default defineComponent({
     },
     resultField: {
       type: String as PropType<string>,
-      default: ''
+      default: 'result'
     },
     immediate: {
       type: Boolean as PropType<boolean>,
@@ -119,9 +119,7 @@ export default defineComponent({
           return
         }
 
-        if (props.resultField) {
-          optionsRef.value = get(result, props.resultField) || []
-        }
+        optionsRef.value = get(result, props.resultField) || []
         emitChange()
       } catch (error) {
         console.warn(error)
