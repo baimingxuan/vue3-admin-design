@@ -5,14 +5,18 @@ import { Cascader } from 'ant-design-vue'
 import { LoadingOutlined } from '@ant-design/icons-vue'
 import { get, omit } from 'lodash-es'
 import { isFunction, isArray } from '@/utils/is'
-import { useBindValue } from '../hooks/useBindValue'
 
 export default defineComponent({
   name: 'ApiCascader',
   inheritAttrs: false,
   props: {
     value: {
-      type: Array as PropType<string[] | number[]>
+      type: Array as PropType<string[] | number[]>,
+      default: () => []
+    },
+    multiple: {
+      type: Boolean as PropType<boolean>,
+      default: false
     },
     options: {
       type: Array as PropType<Array<CascaderOptionType>>,
@@ -56,36 +60,27 @@ export default defineComponent({
     asyncParamKey: {
       type: String as PropType<string>,
       default: 'parentId'
-    },
-    numberToString: {
-      type: Boolean as PropType<boolean>,
-      default: false
     }
   },
-  emits: ['update:value', 'change'],
+  emits: ['update:value', 'data-change', 'change'],
   setup(props, { attrs, slots, emit }) {
     const optionsRef = ref<CascaderOptionType[]>([])
-    const resData = ref<any[]>([])
     const loading = ref(false)
     const isLoaded = ref(false)
-    const emitData = ref<CascaderOptionType[]>([])
+
+    const fieldNames = {
+      label: props.labelField,
+      value: props.valueField,
+      children: props.childrenField
+    }
 
     const getOptions = computed(() => {
       return unref(optionsRef).length > 0 ? unref(optionsRef) : props.options
     })
 
-    const [state] = useBindValue(props, 'value', 'change', emitData)
-
     onMounted(() => {
       props.immediate && fetchData()
     })
-
-    watch(
-      () => state.value,
-      value => {
-        emit('update:value', value)
-      }
-    )
 
     watch(
       () => props.params,
@@ -96,34 +91,40 @@ export default defineComponent({
     )
 
     watch(
-      resData,
-      data => {
-        const opts = generatorOptions(data)
-        optionsRef.value = opts
-      },
-      { deep: true }
+      () => unref(optionsRef),
+      () => {
+        emit('data-change', unref(optionsRef))
+      }
     )
+
+    async function handleFetch(visible: boolean) {
+      if (visible && props.alwaysLoad) {
+        await fetchData()
+      }
+    }
 
     async function fetchData() {
       const request = props.api
 
       if (!request || !isFunction(request) || loading.value) return
 
-      resData.value = []
+      let result
+      optionsRef.value = []
 
       try {
         loading.value = true
-        const result = await request(props.params)
+        result = await request(props.params)
         isLoaded.value = true
 
         if (isArray(result)) {
-          resData.value = result
+          optionsRef.value = generatorOptions(result)
           return
         }
 
-        resData.value = get(result, props.resultField) || []
+        const data = get(result, props.resultField) || []
+        optionsRef.value = generatorOptions(data)
       } catch (error) {
-        console.warn(error)
+        console.error(error)
       } finally {
         loading.value = false
         isLoaded.value = false
@@ -147,11 +148,25 @@ export default defineComponent({
         if (isArray(res)) {
           const children = generatorOptions(res)
           targetOption.children = children
+          const _newOptionData = optionsRef.value.map(node => {
+            if (node.value === targetOption.value) {
+              node.children = children
+            }
+            return node
+          })
+          optionsRef.value = [..._newOptionData]
           return
         }
 
         const children = generatorOptions(get(res, props.resultField) || [])
         targetOption.children = children
+        const _newOptionData = optionsRef.value.map(node => {
+          if (node.value === targetOption.value) {
+            node.children = children
+          }
+          return node
+        })
+        optionsRef.value = [..._newOptionData]
       } catch (e) {
         console.error(e)
       } finally {
@@ -159,26 +174,20 @@ export default defineComponent({
       }
     }
 
-    async function handleFetch(visible: boolean) {
-      if (visible && props.alwaysLoad) {
-        await fetchData()
-      }
-    }
-
-    function handleChange(_, ...args) {
-      emitData.value = args
+    function handleChange(value: any, selectOptions: any) {
+      emit('update:value', value)
+      emit('change', value, selectOptions)
     }
 
     function generatorOptions(options: any[]): CascaderOptionType[] {
-      const { labelField, valueField, childrenField, numberToString } = props
+      const { labelField, valueField, childrenField } = props
 
       return options.reduce((prev, next: Recordable<any>) => {
         if (next) {
-          const value = next[valueField]
           const item = {
             ...omit(next, [labelField, valueField]),
-            label: next[labelField],
-            value: numberToString ? `${value}` : value,
+            label: get(next, labelField),
+            value: get(next, valueField),
             isLeaf: next.isLeaf
           }
 
@@ -197,8 +206,10 @@ export default defineComponent({
     return () => (
       <Cascader
         {...attrs}
-        v-model:value={state}
+        value={props.value}
         options={unref(getOptions)}
+        fieldNames={fieldNames}
+        multiple={props.multiple}
         changeOnSelect
         loadData={props.asyncFetch ? loadData : undefined}
         onDropdownVisibleChange={handleFetch}
