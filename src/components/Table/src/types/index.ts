@@ -13,12 +13,9 @@ type ExtractPropTypes<T extends Component> = T extends new (...args: any[]) => a
   : never
 
 interface _CustomComponents {
-  ApiCascader: ExtractPropTypes<(typeof import('../../../ApiCompo/src/components/ApiCascader'))['default']>
   ApiCheckboxGroup: ExtractPropTypes<(typeof import('../../../ApiCompo/src/components/ApiCheckboxGroup'))['default']>
   ApiRadioGroup: ExtractPropTypes<(typeof import('../../../ApiCompo/src/components/ApiRadioGroup'))['default']>
   ApiSelect: ExtractPropTypes<(typeof import('../../../ApiCompo/src/components/ApiSelect'))['default']>
-  ApiTransfer: ExtractPropTypes<(typeof import('../../../ApiCompo/src/components/ApiTransfer'))['default']>
-  ApiTree: ExtractPropTypes<(typeof import('../../../ApiCompo/src/components/ApiTree'))['default']>
   ApiTreeSelect: ExtractPropTypes<(typeof import('../../../ApiCompo/src/components/ApiTreeSelect'))['default']>
 }
 
@@ -31,20 +28,14 @@ export interface ComponentProps {
   Input: ExtractPropTypes<(typeof import('ant-design-vue/es/input'))['default']>
   InputNumber: ExtractPropTypes<(typeof import('ant-design-vue/es/input-number'))['default']>
   Select: ExtractPropTypes<(typeof import('ant-design-vue/es/select'))['default']>
+  ApiSelect: CustomComponents['ApiSelect'] & ComponentProps['Select']
   DatePicker: ExtractPropTypes<(typeof import('ant-design-vue/es/date-picker'))['default']>
   TimePicker: ExtractPropTypes<(typeof import('ant-design-vue/es/time-picker'))['TimePicker']>
-  ApiSelect: CustomComponents['ApiSelect'] & ComponentProps['Select']
   Checkbox: ExtractPropTypes<(typeof import('ant-design-vue/es/checkbox'))['default']>
   ApiCheckboxGroup: CustomComponents['ApiCheckboxGroup'] & ComponentProps['Checkbox']
-  Cascader: ExtractPropTypes<(typeof import('ant-design-vue/es/cascader'))['default']>
-  ApiCascader: CustomComponents['ApiCascader'] & ComponentProps['Cascader']
   RadioGroup: ExtractPropTypes<(typeof import('ant-design-vue/es/radio'))['RadioGroup']>
   ApiRadioGroup: CustomComponents['ApiRadioGroup'] & ComponentProps['RadioGroup']
   Switch: ExtractPropTypes<(typeof import('ant-design-vue/es/switch'))['default']>
-  Transfer: ExtractPropTypes<(typeof import('ant-design-vue/es/transfer'))['default']>
-  ApiTransfer: CustomComponents['ApiTransfer'] & ComponentProps['Transfer']
-  Tree: ExtractPropTypes<(typeof import('ant-design-vue/es/tree'))['default']>
-  ApiTree: CustomComponents['ApiTree'] & ComponentProps['Tree']
   TreeSelect: ExtractPropTypes<(typeof import('ant-design-vue/es/tree-select'))['default']>
   ApiTreeSelect: CustomComponents['ApiTreeSelect'] & ComponentProps['TreeSelect']
 }
