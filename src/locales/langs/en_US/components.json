@@ -1,0 +1,8 @@
+{
+  "widgets": {
+    "fullScreen": "Full screen",
+    "exitFullScreen": "Exit full screen",
+    "refresh": "Refresh",
+    "search": "Search"
+  }
+}

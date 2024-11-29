@@ -4,6 +4,7 @@ import { defineComponent, ref, unref, computed, toRaw, nextTick, watchEffect } f
 import { Spin, Popover } from 'ant-design-vue'
 import { CheckOutlined, CloseOutlined, FormOutlined } from '@ant-design/icons-vue'
 import { isArray, isBoolean, isFunction, isNumber, isString } from '@/utils/is'
+import clickOutside from '@/directives/clickOutside'
 import { pick, set } from 'lodash-es'
 import { generatePlaceholder } from '../helper'
 import { compoMap } from '../compoMap'
@@ -25,6 +26,9 @@ export default defineComponent({
       type: Object as PropType<EditColumnType>,
       default: () => ({})
     }
+  },
+  directives: {
+    clickOutside
   },
   setup(props, { emit }) {
     const elRef = ref(null)
@@ -129,6 +133,18 @@ export default defineComponent({
       const dataKey = (dataIndex || key) as string
       set(record, dataKey, value)
     }
+
+    const getRowEditable = computed(() => {
+      const { editable } = props.record || {}
+      return !!editable
+    })
+
+    watchEffect(() => {
+      const { editable } = props.column
+      if (isBoolean(editable) || isBoolean(unref(getRowEditable))) {
+        isEdit.value = !!editable || unref(getRowEditable)
+      }
+    })
 
     return () => {
       const CellComponent = compoMap.get(unref(getComponent)) as typeof defineComponent
