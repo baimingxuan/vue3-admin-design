@@ -358,7 +358,7 @@ export default defineComponent({
                 </FormItem>
                 {!unref(getRowEditable) && (
                   <div class={styles['editable-cell__action']}>
-                    <CheckOutlined class={styles['editable-cell__action-icon']} onClick={handleSubmit} />
+                    <CheckOutlined class={styles['editable-cell__action-icon']} onClick={() => handleSubmit()} />
                     <CloseOutlined class={styles['editable-cell__action-icon']} onClick={handleCancel} />
                   </div>
                 )}
