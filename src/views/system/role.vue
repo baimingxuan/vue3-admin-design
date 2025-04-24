@@ -1,7 +1,11 @@
 <template>
-  <div>role</div>
+  <div>{{ role }}</div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { ref } from 'vue'
+
+const role = ref('')
+</script>
 
 <style lang="less" scoped></style>

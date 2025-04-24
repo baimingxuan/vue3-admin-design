@@ -1,0 +1,52 @@
+.editable-cell {
+  position: relative;
+
+    &__wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      > .ant-select {
+        min-width: calc(100% - 50px);
+      }
+    }
+
+    &__action {
+      &-icon {
+        &:hover {
+          transform: scale(1.2);
+
+          svg {
+            color: @primary-color;
+          }
+        }
+      }
+    }
+
+    .ellipsis-cell {
+      .cell-content {
+        overflow-wrap: break-word;
+        word-break: break-word;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+
+    &__normal {
+      &-icon {
+        position: absolute;
+        top: 4px;
+        right: 0;
+        display: none;
+        width: 20px;
+        cursor: pointer;
+      }
+    }
+
+    &:hover {
+      .@{prefix-cls}__normal-icon {
+        display: inline-block;
+      }
+    }
+  }
