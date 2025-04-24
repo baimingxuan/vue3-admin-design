@@ -1,0 +1,31 @@
+.basic-form-wrapper {
+
+  .ant-form-item {
+    margin-bottom: 22px;
+
+    .suffix-item {
+      .ant-form-item-children {
+        display: flex;
+      }
+
+      .suffix-cont {
+        display: inline-flex;
+        align-items: center;
+        margin-top: 1px;
+        padding-left: 6px;
+        line-height: 1;
+      }
+    }
+
+    .form-advanced {
+      margin-inline-start: 4px !important;
+      transform: rotate(0deg);
+      transform-origin: center center;
+      transition: all 0.1s ease 0.1s;
+
+      &.active {
+        transform: rotate(-180deg);
+      }
+    }
+  }
+}

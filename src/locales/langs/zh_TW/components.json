@@ -1,0 +1,8 @@
+{
+  "widgets": {
+    "fullScreen": "全屏",
+    "exitFullScreen": "退出全屏",
+    "refresh": "刷新",
+    "search": "查詢"
+  }
+}
