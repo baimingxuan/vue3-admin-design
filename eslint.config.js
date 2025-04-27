@@ -45,7 +45,8 @@ export default defineFlatConfig([
       'prettier/prettier': [
         'error',
         {
-          endOfLine: 'auto'
+          endOfLine: 'auto',
+          vueIndentScriptAndStyle: true
         }
       ]
     }

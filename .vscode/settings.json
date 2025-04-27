@@ -4,8 +4,8 @@
     "source.fixAll.eslint": "explicit"
   },
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
-  "eslint.experimental.useFlatConfig": true,
-  "i18n-ally.localesPaths": ["src/locales"],
+  "eslint.useFlatConfig": true,
+  "prettier.vueIndentScriptAndStyle": true,
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }

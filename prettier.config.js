@@ -23,5 +23,7 @@ export default {
   // 在唯一的箭头函数参数周围包含括号(avoid：省略括号, always：不省略括号)
   arrowParens: 'avoid',
   // 换行符使用 lf 结尾 可选值 auto|lf|crlf|cr
-  endOfLine: 'lf'
+  endOfLine: 'lf',
+  // 启用 Vue 文件中 script 和 style 标签的缩进
+  vueIndentScriptAndStyle: true
 }

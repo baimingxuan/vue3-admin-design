@@ -48,116 +48,116 @@
 </template>
 
 <script lang="ts" setup>
-import type { TreeProps } from 'ant-design-vue'
-import { ref, reactive } from 'vue'
-import { Flex, Space, Card, Form, Input, Tree, Select, Button, Table } from 'ant-design-vue'
-import { SearchOutlined } from '@ant-design/icons-vue'
+  import type { TreeProps } from 'ant-design-vue'
+  import { ref, reactive } from 'vue'
+  import { Flex, Space, Card, Form, Input, Tree, Select, Button, Table } from 'ant-design-vue'
+  import { SearchOutlined } from '@ant-design/icons-vue'
 
-interface FormState {
-  username: string
-  status: number
-}
-
-const statusOptions = [
-  { label: '正常', value: 1 },
-  { label: '禁用', value: 0 }
-]
-
-const filterText = ref<string>('')
-const expandedKeys = ref<string[]>([])
-const selectedKeys = ref<string[]>([])
-const treeData = ref<TreeProps['treeData']>([
-  { title: 'Expand to load', key: '0' },
-  { title: 'Expand to load', key: '1' },
-  { title: 'Tree Node', key: '2', isLeaf: true }
-])
-
-const formState = reactive<FormState>({
-  username: '',
-  status: 1
-})
-
-const tabelColumns = [
-  {
-    title: '用户名',
-    dataIndex: 'username'
-  },
-  {
-    title: '昵称',
-    dataIndex: 'nick_name'
-  },
-  {
-    title: '性别',
-    dataIndex: 'gender'
-  },
-  {
-    title: '电话',
-    dataIndex: 'phone'
-  },
-  {
-    title: '邮箱',
-    dataIndex: 'email'
-  },
-  {
-    title: '部门',
-    dataIndex: 'dept'
-  },
-  {
-    title: '状态',
-    dataIndex: ' enabled'
-  },
-  {
-    title: '创建时间',
-    dataIndex: ' create_time'
-  },
-  {
-    title: '操作',
-    dataIndex: 'operation'
+  interface FormState {
+    username: string
+    status: number
   }
-]
 
-const tabelData = ref([
-  {
-    key: '1',
-    username: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer']
-  }
-])
+  const statusOptions = [
+    { label: '正常', value: 1 },
+    { label: '禁用', value: 0 }
+  ]
 
-const onFilterTextChange = e => {
-  console.log(e)
-}
+  const filterText = ref<string>('')
+  const expandedKeys = ref<string[]>([])
+  const selectedKeys = ref<string[]>([])
+  const treeData = ref<TreeProps['treeData']>([
+    { title: 'Expand to load', key: '0' },
+    { title: 'Expand to load', key: '1' },
+    { title: 'Tree Node', key: '2', isLeaf: true }
+  ])
 
-const onLoadTreeData: TreeProps['loadData'] = treeNode => {
-  return new Promise<void>(resolve => {
-    if (treeNode.dataRef!.children) {
-      resolve()
-      return
-    }
-    setTimeout(() => {
-      treeNode.dataRef!.children = [
-        { title: 'Child Node', key: `${treeNode.eventKey}-0` },
-        { title: 'Child Node', key: `${treeNode.eventKey}-1` }
-      ]
-      treeData.value = [...treeData.value!]
-      resolve()
-    }, 1000)
+  const formState = reactive<FormState>({
+    username: '',
+    status: 1
   })
-}
 
-const onSearch = (values: any) => {
-  console.log('Success:', values)
-}
+  const tabelColumns = [
+    {
+      title: '用户名',
+      dataIndex: 'username'
+    },
+    {
+      title: '昵称',
+      dataIndex: 'nick_name'
+    },
+    {
+      title: '性别',
+      dataIndex: 'gender'
+    },
+    {
+      title: '电话',
+      dataIndex: 'phone'
+    },
+    {
+      title: '邮箱',
+      dataIndex: 'email'
+    },
+    {
+      title: '部门',
+      dataIndex: 'dept'
+    },
+    {
+      title: '状态',
+      dataIndex: ' enabled'
+    },
+    {
+      title: '创建时间',
+      dataIndex: ' create_time'
+    },
+    {
+      title: '操作',
+      dataIndex: 'operation'
+    }
+  ]
 
-const onAdd = () => {
-  console.log('add')
-}
+  const tabelData = ref([
+    {
+      key: '1',
+      username: 'John Brown',
+      age: 32,
+      address: 'New York No. 1 Lake Park',
+      tags: ['nice', 'developer']
+    }
+  ])
 
-const onDelete = () => {
-  console.log('delete')
-}
+  const onFilterTextChange = e => {
+    console.log(e)
+  }
+
+  const onLoadTreeData: TreeProps['loadData'] = treeNode => {
+    return new Promise<void>(resolve => {
+      if (treeNode.dataRef!.children) {
+        resolve()
+        return
+      }
+      setTimeout(() => {
+        treeNode.dataRef!.children = [
+          { title: 'Child Node', key: `${treeNode.eventKey}-0` },
+          { title: 'Child Node', key: `${treeNode.eventKey}-1` }
+        ]
+        treeData.value = [...treeData.value!]
+        resolve()
+      }, 1000)
+    })
+  }
+
+  const onSearch = (values: any) => {
+    console.log('Success:', values)
+  }
+
+  const onAdd = () => {
+    console.log('add')
+  }
+
+  const onDelete = () => {
+    console.log('delete')
+  }
 </script>
 
 <style scoped lang="less"></style>

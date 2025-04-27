@@ -23,65 +23,65 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive } from 'vue'
-import { Flex, Space, Card, Form, Input, Button, Table } from 'ant-design-vue'
+  import { ref, reactive } from 'vue'
+  import { Flex, Space, Card, Form, Input, Button, Table } from 'ant-design-vue'
 
-interface FormState {
-  name: string
-}
-
-const formState = reactive<FormState>({
-  name: ''
-})
-
-const tabelColumns = [
-  {
-    title: '角色名',
-    dataIndex: 'name'
-  },
-  {
-    title: '数据权限',
-    dataIndex: 'nick_name'
-  },
-  {
-    title: '角色级别',
-    dataIndex: 'level'
-  },
-  {
-    title: '描述',
-    dataIndex: 'description'
-  },
-  {
-    title: '创建时间',
-    dataIndex: ' create_time'
-  },
-  {
-    title: '操作',
-    dataIndex: 'operation'
+  interface FormState {
+    name: string
   }
-]
 
-const tabelData = ref([
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer']
+  const formState = reactive<FormState>({
+    name: ''
+  })
+
+  const tabelColumns = [
+    {
+      title: '角色名',
+      dataIndex: 'name'
+    },
+    {
+      title: '数据权限',
+      dataIndex: 'nick_name'
+    },
+    {
+      title: '角色级别',
+      dataIndex: 'level'
+    },
+    {
+      title: '描述',
+      dataIndex: 'description'
+    },
+    {
+      title: '创建时间',
+      dataIndex: ' create_time'
+    },
+    {
+      title: '操作',
+      dataIndex: 'operation'
+    }
+  ]
+
+  const tabelData = ref([
+    {
+      key: '1',
+      name: 'John Brown',
+      age: 32,
+      address: 'New York No. 1 Lake Park',
+      tags: ['nice', 'developer']
+    }
+  ])
+
+  const onSearch = (values: any) => {
+    console.log('Success:', values)
   }
-])
 
-const onSearch = (values: any) => {
-  console.log('Success:', values)
-}
+  const onAdd = () => {
+    console.log('add')
+  }
 
-const onAdd = () => {
-  console.log('add')
-}
-
-const onDelete = () => {
-  console.log('delete')
-}
+  const onDelete = () => {
+    console.log('delete')
+  }
 </script>
 
 <style lang="less" scoped></style>
