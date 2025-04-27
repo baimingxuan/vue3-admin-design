@@ -17,7 +17,7 @@ const ExcelRoute: AppRoute = {
     {
       path: 'account',
       name: 'Account',
-      component: () => import('@/views/system/account.vue'),
+      component: () => import('@/views/system/user.vue'),
       meta: {
         title: '用户设置'
       }
